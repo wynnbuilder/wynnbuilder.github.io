@@ -1,5 +1,5 @@
 .header {
-    padding: 2%;
+    padding: 2% 0% 0%;
     text-align: center;  
 }
 
@@ -9,25 +9,34 @@
 }
 
 th, td {
-    padding-right: 20px;
+    padding-right: 10px;
+}
+
+.nomargin {
+    padding: 0px;
+}
+
+div {
+    padding: 0%;
 }
 
 .equipment {
-    padding: 4%;
+    padding: 0%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    grid-auto-rows: minmax(60px, auto);
+    grid-template-columns: min-content min-content min-content;
+    gap: 5px;
+    grid-template-rows: min-content min-content auto;
 }
 
 .skillpoints {
-    padding: 4%;
+    padding: 0% 4% 2%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 5px;
     grid-auto-rows: minmax(60px, auto);
 }
-.equipment, .skillpoints, .center, .header, .all{
+
+.equipment, .skillpoints, .center, .header, .all, .nocolor{
     background: #121516;
     color: #aaa;
 }
@@ -44,6 +53,10 @@ a.link{
     text-align: center;
     font-size: 150%;
 }
+.smalltitle{
+    text-align: center;
+    font-size: 125%;
+}
 .center {
     text-align: center;
 }
@@ -55,16 +68,6 @@ a.link{
 .left {
     margin: 2px 2%;
     text-align: left;
-}
-
-.build, .spells, .misc {
-    padding: 2%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    grid-auto-rows: minmax(60px, auto);
-    width: 94%;
-    background: #121516;
 }
 
 .build-helmet, .build-chestplate, .build-leggings, .build-boots, .build-ring1, .build-ring2, .build-bracelet, .build-necklace, .build-weapon, .build-order, .build-overall, .build-melee-stats, .build-defense-stats, .spell-info, .set-info {
@@ -94,10 +97,6 @@ a.link{
     width: 94%;
     margin-bottom: 16px;
 }
-/* VERY BAD. NEED FIX. */
-.spaceLeft {
-    padding-left: 5px;
-}
 
 .itemp, .damagep {
     margin: 2px 2%;
@@ -122,53 +121,33 @@ a.link{
     /*text-shadow: 2px 2px 0 #1f1515;*/
 }
 
-.Earth {
-    color: #0a0;
-    /*text-shadow: 2px 2px 0 #002a00;*/
-}
-.Earth:before {
-    content: "\2724" ' ';
-}
+.Earth { color: #0a0; }
+.Earth:before { content: "\2724" ' '; }
+.Earth_powder { color: #0a0; }
+.Earth_powder:before { content: "\2724"; }
 
-.Thunder {
-    color: #ff5;
-    /*text-shadow: 2px 2px 0 #3f3f15;*/
-}
-.Thunder:before {
-    content: "\2726" ' ';
-}
+.Thunder { color: #ff5; }
+.Thunder:before { content: "\2726" ' '; }
+.Thunder_powder { color: #ff5; }
+.Thunder_powder:before { content: "\2726"; }
 
-.Water {
-    color: #5ff;
-    /*text-shadow: 2px 2px 0 #153f3f;*/
-}
-.Water:before {
-    content: "\2749" ' ';
-}
+.Water { color: #5ff; }
+.Water:before { content: "\2749" ' '; }
+.Water_powder { color: #5ff; }
+.Water_powder:before { content: "\2749"; }
 
-.Fire {
-    color: #f55;
-    /*text-shadow: 2px 2px 0 #1f1515;*/
-}
-.Fire:before {
-    content: "\2739" ' ';
-}
+.Fire { color: #f55; }
+.Fire:before { content: "\2739" ' '; }
+.Fire_powder { color: #f55; }
+.Fire_powder:before { content: "\2739"; }
 
-.Air {
-    color: #fff;
-    /*text-shadow: 2px 2px 0 #3f3f3f;*/
-}
-.Air:before {
-    content: "\274b" ' ';
-}
+.Air { color: #fff; }
+.Air:before { content: "\274b" ' '; }
+.Air_powder { color: #fff; }
+.Air_powder:before { content: "\274b"; }
 
-.Neutral {
-    color: #fa0;
-    /*text-shadow: 2px 2px 0 #2a2a00;*/
-}
-.Neutral:before {
-    content: "\2724" ' ';
-}
+.Neutral { color: #fa0; }
+.Neutral:before { content: "\2724" ' '; }
 
 .Health {
     color: #a00;
@@ -230,7 +209,7 @@ input {
     display: inline-block;
 }
 ::placeholder{
-    color: #ddd;
+    color: #aaa;
 }
 /* Tier colors tier colors */
 .Normal{
@@ -254,6 +233,6 @@ input {
 .Set{
     color:#5f5;
 }
-.restrict{
-    color: #ff006a;
+.restrict, .warning {
+    color: #ff8180;
 }

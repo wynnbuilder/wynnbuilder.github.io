@@ -27,7 +27,7 @@ function calculateSpellDamage(stats, spellConversions, rawModifier, pctModifier,
         // Bitwise to force conversion to integer (integer division).
         const element = (powderID/6) | 0;
         let conversionRatio = powder.convert/100;
-        if (neutralRemainingRaw[0] > 0) {
+        if (neutralRemainingRaw[1] > 0) {
             let min_diff = Math.min(neutralRemainingRaw[0], conversionRatio * neutralBase[0]);
             let max_diff = Math.min(neutralRemainingRaw[1], conversionRatio * neutralBase[1]);
             damages[element+1][0] = Math.floor(damages[element+1][0] + min_diff);
@@ -40,9 +40,11 @@ function calculateSpellDamage(stats, spellConversions, rawModifier, pctModifier,
     }
 
     let damageMult = 1;
+    let melee = false;
     // If we are doing melee calculations:
     if (spellMultiplier == 0) {
         spellMultiplier = 1;
+        melee = true;
     }
     else {
         damageMult *= spellMultiplier * baseDamageMultiplier[attackSpeeds.indexOf(stats.get("atkSpd"))];
@@ -51,9 +53,12 @@ function calculateSpellDamage(stats, spellConversions, rawModifier, pctModifier,
     //console.log(damageMult);
 
     rawModifier *= spellMultiplier;
-
-    let totalDamNorm = [rawModifier, rawModifier];
-    let totalDamCrit = [rawModifier, rawModifier];
+    let totalDamNorm = [0, 0];
+    let totalDamCrit = [0, 0];
+    if(!melee){       
+        totalDamNorm = [rawModifier, rawModifier];
+        totalDamCrit = [rawModifier, rawModifier];
+    }
     let damages_results = [];
     // 0th skillpoint is strength, 1st is dex.
     let str = total_skillpoints[0];
@@ -76,10 +81,17 @@ function calculateSpellDamage(stats, spellConversions, rawModifier, pctModifier,
         totalDamCrit[0] += damages_results[i][2];
         totalDamCrit[1] += damages_results[i][3];
     }
+    if (melee) {
+        totalDamNorm[0] += Math.max(rawModifier, -damages_results[0][0]);
+        totalDamNorm[1] += Math.max(rawModifier, -damages_results[0][1]);
+        totalDamCrit[0] += Math.max(rawModifier, -damages_results[0][2]);
+        totalDamCrit[1] += Math.max(rawModifier, -damages_results[0][3]);
+    }
     damages_results[0][0] += rawModifier;
     damages_results[0][1] += rawModifier;
     damages_results[0][2] += rawModifier;
     damages_results[0][3] += rawModifier;
+
     if (totalDamNorm[0] < 0) totalDamNorm[0] = 0;
     if (totalDamNorm[1] < 0) totalDamNorm[1] = 0;
     if (totalDamCrit[0] < 0) totalDamCrit[0] = 0;
@@ -90,9 +102,9 @@ function calculateSpellDamage(stats, spellConversions, rawModifier, pctModifier,
 const spell_table = {
     "wand": [
         { title: "Heal", cost: 6, parts: [
-                { subtitle: "First Pulse", type: "heal", strength: 0.2 },
-                { subtitle: "Second and Third Pulses", type: "heal", strength: 0.05 },
-                { subtitle: "Total Heal", type: "heal", strength: 0.3, summary: true }
+                { subtitle: "First Pulse", type: "heal", strength: 0.12 },
+                { subtitle: "Second and Third Pulses", type: "heal", strength: 0.06 },
+                { subtitle: "Total Heal", type: "heal", strength: 0.24, summary: true }
             ] },
         { title: "Teleport", cost: 4, parts: [
                 { subtitle: "Total Damage", type: "damage", multiplier: 100, conversion: [60, 0, 40, 0, 0, 0], summary: true },

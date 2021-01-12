@@ -1,7 +1,7 @@
 let nonRolledIDs = ["name", "displayName", "tier", "set", "slots", "type", "material", "drop", "quest", "restrict", "nDam", "fDam", "wDam", "aDam", "tDam", "eDam", "atkSpd", "hp", "fDef", "wDef", "aDef", "tDef", "eDef", "lvl", "classReq", "strReq", "dexReq", "intReq", "defReq", "agiReq","str", "dex", "int", "agi", "def", "fixID", "category", "id", "skillpoints", "reqs", "nDam_", "fDam_", "wDam_", "aDam_", "tDam_", "eDam_"];
 let rolledIDs = ["hprPct", "mr", "sdPct", "mdPct", "ls", "ms", "xpb", "lb", "ref", "thorns", "expd", "spd", "atkTier", "poison", "hpBonus", "spRegen", "eSteal", "hprRaw", "sdRaw", "mdRaw", "fDamPct", "wDamPct", "aDamPct", "tDamPct", "eDamPct", "fDefPct", "wDefPct", "aDefPct", "tDefPct", "eDefPct", "spPct1", "spRaw1", "spPct2", "spRaw2", "spPct3", "spRaw3", "spPct4", "spRaw4", "rainbowRaw", "sprint", "sprintReg", "jh", "lq", "gXp", "gSpd"];
 let damageClasses = ["Neutral","Earth","Thunder","Water","Fire","Air"];
-let reversedIDs = [ "atkTier", "spPct1", "spRaw1", "spPct2", "spRaw2", "spPct3", "spRaw3", "spPct4", "spRaw4" ];
+let reversedIDs = [ "spPct1", "spRaw1", "spPct2", "spRaw2", "spPct3", "spRaw3", "spPct4", "spRaw4" ];
 
 
 function expandItem(item, powders){
@@ -21,8 +21,13 @@ function expandItem(item, powders){
         for (const id of rolledIDs){
             let val = (item[id] || 0);
             if(val > 0){ // positive rolled IDs                   
-                minRolls.set(id,idRound(val*0.3));
-                maxRolls.set(id,idRound(val*1.3));
+                if (reversedIDs.includes(id)) {
+                    maxRolls.set(id,idRound(val*1.3));
+                    minRolls.set(id,idRound(val*0.3));
+                } else {
+                    minRolls.set(id,idRound(val*0.3));
+                    maxRolls.set(id,idRound(val*1.3));
+                }
             }else if(val < 0){ //negative rolled IDs
                 if (reversedIDs.includes(id)) {
                     maxRolls.set(id,idRound(val*1.3));
@@ -44,6 +49,17 @@ function expandItem(item, powders){
     expandedItem.set("minRolls",minRolls);
     expandedItem.set("maxRolls",maxRolls);
     expandedItem.set("powders", powders);
+    
+    if(expandedItem.has("eDef")){ //item is armor
+        for(const id of powders){
+            //console.log(powderStats[id]);
+            let powder = powderStats[id];
+            let name = powderNames.get(id);
+            expandedItem.set(name.charAt(0) + "Def", expandedItem.get(name.charAt(0)+"Def") + powder["defPlus"]);
+            expandedItem.set(skp_elements[(skp_elements.indexOf(name.charAt(0)) + 6 )% 5] + "Def", expandedItem.get(skp_elements[(skp_elements.indexOf(name.charAt(0)) + 6 )% 5]+"Def") - powder["defMinus"]);
+        }
+    }
+    
     return expandedItem;
 }
 
@@ -60,7 +76,7 @@ function idRound(id){
     }
 }
 
-let idPrefixes = {"displayName": "", "lvl":"Combat Level Min: ", "classReq":"Class Req: ","strReq":"Strength Min: ","dexReq":"Dexterity Min: ","intReq":"Intelligence Min: ","defReq":"Defense Min: ","agiReq":"Agility Min: ", "nDam_":"Neutral Damage: ", "eDam_":"Earth Damage: ", "tDam_":"Thunder Damage: ", "wDam_":"Water Damage: ", "fDam_":"Fire Damage: ", "aDam_":"Air Damage: ", "atkSpd":"Attack Speed: ", "hp":"Health : ", "eDef":"Earth Defense: ", "tDef":"Thunder Defense: ", "wDef":"Water Defense: ", "fDef":"Fire Defense: ", "aDef":"Air Defense: ", "str":"Strength: ", "dex":"Dexterity: ", "int":"Intelligence: ", "def":"Defense: ","agi":"Agility: ", "hpBonus":"Health Bonus: ", "hprRaw":"Health Regen Raw: ", "hprPct":"Health Regen %: ", "sdRaw":"Raw Spell Damage: ", "sdPct":"Spell Damage %: ", "mdRaw":"Main Attack Neutral Damage: ", "mdPct":"Main Attack Damage %: ", "mr":"Mana Regen: ", "ms":"Mana Steal: ", "ref":"Reflection: ", "ls":"Life Steal: ", "poison":"Poison: ", "thorns":"Thorns: ", "expd":"Exploding: ", "spd":"Walk Speed Bonus: ", "atkTier":"Attack Speed Bonus: ",  "eDamPct":"Earth Damage %: ", "tDamPct":"Thunder Damage %: ", "wDamPct":"Water Damage %: ", "fDamPct":"Fire Damage %: ", "aDamPct":"Air Damage %: ", "eDefPct":"Earth Defense %: ", "tDefPct":"Thunder Defense %: ", "wDefPct":"Water Defense %: ", "fDefPct":"Fire Defense %: ", "aDefPct":"Air Defense %: ", "spPct1":"1st Spell Cost %: ", "spRaw1":"1st Spell Cost Raw: ", "spPct2":"2nd Spell Cost %: ", "spRaw2":"2nd Spell Cost Raw: ", "spPct3":"3rd Spell Cost %: ", "spRaw3":"3rd Spell Cost Raw: ", "spPct4":"4th Spell Cost %: ", "spRaw4":"4th Spell Cost Raw: ", "rainbowRaw":"Rainbow Spell Damage Raw: ", "sprint":"Sprint Bonus: ", "sprintReg":"Sprint Regen Bonus: ", "jh":"Jump Height: ", "xpb":"Combat XP Bonus: ", "lb":"Loot Bonus: ", "lq":"Loot Quality: ", "spRegen":"Soul Point Regen: ", "eSteal":"Stealing: ", "gXp":"Gathering XP Bonus: ", "gSpd":"Gathering Speed Bonus: ", "slots":"Powder Slots: ", "set":"Set: ", "quest":"Quest Req: ", "restrict":""};
+let idPrefixes = {"displayName": "", "lvl":"Combat Level Min: ", "classReq":"Class Req: ","strReq":"Strength Min: ","dexReq":"Dexterity Min: ","intReq":"Intelligence Min: ","defReq":"Defense Min: ","agiReq":"Agility Min: ", "nDam_":"Neutral Damage: ", "eDam_":"Earth Damage: ", "tDam_":"Thunder Damage: ", "wDam_":"Water Damage: ", "fDam_":"Fire Damage: ", "aDam_":"Air Damage: ", "atkSpd":"Attack Speed: ", "hp":"Health : ", "eDef":"Earth Defense: ", "tDef":"Thunder Defense: ", "wDef":"Water Defense: ", "fDef":"Fire Defense: ", "aDef":"Air Defense: ", "str":"Strength: ", "dex":"Dexterity: ", "int":"Intelligence: ", "def":"Defense: ","agi":"Agility: ", "hpBonus":"Health Bonus: ", "hprRaw":"Health Regen Raw: ", "hprPct":"Health Regen %: ", "sdRaw":"Raw Spell Damage: ", "sdPct":"Spell Damage %: ", "mdRaw":"Raw Melee Damage: ", "mdPct":"Melee Damage %: ", "mr":"Mana Regen: ", "ms":"Mana Steal: ", "ref":"Reflection: ", "ls":"Life Steal: ", "poison":"Poison: ", "thorns":"Thorns: ", "expd":"Exploding: ", "spd":"Walk Speed Bonus: ", "atkTier":"Attack Speed Bonus: ",  "eDamPct":"Earth Damage %: ", "tDamPct":"Thunder Damage %: ", "wDamPct":"Water Damage %: ", "fDamPct":"Fire Damage %: ", "aDamPct":"Air Damage %: ", "eDefPct":"Earth Defense %: ", "tDefPct":"Thunder Defense %: ", "wDefPct":"Water Defense %: ", "fDefPct":"Fire Defense %: ", "aDefPct":"Air Defense %: ", "spPct1":"1st Spell Cost %: ", "spRaw1":"1st Spell Cost Raw: ", "spPct2":"2nd Spell Cost %: ", "spRaw2":"2nd Spell Cost Raw: ", "spPct3":"3rd Spell Cost %: ", "spRaw3":"3rd Spell Cost Raw: ", "spPct4":"4th Spell Cost %: ", "spRaw4":"4th Spell Cost Raw: ", "rainbowRaw":"Rainbow Spell Damage Raw: ", "sprint":"Sprint Bonus: ", "sprintReg":"Sprint Regen Bonus: ", "jh":"Jump Height: ", "xpb":"Combat XP Bonus: ", "lb":"Loot Bonus: ", "lq":"Loot Quality: ", "spRegen":"Soul Point Regen: ", "eSteal":"Stealing: ", "gXp":"Gathering XP Bonus: ", "gSpd":"Gathering Speed Bonus: ", "slots":"Powder Slots: ", "set":"Set: ", "quest":"Quest Req: ", "restrict":""};
 let idSuffixes = {"displayName": "", "lvl":"", "classReq":"","strReq":"","dexReq":"","intReq":"","defReq":"","agiReq":"", "nDam_":"", "eDam_":"", "tDam_":"", "wDam_":"", "fDam_":"", "aDam_":"", "atkSpd":"", "hp":"", "eDef":"", "tDef":"", "wDef":"", "fDef":"", "aDef":"", "str":"", "dex":"", "int":"", "def":"","agi":"", "hpBonus":"", "hprRaw":"", "hprPct":"%", "sdRaw":"", "sdPct":"%", "mdRaw":"", "mdPct":"%", "mr":"/4s", "ms":"/4s", "ref":"%", "ls":"/4s", "poison":"/3s", "thorns":"%", "expd":"%", "spd":"%", "atkTier":" tier",  "eDamPct":"%", "tDamPct":"%", "wDamPct":"%", "fDamPct":"%", "aDamPct":"%", "eDefPct":"%", "tDefPct":"%", "wDefPct":"%", "fDefPct":"%", "aDefPct":"%", "spPct1":"%", "spRaw1":"", "spPct2":"%", "spRaw2":"", "spPct3":"%", "spRaw3":"", "spPct4":"%", "spRaw4":"", "rainbowRaw":"", "sprint":"%", "sprintReg":"%", "jh":"", "xpb":"%", "lb":"%", "lq":"%", "spRegen":"%", "eSteal":"%", "gXp":"%", "gSpd":"%", "slots":"", "set":" set.", "quest":"", "restrict":""};
 
 function apply_elemental_format(p_elem, id, suffix) {
@@ -107,6 +123,7 @@ function displaySetBonuses(build, parent_id) {
                 mock_item.set(id, bonus[id]);
             }
         }
+        mock_item.set("powders", []);
         displayExpandedItem(mock_item, set_elem.id);
     }
 }
@@ -118,18 +135,17 @@ function displayBuildStats(build, parent_id){
     // normals just display a thing.
 
     let display_commands = [
-        "#ldiv",
-        "!elemental",
-        "hp",
-        "fDef", "wDef", "aDef", "tDef", "eDef",
-        "!elemental",
+//        "#ldiv",
+//        "!elemental",
+//        "hp",
+//        "fDef", "wDef", "aDef", "tDef", "eDef",
+//        "!elemental",
         "#table",
-        "str", "dex", "int", "def", "agi",
-        "hpBonus",
-        "hprRaw", "hprPct",
+        "mr", "ms",
+//        "hprRaw", "hprPct",
+        "#table",
         "sdRaw", "sdPct",
         "mdRaw", "mdPct",
-        "mr", "ms",
         "ref", "thorns",
         "ls",
         "poison",
@@ -138,7 +154,7 @@ function displayBuildStats(build, parent_id){
         "atkTier",
         "!elemental",
         "fDamPct", "wDamPct", "aDamPct", "tDamPct", "eDamPct",
-        "fDefPct", "wDefPct", "aDefPct", "tDefPct", "eDefPct",
+//        "fDefPct", "wDefPct", "aDefPct", "tDefPct", "eDefPct",
         "!elemental",
         "spPct1", "spRaw1", "spPct2", "spRaw2", "spPct3", "spRaw3", "spPct4", "spRaw4",
         "rainbowRaw",
@@ -162,21 +178,25 @@ function displayBuildStats(build, parent_id){
     parent_div.append(title);
     parent_div.append(document.createElement("br"));
 
-    let set_summary_elem = document.createElement('p');
-    set_summary_elem.classList.add('itemp');
-    set_summary_elem.classList.add('left');
-    set_summary_elem.textContent = "Set Summary:";
-    parent_div.append(set_summary_elem);
-    for (const [setName, count] of build.activeSetCounts) {
-        let set_elem = document.createElement('p');
-        set_elem.classList.add('itemp');
-        set_elem.classList.add('left');
-        set_elem.textContent = "    "+setName+" Set: "+count+"/"+sets[setName].items.length;
-        set_summary_elem.append(set_elem);
+    if (build.activeSetCounts.size > 0) {
+        let set_summary_elem = document.createElement('p');
+        set_summary_elem.classList.add('itemp');
+        set_summary_elem.classList.add('left');
+        set_summary_elem.textContent = "Set Summary:";
+        parent_div.append(set_summary_elem);
+        for (const [setName, count] of build.activeSetCounts) {
+            let set_elem = document.createElement('p');
+            set_elem.classList.add('itemp');
+            set_elem.classList.add('left');
+            set_elem.textContent = "    "+setName+" Set: "+count+"/"+sets[setName].items.length;
+            set_summary_elem.append(set_elem);
+        }
     }
 
+    displayDefenseStats(parent_div, build, true);
+
     let stats = build.statMap;
-    console.log(build.statMap);
+    //console.log(build.statMap);
     
     let active_elem;
     let elemental_format = false;
@@ -216,7 +236,28 @@ function displayBuildStats(build, parent_id){
                         style = "negative";
                     }
                 }
-                displayFixedID(active_elem, id, stats.get(id), elemental_format, style);
+                let id_val = stats.get(id);
+                if (reversedIDs.filter(e => e !== "atkTier").includes(id)) {
+                    style === "positive" ? style = "negative" : style = "positive"; 
+                }
+                displayFixedID(active_elem, id, id_val, elemental_format, style);
+                if (id === "poison" && id_val > 0) {
+                    let style = "positive";
+                    let row = document.createElement('tr');
+                    let value_elem = document.createElement('td');
+                    value_elem.classList.add('right');
+                    value_elem.setAttribute("colspan", "2");
+                    let prefix_elem = document.createElement('b');
+                    prefix_elem.textContent = "-> With Strength: ";
+                    let number_elem = document.createElement('b');
+                    number_elem.classList.add(style);
+                    number_elem.textContent = (id_val * (1+skillPointsToPercentage(build.total_skillpoints[0]))).toFixed(0) + idSuffixes[id];
+                    value_elem.append(prefix_elem);
+                    value_elem.append(number_elem);
+                    row.appendChild(value_elem);
+
+                    active_elem.appendChild(row);
+                }
             }
         }
     }
@@ -321,71 +362,62 @@ function displayExpandedItem(item, parent_id){
         else {
             let id = command;
             if(nonRolledIDs.includes(id) && item.get(id)){//nonRolledID & non-0/non-null/non-und ID
-                let p_elem = displayFixedID(active_elem, id, item.get(id), elemental_format);
                 if (id === "slots") {
+                    let p_elem = document.createElement("p");
                     // PROPER POWDER DISPLAYING EZ CLAP 
-                    p_elem.textContent = "";
-                    let powderMap = new Map([ ["e", "Earth"], ["t", "Thunder"], ["w", "Water"], ["f", "Fire"], ["a", "Air"]]);
-                    let numerals = new Map([["1", "I"], ["2", "II"], ["3", "III"], ["4", "IV"], ["5", "V"], ["6", "VI"]]);
+                    let numerals = new Map([[1, "I"], [2, "II"], [3, "III"], [4, "IV"], [5, "V"], [6, "VI"]]);
                     /*p_elem.textContent = idPrefixes[id].concat(item.get(id), idSuffixes[id]) + 
                     " [ " + item.get("powders").map(x => powderNames.get(x)) + " ]";*/
-                    let wrapper = document.createElement("p");
-                    p_elem.classList.add("itemtable");
-                    let row = document.createElement("tr");
 
-                    let powderPrefix = document.createElement("td");
+                    let powderPrefix = document.createElement("b");
                     powderPrefix.classList.add("itemp");
                     powderPrefix.classList.add("left");
-                    powderPrefix.textContent = "Powders: " + " [";
-                    row.appendChild(powderPrefix);
+                    powderPrefix.textContent = "Powder Slots: " + item.get(id) + " [";
+                    p_elem.appendChild(powderPrefix);
                     
-                    let spaceElem = document.createElement("td");
-                    //spaceElem.textContent = " ";
-                    spaceElem.classList.add("itemp");
-                    spaceElem.classList.add("left");
-
-                    let powderList = item.get("powders").map(x => powderNames.get(x))
-                    for(let i = 0; i < powderList.length; i++){
-                        let powder = document.createElement("td");
-                        let powderStr = powderList[i];
-                        console.log(powderStr);
-                        powder.textContent = numerals.get(powderStr.charAt(1), 10);
-                        powder.classList.add(powderMap.get(powderStr.charAt(0)));
-                        row.appendChild(powder);
+                    let powders = item.get("powders");
+                    console.log(powders);
+                    for (let i = 0; i < powders.length; i++) {
+                        let powder = document.createElement("b");
+                        powder.textContent = numerals.get((powders[i]%6)+1)+" ";
+                        powder.classList.add(damageClasses[Math.floor(powders[i]/6)+1]+"_powder");
+                        p_elem.appendChild(powder);
                     }
 
-                    let powderSuffix = document.createElement("td");
+                    let powderSuffix = document.createElement("b");
                     powderSuffix.classList.add("itemp");
                     powderSuffix.classList.add("left"); 
-                    powderSuffix.textContent = " ]";
-                    row.appendChild(powderSuffix);
-
-                    wrapper.appendChild(row);
-                    p_elem.appendChild(wrapper);
-                }else if(id === "displayName"){
-                    p_elem.classList.add("title");
-                    if(item.get("tier") !== " "){
-                        p_elem.classList.add(item.get("tier"));
+                    powderSuffix.textContent = "]";
+                    p_elem.appendChild(powderSuffix);
+                    active_elem.appendChild(p_elem);
+                }
+                else {
+                    let p_elem = displayFixedID(active_elem, id, item.get(id), elemental_format);
+                    if (id === "displayName") {
+                        p_elem.classList.add("title");
+                        if (item.get("tier") !== " ") {
+                            p_elem.classList.add(item.get("tier"));
+                        }
+                    } else if (skp_order.includes(id)) { //id = str, dex, int, def, or agi
+                        p_elem.textContent = "";
+                        p_elem.classList.add("itemtable");
+                        let row = document.createElement("tr");
+                        let title = document.createElement("td");
+                        title.textContent = idPrefixes[id] + " ";
+                        let boost = document.createElement("td");
+                        if (item.get(id) < 0) {
+                            boost.classList.add("negative");
+                        } else { //boost = 0 SHOULD not come up
+                            boost.classList.add("positive");
+                        }
+                        boost.classList.add("spaceLeft");
+                        boost.textContent = item.get(id);
+                        row.appendChild(title);
+                        row.appendChild(boost);
+                        p_elem.appendChild(row);
+                    } else if (id === "restrict") {
+                        p_elem.classList.add("restrict");
                     }
-                }else if(skp_order.includes(id)){ //id = str, dex, int, def, or agi
-                    p_elem.textContent = "";
-                    p_elem.classList.add("itemtable");
-                    let row = document.createElement("tr");
-                    let title = document.createElement("td");
-                    title.textContent = idPrefixes[id] + " ";
-                    let boost = document.createElement("td");
-                    if(item.get(id) < 0){
-                        boost.classList.add("negative");
-                    }else{ //boost = 0 SHOULD not come up
-                        boost.classList.add("positive");
-                    }
-                    boost.classList.add("spaceLeft");
-                    boost.textContent = item.get(id);
-                    row.appendChild(title);
-                    row.appendChild(boost);
-                    p_elem.appendChild(row);
-                }else if(id === "restrict"){
-                    p_elem.classList.add("restrict");
                 }
             }
             else if (rolledIDs.includes(id) && item.get("minRolls").get(id)){ // && item.get("maxRolls").get(id) ){//rolled ID & non-0/non-null/non-und ID
@@ -430,9 +462,72 @@ function displayExpandedItem(item, parent_id){
             }//Just don't do anything if else
         }
     }
-    if (item.get("tier") & item.get("tier") !== " ") {
+    //Show powder specials ;-;
+    let powder_special = document.createElement("p");
+    powder_special.classList.add("left");
+    let powders = item.get("powders");
+    let element = "";
+    let power = 0;
+    for (let i = 0; i < powders.length; i++) {
+        let firstPowderType = skp_elements[Math.floor(powders[i]/6)];
+        if (element !== "") break;
+        else if (powders[i]%6 > 2) { //t4+
+            for (let j = i+1; j < powders.length; j++) {
+                let currentPowderType = skp_elements[Math.floor(powders[j]/6)]
+                if (powders[j] % 6 > 2 && firstPowderType === currentPowderType) {
+                    element = currentPowderType;
+                    power = Math.round(((powders[i] % 6 + powders[j] % 6 + 2) / 2 - 4) * 2);
+                    break;
+                }
+            }
+        }
+    }
+    if (element !== "") {//powder special is "[e,t,w,f,a]+[0,1,2,3,4]"
+        console.log(skp_elements.indexOf(element));
+        let powderSpecial = powderSpecialStats[ skp_elements.indexOf(element)];
+        let specialSuffixes = new Map([ ["Duration", " sec"], ["Radius", " blocks"], ["Chains", ""], ["Damage", "%"], ["Damage Boost", "%"], ["Knockback", " blocks"] ]);
+        let specialTitle = document.createElement("p");
+        let specialEffects = document.createElement("p");
+        specialTitle.classList.add("left");
+        specialTitle.classList.add("itemp");
+        specialTitle.classList.add(damageClasses[skp_elements.indexOf(element) + 1]);
+        specialEffects.classList.add("left");
+        specialEffects.classList.add("itemp");
+        specialEffects.classList.add("nocolor");
+        let effects;
+        if (item.get("category") === "weapon") {//weapon
+            effects = powderSpecial["weaponSpecialEffects"];
+            specialTitle.textContent = powderSpecial["weaponSpecialName"];
+        }else if (item.get("category") === "armor") {//armor
+            effects = powderSpecial["armorSpecialEffects"];
+            specialTitle.textContent += powderSpecial["armorSpecialName"] + ": ";
+        }
+        for (const [key,value] of effects) {
+            if (key !== "Description") {
+                let effect = document.createElement("p");
+                effect.classList.add("itemp");
+                effect.textContent += key + ": " + value[power] + specialSuffixes.get(key);
+                if(key === "Damage"){
+                    effect.textContent += elementIcons[skp_elements.indexOf(element)];
+                }
+                if (element === "w") {
+                    effect.textContent += " / Mana Used";
+                }
+                specialEffects.appendChild(effect);
+            }else{
+                specialTitle.textContent += "[ " + effects.get("Description") + " ]"; 
+            }
+        }
+        specialTitle.append(specialEffects); 
+        powder_special.appendChild(specialTitle);
+        
+
+        parent_div.append(powder_special);
+    }
+
+    //Show item tier
+    if (item.get("tier") && item.get("tier") !== " ") {
         let item_desc_elem = document.createElement('p');
-        item_desc_elem.classList.add('itemp');
         item_desc_elem.classList.add('left');
         item_desc_elem.classList.add(item.get("tier"));
         item_desc_elem.textContent = item.get("tier")+" "+item.get("type");
@@ -442,9 +537,9 @@ function displayExpandedItem(item, parent_id){
 
 function displayFixedID(active, id, value, elemental_format, style) {
     if (style) {
-        if(reversedIDs.filter(e => e !== "atkTier").includes(id)){
+        /*if(reversedIDs.filter(e => e !== "atkTier").includes(id)){
             style === "positive" ? style = "negative" : style = "positive"; 
-        }
+        }*/
         let row = document.createElement('tr');
         let desc_elem = document.createElement('td');
         desc_elem.classList.add('left');
@@ -500,6 +595,24 @@ function displayEquipOrder(parent_elem,buildOrder){
     }
 }
 
+function displayPoisonDamage(overallparent_elem, build) {
+    overallparent_elem.textContent = "";
+
+    //Title
+    let title_elemavg = document.createElement("p");
+    title_elemavg.classList.add("smalltitle");
+    title_elemavg.classList.add("Normal");
+    title_elemavg.textContent = "Poison Stats";
+    overallparent_elem.append(title_elemavg);
+
+    let overallpoisonDamage = document.createElement("p");
+    overallpoisonDamage.classList.add("itemp");
+    let poison_tick = Math.floor(build.statMap.get("poison") * (1+skillPointsToPercentage(build.total_skillpoints[0]))/3);
+    overallpoisonDamage.textContent = "Poison Tick: " + Math.max(poison_tick,0);
+    overallparent_elem.append(overallpoisonDamage);
+    overallparent_elem.append(document.createElement("br"));
+}
+
 function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
     let attackSpeeds = ["Super Slow", "Very Slow", "Slow", "Normal", "Fast", "Very Fast", "Super Fast"];
     //let damagePrefixes = ["Neutral Damage: ","Earth Damage: ","Thunder Damage: ","Water Damage: ","Fire Damage: ","Air Damage: "];
@@ -513,7 +626,7 @@ function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
         }
     }
     for (let i = 6; i < 8; ++i) {
-        for (let j in stats[i]) {
+        for (let j = 0; j < 2; j++) {
             stats[i][j] = stats[i][j].toFixed(2);
         }
     }
@@ -532,7 +645,7 @@ function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
 
     //overall title
     let title_elemavg = document.createElement("p");
-    title_elemavg.classList.add("title");
+    title_elemavg.classList.add("smalltitle");
     title_elemavg.classList.add("Normal");
     title_elemavg.textContent = "Melee Stats";
     overallparent_elem.append(title_elemavg);
@@ -547,6 +660,7 @@ function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
     //overall average DPS
     let overallaverageDamage = document.createElement("p");
     overallaverageDamage.classList.add("itemp");
+    console.log(stats);
     overallaverageDamage.textContent = "Average DPS: " + stats[10];
     overallparent_elem.append(overallaverageDamage);
     overallparent_elem.append(document.createElement("br"));
@@ -589,10 +703,15 @@ function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
 
     let normalDPS = document.createElement("p");
     normalDPS.textContent = "Normal DPS: " + stats[8];
-    normalDPS.append(document.createElement("br"));
-    normalDPS.append(document.createElement("br"));
     normalDPS.classList.add("itemp");
     nonCritStats.append(normalDPS);
+    
+    let normalChance = document.createElement("p");
+    normalChance.textContent = "Non-Crit Chance: " + (stats[6][2]*100).toFixed(2) + "%"; 
+    normalChance.classList.add("itemp");
+    normalChance.append(document.createElement("br"));
+    normalChance.append(document.createElement("br"));
+    nonCritStats.append(normalChance);
 
     parent_elem.append(nonCritStats);
     parent_elem.append(document.createElement("br"));
@@ -620,21 +739,56 @@ function displayMeleeDamage(parent_elem, overallparent_elem, meleeStats){
     let critDPS = document.createElement("p");
     critDPS.textContent = "Crit DPS: " + stats[9];
     critDPS.classList.add("itemp");
-    critDPS.append(document.createElement("br"));
-    critDPS.append(document.createElement("br"));
     critStats.append(critDPS);
+
+    let critChance = document.createElement("p");
+    critChance.textContent = "Crit Chance: " + (stats[7][2]*100).toFixed(2) + "%";
+    critChance.classList.add("itemp");
+    critChance.append(document.createElement("br"));
+    critChance.append(document.createElement("br"));
+    critStats.append(critChance);
 
     parent_elem.append(critStats);
 }
-function displayDefenseStats(parent_elem,defenseStats){
-    parent_elem.textContent = "";
+function displayDefenseStats(parent_elem, build, insertSummary){
+    let defenseStats = build.getDefenseStats();
+    insertSummary = (typeof insertSummary !== 'undefined') ? insertSummary : false;
+    if (!insertSummary) {
+        parent_elem.textContent = "";
+    }
     const stats = defenseStats.slice();    
-    let title_elem = document.createElement("p");
-    title_elem.textContent = "Defense Stats";
-    title_elem.classList.add("title");
-    title_elem.classList.add("Normal");
-    title_elem.classList.add("itemp");
-    parent_elem.append(title_elem);
+
+    if (!insertSummary) {
+        let title_elem = document.createElement("p");
+        title_elem.textContent = "Defense Stats";
+        title_elem.classList.add("title");
+        title_elem.classList.add("Normal");
+        title_elem.classList.add("itemp");
+        parent_elem.append(title_elem);
+
+        let base_stat_elem = document.createElement("p");
+        base_stat_elem.id = "base-stat";
+        parent_elem.append(base_stat_elem);
+
+        let mock_item = new Map();
+
+        mock_item.set("fixID", true);
+        let mock_minRolls = new Map();
+        mock_item.set("minRolls", mock_minRolls);
+        const stats = ["hp", "hpBonus", "hprRaw", "hprPct", "fDef", "wDef", "aDef", "tDef", "eDef",
+                        "fDefPct", "wDefPct", "aDefPct", "tDefPct", "eDefPct"];
+        for (const stat of stats) {
+            if (rolledIDs.includes(stat)) {
+                mock_minRolls.set(stat, build.statMap.get(stat));
+            }
+            else {
+                mock_item.set(stat, build.statMap.get(stat));
+            }
+        }
+        mock_item.set("powders", []);
+        displayExpandedItem(mock_item, base_stat_elem.id);
+    }
+
     parent_elem.append(document.createElement("br"));
     let statsTable = document.createElement("table");
     statsTable.classList.add("itemtable");
@@ -649,12 +803,13 @@ function displayDefenseStats(parent_elem,defenseStats){
             }
         }
     }
+    
     //total HP
     let hpRow = document.createElement("tr");
     let hp = document.createElement("td");
     hp.classList.add("Health");
     hp.classList.add("left");
-    hp.textContent = "HP:";  
+    hp.textContent = "Total HP:";  
     let boost = document.createElement("td");
     boost.textContent = stats[0];
     boost.classList.add("right");
@@ -662,6 +817,7 @@ function displayDefenseStats(parent_elem,defenseStats){
     hpRow.appendChild(hp);
     hpRow.append(boost);
     statsTable.appendChild(hpRow);
+
     //EHP
     let ehpRow = document.createElement("tr");
     let ehp = document.createElement("td");
@@ -669,18 +825,32 @@ function displayDefenseStats(parent_elem,defenseStats){
     ehp.textContent = "Effective HP:";
 
     boost = document.createElement("td");
-    boost.textContent = stats[1];
+    boost.textContent = stats[1][0];
     boost.classList.add("right");
 
     ehpRow.appendChild(ehp);
     ehpRow.append(boost);
     statsTable.append(ehpRow);
+
+    ehpRow = document.createElement("tr");
+    ehp = document.createElement("td");
+    ehp.classList.add("left");
+    ehp.textContent = "Effective HP (no agi):";
+
+    boost = document.createElement("td");
+    boost.textContent = stats[1][1];
+    boost.classList.add("right");
+
+    ehpRow.appendChild(ehp);
+    ehpRow.append(boost);
+    statsTable.append(ehpRow);
+
     //total HPR
     let hprRow = document.createElement("tr");
     let hpr = document.createElement("td");
     hpr.classList.add("Health");
     hpr.classList.add("left");
-    hpr.textContent = "HP Regen:";  
+    hpr.textContent = "HP Regen (Total):";
     boost = document.createElement("td");
     boost.textContent = stats[2];
     boost.classList.add("right");
@@ -688,70 +858,83 @@ function displayDefenseStats(parent_elem,defenseStats){
     hprRow.appendChild(hpr);
     hprRow.appendChild(boost);
     statsTable.appendChild(hprRow);
-    //EHPR
+    /*//EHPR
     let ehprRow = document.createElement("tr");
     let ehpr = document.createElement("td");
     ehpr.classList.add("left");
     ehpr.textContent = "Effective HP Regen:";
 
     boost = document.createElement("td");
-    boost.textContent = stats[3];
+    boost.textContent = stats[3][0];
     boost.classList.add("right");
 
     ehprRow.appendChild(ehpr);
     ehprRow.append(boost);
     statsTable.append(ehprRow);
+
+    ehprRow = document.createElement("tr");
+    ehpr = document.createElement("td");
+    ehpr.classList.add("left");
+    ehpr.textContent = "Effective HP Regen (no agi):";
+
+    boost = document.createElement("td");
+    boost.textContent = stats[3][1];
+    boost.classList.add("right");
+
+    ehprRow.appendChild(ehpr);
+    ehprRow.append(boost);
+    statsTable.append(ehprRow);*/
+
     //eledefs
     let eledefs = stats[5];
     for (let i = 0; i < eledefs.length; i++){
-        let row = document.createElement("tr");
-        let eledefElem = document.createElement("p");
-        eledefElem.classList.add("itemtable");
-        eledefElem.classList.add("itemp");
         let eledefElemRow = document.createElement("tr");
 
-        let eledefTitle = document.createElement("td");
+        let eledef = document.createElement("td");
+        eledef.classList.add("left")
+        let eledefTitle = document.createElement("b");
         eledefTitle.textContent = damageClasses[i+1];
         eledefTitle.classList.add(damageClasses[i+1]);
 
-        let defense = document.createElement("td");
-        defense.textContent = "Defense: ";
-        defense.classList.add("spaceLeft");
+        let defense = document.createElement("b");
+        defense.textContent = " Def (Total): ";
 
-        eledefElemRow.appendChild(eledefTitle);
-        eledefElemRow.appendChild(defense);
-        eledefElem.appendChild(eledefElemRow);
-        //"Defense: ";
+        eledef.appendChild(eledefTitle);
+        eledef.appendChild(defense);
+        eledefElemRow.appendChild(eledef);
+
         let boost = document.createElement("td");
         boost.textContent = eledefs[i];
         boost.classList.add("right");
+        eledefElemRow.appendChild(boost);
 
-        row.appendChild(eledefElem);
-        row.appendChild(boost);
-        statsTable.appendChild(row);
+        statsTable.appendChild(eledefElemRow);
     }
-    //skp
-    let defRow = document.createElement("tr");
-    let defElem = document.createElement("td");
-    defElem.classList.add("left");
-    defElem.textContent = "Damage Absorbed %:";
-    boost = document.createElement("td");
-    boost.classList.add("right");
-    boost.textContent = stats[4][0] + "%";
-    defRow.appendChild(defElem);
-    defRow.appendChild(boost);
-    statsTable.append(defRow);
 
-    let agiRow = document.createElement("tr");
-    let agiElem = document.createElement("td");
-    agiElem.classList.add("left");
-    agiElem.textContent = "Dodge Chance %:";
-    boost = document.createElement("td");
-    boost.classList.add("right");
-    boost.textContent = stats[4][1] + "%";
-    agiRow.appendChild(agiElem);
-    agiRow.appendChild(boost);
-    statsTable.append(agiRow);
+    if (!insertSummary) {
+        //skp
+        let defRow = document.createElement("tr");
+        let defElem = document.createElement("td");
+        defElem.classList.add("left");
+        defElem.textContent = "Damage Absorbed %:";
+        boost = document.createElement("td");
+        boost.classList.add("right");
+        boost.textContent = stats[4][0] + "%";
+        defRow.appendChild(defElem);
+        defRow.appendChild(boost);
+        statsTable.append(defRow);
+
+        let agiRow = document.createElement("tr");
+        let agiElem = document.createElement("td");
+        agiElem.classList.add("left");
+        agiElem.textContent = "Dodge Chance %:";
+        boost = document.createElement("td");
+        boost.classList.add("right");
+        boost.textContent = stats[4][1] + "%";
+        agiRow.appendChild(agiElem);
+        agiRow.appendChild(boost);
+        statsTable.append(agiRow);
+    }
 
     parent_elem.append(statsTable);
 }
@@ -760,12 +943,12 @@ function displaySpellDamage(parent_elem, overallparent_elem, build, spell, spell
 
     const stats = build.statMap;
     let title_elem = document.createElement("p");
-    title_elem.classList.add("title");
+    title_elem.classList.add("smalltitle");
     title_elem.classList.add("Normal");
 
     overallparent_elem.textContent = "";
     let title_elemavg = document.createElement("p");
-    title_elemavg.classList.add('title');
+    title_elemavg.classList.add('smalltitle');
     title_elemavg.classList.add('Normal');
 
     if (spellIdx != 0) {
@@ -861,8 +1044,8 @@ function displaySpellDamage(parent_elem, overallparent_elem, build, spell, spell
             }
             save_damages.push(averageDamage);
         }
-        else if (part.type == "heal") {
-            let heal_amount = (part.strength * build.getDefenseStats()[0] * Math.max(0, Math.min(1.5, 1 + 0.05 * stats.get("wDamPct")))).toFixed(2);
+        else if (part.type === "heal") {
+            let heal_amount = (part.strength * build.getDefenseStats()[0] * Math.max(0.5,Math.min(1.75, 1 + 0.5 * stats.get("wDamPct")/100))).toFixed(2);
             let healLabel = document.createElement("p");
             healLabel.textContent = heal_amount;
             healLabel.classList.add("damagep");

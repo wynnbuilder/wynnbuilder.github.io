@@ -11,9 +11,9 @@ console.log(url_tag);
  * END testing section
  */
 
-const BUILD_VERSION = "4.6";
+const BUILD_VERSION = "6.8";
 
-document.getElementById("header").textContent = "Wynn build calculator "+BUILD_VERSION+" (db version "+DB_VERSION+")";
+document.getElementById("header").textContent = "WynnBuilder version "+BUILD_VERSION+" (db version "+DB_VERSION+")";
 
 let player_build;
 // Set up item lists for quick access later.
@@ -25,6 +25,7 @@ let item_fields = [ "name", "displayName", "tier", "set", "slots", "type", "mate
 
 let skp_order = ["str","dex","int","def","agi"];
 let skp_elements = ["e","t","w","f","a"];
+let elementIcons = ["\u2724","\u2726", "\u2749", "\u2739", "\u274b" ];
 let skpReqs = skp_order.map(x => x + "Req");
 
 let equipment_fields = [
@@ -89,6 +90,26 @@ let powderStats = [
     _p(3,4,13,3,1), _p(4,7,15,6,1), _p(6,10,17,11,2), _p(8,12,21,18,4), _p(11,14,26,28,7), _p(13,17,32,40,10),
     _p(2,5,14,3,1), _p(4,8,16,5,2), _p(6,10,19,9,3), _p(9,13,24,16,5), _p(12,16,30,25,9), _p(15,19,37,36,13),
     _p(2,6,11,3,1), _p(4,9,14,6,2), _p(7,10,17,10,3), _p(9,13,22,16,5), _p(13,18,28,24,9), _p(16,18,35,34,13)
+];
+
+//Ordering: [weapon special name, weapon special effects, armor special name, armor special effects]
+class PowderSpecial{
+    constructor(wSpName, wSpEff, aSpName, aSpEff, cap){
+        this.weaponSpecialName = wSpName;
+        this.weaponSpecialEffects = wSpEff;
+        this.armorSpecialName = aSpName;
+        this.armorSpecialEffects = aSpEff;
+        this.cap = cap;
+    }
+}
+function _ps(a,b,c,d,e) { return new PowderSpecial(a,b,c,d,e); } //bruh moment
+
+let powderSpecialStats = [
+    _ps("Quake",new Map([["Radius",[5,5.5,6,6.5,7]], ["Damage",[155,220,285,350,415]] ]),"Rage",new Map([ ["Damage", [0.3,0.4,0.5,0.7,1.0]],["Description", "% " + "\u2764" + " Missing"] ]),400), //e
+    _ps("Chain Lightning",new Map([ ["Chains", [5,6,7,8,9]], ["Damage", [80,120,160,200,240]] ]),"Kill Streak",new Map([ ["Damage", [3,4.5,6,7.5,9]],["Duration", [5,5,5,5,5]],["Description", "Mob Killed"] ]),200), //t
+    _ps("Curse",new Map([ ["Duration", [7,7.5,8,8.5,9]],["Damage", [90,120,150,180,210]] ]),"Concentration",new Map([ ["Damage", [1,2,3,4,5]],["Duration",[1,1,1,1,1]],["Description", "Mana Used"] ]),150), //w
+    _ps("Courage",new Map([ ["Duration", [6,6.5,7,7.5,8]],["Damage", [75,87.5,100,112.5,125]],["Damage Boost", [70,90,110,130,150]] ]),"Endurance",new Map([ ["Damage", [2,3,4,5,6]],["Duration", [8,8,8,8,8]],["Description", "Hit Taken"] ]),200), //f
+    _ps("Air Prison",new Map([ ["Duration", [3,3.5,4,4.5,5]],["Damage Boost", [400,450,500,550,600]],["Knockback", [8,12,16,20,24]] ]),"Dodge",new Map([ ["Damage",[2,3,4,5,6]],["Duration",[2,3,4,5,6]],["Description","Near Mobs"] ]),150) //a
 ];
 
 let itemTypes = armorTypes.concat(accessoryTypes).concat(weaponTypes);
@@ -157,7 +178,12 @@ function init() {
     for (const item of items) {
         itemLists.get(item.type).push(item.displayName);
         itemMap.set(item.displayName, item);
-        idMap.set(item.id, item.displayName);
+        if (noneItems.includes(item)) {
+            idMap.set(item.id, "");
+        }
+        else {
+            idMap.set(item.id, item.displayName);
+        }
     }
     
     for (const armorType of armorTypes) {
@@ -208,13 +234,13 @@ function init() {
         }
     });
 
-    populateFromURL();
+    decodeBuild(url_tag);
 }
 
 /*
  * Populate fields based on url, and calculate build.
  */
-function populateFromURL() {
+function decodeBuild(url_tag) {
     if (url_tag) {
         let equipment = [null, null, null, null, null, null, null, null, null];
         let powdering = ["", "", "", "", ""];
@@ -222,7 +248,8 @@ function populateFromURL() {
         let version = info[0];
         let save_skp = false;
         let skillpoints = [0, 0, 0, 0, 0];
-        if (version === "0" || version === "1" || version === "2") {
+        let level = 106;
+        if (version === "0" || version === "1" || version === "2" || version === "3") {
             let equipments = info[1];
             for (let i = 0; i < 9; ++i ) {
                 equipment[i] = idMap.get(Base64.toInt(equipments.slice(i*3,i*3+3)));
@@ -231,7 +258,7 @@ function populateFromURL() {
         if (version === "1") {
             let powder_info = info[1].slice(27);
             console.log(powder_info);
-            // TODO: Make this run in linear instead of quadratic time...
+            // TODO: Make this run in linear instead of quadratic time... ew
             for (let i = 0; i < 5; ++i) {
                 let powders = "";
                 let n_blocks = Base64.toInt(powder_info.charAt(0));
@@ -278,7 +305,36 @@ function populateFromURL() {
                 powdering[i] = powders;
             }
         }
+        if(version === "3"){
+            level = Base64.toInt(info[1].slice(37,39));
+            setValue("level-choice",level);
+            save_skp = true;
+            let skillpoint_info = info[1].slice(27, 37);
+            for (let i = 0; i < 5; ++i ) {
+                skillpoints[i] = Base64.toIntSigned(skillpoint_info.slice(i*2,i*2+2));
+            }
 
+            let powder_info = info[1].slice(39);
+            console.log(powder_info);
+            // TODO: Make this run in linear instead of quadratic time...
+            for (let i = 0; i < 5; ++i) {
+                let powders = "";
+                let n_blocks = Base64.toInt(powder_info.charAt(0));
+                console.log(n_blocks + " blocks");
+                powder_info = powder_info.slice(1);
+                for (let j = 0; j < n_blocks; ++j) {
+                    let block = powder_info.slice(0,5);
+                    console.log(block);
+                    let six_powders = Base64.toInt(block);
+                    for (let k = 0; k < 6 && six_powders != 0; ++k) {
+                        powders += powderNames.get((six_powders & 0x1f) - 1);
+                        six_powders >>>= 5;
+                    }
+                    powder_info = powder_info.slice(5);
+                }
+                powdering[i] = powders;
+            }
+        }
         for (let i in powderInputs) {
             setValue(powderInputs[i], powdering[i]);
         }
@@ -291,7 +347,7 @@ function populateFromURL() {
 
 function encodeBuild() {
     if (player_build) {
-        let build_string = "2_" + Base64.fromIntN(player_build.helmet.get("id"), 3) +
+        let build_string = "3_" + Base64.fromIntN(player_build.helmet.get("id"), 3) +
                             Base64.fromIntN(player_build.chestplate.get("id"), 3) +
                             Base64.fromIntN(player_build.leggings.get("id"), 3) +
                             Base64.fromIntN(player_build.boots.get("id"), 3) +
@@ -304,7 +360,8 @@ function encodeBuild() {
         for (const skp of skp_order) {
             build_string += Base64.fromIntN(getValue(skp + "-skp"), 2); // Maximum skillpoints: 2048
         }
-
+        build_string += Base64.fromIntN(player_build.level, 2);
+        console.log(Base64.fromIntN(player_build.level, 2));
         for (const _powderset of player_build.powders) {
             let n_bits = Math.ceil(_powderset.length / 6);
             build_string += Base64.fromIntN(n_bits, 1); // Hard cap of 378 powders.
@@ -320,7 +377,7 @@ function encodeBuild() {
                 powderset = powderset.slice(6);
             }
         }
-
+        
         return build_string;
     }
     return "";
@@ -350,8 +407,15 @@ function calculateBuild(save_skp, skp){
         }
         powderings.push(powdering);
     }
+    //level setting
+    let level = document.getElementById("level-choice").value;
+    if(level === ""){
+        level = 106;
+    }
+    document.getElementById("level-choice").value = level;
+
     console.log(equipment);
-    player_build = new Build(106, equipment, powderings);
+    player_build = new Build(level, equipment, powderings);
     console.log(player_build.toString());
     displayEquipOrder(document.getElementById("build-order"),player_build.equip_order);
 
@@ -360,12 +424,9 @@ function calculateBuild(save_skp, skp){
     const assigned = player_build.base_skillpoints;
     const skillpoints = player_build.total_skillpoints;
     for (let i in skp_order){ //big bren
-        if(assigned[i] <= 100){
-            setText(skp_order[i] + "-skp-base", "Original Value: " + skillpoints[i]);
-        }else{
-            setHTML(skp_order[i] + "-skp-base", "Original Value: " + skillpoints[i] + "<br>WARNING: cannot assign " + assigned[i] + " skillpoints naturally.");
-        }
+        setText(skp_order[i] + "-skp-base", "Original Value: " + skillpoints[i]);
     }
+    
     if (save_skp) {
         // TODO: reduce duplicated code, @updateStats
         let skillpoints = player_build.total_skillpoints;
@@ -385,6 +446,7 @@ function calculateBuild(save_skp, skp){
 }
 
 function updateStats() {
+    //WILL BREAK WEBSITE IF NO BUILD HAS BEEN INITIALIZED! @HPP
     let skillpoints = player_build.total_skillpoints;
     let delta_total = 0;
     for (let i in skp_order) {
@@ -406,13 +468,95 @@ function calculateBuildStats() {
     for (let i in skp_order){ //big bren
         setText(skp_order[i] + "-skp-assign", "Manually Assigned: " + assigned[i]);
         setValue(skp_order[i] + "-skp", skillpoints[i]);
+        let linebreak = document.createElement("br");
+        linebreak.classList.add("itemp");
+        document.getElementById(skp_order[i] + "-skp-label");
         setText(skp_order[i] + "-skp-pct", (skillPointsToPercentage(skillpoints[i])*100).toFixed(1).concat(skp_effects[i]));
+        if (assigned[i] > 100) {
+            let skp_warning = document.createElement("p");
+            skp_warning.classList.add("warning");
+            skp_warning.textContent += "WARNING: Cannot assign " + assigned[i] + " skillpoints in " + ["Strength","Dexterity","Intelligence","Defense","Agility"][i] + " manually.";
+            document.getElementById(skp_order[i]+"-skp-pct").appendChild(skp_warning);
+        }
     }
 
+    let summarybox = document.getElementById("summary-box");
+    summarybox.textContent = "";
+    let skpRow = document.createElement("tr");
+    let skpSummary = document.createElement("td");
+    skpSummary.textContent = "Summary: Assigned " + player_build.assigned_skillpoints + " skillpoints. Total: (";
+    skpSummary.classList.add("itemp");
+    skpRow.appendChild(skpSummary);
+    for (let i = 0; i < skp_order.length; i++){
+        let skp = document.createElement("td");
+        let boost = document.createElement("td");
+        let separator = document.createElement("td");
+        skp.classList.add("itemp");
+        skp.classList.add("nopadding");
+        skp.classList.add(damageClasses[i+1]);
+        boost.classList.add("itemp");
+        boost.classList.add("nopadding");
+        boost.textContent = player_build.total_skillpoints[i];
+        skpRow.appendChild(skp);
+        skpRow.appendChild(document.createElement("br"));
+        skpRow.appendChild(boost);
+        if(i < 4){
+            skpRow.appendChild(separator);
+        }
+    }
+   
+    let skpEnd = document.createElement("td");
+    skpEnd.textContent = ")";
+    skpEnd.classList.add("itemp");
+    skpRow.append(skpEnd);
+
+    let remainingRow = document.createElement("tr");
+    remainingRow.classList.add("itemp");
+    let remainingSkp = document.createElement("td");
+    remainingSkp.classList.add("left");
+    let remainingSkpTitle = document.createElement("b");
+    remainingSkpTitle.textContent = "Remaining skillpoints: ";
+    let remainingSkpContent = document.createElement("b");
+    remainingSkpContent.textContent = "" + (levelToSkillPoints(player_build.level) - player_build.assigned_skillpoints < 0 ? "< 0" : levelToSkillPoints(player_build.level) - player_build.assigned_skillpoints);
+    remainingSkpContent.classList.add(levelToSkillPoints(player_build.level) - player_build.assigned_skillpoints < 0 ? "negative" : "positive");
+
+    remainingSkp.appendChild(remainingSkpTitle);
+    remainingSkp.appendChild(remainingSkpContent);
+
+    remainingRow.appendChild(remainingSkp);
+
+    summarybox.append(skpRow);
+    summarybox.append(remainingRow);
     if(player_build.assigned_skillpoints > levelToSkillPoints(player_build.level)){
-        setHTML("summary-box", "Summary: Assigned "+player_build.assigned_skillpoints+" skillpoints.<br>" + "WARNING: Too many skillpoints need to be assigned!<br> For level " + player_build.level + ", there are only " + levelToSkillPoints(player_build.level) + " skill points available.");
-    }else{
-        setText("summary-box", "Summary: Assigned "+player_build.assigned_skillpoints+" skillpoints.");
+        let skpWarning = document.createElement("p");
+        //skpWarning.classList.add("itemp");
+        skpWarning.classList.add("warning");
+        skpWarning.classList.add("itemp");
+        skpWarning.textContent = "WARNING: Too many skillpoints need to be assigned!";
+        let skpCount = document.createElement("p");
+        skpCount.classList.add("itemp");
+        skpCount.textContent = "For level " + (player_build.level>101 ? "101+" : player_build.level)  + ", there are only " + levelToSkillPoints(player_build.level) + " skill points available.";
+        summarybox.append(skpWarning);
+        summarybox.append(skpCount);
+    }
+    let lvlWarning;
+    for (const item of player_build.items) {
+        if (player_build.level < item.get("lvl")) {
+            if (!lvlWarning) {
+                lvlWarning = document.createElement("p");
+                lvlWarning.classList.add("itemp");
+                lvlWarning.classList.add("warning");
+                lvlWarning.textContent = "WARNING: A level 50 player cannot use some piece(s) of this build."
+            }
+            let baditem = document.createElement("p"); 
+                baditem.classList.add("nocolor");
+                baditem.classList.add("itemp"); 
+                baditem.textContent = item.get("name") + " requires level " + item.get("lvl") + " to use.";
+                lvlWarning.appendChild(baditem);
+        }
+    }
+    if(lvlWarning){
+        summarybox.append(lvlWarning);
     }
 
     for (let i in player_build.items) {
@@ -425,13 +569,9 @@ function calculateBuildStats() {
     let meleeStats = player_build.getMeleeStats();
     displayMeleeDamage(document.getElementById("build-melee-stats"), document.getElementById("build-melee-statsAvg"), meleeStats);
 
-    let defenseStats = player_build.getDefenseStats();
-    displayDefenseStats(document.getElementById("build-defense-stats"),defenseStats);
+    displayDefenseStats(document.getElementById("build-defense-stats"),player_build);
 
-    
-    //let defenseStats = "";
-
-    //setHTML("build-defense-stats", "".concat(defenseStats));
+    displayPoisonDamage(document.getElementById("build-poison-stats"),player_build);
 
     let spells = spell_table[player_build.weapon.get("type")];
     for (let i = 0; i < 4; ++i) {
@@ -441,6 +581,31 @@ function calculateBuildStats() {
     }
 
     location.hash = encodeBuild();
+}
+
+function copyBuild() {
+    if (player_build) {
+        copyTextToClipboard(url_base+location.hash);
+        document.getElementById("copy-button").textContent = "Copied!";
+    }
+}
+
+function shareBuild() {
+    if (player_build) {
+        let text = url_base+location.hash+"\n"+
+            "WynnBuilder build:\n"+
+            "> "+player_build.helmet.get("displayName")+"\n"+
+            "> "+player_build.chestplate.get("displayName")+"\n"+
+            "> "+player_build.leggings.get("displayName")+"\n"+
+            "> "+player_build.boots.get("displayName")+"\n"+
+            "> "+player_build.ring1.get("displayName")+"\n"+
+            "> "+player_build.ring2.get("displayName")+"\n"+
+            "> "+player_build.bracelet.get("displayName")+"\n"+
+            "> "+player_build.necklace.get("displayName")+"\n"+
+            "> "+player_build.weapon.get("displayName")+" ["+player_build.weapon.get("powders").map(x => powderNames.get(x)).join("")+"]";
+        copyTextToClipboard(text);
+        document.getElementById("share-button").textContent = "Copied!";
+    }
 }
 
 function resetFields(){
@@ -455,6 +620,7 @@ function resetFields(){
     setValue("int-skp", "0");
     setValue("def-skp", "0");
     setValue("agi-skp", "0");
+    setValue("level-choice", "");
     location.hash = "";
 }
 
