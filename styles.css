@@ -20,7 +20,7 @@ div {
     padding: 0%;
 }
 
-.equipment {
+.equipment{
     padding: 0%;
     display: grid;
     grid-template-columns: min-content min-content min-content;
@@ -28,7 +28,7 @@ div {
     grid-template-rows: min-content min-content auto;
 }
 
-.skillpoints {
+.skillpoints, .id-edit1 {
     padding: 0% 4% 2%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -36,7 +36,23 @@ div {
     grid-auto-rows: minmax(60px, auto);
 }
 
-.equipment, .skillpoints, .center, .header, .all, .nocolor{
+.id-edit2 {
+    padding: 0% 4% 2%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(60px, auto);
+}
+
+.powder-specials{
+    padding: 0% 4% 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(60px, auto);
+}
+
+.equipment, .skillpoints, .center, .header, .all, .nocolor, .crafted, .crafter{
     background: #121516;
     color: #aaa;
 }
@@ -59,8 +75,14 @@ a.link{
 }
 .center {
     text-align: center;
+    position: relative;
 }
-
+table.center{   
+    margin: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    gap: 10px;
+}
 .right {
     text-align: right;
 }
@@ -70,7 +92,7 @@ a.link{
     text-align: left;
 }
 
-.build-helmet, .build-chestplate, .build-leggings, .build-boots, .build-ring1, .build-ring2, .build-bracelet, .build-necklace, .build-weapon, .build-order, .build-overall, .build-melee-stats, .build-defense-stats, .spell-info, .set-info {
+.build-helmet, .build-chestplate, .build-leggings, .build-boots, .build-ring1, .build-ring2, .build-bracelet, .build-necklace, .build-weapon, .build-order, .build-overall, .build-melee-stats, .build-defense-stats, .spell-info, .set-info, .powder-special, .powder-special-stats, .int-info, .crafter, .recipe-stats, .craft-stats, .ing-stats, .id-box {
     color: #aaa;
     background: #121516;
     border: 3px solid #BCBCBC;
@@ -101,6 +123,9 @@ a.link{
 .itemp, .damagep {
     margin: 2px 2%;
     padding: 0;
+}
+.space {
+    margin-right: 5px;
 }
 
 .damageSubtitle {
@@ -148,6 +173,10 @@ a.link{
 
 .Neutral { color: #fa0; }
 .Neutral:before { content: "\2724" ' '; }
+.Damage { color: rgb(255, 198, 85)}
+
+.Mana { color: #5ff;}
+.Mana:after { content: "\273A"}
 
 .Health {
     color: #a00;
@@ -157,9 +186,19 @@ a.link{
     content: "\2764" ' ';
 }
 
-.skpInput, .skplabel {
+.skplabel {
     display: block;
     margin: auto;
+}
+
+.idLeft {
+    text-align: left;
+    padding: 1em 0px 0px 0px;
+    position: relative;
+    display: flex;
+}
+.idWrap {
+    align-self: flex-end;
 }
 
 /*Scrollbar*/
@@ -185,6 +224,18 @@ a.link{
 ::-webkit-scrollbar-corner{
     background: #110110;
 }
+.button-narrow {
+    background-color: #666; 
+    border: 2px solid #444;
+    border-radius: 5px;
+    color: #ddd;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Nunito',sans-serif;
+    font-weight: 700;
+    font-size: 90%;
+    display: inline-block;
+}
 button {
     background-color: #666; 
     border: 2px solid #444;
@@ -196,6 +247,16 @@ button {
     font-weight: 700;
     font-size: 120%;
     display: inline-block;
+}
+button:hover {
+    background-color: #556;
+}
+
+
+button:active {
+  background-color: #558;
+  box-shadow: 0 3px #666;
+  transform: translateY(1px);
 }
 input {
     background-color: #666; 
@@ -235,4 +296,47 @@ input {
 }
 .restrict, .warning {
     color: #ff8180;
+}
+
+button.toggleOn{
+    background-color:#0a0;
+    border: 3 px solid rgb(0, 70, 0); 
+}
+
+.funnynumber {
+    background-image: linear-gradient(to left, #f5f, #a0a, #5ff, #5f5, #ff5, #fa0, #a00);   -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+    text-align: center;
+    transform: translateX(calc(50vw - 50%));
+}
+
+.Star {
+    color:rgb(255, 198, 85);
+}
+.Star:after {
+    content: "\272B";
+}
+.externalBuffs {
+    width: 100%;
+}
+
+.hide-container-block, .hide-container-grid, .set-info-div, .fade-in {
+    animation-duration: 0.5s;
+    animation-name: fadeInFromNone;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

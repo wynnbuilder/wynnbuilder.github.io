@@ -1,4 +1,4 @@
-const DB_VERSION = 13;
+const DB_VERSION = 21;
 // @See https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/indexeddb/video-store/index.js
 
 let db;
@@ -67,15 +67,6 @@ async function load(init_func) {
     let result = await (await fetch(url)).json();
     items = result.items;
     sets = result.sets;
-
-    // https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/clear
-    let clear_tx = db.transaction(['item_db', 'set_db'], 'readwrite');
-    let clear_items = clear_tx.objectStore('item_db');
-    let clear_sets = clear_tx.objectStore('item_db');
-
-    await clear_items.clear();
-    await clear_sets.clear();
-    await clear_tx.complete;
 
     let add_tx = db.transaction(['item_db', 'set_db'], 'readwrite');
     let items_store = add_tx.objectStore('item_db');

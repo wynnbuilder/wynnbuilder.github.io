@@ -13,6 +13,9 @@
     gap: 5px;
     grid-auto-rows: minmax(60px, auto);
 }
+.container {
+
+}
 
 .build, .spells .misc {
     padding: 2%;
@@ -30,6 +33,9 @@
     max-height: 50px;
 }
 
-.skp-input {
-
+.skpInput, .idInput {
+    width: 90%;
+    height: 7vw;
+    max-height: 30px;
 }
+
