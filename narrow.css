@@ -6,14 +6,6 @@
     grid-column: 2;
     grid-row: 2;
 }
-
-.equipment{
-    padding: 0%;
-    display: grid;
-    grid-template-columns: min-content min-content auto;
-    gap: 5px;
-    grid-template-rows: min-content min-content auto;
-}
 .summary {
     padding: 2% 4% 4%;
     display: grid;
@@ -25,9 +17,6 @@
 
 }
 
-.ingredTable {
-    table-layout: "fixed";
-}
 .build, .spells .misc {
     padding: 2%;
     display: grid;
@@ -44,12 +33,6 @@
     max-height: 50px;
 }
 
-.powderinput {
-    width: 25vw;
-    height: 10vw;
-    max-height: 50px;
-}
-
 .skpInput, .idInput {
     width: 90%;
     height: 7vw;
@@ -61,7 +44,7 @@
 }
 
 .idLabel, .skpLabel, .idDesc, .skpDesc {
-    font-size: 90%;
+    font-size: 100%;
 }
 
 .title{

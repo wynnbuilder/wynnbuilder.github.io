@@ -4,15 +4,6 @@
 .spell-info-container {
     grid-column:4;
 }
-
-.equipment{
-    padding: 0%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 50vw;
-    gap: 5px;
-    grid-template-rows: min-content min-content auto;
-}
 .sticky-box {
     position: sticky;
     top: 0;
@@ -60,9 +51,9 @@
 }
 
 .skpInput, .idInput {
-    width: 95%;
+    width: 90%;
     height: 7vw;
-    max-height: 20px;
+    max-height: 30px;
 }
 
 .wide-space {
