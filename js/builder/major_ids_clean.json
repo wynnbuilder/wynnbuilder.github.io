@@ -1185,11 +1185,11 @@
                         "target_part": "Arrow Bomb",
                         "behavior": "modify",
                         "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
                             50,
-                            0,
-                            0,
-                            0,
-                            0,
                             0
                         ]
                     },
@@ -2121,7 +2121,7 @@
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.Satsujin:20.Single Inferno",
+                                "name": "damMult.Satsujin:20.First Inferno",
                                 "value": 100
                             }
                         ]
