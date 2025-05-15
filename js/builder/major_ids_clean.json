@@ -84,6 +84,7 @@
         "abilities": [
             {
                 "class": "Any",
+                "base_abil": 999,
                 "effects": [
                     {
                         "type": "raw_stat",
@@ -1870,6 +1871,7 @@
             {
                 "class": "Assassin",
                 "properties": {},
+                "base_abil": 999,
                 "effects": [
                     {
                         "type": "raw_stat",
@@ -2184,6 +2186,7 @@
             },
             {
                 "class": "Any",
+                "base_abil": 999,
                 "effects": [
                     {
                         "type": "raw_stat",

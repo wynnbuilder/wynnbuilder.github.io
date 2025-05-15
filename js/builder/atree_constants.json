@@ -4144,6 +4144,19 @@
                     "hits": {
                         "Air Shout": 1
                     }
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Additional Air Shout hits",
+                    "slider_max": 9,
+                    "output": {
+                        "type": "stat",
+                        "name": "damMult.Air Shout:4.Air Shout"
+                    },
+                    "scaling": [
+                        100
+                    ]
                 }
             ]
         },
@@ -8114,7 +8127,7 @@
             "display_name": "Time Dilation",
             "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (Step out or stop running to cancel) </br> </br>Effect: +10% Speed Bonus to Allies (per 1s, +300% Max) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
-            "archetype_req": 7,
+            "archetype_req": 5,
             "parents": [
                 "Cheaper Ice Snake II"
             ],
@@ -9592,7 +9605,7 @@
             "display_name": "Lacerate",
             "desc": "Spin Attack will lunge you forward, deal 3 strikes and then lunge you upward. </br> Using Hop while Lacerate is active launches you further. </br> </br><span class='mc-white'>Total Damage</span>: 90% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Water'>Water</span>: 10%)",
             "archetype": "Acrobat",
-            "archetype_req": 2,
+            "archetype_req": 3,
             "base_abil": "Spin Attack",
             "parents": [
                 "Hop"
@@ -11303,8 +11316,8 @@
                 {
                     "type": "stat_scaling",
                     "slider": true,
-                    "slider_name": "Marks Absorbed",
-                    "slider_max": 10,
+                    "slider_name": "Knives Active",
+                    "slider_max": 5,
                     "output": [
                         {
                             "type": "stat",
@@ -11503,7 +11516,7 @@
         },
         {
             "display_name": "Relik Proficiency 1",
-            "desc": "Double your Main Attack's beam speed and increase your damage when using a reik.",
+            "desc": "Double your Main Attack's beam speed and increase your damage when using a relik.",
             "base_abil": 999,
             "parents": [
                 "Totem",
@@ -12558,10 +12571,14 @@
                     }
                 },
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 3,
-                    "target_part": "Heal Amount",
-                    "power": -0.1
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "healMult.Rebound:3.Heal Amount",
+                            "value": -40
+                        }
+                    ]
                 }
             ]
         },
@@ -12925,7 +12942,7 @@
             "desc": "Flaming Tongue gains +1 hit, and now inflicts enemies with Bleeding for +1.5s per hit. (Max 6s) </br> Haunting Memory will instead inflict +3s of Bleeding. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.4 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: +0% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -5%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +5%) </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, from Bleeding)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)",
             "base_abil": "Uproot",
             "archetype": "Acolyte",
-            "archetype_req": "4",
+            "archetype_req": 4,
             "parents": [
                 "Larger Blood Pool",
                 "Masquerade"
