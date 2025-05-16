@@ -6,8 +6,37 @@
     },
     "EXPLOSIVE_IMPACT": {
         "displayName": "Explosive Impact",
-        "description": "Your Exploding ID can trigger when hitting mobs with your Main Attack.",
-        "abilities": []
+        "description": "Enemies explode on death, dealing [neutral]300% Main Attack damage in a radius of 5 blocks.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Explosive Impact",
+                        "base_spell": 23,
+                        "scaling": "melee",
+                        "use_atkspd": false,
+                        "display": "Explosion Damage",
+                        "parts": [
+                            {
+                                "name": "Explosion Damage",
+                                "type": "damage",
+                                "multipliers": [
+                                    300,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "MAGNET": {
         "displayName": "Magnet",
@@ -894,13 +923,14 @@
                         ]
                     },
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 10,
-                        "behavior": "modify",
-                        "target_part": "Total Damage",
-                        "hits": {
-                            "Beam DPS": -3
-                        }
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Lifestream:10.Total Damage",
+                                "value": -75
+                            }
+                        ]
                     }
                 ]
             }
@@ -908,7 +938,7 @@
     },
     "FIXATE": {
         "displayName": "Fixate",
-        "description": "Devitalize causes Winded damage effects to be multiplied by 1.33 and gain 0.5% weaken per stack. Winded cooldown is increased by 0.25s.",
+        "description": "Devitalize raises your Winded cap by 70, but loses 0.15% weaken per stack and lowers Winded damage effects by 55%. Timelock absorbs up to 180 Winded.",
         "abilities": [
             {
                 "class": "Mage",
@@ -924,17 +954,17 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:2.Winded Damage",
-                                "value": 33
+                                "value": -55
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:3.Winded Damage",
-                                "value": 33
+                                "value": -55
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:4.Winded Damage",
-                                "value": 33
+                                "value": -55
                             }
                         ]
                     },
@@ -947,8 +977,25 @@
                             "name": "defMult.Diffusion"
                         },
                         "scaling": [
-                            0.35
+                            -0.15
                         ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Windsweeper",
+                                "name": "max",
+                                "value": 70
+                            }
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "slider_max": 70
                     }
                 ]
             }
@@ -985,7 +1032,7 @@
     },
     "EFFLORESCENCE": {
         "displayName": "Efflorescence",
-        "description": "Jasmine Bloom deals [neutral]15% and \n[earth][thunder][water][fire][air]15% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]90% and [earth][thunder][water][fire][air]30% over 5 hits.",
+        "description": "Jasmine Bloom deals [neutral]15% and \n[earth][thunder][water][fire][air]15% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]90% and [earth][thunder][water][fire][air]30%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -1219,11 +1266,11 @@
     },
     "PARAGON": {
         "displayName": "Paragon",
-        "description": "Shield Strike deals [neutral]300% damage. Mantle of the Bovemist's cooldown is reduced by 15s, but is limited to one shield charge.",
+        "description": "Shield Strike deals [neutral]600% damage. Mantle of the Bovemist's cooldown is reduced by 15s, but is limited to one shield charge.",
         "abilities": [
             {
                 "class": "Warrior",
-                "base_abil": "Shield Strike",
+                "base_abil": "Mantle of the Bovemists",
                 "dependencies": [
                     "Shield Strike"
                 ],
@@ -1232,23 +1279,27 @@
                 },
                 "effects": [
                     {
-                        "type": "replace_spell",
-                        "name": "Shield Strike",
+                        "type": "add_spell_prop",
                         "base_spell": 6,
-                        "display": "Paragon Strike",
-                        "parts": [
-                            {
-                                "name": "Paragon Strike",
-                                "multipliers": [
-                                    300,
-                                    0,
-                                    0,
-                                    0,
-                                    0,
-                                    0
-                                ]
-                            }
+                        "target_part": "Damage per Shield",
+                        "behavior": "overwrite",
+                        "multipliers": [
+                            600,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 6,
+                        "target_part": "Total Damage",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Damage per Shield": 1
+                        }
                     }
                 ]
             },
@@ -1573,6 +1624,30 @@
                 "base_abil": 999,
                 "dependencies": [
                     "Dagger Proficiency I"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 0,
+                        "target_part": "Melee",
+                        "behavior": "modify",
+                        "multipliers": [
+                            -5,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Assassin",
+                "base_abil": 999,
+                "dependencies": [
+                    "Dagger Proficiency II"
                 ],
                 "properties": {},
                 "effects": [

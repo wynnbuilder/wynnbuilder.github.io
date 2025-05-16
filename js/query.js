@@ -136,8 +136,8 @@ const itemQueryProps = (function() {
   maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
   maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
   maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
-  //sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct);
   maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
+  sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct, props.dampct, props.rdampct, props.ndampct);
 
   maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
   maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
@@ -147,6 +147,7 @@ const itemQueryProps = (function() {
   maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
   maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
   maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
+  sum(['sumdmgraw', 'sumdamraw', 'totaldmgraw', 'totaldamraw', 'sumdamraw', 'totaldamraw'], props.edamraw, props.tdamraw, props.wdamraw, props.fdamraw, props.adamraw, props.rdamraw, props.ndamraw, props.damraw);
 
   maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
   maxId(['emdpct'], 'eMdPct');
@@ -156,6 +157,7 @@ const itemQueryProps = (function() {
   maxId(['amdpct'], 'aMdPct');
   maxId(['nmdpct'], 'nMdPct');
   maxId(['rmdpct'], 'rMdPct');
+  sum(['summeleedmg%', 'summeleedam%', 'totalmeleedmg%', 'totalmeleedam%', 'summeleedampct', 'totalmeleedampct'], props.mdpct, props.emdpct, props.tmdpct, props.wmdpct, props.fmdpct, props.amdpct, props.nmdpct, props.nmdpct, props.rmdpct);
 
   maxId(['mainatkrawdmg', 'mainatkrawdam', 'mainatkneutraldmg', 'mainatkneutraldam', 'meleerawdmg', 'meleerawdam', 'meleeneutraldmg', 'meleeneutraldam', 'mdraw'], 'mdRaw');
   maxId(['emdraw'], 'eMdRaw');
@@ -165,6 +167,7 @@ const itemQueryProps = (function() {
   maxId(['amdraw'], 'aMdRaw');
   maxId(['nmdraw'], 'nMdRaw');
   maxId(['rmdraw'], 'rMdRaw');
+  sum(['summeleedmgraw', 'summeleedamraw', 'totalmeleedmgraw', 'totalmeleedamraw', 'summeleedamraw', 'totalmeleedamraw'], props.emdraw, props.tmdraw, props.wmdraw, props.fmdraw, props.amdraw, props.nmdraw, props.rmdraw, props.mdraw);
 
   maxId(['spelldmg', 'spelldam', 'spelldmg%', 'spelldam%', 'sdpct'], 'sdPct');
   maxId(['esdpct'], 'eSdPct');
@@ -174,6 +177,7 @@ const itemQueryProps = (function() {
   maxId(['asdpct'], 'aSdPct');
   maxId(['nsdpct'], 'nSdPct');
   maxId(['rsdpct'], 'rSdPct');
+  sum(['sumspelldmg%', 'sumspelldam%', 'totalspelldmg%', 'totalspelldam%', 'sumspelldampct', 'totalspelldampct'], props.esdpct, props.tsdpct, props.wsdpct, props.fsdpct, props.asdpct, props.nsdpct, props.rsdpct, props.sdpct);
 
   maxId(['spellrawdmg', 'spellrawdam', 'spellneutraldmg', 'spellneutraldam', 'sdraw'], 'sdRaw');
   maxId(['esdraw'], 'eSdRaw');
@@ -183,6 +187,7 @@ const itemQueryProps = (function() {
   maxId(['asdraw'], 'aSdRaw');
   maxId(['nsdraw'], 'nSdRaw');
   maxId(['rainbowraw', 'rsdraw'], 'rSdRaw');
+  sum(['sumspelldmgraw', 'sumspelldamraw', 'totalspelldmgraw', 'totalspelldamraw', 'sumspelldamraw', 'totalspelldamraw'], props.esdraw, props.tsdraw, props.wsdraw, props.fsdraw, props.asdraw, props.nsdraw, props.rsdraw, props.sdraw);
 
   maxId('critdampct', 'critDamPct');
 
@@ -231,6 +236,7 @@ const itemQueryProps = (function() {
   maxId(['spellcost4%', 'spcost4%', 'sppct4'], 'spPct4');
   sum(['sumspellcost', 'totalspellcost', 'sumrawspellcost', 'totalrawspellcost', 'sumspcost', 'totalspcost', 'sumspraw', 'totalspraw'], props.spraw1, props.spraw2, props.spraw3, props.spraw4);
   sum(['sumspellcost%', 'totalspellcost%', 'sumspcost%', 'totalspcost%', 'sumsppct', 'totalsppct'], props.sppct1, props.sppct2, props.sppct3, props.sppct4);
+
 
   maxId(['exploding', 'expl', 'expd'], 'expd');
   maxId('poison', 'poison');

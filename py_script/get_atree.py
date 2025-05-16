@@ -19,7 +19,6 @@ replace_strings = {
     "\ue01d ": "</br>", # AOE
     "\ue01c ": "</br>", # Range
     "\ue01b ": "", # Negative number
-    "\u2741 ": "", # Unsure?
     "\ue007 ": "", # Mana
     "\ue027 ": "</br>", # Cooldown
     "\ue006 ": "</br>", # Heal
@@ -61,6 +60,7 @@ replace_strings = {
     "\u00b0": " degrees", # Degree symbol
 
     "Total Damage": "</br><span class='mc-white'>Total Damage</span>", # Total Damage Breakdown
+    "\\(\ue005 Neutral": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # turns out tclap doesnt follow below
     "\\(\ue005 Damage": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # Neutral just says "Damage"
     "\\(\ue004 Water": "</br>&emsp;(<span class='Water'>Water</span>", # Water
     "\\(\ue003 Thunder": "</br>&emsp;(<span class='Thunder'>Thunder</span>", # Thunder
