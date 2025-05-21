@@ -557,6 +557,21 @@
                         ]
                     }
                 ]
+            },
+            {
+                "class": "Warrior",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "radiancePct",
+                                "value": 10
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -906,7 +921,9 @@
                 "dependencies": [
                     "Blood Sorrow"
                 ],
-                "properties": {},
+                "properties": {
+                    "duration": -4.0
+                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -920,16 +937,6 @@
                             0,
                             0,
                             0
-                        ]
-                    },
-                    {
-                        "type": "raw_stat",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.Lifestream:10.Total Damage",
-                                "value": -75
-                            }
                         ]
                     }
                 ]

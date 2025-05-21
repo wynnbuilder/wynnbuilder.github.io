@@ -132,6 +132,7 @@ class Build {
             }
         }
         statMap.set("poisonPct", 0);
+        statMap.set("radiancePct", 20);
         statMap.set("healMult", new Map());
         statMap.get('healMult').set('item', statMap.get('healPct'));
 

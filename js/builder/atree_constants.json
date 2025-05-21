@@ -8209,7 +8209,7 @@
             "parents": [
                 "Cheaper Ice Snake II",
                 "Explosive Entrance",
-                "Halo"
+                "Augury"
             ],
             "dependencies": [
                 "Ice Snake"
@@ -8239,8 +8239,8 @@
             ]
         },
         {
-            "display_name": "Halo",
-            "desc": "Increase your Max Orbs from Lightweaver by +2.",
+            "display_name": "Augury",
+            "desc": "Increase your Max Orbs from Lightweaver by +1.",
             "archetype": "Light Bender",
             "archetype_req": 0,
             "base_abil": "Ophanim",
@@ -8301,7 +8301,7 @@
             "base_abil": "Heal",
             "parents": [
                 "Gust",
-                "Halo"
+                "Augury"
             ],
             "dependencies": [
                 "Sunshower"
@@ -8434,7 +8434,7 @@
             "archetype": "Light Bender",
             "archetype_req": 0,
             "parents": [
-                "Halo",
+                "Augury",
                 "Devitalize"
             ],
             "dependencies": [
@@ -8544,7 +8544,7 @@
             "effects": []
         },
         {
-            "display_name": "Better Lightweaver",
+            "display_name": "Halo",
             "desc": "Increase your Max Orbs from Lightweaver by +2.",
             "archetype": "Light Bender",
             "base_abil": "Lightweaver",
@@ -8568,7 +8568,7 @@
                     "target_part": "Orb DPS",
                     "base_spell": 5,
                     "hits": {
-                        "Single Orb": 1
+                        "Single Orb": 2
                     }
                 }
             ]
@@ -12329,6 +12329,7 @@
                 "range": 16,
                 "max_puppets": 3,
                 "num_puppets": 0,
+                "rallied_puppets": 0,
                 "attack_frequency": 2
             },
             "effects": [
@@ -14255,13 +14256,25 @@
                             "abil": "Puppet Master",
                             "name": "attack_frequency",
                             "value": 0.5
+                        },
+                        {
+                            "type": "prop",
+                            "abil": "Puppet Master",
+                            "name": "rallied_puppets",
+                            "value": "Puppet Master.num_puppets"
                         }
                     ]
                 },
                 {
                     "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Active Puppets",
+                    "slider": false,
+                    "inputs": [
+                        {
+                            "type": "prop",
+                            "abil": "Puppet Master",
+                            "name": "rallied_puppets"
+                        }
+                    ],
                     "output": {
                         "type": "stat",
                         "name": "damMult.Commander:0.Single Beam"
@@ -14463,7 +14476,9 @@
                 "col": 7,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "duration": 5.0
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -14491,7 +14506,7 @@
                         {
                             "name": "Total Damage",
                             "hits": {
-                                "Beam DPS": 5
+                                "Beam DPS": "Blood Sorrow.duration"
                             }
                         }
                     ]

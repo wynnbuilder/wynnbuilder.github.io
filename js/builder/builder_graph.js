@@ -889,15 +889,16 @@ const radiance_node = new (class extends ComputeNode {
         let elem = document.getElementById('radiance-boost');
         if (elem.classList.contains("toggleOn")) {
             const ret = new Map(statmap);
+            var boost = 1+statmap.get("radiancePct")/100;
             for (const val of radiance_affected) {
                 if (reversedIDs.includes(val)) {
                     if ((ret.get(val) || 0) < 0) {
-                        ret.set(val, Math.floor((ret.get(val) || 0) * 1.2));
+                        ret.set(val, Math.floor((ret.get(val) || 0) * boost));
                     }
                 }
                 else {
                     if ((ret.get(val) || 0) > 0) {
-                        ret.set(val, Math.floor((ret.get(val) || 0) * 1.2));
+                        ret.set(val, Math.floor((ret.get(val) || 0) * boost));
                     }
                 }
             }

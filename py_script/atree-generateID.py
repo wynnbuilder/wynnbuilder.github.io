@@ -21,6 +21,11 @@ def translate_effect(id_data, effect):
         for bonus in effect["bonuses"]:
             if "abil" in bonus and bonus["abil"] in id_data:
                 bonus["abil"] = id_data[bonus["abil"]]
+            if "value" in bonus:
+                val = bonus["value"]
+                if isinstance(val, str):
+                    abil_id, propname = val.split('.')
+                    bonus["value"] = str(id_data[abil_id])+'.'+propname
     elif effect["type"] == "replace_spell":
         for part in effect['parts']:
             translate_spell_part(id_data, part)
