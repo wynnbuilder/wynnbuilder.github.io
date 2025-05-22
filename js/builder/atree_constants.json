@@ -10327,10 +10327,6 @@
                         {
                             "type": "stat",
                             "name": "damMult.EchoCast:4.Single Bomb"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoCast:6.Per Shuriken"
                         }
                     ],
                     "scaling": [
@@ -10368,13 +10364,26 @@
                         },
                         {
                             "type": "stat",
-                            "name": "damMult.EchoPenalty:6.Per Shuriken"
+                            "name": "damMult.EchoPenalty:8.Slash Damage"
                         }
                     ],
                     "scaling": [
                         "Mirror Image.penalty_per_clone"
                     ],
                     "max": "Mirror Image.max_penalty"
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 8,
+                    "target_part": "Slash Damage",
+                    "multipliers": [
+                        720,
+                        0,
+                        0,
+                        0,
+                        80,
+                        0
+                    ]
                 }
             ]
         },
