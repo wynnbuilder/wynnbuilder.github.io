@@ -405,15 +405,6 @@
                         "hits": {
                             "Single Hit": 1.666666666666667
                         }
-                    },
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 10,
-                        "target_part": "Crow DPS",
-                        "behavior": "modify",
-                        "hits": {
-                            "Single Hit": 0.555555555555556
-                        }
                     }
                 ]
             }
@@ -586,6 +577,9 @@
                     "Fluid Healing",
                     "Orphion's Pulse"
                 ],
+                "properties": {
+                    "rate": -0.433333333333
+                },
                 "effects": [
                     {
                         "type": "stat_scaling",
@@ -724,8 +718,25 @@
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Second and Third Pulses",
-                        "behavior": "modify",
-                        "power": -0.2
+                        "behavior": "overwrite",
+                        "power": 0.0,
+                        "hide": true
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Healing per Second",
+                        "base_spell": 1,
+                        "hits": {
+                            "Heal": 0
+                        },
+                        "hide": true
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Heal",
+                        "behavior": "overwrite",
+                        "power": 0.15
                     }
                 ]
             }
@@ -806,29 +817,7 @@
                             0,
                             0,
                             0,
-                            60,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Warrior",
-                "base_abil": "Bash",
-                "dependencies": [
-                    "Thunderclap"
-                ],
-                "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Single Hit",
-                        "multipliers": [
-                            0,
-                            0,
-                            -20,
-                            0,
-                            0,
+                            50,
                             0
                         ]
                     }
@@ -1558,7 +1547,6 @@
                 "class": "Archer",
                 "base_abil": "Arrow Shield",
                 "dependencies": [
-                    "Frenzy",
                     "Guardian Angels"
                 ],
                 "properties": {
@@ -1692,54 +1680,6 @@
                         "hits": {
                             "Melee": 10
                         }
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": 999,
-                "dependencies": [
-                    "Dagger Proficiency I"
-                ],
-                "properties": {},
-                "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 0,
-                        "target_part": "Melee",
-                        "behavior": "modify",
-                        "multipliers": [
-                            -5,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": 999,
-                "dependencies": [
-                    "Dagger Proficiency II"
-                ],
-                "properties": {},
-                "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 0,
-                        "target_part": "Melee",
-                        "behavior": "modify",
-                        "multipliers": [
-                            -5,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
                     }
                 ]
             }

@@ -5707,6 +5707,7 @@
             "desc": "Bash will cast at the player's position at double the speed and with an increased area of effect. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS, per bash)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +40%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +60%) </br>Area of Effect: +3 Blocks (Circle-Shaped) </br> With Quadruple Bash, gain less damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, per bash)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +20%)",
             "archetype": "Battle Monk",
             "archetype_req": 6,
+            "base_abil": "Bash",
             "parents": [
                 "Cyclone",
                 "Consecration"
@@ -6334,7 +6335,8 @@
                 "icon": "node_mage"
             },
             "properties": {
-                "aoe": 5
+                "aoe": 5,
+                "rate": 1.66666666667
             },
             "effects": [
                 {
@@ -6347,6 +6349,13 @@
                         {
                             "name": "Heal",
                             "power": 0.15
+                        },
+                        {
+                            "name": "Healing per Second",
+                            "type": "total",
+                            "hits": {
+                                "Heal": "Heal.rate"
+                            }
                         }
                     ]
                 }
@@ -7787,7 +7796,8 @@
                 "icon": "node_4"
             },
             "properties": {
-                "aoe": 5
+                "aoe": 5,
+                "rate": -0.833333333333
             },
             "effects": [
                 {
@@ -8565,7 +8575,14 @@
                 "aoe": 12,
                 "duration": 5
             },
-            "effects": []
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Sunflare Healing per Second",
+                    "power": 0.05
+                }
+            ]
         },
         {
             "display_name": "Halo",
@@ -8753,6 +8770,7 @@
             "desc": "Increases your Walk Speed and Main Attack's damage by +5%.",
             "archetype": "",
             "archetype_req": 0,
+            "base_abil": 999,
             "parents": [
                 "Cheaper Spin Attack I",
                 "Spin Attack"
@@ -13017,7 +13035,7 @@
                     "type": "replace_spell",
                     "name": "Bleeding",
                     "base_spell": 9,
-                    "display": "Bleeding Tick",
+                    "display": "Bleed DPS",
                     "parts": [
                         {
                             "name": "Bleeding Tick",
@@ -13029,6 +13047,13 @@
                                 0,
                                 0
                             ]
+                        },
+                        {
+                            "name": "Bleed DPS",
+                            "type": "total",
+                            "hits": {
+                                "Bleeding Tick": 2.0
+                            }
                         }
                     ]
                 },
@@ -13641,12 +13666,6 @@
                             ]
                         },
                         {
-                            "name": "Damage per Totem",
-                            "hits": {
-                                "Single Hit": 4
-                            }
-                        },
-                        {
                             "name": "DPS",
                             "hits": {
                                 "Single Hit": 0.5
@@ -13655,7 +13674,7 @@
                         {
                             "name": "Total Damage",
                             "hits": {
-                                "Damage per Totem": "Totem.num_totems"
+                                "Single Hit": 4
                             }
                         }
                     ]
