@@ -769,8 +769,19 @@
                         "target_part": "Total Damage",
                         "behavior": "overwrite",
                         "hits": {
-                            "Single Hit": 1
+                            "Bash Hit": 1,
+                            "Boiling Blood Tick": 5
                         }
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Hellfire:1.Thunderclap Bonus",
+                                "value": -100
+                            }
+                        ]
                     }
                 ]
             },
@@ -788,14 +799,6 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 1,
-                        "target_part": "Total Damage",
-                        "hits": {
-                            "Boiling Blood Tick": 5
-                        }
-                    },
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
                         "target_part": "Boiling Blood Tick",
                         "behavior": "modify",
                         "multipliers": [
@@ -804,6 +807,28 @@
                             0,
                             0,
                             60,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Bash",
+                "dependencies": [
+                    "Thunderclap"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            0,
+                            0,
+                            -20,
+                            0,
+                            0,
                             0
                         ]
                     }

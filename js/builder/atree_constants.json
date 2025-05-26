@@ -3184,13 +3184,34 @@
                             ]
                         },
                         {
+                            "name": "Bash Hit",
+                            "type": "total",
+                            "hits": {
+                                "Single Hit": 1
+                            }
+                        },
+                        {
                             "name": "Total Damage",
                             "type": "total",
                             "hits": {
-                                "Single Hit": "Bash.hits"
+                                "Bash Hit": "Bash.hits"
                             }
                         }
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Single Hit",
+                    "multipliers": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "hide": true
                 }
             ]
         },
@@ -3279,7 +3300,7 @@
                     "target_part": "Single Hit",
                     "cost": 0,
                     "multipliers": [
-                        -40,
+                        -30,
                         0,
                         0,
                         0,
@@ -3847,12 +3868,14 @@
                     ]
                 },
                 {
-                    "type": "add_spell_prop",
-                    "target_part": "Total Damage",
-                    "base_spell": 1,
-                    "hits": {
-                        "Thunderclap Bonus": -2
-                    }
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Quadruple Bash:1.Thunderclap Bonus",
+                            "value": -100
+                        }
+                    ]
                 }
             ]
         },
@@ -5722,14 +5745,15 @@
                         0,
                         0,
                         0
-                    ]
+                    ],
+                    "hide": true
                 },
                 {
                     "type": "add_spell_prop",
-                    "target_part": "Total Damage",
+                    "target_part": "Bash Hit",
                     "base_spell": 1,
                     "hits": {
-                        "Thunderclap Bonus": 2
+                        "Thunderclap Bonus": 1
                     }
                 },
                 {
