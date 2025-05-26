@@ -945,7 +945,7 @@
     },
     "FIXATE": {
         "displayName": "Fixate",
-        "description": "Devitalize raises your Winded cap by 70, but loses 0.15% weaken per stack and lowers Winded damage effects by 55%. Timelock absorbs up to 180 Winded.",
+        "description": "Devitalize doubles your Winded cap, but lowers Winded damage effects by 30%. Timelock absorbs up to 120 Winded.",
         "abilities": [
             {
                 "class": "Mage",
@@ -961,30 +961,18 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:2.Winded Damage",
-                                "value": -55
+                                "value": -30
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:3.Winded Damage",
-                                "value": -55
+                                "value": -30
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.Fixate:4.Winded Damage",
-                                "value": -55
+                                "value": -30
                             }
-                        ]
-                    },
-                    {
-                        "type": "stat_scaling",
-                        "slider": true,
-                        "slider_name": "Winded",
-                        "output": {
-                            "type": "stat",
-                            "name": "defMult.Diffusion"
-                        },
-                        "scaling": [
-                            -0.15
                         ]
                     },
                     {
@@ -994,7 +982,7 @@
                                 "type": "prop",
                                 "abil": "Windsweeper",
                                 "name": "max",
-                                "value": 70
+                                "value": 10
                             }
                         ]
                     },
@@ -1002,7 +990,63 @@
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Winded",
-                        "slider_max": 70
+                        "slider_max": 10
+                    }
+                ]
+            },
+            {
+                "class": "Mage",
+                "base_abil": "Windsweeper",
+                "dependencies": [
+                    "Devitalize",
+                    "More Winded"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Windsweeper",
+                                "name": "max",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "slider_max": 10
+                    }
+                ]
+            },
+            {
+                "class": "Mage",
+                "base_abil": "Windsweeper",
+                "dependencies": [
+                    "Devitalize",
+                    "More Winded II"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Windsweeper",
+                                "name": "max",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "slider_max": 10
                     }
                 ]
             }

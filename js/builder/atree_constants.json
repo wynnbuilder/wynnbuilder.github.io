@@ -4822,7 +4822,7 @@
         },
         {
             "display_name": "Intoxicating Blood",
-            "desc": "After leaving Corrupted, gain 0.5% of missing health back for each hit dealt and enemy killed while Corrupted.",
+            "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted.",
             "archetype": "Fallen",
             "base_abil": "Bak'al's Grasp",
             "parents": [
@@ -5058,7 +5058,7 @@
         },
         {
             "display_name": "Whirlwind Strike",
-            "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 10%)   </br>&emsp;(<span class='Air'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
+            "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +10%)   </br>&emsp;(<span class='Air'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
             "archetype": "Battle Monk",
             "archetype_req": 6,
             "base_abil": "Uppercut",
@@ -6996,7 +6996,7 @@
                         "name": "nConvBase:3.Winded Damage"
                     },
                     "scaling": [
-                        -22
+                        -23
                     ]
                 },
                 {
@@ -8240,7 +8240,7 @@
         },
         {
             "display_name": "Augury",
-            "desc": "Increase your Max Orbs from Lightweaver by +1.",
+            "desc": "Increase your maximum orbs from Ophanim by +1.",
             "archetype": "Light Bender",
             "archetype_req": 0,
             "base_abil": "Ophanim",
