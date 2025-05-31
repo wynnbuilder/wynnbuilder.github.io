@@ -694,7 +694,7 @@ const atree_scaling = new (class extends ComputeNode {
             } else if (type === 'prop') {
                 const merge_abil = atree_edit.get(abil);
                 if (merge_abil) {
-                    merge_abil.properties[name] += value;
+                    merge_abil.properties[name] += atree_translate(atree_edit, value);
                 }
             }
         }
@@ -735,7 +735,14 @@ const atree_scaling = new (class extends ComputeNode {
                     else {
                         // TODO: type: prop?
                         for (const [_scaling, input] of zip2(scaling, effect.inputs)) {
-                            total += pre_scale_stats.get(input.name) * atree_translate(atree_merged, _scaling);
+                            if (input.type === 'stat') {
+                                total += pre_scale_stats.get(input.name) * atree_translate(atree_merged, _scaling);
+                            } else if (input.type === 'prop') {
+                                const merge_abil = atree_edit.get(input.abil);
+                                if (merge_abil) {
+                                    total += merge_abil.properties[input.name] * atree_translate(atree_merged, _scaling);
+                                }
+                            }
                         }
                     }
 

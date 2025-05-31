@@ -1,4 +1,4 @@
-const ING_DB_VERSION = 39;
+const ING_DB_VERSION = 40;
 
 let ings;
 let recipes;

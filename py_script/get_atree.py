@@ -19,7 +19,6 @@ replace_strings = {
     "\ue01d ": "</br>", # AOE
     "\ue01c ": "</br>", # Range
     "\ue01b ": "", # Negative number
-    "\u2741 ": "", # Unsure?
     "\ue007 ": "", # Mana
     "\ue027 ": "</br>", # Cooldown
     "\ue006 ": "</br>", # Heal
@@ -61,6 +60,7 @@ replace_strings = {
     "\u00b0": " degrees", # Degree symbol
 
     "Total Damage": "</br><span class='mc-white'>Total Damage</span>", # Total Damage Breakdown
+    "\\(\ue005 Neutral": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # turns out tclap doesnt follow below
     "\\(\ue005 Damage": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # Neutral just says "Damage"
     "\\(\ue004 Water": "</br>&emsp;(<span class='Water'>Water</span>", # Water
     "\\(\ue003 Thunder": "</br>&emsp;(<span class='Thunder'>Thunder</span>", # Thunder
@@ -142,6 +142,16 @@ if __name__ == "__main__":
                         if color in icon_dict and icon_dict[color] != old_ability["display"]["icon"]:
                             old_ability["display"]["icon"] = icon_dict[color]
                             print(f"Replaced color on node \"{ability_name}\", should be {icon_dict[color]}")
+
+                        requirement = ability["requirements"]
+                        if "ARCHETYPE" in requirement and old_ability["archetype_req"] != requirement["ARCHETYPE"]["amount"]:
+                            old_ability["archetype_req"] = requirement["ARCHETYPE"]["amount"]
+                            print(f"Replaced requirement on node \"{ability_name}\", should be {requirement["ARCHETYPE"]["amount"]}")
+                        
+                        if "ABILITY_POINTS" in requirement and old_ability["cost"] != requirement["ABILITY_POINTS"]:
+                            old_ability["cost"] = requirement["ABILITY_POINTS"]
+                            print(f"Replaced cost on node \"{ability_name}\", should be {requirement["ABILITY_POINTS"]}")
+
                         description = stylize_description(ability["description"])
                         old_ability["desc"] = description
 

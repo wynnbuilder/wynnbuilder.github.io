@@ -268,12 +268,13 @@ function displayExpandedItem(item, parent_id){
 
                     parent_div.appendChild(make_elem("div", ["col"], { textContent: "Set: " + item.get(id).toString() }));
                 } else if (id === "majorIds") {
-                    //console.log(item.get(id));
                     for (let major_id_str of item.get(id)) {
                         if (major_id_str in MAJOR_IDS) {
+                            if(MAJOR_IDS[major_id_str].hidden)
+                               continue;
+
                             let major_id_info = MAJOR_IDS[major_id_str];
-                            if(!MAJOR_IDS[major_id_str].hidden)
-                                major_id_str = `+${major_id_info.displayName}: ${major_id_info.description}`;
+                            major_id_str = `+${major_id_info.displayName}: ${major_id_info.description}`;
                         }
                         let p_elem = make_elem("div", ['col']);
 
