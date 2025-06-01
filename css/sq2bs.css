@@ -121,7 +121,6 @@ input.aspect-input {
     font-size: var(--scaled-fontsize);
     --bs-gutter-y: 1rem;
     --bs-gutter-x: 0rem;
-    border: 0
 }
 
 input.aspect-input:not(.is-invalid) {
