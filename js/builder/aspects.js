@@ -1,6 +1,7 @@
 let aspect_inputs = [];
 let aspect_agg_node;
 const aspect_tiers = ["Legendary", "Fabled", "Mythic"] // @TODO(orgold): Move to constants file
+const num_aspects = 5;
 
 // HACK(@orgold): The autocomplete package doesn't have any nice API for dynamically
 // populating the result list, therefore we must store the context themselves to avoid
@@ -46,12 +47,28 @@ class AspectAutocompleteInitNode extends ComputeNode {
 /**
  * A node to validate and fetch aspects from a linked aspect input field
  *
- * Signature: AspectInputNode(input_field) => AspectSpec
+ * Signature: AspectInputNode(input_field) => {spec: AspectSpec, class: PlayerClass}
  */
 class AspectInputNode extends InputNode {
     compute_func(input_map) {
-        if (this.input_field.value === "" || active_aspects === null) return none_aspect;
-        return active_aspects.get(this.input_field.value);
+        let ret = {spec: none_aspect, class: input_map.get("player-class")};
+        if (this.input_field.value === "" || active_aspects === null) {
+            return ret;
+        }
+
+        const aspect = active_aspects.get(this.input_field.value);
+
+        // Reset aspects when weapon changes - assumes aspect names are unique to each class.
+        //
+        // NOTE(@orgold): `document.activeElement` checks the input field is not in focus to 
+        // not accidentally delete users' input while they're typing.
+        if (!aspect && this.input_field !== document.activeElement) { 
+            this.input_field.value = "";
+        } else {
+            ret.spec = aspect;
+        }
+
+        return ret;
     }
 }
 
@@ -59,26 +76,28 @@ class AspectInputNode extends InputNode {
  * Get a specific tier from the aspect given aspect.
  * defaults to the max tier.
  *
- * Signature: AspectInputNode(input_field) => AspectTierSpec
+ * Signature: AspectInputNode(input_field) => Tuple[AspectTierSpec, number]
  */
 class AspectTierInputNode extends InputNode {
     compute_func(input_map) {
-        const aspect = input_map.get("aspect-spec");
+        const aspect = input_map.get("aspect-spec").spec;
         if (!aspect || aspect.NONE) {
             this.input_field.value = "";
-            return none_aspect;
+            return [none_aspect, 1];
         }
 
         const tier_num = this.input_field.value;
         if (tier_num == "" || tier_num <= 0 || tier_num > aspect.tiers.length) {
-            this.input_field.value = input_map.get("aspect-spec").tiers.length;
+            this.input_field.value = aspect.tiers.length;
         }
-        return aspect.tiers[this.input_field.value - 1];
+        return [aspect, parseInt(this.input_field.value)];
     }
 }
 
+
 /**
  * Aggregate all aspects into a single array.
+ * Validate aspects are unique and only 1 mythic aspect is in use.
  * The order of the array is irrelevant.
  *
  * Signature: AspectAggregateNode() => Array<AspectTierSpec> 
@@ -86,11 +105,43 @@ class AspectTierInputNode extends InputNode {
 class AspectAggregateNode extends ComputeNode {
     compute_func(input_map) {
         const aspects = [];
+        let has_mythic = false;
+        let previous_aspect_ids = new Set();
+        
         for (const [i, field] of Object.entries(aspect_fields)) {
-            if (input_map.get(field+"-tiered").NONE) continue;
-            aspects.push(input_map.get(field+"-tiered"));
+            let err = false;
+            document.getElementById(field+"-choice").classList.remove("is-invalid");
+
+            const aspect_tuple = input_map.get(field+"-tiered");
+
+            const [aspect, _tier] = aspect_tuple;
+
+            if (aspect.NONE) {
+                aspects.push(aspect_tuple); 
+                continue;
+            }
+
+            // Validate aspects are unique
+            if (previous_aspect_ids.has(aspect.id)) {
+                err = true;
+            }
+            previous_aspect_ids.add(aspect.id);
+
+            // Validate single mythic aspect
+            if (aspect.tier === "Mythic") {
+                if (has_mythic) {
+                    err = true;
+                } else {
+                    has_mythic = true;
+                }
+            }
+
+            if (err) {
+                document.getElementById(field+"-choice").classList.add("is-invalid");
+            }
+
+            aspects.push(aspect_tuple);
         }
-        console.log(aspects);
         return aspects;
     }
 }
@@ -108,15 +159,15 @@ class AspectInputDisplayNode extends ComputeNode {
     }
 
     compute_func(input_map) {
-        const aspect = input_map.get("aspect-spec");
+        const aspect = input_map.get("aspect-spec").spec;
         this.input_field.classList.remove(...aspect_tiers); 
-        this.image_div.classList.remove(...["aspect-image-Legendary", "aspect-image-Fabled", "aspect-image-Mythic", "aspect-image-None", "Legendary-shadow", "Fabled-shadow", "Mythic-shadow"]);
+        this.image_div.classList.remove(...["aspect-image-Assassin", "aspect-image-Mage", "aspect-image-Warrior", "aspect-image-Shaman", "aspect-image-Archer", "aspect-image-None", "Legendary-shadow", "Fabled-shadow", "Mythic-shadow"]);
         if (aspect && !aspect.NONE) { 
             this.input_field.classList.add(aspect.tier); 
-            this.image_div.classList.add("aspect-image-" + aspect.tier);
+            const player_class = input_map.get("aspect-spec").class || "None";
+            this.image_div.classList.add("aspect-image-" + player_class);
             this.image_div.classList.add(aspect.tier + "-shadow");
-        }
-        else {
+        } else {
             this.image_div.classList.add("aspect-image-None");
         }
     }

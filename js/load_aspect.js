@@ -11,7 +11,7 @@ let aspect_id_map  = new Map();
 
 class AspectLoader extends Loader {
     get remote_paths() {
-        return 'js/builder/aspects';
+        return `data/${wynn_version_names[WYNN_VERSION_LATEST]}/aspects`;
     }
 
     get old_data_paths() {

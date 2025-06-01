@@ -344,6 +344,7 @@ class BuildEncodeNode extends ComputeNode {
         const build = input_map.get('build');
         const atree = input_map.get('atree');
         const atree_state = input_map.get('atree-state');
+        const aspects = input_map.get('aspects');
         let powders = [
             input_map.get('helmet-powder'),
             input_map.get('chestplate-powder'),
@@ -361,7 +362,7 @@ class BuildEncodeNode extends ComputeNode {
         // TODO: grr global state for copy button..
         player_build = build;
         build_powders = powders;
-        return encodeBuild(build, powders, skillpoints, atree, atree_state);
+        return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
     }
 }
 
@@ -1175,13 +1176,15 @@ function builder_graph_init(save_skp) {
         const aspect_tier_input_field = document.getElementById(field+'-tier-choice');
         const aspect_image_div = document.getElementById(field+'-img');
         new AspectAutocompleteInitNode(field+'-autocomplete', field).link_to(class_node, 'player-class');
-        const aspect_input = new AspectInputNode(field+'-input', aspect_input_field);
+        const aspect_input = new AspectInputNode(field+'-input', aspect_input_field).link_to(class_node, 'player-class');
         new AspectInputDisplayNode(field+'-input', aspect_input_field, aspect_image_div).link_to(aspect_input, "aspect-spec");
         aspect_inputs.push(aspect_input);
         const aspect_tier_input = new AspectTierInputNode(field+'-tier-input', aspect_tier_input_field).link_to(aspect_input, 'aspect-spec');
         aspect_agg_node.link_to(aspect_tier_input, field+'-tiered');
     }
-    build_encode_node.link_to(aspect_agg_node);
+    build_encode_node.link_to(aspect_agg_node, 'aspects');
+
+    atree_merge.link_to(aspect_agg_node);
 
     // ---------------------------------------------------------------
     //  Trigger the update cascade for build!
@@ -1193,10 +1196,6 @@ function builder_graph_init(save_skp) {
     armor_powder_node.update();
     level_input.update();
 
-    // TODO(@orgold): This is probably not the correct place to trigger aspect inputs, it needs this is here cuz I did some dirty testing.
-    for (const aspect_input_node of aspect_inputs) {
-        aspect_input_node.update();
-    }
 
     atree_graph_creator = new AbilityTreeEnsureNodesNode(build_node, stat_agg_node)
                                     .link_to(atree_collect_spells, 'spells');
@@ -1215,6 +1214,10 @@ function builder_graph_init(save_skp) {
                 console.log("Failed to decode atree. This can happen when updating versions. Give up!")
             }
         }
+    }
+
+    for (const aspect_input_node of aspect_inputs) {
+        aspect_input_node.update();
     }
 
     // Powder specials.

@@ -40,14 +40,14 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
     else {
         weapon_damages = damage_keys.map(x => weapon.get(x));
     }
-    let present = deepcopy(weapon.get(damage_present_key));
+    let present = structuredClone(weapon.get(damage_present_key));
 
     // Also theres prop and rainbow!!
     const damage_elements = ['n'].concat(skp_elements); // netwfa
 
     // 2. Conversions.
     // 2.0: First, modify conversions.
-    let conversions = deepcopy(_conversions);
+    let conversions = structuredClone(_conversions);
     if (part_filter !== undefined) {
         const conv_postfix = ':'+part_filter;
         for (let i in damage_elements) {
