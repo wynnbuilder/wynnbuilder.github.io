@@ -150,22 +150,8 @@
                   "target_part": "Single Stream",
                   "behavior": "modify",
                   "hits": {
-                    "Single Arrow": 2
+                    "Single Arrow": 4
                   }
-                },
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Arrow",
-                  "behavior": "modify",
-                  "multipliers": [
-                    -1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                  ]
                 }
               ]
             }
@@ -266,26 +252,12 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": -24,
+                  "slider_max": 5,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
-                  "max": -70,
-                  "scaling": [
-                    -3
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 29,
-                  "output": {
-                    "type": "stat",
-                    "name": "spd"
-                  },
-                  "max": 85,
+                  "max": 15,
                   "scaling": [
                     3
                   ]
@@ -305,26 +277,12 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": -24,
+                  "slider_max": 10,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
-                  "max": -70,
-                  "scaling": [
-                    -3
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 34,
-                  "output": {
-                    "type": "stat",
-                    "name": "spd"
-                  },
-                  "max": 100,
+                  "max": 30,
                   "scaling": [
                     3
                   ]
@@ -344,26 +302,12 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": -24,
+                  "slider_max": 13,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
-                  "max": -70,
-                  "scaling": [
-                    -3
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 37,
-                  "output": {
-                    "type": "stat",
-                    "name": "spd"
-                  },
-                  "max": 110,
+                  "max": 40,
                   "scaling": [
                     3
                   ]
@@ -382,17 +326,41 @@
         {
           "threshold": 1,
           "description": "Grape Bomb gains +2 grapes.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Grape Bomb",
+              "properties": {
+                  "grapes": 2
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Grape Bomb gains +3 grapes.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Grape Bomb",
+              "properties": {
+                  "grapes": 3
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Grape Bomb gains +4 grapes.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Grape Bomb",
+              "properties": {
+                  "grapes": 4
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -542,22 +510,54 @@
         {
           "threshold": 1,
           "description": "Shrapnel Bomb gains +8 shrapnel.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Shrapnel Bomb",
+              "properties": {
+                "bombs": 8
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Shrapnel Bomb gains +14 shrapnel.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Shrapnel Bomb",
+              "properties": {
+                "bombs": 14
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Shrapnel Bomb gains +18 shrapnel.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Shrapnel Bomb",
+              "properties": {
+                "bombs": 18
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Shrapnel Bomb gains +22 shrapnel.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Shrapnel Bomb",
+              "properties": {
+                "bombs": 22
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -571,7 +571,7 @@
           "description": "Arrow Storm gains velocity and slightly reduced spread.  Phantom Ray gains +2 Range.",
           "abilities": [
             {
-              "base_abil": "Arrow Storm",
+              "base_abil": "Phantom Ray",
               "properties": {
                 "range": 2
               },
@@ -584,7 +584,7 @@
           "description": "Arrow Storm gains velocity and slightly reduced spread.  Phantom Ray gains +3.5 Range.",
           "abilities": [
             {
-              "base_abil": "Arrow Storm",
+              "base_abil": "Phantom Ray",
               "properties": {
                 "range": 3.5
               },
@@ -597,7 +597,7 @@
           "description": "Arrow Storm gains velocity and slightly reduced spread.  Phantom Ray gains +5 Range.",
           "abilities": [
             {
-              "base_abil": "Arrow Storm",
+              "base_abil": "Phantom Ray",
               "properties": {
                 "range": 5
               },
@@ -610,7 +610,7 @@
           "description": "Arrow Storm gains velocity and slightly reduced spread.  Phantom Ray gains +6 Range.",
           "abilities": [
             {
-              "base_abil": "Arrow Storm",
+              "base_abil": "Phantom Ray",
               "properties": {
                 "range": 6
               },
@@ -858,14 +858,13 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.BoltslingerAspect:4.DPS",
-                      "value": 30
-                    }
-                  ]
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "DPS",
+                  "behavior": "overwrite",
+                  "hits": {
+                      "Single Volley": 2.64
+                  }
                 }
               ]
             }
@@ -879,14 +878,13 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.BoltslingerAspect:4.DPS",
-                      "value": 30
-                    }
-                  ]
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "DPS",
+                  "behavior": "overwrite",
+                  "hits": {
+                    "Single Volley": 2.64
+                  }
                 }
               ]
             },
@@ -944,14 +942,13 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.BoltslingerAspect:4.DPS",
-                      "value": 50
-                    }
-                  ]
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "DPS",
+                  "behavior": "overwrite",
+                  "hits": {
+                      "Single Volley": 2.86
+                  }
                 }
               ]
             },
@@ -1166,17 +1163,71 @@
         {
           "threshold": 1,
           "description": "Increase your Hound's movement speed by +15%.  Increase your Snake's weakness effect by +2%.  Increase your Crow's distraction duration by +0.1s.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Arrow Storm",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Ivyroot Mamba",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.Ivyroot Mamba",
+                      "value": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Increase your Hound's movement speed by +25%.  Increase your Snake's weakness effect by +3%.  Increase your Crow's distraction duration by +0.15s.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Arrow Storm",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Ivyroot Mamba",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.Ivyroot Mamba",
+                      "value": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Increase your Hound's movement speed by +35%.  Increase your Snake's weakness effect by +4%.  Increase your Crow's distraction duration by +0.2s.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Arrow Storm",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Ivyroot Mamba",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.Ivyroot Mamba",
+                      "value": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -1190,17 +1241,41 @@
         {
           "threshold": 1,
           "description": "Flaming Uppercut deals damage 0.1s faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "rate": 0.33333333333
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Flaming Uppercut deals damage 0.15s faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "rate": 0.55555555555
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Flaming Uppercut deals damage 0.2s faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "rate": 0.83333333333
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1256,17 +1331,65 @@
         {
           "threshold": 1,
           "description": "Counter activates +8% more often.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Counter", 
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "agiDef",
+                      "value": 0.8
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Counter activates +15% more often.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Counter", 
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "agiDef",
+                      "value": 1.5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Counter activates +20% more often.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Counter", 
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "agiDef",
+                      "value": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1300,22 +1423,54 @@
         {
           "threshold": 1,
           "description": "Heavy Impact gains +0.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Charge",
+              "properties": {
+                  "range": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Heavy Impact gains +1.15 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Charge",
+              "properties": {
+                  "range": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Heavy Impact gains +1.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Charge",
+              "properties": {
+                  "range": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Heavy Impact gains +2 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Charge",
+              "properties": {
+                  "range": 2
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1327,22 +1482,54 @@
         {
           "threshold": 1,
           "description": "Bash gains +0.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "aoe": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Bash gains +1.15 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "aoe": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Bash gains +1.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "aoe": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Bash gains +2 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "aoe": 2
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1381,22 +1568,110 @@
         {
           "threshold": 1,
           "description": "War Scream, Tempest, and Bloodlust gain +1.25 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "properties": {
+                  "aoe": 1.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Tempest",
+              "properties": {
+                  "aoe": 1.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Bloodlust",
+              "properties": {
+                  "aoe": 1.25
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "War Scream, Tempest, and Bloodlust gain +2.25 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "properties": {
+                  "aoe": 2.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Tempest",
+              "properties": {
+                  "aoe": 2.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Bloodlust",
+              "properties": {
+                  "aoe": 2.25
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "War Scream, Tempest, and Bloodlust gain +3.25 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "properties": {
+                  "aoe": 3.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Tempest",
+              "properties": {
+                  "aoe": 3.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Bloodlust",
+              "properties": {
+                  "aoe": 3.25
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "War Scream, Tempest, and Bloodlust gain +4 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "properties": {
+                  "aoe": 4
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Tempest",
+              "properties": {
+                  "aoe": 4
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Bloodlust",
+              "properties": {
+                  "aoe": 4
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1408,22 +1683,54 @@
         {
           "threshold": 1,
           "description": "Your Main Attack gains +0.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                  "melee_range": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Your Main Attack gains +1.15 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                  "melee_range": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Your Main Attack gains +1.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                  "melee_range": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Your Main Attack gains +2 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                  "melee_range": 2
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1435,22 +1742,130 @@
         {
           "threshold": 1,
           "description": "Tempest gains +1 hit, and becomes slightly faster. Total Damage: -10% (of your DPS, per ripple)   (Neutral Damage: -6%)   (Earth: -2%)   (Air: -2%)",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest",
+                  "multipliers": [
+                    -6,
+                    -2,
+                    0,
+                    0,
+                    0,
+                    -2
+                  ]
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest Total Damage",
+                  "hits": {
+                    "Tempest": 1
+                  }
+                }
+              ] 
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Tempest gains +2 hits, and becomes slightly faster. Total Damage: -16% (of your DPS, per ripple)   (Neutral Damage: -10%)   (Earth: -3%)   (Air: -3%)",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest",
+                  "multipliers": [
+                    -10,
+                    -3,
+                    0,
+                    0,
+                    0,
+                    -3
+                  ]
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest Total Damage",
+                  "hits": {
+                    "Tempest": 2
+                  }
+                }
+              ] 
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Tempest gains +3 hits, and becomes slightly faster. Total Damage: -20% (of your DPS, per ripple)   (Neutral Damage: -12%)   (Earth: -4%)   (Air: -4%)",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest",
+                  "multipliers": [
+                    -12,
+                    -4,
+                    0,
+                    0,
+                    0,
+                    -4
+                  ]
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest Total Damage",
+                  "hits": {
+                    "Tempest": 3
+                  }
+                }
+              ] 
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Tempest gains +4 hits, and becomes slightly faster. Total Damage: -23% (of your DPS, per ripple)   (Neutral Damage: -13%)   (Earth: -5%)   (Air: -5%)",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "War Scream",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest",
+                  "multipliers": [
+                    -13,
+                    -5,
+                    0,
+                    0,
+                    0,
+                    -5
+                  ]
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Tempest Total Damage",
+                  "hits": {
+                    "Tempest": 4
+                  }
+                }
+              ] 
+            }
+          ]
         }
       ]
     },
@@ -1543,17 +1958,71 @@
         {
           "threshold": 1,
           "description": "Mantle of the Bovemists gains +2 charges.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mantle of the Bovemists",
+              "properties": {
+                  "charges": 2
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Mantle of the Bovemists gains +2 charges.  Mythril Skin gains +5% Base Resistance.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mantle of the Bovemists",
+              "properties": {
+                  "charges": 2
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Mythril Skin",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.Base",
+                      "value": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Mantle of the Bovemists gains +3 charges.  Mythril Skin gains +5% Base Resistance.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mantle of the Bovemists",
+              "properties": {
+                  "charges": 2
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Mythril Skin",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.Base",
+                      "value": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1565,17 +2034,137 @@
         {
           "threshold": 1,
           "description": "Blood Pact's health cost is reduced by -0.1%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Blood Pact",
+              "properties": {
+                "health_cost": -0.1
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Blood Pact adds +10% more damage to spells cast using health. Blood Pact's health cost is reduced by -0.1%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Blood Pact",
+              "properties": {
+                "health_cost": -0.1
+              },
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "toggle": "Activate Blood Pact",
+                  "behavior": "modify",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:1.Single Hit",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:2.Flying Kick",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:2.Flyby Jab",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Uppercut",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Fireworks",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Comet",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:4.War Scream",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:4.Air Shout",
+                      "value": 10
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Blood Pact adds +15% more damage to spells cast using health. Blood Pact's health cost is reduced by -0.1%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Blood Pact",
+              "properties": {
+                "health_cost": -0.1
+              },
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "toggle": "Activate Blood Pact",
+                  "behavior": "modify",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:1.Single Hit",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:2.Flying Kick",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:2.Flyby Jab",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Uppercut",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Fireworks",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:3.Comet",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:4.War Scream",
+                      "value": 15
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.BloodPact:4.Air Shout",
+                      "value": 15
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1587,17 +2176,70 @@
         {
           "threshold": 1,
           "description": "Increase your maximum Discombobulated by +30.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Discombobulate",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 6,
+                  "max": 30
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Increase your maximum Discombobulated by +30.  Bash gains +1 hit.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Discombobulate",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 6,
+                  "max": 30
+                }
+              ]
+            },
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "hits": 1
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Increase your maximum Discombobulated by +50.  Bash gains +1 hit.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Discombobulate",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 10,
+                  "max": 50
+                }
+              ]
+            },
+            {
+              "base_abil": "Bash",
+              "properties": {
+                  "hits": 1
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     }
@@ -1721,17 +2363,150 @@
         {
           "threshold": 1,
           "description": "Thunderstorm gains +1 strike, and hits +33% faster. Total Damage: -3% (of your DPS, per strike)   (Neutral Damage: -2%)   (Thunder: -1%)  Breathless becomes slightly less effective. Total Damage: -1% (of your DPS, per Winded)   (Neutral Damage: -1%)",
-          "abilities": []
+          "abilities": [
+            {
+                "base_abil": "Meteor",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Lightning Damage",
+                        "base_spell": 3,
+                        "multipliers": [
+                            -2,
+                            0,
+                            -1,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Total Damage",
+                        "base_spell": 3,
+                        "hits": {
+                            "Lightning Damage": 1
+                        }
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "behavior": "modify",
+                        "output": {
+                            "type": "stat",
+                            "name": "nConvBase:3.Winded Damage"
+                        },
+                        "scaling": [
+                            -1
+                        ]
+                    }
+                ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Thunderstorm gains +2 strikes, and hits +33% faster. Total Damage: -7% (of your DPS, per strike)   (Neutral Damage: -4%)   (Thunder: -3%)  Breathless becomes slightly less effective. Total Damage: -2% (of your DPS, per Winded)   (Neutral Damage: -2%)",
-          "abilities": []
+          "abilities": [
+            {
+                "base_abil": "Meteor",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Lightning Damage",
+                        "base_spell": 3,
+                        "multipliers": [
+                            -4,
+                            0,
+                            -3,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Total Damage",
+                        "base_spell": 3,
+                        "hits": {
+                            "Lightning Damage": 4
+                        }
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "behavior": "modify",
+                        "output": {
+                            "type": "stat",
+                            "name": "nConvBase:3.Winded Damage"
+                        },
+                        "scaling": [
+                            -2
+                        ]
+                    }
+                ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Thunderstorm gains +3 strikes, and hits +33% faster. Total Damage: -10% (of your DPS, per strike)   (Neutral Damage: -6%)   (Thunder: -4%)  Breathless becomes slightly less effective. Total Damage: -3% (of your DPS, per Winded)   (Neutral Damage: -2%)   (Earth: -1%)",
-          "abilities": []
+          "abilities": [
+            {
+                "base_abil": "Meteor",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Lightning Damage",
+                        "base_spell": 3,
+                        "multipliers": [
+                            -6,
+                            0,
+                            -4,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "target_part": "Total Damage",
+                        "base_spell": 3,
+                        "hits": {
+                            "Lightning Damage": 3
+                        }
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "behavior": "modify",
+                        "output": {
+                            "type": "stat",
+                            "name": "nConvBase:3.Winded Damage"
+                        },
+                        "scaling": [
+                            -2
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "behavior": "modify",
+                        "output": {
+                            "type": "stat",
+                            "name": "eConvBase:3.Winded Damage"
+                        },
+                        "scaling": [
+                            -1
+                        ]
+                    }
+                ]
+            }
+          ]
         }
       ]
     },
@@ -1986,12 +2761,28 @@
         {
           "threshold": 5,
           "description": "Lightweaver gains +2 orbs.  Ophanim gains +1 orb.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Ophanim",
+                  "properties": {
+                      "num_orbs": 1
+                  },
+                  "effects": []
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Lightweaver gains +3 orbs.  Ophanim gains +1 orb.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Ophanim",
+                  "properties": {
+                      "num_orbs": 1
+                  },
+                  "effects": []
+              }
+          ]
         }
       ]
     },
@@ -2049,17 +2840,110 @@
         {
           "threshold": 1,
           "description": "Shurikens prepares +1 shuriken per Dash.  Increase the amount of Shurikens you can hold by +3.  Total Damage: -15% (of your DPS, per shuriken)   (Neutral Damage: -10%)   (Fire: -5%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Dash",
+                  "properties": {
+                    "count": 3
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Per Shuriken",
+                          "base_spell": 6,
+                          "behavior": "modify",
+                          "multipliers": [
+                              -10,
+                              0,
+                              0,
+                              0,
+                              -5,
+                              0
+                          ]
+                      },
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 6,
+                          "hits": {
+                              "Per Shuriken": 1
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Shurikens prepares +2 shurikens per Dash.  Increase the amount of Shurikens you can hold by +6.  Total Damage: -28% (of your DPS, per shuriken)   (Neutral Damage: -19%)   (Fire: -9%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Dash",
+                  "properties": {
+                    "count": 6
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Per Shuriken",
+                          "base_spell": 6,
+                          "behavior": "modify",
+                          "multipliers": [
+                              -19,
+                              0,
+                              0,
+                              0,
+                              -9,
+                              0
+                          ]
+                      },
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 6,
+                          "hits": {
+                              "Per Shuriken": 2
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Shurikens prepares +3 shurikens per Dash.  Increase the amount of Shurikens you can hold by +9.  Total Damage: -36% (of your DPS, per shuriken)   (Neutral Damage: -24%)   (Fire: -12%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Dash",
+                  "properties": {
+                    "count": 9
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Per Shuriken",
+                          "base_spell": 6,
+                          "behavior": "modify",
+                          "multipliers": [
+                              -19,
+                              0,
+                              0,
+                              0,
+                              -9,
+                              0
+                          ]
+                      },
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 6,
+                          "hits": {
+                              "Per Shuriken": 3
+                          }
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2093,17 +2977,62 @@
         {
           "threshold": 1,
           "description": "Increase your maximum Marks \ue019 by +1. Decrease your damage per Mark \ue019 by -0.5%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Marked",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Marked",
+                          "slider_max": 1,
+                          "scaling": [
+                              -0.5
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Increase your maximum Marks \ue019 by +2. Decrease your damage per Mark \ue019 by -1%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Marked",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Marked",
+                          "slider_max": 2,
+                          "scaling": [
+                              -1
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Increase your maximum Marks \ue019 by +3. Decrease your damage per Mark \ue019 by -1.5%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Marked",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Marked",
+                          "slider_max": 3,
+                          "scaling": [
+                              -1.5
+                          ]
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2115,17 +3044,62 @@
         {
           "threshold": 1,
           "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +3%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Nightcloak Knife",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Knives Active",
+                          "slider_max": -1,
+                          "scaling": [
+                              3
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +8.5%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Nightcloak Knife",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Knives Active",
+                          "slider_max": -2,
+                          "scaling": [
+                              8.5
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +10%.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Nightcloak Knife",
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "slider": true,
+                          "slider_name": "Knives Active",
+                          "slider_max": -2,
+                          "scaling": [
+                              10
+                          ]
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2208,22 +3182,82 @@
         {
           "threshold": 1,
           "description": "Multihit gains +1 hit.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Multihit",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 3,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 1
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 5,
           "description": "Multihit gains +2 hits.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Multihit",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 3,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 2
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 30,
           "description": "Multihit gains +3 hits.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Multihit",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 3,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 3
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 150,
           "description": "Multihit gains +4 hits.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Multihit",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 3,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 4
+                          }
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2370,17 +3404,65 @@
         {
           "threshold": 1,
           "description": "Lacerate gains +2 hits, and becomes 50% faster.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Spin Attack",
+                  "dependencies": ["Lacerate"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 1,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 2
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 5,
           "description": "Lacerate gains +2 hits, and becomes 50% faster.  Righting Reflex gains +5s Duration, and its gliding is greatly enhanced.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Spin Attack",
+                  "dependencies": ["Lacerate"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 1,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 2
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Lacerate gains +3 hits, and becomes 50% faster.  Righting Reflex gains +5s Duration, and its gliding is greatly enhanced.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Spin Attack",
+                  "dependencies": ["Lacerate"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 1,
+                          "behavior": "modify",
+                          "hits": {
+                            "Per Hit": 3
+                          }
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2397,12 +3479,40 @@
         {
           "threshold": 5,
           "description": "Mirror Image's cooldown is reduced by -5s.  Increase your maximum Clones \ue030 by 1.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Mirror Image",
+                  "dependencies": ["Echo"],
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "behavior": "modify",
+                          "slider": true,
+                          "slider_name": "Spell Copies",
+                          "slider_max": 1
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Mirror Image's cooldown is reduced by -7.5s.  Increase your maximum Clones \ue030 by 1.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Mirror Image",
+                  "dependencies": ["Echo"],
+                  "effects": [
+                      {
+                          "type": "stat_scaling",
+                          "behavior": "modify",
+                          "slider": true,
+                          "slider_name": "Spell Copies",
+                          "slider_max": 1
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2460,17 +3570,143 @@
         {
           "threshold": 1,
           "description": "Mask of the Lunatic gains +5% Damage Bonus.  Mask of the Fanatic gains +5% Resistance.  Mask of the Heretic gains +10% Walk Speed.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Uproot",
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Lunatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "damMult.Mask",
+                                  "value": 5
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Fanatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "defMult.Mask",
+                                  "value": 5
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Heretic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "spd",
+                                  "value": 10
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Mask of the Lunatic gains +8% Damage Bonus.  Mask of the Fanatic gains +8% Resistance.  Mask of the Heretic gains +16% Walk Speed.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Uproot",
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Lunatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "damMult.Mask",
+                                  "value": 8
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Fanatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "defMult.Mask",
+                                  "value": 8
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Heretic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "spd",
+                                  "value": 16
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Mask of the Lunatic gains +10% Damage Bonus.  Mask of the Fanatic gains +10% Resistance.  Mask of the Heretic gains +20% Walk Speed.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Uproot",
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Lunatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "damMult.Mask",
+                                  "value": 10
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Fanatic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "defMult.Mask",
+                                  "value": 10
+                              }
+                          ]
+                      },
+                      {
+                          "type": "raw_stat",
+                          "toggle": "Mask of the Heretic",
+                          "bonuses": [
+                              {
+                                  "type": "stat",
+                                  "behavior": "modify",
+                                  "name": "spd",
+                                  "value": 20
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2526,17 +3762,62 @@
         {
           "threshold": 1,
           "description": "Frog Dance gains +2 bounces.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Haul",
+                  "dependencies": ["Frog Dance"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 2,
+                          "hits": {
+                              "Hop Damage": 2
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Frog Dance gains +3 bounces.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Haul",
+                  "dependencies": ["Frog Dance"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 2,
+                          "hits": {
+                              "Hop Damage": 3
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Frog Dance gains +4 bounces.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Haul",
+                  "dependencies": ["Frog Dance"],
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "target_part": "Total Damage",
+                          "base_spell": 2,
+                          "hits": {
+                              "Hop Damage": 4
+                          }
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2570,17 +3851,110 @@
         {
           "threshold": 1,
           "description": "Puppet Master gains +1 Puppets. Total Damage: -1% (of your DPS)   (Earth: -1%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Puppet Master",
+                  "properties": {
+                      "max_puppets": 1
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "behavior": "modify",
+                          "base_spell": 6,
+                          "target_part": "Puppet Hit",
+                          "multipliers": [
+                              0,
+                              -1,
+                              0,
+                              0,
+                              0,
+                              0 
+                          ]
+                      },
+                      {
+                          "type": "stat_scaling",
+                          "behavior": "modify",
+                          "slider": true,
+                          "slider_name": "Active Puppets",
+                          "slider_max": 1,
+                          "slider_default": 1
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Puppet Master gains +2 Puppets. Total Damage: -2% (of your DPS)   (Air: -1%)   (Earth: -1%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Puppet Master",
+                  "properties": {
+                      "max_puppets": 2
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "behavior": "modify",
+                          "base_spell": 6,
+                          "target_part": "Puppet Hit",
+                          "multipliers": [
+                              0,
+                              -1,
+                              0,
+                              0,
+                              0,
+                              -1
+                          ]
+                      },
+                      {
+                          "type": "stat_scaling",
+                          "behavior": "modify",
+                          "slider": true,
+                          "slider_name": "Active Puppets",
+                          "slider_max": 2,
+                          "slider_default": 2
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 75,
           "description": "Puppet Master gains +3 Puppets. Total Damage: -3% (of your DPS)   (Neutral Damage: -1%)   (Air: -1%)   (Earth: -1%)",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Puppet Master",
+                  "properties": {
+                      "max_puppets": 3
+                  },
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "behavior": "modify",
+                          "base_spell": 6,
+                          "target_part": "Puppet Hit",
+                          "multipliers": [
+                              -1,
+                              -1,
+                              0,
+                              0,
+                              0,
+                              -1
+                          ]
+                      },
+                      {
+                          "type": "stat_scaling",
+                          "behavior": "modify",
+                          "slider": true,
+                          "slider_name": "Active Puppets",
+                          "slider_max": 3,
+                          "slider_default": 3
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2592,22 +3966,114 @@
         {
           "threshold": 1,
           "description": "Bullwhip gains +5% Damage Bonus to Summons.",
-          "abilities": []
+          "abilities": [
+            {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "behavior": "modify",
+                        "toggle": "Activate Bullwhip",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:6.Puppet Hit",
+                                "value": 5
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:7.Effigy Hit",
+                                "value": 5
+                            }
+                        ]
+                    }
+                ]
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Bullwhip gains +9% Damage Bonus to Summons.",
-          "abilities": []
+          "abilities": [
+            {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "behavior": "modify",
+                        "toggle": "Activate Bullwhip",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:6.Puppet Hit",
+                                "value": 9
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:7.Effigy Hit",
+                                "value": 9
+                            }
+                        ]
+                    }
+                ]
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Bullwhip gains +12% Damage Bonus to Summons.",
-          "abilities": []
+          "abilities": [
+            {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "behavior": "modify",
+                        "toggle": "Activate Bullwhip",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:6.Puppet Hit",
+                                "value": 12
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:7.Effigy Hit",
+                                "value": 12
+                            }
+                        ]
+                    }
+                ]
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Bullwhip gains +15% Damage Bonus to Summons.",
-          "abilities": []
+          "abilities": [
+            {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "behavior": "modify",
+                        "toggle": "Activate Bullwhip",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:6.Puppet Hit",
+                                "value": 15
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Bullwhip:7.Effigy Hit",
+                                "value": 15
+                            }
+                        ]
+                    }
+                ]
+            }
+          ]
         }
       ]
     },
@@ -2700,22 +4166,138 @@
         {
           "threshold": 1,
           "description": "Flaming Tongue gains +1 hit, and doubles in speed. Total Damage: -14% (of your DPS, for Uproot, per hit)   (Neutral Damage: -11%)   (Thunder: -1%)   (Fire: -2%)",
-          "abilities": []
+          "abilities": [
+              {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            -11,
+                            0,
+                            -1,
+                            0,
+                            -2,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Single Hit": 1
+                        }
+                    }
+                ]
+              }
+          ]
         },
         {
           "threshold": 5,
           "description": "Flaming Tongue gains +2 hits, and doubles in speed. Total Damage: -23% (of your DPS, for Uproot, per hit)   (Neutral Damage: -17%)   (Thunder: -2%)   (Fire: -4%)",
-          "abilities": []
+          "abilities": [
+              {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            -17,
+                            0,
+                            -2,
+                            0,
+                            -4,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Single Hit": 2
+                        }
+                    }
+                ]
+              }
+          ]
         },
         {
           "threshold": 30,
           "description": "Flaming Tongue gains +3 hits, and doubles in speed. Total Damage: -29% (of your DPS, for Uproot, per hit)   (Neutral Damage: -20%)   (Thunder: -3%)   (Fire: -6%)",
-          "abilities": []
+          "abilities": [
+              {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            -20,
+                            0,
+                            -3,
+                            0,
+                            -6,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Single Hit": 3
+                        }
+                    }
+                ]
+              }
+          ]
         },
         {
           "threshold": 150,
           "description": "Flaming Tongue gains +4 hits, and doubles in speed. Total Damage: -34% (of your DPS, for Uproot, per hit)   (Neutral Damage: -22%)   (Thunder: -4%)   (Fire: -8%)",
-          "abilities": []
+          "abilities": [
+              {
+                "base_spell": "Uproot",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            -22,
+                            0,
+                            -4,
+                            0,
+                            -8,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "behavior": "modify",
+                        "base_spell": 4,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Single Hit": 4
+                        }
+                    }
+                ]
+              }
+          ]
         }
       ]
     },
@@ -2803,17 +4385,85 @@
         {
           "threshold": 1,
           "description": "Blood Sorrow gains +2s Duration.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Blood Sorrow",
+                  "properties": {
+                      "duration": 2
+                  },
+                  "effects": []
+              }
+          ]
         },
         {
           "threshold": 5,
           "description": "Blood Sorrow gains +2s Duration.  Eldritch Call summons +1 tentacle, and strikes 33% faster.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Blood Sorrow",
+                  "properties": {
+                      "duration": 2
+                  },
+                  "effects": []
+              },
+              {
+                  "base_abil": "Eldritch Call",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "base_spell": 11,
+                          "target_part": "DPS", 
+                          "behavior": "modify",
+                          "hits": {
+                              "Single Hit": 0.16 
+                          }
+                      },
+                      {
+                          "type": "add_spell_prop",
+                          "base_spell": 11,
+                          "target_part": "Total Damage", 
+                          "hits": {
+                              "Single Hit": 1 
+                          }
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Blood Sorrow gains +3s Duration.  Eldritch Call summons +1 tentacle, and strikes 33% faster.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Blood Sorrow",
+                  "properties": {
+                      "duration": 3
+                  },
+                  "effects": []
+              },
+              {
+                  "base_abil": "Eldritch Call",
+                  "effects": [
+                      {
+                          "type": "add_spell_prop",
+                          "base_spell": 11,
+                          "target_part": "DPS", 
+                          "behavior": "modify",
+                          "hits": {
+                              "Single Hit": 0.16 
+                          }
+                      },
+                      {
+                          "type": "add_spell_prop",
+                          "base_spell": 11,
+                          "target_part": "Total Damage", 
+                          "hits": {
+                              "Single Hit": 1 
+                          }
+                      }
+                  ]
+              }
+          ]
         }
       ]
     },
@@ -2825,17 +4475,154 @@
         {
           "threshold": 1,
           "description": "Triple Totem gains +1 Totem. Totem and Aura will do 55% less damage.  Regeneration and Sacrificial Shrine will heal 55% less health.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Totem",
+                  "dependencies": ["Triple Totem"],
+                  "properties": {
+                      "num_totems": 1
+                  },
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "bonuses": [
+                              {
+                                  "type": "prop",
+                                  "abil": "Aura",
+                                  "name": "num_totems",
+                                  "value": 1
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:3.Single Wave",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:1.Tick Damage",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "healMult.MultiTotem",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:5.Explosion Damage",
+                                  "value": -5
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
         },
         {
           "threshold": 5,
           "description": "Triple Totem gains +1 Totem. Totem and Aura will do 55% less damage.  Regeneration and Sacrificial Shrine will heal 55% less health.  Hummingbird's Song gains +1 Hummingbird.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Totem",
+                  "dependencies": ["Triple Totem"],
+                  "properties": {
+                      "num_totems": 1
+                  },
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "bonuses": [
+                              {
+                                  "type": "prop",
+                                  "abil": "Aura",
+                                  "name": "num_totems",
+                                  "value": 1
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:3.Single Wave",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:1.Tick Damage",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "healMult.MultiTotem",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:5.Explosion Damage",
+                                  "value": -5
+                              }
+                          ]
+                      }
+                  ]
+              },
+              {
+                  "base_abil": "Hummingbirds' Song",
+                  "properties": {
+                      "count": 1
+                  },
+                  "effects": []
+              }
+          ]
         },
         {
           "threshold": 15,
           "description": "Triple Totem gains +1 Totem. Totem and Aura will do 55% less damage.  Regeneration and Sacrificial Shrine will heal 55% less health.  Hummingbird's Song gains +1 Hummingbird. Hummingbirds gain +8 Range.",
-          "abilities": []
+          "abilities": [
+              {
+                  "base_abil": "Totem",
+                  "dependencies": ["Triple Totem"],
+                  "properties": {
+                      "num_totems": 1
+                  },
+                  "effects": [
+                      {
+                          "type": "raw_stat",
+                          "bonuses": [
+                              {
+                                  "type": "prop",
+                                  "abil": "Aura",
+                                  "name": "num_totems",
+                                  "value": 1
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:3.Single Wave",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:1.Tick Damage",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "healMult.MultiTotem",
+                                  "value": -5
+                              },
+                              {
+                                  "type": "stat",
+                                  "name": "damMult.MultiTotem:5.Explosion Damage",
+                                  "value": -5
+                              }
+                          ]
+                      }
+                  ]
+              },
+              {
+                  "base_abil": "Hummingbirds' Song",
+                  "properties": {
+                      "count": 1
+                  },
+                  "effects": []
+              }
+          ]
         }
       ]
     }
