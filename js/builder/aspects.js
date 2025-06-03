@@ -12,6 +12,7 @@ const num_aspects = 5;
 // of computegraph we don't have that luxury.
 let aspect_inputs_dropdowns_ctx = new Map(); // Map<className, autoCompleteJs>
 let active_aspects = null; // Map<AspectName, AspecSpec>
+let aspect_aliases = null; // Map<AspectAlias, AspectName>
 
 /**
  * Populate the aspect autocomplete list dynamically based on the choice of weapon.
@@ -31,8 +32,37 @@ class AspectAutocompleteInitNode extends ComputeNode {
         active_aspects = aspect_map.get(active_class);
         const class_aspect_names = active_aspects.keys().toArray();
 
+        aspect_aliases = new Map();
+        // Basically ported from builder.js:add_tome_autocomplete
+        // quite janky, push aliases to possible name list and swap upon click.
+        // To add aliases to an aspect, add an "aliaes" list at the top level of the
+        // aspect object in aspecst.json.
+        //
+        // ```js
+        // {
+        //   "displayName": "Aspect of ...",
+        //   "aliases": ["Meteor AOE"],
+        // },
+        // {
+        //   "displayName": "Aspect of ...",
+        //   "aliases": ["Thunderstorm"],
+        // }
+        // ```
+        for (const [display_name, aspect] of active_aspects) {
+            if ("aliases" in aspect && aspect.aliases !== "NO_ALIAS") {
+                for (const alias of aspect.aliases) {
+                    class_aspect_names.push(alias);
+                    aspect_aliases.set(alias, display_name); 
+                }
+            }
+        }
+
         if (!aspect_inputs_dropdowns_ctx.has(this.name)) {
-            aspect_inputs_dropdowns_ctx.set(this.name, create_autocomplete(class_aspect_names, active_aspects, this.input_field, v => v));
+            const aspect_ac_cb = (v) => {
+                if (aspect_aliases.has(v)) { v = aspect_aliases.get(v); }
+                return v;
+            }
+            aspect_inputs_dropdowns_ctx.set(this.name, create_autocomplete(class_aspect_names, active_aspects, this.input_field, aspect_ac_cb));
         } else {
             // This is a janky way of manually editing the data of the inner to make dynamic autocomplete lists
             const autocomplete_ctx = aspect_inputs_dropdowns_ctx.get(this.name);
