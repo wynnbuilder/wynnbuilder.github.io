@@ -176,6 +176,109 @@ class AspectAggregateNode extends ComputeNode {
     }
 }
 
+function generate_aspect_tooltip(tooltip_elem, aspect, tier) {
+    const title = make_elem("p", [aspect.tier, "scaled-font", "mx-1", "my-1"]);
+    const body = make_elem("p", ["mc-gray", "scaled-font", "text-wrap", "mx-1", "my-1"]);
+    title.innerHTML = aspect.displayName;
+    body.innerHTML = aspect.tiers[tier - 1].description;
+    tooltip_elem.appendChild(title);
+    tooltip_elem.appendChild(body);
+}
+
+function remove_tooltip(tooltip_elem) {
+    tooltip_elem.remove();
+    return null;
+}
+
+/*
+ * Renders the tooltips for the aspects.
+ * Signature AspectRenderNode(name, image_div, trigger, bounding_elem) => None
+ *
+ * @param {name} the name of the node
+ * @param {trigger} the trigger div
+ * @param {bounding_elem} the box bounding (loosely) the elements.
+ *
+ * Notice that we're using the `on{event}` property instead of addEventListener to overwrite the listener
+ * function every time an aspect update occurs.
+ *
+ * TODO(@orgold): Factor this into a more generic function and add to tomes.
+ */
+class AspectRenderNode extends ComputeNode {
+    constructor(name, trigger, bounding_elem) {
+        super(name);
+        this.trigger = trigger;
+        this.bounding_elem = bounding_elem;
+    }
+
+    compute_func(input_map) {
+        const [aspect, tier] = input_map.get("aspect-tiered-spec");
+
+        // Clean up listeners
+        if (aspect.NONE) {
+            this.trigger.onmouseover = undefined;
+            this.trigger.onmouseout = undefined;
+            this.trigger.onclick = undefined;
+            return;
+        };
+
+        let tooltip_elem = null;
+
+        // Further comments at js/builder/atrree.js:render-AT
+        if (!isMobile) {
+            this.trigger.onmouseover = (e) => {
+                tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
+                    style: {
+                        position: "absolute",
+                        zIndex: "100",
+                        top: (this.trigger.getBoundingClientRect().top + window.pageYOffset + 50) + "px",
+                        left: this.trigger.getBoundingClientRect().left + "px",
+                        width: (this.bounding_elem.getBoundingClientRect().width / 2 * 0.95) + "px"
+                    }
+                });
+                this.trigger.appendChild(tooltip_elem);
+                generate_aspect_tooltip(tooltip_elem, aspect, tier);
+            };
+
+            this.trigger.onmouseout = (e) => {
+                tooltip_elem = remove_tooltip(tooltip_elem);
+            };
+
+        } else {
+            this.trigger.onclick = (e) => {
+                let bg = make_elem("div", [], {
+                    style: {
+                        position: "fixed",
+                        "z-index": 10000,
+                        top: 0,
+                        left: 0,
+                        width: "100vw",
+                        height: "100vh",
+                        "background-color": "rgba(0, 0, 0, 0.6)",
+                        "padding-top": "10vh",
+                        "padding-left": "2.5vw",
+                        "user-select": "none"
+                    }
+                });
+                bg.onclick = function(e) {
+                    if (e.target !== this) {return;}
+                    bg.remove();
+                };
+
+                tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
+                    style: {
+                        max_height: "80vh",
+                        width: "95vw",
+                        "overflow-y": "scroll"
+                    }
+                });
+                document.body.appendChild(bg);
+                bg.appendChild(tooltip_elem);
+                generate_aspect_tooltip(tooltip_elem, aspect, tier);
+            };
+        }
+    }
+}
+
 /**
  * Display the image and color of the aspect based on it's tier.
  *
@@ -197,6 +300,7 @@ class AspectInputDisplayNode extends ComputeNode {
             const player_class = input_map.get("aspect-spec").class || "None";
             this.image_div.classList.add("aspect-image-" + player_class);
             this.image_div.classList.add(aspect.tier + "-shadow");
+
         } else {
             this.image_div.classList.add("aspect-image-None");
         }

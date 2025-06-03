@@ -1171,15 +1171,18 @@ function builder_graph_init(save_skp) {
     build_encode_node.link_to(atree_node, 'atree').link_to(atree_state_node, 'atree-state');
 
     aspect_agg_node = new AspectAggregateNode('final-aspects');
+    const aspects_dropdown = document.getElementById('aspects-dropdown');
     for (const field of aspect_fields) {
         const aspect_input_field = document.getElementById(field+'-choice');
         const aspect_tier_input_field = document.getElementById(field+'-tier-choice');
         const aspect_image_div = document.getElementById(field+'-img');
+        const aspect_image_loc_div = document.getElementById(field+'-img-loc');
         new AspectAutocompleteInitNode(field+'-autocomplete', field).link_to(class_node, 'player-class');
         const aspect_input = new AspectInputNode(field+'-input', aspect_input_field).link_to(class_node, 'player-class');
         new AspectInputDisplayNode(field+'-input', aspect_input_field, aspect_image_div).link_to(aspect_input, "aspect-spec");
         aspect_inputs.push(aspect_input);
         const aspect_tier_input = new AspectTierInputNode(field+'-tier-input', aspect_tier_input_field).link_to(aspect_input, 'aspect-spec');
+        new AspectRenderNode(field+'-render', aspect_image_loc_div, aspects_dropdown).link_to(aspect_tier_input, 'aspect-tiered-spec');
         aspect_agg_node.link_to(aspect_tier_input, field+'-tiered');
     }
     build_encode_node.link_to(aspect_agg_node, 'aspects');
