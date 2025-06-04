@@ -209,6 +209,7 @@ class AspectRenderNode extends ComputeNode {
         super(name);
         this.trigger = trigger;
         this.bounding_elem = bounding_elem;
+        this.tooltip_elem = null;
     }
 
     compute_func(input_map) {
@@ -222,12 +223,10 @@ class AspectRenderNode extends ComputeNode {
             return;
         };
 
-        let tooltip_elem = null;
-
         // Further comments at js/builder/atrree.js:render-AT
         if (!isMobile) {
             this.trigger.onmouseover = (e) => {
-                tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
+                this.tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
                     style: {
                         position: "absolute",
                         zIndex: "100",
@@ -236,12 +235,12 @@ class AspectRenderNode extends ComputeNode {
                         width: (this.bounding_elem.getBoundingClientRect().width / 2 * 0.95) + "px"
                     }
                 });
-                this.trigger.appendChild(tooltip_elem);
-                generate_aspect_tooltip(tooltip_elem, aspect, tier);
+                this.trigger.appendChild(this.tooltip_elem);
+                generate_aspect_tooltip(this.tooltip_elem, aspect, tier);
             };
 
             this.trigger.onmouseout = (e) => {
-                tooltip_elem = remove_tooltip(tooltip_elem);
+                if (this.tooltip_elem) this.tooltip_elem.remove();
             };
 
         } else {
@@ -265,7 +264,7 @@ class AspectRenderNode extends ComputeNode {
                     bg.remove();
                 };
 
-                tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
+                this.tooltip_elem = make_elem("div", ["rounded-bottom", "dark-4", "border", "dark-shadow", "text-start"], {
                     style: {
                         max_height: "80vh",
                         width: "95vw",
@@ -273,8 +272,8 @@ class AspectRenderNode extends ComputeNode {
                     }
                 });
                 document.body.appendChild(bg);
-                bg.appendChild(tooltip_elem);
-                generate_aspect_tooltip(tooltip_elem, aspect, tier);
+                bg.appendChild(this.tooltip_elem);
+                generate_aspect_tooltip(this.tooltip_elem, aspect, tier);
             };
         }
     }
