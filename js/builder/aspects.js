@@ -180,7 +180,8 @@ function generate_aspect_tooltip(tooltip_elem, aspect, tier) {
     const title = make_elem("p", [aspect.tier, "scaled-font", "mx-1", "my-1"]);
     const body = make_elem("p", ["mc-gray", "scaled-font", "text-wrap", "mx-1", "my-1"]);
     title.innerHTML = aspect.displayName;
-    body.innerHTML = aspect.tiers[tier - 1].description;
+    let numberRegex = /[+-]?\d+(\.\d+)?[%+s]?/g; // +/- (optional), 1 or more digits, period followed by 1 or more digits (optional), %/+/s (optional)
+    body.innerHTML = aspect.tiers[tier - 1].description.replaceAll(numberRegex, (m) => { return "<span class = 'mc-white'>" + m + "</span>" });
     tooltip_elem.appendChild(title);
     tooltip_elem.appendChild(body);
 }
