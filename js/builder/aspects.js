@@ -30,7 +30,7 @@ class AspectAutocompleteInitNode extends ComputeNode {
         if (active_class === null) return;
 
         active_aspects = aspect_map.get(active_class);
-        const class_aspect_names = active_aspects.keys().toArray();
+        const class_aspect_names = [...active_aspects.keys()];
 
         aspect_aliases = new Map();
         // Basically ported from builder.js:add_tome_autocomplete
