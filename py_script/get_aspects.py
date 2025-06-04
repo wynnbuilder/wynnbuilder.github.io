@@ -10,42 +10,96 @@ def get_aspect_data(wynn_class):
     aspect_data = requests.get(url).json()
     return aspect_data
 
+cleaner = re.compile('<.*?>') 
+
 replace_strings = {
     "\ue01f ": "", # duration
-    "\ue01e ": "", # Positive number
+    "\ue01e ": "", # Positive number? (I see this used on "effects")
     "\ue01d ": "", # AOE
     "\ue01c ": "", # Range
     "\ue01b ": "", # Negative number
-    "\u2741 ": "", # Unsure?
+    "\ue007 ": "", # Mana
+    "\ue027 ": "", # Cooldown
+    "\ue006 ": "", # Heal
 
-    " \u27bd": "", # Focus
+    " \ue01a": "", # Focus
     " \u2699": "", # Discombobulated
+    " \ue018": "", # Corrupted
+    " \u2727": "", # Holy Power/Sacred Surge
+    " \ue025": "", # Provoke
+    " \u2741": "", # Resistance Bonus
 
-    " \u2248": "", # Winded
+    " \ue035": "", # Winded
     " \u273a": "", # Mana Bank
+    " \u231a": "", # Timelocked
 
-    " \u271c": "", # Marks
-    " \u2042": "", # Clones
+    " \ue019": "", # Marks
+    " \ue030": "", # Clones
+    " \ue013": "", # Momentum
+    " \u2765": "", # Lured
 
-    " \u2695": "", # Blood Pool
+    " \uE020": "", # Blood Pool
+    " \uE031": "", # Bleeding
+    " \u2698": "", # Puppets
+    " \u265a": "", # Awakened
+    " \u21f6": "", # Whipped
+
+    " \\(\ue00d\\)": "", # Slowness
+    " \\(\ue00b\\)": "", # Blindness
+    " \\(\ue01b\\)": "", # "Damage Bonus" Reduction
+    " \\(\ue015\\)": "", # Resistance Penalty
+
+    " \\(\u2694\\)": "", # Damage Bonus
+    " \\(\u2741\\)": "", # Resistance Bonus
+    " \\(\u273e\\)": "", # Resistance Bonus (Only used for dissolution?)
+    " \\(\u2748\\)": "", # ID Bonus/Radiance
+    " \\(\u2617\\)": "", # Invincibility
+    " \\(\u27b2\\)": "", # Speed Bonus (Time Dilation)
+    " \u2764": "", # Overhealth
 
     "\u00b0": " degrees", # Degree symbol
 
-    "\ue005 ": "Neutral ", # Neutral just says "Damage"
-    "\ue004 ": "", # Water
-    "\ue003 ": "", # Thunder
-    "\ue002 ": "", # Fire
-    "\ue001 ": "", # Earth
-    "\ue000 ": "", # Air
+    "Total Damage": "</br><span class='mc-white'>Total Damage</span>", # Total Damage Breakdown
+    "\\(\ue005 Neutral": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # turns out tclap doesnt follow below
+    "\\(\ue005 Damage": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # Neutral just says "Damage"
+    "\\(\ue004 Water": "</br>&emsp;(<span class='Water'>Water</span>", # Water
+    "\\(\ue003 Thunder": "</br>&emsp;(<span class='Thunder'>Thunder</span>", # Thunder
+    "\\(\ue002 Fire": "</br>&emsp;(<span class='Fire'>Fire</span>", # Fire
+    "\\(\ue001 Earth": "</br>&emsp;(<span class='Earth'>Earth</span>", # Earth
+    "\\(\ue000 Air": "</br>&emsp;(<span class='Air'>Air</span>", # Air
+
+    "\ue004 ": "</br>", # Water
+    "\ue003 ": "</br>", # Thunder
+    "\ue002 ": "</br>", # Fire
+    "\ue001 ": "</br>", # Earth
+    "\ue000 ": "</br>", # Air
 }
 
-def clean_description(strings):
-    # Source: https://stackoverflow.com/questions/37018475/python-remove-all-html-tags-from-string
+# Source: https://stackoverflow.com/questions/37018475/python-remove-all-html-tags-from-string
+def clean_description(string):
+    return re.sub(cleaner, '', string)
+
+def stylize_description(strings):
     def sub(s):
         for k, v in replace_strings.items():
             s = re.sub(k, v, s)
         return s
-    return ' '.join(sub(re.sub('<[^<]+?>', '', text)) for text in strings)
+    result = []
+    for text in strings:
+        if '</br>' in text:
+            result.append('</br>')
+            continue
+        if 'Archetype' in text or 'Ability Points' in text or 'Unlocking will block:' in text:
+            break  
+        result.append(sub(re.sub(cleaner, '', text)))
+
+    if result[0] == "</br>":
+        result[0] = ""
+        
+    if result[len(result)-1] == "</br>":
+        result[len(result)-1] = ""
+
+    return ' '.join(result).strip()
 
 
 if __name__ == "__main__":
@@ -114,7 +168,7 @@ if __name__ == "__main__":
                     abils = []
                 tier_data.append({
                     'threshold': data['threshold'],
-                    'description': clean_description(data['description']),
+                    'description': stylize_description(data['description']),
                     'abilities': abils
                 })
 
