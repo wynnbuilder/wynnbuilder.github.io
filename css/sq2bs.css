@@ -112,6 +112,21 @@ input.equipment-input:not(.is-invalid) {
     border-color: rgba(33, 37, 41, 1) !important;
 }
 
+input.aspect-input {
+    font-weight: bold;
+    background-color: hsl(0, 0%, 21%) !important;
+    border-radius: 0.375rem !important;
+    min-height: calc(1.2 * var(--scaled-fontsize) + 2px);
+    padding: 0rem 0.5rem;
+    font-size: var(--scaled-fontsize);
+    --bs-gutter-y: 1rem;
+    --bs-gutter-x: 0rem;
+}
+
+input.aspect-input:not(.is-invalid) {
+    border-color: rgba(33, 37, 41, 1) !important;
+}
+
 .my-container {
     position: fixed; /* Stay in place */
     left: var(--sidebar-width);
@@ -556,17 +571,45 @@ a:hover {
     background-position: 100% 0;
     aspect-ratio: 1/1;
 }
-.aspect-image {
+.aspect-image-Warrior {
     background-image: url('../media/items/aspects.png');
     image-rendering: pixelated;
-    background-size: 500% 100%;
-    background-position: 0 0;
+    background-size: 600% 100%;
+    background-position: 0% 0;
     aspect-ratio: 1/1;
 }
-.myth-aspect-image {
+.aspect-image-Assassin {
     background-image: url('../media/items/aspects.png');
     image-rendering: pixelated;
-    background-size: 500% 100%;
-    background-position: 25% 0;
+    background-size: 600% 100%;
+    background-position: 20% 0;
+    aspect-ratio: 1/1;
+}
+.aspect-image-Mage {
+    background-image: url('../media/items/aspects.png');
+    image-rendering: pixelated;
+    background-size: 600% 100%;
+    background-position: 40% 0;
+    aspect-ratio: 1/1;
+}
+.aspect-image-Archer {
+    background-image: url('../media/items/aspects.png');
+    image-rendering: pixelated;
+    background-size: 600% 100%;
+    background-position: 60% 0;
+    aspect-ratio: 1/1;
+}
+.aspect-image-Shaman {
+    background-image: url('../media/items/aspects.png');
+    image-rendering: pixelated;
+    background-size: 600% 100%;
+    background-position: 80% 0;
+    aspect-ratio: 1/1;
+}
+.aspect-image-None{
+    background-image: url('../media/items/aspects.png');
+    image-rendering: pixelated;
+    background-size: 600% 100%;
+    background-position: 100% 0;
     aspect-ratio: 1/1;
 }

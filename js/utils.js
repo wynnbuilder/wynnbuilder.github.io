@@ -758,41 +758,6 @@ function assert_error(func_binding, msg) {
     throw new Error(msg ? msg : "Function didn't throw an error.");
 }
 
-/**
- * Deep copy object/array of basic types.
- */
-function deepcopy(obj, refs=undefined) {
-    if (refs === undefined) {
-        refs = new Map();
-    }
-    if (typeof(obj) !== 'object' || obj === null) { // null or value type
-        return obj;
-    }
-    let ret = Array.isArray(obj) ? [] : {};
-    for (let key in obj) {
-        let val;
-        try {
-            val = obj[key];
-        } catch (exc) {
-            console.trace();
-            val = undefined;
-        }
-        if (typeof(obj) === 'object') {
-            if (refs.has(val)) {
-                ret[key] = refs.get(val);
-            }
-            else {
-                refs.set(val, val);
-                ret[key] = deepcopy(val, refs);
-            }
-        }
-        else {
-            ret[key] = val;
-        }
-    }
-    return ret;
-}
-
 
 /**
  * 

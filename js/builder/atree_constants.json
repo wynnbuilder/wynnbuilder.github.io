@@ -1492,7 +1492,7 @@
                         {
                             "name": "DPS",
                             "hits": {
-                                "Single Hit": 3.333333333333333
+                                "Single Hit": 4
                             }
                         }
                     ]
@@ -1632,6 +1632,17 @@
                             "hits": {
                                 "Per Snake DPS": 1
                             }
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Ivyroot Mamba",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "defMult.Ivyroot Mamba",
+                            "value": 15
                         }
                     ]
                 }
@@ -2435,7 +2446,9 @@
                 "col": 2,
                 "icon": "node_2"
             },
-            "properties": {},
+            "properties": {
+                "bombs": 25
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -3099,7 +3112,8 @@
                 "icon": "node_1"
             },
             "properties": {
-                "aoe": 2
+                "aoe": 2,
+                "grapes": 3
             },
             "effects": [
                 {
@@ -5368,7 +5382,7 @@
                 "icon": "node_2"
             },
             "properties": {
-                "aoe": 16
+                "aoe": 12
             },
             "effects": [
                 {
@@ -12351,7 +12365,7 @@
                     "base_spell": 4,
                     "target_part": "Total Damage",
                     "hits": {
-                        "Single Hit": 2
+                        "Single Hit": 3
                     }
                 }
             ]

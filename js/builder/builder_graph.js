@@ -344,6 +344,7 @@ class BuildEncodeNode extends ComputeNode {
         const build = input_map.get('build');
         const atree = input_map.get('atree');
         const atree_state = input_map.get('atree-state');
+        const aspects = input_map.get('aspects');
         let powders = [
             input_map.get('helmet-powder'),
             input_map.get('chestplate-powder'),
@@ -361,7 +362,7 @@ class BuildEncodeNode extends ComputeNode {
         // TODO: grr global state for copy button..
         player_build = build;
         build_powders = powders;
-        return encodeBuild(build, powders, skillpoints, atree, atree_state);
+        return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
     }
 }
 
@@ -1155,7 +1156,7 @@ function builder_graph_init(save_skp) {
     }
     pre_scale_agg_node.link_to(edit_agg_node);
 
-    // Phase 3/3: Set up atree stuff.
+    // Phase 3/3: Set up atree and aspect stuff.
 
     let class_node = new PlayerClassNode('builder-class').link_to(build_node);
     // These two are defined in `builder/atree.js`
@@ -1169,14 +1170,35 @@ function builder_graph_init(save_skp) {
 
     build_encode_node.link_to(atree_node, 'atree').link_to(atree_state_node, 'atree-state');
 
+    aspect_agg_node = new AspectAggregateNode('final-aspects');
+    const aspects_dropdown = document.getElementById('aspects-dropdown');
+    for (const field of aspect_fields) {
+        const aspect_input_field = document.getElementById(field+'-choice');
+        const aspect_tier_input_field = document.getElementById(field+'-tier-choice');
+        const aspect_image_div = document.getElementById(field+'-img');
+        const aspect_image_loc_div = document.getElementById(field+'-img-loc');
+        new AspectAutocompleteInitNode(field+'-autocomplete', field).link_to(class_node, 'player-class');
+        const aspect_input = new AspectInputNode(field+'-input', aspect_input_field).link_to(class_node, 'player-class');
+        new AspectInputDisplayNode(field+'-input', aspect_input_field, aspect_image_div).link_to(aspect_input, "aspect-spec");
+        aspect_inputs.push(aspect_input);
+        const aspect_tier_input = new AspectTierInputNode(field+'-tier-input', aspect_tier_input_field).link_to(aspect_input, 'aspect-spec');
+        new AspectRenderNode(field+'-render', aspect_image_loc_div, aspects_dropdown).link_to(aspect_tier_input, 'aspect-tiered-spec');
+        aspect_agg_node.link_to(aspect_tier_input, field+'-tiered');
+    }
+    build_encode_node.link_to(aspect_agg_node, 'aspects');
+
+    atree_merge.link_to(aspect_agg_node);
+
     // ---------------------------------------------------------------
     //  Trigger the update cascade for build!
     // ---------------------------------------------------------------
     for (const input_node of equip_inputs) {
         input_node.update();
     }
+
     armor_powder_node.update();
     level_input.update();
+
 
     atree_graph_creator = new AbilityTreeEnsureNodesNode(build_node, stat_agg_node)
                                     .link_to(atree_collect_spells, 'spells');
@@ -1195,6 +1217,10 @@ function builder_graph_init(save_skp) {
                 console.log("Failed to decode atree. This can happen when updating versions. Give up!")
             }
         }
+    }
+
+    for (const aspect_input_node of aspect_inputs) {
+        aspect_input_node.update();
     }
 
     // Powder specials.

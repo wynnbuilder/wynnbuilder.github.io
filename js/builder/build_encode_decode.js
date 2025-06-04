@@ -40,7 +40,9 @@ let atree_data = null;
 async function parse_hash(url_tag) {
     let latest_ver_name = wynn_version_names[WYNN_VERSION_LATEST];
     const default_load_promises = [ load_atree_data(latest_ver_name), load_major_id_data(latest_ver_name),
-                                    item_loader.load_init(), ingredient_loader.load_init(), tome_loader.load_init()];
+                                    item_loader.load_init(), ingredient_loader.load_init(), tome_loader.load_init(),
+                                    aspect_loader.load_init()
+                                  ];
     if (!url_tag) {
         await Promise.all(default_load_promises);
         return;
@@ -95,10 +97,11 @@ async function parse_hash(url_tag) {
             const version_name = wynn_version_names[wynn_version_id];
             const load_promises = [ load_atree_data(version_name),
                                     load_major_id_data(version_name),
-                                    load_aspect_data(version_name),
                                     item_loader.load_old_version(version_name),
                                     ingredient_loader.load_old_version(version_name),
-                                    tome_loader.load_old_version(version_name) ];
+                                    tome_loader.load_old_version(version_name),
+                                    aspect_loader.load_old_version(version_name)
+                                  ];
             console.log("Loading old version data...", version_name)
             await Promise.all(load_promises);
         }
@@ -134,7 +137,7 @@ async function parse_hash(url_tag) {
         }
         data_str = info_str.slice(start_idx);
     }
-    else if (version_number <= 10) {
+    else if (version_number <= 11) {
         let info_str = data_str;
         let start_idx = 0;
         for (let i = 0; i < 9; ++i ) {
@@ -175,7 +178,7 @@ async function parse_hash(url_tag) {
         let powder_info = data_str.slice(10);
         let res = parsePowdering(powder_info);
         powdering = res[0];
-    } else if (version_number <= 10){
+    } else if (version_number <= 11){
         level = Base64.toInt(data_str.slice(10,12));
         setValue("level-choice",level);
         save_skp = true;
@@ -225,6 +228,21 @@ async function parse_hash(url_tag) {
         }
     }
 
+    // Aspects.
+    if (version_number >= 11) {
+        const player_class = wep_to_class.get(itemMap.get(equipment[8]).type);
+        const class_aspects_by_id = aspect_id_map.get(player_class);
+        for (let i = 0; i < num_aspects; ++i) {
+            const aspect_id = Base64.toInt(data_str.slice(3*i, 3*i + 2));
+            const aspect_tier = Base64.toInt(data_str.slice(3*i+2, 3*i + 3));
+            if (aspect_id !== none_aspect.id) {
+                setValue(aspectTierInputs[i], aspect_tier);
+                setValue(aspectInputs[i], class_aspects_by_id.get(aspect_id).displayName);
+            } 
+        }
+        data_str = data_str.slice(num_aspects*3);
+    }
+
     if (version_number >= 7) {
         // ugly af. only works since its the last thing. will be fixed with binary decode
         atree_data = new BitVector(data_str);
@@ -245,7 +263,7 @@ async function parse_hash(url_tag) {
 
 /*  Stores the entire build in a string using B64 encoding and adds it to the URL.
 */
-function encodeBuild(build, powders, skillpoints, atree, atree_state) {
+function encodeBuild(build, powders, skillpoints, atree, atree_state, aspects) {
 
     if (build) {
         let build_string;
@@ -255,7 +273,8 @@ function encodeBuild(build, powders, skillpoints, atree, atree_state) {
         //V8 encoding - wynn version
         //V9 encoding - lootrun tome
         //V10 encoding - marathon, mysticism, and expertise tomes
-        build_version = 10;
+        //V11 encoding - Aspects
+        build_version = 11;
         build_string = "";
         tome_string = "";
 
@@ -298,6 +317,11 @@ function encodeBuild(build, powders, skillpoints, atree, atree_state) {
             }
         }
         build_string += tome_string;
+
+        for (const [aspect, tier] of aspects) {
+            build_string += Base64.fromIntN(aspect.id, 2);
+            build_string += Base64.fromIntN(tier, 1);
+        }
 
         if (atree.length > 0 && atree_state.get(atree[0].ability.id).active) {
             //build_version = Math.max(build_version, 7);

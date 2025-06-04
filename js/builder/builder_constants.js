@@ -68,6 +68,14 @@ let tome_fields = [
     "mobXpTome1", 
     "mobXpTome2"
 ]
+
+let aspect_fields = [
+    "aspect1",
+    "aspect2",
+    "aspect3",
+    "aspect4",
+    "aspect5",
+]
 let equipment_names = [
     "Helmet",
     "Chestplate",
@@ -92,6 +100,8 @@ let tome_names = [
 let equipment_inputs = equipment_fields.map(x => x + "-choice");
 let build_fields = equipment_fields.map(x => x+"-tooltip");
 let tomeInputs = tome_fields.map(x => x + "-choice");
+let aspectInputs = aspect_fields.map(x => x + "-choice");
+let aspectTierInputs = aspect_fields.map(x => x + "-tier-choice");
 
 let powder_inputs = [
     "helmet-powder",
