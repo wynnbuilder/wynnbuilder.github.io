@@ -1112,6 +1112,9 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
+              "dependencies": [
+                "Ivyroot Mamba"
+              ],
               "effects": [
                 {
                   "type": "raw_stat",
@@ -1149,6 +1152,9 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
+              "dependencies": [
+                "Ivyroot Mamba"
+              ],
               "effects": [
                 {
                   "type": "raw_stat",
@@ -1186,6 +1192,9 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
+              "dependencies": [
+                "Ivyroot Mamba"
+              ],
               "effects": [
                 {
                   "type": "raw_stat",
@@ -1919,22 +1928,54 @@
         {
           "threshold": 1,
           "description": "Uppercut gains +0.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "range": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Uppercut gains +1.15 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "range": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Uppercut gains +1.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "range": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Uppercut gains +2 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "properties": {
+                "range": 2.0
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2039,57 +2080,10 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.05
+                "health_cost": -0.05,
+                "damage_boost": 5
               },
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Blood Pact",
-                  "behavior": "modify",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:1.Single Hit",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:2.Flying Kick",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:2.Flyby Jab",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Uppercut",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Fireworks",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Comet",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:4.War Scream",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:4.Air Shout",
-                      "value": 5
-                    }
-                  ]
-                }
-              ]
+              "effects": []
             }
           ]
         },
@@ -2100,57 +2094,10 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.05
+                "health_cost": -0.05,
+                "damage_boost": 8
               },
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Blood Pact",
-                  "behavior": "modify",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:1.Single Hit",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:2.Flying Kick",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:2.Flyby Jab",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Uppercut",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Fireworks",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:3.Comet",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:4.War Scream",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.BloodPact:4.Air Shout",
-                      "value": 8
-                    }
-                  ]
-                }
-              ]
+              "effects": []
             }
           ]
         }
@@ -2307,17 +2254,80 @@
         {
           "threshold": 1,
           "description": "Blink gains +1 teleport, and loses -3.5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "dependencies": [
+                "Blink"
+              ],
+              "properties": {
+                "range": -3.5
+              },
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "behavior": "modify",
+                  "target_part": "Total Damage",
+                  "base_spell": 2,
+                  "hits": {
+                      "Single Teleport": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Blink gains +2 teleports, and loses -5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "dependencies": [
+                "Blink"
+              ],
+              "properties": {
+                "range": -5
+              },
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "behavior": "modify",
+                  "target_part": "Total Damage",
+                  "base_spell": 2,
+                  "hits": {
+                      "Single Teleport": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Blink gains +3 teleports, and loses -6 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "dependencies": [
+                "Blink"
+              ],
+              "properties": {
+                "range": -6
+              },
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "behavior": "modify",
+                  "target_part": "Total Damage",
+                  "base_spell": 2,
+                  "hits": {
+                      "Single Teleport": 3
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2506,22 +2516,54 @@
         {
           "threshold": 1,
           "description": "Teleport gains +2 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "properties": {
+                "range": 2
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Teleport gains +3.5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "properties": {
+                "range": 3.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Teleport gains +5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "properties": {
+                "range": 5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Teleport gains +6 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Teleport",
+              "properties": {
+                "range": 6
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2533,22 +2575,54 @@
         {
           "threshold": 1,
           "description": "Ice Snake gains +0.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Ice Snake",
+              "properties": {
+                "aoe": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Ice Snake gains +1.15 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Ice Snake",
+              "properties": {
+                "aoe": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Ice Snake gains +1.65 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Ice Snake",
+              "properties": {
+                "aoe": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Ice Snake gains +2 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Ice Snake",
+              "properties": {
+                "aoe": 2
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2560,22 +2634,66 @@
         {
           "threshold": 1,
           "description": "Psychokinesis gains +4 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Psychokinesis"
+              ],
+              "properties": {
+                "range": 4
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Psychokinesis gains +7 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Psychokinesis"
+              ],
+              "properties": {
+                "range": 7
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Psychokinesis gains +10 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Psychokinesis"
+              ],
+              "properties": {
+                "range": 10
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Psychokinesis gains +12 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Psychokinesis"
+              ],
+              "properties": {
+                "range": 10
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2587,22 +2705,94 @@
         {
           "threshold": 1,
           "description": "Meteor gains +0.65 Area of Effect. </br> Ophanim gains +2.5 Range. Ophanim's orbs travel 11% faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "properties": {
+                "aoe": 0.65
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Ophanim"
+              ],
+              "properties": {
+                "range": 2.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Meteor gains +1.15 Area of Effect. </br> Ophanim gains +4.5 Range. Ophanim's orbs travel 21% faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "properties": {
+                "aoe": 1.15
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Ophanim"
+              ],
+              "properties": {
+                "range": 4.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Meteor gains +1.65 Area of Effect. </br> Ophanim gains +6.5 Range. Ophanim's orbs travel 29% faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "properties": {
+                "aoe": 1.65
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Ophanim"
+              ],
+              "properties": {
+                "range": 6.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Meteor gains +2 Area of Effect. </br> Ophanim gains +8 Range. Ophanim's orbs travel 37% faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Meteor",
+              "properties": {
+                "aoe": 2
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Meteor",
+              "dependencies": [
+                "Ophanim"
+              ],
+              "properties": {
+                "range": 8
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2641,22 +2831,54 @@
         {
           "threshold": 1,
           "description": "Your Main Attack gains +1.5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 1.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Your Main Attack gains +2.75 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 2.75
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Your Main Attack gains +4 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 4.0
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Your Main Attack gains +5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 5.0
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2695,22 +2917,54 @@
         {
           "threshold": 1,
           "description": "Heal gains +1 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Heal",
+              "properties": {
+                "aoe": 1
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Heal gains +1.75 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Heal",
+              "properties": {
+                "aoe": 1.75
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Heal gains +2.5 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Heal",
+              "properties": {
+                "aoe": 2.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Heal gains +3 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Heal",
+              "properties": {
+                "aoe": 3
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -2727,12 +2981,58 @@
         {
           "threshold": 5,
           "description": "Timelock gains +0.5s Duration for every 5 Winded absorbed. Timelock gains +3s maximum Duration. </br> Increase your maximum Winded by +5.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Windsweeper",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Windsweeper",
+                      "name": "max",
+                      "value": 5
+                    }
+                  ]
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Winded",
+                  "slider_max": 5
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Timelock gains +0.75s Duration for every 5 Winded absorbed. Timelock gains +4.5s maximum Duration. </br> Increase your maximum Winded by +5.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Windsweeper",
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Windsweeper",
+                      "name": "max",
+                      "value": 5
+                    }
+                  ]
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Winded",
+                  "slider_max": 5
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2744,7 +3044,21 @@
         {
           "threshold": 1,
           "description": "Lightweaver gains +2 orbs.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Lightweaver",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "target_part": "Orb DPS",
+                    "base_spell": 5,
+                    "hits": {
+                        "Single Orb": 1
+                    }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 5,
@@ -2756,6 +3070,19 @@
                 "num_orbs": 1
               },
               "effects": []
+            },
+            {
+              "base_abil": "Lightweaver",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "target_part": "Orb DPS",
+                    "base_spell": 5,
+                    "hits": {
+                        "Single Orb": 1
+                    }
+                }
+              ]
             }
           ]
         },
@@ -2769,6 +3096,19 @@
                 "num_orbs": 1
               },
               "effects": []
+            },
+            {
+              "base_abil": "Lightweaver",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "target_part": "Orb DPS",
+                    "base_spell": 5,
+                    "hits": {
+                        "Single Orb": 1.5
+                    }
+                }
+              ]
             }
           ]
         }
@@ -2831,6 +3171,9 @@
           "abilities": [
             {
               "base_abil": "Dash",
+              "dependencies": [
+                "Shurikens"
+              ],
               "properties": {
                 "count": 3
               },
@@ -2867,6 +3210,9 @@
           "abilities": [
             {
               "base_abil": "Dash",
+              "dependencies": [
+                "Shurikens"
+              ],
               "properties": {
                 "count": 6
               },
@@ -2903,6 +3249,9 @@
           "abilities": [
             {
               "base_abil": "Dash",
+              "dependencies": [
+                "Shurikens"
+              ],
               "properties": {
                 "count": 9
               },
@@ -2974,6 +3323,12 @@
                   "slider": true,
                   "slider_name": "Marked",
                   "slider_max": 1,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Marked"
+                    }
+                  ],
                   "scaling": [
                     -0.5
                   ]
@@ -2994,6 +3349,12 @@
                   "slider": true,
                   "slider_name": "Marked",
                   "slider_max": 2,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Marked"
+                    }
+                  ],
                   "scaling": [
                     -1
                   ]
@@ -3014,6 +3375,12 @@
                   "slider": true,
                   "slider_name": "Marked",
                   "slider_max": 3,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Marked"
+                    }
+                  ],
                   "scaling": [
                     -1.5
                   ]
@@ -3041,6 +3408,12 @@
                   "slider": true,
                   "slider_name": "Knives Active",
                   "slider_max": -1,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Nightcloak"
+                    }
+                  ],
                   "scaling": [
                     3
                   ]
@@ -3061,6 +3434,12 @@
                   "slider": true,
                   "slider_name": "Knives Active",
                   "slider_max": -2,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Nightcloak"
+                    }
+                  ],
                   "scaling": [
                     8.5
                   ]
@@ -3081,6 +3460,12 @@
                   "slider": true,
                   "slider_name": "Knives Active",
                   "slider_max": -2,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Nightcloak"
+                    }
+                  ],
                   "scaling": [
                     10
                   ]
@@ -3143,22 +3528,54 @@
         {
           "threshold": 1,
           "description": "Your Main Attack gains +0.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 0.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Your Main Attack gains +1.15 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 1.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Your Main Attack gains +1.65 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 1.65
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Your Main Attack gains +2 Range.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": 999,
+              "properties": {
+                "melee_range": 2
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -3184,6 +3601,49 @@
                   }
                 }
               ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    24,
+                    0,
+                    0,
+                    0,
+                    0,
+                    8
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality",
+                "Mutilate"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    9,
+                    0,
+                    0,
+                    0,
+                    0,
+                    3
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -3202,6 +3662,49 @@
                   "hits": {
                     "Per Hit": 2
                   }
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    48,
+                    0,
+                    0,
+                    0,
+                    0,
+                    16
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality",
+                "Mutilate"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    18,
+                    0,
+                    0,
+                    0,
+                    0,
+                    6
+                  ]
                 }
               ]
             }
@@ -3224,6 +3727,49 @@
                   }
                 }
               ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    72,
+                    0,
+                    0,
+                    0,
+                    0,
+                    24
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality",
+                "Mutilate"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    27,
+                    0,
+                    0,
+                    0,
+                    0,
+                    9
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -3242,6 +3788,49 @@
                   "hits": {
                     "Per Hit": 4
                   }
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    96,
+                    0,
+                    0,
+                    0,
+                    0,
+                    32
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Multihit",
+              "dependencies": [
+                "Finality",
+                "Mutilate"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 3,
+                  "target_part": "Finality Bonus",
+                  "multipliers": [
+                    36,
+                    0,
+                    0,
+                    0,
+                    0,
+                    12
+                  ]
                 }
               ]
             }
@@ -3284,22 +3873,66 @@
         {
           "threshold": 1,
           "description": "Dissolution gains +0.15s Duration.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Dash",
+              "dependencies": [
+                "Dissolution"
+              ],
+              "properties": {
+                "duration": 0.15
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Dissolution gains +0.3s Duration.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Dash",
+              "dependencies": [
+                "Dissolution"
+              ],
+              "properties": {
+                "duration": 0.3
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Dissolution gains +0.4s Duration.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Dash",
+              "dependencies": [
+                "Dissolution"
+              ],
+              "properties": {
+                "duration": 0.4
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Dissolution gains +0.5s Duration.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Dash",
+              "dependencies": [
+                "Dissolution"
+              ],
+              "properties": {
+                "duration": 0.5
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -3607,6 +4240,30 @@
                       "value": 10
                     }
                   ]
+                },
+                {
+                  "type": "raw_stat",
+                  "toggle": "Awakened",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "damMult.Mask",
+                      "value": 5
+                    },
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "defMult.Mask",
+                      "value": 5
+                    },
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "spd",
+                      "value": 10
+                    }
+                  ]
                 }
               ]
             }
@@ -3654,6 +4311,30 @@
                       "value": 16
                     }
                   ]
+                },
+                {
+                  "type": "raw_stat",
+                  "toggle": "Awakened",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "damMult.Mask",
+                      "value": 8
+                    },
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "defMult.Mask",
+                      "value": 8
+                    },
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "spd",
+                      "value": 16
+                    }
+                  ]
                 }
               ]
             }
@@ -3694,6 +4375,30 @@
                   "type": "raw_stat",
                   "toggle": "Mask of the Heretic",
                   "bonuses": [
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "spd",
+                      "value": 20
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "toggle": "Awakened",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "damMult.Mask",
+                      "value": 10
+                    },
+                    {
+                      "type": "stat",
+                      "behavior": "modify",
+                      "name": "defMult.Mask",
+                      "value": 10
+                    },
                     {
                       "type": "stat",
                       "behavior": "modify",
@@ -4173,6 +4878,9 @@
           "abilities": [
             {
               "base_spell": "Uproot",
+              "dependencies": [
+                "Flaming Tongue"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -4207,6 +4915,9 @@
           "abilities": [
             {
               "base_spell": "Uproot",
+              "dependencies": [
+                "Flaming Tongue"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -4241,6 +4952,9 @@
           "abilities": [
             {
               "base_spell": "Uproot",
+              "dependencies": [
+                "Flaming Tongue"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -4275,6 +4989,9 @@
           "abilities": [
             {
               "base_spell": "Uproot",
+              "dependencies": [
+                "Flaming Tongue"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -4393,7 +5110,7 @@
             {
               "base_abil": "Blood Sorrow",
               "properties": {
-                "duration": 2
+                "duration": 1
               },
               "effects": []
             }
@@ -4406,7 +5123,7 @@
             {
               "base_abil": "Blood Sorrow",
               "properties": {
-                "duration": 2
+                "duration": 1
               },
               "effects": []
             },
@@ -4441,7 +5158,7 @@
             {
               "base_abil": "Blood Sorrow",
               "properties": {
-                "duration": 3
+                "duration": 2
               },
               "effects": []
             },

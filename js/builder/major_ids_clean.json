@@ -1126,15 +1126,15 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 7,
-                        "target_part": "Jasmine Bloom Explosion",
+                        "target_part": "Jasmine Bloom Explosion per Hit",
                         "behavior": "overwrite",
                         "multipliers": [
-                            450,
-                            150,
-                            150,
-                            150,
-                            150,
-                            150
+                            90,
+                            30,
+                            30,
+                            30,
+                            30,
+                            30
                         ]
                     }
                 ]
@@ -2148,6 +2148,7 @@
             },
             {
                 "class": "Any",
+                "base_abil": 999,
                 "effects": [
                     {
                         "type": "raw_stat",
@@ -2204,9 +2205,7 @@
             },
             {
                 "class": "Assassin",
-                "dependencies": [
-                    "Satsujin"
-                ],
+                "base_abil": "Satsujin",
                 "effects": [
                     {
                         "type": "raw_stat",
@@ -2216,6 +2215,50 @@
                                 "type": "stat",
                                 "name": "damMult.Satsujin:20.First Inferno",
                                 "value": 100
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Luster Purge",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Luster Purge",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Luster Purge:20.Single Inferno",
+                                "value": 40
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Luster Purge:20.First Inferno",
+                                "value": 40
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Blood Pact",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Blood Pact",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.BloodPact:20.Single Inferno",
+                                "value": "Blood Pact.damage_boost"
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.BloodPact:20.First Inferno",
+                                "value": "Blood Pact.damage_boost"
                             }
                         ]
                     }
@@ -2334,9 +2377,7 @@
             },
             {
                 "class": "Assassin",
-                "dependencies": [
-                    "Satsujin"
-                ],
+                "base_abil": "Satsujin",
                 "effects": [
                     {
                         "type": "raw_stat",
@@ -2346,6 +2387,50 @@
                                 "type": "stat",
                                 "name": "damMult.Satsujin:20.First Lightning Bolt",
                                 "value": 100
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Luster Purge",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Luster Purge",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Luster Purge:20.First Lightning Bolt",
+                                "value": 40
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.Luster Purge:20.Single Lightning Bolt",
+                                "value": 40
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Blood Pact",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Blood Pact",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.BloodPact:20.Single Lightning Bolt",
+                                "value": "Blood Pact.damage_boost"
+                            },
+                            {
+                                "type": "stat",
+                                "name": "damMult.BloodPact:20.First Lightning Bolt",
+                                "value": "Blood Pact.damage_boost"
                             }
                         ]
                     }

@@ -4453,7 +4453,8 @@
                 "icon": "node_3"
             },
             "properties": {
-                "health_cost": 0.4
+                "health_cost": 0.4,
+                "damage_boost": 15
             },
             "effects": [
                 {
@@ -4463,42 +4464,47 @@
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:1.Single Hit",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:2.Flying Kick",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:2.Flyby Jab",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:3.Uppercut",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:3.Fireworks",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:3.Comet",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:4.War Scream",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.BloodPact:4.Air Shout",
-                            "value": 15
+                            "value": "Blood Pact.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.BloodPact:0.Powder Special",
+                            "value": "Blood Pact.damage_boost"
                         }
                     ]
                 }
@@ -6418,7 +6424,8 @@
             "properties": {
                 "range": 18,
                 "effects": 40,
-                "duration": 3
+                "duration": 3,
+                "aoe": 2
             },
             "effects": [
                 {
@@ -8623,7 +8630,7 @@
                     "target_part": "Orb DPS",
                     "base_spell": 5,
                     "hits": {
-                        "Single Orb": 2
+                        "Single Orb": 1
                     }
                 }
             ]
@@ -11223,15 +11230,21 @@
                             }
                         },
                         {
-                            "name": "Jasmine Bloom Explosion",
+                            "name": "Jasmine Bloom Explosion per Hit",
                             "multipliers": [
-                                1000,
-                                100,
+                                200,
+                                20,
                                 0,
-                                100,
                                 0,
-                                0
+                                0,
+                                20
                             ]
+                        },
+                        {
+                            "name": "Jasmine Bloom Explosion Total Damage",
+                            "hits": {
+                                "Jasmine Bloom Explosion per Hit": 5
+                            }
                         }
                     ]
                 }
@@ -11487,18 +11500,24 @@
                     "type": "replace_spell",
                     "name": "Swan Dive",
                     "base_spell": 10,
-                    "display": "Swan Dive Explosion",
+                    "display": "Total Damage",
                     "parts": [
                         {
-                            "name": "Swan Dive Explosion",
+                            "name": "Swan Dive Explosion per Hit",
                             "multipliers": [
-                                400,
-                                40,
+                                80,
+                                8,
                                 0,
                                 0,
-                                40,
-                                0
+                                0,
+                                8
                             ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Swan Dive Explosion per Hit": 5
+                            }
                         }
                     ]
                 }
@@ -12365,7 +12384,7 @@
                     "base_spell": 4,
                     "target_part": "Total Damage",
                     "hits": {
-                        "Single Hit": 3
+                        "Single Hit": 2
                     }
                 }
             ]
