@@ -230,7 +230,12 @@ async function parse_hash(url_tag) {
 
     // Aspects.
     if (version_number >= 11) {
-        const player_class = wep_to_class.get(itemMap.get(equipment[8]).type);
+        let item;
+        if (equipment[8].slice(0, 3) == "CI-") { item = getCustomFromHash(equipment[8]); }
+        else if (equipment[8].slice(0, 3) == "CR-") { item = getCraftFromHash(equipment[8]); } 
+        else { item = itemMap.get(equipment[8]) };
+
+        const player_class = wep_to_class.get(item.type);
         const class_aspects_by_id = aspect_id_map.get(player_class);
         for (let i = 0; i < num_aspects; ++i) {
             const aspect_id = Base64.toInt(data_str.slice(3*i, 3*i + 2));
