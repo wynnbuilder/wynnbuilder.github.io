@@ -128,6 +128,7 @@ const itemQueryProps = (function() {
   rangeAll(['firedmg', 'firedam', 'fdmg', 'fdam'], (i, ie) => i.fDam);
   rangeAll(['airdmg', 'airdam', 'admg', 'adam'], (i, ie) => i.aDam);
   sum(['sumdmg', 'sumdam', 'totaldmg', 'totaldam'], props.ndam, props.edam, props.tdam, props.wdam, props.fdam, props.adam);
+  prop(['averagedps', 'adps', 'dps', 'basedps'], 'number', (i, ie) => i.averageDps || 0);
 
   maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
   maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
