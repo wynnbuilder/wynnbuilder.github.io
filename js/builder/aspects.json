@@ -2383,7 +2383,8 @@
                   "target_part": "Total Damage",
                   "base_spell": 3,
                   "hits": {
-                    "Lightning Damage": 1
+                    "Lightning Damage": 1,
+                    "Winded Damage": 1
                   }
                 },
                 {
@@ -2428,7 +2429,8 @@
                   "target_part": "Total Damage",
                   "base_spell": 3,
                   "hits": {
-                    "Lightning Damage": 4
+                    "Lightning Damage": 2,
+                    "Winded Damage": 2
                   }
                 },
                 {
@@ -2473,7 +2475,8 @@
                   "target_part": "Total Damage",
                   "base_spell": 3,
                   "hits": {
-                    "Lightning Damage": 3
+                    "Lightning Damage": 3,
+                    "Winded Damage": 3
                   }
                 },
                 {
