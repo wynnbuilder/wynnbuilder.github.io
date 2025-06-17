@@ -17,7 +17,7 @@ function saveBuild() {
     if (player_build) {
         const savedBuilds = window.localStorage.getItem("builds") === null ? {} : JSON.parse(window.localStorage.getItem("builds"));
         const saveName = document.getElementById("build-name").value;
-        const encodedBuild = encodeBuild(player_build);
+        const encodedBuild = encodeBuildLegacy(player_build);
         if ((!Object.keys(savedBuilds).includes(saveName)
                 || document.getElementById("saved-error").textContent !== "") && encodedBuild !== "") {
             savedBuilds[saveName] = encodedBuild.replace("#", "");
@@ -322,14 +322,15 @@ async function init() {
         console.log("Could not initialize macy components. Maybe you're offline?");
         console.log(e);
     }
-    const save_skp = await parse_hash(url_tag);
+    const [save_skp, changed_skp] = await parse_hash();
+
     try {
         init_autocomplete();
     } catch (e) {
         console.log("Could not initialize autocomplete. Maybe you're offline?");
         console.log(e);
     }
-    builder_graph_init(save_skp);
+    builder_graph_init(save_skp, changed_skp);
     for (const item_node of item_final_nodes) {
         // console.log(item_node);
         if (item_node.get_value() === null) {

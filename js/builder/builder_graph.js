@@ -155,7 +155,7 @@ class ItemInputNode extends InputNode {
 
         let item;
         if (item_text.slice(0, 3) == "CI-") { item = getCustomFromHash(item_text); }
-        else if (item_text.slice(0, 3) == "CR-") { item = getCraftFromHash(item_text); } 
+        else if (item_text.slice(0, 3) == "CR-") { item = parse_craft({url_tag: item_text.substring(3)}); } 
         else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
@@ -362,7 +362,7 @@ class BuildEncodeNode extends ComputeNode {
         // TODO: grr global state for copy button..
         player_build = build;
         build_powders = powders;
-        return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
+        return encode_build(build, powders, skillpoints, atree, atree_state, aspects);
     }
 }
 
@@ -377,7 +377,7 @@ class URLUpdateNode extends ComputeNode {
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "URLUpdateNode accepts exactly one input (build_str)"; }
         const [build_str] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        location.hash = build_str;
+        location.replace(location.origin + location.pathname + '#' + build_str);
     }
 }
 
@@ -999,9 +999,10 @@ class EditableIDSetterNode extends ComputeNode {
  * Signature: SkillPointSetterNode(build: Build) => null
  */
 class SkillPointSetterNode extends ComputeNode {
-    constructor(notify_nodes) {
+    constructor(notify_nodes, changed_skp) {
         super("builder-skillpoint-setter");
         this.notify_nodes = notify_nodes.slice();
+        this.changed_skp = changed_skp;
         for (const child of this.notify_nodes) {
             child.link_to(this);
             child.fail_cb = true;
@@ -1013,9 +1014,25 @@ class SkillPointSetterNode extends ComputeNode {
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "SkillPointSetterNode accepts exactly one input (build)"; }
         const [build] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
+
         for (const [idx, elem] of skp_order.entries()) {
             document.getElementById(elem+'-skp').value = build.total_skillpoints[idx];
         }
+
+        if (this.final_construction === true) {
+            for (const [idx, elem] of skp_order.entries()) {
+                if (this.changed_skp !== null && this.changed_skp[idx] !== null) {
+                    document.getElementById(elem+'-skp').value = this.changed_skp[idx];
+                }
+            }
+            this.final_construction = false;
+            this.changed_skp = null;
+        }
+    }
+
+    update(final_construction=false) {
+        this.final_construction = final_construction;
+        return super.update()
     }
 }
 
@@ -1063,7 +1080,7 @@ let atree_graph_creator;
  * Parameters:
  *  save_skp:   bool    True if skillpoints are modified away from skp engine defaults.
  */
-function builder_graph_init(save_skp) {
+function builder_graph_init(save_skp, changed_skp) {
     // Phase 1/3: Set up item input, propagate updates, etc.
 
     // Level input node.
@@ -1214,6 +1231,7 @@ function builder_graph_init(save_skp) {
                 }
                 atree_state_node.mark_dirty().update();
             } catch (e) {
+                console.error(e);
                 console.log("Failed to decode atree. This can happen when updating versions. Give up!")
             }
         }
@@ -1244,10 +1262,10 @@ function builder_graph_init(save_skp) {
         node.update();
     }
 
-    let skp_output = new SkillPointSetterNode(skp_inputs);
+    let skp_output = new SkillPointSetterNode(skp_inputs, changed_skp);
     skp_output.link_to(build_node);
     if (!save_skp) {
-        skp_output.update().mark_dirty().update();
+        skp_output.update().mark_dirty().update(true);
     }
 
     let build_warnings_node = new DisplayBuildWarningsNode();

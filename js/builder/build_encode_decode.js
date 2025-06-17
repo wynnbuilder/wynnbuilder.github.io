@@ -32,19 +32,68 @@ function parsePowdering(powder_info) {
 
 let atree_data = null;
 
+/**
+ * Get the data version from the search parameters of the URL.
+ * Should only be called if the encoding version is >= 8.
+ */
+function get_data_version_legacy() {
+    // parse query parameters
+    // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+    const url_params = new URLSearchParams(window.location.search);
+    const version_id = url_params.get('v');
+    let wynn_version = parseInt(version_id); // Declared in load_item.js
+    if (isNaN(wynn_version) || wynn_version > WYNN_VERSION_LATEST || wynn_version < 0) {
+        // TODO: maybe make the NAN try to use the human readable version?
+        // NOTE: Failing silently... do we want to raise a loud error?
+        console.log("Explicit version not found or invalid, using latest version");
+        wynn_version = WYNN_VERSION_LATEST;
+    }
+    else {
+        console.log(`Build link for wynn version ${wynn_version} (${wynn_version_names[wynn_version]})`);
+    }
+    return wynn_version;
+}
+
+async function load_older_version() {
+    const update_msg = 'This build was created in an older version of wynncraft '
+                + `(${wynn_version_names[wynn_version_id]} < ${wynn_version_names[WYNN_VERSION_LATEST]}). `
+                + 'Would you like to update to the latest version? Updating may break the build and ability tree.';
+
+    const decoding_version = wynn_version_id;
+    // Upgrade the build to the latest version
+    if (confirm(update_msg)) {
+        wynn_version_id = WYNN_VERSION_LATEST;
+    }
+
+
+    else {
+        const version_name = wynn_version_names[wynn_version_id];
+        const decoding_version_name = wynn_version_names[decoding_version];
+        assert(decoding_version <= wynn_version_id, "decoding version cannot be larger than the encoding version.");
+        const load_promises = [ 
+            load_atree_data(version_name),
+            load_major_id_data(version_name),
+            item_loader.load_old_version(version_name),
+            ingredient_loader.load_old_version(version_name),
+            tome_loader.load_old_version(version_name),
+            aspect_loader.load_old_version(version_name),
+            load_encoding_constants(version_name, decoding_version_name)
+        ];
+        console.log("Loading old version data...", version_name)
+        await Promise.all(load_promises);
+    }
+}
+
 /*
  * Populate fields based on url, and calculate build.
  * TODO: THIS CODE IS GOD AWFUL result of being lazy
  * fix all the slice() and break into functions or do something about it... its inefficient, ugly and error prone
  */
-async function parse_hash(url_tag) {
-    let latest_ver_name = wynn_version_names[WYNN_VERSION_LATEST];
-    const default_load_promises = [ load_atree_data(latest_ver_name), load_major_id_data(latest_ver_name),
-                                    item_loader.load_init(), ingredient_loader.load_init(), tome_loader.load_init(),
-                                    aspect_loader.load_init()
-                                  ];
+async function parse_hash_legacy() {
+    const url_tag = window.location.hash.slice(1);
+
     if (!url_tag) {
-        await Promise.all(default_load_promises);
+        await load_latest_version();
         return;
     }
     //default values
@@ -60,23 +109,10 @@ async function parse_hash(url_tag) {
 
     let version_number = parseInt(version);
     let data_str = info[1];
+
     if (version_number >= 8) {
-        // parse query parameters
-        // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-        const url_params = new URLSearchParams(window.location.search);
-        const version_id = url_params.get('v');
-        wynn_version_id = parseInt(version_id);
-        if (isNaN(wynn_version_id) || wynn_version_id > WYNN_VERSION_LATEST || wynn_version_id < 0) {
-            // TODO: maybe make the NAN try to use the human readable version?
-            // NOTE: Failing silently... do we want to raise a loud error?
-            console.log("Explicit version not found or invalid, using latest version");
-            wynn_version_id = WYNN_VERSION_LATEST;
-        }
-        else {
-            console.log(`Build link for wynn version ${wynn_version_id} (${wynn_version_names[wynn_version_id]})`);
-        }
-    }
-    else {
+        wynn_version_id = get_data_version_legacy();
+    } else {
         // Change the default to oldest. (A time before v8)
         wynn_version_id = 0;
     }
@@ -84,31 +120,11 @@ async function parse_hash(url_tag) {
     // the deal with this is because old versions should default to 0 (oldest wynn item version), and v8+ defaults to latest.
     // its ugly... but i think this is the behavior we want...
     if (wynn_version_id != WYNN_VERSION_LATEST) {
-        // force reload item database and such.
-        // TODO MUST: display a warning showing older version!
-        const msg = 'This build was created in an older version of wynncraft '
-                    + `(${wynn_version_names[wynn_version_id]} < ${wynn_version_names[WYNN_VERSION_LATEST]}). `
-                    + 'Would you like to update to the latest version? Updating may break the build and ability tree.';
-
-        if (confirm(msg)) {
-            wynn_version_id = WYNN_VERSION_LATEST;
-        }
-        else {
-            const version_name = wynn_version_names[wynn_version_id];
-            const load_promises = [ load_atree_data(version_name),
-                                    load_major_id_data(version_name),
-                                    item_loader.load_old_version(version_name),
-                                    ingredient_loader.load_old_version(version_name),
-                                    tome_loader.load_old_version(version_name),
-                                    aspect_loader.load_old_version(version_name)
-                                  ];
-            console.log("Loading old version data...", version_name)
-            await Promise.all(load_promises);
-        }
+        await load_older_version();
     }
 
     if (wynn_version_id == WYNN_VERSION_LATEST) {
-        await Promise.all(default_load_promises);
+        await load_latest_version();
     }
 
     //equipment (items)
@@ -263,12 +279,469 @@ async function parse_hash(url_tag) {
         setValue(skp_order[i] + "-skp", skillpoints[i]);
     }
 
-    return save_skp;
+    // skp_deltas is used in binary encoding to denote
+    // the changes for each skillpoint, so it's necessary
+    // to pass "null" in it's place because of the current builder graph
+    // implementation.
+    return [save_skp, null];
+}
+
+function encode_tomes(tomes) {
+    const tomes_vec = new EncodingBitVector(0, 0);
+    if (tomes.every(t => t.statMap.get("NONE") === true)) {
+        tomes_vec.append_flag("TOME_FLAG", "NONE"); 
+    } else {
+        tomes_vec.append_flag("TOME_FLAG", "HAS_TOME"); 
+        for (const tome of tomes) {
+            if (tome.statMap.get("NONE")) {
+                tomes_vec.append_flag("TOME_KIND", "NONE")
+            } else {
+                tomes_vec.append_flag("TOME_KIND", "USED")
+                tomes_vec.append(tome.statMap.get("id"), ENC["TOME_ID_BITLEN"]);
+            }
+        }
+    }
+    return tomes_vec;
+}
+
+function collect_powders(powders) {
+    counting_map = new Map() // Map preserves insertion order
+    for (const powder of powders) {
+        if (counting_map.get(powder) === undefined) {
+            counting_map.set(powder, 1);
+        } else {
+            counting_map.set(powder, counting_map.get(powder) + 1);
+        }
+    }
+    return counting_map;
+}
+
+const powders_map = Object.fromEntries(powderable_keys.map((x, i) => [x, i]));
+const powderable_idx = new Set([0, 1, 2, 3, 8]) // helmet, chesplate, leggings, boots, weapon
+
+function encode_powders(equipment_vec, item, powders, version) {
+    const item_type = item.statMap.get("category") === "weapon" ? "weapon" : item.statMap.get("type");
+
+    let equipment_powders = powders[powders_map[item_type]];
+
+    if (equipment_powders.length === 0) {
+        equipment_vec.append_flag("EQUIPMENT_POWDERS_FLAG", "NO_POWDERS");
+        return;
+    }
+
+    equipment_powders = collect_powders(equipment_powders); // Collect repeating powders 
+
+    equipment_vec.append_flag("EQUIPMENT_POWDERS_FLAG", "HAS_POWDERS");
+
+    let powders_encoded = 0;
+    for (const [powder, count] of equipment_powders) {
+        equipment_vec.append(powder, ENC["POWDER_ID_MAP"]["BITLEN"]);
+        for (let i = 1; i < count; ++i) {
+            equipment_vec.append_flag("POWDER_REPEAT_OP", "REPEAT")
+        }
+        equipment_vec.append_flag("POWDER_REPEAT_OP", "NO_REPEAT")
+        if (powders_encoded !== equipment_powders.size - 1) {
+            equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_POWDER")
+            powders_encoded += 1;
+        }
+    }
+    equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_ITEM")
+}
+
+function encode_items(items, powders, version) {
+    const equipment_vec = new EncodingBitVector(0, 0);
+    const tomes = [];
+
+    let eq_idx = 0;
+    for (const item of items) {
+        // Custom equipment
+        if (item.statMap.get("custom")) {
+            equipment_vec.append_flag("EQUIPMENT_KIND", "CUSTOM");
+            console.error("Unimplemented!");
+        // Crafted equipment
+        } else if (item.statMap.get("crafted")) {
+            equipment_vec.append_flag("EQUIPMENT_KIND", "CRAFTED");
+            equipment_vec.merge([encode_craft(item)]);
+        // Tomes - encode at a later stage
+        } else if (item.statMap.get("category") === "tome") {
+            tomes.push(item);
+            continue;
+        // Normal equipment
+        } else {
+            if (item.statMap.get("NONE") === true) {
+                equipment_vec.append_flag("EQUIPMENT_KIND", "NONE");
+            } else {
+                equipment_vec.append_flag("EQUIPMENT_KIND", "NORMAL");
+                equipment_vec.append(item.statMap.get("id"), ENC["ITEM_ID_BITLEN"]);
+            }
+        }
+        if (powderable_idx.has(eq_idx)) {
+            encode_powders(equipment_vec, item, powders, version);
+        }
+        eq_idx += 1;
+    }
+    const tome_vec = encode_tomes(tomes);
+    return [equipment_vec, tome_vec];
+}
+
+/**
+ * Encode skillpoints.
+ * Assigned skillpoints have a minimum and maximum value of [-2**(ENC.MAX_SP_BITLEN), 2**(ENC.MAX_SP_BITLEN)
+ * and are stored as uint_32.
+ */
+function encode_sp(final_sp, original_sp, version) {
+    const sp_deltas = zip2(final_sp, original_sp).map(([x, y]) => x - y);
+    const sp_bitvec = new EncodingBitVector(0, 0);
+
+    if (sp_deltas.every(x => x === 0)) {
+        // No manually assigned skillpoints, let the builder handle the rest.
+        sp_bitvec.append_flag("SP_FLAG", "AUTOMATIC")
+    } else {
+        // We have manually assigned skillpoints
+        sp_bitvec.append_flag("SP_FLAG", "ASSIGNED");
+        for (const [i, sp] of final_sp.entries()) {
+            if (sp_deltas[i] === 0) {
+                // The specific element has no manually assigned skillpoints
+                sp_bitvec.append_flag("SP_ELEMENT_FLAG", "ELEMENT_UNASSIGNED");
+            } else {
+                // The specific element has manually assigned skillpoints
+                sp_bitvec.append_flag("SP_ELEMENT_FLAG", "ELEMENT_ASSIGNED");
+                // Truncate to fit within the specified range.
+                const trunc_sp = sp & ((1 << ENC["MAX_SP_BITLEN"]) - 1)
+                sp_bitvec.append(trunc_sp, ENC["MAX_SP_BITLEN"]);
+            }
+        }
+    }
+
+    return sp_bitvec;
+}
+
+/*
+ * Encode the build's level.
+ * Encoding:
+ * - Max level - encode a LEVEL_FLAG.MAX flag.
+ * - Any other level - encode a LEVEL_FLAG.OTHER flag, then endcode the level in LEVEL_BITLEN bits.
+ */
+function encode_level(level, version) {
+    level_vec = new EncodingBitVector(0, 0);
+    if (level === ENC["MAX_LEVEL"]) {
+        level_vec.append_flag("LEVEL_FLAG", "MAX");
+    } else {
+        level_vec.append_flag("LEVEL_FLAG", "OTHER");
+        level_vec.append(level, ENC["LEVEL_BITLEN"])
+    }
+    return level_vec;
+}
+
+/**
+ * Encode aspects.
+ *
+ * Encoding:
+ * - No aspects - flag "ASPECT_FLAG.NONE"
+ * - Has aspects - flag "ASPECT_FLAG.HAS_ASPECTS"
+ * 1. if the aspect is none - encode "ASPECT_KIND.NONE", go to the next aspect
+ * 2. if the aspect is not none - encode "ASPECT_KIND.USED", encode (aspect_id, aspect_tier) pair, go to the next aspect
+ * @param {Array<[AspectSpec, number]>} aspects 
+ */
+function encode_aspects(aspects, version) {
+    const aspects_vec = new EncodingBitVector(0, 0);
+
+    if (aspects.every(([aspect, _]) => aspect.NONE === true)) {
+        aspects_vec.append_flag("ASPECT_FLAG", "NONE");
+    } else {
+        aspects_vec.append_flag("ASPECT_FLAG", "HAS_ASPECTS");
+        for (const [aspect, tier] of aspects) {
+            if (aspect.NONE === true) {
+                aspects_vec.append_flag("ASPECT_KIND", "NONE");
+            } else {
+                aspects_vec.append_flag("ASPECT_KIND", "USED");
+                aspects_vec.append(aspect.id, ENC["ASPECT_ID_BITLEN"]);
+                aspects_vec.append(tier - 1, ENC["ASPECT_TIER_BITLEN"]);
+            }
+        }
+    }
+
+    return aspects_vec;
+}
+
+const VECTOR_FLAG = 0xC;
+const VERSION_BITLEN = 10;
+
+/**
+ * Encode a header with metadata about the build.
+ * The flag and the version length are hardcoded because
+ * they are parsed before any data loading.
+ */
+function encode_header(encoding_version) {
+    const header_vec = new EncodingBitVector(0, 0);
+
+    // Legacy versions used versions 0..11 in decimal to encode.
+    // In order to differentiate with minimal sacrifice, encode
+    // the first character to be > 11.
+    header_vec.append(VECTOR_FLAG, 6);
+    header_vec.append(encoding_version, VERSION_BITLEN);
+    return header_vec;
 }
 
 /*  Stores the entire build in a string using B64 encoding and adds it to the URL.
 */
-function encodeBuild(build, powders, skillpoints, atree, atree_state, aspects) {
+function encode_build(build, powders, skillpoints, atree, atree_state, aspects) {
+    if (!build) return;
+
+    const final_vec = new EncodingBitVector(0, 0);
+
+    const header_vec = encode_header(wynn_version_id);
+    const [equipment_vec, tome_vec] = encode_items(build.items, powders, wynn_version_id);
+    const sp_vec = encode_sp(skillpoints, build.total_skillpoints, wynn_version_id);
+    const level_vec = encode_level(build.level, wynn_version_id);
+    const aspects_vec = encode_aspects(aspects, wynn_version_id);
+    const atree_vec = encode_atree(atree, atree_state, wynn_version_id);
+
+    final_vec.merge([header_vec, equipment_vec, tome_vec, sp_vec, level_vec, aspects_vec, atree_vec])
+
+    return final_vec.toB64();
+}
+
+
+function parse_header(cursor) {
+    const binary_flag = cursor.advance_by(6);
+    return cursor.advance_by(VERSION_BITLEN);
+}
+
+function parse_powders(cursor) {
+    // HAS_POWDERS flag is true, so we know there's at least 1 powder.
+    let powders = [cursor.advance_by(DEC["POWDER_ID_MAP"]["BITLEN"])];
+    let curr_powder = powders[0];
+    outer: while (true) {
+        repeat: switch (cursor.advance_by(DEC["POWDER_REPEAT_OP"]["BITLEN"])) {
+            // Repeat the previous powders
+            case DEC["POWDER_REPEAT_OP"]["REPEAT"]: {
+                powders.push(curr_powder);
+                break;
+            }
+            // Don't repeat previous powder
+            case DEC["POWDER_REPEAT_OP"]["NO_REPEAT"]: {
+                switch (cursor.advance_by(DEC["POWDER_CHANGE_OP"]["BITLEN"])) {
+                    // Decode a new powder
+                    case DEC["POWDER_CHANGE_OP"]["NEW_POWDER"]: {
+                        powders.push(cursor.advance_by(DEC["POWDER_ID_MAP"]["BITLEN"])); 
+                        break repeat;
+                    }
+                    // Stop decoding powders
+                    case DEC["POWDER_CHANGE_OP"]["NEW_ITEM"]: break outer;
+                }
+                break;
+            }
+        }
+        curr_powder = powders.at(-1);
+    }
+    powders = powders.map(x => powderNames.get(x)).join("")
+    return powders;
+}
+
+function parse_equipment(cursor) {
+    const equipments = [];
+    const powders = []
+    for (let i = 0; i < 9; ++i) {
+        const kind = cursor.advance_by(DEC["EQUIPMENT_KIND"]["BITLEN"]);
+        // Parse equipment type
+        switch (kind) {
+            case DEC["EQUIPMENT_KIND"]["NONE"]: {
+                equipments.push(null);
+                break;
+            }
+            case DEC["EQUIPMENT_KIND"]["NORMAL"]: {
+                equipments.push(idMap.get(cursor.advance_by(DEC["ITEM_ID_BITLEN"]))); 
+                break;
+            }
+            case DEC["EQUIPMENT_KIND"]["CRAFTED"]: {
+                let craft = parse_craft({cursor: cursor});
+                equipments.push(craft.hash); 
+                break;
+            }
+            case DEC["EQUIPMENT_KIND"]["CUSTOM"]: console.error("Unimplemented!"); break;
+        }
+
+        // If applicable, parse the powders for the current item
+        if (!powderable_idx.has(i)) continue;
+
+        if (cursor.advance_by(DEC["EQUIPMENT_POWDERS_FLAG"]["BITLEN"]) === DEC["EQUIPMENT_POWDERS_FLAG"]["HAS_POWDERS"]) {
+            powders.push(parse_powders(cursor));
+        } else {
+            powders.push("");
+        }
+    }
+    return [equipments, powders];
+}
+
+function parse_tomes(cursor) {
+    tomes = [];
+    switch (cursor.advance_by(DEC["TOME_FLAG"]["BITLEN"])) {
+        case DEC["TOME_FLAG"]["NONE"]: break;
+        case DEC["TOME_FLAG"]["HAS_TOME"]: {
+            for (let i = 0; i < DEC["TOME_NUM"]; ++i) {
+                switch (cursor.advance_by(DEC["TOME_KIND"]["BITLEN"])) {
+                    case DEC["TOME_KIND"]["NONE"]: tomes.push(null); break;
+                    case DEC["TOME_KIND"]["USED"]: tomes.push(tomeIDMap.get(cursor.advance_by(DEC["TOME_ID_BITLEN"]))); break;
+                }
+            }
+        }
+    }
+    return tomes;
+}
+
+function parse_sp(cursor) {
+    const skillpoints = [];
+    switch (cursor.advance_by(DEC["SP_FLAG"]["BITLEN"])) {
+        case DEC["SP_FLAG"]["AUTOMATIC"]: return null;
+        case DEC["SP_FLAG"]["ASSIGNED"]: {
+            for (let i = 0; i < DEC["SP_TYPES"]; ++i) {
+                switch (cursor.advance_by(DEC["SP_ELEMENT_FLAG"]["BITLEN"])) {
+                    case DEC["SP_ELEMENT_FLAG"]["ELEMENT_ASSIGNED"]: {
+                        let skp = cursor.advance_by(DEC["MAX_SP_BITLEN"]);
+                        const sign_mask = 1 << (DEC["MAX_SP_BITLEN"] - 1);
+                        skp = (skp ^ sign_mask) - sign_mask;
+                        skillpoints.push(skp);
+                        break;
+                    }
+                    case DEC["SP_ELEMENT_FLAG"]["ELEMENT_UNASSIGNED"]:
+                        skillpoints.push(null); 
+                        break;
+                }
+            }
+        }
+    }
+    return skillpoints;
+}
+
+function parse_level(cursor) {
+    const flag = cursor.advance_by(DEC["LEVEL_FLAG"]["BITLEN"]);
+    switch (flag) {
+        case DEC["LEVEL_FLAG"]["MAX"]: return DEC["MAX_LEVEL"];
+        case DEC["LEVEL_FLAG"]["OTHER"]: return cursor.advance_by(DEC["LEVEL_BITLEN"]);
+        default: 
+            throw new Error(`Encountered unknown flag when parsing level!`)
+    }
+}
+
+function parse_aspects(cursor, cls) {
+    const flag = cursor.advance_by(DEC["ASPECT_FLAG"]["BITLEN"]) 
+    const aspects = [];
+    switch (flag) {
+        case DEC["ASPECT_FLAG"]["NONE"]: break;
+        case DEC["ASPECT_FLAG"]["HAS_ASPECTS"]: {
+            for (let i = 0; i < DEC["NUM_ASPECTS"]; ++i) {
+                switch (cursor.advance_by(DEC["ASPECT_KIND"]["BITLEN"])) {
+                    case DEC["ASPECT_KIND"]["NONE"]: {
+                        aspects.push(null); 
+                        break;
+                    }
+                    case DEC["ASPECT_KIND"]["USED"]: {
+                        const aspect_id = cursor.advance_by(DEC["ASPECT_ID_BITLEN"]);
+                        const aspect_tier = cursor.advance_by(DEC["ASPECT_TIER_BITLEN"]);
+                        aspects.push([aspect_id_map.get(cls).get(aspect_id).displayName, aspect_tier + 1]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return aspects;
+}
+
+async function load_latest_version() {
+    const latest_ver_name = wynn_version_names[WYNN_VERSION_LATEST];
+
+    const load_promises = [ 
+        load_atree_data(latest_ver_name),
+        load_major_id_data(latest_ver_name),
+        item_loader.load_init(),
+        ingredient_loader.load_init(),
+        tome_loader.load_init(),
+        aspect_loader.load_init(),
+        load_encoding_constants(latest_ver_name)
+    ];
+
+    await Promise.all(load_promises);
+}
+
+async function handle_legacy_hash(url_tag) {
+    // Legacy versioning using search query "?v=XX" in the URL itself.
+    // Grab the version of the data from the search parameter "?v=" in the URL
+    wynn_version_id = get_data_version_legacy();
+
+    // wynn_version 18 is the last version that supports legacy encoding.
+    if (wynn_version_id > 18) wynn_version_id = 18;
+    return await parse_hash_legacy(url_tag);
+}
+
+/**
+ * Parse the URL and populate all item fields.
+ */
+async function parse_hash() {
+    const url_tag = window.location.hash.slice(1);
+
+    if (!url_tag) {
+        await load_latest_version();
+        return [false, null];
+    }
+
+    // Binary encoding encodes the first character of the hash to be > 11 (or > B in Base64). if it isn't, fallback to legacy parsing.
+    if (Base64.toInt(url_tag[0]) <= 11) { return await handle_legacy_hash(url_tag); }
+
+    // Binary encoding, Create the BitVector from the URL.
+    // The vector length is actually automatically calculated in the constructor but it's here just in case.
+    const vec = new BitVector(url_tag, url_tag.length * 6);
+    const cursor = new BitVectorCursor(vec, 0);
+
+    // The version of the data.
+    wynn_version_id = parse_header(cursor);
+
+    // Load the correct data for the provided version, includes encoding data.
+    // The reason we differentiate is that most of the heavy data can be loaded
+    // locally if the version is the latest version.
+    if (wynn_version_id === WYNN_VERSION_LATEST) {
+        await load_latest_version();
+    } else {
+        await load_older_version();
+    }
+
+    // Parse all build information from the BitVector.
+    const [equipment, powders] = parse_equipment(cursor);
+    const tomes = parse_tomes(cursor);
+    const skillpoints = parse_sp(cursor);
+    const level = parse_level(cursor);
+    const cls = wep_to_class.get(itemMap.get(equipment[8]).type); // TODO: Handle crafted and custom
+    const aspects = parse_aspects(cursor, cls);
+
+    // This provides the data for atree population, no other explicit step
+    // needed in the parser
+    atree_data = cursor.consume(); 
+
+    // Populate all input fields apart from skillpoints, which need to be populated after build calculation
+    for (const [i, eq] of equipment.entries()) { setValue(equipment_inputs[i], eq); } // Equipment
+    for (let [i, powderset] of powders.entries()) { setValue(powder_inputs[i], powderset); } // Powders
+    for (const [i, tome] of tomes.entries()) { setValue(tomeInputs[i], tome); } // Tomes
+    setValue("level-choice", level); // Level
+
+    // Aspects
+    for (const [i, aspect_and_tier] of aspects.entries()) {
+        if (aspect_and_tier !== null) {
+            const [aspect, tier] = aspect_and_tier;
+            setValue(aspectInputs[i], aspect);
+            setValue(aspectTierInputs[i], tier);
+        }
+    }
+
+    // Legacy necessity due to the builder
+    // graph implementation.
+    return [false, skillpoints];
+}
+
+/*  Stores the entire build in a string using B64 encoding and adds it to the URL.
+ * Only for documentation purposes.
+*/
+function encodeBuildLegacy(build, powders, skillpoints, atree, atree_state, aspects) {
 
     if (build) {
         let build_string;
