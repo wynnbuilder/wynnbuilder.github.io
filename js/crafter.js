@@ -198,6 +198,10 @@ function calculateCraft() {
 
 function decodeCraft(ing_url_tag) {
     if (ing_url_tag) {
+        if (ing_url_tag.startsWith("CR-")) {
+            ing_url_tag = ing_url_tag.substring(3);
+            location.hash = ing_url_tag;
+        }
         const craft = parse_craft({url_tag: ing_url_tag});
 
         for (let i = 0; i < 6; i ++ ) {

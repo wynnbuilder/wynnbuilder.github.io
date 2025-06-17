@@ -182,29 +182,7 @@ if __name__ == "__main__":
     gen_items()
     gen_tomes()
     gen_aspects()
-    vers = [
-        "2.0.1.1",
-        "2.0.1.2",
-        "2.0.2.1",
-        "2.0.2.3",
-        "2.0.3.1",
-        "2.0.4.1",
-        "2.0.4.3",
-        "2.0.4.4",
-        "2.1.0.0",
-        "2.1.0.1",
-        "2.1.1.0",
-        "2.1.1.1",
-        "2.1.1.2",
-        "2.1.1.3",
-        "2.1.1.4",
-        "2.1.1.5",
-        "2.1.1.6",
-        "2.1.1.7",
-        "2.1.2.0",
-    ]
     with open("encoding_consts.json", "w") as outfile:
         json.dump(bit_len_map, outfile, indent=2)
-    for ver in vers:
-        with open(f"../data/{ver}/encoding_consts.json", "w") as outfile:
-            json.dump(bit_len_map, outfile)
+    with open(f"../data/{version}/encoding_consts.json", "w") as outfile:
+        json.dump(bit_len_map, outfile)
