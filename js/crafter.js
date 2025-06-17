@@ -149,7 +149,7 @@ function calculateCraft() {
     //create the craft
     player_craft = new Craft(recipe,mat_tiers,ingreds,atkSpd,"");
 
-    let craft_str = encodeCraft(player_craft);
+    let craft_str = encode_craft(player_craft).toB64();
     location.hash = craft_str;
     player_craft.setHash(craft_str);
     console.log(player_craft);
@@ -198,37 +198,32 @@ function calculateCraft() {
 
 function decodeCraft(ing_url_tag) {
     if (ing_url_tag) {
-        if (ing_url_tag.slice(0,3) === "CR-") {
-            ing_url_tag = ing_url_tag.substring(3);
-            location.hash = location.hash.substring(3);
-        } 
-        console.log(ing_url_tag);
-        let version = ing_url_tag.charAt(0);
-        let tag = ing_url_tag.substring(1);
-        if (version === "1") {
-            ingreds = [];
-            for (let i = 0; i < 6; i ++ ) {
-                setValue("ing-choice-"+(i+1), ingIDMap.get(Base64.toInt(tag.substring(2*i,2*i+2))));
-                //console.log(Base64.toInt(tag.substring(2*i,2*i+2)));
+        const craft = parse_craft({url_tag: ing_url_tag});
+
+        for (let i = 0; i < 6; i ++ ) {
+            const ing = craft.ingreds[i];
+            if (ing.get("id") !== 4000) {
+                setValue("ing-choice-"+(i+1), craft.ingreds[i].get("name"));
             }
-            recipe = recipeIDMap.get(Base64.toInt(tag.substring(12,14)));
-            //console.log(Base64.toInt(tag.substring(12,14)));
-            recipesName = recipe.split("-");
-            setValue("recipe-choice",recipesName[0]);
-            updateCraftedImage();
-            setValue("level-choice",recipesName[1]+"-"+recipesName[2]);
-            tierNum = Base64.toInt(tag.substring(14,15));
-            mat_tiers = [];
-            mat_tiers.push(tierNum % 3 == 0 ? 3 : tierNum % 3);
-            mat_tiers.push(Math.floor((tierNum-0.5) / 3)+1); //Trying to prevent round-off error, don't yell at me
-            toggleMaterial("mat-1-"+mat_tiers[0]);
-            toggleMaterial("mat-2-"+mat_tiers[1]);
-            atkSpd = Base64.toInt(tag.substring(15));
-            let atkSpdButtons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
-            toggleAtkSpd(atkSpdButtons[atkSpd]);
-            
-            calculateCraft();
         }
+
+        const recipe = craft.recipe.get("name");
+        const seperator_idx = recipe.search('-');
+        const [recipe_name, recipe_level] = [recipe.substring(0, seperator_idx), recipe.substring(seperator_idx + 1)];
+
+        setValue("recipe-choice", recipe_name);
+        updateCraftedImage();
+        setValue("level-choice", recipe_level);
+
+        for (let i = 0; i < CRAFTER_ENC["NUM_MATS"]; ++i) {
+            toggleMaterial(`mat-${i + 1}-${craft.mat_tiers[i]}`);
+        }
+
+        const atkSpdId = CRAFTER_ENC["CRAFTED_ATK_SPD"][craft.atkSpd];
+        let atkSpdButtons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
+        toggleAtkSpd(atkSpdButtons[atkSpdId]);
+        
+        calculateCraft();
     }
 }
 
@@ -367,7 +362,7 @@ function resetFields() {
 }
 
 (async function() {
-    let load_promises = [ ingredient_loader.load_init() ];
+    let load_promises = [ ingredient_loader.load_init(), load_encoding_constants(wynn_version_names[WYNN_VERSION_LATEST], wynn_version_names[WYNN_VERSION_LATEST]) ];
     await Promise.all(load_promises);
     init_crafter();
 })();
