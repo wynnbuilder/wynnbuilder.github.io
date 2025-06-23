@@ -246,12 +246,12 @@ async function parse_hash_legacy() {
 
     // Aspects.
     if (version_number >= 11) {
-        let item;
-        if (equipment[8].slice(0, 3) == "CI-") { item = getCustomFromHash(equipment[8]); }
-        else if (equipment[8].slice(0, 3) == "CR-") { item = getCraftFromHash(equipment[8]); } 
-        else { item = itemMap.get(equipment[8]) };
+        let item_type;
+        if (equipment[8].slice(0, 3) == "CI-") { item_type = getCustomFromHash(equipment[8]).statMap.get("type"); }
+        else if (equipment[8].slice(0, 3) == "CR-") { item_type = getCraftFromHash(equipment[8]).statMap.get("type"); }
+        else { item = itemMap.get(equipment[8]).type };
 
-        const player_class = wep_to_class.get(item.type);
+        const player_class = wep_to_class.get(item_type);
         const class_aspects_by_id = aspect_id_map.get(player_class);
         for (let i = 0; i < num_aspects; ++i) {
             const aspect_id = Base64.toInt(data_str.slice(3*i, 3*i + 2));
@@ -288,7 +288,7 @@ async function parse_hash_legacy() {
 
 function encode_tomes(tomes) {
     const tomes_vec = new EncodingBitVector(0, 0);
-    if (tomes.every(t => t.statMap.get("NONE") === true)) {
+    if (tomes.every(t => t.statMap.has("NONE"))) {
         tomes_vec.append_flag("TOME_FLAG", "NONE"); 
     } else {
         tomes_vec.append_flag("TOME_FLAG", "HAS_TOME"); 
@@ -297,13 +297,20 @@ function encode_tomes(tomes) {
                 tomes_vec.append_flag("TOME_KIND", "NONE")
             } else {
                 tomes_vec.append_flag("TOME_KIND", "USED")
-                tomes_vec.append(tome.statMap.get("id"), ENC["TOME_ID_BITLEN"]);
+                tomes_vec.append(tome.statMap.get("id"), ENC.TOME_ID_BITLEN);
             }
         }
     }
     return tomes_vec;
 }
 
+/**
+ * Collect identical powders, keeping their original order in place.
+ *
+ * - T6 E6 T6 E6       => T6 T6 E6 E6
+ * - T6 T4 T6 T4       => T6 T6 T4 T4
+ * - F6 A6 F6 T6 T6 A6 => F6 F6 A6 A6 T6 T6
+ */
 function collect_powders(powders) {
     counting_map = new Map() // Map preserves insertion order
     for (const powder of powders) {
@@ -316,31 +323,25 @@ function collect_powders(powders) {
     return counting_map;
 }
 
-const powders_map = Object.fromEntries(powderable_keys.map((x, i) => [x, i]));
-const powderable_idx = new Set([0, 1, 2, 3, 8]) // helmet, chesplate, leggings, boots, weapon
 
-function encode_powders(equipment_vec, item, powders, version) {
-    const item_type = item.statMap.get("category") === "weapon" ? "weapon" : item.statMap.get("type");
-
-    let equipment_powders = powders[powders_map[item_type]];
-
-    if (equipment_powders.length === 0) {
+function encode_powders(equipment_vec, powders, version) {
+    if (powders.length === 0) {
         equipment_vec.append_flag("EQUIPMENT_POWDERS_FLAG", "NO_POWDERS");
         return;
     }
 
-    equipment_powders = collect_powders(equipment_powders); // Collect repeating powders 
+    powders = collect_powders(powders); // Collect repeating powders
 
     equipment_vec.append_flag("EQUIPMENT_POWDERS_FLAG", "HAS_POWDERS");
 
     let powders_encoded = 0;
-    for (const [powder, count] of equipment_powders) {
-        equipment_vec.append(powder, ENC["POWDER_ID_MAP"]["BITLEN"]);
+    for (const [powder, count] of powders) {
+        equipment_vec.append(powder, ENC.POWDER_ID_MAP.BITLEN);
         for (let i = 1; i < count; ++i) {
             equipment_vec.append_flag("POWDER_REPEAT_OP", "REPEAT")
         }
         equipment_vec.append_flag("POWDER_REPEAT_OP", "NO_REPEAT")
-        if (powders_encoded !== equipment_powders.size - 1) {
+        if (powders_encoded !== powders.size - 1) {
             equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_POWDER")
             powders_encoded += 1;
         }
@@ -348,46 +349,77 @@ function encode_powders(equipment_vec, item, powders, version) {
     equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_ITEM")
 }
 
-function encode_items(items, powders, version) {
-    const equipment_vec = new EncodingBitVector(0, 0);
-    const tomes = [];
+function getEquipmentKind(eq) {
+    if (eq.statMap.get("custom")) {
+        return ENC.EQUIPMENT_KIND.CUSTOM;
+    } else if (eq.statMap.get("crafted")) {
+        return ENC.EQUIPMENT_KIND.CRAFTED;
+    } else {
+        return ENC.EQUIPMENT_KIND.NORMAL;
+    }
+}
 
-    let eq_idx = 0;
-    for (const item of items) {
-        // Custom equipment
-        if (item.statMap.get("custom")) {
-            equipment_vec.append_flag("EQUIPMENT_KIND", "CUSTOM");
-            console.error("Unimplemented!");
-        // Crafted equipment
-        } else if (item.statMap.get("crafted")) {
-            equipment_vec.append_flag("EQUIPMENT_KIND", "CRAFTED");
-            equipment_vec.merge([encode_craft(item)]);
-        // Tomes - encode at a later stage
-        } else if (item.statMap.get("category") === "tome") {
-            tomes.push(item);
-            continue;
-        // Normal equipment
-        } else {
-            if (item.statMap.get("NONE") === true) {
-                equipment_vec.append_flag("EQUIPMENT_KIND", "NONE");
-            } else {
-                equipment_vec.append_flag("EQUIPMENT_KIND", "NORMAL");
-                equipment_vec.append(item.statMap.get("id"), ENC["ITEM_ID_BITLEN"]);
+/**
+ * A map of the indexes of the powderable items in the equipment array
+ * and their corresponding index in the global powders array.
+ */
+const powderables = new Map([0, 1, 2, 3, 8].map((x, i) => [x, i]));
+
+const CUSTOM_MAX_LENGTH = 12; // Length, in bits, of the custom binary string
+
+function encode_equipment(equipment, powders, version) {
+    const equipment_vec = new EncodingBitVector(0, 0);
+
+    for (const [idx, eq] of equipment.entries()) {
+        const equipment_kind = getEquipmentKind(eq);
+        equipment_vec.append(equipment_kind, ENC.EQUIPMENT_KIND.BITLEN);
+        switch (equipment_kind) {
+            case ENC.EQUIPMENT_KIND.NORMAL: {
+                let eq_id = 0;
+                if (eq.statMap.get("NONE") !== true) {
+                    eq_id = eq.statMap.get("id") + 1;
+                }
+                equipment_vec.append(eq_id, ENC.ITEM_ID_BITLEN);
+                break;
+            }
+            case ENC.EQUIPMENT_KIND.CRAFTED: {
+                const crafted_hash = eq.statMap.get("hash").substring(3);
+                // Legacy versions start with their first bit set
+                if (Base64.toInt(crafted_hash[0]) & 0x1 === 1) {
+                    equipment_vec.merge([encode_craft(eq)]);
+                } else {
+                    equipment_vec.appendB64(crafted_hash);
+                }
+                break;
+            }
+            case ENC.EQUIPMENT_KIND.CUSTOM: {
+                const custom_hash = eq.statMap.get("hash").substring(3);
+                // Legacy versions start with their first bit set
+                if (Base64.toInt(custom_hash[0]) & 0x1 === 1) {
+                    const new_custom = encode_custom(eq, true);
+                    equipment_vec.append(new_custom.length, CUSTOM_MAX_LENGTH);
+                    equipment_vec.merge([new_custom]);
+                } else {
+                    console.log(custom_hash.length * 6);
+                    equipment_vec.append(custom_hash.length * 6, CUSTOM_MAX_LENGTH);
+                    equipment_vec.appendB64(custom_hash);
+                }
+                break;
             }
         }
-        if (powderable_idx.has(eq_idx)) {
-            encode_powders(equipment_vec, item, powders, version);
+
+        // Encode powders
+        if (powderables.has(idx)) {
+            encode_powders(equipment_vec, powders[powderables.get(idx)], version);
         }
-        eq_idx += 1;
     }
-    const tome_vec = encode_tomes(tomes);
-    return [equipment_vec, tome_vec];
+    console.log(equipment_vec);
+    return equipment_vec;
 }
 
 /**
  * Encode skillpoints.
- * Assigned skillpoints have a minimum and maximum value of [-2**(ENC.MAX_SP_BITLEN), 2**(ENC.MAX_SP_BITLEN)
- * and are stored as uint_32.
+ * Assigned skillpoints are in the range [-2**ENC.MAX_SP_BITLEN, 2**ENC.MAX_SP_BITLEN).
  */
 function encode_sp(final_sp, original_sp, version) {
     const sp_deltas = zip2(final_sp, original_sp).map(([x, y]) => x - y);
@@ -407,8 +439,8 @@ function encode_sp(final_sp, original_sp, version) {
                 // The specific element has manually assigned skillpoints
                 sp_bitvec.append_flag("SP_ELEMENT_FLAG", "ELEMENT_ASSIGNED");
                 // Truncate to fit within the specified range.
-                const trunc_sp = sp & ((1 << ENC["MAX_SP_BITLEN"]) - 1)
-                sp_bitvec.append(trunc_sp, ENC["MAX_SP_BITLEN"]);
+                const trunc_sp = sp & ((1 << ENC.MAX_SP_BITLEN) - 1)
+                sp_bitvec.append(trunc_sp, ENC.MAX_SP_BITLEN);
             }
         }
     }
@@ -424,11 +456,11 @@ function encode_sp(final_sp, original_sp, version) {
  */
 function encode_level(level, version) {
     level_vec = new EncodingBitVector(0, 0);
-    if (level === ENC["MAX_LEVEL"]) {
+    if (level === ENC.MAX_LEVEL) {
         level_vec.append_flag("LEVEL_FLAG", "MAX");
     } else {
         level_vec.append_flag("LEVEL_FLAG", "OTHER");
-        level_vec.append(level, ENC["LEVEL_BITLEN"])
+        level_vec.append(level, ENC.LEVEL_BITLEN)
     }
     return level_vec;
 }
@@ -455,8 +487,8 @@ function encode_aspects(aspects, version) {
                 aspects_vec.append_flag("ASPECT_KIND", "NONE");
             } else {
                 aspects_vec.append_flag("ASPECT_KIND", "USED");
-                aspects_vec.append(aspect.id, ENC["ASPECT_ID_BITLEN"]);
-                aspects_vec.append(tier - 1, ENC["ASPECT_TIER_BITLEN"]);
+                aspects_vec.append(aspect.id, ENC.ASPECT_ID_BITLEN);
+                aspects_vec.append(tier - 1, ENC.ASPECT_TIER_BITLEN);
             }
         }
     }
@@ -490,14 +522,17 @@ function encode_build(build, powders, skillpoints, atree, atree_state, aspects) 
 
     const final_vec = new EncodingBitVector(0, 0);
 
-    const header_vec = encode_header(wynn_version_id);
-    const [equipment_vec, tome_vec] = encode_items(build.items, powders, wynn_version_id);
-    const sp_vec = encode_sp(skillpoints, build.total_skillpoints, wynn_version_id);
-    const level_vec = encode_level(build.level, wynn_version_id);
-    const aspects_vec = encode_aspects(aspects, wynn_version_id);
-    const atree_vec = encode_atree(atree, atree_state, wynn_version_id);
+    const vecs = [
+        encode_header(wynn_version_id),
+        encode_equipment([...build.equipment, build.weapon], powders, wynn_version_id),
+        encode_tomes(build.tomes, powders, wynn_version_id),
+        encode_sp(skillpoints, build.total_skillpoints, wynn_version_id),
+        encode_level(build.level, wynn_version_id),
+        encode_aspects(aspects, wynn_version_id),
+        encode_atree(atree, atree_state, wynn_version_id),
+    ]
 
-    final_vec.merge([header_vec, equipment_vec, tome_vec, sp_vec, level_vec, aspects_vec, atree_vec])
+    final_vec.merge(vecs)
 
     return final_vec.toB64();
 }
@@ -508,27 +543,30 @@ function parse_header(cursor) {
     return cursor.advance_by(VERSION_BITLEN);
 }
 
+/**
+ * Return the string representation of the powders of the current equipment item.
+ */
 function parse_powders(cursor) {
     // HAS_POWDERS flag is true, so we know there's at least 1 powder.
-    let powders = [cursor.advance_by(DEC["POWDER_ID_MAP"]["BITLEN"])];
+    let powders = [cursor.advance_by(DEC.POWDER_ID_MAP.BITLEN)];
     let curr_powder = powders[0];
     outer: while (true) {
-        repeat: switch (cursor.advance_by(DEC["POWDER_REPEAT_OP"]["BITLEN"])) {
+        repeat: switch (cursor.advance_by(DEC.POWDER_REPEAT_OP.BITLEN)) {
             // Repeat the previous powders
-            case DEC["POWDER_REPEAT_OP"]["REPEAT"]: {
+            case DEC.POWDER_REPEAT_OP.REPEAT: {
                 powders.push(curr_powder);
                 break;
             }
             // Don't repeat previous powder
-            case DEC["POWDER_REPEAT_OP"]["NO_REPEAT"]: {
-                switch (cursor.advance_by(DEC["POWDER_CHANGE_OP"]["BITLEN"])) {
+            case DEC.POWDER_REPEAT_OP.NO_REPEAT: {
+                switch (cursor.advance_by(DEC.POWDER_CHANGE_OP.BITLEN)) {
                     // Decode a new powder
-                    case DEC["POWDER_CHANGE_OP"]["NEW_POWDER"]: {
-                        powders.push(cursor.advance_by(DEC["POWDER_ID_MAP"]["BITLEN"])); 
+                    case DEC.POWDER_CHANGE_OP.NEW_POWDER: {
+                        powders.push(cursor.advance_by(DEC.POWDER_ID_MAP.BITLEN));
                         break repeat;
                     }
                     // Stop decoding powders
-                    case DEC["POWDER_CHANGE_OP"]["NEW_ITEM"]: break outer;
+                    case DEC.POWDER_CHANGE_OP.NEW_ITEM: break outer;
                 }
                 break;
             }
@@ -542,30 +580,37 @@ function parse_powders(cursor) {
 function parse_equipment(cursor) {
     const equipments = [];
     const powders = []
-    for (let i = 0; i < 9; ++i) {
-        const kind = cursor.advance_by(DEC["EQUIPMENT_KIND"]["BITLEN"]);
-        // Parse equipment type
+    for (let i = 0; i < DEC.EQUIPMENT_NUM; ++i) {
+        const kind = cursor.advance_by(DEC.EQUIPMENT_KIND.BITLEN);
+        // Parse equipment kind
         switch (kind) {
-            case DEC["EQUIPMENT_KIND"]["NONE"]: {
-                equipments.push(null);
+            case DEC.EQUIPMENT_KIND.NORMAL: {
+                const id = cursor.advance_by(DEC.ITEM_ID_BITLEN);
+                if (id === 0) {
+                    equipments.push(null);
+                } else {
+                    equipments.push(idMap.get(id - 1));
+                }
                 break;
             }
-            case DEC["EQUIPMENT_KIND"]["NORMAL"]: {
-                equipments.push(idMap.get(cursor.advance_by(DEC["ITEM_ID_BITLEN"]))); 
-                break;
-            }
-            case DEC["EQUIPMENT_KIND"]["CRAFTED"]: {
+            case DEC.EQUIPMENT_KIND.CRAFTED: {
                 let craft = parse_craft({cursor: cursor});
                 equipments.push(craft.hash); 
                 break;
             }
-            case DEC["EQUIPMENT_KIND"]["CUSTOM"]: console.error("Unimplemented!"); break;
+            case DEC.EQUIPMENT_KIND.CUSTOM: {
+                const custom_length = cursor.advance_by(CUSTOM_MAX_LENGTH);
+                let custom = parse_custom({cursor: cursor.spawn(custom_length)});
+                equipments.push(custom.statMap.get("hash"));
+                // Skip the length of the custom because we spawned a new cursor, so the original didn't mutate.
+                cursor.skip(custom_length);
+                break;
+            }
         }
 
         // If applicable, parse the powders for the current item
-        if (!powderable_idx.has(i)) continue;
-
-        if (cursor.advance_by(DEC["EQUIPMENT_POWDERS_FLAG"]["BITLEN"]) === DEC["EQUIPMENT_POWDERS_FLAG"]["HAS_POWDERS"]) {
+        if (!powderables.has(i)) continue;
+        if (cursor.advance_by(DEC.EQUIPMENT_POWDERS_FLAG.BITLEN) === DEC.EQUIPMENT_POWDERS_FLAG.HAS_POWDERS) {
             powders.push(parse_powders(cursor));
         } else {
             powders.push("");
@@ -576,13 +621,13 @@ function parse_equipment(cursor) {
 
 function parse_tomes(cursor) {
     tomes = [];
-    switch (cursor.advance_by(DEC["TOME_FLAG"]["BITLEN"])) {
-        case DEC["TOME_FLAG"]["NONE"]: break;
-        case DEC["TOME_FLAG"]["HAS_TOME"]: {
-            for (let i = 0; i < DEC["TOME_NUM"]; ++i) {
-                switch (cursor.advance_by(DEC["TOME_KIND"]["BITLEN"])) {
-                    case DEC["TOME_KIND"]["NONE"]: tomes.push(null); break;
-                    case DEC["TOME_KIND"]["USED"]: tomes.push(tomeIDMap.get(cursor.advance_by(DEC["TOME_ID_BITLEN"]))); break;
+    switch (cursor.advance_by(DEC.TOME_FLAG.BITLEN)) {
+        case DEC.TOME_FLAG.NONE: break;
+        case DEC.TOME_FLAG.HAS_TOME: {
+            for (let i = 0; i < DEC.TOME_NUM; ++i) {
+                switch (cursor.advance_by(DEC.TOME_KIND.BITLEN)) {
+                    case DEC.TOME_KIND.NONE: tomes.push(null); break;
+                    case DEC.TOME_KIND.USED: tomes.push(tomeIDMap.get(cursor.advance_by(DEC.TOME_ID_BITLEN))); break;
                 }
             }
         }
@@ -592,21 +637,22 @@ function parse_tomes(cursor) {
 
 function parse_sp(cursor) {
     const skillpoints = [];
-    switch (cursor.advance_by(DEC["SP_FLAG"]["BITLEN"])) {
-        case DEC["SP_FLAG"]["AUTOMATIC"]: return null;
-        case DEC["SP_FLAG"]["ASSIGNED"]: {
-            for (let i = 0; i < DEC["SP_TYPES"]; ++i) {
-                switch (cursor.advance_by(DEC["SP_ELEMENT_FLAG"]["BITLEN"])) {
-                    case DEC["SP_ELEMENT_FLAG"]["ELEMENT_ASSIGNED"]: {
-                        let skp = cursor.advance_by(DEC["MAX_SP_BITLEN"]);
-                        const sign_mask = 1 << (DEC["MAX_SP_BITLEN"] - 1);
-                        skp = (skp ^ sign_mask) - sign_mask;
+    switch (cursor.advance_by(DEC.SP_FLAG.BITLEN)) {
+        case DEC.SP_FLAG.AUTOMATIC: return null;
+        case DEC.SP_FLAG.ASSIGNED: {
+            for (let i = 0; i < DEC.SP_TYPES; ++i) {
+                switch (cursor.advance_by(DEC.SP_ELEMENT_FLAG.BITLEN)) {
+                    case DEC.SP_ELEMENT_FLAG.ELEMENT_ASSIGNED: {
+                        // Sign extend the n-bit sp to 32 bits, read as 2's complement
+                        const extension = 32 - DEC.MAX_SP_BITLEN;
+                        let skp = cursor.advance_by(DEC.MAX_SP_BITLEN) << extension >> extension;
                         skillpoints.push(skp);
                         break;
                     }
-                    case DEC["SP_ELEMENT_FLAG"]["ELEMENT_UNASSIGNED"]:
+                    case DEC.SP_ELEMENT_FLAG.ELEMENT_UNASSIGNED: {
                         skillpoints.push(null); 
                         break;
+                    }
                 }
             }
         }
@@ -615,30 +661,30 @@ function parse_sp(cursor) {
 }
 
 function parse_level(cursor) {
-    const flag = cursor.advance_by(DEC["LEVEL_FLAG"]["BITLEN"]);
+    const flag = cursor.advance_by(DEC.LEVEL_FLAG.BITLEN);
     switch (flag) {
-        case DEC["LEVEL_FLAG"]["MAX"]: return DEC["MAX_LEVEL"];
-        case DEC["LEVEL_FLAG"]["OTHER"]: return cursor.advance_by(DEC["LEVEL_BITLEN"]);
+        case DEC.LEVEL_FLAG.MAX: return DEC.MAX_LEVEL;
+        case DEC.LEVEL_FLAG.OTHER: return cursor.advance_by(DEC.LEVEL_BITLEN);
         default: 
             throw new Error(`Encountered unknown flag when parsing level!`)
     }
 }
 
 function parse_aspects(cursor, cls) {
-    const flag = cursor.advance_by(DEC["ASPECT_FLAG"]["BITLEN"]) 
+    const flag = cursor.advance_by(DEC.ASPECT_FLAG.BITLEN) 
     const aspects = [];
     switch (flag) {
-        case DEC["ASPECT_FLAG"]["NONE"]: break;
-        case DEC["ASPECT_FLAG"]["HAS_ASPECTS"]: {
-            for (let i = 0; i < DEC["NUM_ASPECTS"]; ++i) {
-                switch (cursor.advance_by(DEC["ASPECT_KIND"]["BITLEN"])) {
-                    case DEC["ASPECT_KIND"]["NONE"]: {
+        case DEC.ASPECT_FLAG.NONE: break;
+        case DEC.ASPECT_FLAG.HAS_ASPECTS: {
+            for (let i = 0; i < DEC.NUM_ASPECTS; ++i) {
+                switch (cursor.advance_by(DEC.ASPECT_KIND.BITLEN)) {
+                    case DEC.ASPECT_KIND.NONE: {
                         aspects.push(null); 
                         break;
                     }
-                    case DEC["ASPECT_KIND"]["USED"]: {
-                        const aspect_id = cursor.advance_by(DEC["ASPECT_ID_BITLEN"]);
-                        const aspect_tier = cursor.advance_by(DEC["ASPECT_TIER_BITLEN"]);
+                    case DEC.ASPECT_KIND.USED: {
+                        const aspect_id = cursor.advance_by(DEC.ASPECT_ID_BITLEN);
+                        const aspect_tier = cursor.advance_by(DEC.ASPECT_TIER_BITLEN);
                         aspects.push([aspect_id_map.get(cls).get(aspect_id).displayName, aspect_tier + 1]);
                         break;
                     }
@@ -711,8 +757,18 @@ async function parse_hash() {
     const tomes = parse_tomes(cursor);
     const skillpoints = parse_sp(cursor);
     const level = parse_level(cursor);
-    const cls = wep_to_class.get(itemMap.get(equipment[8]).type); // TODO: Handle crafted and custom
-    const aspects = parse_aspects(cursor, cls);
+
+    // Get the class from the weapon to read aspects
+    let weapon_type;
+    const weapon_name = equipment[8];
+    switch (weapon_name.slice(0, 3)) {
+        case "CI-": weapon_type = parse_custom({hash: weapon_name.substring(3)}).statMap.get("type"); break;
+        case "CR-": weapon_type = parse_craft({hash: weapon_name.substring(3)}).statMap.get("type"); break;
+        default: weapon_type = itemMap.get(weapon_name).type;
+    }
+    const player_class = wep_to_class.get(weapon_type);
+
+    const aspects = parse_aspects(cursor, player_class);
 
     // This provides the data for atree population, no other explicit step
     // needed in the parser
@@ -812,7 +868,7 @@ function encodeBuildLegacy(build, powders, skillpoints, atree, atree_state, aspe
 }
 
 function get_full_url() {
-    return `${url_base}?v=${wynn_version_id.toString()}${location.hash}`
+    return window.location.href;
 }
 
 function copyBuild() {
@@ -821,28 +877,22 @@ function copyBuild() {
 }
 
 function shareBuild(build) {
-    if (build) {
-        let text = get_full_url()+"\n"+
-            "WynnBuilder build:\n"+
-            "> "+build.items[0].statMap.get("displayName")+"\n"+
-            "> "+build.items[1].statMap.get("displayName")+"\n"+
-            "> "+build.items[2].statMap.get("displayName")+"\n"+
-            "> "+build.items[3].statMap.get("displayName")+"\n"+
-            "> "+build.items[4].statMap.get("displayName")+"\n"+
-            "> "+build.items[5].statMap.get("displayName")+"\n"+
-            "> "+build.items[6].statMap.get("displayName")+"\n"+
-            "> "+build.items[7].statMap.get("displayName")+"\n"+
-            "> "+build.items[22].statMap.get("displayName")+" ["+build_powders[4].map(x => powderNames.get(x)).join("")+"]\n";
-        for (let tomeslots = 8; tomeslots < 22; tomeslots++) {
-            if (!build.items[tomeslots].statMap.has('NONE')) {
-                text += ">"+' (Has Tomes)' ;
-                break;
-            }
-        }
-        console.log(build.items);
-        copyTextToClipboard(text);
-        document.getElementById("share-button").textContent = "Copied!";
+    if (!build) return;
+
+    let lines = [
+        get_full_url(),
+        "> Wynnbuilder build:",
+        ...build.equipment.map(x => `> ${x.statMap.get("displayName")}`),
+        `> ${build.weapon.statMap.get("displayName")} [${build_powders[4].map(x => powderNames.get(x)).join("")}]`
+    ];
+
+    if (!build.tomes.every(tome => tome.statMap.has("NONE"))) {
+        texts.push("> (Has Tomes)")
     }
+
+    const text = lines.join('\n');
+    copyTextToClipboard(text);
+    document.getElementById("share-button").textContent = "Copied!";
 }
 
 /**

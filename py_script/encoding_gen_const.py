@@ -66,7 +66,7 @@ def generate_inverse(d):
 bit_len_map = {}
 
 # Items
-bit_len_map["EQUIPMENT_KIND"] = generate_id_map(["NONE", "NORMAL", "CRAFTED", "CUSTOM"])
+bit_len_map["EQUIPMENT_KIND"] = generate_id_map(["NORMAL", "CRAFTED", "CUSTOM"])
 bit_len_map["EQUIPMENT_POWDERS_FLAG"] = generate_id_map(["NO_POWDERS", "HAS_POWDERS"])
 bit_len_map["EQUIPMENT_NUM"] = 9
 bit_len_map["POWDERABLE_EQUIPMENT_NUM"] = 5
@@ -160,7 +160,8 @@ def get_max_id(lst):
 
 def gen_items():
     data = get_file(items_filename)
-    max_id = get_max_id(data["items"])
+    # Add 1 because none items are encoded as 0, all other items as id + 1
+    max_id = get_max_id(data["items"]) + 1
     bit_len_map["ITEM_ID_BITLEN"] = get_bitlen(max_id)
 
 def gen_tomes():
