@@ -154,8 +154,8 @@ class ItemInputNode extends InputNode {
         }
 
         let item;
-        if (item_text.slice(0, 3) == "CI-") { item = getCustomFromHash(item_text); }
-        else if (item_text.slice(0, 3) == "CR-") { item = parse_craft({url_tag: item_text.substring(3)}); } 
+        if (item_text.slice(0, 3) == "CI-") { item = parse_custom({hash: item_text.substring(3)}); }
+        else if (item_text.slice(0, 3) == "CR-") { item = parse_craft({hash: item_text.substring(3)}); } 
         else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
@@ -409,6 +409,9 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('ring2'),
             input_map.get('bracelet'),
             input_map.get('necklace'),
+        ];
+
+        let tomes = [
             input_map.get('weaponTome1'),
             input_map.get('weaponTome2'),
             input_map.get('armorTome1'),
@@ -423,21 +426,21 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('dungeonXpTome2'),
             input_map.get('mobXpTome1'),
             input_map.get('mobXpTome2'),
+
         ];
+
         let weapon = input_map.get('weapon');
+
         let level = parseInt(input_map.get('level-input'));
         if (isNaN(level)) {
             level = 106;
         }
 
-        let all_none = weapon.statMap.has('NONE');
-        for (const item of equipments) {
-            all_none = all_none && item.statMap.has('NONE');
-        }
+        const all_none = equipments.concat([...tomes, weapon]).every(x => x.statMap.has('NONE'));
         if (all_none && !location.hash) {
             return null;
         }
-        return new Build(level, equipments, weapon);
+        return new Build(level, equipments, tomes, weapon);
     }
 }
 

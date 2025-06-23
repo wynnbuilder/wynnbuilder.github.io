@@ -19,7 +19,7 @@ class Build {
      *                    In order: Helmet, Chestplate, Leggings, Boots, Ring1, Ring2, Brace, Neck, Tomes [x7].
      * @param {Item} weapon: Weapon that this build is using.
      */
-    constructor(level, items, weapon){
+    constructor(level, equipment, tomes, weapon){
 
         if (level < 1) { //Should these be constants?
             this.level = 1;
@@ -35,12 +35,13 @@ class Build {
         document.getElementById("level-choice").value = this.level;
 
         this.availableSkillpoints = levelToSkillPoints(this.level);
-        this.equipment = items;
+        this.items = equipment.concat([...tomes, weapon]);
+        this.equipment = equipment;
+        this.tomes = tomes
         this.weapon = weapon;
-        this.items = this.equipment.concat([this.weapon]);
 
         // calc skillpoints requires statmaps only
-        let result = calculate_skillpoints(this.equipment.map((x) => x.statMap), this.weapon.statMap);
+        let result = calculate_skillpoints(this.equipment.concat(this.tomes).map((x) => x.statMap), this.weapon.statMap);
         const _equip_order = result[0].slice();
         this.equip_order = [];
         for (const item of _equip_order) {
@@ -57,12 +58,6 @@ class Build {
 
         this.initBuildStats();
     }  
-
-    /*Returns build in string format
-    */
-    toString(){
-        return [this.equipment,this.weapon].flat();
-    }
 
     /*  Get all stats for this build. Stores in this.statMap.
         @pre The build itself should be valid. No checking of validity of pieces is done here.

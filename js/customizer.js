@@ -237,7 +237,7 @@ function calculateCustom() {
 
         player_custom_item = new Custom(statMap);
 
-        let custom_str = encodeCustom(player_custom_item.statMap, true);
+        let custom_str = encode_custom(player_custom_item, true).toB64();
         location.hash = custom_str;
         player_custom_item.setHash(custom_str);
 
@@ -274,24 +274,59 @@ function calculateCustom() {
 }
 
 function decodeCustom(custom_url_tag) {
+    if (!custom_url_tag) return;
+    if (custom_url_tag.slice(0,3) === "CI-") {
+        custom_url_tag = custom_url_tag.substring(3);
+        location.hash = location.hash.substring(3);
+    } 
+
+    const custom = parse_custom({hash: location.hash.substring(1)});
+
+    const minRolls = custom.statMap.get("minRolls");
+    if (custom.statMap.set("fixID") === true) { toggleButton("fixID-choice") };
+
+    for (let [id, val] of minRolls.entries()) {
+        if (["0-0", 0].includes(val)) continue;
+
+        if (rolledIDs.includes(id)) {
+            let stat_box = create_stat();
+            stat_box.input_elem.value = var_stats_map.get(id);
+            stat_box.min_elem.value = val;
+            if (custom.statMap.get("fixID") === true) {
+                stat_box.max_elem.value = val;
+            } else {
+                stat_box.max_elem.value = custom.statMap.get("maxRolls").get(id);
+            }
+            continue;
+        }
+    }
+
+    console.log(custom);
+
+    for (let [id, val] of custom.statMap) {
+        if (["", "0-0", 0, []].includes(val)) continue;
+        const element = document.getElementById(id+'-choice');
+        if (element) {
+            val = custom.statMap.get(id);
+            setValue(id+"-choice", val);
+        }
+    }
+    toggleFixed();
+    calculateCustom();
+}
+
+function decodeCustomLegacy(custom_url_tag) {
     if (custom_url_tag) {
         if (custom_url_tag.slice(0,3) === "CI-") {
             custom_url_tag = custom_url_tag.substring(3);
             location.hash = location.hash.substring(3);
         } 
-        let version = custom_url_tag.charAt(0);
-        let fixID = Boolean(parseInt(custom_url_tag.charAt(1),10));
-        let tag = custom_url_tag.substring(2);
-        let statMap = new Map();
-        statMap.set("minRolls", new Map());
-        statMap.set("maxRolls", new Map());
 
         if (version === "1") {
             //do the things
             if (fixID) {
                 statMap.set("fixId", true);
                 toggleButton("fixID-choice");
-                toggleFixed(document.getElementById("fixID-choice").classList.contains("toggleOn"));
             }
             while (tag !== "") {
                 let id = ci_save_order[Base64.toInt(tag.slice(0,2))];
@@ -357,6 +392,7 @@ function decodeCustom(custom_url_tag) {
                     setValue(id+"-choice", val);
                 }
             }
+            toggleFixed();
             statMap.set("hash",custom_url_tag);
             calculateCustom();
             player_custom_item.setHash(custom_url_tag);
@@ -412,16 +448,13 @@ function populateFields() {
  */
 function toggleFixed() {
     let fixedID_bool = document.getElementById("fixID-choice").classList.contains("toggleOn");
-    for (const id of rolledIDs) {
-        let elem = document.getElementById(id);
-        if (elem) {    
-            if (fixedID_bool) { //now fixed IDs -> go to 1 input
-                document.getElementById(id+"-choice-fixed-container").style = "";
-                document.getElementById(id+"-choice-container").style = "display:none";
-            } else { //now rollable -> go to 2 inputs
-                document.getElementById(id+"-choice-fixed-container").style = "display:none";
-                document.getElementById(id+"-choice-container").style = "";
-            }
+    for (const stat_box of var_stats) {
+        if (fixedID_bool) {
+            stat_box.min_elem.setAttribute("hidden", "");
+            stat_box.max_elem.setAttribute("hidden", "");
+        } else {
+            stat_box.min_elem.removeAttribute("hidden", "");
+            stat_box.max_elem.removeAttribute("hidden", "");
         }
     }
 }
