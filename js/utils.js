@@ -445,7 +445,6 @@ const VERISON_BITLEN = 10
         if (typeof data !== "string") throw new Error("`BitVector.appendB64` can only be used to append Base 64 strings. Try `BitVector.append`.")
         const length = data.length * 6;
 
-
         while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
             this.arr.resize(this.arr.byteLength * 2);
         }
@@ -463,6 +462,8 @@ const VERISON_BITLEN = 10
             }
             this.length += 6;
         }
+        // If the last character lined up perfectly we overshot the tail
+        if (this.length % 32 === 0) --this.tail_idx;
     }
 
     /** Appends data to the BitVector.
