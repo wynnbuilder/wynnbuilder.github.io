@@ -276,8 +276,7 @@ function calculateCustom() {
 function decodeCustom(custom_url_tag) {
     if (!custom_url_tag) return;
     if (custom_url_tag.slice(0,3) === "CI-") {
-        custom_url_tag = custom_url_tag.substring(3);
-        location.hash = location.hash.substring(3);
+        location.hash = custom_url_tag.substring(3);
     } 
 
     const custom = parse_custom({hash: location.hash.substring(1)});
