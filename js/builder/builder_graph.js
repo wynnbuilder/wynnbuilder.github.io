@@ -482,7 +482,7 @@ class PowderInputNode extends InputNode {
         let powdering = [];
         let errorederrors = [];
         while (input) {
-            let first = input.slice(0, 2);
+            let first = input.slice(0, 2).toLowerCase();
             let powder = powderIDs.get(first);
             if (powder === undefined) {
                 if (first.length > 0) {
