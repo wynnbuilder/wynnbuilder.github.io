@@ -20,7 +20,7 @@ function parsePowdering(powder_info) {
             let block = powder_info.slice(0,5);
             let six_powders = Base64.toInt(block);
             for (let k = 0; k < 6 && six_powders != 0; ++k) {
-                powders += powderNames.get((six_powders & 0x1f) - 1);
+                powders += powderNames.get(decodePowderIdx((six_powders & 0x1f) - 1, 6));
                 six_powders >>>= 5;
             }
             powder_info = powder_info.slice(5);
@@ -65,23 +65,20 @@ async function load_older_version() {
         wynn_version_id = WYNN_VERSION_LATEST;
     }
 
-
-    else {
-        const version_name = wynn_version_names[wynn_version_id];
-        const decoding_version_name = wynn_version_names[decoding_version];
-        assert(decoding_version <= wynn_version_id, "decoding version cannot be larger than the encoding version.");
-        const load_promises = [ 
-            load_atree_data(version_name),
-            load_major_id_data(version_name),
-            item_loader.load_old_version(version_name),
-            ingredient_loader.load_old_version(version_name),
-            tome_loader.load_old_version(version_name),
-            aspect_loader.load_old_version(version_name),
-            load_encoding_constants(version_name, decoding_version_name)
-        ];
-        console.log("Loading old version data...", version_name)
-        await Promise.all(load_promises);
-    }
+    const version_name = wynn_version_names[wynn_version_id];
+    const decoding_version_name = wynn_version_names[decoding_version];
+    assert(decoding_version <= wynn_version_id, "decoding version cannot be larger than the encoding version.");
+    const load_promises = [ 
+        load_atree_data(version_name),
+        load_major_id_data(version_name),
+        item_loader.load_old_version(version_name),
+        ingredient_loader.load_old_version(version_name),
+        tome_loader.load_old_version(version_name),
+        aspect_loader.load_old_version(version_name),
+        load_encoding_constants(version_name, decoding_version_name)
+    ];
+    console.log("Loading old version data...", version_name)
+    await Promise.all(load_promises);
 }
 
 /*
@@ -121,9 +118,7 @@ async function parse_hash_legacy() {
     // its ugly... but i think this is the behavior we want...
     if (wynn_version_id != WYNN_VERSION_LATEST) {
         await load_older_version();
-    }
-
-    if (wynn_version_id == WYNN_VERSION_LATEST) {
+    } else if (wynn_version_id == WYNN_VERSION_LATEST) {
         await load_latest_version();
     }
 
@@ -336,7 +331,9 @@ function encode_powders(equipment_vec, powders, version) {
 
     let powders_encoded = 0;
     for (const [powder, count] of powders) {
-        equipment_vec.append(powder, ENC.POWDER_ID_MAP.BITLEN);
+        // Encode the powder according to the number of tiers present in the version to maintain
+        // backwards compatability in case the number of tiers changes.
+        equipment_vec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
         for (let i = 1; i < count; ++i) {
             equipment_vec.append_flag("POWDER_REPEAT_OP", "REPEAT")
         }
@@ -400,7 +397,6 @@ function encode_equipment(equipment, powders, version) {
                     equipment_vec.append(new_custom.length, CUSTOM_MAX_LENGTH);
                     equipment_vec.merge([new_custom]);
                 } else {
-                    console.log(custom_hash.length * 6);
                     equipment_vec.append(custom_hash.length * 6, CUSTOM_MAX_LENGTH);
                     equipment_vec.appendB64(custom_hash);
                 }
@@ -413,7 +409,6 @@ function encode_equipment(equipment, powders, version) {
             encode_powders(equipment_vec, powders[powderables.get(idx)], version);
         }
     }
-    console.log(equipment_vec);
     return equipment_vec;
 }
 
@@ -548,7 +543,7 @@ function parse_header(cursor) {
  */
 function parse_powders(cursor) {
     // HAS_POWDERS flag is true, so we know there's at least 1 powder.
-    let powders = [cursor.advance_by(DEC.POWDER_ID_MAP.BITLEN)];
+    let powders = [decodePowderIdx(cursor.advance_by(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS)];
     let curr_powder = powders[0];
     outer: while (true) {
         repeat: switch (cursor.advance_by(DEC.POWDER_REPEAT_OP.BITLEN)) {
@@ -562,7 +557,7 @@ function parse_powders(cursor) {
                 switch (cursor.advance_by(DEC.POWDER_CHANGE_OP.BITLEN)) {
                     // Decode a new powder
                     case DEC.POWDER_CHANGE_OP.NEW_POWDER: {
-                        powders.push(cursor.advance_by(DEC.POWDER_ID_MAP.BITLEN));
+                        powders.push(decodePowderIdx(cursor.advance_by(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS));
                         break repeat;
                     }
                     // Stop decoding powders
@@ -746,10 +741,10 @@ async function parse_hash() {
     // Load the correct data for the provided version, includes encoding data.
     // The reason we differentiate is that most of the heavy data can be loaded
     // locally if the version is the latest version.
-    if (wynn_version_id === WYNN_VERSION_LATEST) {
-        await load_latest_version();
-    } else {
+    if (wynn_version_id !== WYNN_VERSION_LATEST) {
         await load_older_version();
+    } else if (wynn_version_id === WYNN_VERSION_LATEST) {
+        await load_latest_version();
     }
 
     // Parse all build information from the BitVector.

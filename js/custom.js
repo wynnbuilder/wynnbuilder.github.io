@@ -49,15 +49,8 @@ const CUSTOM_ENC = {
         RANGED: 1,
         BITLEN: 1,
     },
-    ID_SIGNAGE: {
-        MIN_POS_MAX_POS: 0,
-        MIN_NEG_MAX_POS: 1,
-        MIN_POS_MAX_POS: 2,
-        MIN_POS_MAX_POS: 3,
-        BITLEN: 2
-    },
     ID_IDX_BITLEN: 10,
-    ID_LENGTH_BITLEN: 12,
+    ID_LENGTH_BITLEN: 5,
     ITEM_TYPE_BITLEN: 6,
     ITEM_TIER_BITLEN: 6,
     ITEM_ATK_SPD_BITLEN: 6,
@@ -109,9 +102,9 @@ function encode_custom(custom, verbose) {
             custom_vec.append(i, CUSTOM_ENC.ID_IDX_BITLEN)
             const min_len = Math.max(1, Math.floor(Math.log2(Math.abs(val_min))) + 2);
             const max_len = Math.max(1, Math.floor(Math.log2(Math.abs(val_max))) + 2);
-            const id_len = clamp(min_len, max_len, CUSTOM_ENC.ID_LENGTH_BITLEN);
+            const id_len = clamp(min_len, max_len, 32);
             const mask = (1 << id_len) - 1
-            custom_vec.append(id_len, CUSTOM_ENC.ID_LENGTH_BITLEN);
+            custom_vec.append(id_len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
             custom_vec.append(val_min & mask, id_len);
             if (!fixed_ids) custom_vec.append(val_max & mask, id_len);
         } else {
@@ -141,7 +134,7 @@ function encode_custom(custom, verbose) {
                     case "type": custom_vec.append(all_types.indexOf(capitalizeFirst(id_value)), CUSTOM_ENC.ITEM_TYPE_BITLEN); break;
                     case "tier": custom_vec.append(tiers.indexOf(id_value), CUSTOM_ENC.ITEM_TIER_BITLEN); break;
                     case "atkSpd": custom_vec.append(attackSpeeds.indexOf(id_value), CUSTOM_ENC.ITEM_ATK_SPD_BITLEN); break;
-                    case "classReq": custom_vec.append(classes.indexOf(id_value), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
+                    case "classReq": custom_vec.append(classes.indexOf(capitalizeFirst(id_value)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
                     default: {
                         const len_mask = (1 << CUSTOM_ENC.MAX_TEXT_BITLEN) - 1;
                         if (Base64.isB64(id_value)) {
@@ -163,9 +156,9 @@ function encode_custom(custom, verbose) {
             } else if (typeof id_value === "number" && id_value != 0) {
                 console.log(`Encoding the Numeric ID: ${id}`);
                 custom_vec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
-                const len = Math.floor(Math.log2(Math.abs(id_value))) + 2;
+                const len = Math.min(32, Math.floor(Math.log2(Math.abs(id_value))) + 2);
                 const mask = (1 << len) - 1;
-                custom_vec.append(len, CUSTOM_ENC.ID_LENGTH_BITLEN);
+                custom_vec.append(len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
                 custom_vec.append(id_value & mask, len);
             }
         }
@@ -289,7 +282,7 @@ function parse_custom({cursor: cursor, hash: hash}) {
         console.log(`parsing id ${id}`);
         if (rolledIDs.includes(id)) {
             // Sign extend the id_len-bit values
-            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN);
+            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
             const extension = 32 - id_len;
             const minRoll = (cursor.advance_by(id_len) << extension) >> extension;
             if (!fixIDs) {
@@ -329,7 +322,7 @@ function parse_custom({cursor: cursor, hash: hash}) {
             }
             console.log(`Finished parsing string id ${id}, got ${id_value}`)
         } else {
-            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN);
+            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
             console.log(`parsing numeric ID ${id}`);
             const extension = 32 - id_len;
             id_value = cursor.advance_by(id_len) << extension >> extension;

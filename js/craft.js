@@ -50,6 +50,7 @@ function encode_craft(craft) {
     for (const ing of craft.ingreds) {
         craft_vec.append(ing.get("id"), CRAFTER_ENC.ING_ID_BITLEN);
     }
+
     // Encode recipe
     craft_vec.append(craft.recipe.get("id"), CRAFTER_ENC.RECIPE_ID_BITLEN);
 
@@ -59,7 +60,9 @@ function encode_craft(craft) {
     }
 
     // Encode attack speed
-    craft_vec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
+    if (craft.statMap.get("type") === "weapon") {
+        craft_vec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
+    }
 
     // Pad to fit into a B64 string perfectly
     craft_vec.append(0, 6 - (craft_vec.length % 6));
@@ -84,6 +87,7 @@ function parse_craft({cursor, hash}) {
         return getCraftFromHash("CR-" + hash);
     }
 
+    // Here for future usage
     const version = cursor.advance_by(CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
 
     // Parse ingredients
@@ -102,8 +106,11 @@ function parse_craft({cursor, hash}) {
         mat_tiers.push(cursor.advance_by(CRAFTER_ENC.MAT_TIER_BITLEN) + 1);
     }
 
-    // Parse attack speed
-    const atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advance_by(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
+    // Parse attack speed, set default to slow
+    let atkSpd = "SLOW";
+    if (weaponTypes.includes(recipe.get("type").toLowerCase())) {
+        atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advance_by(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
+    }
 
     // Skip padding
     cursor.skip(6 - ((cursor.curr_idx - hash_start_idx) % 6));

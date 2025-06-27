@@ -1,10 +1,10 @@
 let powderIDs = new Map();
 let powderNames = new Map();
 let _powderID = 0;
+let POWDER_TIERS = 6;
+
 for (const x of skp_elements) {
-    for (let i = 1; i <= 6; ++i) {
-        // Support both upper and lowercase, I guess.
-        powderIDs.set(x.toUpperCase()+i, _powderID);
+    for (let i = 1; i <= POWDER_TIERS; ++i) {
         powderIDs.set(x+i, _powderID);
         powderNames.set(_powderID, x+i);
         _powderID++;
@@ -50,6 +50,24 @@ let powderSpecialStats = [
     _ps("Courage",new Map([ ["Duration", [4,4,4,4,4]],["Damage", [60, 70, 80, 90, 100]],["Damage Boost", [10,12.5,15,17.5,20]] ]),"Endurance",new Map([ ["Damage", [2,3,4,5,6]],["Duration", [8,8,8,8,8]],["Description", "Hit Taken"] ]),100), //f
     _ps("Wind Prison",new Map([ ["Duration", [3,3.5,4,4.5,5]],["Damage Boost", [100,125,150,175,200]],["Knockback", [8,12,16,20,24]] ]),"Dodge",new Map([ ["Damage",[2,3,4,5,6]],["Duration",[2,3,4,5,6]],["Description","Near Mobs"] ]),100) //a
 ];
+
+/**
+ * TODO(@orgold): Document
+ */
+function decodePowderIdx(powder_idx, num_tiers) {
+    assert(POWDER_TIERS >= num_tiers, "The versioned data's tiers can never exceed the cutting edge amount: this breaks encoding.");
+    const pid = powder_idx + Math.floor((powder_idx / num_tiers)) * (POWDER_TIERS - num_tiers);
+    return pid;
+}
+
+/**
+ * TODO(@orgold): Document
+ */
+function encodePowderIdx(powder_idx, num_tiers) {
+    assert(POWDER_TIERS >= num_tiers, "The versioned data's tiers can never exceed the cutting edge amount: this breaks encoding.");
+    const pid = Math.floor(powder_idx / POWDER_TIERS) * num_tiers + (powder_idx % POWDER_TIERS);
+    return pid;
+}
 
 /**
  * Apply armor powders.
