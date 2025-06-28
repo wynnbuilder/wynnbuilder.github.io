@@ -451,6 +451,9 @@ const VERISON_BITLEN = 10
 
         let bit_vec = this.bits;
 
+        // If the last character lined up perfectly, increase the tail
+        if (this.length % 32 === 0) this.tail_idx += 1;
+
         for (const c of data) {
             const v = Base64.toInt(c);
             const pre_pos = this.length % 32;

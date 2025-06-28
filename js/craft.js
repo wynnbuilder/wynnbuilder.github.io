@@ -60,7 +60,7 @@ function encode_craft(craft) {
     }
 
     // Encode attack speed
-    if (craft.statMap.get("type") === "weapon") {
+    if (craft.statMap.get("category") === "weapon") {
         craft_vec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
     }
 
