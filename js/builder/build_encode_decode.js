@@ -325,24 +325,40 @@ function encode_powders(equipment_vec, powders, version) {
         return;
     }
 
-    powders = collect_powders(powders); // Collect repeating powders
+    const collected_powders = collect_powders(powders); // Collect repeating powders
 
     equipment_vec.append_flag("EQUIPMENT_POWDERS_FLAG", "HAS_POWDERS");
 
-    let powders_encoded = 0;
-    for (const [powder, count] of powders) {
-        // Encode the powder according to the number of tiers present in the version to maintain
-        // backwards compatability in case the number of tiers changes.
-        equipment_vec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
+    let previous_powder = -1;
+    for (const [powder, count] of collected_powders) {
+        if (previous_powder >= 0) {
+            equipment_vec.append_flag("POWDER_REPEAT_OP", "NO_REPEAT");
+            if (powder % POWDER_TIERS === previous_powder % POWDER_TIERS) {
+                equipment_vec.append_flag("POWDER_REPEAT_TIER_OP", "REPEAT");
+                const num_elements = ENC.POWDER_ELEMENTS.length;
+                const powder_element = Math.floor(powder % num_elements);
+                const previous_powder_element = Math.floor(previous_powder % num_elements);
+                const element_wrapper = mod(powder_element - previous_powder_element, num_elements) - 1; 
+                equipment_vec.append(element_wrapper, ENC.POWDER_WRAPPER_BITLEN);
+            } else {
+                equipment_vec.append_flag("POWDER_REPEAT_TIER_OP", "NO_REPEAT");
+                equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_POWDER");
+                // Encode the powder according to the number of tiers present in the version to maintain
+                // backwards compatability in case the number of tiers changes.
+                equipment_vec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
+            }
+        } else {
+            // Encode the powder according to the number of tiers present in the version to maintain
+            // backwards compatability in case the number of tiers changes.
+            equipment_vec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
+        }
         for (let i = 1; i < count; ++i) {
             equipment_vec.append_flag("POWDER_REPEAT_OP", "REPEAT")
         }
-        equipment_vec.append_flag("POWDER_REPEAT_OP", "NO_REPEAT")
-        if (powders_encoded !== powders.size - 1) {
-            equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_POWDER")
-            powders_encoded += 1;
-        }
+        previous_powder = powder;
     }
+    equipment_vec.append_flag("POWDER_REPEAT_OP", "NO_REPEAT");
+    equipment_vec.append_flag("POWDER_REPEAT_TIER_OP", "NO_REPEAT");
     equipment_vec.append_flag("POWDER_CHANGE_OP", "NEW_ITEM")
 }
 
@@ -539,34 +555,49 @@ function parse_header(cursor) {
 }
 
 /**
+ * TODO(@orgold): Refactor this code to not use 3 nested switch cases
  * Return the string representation of the powders of the current equipment item.
  */
 function parse_powders(cursor) {
     // HAS_POWDERS flag is true, so we know there's at least 1 powder.
     let powders = [decodePowderIdx(cursor.advance_by(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS)];
-    let curr_powder = powders[0];
+    let prev_powder = powders[0];
     outer: while (true) {
         repeat: switch (cursor.advance_by(DEC.POWDER_REPEAT_OP.BITLEN)) {
             // Repeat the previous powders
             case DEC.POWDER_REPEAT_OP.REPEAT: {
-                powders.push(curr_powder);
+                powders.push(prev_powder);
                 break;
             }
             // Don't repeat previous powder
             case DEC.POWDER_REPEAT_OP.NO_REPEAT: {
-                switch (cursor.advance_by(DEC.POWDER_CHANGE_OP.BITLEN)) {
+                switch (cursor.advance_by(DEC.POWDER_REPEAT_TIER_OP.BITLEN)) {
                     // Decode a new powder
-                    case DEC.POWDER_CHANGE_OP.NEW_POWDER: {
-                        powders.push(decodePowderIdx(cursor.advance_by(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS));
+                    case DEC.POWDER_REPEAT_TIER_OP.REPEAT: {
+                        const powder_wrap = cursor.advance_by(DEC.POWDER_WRAPPER_BITLEN);
+                        const prev_powder_elem = Math.floor(prev_powder / POWDER_TIERS); 
+                        const prev_powder_tier = prev_powder % POWDER_TIERS;
+                        const new_powder_elem = (prev_powder_elem + powder_wrap + 1) % DEC.POWDER_ELEMENTS.length;
+                        const new_powder = new_powder_elem * POWDER_TIERS + prev_powder_tier;
+                        powders.push(new_powder);
                         break repeat;
+                    };
+                    case DEC.POWDER_REPEAT_TIER_OP.NO_REPEAT: {
+                        switch (cursor.advance_by(DEC.POWDER_CHANGE_OP.BITLEN)) {
+                            case DEC.POWDER_CHANGE_OP.NEW_POWDER: {
+                                powders.push(decodePowderIdx(cursor.advance_by(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS));
+                                break repeat;
+                            }
+                            // Stop decoding powders
+                            case DEC.POWDER_CHANGE_OP.NEW_ITEM: break outer;
+
+                        };
                     }
-                    // Stop decoding powders
-                    case DEC.POWDER_CHANGE_OP.NEW_ITEM: break outer;
                 }
                 break;
             }
         }
-        curr_powder = powders.at(-1);
+        prev_powder = powders.at(-1);
     }
     powders = powders.map(x => powderNames.get(x)).join("")
     return powders;
@@ -866,9 +897,14 @@ function get_full_url() {
     return window.location.href;
 }
 
+function useCopyButton(id, text, default_text) {
+    copyTextToClipboard(text);
+    setText(id, "Copied!");
+    setTimeout(() => setText(id, default_text), 1000);
+}
+
 function copyBuild() {
-    copyTextToClipboard(get_full_url());
-    document.getElementById("copy-button").textContent = "Copied!";
+    useCopyButton("copy-button", get_full_url(), "Copy short");
 }
 
 function shareBuild(build) {
@@ -886,8 +922,7 @@ function shareBuild(build) {
     }
 
     const text = lines.join('\n');
-    copyTextToClipboard(text);
-    document.getElementById("share-button").textContent = "Copied!";
+    useCopyButton("share-button", text, "Copy for sharing");
 }
 
 /**
