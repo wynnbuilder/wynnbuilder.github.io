@@ -17,6 +17,7 @@ let var_stats = []
 // Ripped from search.js.
 function create_stat() {
     let data = {};
+    const fixIDs = document.getElementById("fixID-choice").classList.contains("toggleOn");
 
     let row = make_elem("div", ["row"], {style: "padding-bottom: 5px"});
     let col = make_elem("div", ["col"], {});
@@ -62,6 +63,11 @@ function create_stat() {
     row2.appendChild(max);
     data.max_elem = max;
     col.append(row2);
+
+    if (fixIDs) {
+        base.setAttribute("hidden", "");
+        max.setAttribute("hidden", "");
+    }
 
     base.addEventListener("focusout", (event) => {
         base_to_range(search_input, base, min, max);
@@ -223,7 +229,7 @@ function calculateCustom() {
                 continue;
             }
             if (fix_id) {
-                let val = parseInt(stat_box.base_elem.value, 10);
+                let val = parseInt(stat_box.min_elem.value, 10);
                 statMap.get("minRolls").set(id, val);
                 statMap.get("maxRolls").set(id, val);
             }
@@ -282,7 +288,7 @@ function decodeCustom(custom_url_tag) {
     const custom = parse_custom({hash: location.hash.substring(1)});
 
     const minRolls = custom.statMap.get("minRolls");
-    if (custom.statMap.set("fixID") === true) { toggleButton("fixID-choice") };
+    if (custom.statMap.get("fixID") === true) { toggleButton("fixID-choice") };
 
     for (let [id, val] of minRolls.entries()) {
         if (["0-0", 0].includes(val)) continue;
@@ -449,10 +455,10 @@ function toggleFixed() {
     let fixedID_bool = document.getElementById("fixID-choice").classList.contains("toggleOn");
     for (const stat_box of var_stats) {
         if (fixedID_bool) {
-            stat_box.min_elem.setAttribute("hidden", "");
+            stat_box.base_elem.setAttribute("hidden", "");
             stat_box.max_elem.setAttribute("hidden", "");
         } else {
-            stat_box.min_elem.removeAttribute("hidden", "");
+            stat_box.base_elem.removeAttribute("hidden", "");
             stat_box.max_elem.removeAttribute("hidden", "");
         }
     }
@@ -464,37 +470,37 @@ function toggleFixed() {
  */
 function useBaseItem(elem) {
     let itemName = getValue(elem);
-    let baseItem;
+    let baseItem = itemMap.get(itemName);
+    baseItem = baseItem ? expandItem(baseItem) : undefined;
 
-    //Check items db.
-    for (const [name,itemObj] of itemMap) {
-        if (itemName === name) {
-            baseItem = expandItem(itemObj);
-            break;
-        }
-    }
-
-    //If it starts with CR-, try creating a craft
+    // If it's not a normal item, try parsing from a crafted or custom item
     if(!baseItem) {
-        baseItem = getCraftFromHash(itemName) ? getCraftFromHash(itemName) : (getCustomFromHash(itemName) ? getCustomFromHash(itemName) : null);
+        switch (itemName.slice(0, 3)) {
+            case "CR-": baseItem = parse_craft({hash: itemName.substring(3)}); break;
+            case "CI-": baseItem = parse_custom({hash: itemName.substring(3)}); break;
+            default: baseItem = null;
+        }
         baseItem = baseItem.statMap;
-        console.log(baseItem);
     }
+    console.log(baseItem);
 
     //If the item exists, go through stats and assign to values!
     if(baseItem) {
         resetFields();
 
+        const fixID_button_toggled = document.getElementById("fixID-choice").classList.contains("toggleOn");
         //Rolled IDs
-        if (document.getElementById("fixID-choice").textContent === "yes") { //fixed IDs
+        if (baseItem.get("fixID") === true) { //fixed IDs
+            if (!fixID_button_toggled) toggleButton('fixID-choice');
             for (const id of rolledIDs) { //use maxrolls
                 if (baseItem.get("maxRolls").get(id)) {
                     let stat_box = create_stat();
                     stat_box.input_elem.value = var_stats_map.get(id);
-                    stat_box.base_elem.value = baseItem.get("maxRolls").get(id);
+                    stat_box.min_elem.value = baseItem.get("maxRolls").get(id);
                 }
             }
         } else { //use both
+            if (fixID_button_toggled) toggleButton('fixID-choice');
             for (const id of rolledIDs) {
                 if (baseItem.get("maxRolls").get(id)) {
                     let stat_box = create_stat();
@@ -504,6 +510,7 @@ function useBaseItem(elem) {
                 }
             }
         }
+        toggleFixed();
 
         //Static IDs
         for (const id of nonRolledIDs) {

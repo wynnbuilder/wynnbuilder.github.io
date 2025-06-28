@@ -157,7 +157,9 @@ def get_max_id(lst):
     # Make sure the number of items in the list does not exceed the maximum ID
     # Account for an ID of 0.
     if len(lst) - 1 > max_id or (len(lst) - 1 == max_id and zero_id == False):
-        raise ValueError(f"ERROR (fatal): There are more items in the list ({len(lst)}) than there are IDs ({max_id}).") 
+        print(f"WARNING: There are more items in the list ({len(lst)}) than there are IDs ({max_id}).") 
+        print(f"WARNING: Encoding len(lst) instead of item IDs.") 
+        max_id = len(lst)
     return max_id
 
 def gen_items():
@@ -179,7 +181,10 @@ def gen_aspects():
         if m > max_id:
             max_id = m
     print(f'Max aspect id: "{max_id}"')
-    bit_len_map["ASPECT_ID_BITLEN"] = get_bitlen(max_id)
+    if max_id != 0:
+        bit_len_map["ASPECT_ID_BITLEN"] = get_bitlen(max_id)
+    else:
+        bit_len_map["ASPECT_ID_BITLEN"] = 0
 
 if __name__ == "__main__":
     gen_items()
