@@ -362,7 +362,7 @@ function getEquipmentKind(eq) {
  */
 const powderables = new Map([0, 1, 2, 3, 8].map((x, i) => [x, i]));
 
-const CUSTOM_MAX_LENGTH = 12; // Length, in bits, of the custom binary string
+const CUSTOM_MAX_CHARLEN = 12; // Length, in chars, of the custom binary string
 
 function encode_equipment(equipment, powders, version) {
     const equipment_vec = new EncodingBitVector(0, 0);
@@ -394,10 +394,10 @@ function encode_equipment(equipment, powders, version) {
                 // Legacy versions start with their first bit set
                 if (Base64.toInt(custom_hash[0]) & 0x1 === 1) {
                     const new_custom = encode_custom(eq, true);
-                    equipment_vec.append(new_custom.length, CUSTOM_MAX_LENGTH);
+                    equipment_vec.append(new_custom.length / 6, CUSTOM_MAX_CHARLEN);
                     equipment_vec.merge([new_custom]);
                 } else {
-                    equipment_vec.append(custom_hash.length * 6, CUSTOM_MAX_LENGTH);
+                    equipment_vec.append(custom_hash.length, CUSTOM_MAX_CHARLEN);
                     equipment_vec.appendB64(custom_hash);
                 }
                 break;
@@ -594,11 +594,11 @@ function parse_equipment(cursor) {
                 break;
             }
             case DEC.EQUIPMENT_KIND.CUSTOM: {
-                const custom_length = cursor.advance_by(CUSTOM_MAX_LENGTH);
-                let custom = parse_custom({cursor: cursor.spawn(custom_length)});
+                const custom_length_bits = cursor.advance_by(CUSTOM_MAX_CHARLEN) * 6;
+                let custom = parse_custom({cursor: cursor.spawn(custom_length_bits)});
                 equipments.push(custom.statMap.get("hash"));
                 // Skip the length of the custom because we spawned a new cursor, so the original didn't mutate.
-                cursor.skip(custom_length);
+                cursor.skip(custom_length_bits);
                 break;
             }
         }
@@ -882,7 +882,7 @@ function shareBuild(build) {
     ];
 
     if (!build.tomes.every(tome => tome.statMap.has("NONE"))) {
-        texts.push("> (Has Tomes)")
+        lines.push("> (Has Tomes)")
     }
 
     const text = lines.join('\n');

@@ -60,7 +60,7 @@ const CUSTOM_ENC = {
         UTF_8: 1,
         BITLEN: 1
     },
-    MAX_TEXT_BITLEN: 12,
+    TEXT_CHAR_LENGTH_BITLEN: 16,
 }
 
 /**
@@ -136,17 +136,17 @@ function encode_custom(custom, verbose) {
                     case "atkSpd": custom_vec.append(attackSpeeds.indexOf(id_value), CUSTOM_ENC.ITEM_ATK_SPD_BITLEN); break;
                     case "classReq": custom_vec.append(classes.indexOf(capitalizeFirst(id_value)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
                     default: {
-                        const len_mask = (1 << CUSTOM_ENC.MAX_TEXT_BITLEN) - 1;
+                        const len_mask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
                         if (Base64.isB64(id_value)) {
                             custom_vec.append_flag("TEXT_ENCODING", "BASE_64");
-                            custom_vec.append((id_value.length * 6) & len_mask, CUSTOM_ENC.MAX_TEXT_BITLEN);
+                            custom_vec.append(id_value.length & len_mask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
                             custom_vec.appendB64(id_value);
                             console.log(`Encoding string id "${id}" with Base64 encoding, got ${id_value}`)
                         } else {
                             const encoder = new TextEncoder();
                             const b64_string = Base64.fromBytes(encoder.encode(id_value));
                             custom_vec.append_flag("TEXT_ENCODING", "UTF_8");
-                            custom_vec.append((b64_string.length * 6) & len_mask, CUSTOM_ENC.MAX_TEXT_BITLEN);
+                            custom_vec.append(b64_string.length & len_mask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
                             custom_vec.appendB64(b64_string);
                             console.log(`Encoding string id "${id}" with UTF-8 encoding, got ${id_value}, resulting string: ${b64_string}`)
                         }
@@ -306,11 +306,11 @@ function parse_custom({cursor: cursor, hash: hash}) {
                 case "classReq": id_value = classes[cursor.advance_by(CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN)]; break;
                 default: {
                     const text_encoding = cursor.advance_by(CUSTOM_ENC.TEXT_ENCODING.BITLEN);
-                    let text_len = cursor.advance_by(CUSTOM_ENC.MAX_TEXT_BITLEN) & 0xFFFFFFFF;
+                    let text_len = cursor.advance_by(CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) & 0xFFFFFFFF;
                     let chars = [];
                     while (text_len > 0) {
                         chars.push(Base64.fromIntN(cursor.advance_by(6), 1))
-                        text_len -= 6;
+                        text_len -= 1;
                     }
                     id_value = chars.join("");
                     if (text_encoding === CUSTOM_ENC.TEXT_ENCODING.UTF_8) {
