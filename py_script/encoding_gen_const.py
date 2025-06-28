@@ -74,6 +74,7 @@ bit_len_map["POWDERABLE_EQUIPMENT_NUM"] = 5
 # Powders
 bit_len_map["POWDER_ELEMENTS"] = ["E", "T", "W", "F", "A"]
 bit_len_map["POWDER_TIERS"] = 6
+bit_len_map["POWDER_WRAPPER_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) - 1 - 1)
 bit_len_map["POWDER_ID_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) * bit_len_map["POWDER_TIERS"])
 bit_len_map["POWDER_REPEAT_OP"] = generate_id_map(["REPEAT", "NO_REPEAT"])
 bit_len_map["POWDER_REPEAT_TIER_OP"] = generate_id_map(["REPEAT", "NO_REPEAT"])

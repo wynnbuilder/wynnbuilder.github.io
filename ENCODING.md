@@ -17,7 +17,7 @@ Anything that needs to be uniquely identified (i.e equipment, tomes and aspects)
 For maximum efficiency, each version we calculate the maximum amount of bits required to store a particular type of ID and store it in a data file, which is then loaded before the decoding process. For example, if the largest ID for an item is 4975, the minimum number of bits required to store all IDs would be 12. In general, we store `floor(log_2(maxId)) + 1` for each identifiable type (if 0 is used to represent a null item, maxId is increased by 1 before calculation the length).
 This generation done automatically by `py_script/encoding_gen_const.py` which also verifies certain aspects to make sure we maintain backwards compatibility.
 
-### Specification - V12
+# Specification - V12
 This section details each part of the encoded vectors and how to interpret them.
 in case of changes to the specification, an additional section titled "Specification VXX" will be appended, only detailing the changes made to the previous spec version.
 
@@ -29,13 +29,15 @@ in case of changes to the specification, an additional section titled "Specifica
 
 - **iff fields** are fields that must be encoded under the specified condition.
 
+## Section A - Build Encoding
+
 #### 1 - Build Version
 
 Each build has an associated "version" with it from which it loads the data.
 
-| field   | length (in bits) | values | range     |
-| ------- | ---------------- | ------ | --------- |
-| Version | 10               | uint32 | [0, 1023] |
+| field   | length (in bits) | values   | range     |
+| ------- | ---------------- | -------- | --------- |
+| Version | 10               | `uint32` | [0, 1023] |
 
 #### 2 - Equipment
 
@@ -45,10 +47,10 @@ After which, a flag is appended to denote whether the item has any powders.
 | field                              | length (in bits) | values                        | range      |
 | ---------------------------------- | ---------------- | ----------------------------- | ---------- |
 | Equipment Kind                     | 2                | `NORMAL`, `CRAFTED`, `CUSTOM` | [0, 3]     |
-| Custom Hash Length (iff `CUSTOM`)  | 12               | uint32                        | [0, 2^12)  |
+| Custom Hash Length (iff `CUSTOM`)  | 12               | `uint32`                      | [0, 2^12)  |
 | Custom Hash (iff `CUSTOM`)         | Dynamic          | binary blob                   | undefined  |
 | Crafted Hash (iff `CRAFTED`)       | Dynamic          | binary blob                   | undefined  |
-| Equipment ID (iff `NORMAL`)        | L (Dynamic)      | uint32                        | [0, 2^L)   |
+| Equipment ID (iff `NORMAL`)        | L (Dynamic)      | `uint32`                      | [0, 2^L)   |
 | Powder flag (optional)             | 1                | `HAS_POWDERS`, `NO_POWDERS`   | [0, 1]     |
 
 "Equipment Kind" denotes the kind of equipment to be encoded. Normal encoding is described in this section. Crafted and Custom encodings will be described in their own sections.
@@ -68,10 +70,10 @@ There is nothing to signify reaching the end of the "equipment" block, rather, w
 
 | field                                   | length (in bits)                               | values                         | range    |
 | --------------------------------------- | ---------------------------------------------- | ------------------------------ | -------- |
-| Powder ID                               | L (Dynamic) = floor(log_2(NUM_ELEM\*TIERS))    | uint32                         | [0, 2^L) |
+| Powder ID                               | L (Dynamic) = floor(log_2(NUM_ELEM\*TIERS))+1  | `uint32`                       | [0, 2^L) |
 | Powder Repeat Flag (optional)           | 1                                              | `REPEAT`, `NO_REPEAT`          | [0, 1]   |
 | Powder Tier Repeat Flag (optional)      | 1                                              | `REPEAT_TIER`, `CHANGE_POWDER` | [0, 1]   |
-| Powder Element Wrap (iff `REPEAT_TIER`) | L (Dynamic) = floor(log_2(NUM_ELEMENTS-1))     | uint32                         | [0, 2^L) |
+| Powder Element Wrap (iff `REPEAT_TIER`) | L (Dynamic) = floor(log_2(NUM_ELEMENTS-1))+1   | `uint32`                       | [0, 2^L) |
 | Powder Change Flag                      | 1                                              | `NEW_POWDER`, `NEW_ITEM`       | [0, 1]   |
 
 Before encoding, powders are collected by order of appearance, preserving their original relative position. an Example of that is `E6 A6 E4 E6 A6 => E6 E6 A6 A6 E4`. This is allowed, even though it changes the powder order, because it's consistent with powder application mechanics.
@@ -124,7 +126,7 @@ decoded_idx = pid + element * difference_per_element
 | ----------------------------- | ---------------- | ----------------------- | -------- |
 | Has Tomes                     | 1                | `HAS_TOMES`, `NO_TOMES` | [0, 1]   |
 | Slot in use (iff `HAS_TOMES`) | 1                | `UNUSED`, `USED`        | [0, 1]   |
-| Tome ID (iff `USED`)          | L (Dynamic)      | uint32                  | [0, 2^L) |
+| Tome ID (iff `USED`)          | L (Dynamic)      | `uint32`                | [0, 2^L) |
 
 Tomes are very simple:
 1. If the build has no tomes, encode `NO_TOMES`, continue.
@@ -136,7 +138,7 @@ Tomes are very simple:
 | ------------------------------------------ | ---------------- | ---------------------------------- | ------------- |
 | Assigned SKP                               | 1                | `ASSIGNED`, `UNASSIGNED`           | [0, 1]        |
 | Element Assigned (iff `ASSIGNED`)          | 1                | `ASSIGNED_ELEM`, `UNASSIGNED_ELEM` | [0, 1]        |
-| Skillpoints Assigned (iff `ASSIGNED_ELEM`) | 12               | int32                              | [-2048, 2047] |
+| Skillpoints Assigned (iff `ASSIGNED_ELEM`) | 12               | `int32`                            | [-2048, 2047] |
 
 skillpoints are only encoded if the user changed the automatically calculated values. If there has been no change, an "Assigned SKP" `UNASSIGNED` flag is appended. otherwise, an `ASSIGNED` flag is appended.
 
@@ -151,7 +153,7 @@ Notice that since "Skillpoints Assigned" is a signed integer, when decoding, the
 | field                 | length (in bits) | values           | range    |
 | --------------------- | ---------------- | ---------------- | -------- |
 | Max Level             | 1                | `MAX`, `NOT_MAX` | [0, 1]   |
-| Level (iff `NOT_MAX`) | L (Dynamic)      | uint32           | [0, 2^L) |
+| Level (iff `NOT_MAX`) | L (Dynamic)      | `uint32`         | [0, 2^L) |
 
 If the build level is the version's max level, encode `MAX`. Otherwise, encode `NOT_MAX` followed by the level.
 
@@ -161,7 +163,7 @@ If the build level is the version's max level, encode `MAX`. Otherwise, encode `
 | --------------------------------- | ---------------- | --------------------------- | -------- |
 | Has Aspects                       | 1                | `HAS_ASPECTS`, `NO_ASPECTS` | [0, 1]   |
 | Aspect in use (iff `HAS_ASPECTS`) | 1                | `UNUSED`, `USED`            | [0, 1]   |
-| Aspect ID (iff `USED`)            | L (Dynamic)      | uint32                      | [0, 2^L) |
+| Aspect ID (iff `USED`)            | L (Dynamic)      | `uint32`                    | [0, 2^L) |
 
 Aspects are encoded exactly like tomes. When decoding, make sure to load the correct aspect map based on the current weapon.
 
@@ -182,7 +184,7 @@ def function encode(tree_data, tree_state):
     visited = Set()
 
     function recursive_traverse(head_node): 
-	    for each child of head_node, in order: 
+        for each child of head_node, in order: 
             if child is not in visited: 
                 add child to visited set 
                 if tree_state.is_active(child): 
@@ -238,37 +240,37 @@ a 1 bit indicator to indicate whether the craft should be parsed with legacy enc
 #### 2 - Encoding version
 Used to allow versioning of the encoder itself in case something breaking changes, to maintain backwards compatibility. Has nothing to do with loading data.
 
-| field   | length (in bits) | values | range   |
-| ------- | ---------------- | ------ | ------- |
-| Version | 6                | uin32  | [0, 63] |
+| field   | length (in bits) | values  | range   |
+| ------- | ---------------- | ------- | ------- |
+| Version | 6                | `uin32` | [0, 63] |
 
 #### 3 - Ingredients
 The 6 ingredients dictating the stats of the crafted item. each ingredient ID is encoded as-is, with 4000 being the ID of the "None" ingredient, and 4001-4030 being the IDs for powders when they're used as ingredients.
 
-| field         | length (in bits) | values | range     |
-| ------------- | ---------------- | ------ | --------- |
-| Ingredient ID | 12               | uin32  | [0, 4096] |
+| field         | length (in bits) | values   | range     |
+| ------------- | ---------------- | -------- | --------- |
+| Ingredient ID | 12               | `uin32`  | [0, 4096] |
 
 #### 4 - Recipe
 The recipe dictating the level and the type of the craft. encoded as an ID.
 
-| field     | length (in bits) | values | range     |
-| --------- | ---------------- | ------ | --------- |
-| Recipe ID | 12               | uin32  | [0, 4096] |
+| field     | length (in bits) | values   | range     |
+| --------- | ---------------- | -------- | --------- |
+| Recipe ID | 12               | `uin32`  | [0, 4096] |
 
 #### 5 - Material tiers
 For each of the materials used, encodes `material_tier - 1`.
 
-| field         | length (in bits) | values | range  |
-| ------------- | ---------------- | ------ | ------ |
-| Material tier | 3                | uin32  | [0, 7] |
+| field         | length (in bits) | values   | range  |
+| ------------- | ---------------- | -------- | ------ |
+| Material tier | 3                | `uin32`  | [0, 7] |
 
 #### 6 - Attack speed
-If the encoded recipe is a weapon recipe, encode the attack speed, otherwise skip this step.
+If the encoded recipe is a weapon recipe, encode the index of the attack speed within a predefined attack speed list, otherwise skip this step.
 
-| field         | length (in bits) | values | range  |
-| ------------- | ---------------- | ------ | ------ |
-| Material tier | 3                | uin32  | [0, 7] |
+| field        | length (in bits) | values   | range   |
+| ------------ | ---------------- | -------- | ------  |
+| Attack Speed | 4                | `uin32`  | [0, 15] |
 
 #### 7 - Base64 Padding
 Because we need to be able to embed the crafted item encoding into the builder's encoded URL
@@ -297,9 +299,9 @@ Custom items have 2 modes - rolled IDs and fixed IDs. This is simply a 1 bit fla
 #### 2 - ID Fields
 There are a couple different kinds of ID fields. each field is preceded by an index into the array dictating the encoding order, and handled based on the value of the ID returned from that index.
 
-| field | length (in bits) | values | range     |
-| ----- | ---------------- | ------ | --------- |
-| Index | 10               | uint32 | [0, 1023] |
+| field | length (in bits) | values   | range     |
+| ----- | ---------------- | -------- | --------- |
+| Index | 10               | `uint32` | [0, 1023] |
 
 After reading the value from the array there are several options for categories of IDs:
 - Rolled IDs
@@ -311,34 +313,34 @@ After reading the value from the array there are several options for categories 
 ##### 2.1 - Rolled IDs
 If the ID is a rolled ID it's encoded in the following way:
 
-| field                                     | length (in bits) | values | range         |
-| ----------------------------------------- | ---------------- | ------ | ------------- |
-| ID Value length (in bits)                 | 5                | uint32 | [0, 31]       |
-| ID ValueMin                               | Variable         | int32  | [-2^31, 2^31) |
-| ID ValueMax (iff "Fixed IDs" == `RANGED`) | Variable         | int32  | [-2^31, 2^31) |
+| field                                     | length (in bits) |  values  | range         |
+| ----------------------------------------- | ---------------- |  ------  | ------------- |
+| ID Value length (in bits)                 | 5                | `uint32` | [0, 31]       |
+| ID ValueMin                               | Variable         | `int32`  | [-2^31, 2^31) |
+| ID ValueMax (iff "Fixed IDs" == `RANGED`) | Variable         | `int32`  | [-2^31, 2^31) |
 
 The length (in bits) required to encode the Value of the id is encoded as `id_length - 1`, and implementors must ensure that `id_length > 0`. afterwards the minimum ID value is encoded as a 2's complement signed integer of length `id_length`. If the IDs are not fixed, an additional maximum value is encoded in the same way.
 
 ##### 2.2 - Non-Rolled constant length IDs
 These are IDs with predetermined possible values and therefore sizes, and they include `type`, `tier`, `atkSpd` and `classReq`. Each of them is encoded as an index into an array containing their respective values.
 
-| field                        | length (in bits) | values | range   |
-| ---------------------------- | ---------------- | ------ | ------- |
-| type (optional)              | 6                | uint32 | [0, 63] |
-| tier (optional)              | 6                | uint32 | [0, 63] |
-| attak speed (optional)       | 6                | uint32 | [0, 63] |
-| class requirement (optional) | 6                | uint32 | [0, 63] |
+| field                        | length (in bits) | values   | range   |
+| ---------------------------- | ---------------- | -------- | ------- |
+| type (optional)              | 6                | `uint32` | [0, 63] |
+| tier (optional)              | 6                | `uint32` | [0, 63] |
+| attak speed (optional)       | 6                | `uint32` | [0, 63] |
+| class requirement (optional) | 6                | `uint32` | [0, 63] |
 
 ##### 2.3 - Non-Rolled variable length string IDs
 These are IDs that can hold any string value. the IDs are encoded as Base64 in two possible ways:
 1. Base64 string that is read as text.
 2. Base64 string that is read as UTF-8 binary.
 
-| field                 | length (in bits) | values               | range     |
-| --------------------- | ---------------- | -------------------- | --------- |
-| Text type             | 1                | `BASE\_64`, `UTF\_8` | [0, 1]    |
-| Text length (in bits) | 24               | uint32               | [0, 2^24) |
-| Text content          | Variable         | UTF-8 Encoded string | undefined |
+| field                         | length (in bits) | values                | range     |
+| ----------------------------- | ---------------- | --------------------- | --------- |
+| Text type                     | 1                | `BASE\_64`, `UTF\_8`  | [0, 1]    |
+| Text length (in Base64 chars) | 16               | `uint32`              | [0, 2^24) |
+| Text content                  | Variable         | UTF-8 Encoded string  | undefined |
 
 If the text content is entirely Base64 compatible, as is the case with some single-word names, a text type of `BASE_64` is encoded. otherwise, a text type of `UTF_8` is encoded and the text is encoded into `Base64`. Afterwards, the length (in bits) of the resulting Base64 string is encoded, clamped to a 24-bit maximum value, followed by the string itself.
 

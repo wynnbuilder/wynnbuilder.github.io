@@ -60,7 +60,7 @@ function round_near(value) {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
  */
 function mod(v, m) {
-    return ((v % m) + v) % m;
+    return ((v % m) + m) % m;
 }
 
 function setText(id, text) {
@@ -639,6 +639,9 @@ class EncodingBitVector extends BitVector {
     }
 }
 
+/**
+ * A Bit Vector Cursor with specific helpers for decoding.
+ */
 class DecodingBitVectorCursor extends BitVectorCursor {
     constructor(bitvec, bitcode_map=DEC) {
         super(bitvec);
