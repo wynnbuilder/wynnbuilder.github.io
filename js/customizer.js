@@ -65,8 +65,8 @@ function create_stat() {
     col.append(row2);
 
     if (fixIDs) {
+        min.setAttribute("hidden", "");
         base.setAttribute("hidden", "");
-        max.setAttribute("hidden", "");
     }
 
     base.addEventListener("focusout", (event) => {
@@ -229,7 +229,7 @@ function calculateCustom() {
                 continue;
             }
             if (fix_id) {
-                let val = parseInt(stat_box.min_elem.value, 10);
+                let val = parseInt(stat_box.max_elem.value, 10);
                 statMap.get("minRolls").set(id, val);
                 statMap.get("maxRolls").set(id, val);
             }
@@ -456,10 +456,10 @@ function toggleFixed() {
     for (const stat_box of var_stats) {
         if (fixedID_bool) {
             stat_box.base_elem.setAttribute("hidden", "");
-            stat_box.max_elem.setAttribute("hidden", "");
+            stat_box.min_elem.setAttribute("hidden", "");
         } else {
             stat_box.base_elem.removeAttribute("hidden", "");
-            stat_box.max_elem.removeAttribute("hidden", "");
+            stat_box.min_elem.removeAttribute("hidden", "");
         }
     }
 }
@@ -497,6 +497,7 @@ function useBaseItem(elem) {
                     let stat_box = create_stat();
                     stat_box.input_elem.value = var_stats_map.get(id);
                     stat_box.min_elem.value = baseItem.get("maxRolls").get(id);
+                    stat_box.max_elem.value = baseItem.get("maxRolls").get(id);
                 }
             }
         } else { //use both
