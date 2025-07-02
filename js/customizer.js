@@ -595,11 +595,11 @@ function base_to_range(id_elem, base_elem, min_elem, max_elem) {
             max_elem.value = 0;
         }
         else if ((base > 0) != (reversedIDs.includes(id))) { // logical XOR. positive rolled IDs
-            max_elem.value = idRound(Math.round(pos_range[1]*base));
-            min_elem.value = idRound(Math.round(pos_range[0]*base));
+            max_elem.value = idRound(pos_range[1]*base);
+            min_elem.value = idRound(pos_range[0]*base);
         } else { //negative rolled IDs
-            max_elem.value = idRound(Math.round(neg_range[1]*base));
-            min_elem.value = idRound(Math.round(neg_range[0]*base))
+            max_elem.value = idRound(neg_range[1]*base);
+            min_elem.value = idRound(neg_range[0]*base);
         }
 
     }

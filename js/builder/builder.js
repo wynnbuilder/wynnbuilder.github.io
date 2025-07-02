@@ -322,7 +322,7 @@ async function init() {
         console.log("Could not initialize macy components. Maybe you're offline?");
         console.log(e);
     }
-    const [save_skp, changed_skp] = await parse_hash();
+    const skillpoints = await parse_hash();
 
     try {
         init_autocomplete();
@@ -330,7 +330,7 @@ async function init() {
         console.log("Could not initialize autocomplete. Maybe you're offline?");
         console.log(e);
     }
-    builder_graph_init(save_skp, changed_skp);
+    builder_graph_init(skillpoints);
     for (const item_node of item_final_nodes) {
         // console.log(item_node);
         if (item_node.get_value() === null) {

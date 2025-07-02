@@ -100,8 +100,7 @@ async function parse_hash_legacy() {
     let info = url_tag.split("_");
     let version = info[0];
     // Whether skillpoints are manually updated. True if they should be set to something other than default values
-    let save_skp = false;
-    let skillpoints = [0, 0, 0, 0, 0];
+    let skillpoints = [null, null, null, null, null];
     let level = 106;
 
     let version_number = parseInt(version);
@@ -180,7 +179,6 @@ async function parse_hash_legacy() {
         let res = parsePowdering(powder_info);
         powdering = res[0];
     } else if (version_number == 2) {
-        save_skp = true;
         let skillpoint_info = data_str.slice(0, 10);
         for (let i = 0; i < 5; ++i ) {
             skillpoints[i] = Base64.toIntSigned(skillpoint_info.slice(i*2,i*2+2));
@@ -192,7 +190,6 @@ async function parse_hash_legacy() {
     } else if (version_number <= 11){
         level = Base64.toInt(data_str.slice(10,12));
         setValue("level-choice",level);
-        save_skp = true;
         let skillpoint_info = data_str.slice(0, 10);
         for (let i = 0; i < 5; ++i ) {
             skillpoints[i] = Base64.toIntSigned(skillpoint_info.slice(i*2,i*2+2));
@@ -270,15 +267,12 @@ async function parse_hash_legacy() {
     for (let i in powder_inputs) {
         setValue(powder_inputs[i], powdering[i]);
     }
-    for (let i in skillpoints) {
-        setValue(skp_order[i] + "-skp", skillpoints[i]);
-    }
 
     // skp_deltas is used in binary encoding to denote
     // the changes for each skillpoint, so it's necessary
     // to pass "null" in it's place because of the current builder graph
     // implementation.
-    return [save_skp, null];
+    return skillpoints;
 }
 
 function encode_tomes(tomes) {
@@ -545,7 +539,7 @@ function encode_build(build, powders, skillpoints, atree, atree_state, aspects) 
 
     final_vec.merge(vecs)
 
-    return final_vec.toB64();
+    return final_vec;
 }
 
 
@@ -755,7 +749,7 @@ async function parse_hash() {
 
     if (!url_tag) {
         await load_latest_version();
-        return [false, null];
+        return null;
     }
 
     // Binary encoding encodes the first character of the hash to be > 11 (or > B in Base64). if it isn't, fallback to legacy parsing.
@@ -815,9 +809,7 @@ async function parse_hash() {
         }
     }
 
-    // Legacy necessity due to the builder
-    // graph implementation.
-    return [false, skillpoints];
+    return skillpoints;
 }
 
 /*  Stores the entire build in a string using B64 encoding and adds it to the URL.
