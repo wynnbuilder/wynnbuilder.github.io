@@ -42,8 +42,8 @@ const non_rolled_strings = ["name", "lore", "tier", "set", "type", "material", "
 // TODO: Add an exclude list
 
 const CUSTOM_ENC = {
-    CUSTOM_VERSION_BITLEN: 6,
-    CUSTOM_VERSION: 0x2,
+    CUSTOM_VERSION_BITLEN: 10,
+    CUSTOM_ENCODING_VERSION: 2,
     CUSTOM_FIXED_IDS_FLAG: {
         FIXED: 0,
         RANGED: 1,
@@ -51,10 +51,10 @@ const CUSTOM_ENC = {
     },
     ID_IDX_BITLEN: 10,
     ID_LENGTH_BITLEN: 5,
-    ITEM_TYPE_BITLEN: 6,
-    ITEM_TIER_BITLEN: 6,
-    ITEM_ATK_SPD_BITLEN: 6,
-    ITEM_CLASS_REQ_BITLEN: 6,
+    ITEM_TYPE_BITLEN: 4,
+    ITEM_TIER_BITLEN: 4,
+    ITEM_ATK_SPD_BITLEN: 4,
+    ITEM_CLASS_REQ_BITLEN: 4,
     TEXT_ENCODING: {
         BASE_64: 0,
         UTF_8: 1,
@@ -64,116 +64,123 @@ const CUSTOM_ENC = {
 }
 
 /**
- * Encodes a custom item into a B64 string.
+ * Encode a custom item and return the resulting vector.
+ *
+ * @param {Custom} custom - The Custom item object ot encode.
+ * @param {boolean} verbose - whether to store some partially redundent fields.
  */
-function encode_custom(custom, verbose) {
-    const custom_vec = new EncodingBitVector(0, 0, CUSTOM_ENC);
-    if (!custom) return custom_vec;
+function encodeCustom(custom, verbose) {
+    const customVec = new EncodingBitVector(0, 0, CUSTOM_ENC);
+    if (!custom) return customVec;
 
     // Legacy versions always have their first bit set.
-    custom_vec.append(0, 1);
+    customVec.append(0, 1);
 
     // Encode the encoding version
-    custom_vec.append(CUSTOM_ENC.CUSTOM_VERSION, CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
-    console.log(`Encoded vesrion ${CUSTOM_ENC.CUSTOM_VERSION}`);
+    customVec.append(CUSTOM_ENC.CUSTOM_ENCODING_VERSION, CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
+    console.log(`Encoded vesrion ${CUSTOM_ENC.CUSTOM_ENCODING_VERSION}`);
 
     // Encode whether the IDS are fixed or Not
-    let fixed_ids = false;
+    let fixedIDs = false;
     if (custom.statMap.get("fixID") === true) {
         console.log("Encoding FIXED IDS");
-        fixed_ids = true;
-        custom_vec.append_flag("CUSTOM_FIXED_IDS_FLAG", "FIXED");
+        fixedIDs = true;
+        customVec.appendFlag("CUSTOM_FIXED_IDS_FLAG", "FIXED");
     } else {
         console.log("Encoding RANGED IDS");
-        custom_vec.append_flag("CUSTOM_FIXED_IDS_FLAG", "RANGED");
+        customVec.appendFlag("CUSTOM_FIXED_IDS_FLAG", "RANGED");
     }
 
     // Encode IDs
     for (const [i, id] of ci_save_order.entries()) {
-        // TODO(@orgold): change rolledIDs to a set.
+        // TODO(@orgold): make a set from rolledIDs to make this check O(1).
+        // This check occurs frequently accross the codebase and might be expensive.
         if (rolledIDs.includes(id)) {
             // Encode rolled IDs
-            let val_min = custom.statMap.get("minRolls").has(id) ? custom.statMap.get("minRolls").get(id) : 0;
-            let val_max = custom.statMap.get("maxRolls").has(id) ? custom.statMap.get("maxRolls").get(id) : 0;
-            if (val_min === 0 && val_max === 0) continue;
+            let valMin = custom.statMap.get("minRolls").has(id) ? custom.statMap.get("minRolls").get(id) : 0;
+            let valMax = custom.statMap.get("maxRolls").has(id) ? custom.statMap.get("maxRolls").get(id) : 0;
+            if (valMin === 0 && valMax === 0) continue;
 
             console.log(`Encoding the Rolled ID: ${id}`);
 
-            custom_vec.append(i, CUSTOM_ENC.ID_IDX_BITLEN)
-            const min_len = Math.max(1, Math.floor(Math.log2(Math.abs(val_min))) + 2);
-            const max_len = Math.max(1, Math.floor(Math.log2(Math.abs(val_max))) + 2);
-            const id_len = clamp(min_len, max_len, 32);
-            const mask = (1 << id_len) - 1
-            custom_vec.append(id_len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
-            custom_vec.append(val_min & mask, id_len);
-            if (!fixed_ids) custom_vec.append(val_max & mask, id_len);
+            customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN)
+            const minLen = Math.max(1, Math.floor(Math.log2(Math.abs(valMin))) + 2);
+            const maxLen = Math.max(1, Math.floor(Math.log2(Math.abs(valMax))) + 2);
+            const idLen = clamp(minLen, maxLen, 32);
+            const mask = (1 << idLen) - 1
+            customVec.append(idLen - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
+            customVec.append(valMin & mask, idLen);
+            if (!fixedIDs) customVec.append(valMax & mask, idLen);
         } else {
             // Encode non-rolled IDs
             let damages = ["nDam", "eDam", "tDam", "wDam", "fDam", "aDam"];
-            let id_value = custom.statMap.get(id);
+            let idVal = custom.statMap.get(id);
 
             if (id == "majorIds") {
-                if (id_value.length > 0) {
-                    id_value = id_value[0];
+                if (idVal.length > 0) {
+                    idVal = idVal[0];
                 } else {
-                    id_value = "";
+                    idVal = "";
                 }
             }
 
-            if (typeof id_value === "string" && id_value !== "") {
-                const verbose_ids = ["lore", "majorIds", "quest", "materials", "drop", "set"];
-                if ((damages.includes(id) && id_value === "0-0") || (!verbose && verbose_ids.includes(id))) {
+            if (typeof idVal === "string" && idVal !== "") {
+                const verboseIDs = ["lore", "majorIds", "quest", "materials", "drop", "set"];
+                if ((damages.includes(id) && idVal === "0-0") || (!verbose && verboseIDs.includes(id))) {
                     continue;
                 }
 
                 console.log(`Encoding the Non-Rolled ID: ${id}`);
 
-                custom_vec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
+                customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
 
                 switch (id) {
-                    case "type": custom_vec.append(all_types.indexOf(capitalizeFirst(id_value)), CUSTOM_ENC.ITEM_TYPE_BITLEN); break;
-                    case "tier": custom_vec.append(tiers.indexOf(id_value), CUSTOM_ENC.ITEM_TIER_BITLEN); break;
-                    case "atkSpd": custom_vec.append(attackSpeeds.indexOf(id_value), CUSTOM_ENC.ITEM_ATK_SPD_BITLEN); break;
-                    case "classReq": custom_vec.append(classes.indexOf(capitalizeFirst(id_value)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
+                    case "type": customVec.append(all_types.indexOf(capitalizeFirst(idVal)), CUSTOM_ENC.ITEM_TYPE_BITLEN); break;
+                    case "tier": customVec.append(tiers.indexOf(idVal), CUSTOM_ENC.ITEM_TIER_BITLEN); break;
+                    case "atkSpd": customVec.append(attackSpeeds.indexOf(idVal), CUSTOM_ENC.ITEM_ATK_SPD_BITLEN); break;
+                    case "classReq": customVec.append(classes.indexOf(capitalizeFirst(idVal)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
                     default: {
-                        const len_mask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
-                        if (Base64.isB64(id_value)) {
-                            custom_vec.append_flag("TEXT_ENCODING", "BASE_64");
-                            custom_vec.append(id_value.length & len_mask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
-                            custom_vec.appendB64(id_value);
-                            console.log(`Encoding string id "${id}" with Base64 encoding, got ${id_value}`)
+                        const lenMask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
+                        if (Base64.isB64(idVal)) {
+                            customVec.appendFlag("TEXT_ENCODING", "BASE_64");
+                            customVec.append(idVal.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
+                            customVec.appendB64(idVal);
+                            console.log(`Encoding string id "${id}" with Base64 encoding, got ${idVal}`)
                         } else {
                             const encoder = new TextEncoder();
-                            const b64_string = Base64.fromBytes(encoder.encode(id_value));
-                            custom_vec.append_flag("TEXT_ENCODING", "UTF_8");
-                            custom_vec.append(b64_string.length & len_mask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
-                            custom_vec.appendB64(b64_string);
-                            console.log(`Encoding string id "${id}" with UTF-8 encoding, got ${id_value}, resulting string: ${b64_string}`)
+                            const b64String = Base64.fromBytes(encoder.encode(idVal));
+                            customVec.appendFlag("TEXT_ENCODING", "UTF_8");
+                            customVec.append(b64String.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
+                            customVec.appendB64(b64String);
+                            console.log(`Encoding string id "${id}" with UTF-8 encoding, got ${idVal}, resulting string: ${b64String}`)
                         }
                         break;
                     }
                 }
-            } else if (typeof id_value === "number" && id_value != 0) {
+            } else if (typeof idVal === "number" && idVal != 0) {
+                // Non rolled numeric IDs
                 console.log(`Encoding the Numeric ID: ${id}`);
-                custom_vec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
-                const len = Math.min(32, Math.floor(Math.log2(Math.abs(id_value))) + 2);
+                customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
+                const len = Math.min(32, Math.floor(Math.log2(Math.abs(idVal))) + 2);
                 const mask = (1 << len) - 1;
-                custom_vec.append(len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
-                custom_vec.append(id_value & mask, len);
+                customVec.append(len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
+                customVec.append(idVal & mask, len);
             }
         }
     }
 
     // Pad with zeroes to fit perfectly in a B64 string
-    custom_vec.append(0, 6 - (custom_vec.length % 6));
-    return custom_vec;
+    customVec.append(0, 6 - (customVec.length % 6));
+    return customVec;
 }
 
 /**
+ * Legacy verison of encodeCustom.
+ *
  * @param {Map} custom - the statMap of the CI
  * @param {boolean} verbose - if we want lore and majorIds to display
  */
-function encodeCustom(custom, verbose) {
+function encodeCustomLegacy(custom, verbose) {
     if (custom) {
         if (custom.statMap) {
             custom = custom.statMap;
@@ -249,44 +256,49 @@ function encodeCustom(custom, verbose) {
     return "";
 }
 
-function parse_custom({cursor: cursor, hash: hash}) {
+/**
+ * @param {Object} arg
+ * @param {BitVectorCursor | undefined} arg.cursor - A cursor into a bit vector representing the custom item. 
+ * @param {string | undefined} arg.hash - A Base64 string representation of the custom item.
+ */
+function parseCustom({cursor: cursor, hash: hash}) {
     if (cursor === undefined) {
-        if (hash === undefined) throw new Error("parse_custom must be called with either a hash or a BitVectorCursor.");
+        if (hash === undefined) throw new Error("parseCustom must be called with either a hash or a BitVectorCursor.");
         cursor = new BitVectorCursor(new BitVector(hash, hash.length * 6));
     }
 
     const statMap = new Map();
-    statMap.set("hash", "CI-" + cursor.bitvec.sliceB64(cursor.curr_idx, cursor.end_idx));
+    statMap.set("hash", "CI-" + cursor.bitVec.sliceB64(cursor.currIdx, cursor.endIdx));
 
     const legacy = cursor.advance();
     if (legacy) {
         if (hash === undefined) throw new Error("Tried to parse legacy encoded item but got binary.");
-        const custom_item = getCustomFromHash("CI-" + hash);
-        console.log(custom_item);
-        return custom_item;
+        const customItem = getCustomFromHash("CI-" + hash);
+        console.log(customItem);
+        return customItem;
     }
 
     statMap.set("minRolls", new Map())
     statMap.set("maxRolls", new Map())
 
     // here for future reference
-    const version = cursor.advance_by(CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
+    const version = cursor.advanceBy(CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
     console.log(`Decoded version, Got ${version}`);
 
-    let fixIDs = cursor.advance_by(CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.BITLEN) === CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.FIXED;
-    console.log(`Decoded fixIDs, Got ${fixIDs}`);
-    if (fixIDs) statMap.set("fixID", true);
+    let fixedIDs = cursor.advanceBy(CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.BITLEN) === CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.FIXED;
+    console.log(`Decoded fixIDs, Got ${fixedIDs}`);
+    if (fixedIDs) statMap.set("fixID", true);
 
-    while (cursor.curr_idx + CUSTOM_ENC.ID_IDX_BITLEN <= cursor.end_idx) {
-        const id = ci_save_order[cursor.advance_by(CUSTOM_ENC.ID_IDX_BITLEN)];
+    while (cursor.currIdx + CUSTOM_ENC.ID_IDX_BITLEN <= cursor.endIdx) {
+        const id = ci_save_order[cursor.advanceBy(CUSTOM_ENC.ID_IDX_BITLEN)];
         console.log(`parsing id ${id}`);
         if (rolledIDs.includes(id)) {
             // Sign extend the id_len-bit values
-            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
-            const extension = 32 - id_len;
-            const minRoll = (cursor.advance_by(id_len) << extension) >> extension;
-            if (!fixIDs) {
-                let maxRoll = (cursor.advance_by(id_len) << extension) >> extension;
+            const idLen = cursor.advanceBy(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
+            const extension = 32 - idLen;
+            const minRoll = (cursor.advanceBy(idLen) << extension) >> extension;
+            if (!fixedIDs) {
+                let maxRoll = (cursor.advanceBy(idLen) << extension) >> extension;
                 statMap.get("minRolls").set(id, minRoll);
                 statMap.get("maxRolls").set(id, maxRoll);
             } else {
@@ -296,46 +308,50 @@ function parse_custom({cursor: cursor, hash: hash}) {
             continue;
         }
 
-        let id_value = null;
+        let idVal = null;
 
         if (non_rolled_strings.includes(id)) {
             switch (id) {
-                case "type": id_value = all_types[cursor.advance_by(CUSTOM_ENC.ITEM_TIER_BITLEN)]; break;
-                case "tier": id_value = tiers[cursor.advance_by(CUSTOM_ENC.ITEM_TYPE_BITLEN)]; break;
-                case "atkSpd": id_value = attackSpeeds[cursor.advance_by(CUSTOM_ENC.ITEM_ATK_SPD_BITLEN)]; break;
-                case "classReq": id_value = classes[cursor.advance_by(CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN)]; break;
+                case "type": idVal = all_types[cursor.advanceBy(CUSTOM_ENC.ITEM_TIER_BITLEN)]; break;
+                case "tier": idVal = tiers[cursor.advanceBy(CUSTOM_ENC.ITEM_TYPE_BITLEN)]; break;
+                case "atkSpd": idVal = attackSpeeds[cursor.advanceBy(CUSTOM_ENC.ITEM_ATK_SPD_BITLEN)]; break;
+                case "classReq": idVal = classes[cursor.advanceBy(CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN)]; break;
                 default: {
-                    const text_encoding = cursor.advance_by(CUSTOM_ENC.TEXT_ENCODING.BITLEN);
-                    let text_len = cursor.advance_by(CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) & 0xFFFFFFFF;
+                    const textEncoding = cursor.advanceBy(CUSTOM_ENC.TEXT_ENCODING.BITLEN);
+                    let textLen = cursor.advanceBy(CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) & 0xFFFFFFFF;
                     let chars = [];
-                    while (text_len > 0) {
-                        chars.push(Base64.fromIntN(cursor.advance_by(6), 1))
-                        text_len -= 1;
+                    while (textLen > 0) {
+                        chars.push(Base64.fromIntN(cursor.advanceBy(6), 1))
+                        textLen -= 1;
                     }
-                    id_value = chars.join("");
-                    if (text_encoding === CUSTOM_ENC.TEXT_ENCODING.UTF_8) {
+                    idVal = chars.join("");
+                    if (textEncoding === CUSTOM_ENC.TEXT_ENCODING.UTF_8) {
                         const decoder = new TextDecoder();
-                        id_value = decoder.decode(Base64.intoBytes(id_value));
+                        idVal = decoder.decode(Base64.intoBytes(idVal));
                     }
                     break;
                 }
             }
-            console.log(`Finished parsing string id ${id}, got ${id_value}`)
+            console.log(`Finished parsing string id ${id}, got ${idVal}`)
         } else {
-            const id_len = cursor.advance_by(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
+            const idLen = cursor.advanceBy(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
             console.log(`parsing numeric ID ${id}`);
-            const extension = 32 - id_len;
-            id_value = cursor.advance_by(id_len) << extension >> extension;
-            console.log(`Finished parsing numeric ID ${id}, got ${id_value}`);
+            const extension = 32 - idLen;
+            idVal = cursor.advanceBy(idLen) << extension >> extension;
+            console.log(`Finished parsing numeric ID ${id}, got ${idVal}`);
         }
-        if (id === "majorIds") id_value = [id_value];
-        statMap.set(id, id_value);
+        if (id === "majorIds") idVal = [idVal];
+        statMap.set(id, idVal);
     }
 
     statMap.set("custom", true);
     return new Custom(statMap);
 }
 
+/**
+ * Legacy verison of `parseCustom`.
+ * @param {string} hash - A Base64 representation of a custom item.
+ */
 function getCustomFromHash(hash) {
     let name = hash.slice();
     let statMap;

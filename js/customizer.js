@@ -243,7 +243,7 @@ function calculateCustom() {
 
         player_custom_item = new Custom(statMap);
 
-        let custom_str = encode_custom(player_custom_item, true).toB64();
+        let custom_str = encodeCustom(player_custom_item, true).toB64();
         location.hash = custom_str;
         player_custom_item.setHash(custom_str);
 
@@ -285,7 +285,7 @@ function decodeCustom(custom_url_tag) {
         location.hash = custom_url_tag.substring(3);
     } 
 
-    const custom = parse_custom({hash: location.hash.substring(1)});
+    const custom = parseCustom({hash: location.hash.substring(1)});
 
     const minRolls = custom.statMap.get("minRolls");
     if (custom.statMap.get("fixID") === true) { toggleButton("fixID-choice") };
@@ -476,8 +476,8 @@ function useBaseItem(elem) {
     // If it's not a normal item, try parsing from a crafted or custom item
     if(!baseItem) {
         switch (itemName.slice(0, 3)) {
-            case "CR-": baseItem = parse_craft({hash: itemName.substring(3)}); break;
-            case "CI-": baseItem = parse_custom({hash: itemName.substring(3)}); break;
+            case "CR-": baseItem = parseCraft({hash: itemName.substring(3)}); break;
+            case "CI-": baseItem = parseCustom({hash: itemName.substring(3)}); break;
             default: baseItem = null;
         }
         baseItem = baseItem.statMap;

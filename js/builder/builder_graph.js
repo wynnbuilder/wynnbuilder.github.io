@@ -154,8 +154,8 @@ class ItemInputNode extends InputNode {
         }
 
         let item;
-        if (item_text.slice(0, 3) == "CI-") { item = parse_custom({hash: item_text.substring(3)}); }
-        else if (item_text.slice(0, 3) == "CR-") { item = parse_craft({hash: item_text.substring(3)}); } 
+        if (item_text.slice(0, 3) == "CI-") { item = parseCustom({hash: item_text.substring(3)}); }
+        else if (item_text.slice(0, 3) == "CR-") { item = parseCraft({hash: item_text.substring(3)}); } 
         else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
@@ -362,7 +362,7 @@ class BuildEncodeNode extends ComputeNode {
         // TODO: grr global state for copy button..
         player_build = build;
         build_powders = powders;
-        return encode_build(build, powders, skillpoints, atree, atree_state, aspects);
+        return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
     }
 }
 
@@ -1228,7 +1228,7 @@ function builder_graph_init(skillpoints) {
         const atree_state = atree_state_node.value;
         if (atree_data.length > 0) {
             try {
-                const active_nodes = decode_atree(atree_node.value, atree_data);
+                const active_nodes = decodeAtree(atree_node.value, atree_data);
                 for (const node of active_nodes) {
                     atree_set_state(atree_state.get(node.ability.id), true);
                 }

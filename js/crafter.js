@@ -149,7 +149,7 @@ function calculateCraft() {
     //create the craft
     player_craft = new Craft(recipe,mat_tiers,ingreds,atkSpd,"");
 
-    let craft_str = encode_craft(player_craft).toB64();
+    let craft_str = encodeCraft(player_craft).toB64();
     location.hash = craft_str;
     player_craft.setHash(craft_str);
     console.log(player_craft);
@@ -202,7 +202,7 @@ function decodeCraft(ing_url_tag) {
             ing_url_tag = ing_url_tag.substring(3);
             location.hash = ing_url_tag;
         }
-        const craft = parse_craft({hash: ing_url_tag});
+        const craft = parseCraft({hash: ing_url_tag});
 
         for (let i = 0; i < 6; i ++ ) {
             const ing = craft.ingreds[i];
