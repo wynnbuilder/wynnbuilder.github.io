@@ -31,18 +31,20 @@ in case of changes to the specification, an additional section titled "Specifica
 
 ## Section A - Build Encoding
 
-#### 1 - Build Version
-
-Each build has an associated "version" with it from which it loads the data.
+#### 1 - Build Header
 
 | field   | length (in bits) | values   | range     |
 | ------- | ---------------- | -------- | --------- |
+| Legacy  | 6                | `uint32` | [0, 63]   |
 | Version | 10               | `uint32` | [0, 1023] |
 
-#### 2 - Equipment
+Each build must have it's first 6 bits set to a number representing whether it is a legacy or binary encoded build.
+"Legacy" larger than 11 indicates a binary encoded build. anything less indicates a legacy build.
 
-Equipment IDs are encoded as `ID + 1` because an ID of 0 is used to indicate no item.
-After which, a flag is appended to denote whether the item has any powders.
+Each build must also have an associated "version" with it from which it loads the data. each vesrion corresponds to a folder in `data/`, and the
+translation between version numbers and names can be found in `js/load_item.js:wynn_version_names`.
+
+#### 2 - Equipment
 
 | field                              | length (in bits) | values                        | range      |
 | ---------------------------------- | ---------------- | ----------------------------- | ---------- |
@@ -56,7 +58,10 @@ After which, a flag is appended to denote whether the item has any powders.
 "Equipment Kind" denotes the kind of equipment to be encoded. Normal encoding is described in this section. Crafted and Custom encodings will be described in their own sections.
 
 When "Equipment Kind" is Custom, the length (in bits) of the hash is encoded before the custom item itself is encoded.
-When "Equipment Kind" is Crafted, the crafted hash is encoded
+When "Equipment Kind" is Crafted, the crafted hash is encoded as is.
+
+Equipment IDs are encoded as `ID + 1` because an ID of 0 is used to indicate no item.
+After which, a flag is appended to denote whether the item has any powders.
 
 - "Powder Flag" is encoded iff the item type is powderable.
 - "Powder Flag" is `NO_POWDERS` if the item has no powders applied, otherwise `HAS_POWDERS`.
@@ -101,7 +106,7 @@ Scenarios 1 and 2 are common enough to optimize, while 3 is rarely seen in proba
    ```
 3. if 2 is false, encode `CHANGE_POWDER`. if there are additional powders, encode `NEW_POWDER`. otherwise, encode `NEW_ITEM`.
 
-To allow flexibility in case the number of powder tiers changes, we store the number of powder tiers available for each version. when encoding to a specific version with some given `old_num_tiers`, the index is corrected in the following way:
+To allow flexibility in case the number of powder tiers or elements changes, we store the number of powder tiers  and elements available for each version. when encoding to a specific version with some given `old_num_tiers`, the index is corrected in the following way:
 
 ```js
 element = floor(pid / NUM_POWDER_TIERS)
@@ -119,6 +124,8 @@ difference_per_element = NUM_POWDER_TIERS - old_num_tiers
 // the resulting locaiton in the latest powder matrix
 decoded_idx = pid + element * difference_per_element
 ```
+
+The number of elements is stored to decode the "powder wrapping" part of repeating a tier, because decoding the next element given a particular "wrap" requires knowledge of the number of elements present at the time of encoding.
 
 #### 3 - Tomes
 
@@ -240,9 +247,9 @@ a 1 bit indicator to indicate whether the craft should be parsed with legacy enc
 #### 2 - Encoding version
 Used to allow versioning of the encoder itself in case something breaking changes, to maintain backwards compatibility. Has nothing to do with loading data.
 
-| field   | length (in bits) | values  | range   |
-| ------- | ---------------- | ------- | ------- |
-| Version | 6                | `uin32` | [0, 63] |
+| field   | length (in bits) | values  | range     |
+| ------- | ---------------- | ------- | --------- |
+| Version | 10               | `uin32` | [0, 1023] |
 
 #### 3 - Ingredients
 The 6 ingredients dictating the stats of the crafted item. each ingredient ID is encoded as-is, with 4000 being the ID of the "None" ingredient, and 4001-4030 being the IDs for powders when they're used as ingredients.
@@ -277,7 +284,7 @@ Because we need to be able to embed the crafted item encoding into the builder's
 directly from it's hash as to not waste additional compute, the bit vector is padded with zeroes until it's length is a multiple of 6. This ensures it fits exactly within a Base64 string, and avoids potential issues. When decoding, simply skip the additional zeroes.
 
 ## Section C - Custom item encoding
-Custom items are also versioned separately from the data. The fields in the custom item are almost entirely optional and are encoded based on a stable encoding order defined in `js/custom.js`.
+Custom items are also versioned separately from the data. The fields in the custom item encoding are almost entirely optional and are encoded based on a stable encoding order defined in `js/custom.js`.
 The IDs encoded are separated into different categories, each handled differently, and with quite a bit of special casing to go along with it.
 
 Custom encoding parts:
@@ -326,10 +333,10 @@ These are IDs with predetermined possible values and therefore sizes, and they i
 
 | field                        | length (in bits) | values   | range   |
 | ---------------------------- | ---------------- | -------- | ------- |
-| type (optional)              | 6                | `uint32` | [0, 63] |
-| tier (optional)              | 6                | `uint32` | [0, 63] |
-| attak speed (optional)       | 6                | `uint32` | [0, 63] |
-| class requirement (optional) | 6                | `uint32` | [0, 63] |
+| type (optional)              | 4                | `uint32` | [0, 15] |
+| tier (optional)              | 4                | `uint32` | [0, 15] |
+| attak speed (optional)       | 4                | `uint32` | [0, 15] |
+| class requirement (optional) | 4                | `uint32` | [0, 15] |
 
 ##### 2.3 - Non-Rolled variable length string IDs
 These are IDs that can hold any string value. the IDs are encoded as Base64 in two possible ways:
@@ -339,7 +346,7 @@ These are IDs that can hold any string value. the IDs are encoded as Base64 in t
 | field                         | length (in bits) | values                | range     |
 | ----------------------------- | ---------------- | --------------------- | --------- |
 | Text type                     | 1                | `BASE\_64`, `UTF\_8`  | [0, 1]    |
-| Text length (in Base64 chars) | 16               | `uint32`              | [0, 2^24) |
+| Text length (in Base64 chars) | 16               | `uint32`              | [0, 2^16) |
 | Text content                  | Variable         | UTF-8 Encoded string  | undefined |
 
 If the text content is entirely Base64 compatible, as is the case with some single-word names, a text type of `BASE_64` is encoded. otherwise, a text type of `UTF_8` is encoded and the text is encoded into `Base64`. Afterwards, the length (in bits) of the resulting Base64 string is encoded, clamped to a 24-bit maximum value, followed by the string itself.

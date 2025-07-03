@@ -322,7 +322,7 @@ async function init() {
         console.log("Could not initialize macy components. Maybe you're offline?");
         console.log(e);
     }
-    const skillpoints = await parse_hash();
+    const skillpoints = await parseHash();
 
     try {
         init_autocomplete();

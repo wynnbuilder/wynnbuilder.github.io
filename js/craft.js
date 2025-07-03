@@ -14,72 +14,64 @@ const CRAFTER_ENC = {
     NUM_INGS: 6,
     ING_ID_BITLEN: 12,
     RECIPE_ID_BITLEN: 12,
-    CRAFTED_VERSION_BITLEN: 6,
+    CRAFTED_VERSION_BITLEN: 10,
     CRAFTED_ENCODING_VERSION: 2,
 }
 
 CRAFTER_ENC.CRAFTED_ATK_SPD_ID = Object.keys(CRAFTER_ENC.CRAFTED_ATK_SPD);
 
-
 /**
- * @param {ing} Map<IngredientFields>
- * @returns bool
+ * @param {Craft} craft 
+ * Encodes a given craft and returns the resulting bit vector.
  */
-function ing_is_none(ing) {
-    return ing.get("id") === 4000;
-}
-
-/**
- * @param {ing} Map<IngredientFields>
- * @returns bool
- */
-function ing_is_powder(ing) {
-    return ing.get("id") > 4000;
-}
-
-function encode_craft(craft) {
-    let craft_vec = new EncodingBitVector(0, 0, CRAFTER_ENC);  
-    if (!craft) return craft_vec;
+function encodeCraft(craft) {
+    let craftVec = new EncodingBitVector(0, 0, CRAFTER_ENC);  
+    if (!craft) return craftVec;
     // Legacy versions always start with their first bit set
-    craft_vec.append(0, 1);
+    craftVec.append(0, 1);
 
     // Encode version
-    craft_vec.append(CRAFTER_ENC.CRAFTED_ENCODING_VERSION, CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
+    craftVec.append(CRAFTER_ENC.CRAFTED_ENCODING_VERSION, CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
 
     // Encode ingredients
     for (const ing of craft.ingreds) {
-        craft_vec.append(ing.get("id"), CRAFTER_ENC.ING_ID_BITLEN);
+        craftVec.append(ing.get("id"), CRAFTER_ENC.ING_ID_BITLEN);
     }
 
     // Encode recipe
-    craft_vec.append(craft.recipe.get("id"), CRAFTER_ENC.RECIPE_ID_BITLEN);
+    craftVec.append(craft.recipe.get("id"), CRAFTER_ENC.RECIPE_ID_BITLEN);
 
     // Encode material tiers
     for (const mat_tier of craft.mat_tiers) {
-        craft_vec.append(mat_tier - 1, CRAFTER_ENC.MAT_TIER_BITLEN);
+        craftVec.append(mat_tier - 1, CRAFTER_ENC.MAT_TIER_BITLEN);
     }
 
     // Encode attack speed
     if (craft.statMap.get("category") === "weapon") {
-        craft_vec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
+        craftVec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
     }
 
     // Pad to fit into a B64 string perfectly
-    craft_vec.append(0, 6 - (craft_vec.length % 6));
-    return craft_vec;
+    craftVec.append(0, 6 - (craftVec.length % 6));
+    return craftVec;
 }
 
-function parse_craft({cursor, hash}) {
+/**
+ * Parses a given craft and returns the resulting crafted item.
+    * @param {Object} arg 
+    * @param {BitVectorCursor} arg.cursor - A bit vector cursor pointing to the beginning of the crafted hash.
+    * @param {string} arg.hash - A Base64 string representation of the crafted item.
+ */
+function parseCraft({cursor, hash}) {
     if (cursor === undefined) {
-        assert(hash !== undefined, "parse_craft must be called with either a URL or a BitVectorCursor.");
+        assert(hash !== undefined, "parseCraft must be called with either a URL or a BitVectorCursor.");
         cursor = new BitVectorCursor(new BitVector(hash, hash.length * 6));
     }
 
     // Since the cursor doesn't necessarily point to the beginning of the hash
     // (in the case where it's part of a build's URL encoding) save it so we can
     // slice off just the hash of the item.
-    const hash_start_idx = cursor.curr_idx;
-    const NONE_ID = 4000;
+    const hashStartIdx = cursor.currIdx;
 
     // 1 if legacy encoding, 0 otherwise
     const legacy = cursor.advance();
@@ -88,37 +80,40 @@ function parse_craft({cursor, hash}) {
     }
 
     // Here for future usage
-    const version = cursor.advance_by(CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
+    const version = cursor.advanceBy(CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
 
     // Parse ingredients
     const ings = [];
     for (let i = 0; i < CRAFTER_ENC.NUM_INGS; ++i) {
-        const ing = ingMap.get(ingIDMap.get(cursor.advance_by(CRAFTER_ENC.ING_ID_BITLEN)));
+        const ing = ingMap.get(ingIDMap.get(cursor.advanceBy(CRAFTER_ENC.ING_ID_BITLEN)));
         ings.push(expandIngredient(ing)); 
     }
 
     // Parse recipe
-    const recipe = expandRecipe(recipeMap.get(recipeIDMap.get(cursor.advance_by(CRAFTER_ENC.RECIPE_ID_BITLEN))));
+    const recipe = expandRecipe(recipeMap.get(recipeIDMap.get(cursor.advanceBy(CRAFTER_ENC.RECIPE_ID_BITLEN))));
 
     // Parse material tiers
-    const mat_tiers = [];
+    const matTiers = [];
     for (let i = 0; i < CRAFTER_ENC.NUM_MATS; ++i) {
-        mat_tiers.push(cursor.advance_by(CRAFTER_ENC.MAT_TIER_BITLEN) + 1);
+        matTiers.push(cursor.advanceBy(CRAFTER_ENC.MAT_TIER_BITLEN) + 1);
     }
 
     // Parse attack speed, set default to slow
     let atkSpd = "SLOW";
     if (weaponTypes.includes(recipe.get("type").toLowerCase())) {
-        atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advance_by(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
+        atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advanceBy(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
     }
 
     // Skip padding
-    cursor.skip(6 - ((cursor.curr_idx - hash_start_idx) % 6));
+    cursor.skip(6 - ((cursor.currIdx - hashStartIdx) % 6));
 
-    return new Craft(recipe, mat_tiers, ings, atkSpd, cursor.bitvec.sliceB64(hash_start_idx, cursor.curr_idx));
+    return new Craft(recipe, matTiers, ings, atkSpd, cursor.bitVec.sliceB64(hashStartIdx, cursor.currIdx));
 }
 
-function encodeCraft(craft) {
+/**
+ * Legacy version of `encodeCraft`.
+ */
+function encodeCraftLegacy(craft) {
     if (craft) {
         let atkSpds = ["SLOW","NORMAL","FAST"];
         let craft_string =  "1" + 
@@ -136,7 +131,9 @@ function encodeCraft(craft) {
     return "";
 }
 
-//constructs a craft from a hash 'CR-qwoefsabaoe' or 'qwoefsaboe'
+/**
+ * Legacy verison of `parseCraft`.
+ */
 function getCraftFromHash(hash) {
     let name = hash.slice();
     try {

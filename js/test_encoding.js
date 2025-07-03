@@ -22,13 +22,13 @@ const test_states = [
     ["encodedSkillpoints", 0]
 ]
 
-function init_test_storage() {
+function initTestStorage() {
     for (const [key, val] of test_states) {
         if (!localStorage.getItem(key)) localStorage.setItem(key, val);
     }
 }
 
-init_test_storage();
+initTestStorage();
 
 // Make sure this test doesn't randomly make someone think they've been hacked
 const testMessage = `
@@ -49,7 +49,7 @@ if (localStorage.getItem("testBegin") === "0" && confirm(testMessage)) {
     localStorage.setItem("testBegin", 1);
 }
 
-async function get_test_data() {
+async function getTestData() {
     if (!localStorage.getItem("urlList") === "") return ["loaded_test_data", null];
     response = await fetch("../test_data/encoding_test_data.json");
     if (response?.ok) {
@@ -59,18 +59,18 @@ async function get_test_data() {
     }
 }
 
-// Overwrite the parse_hash function to load the test data
+// Overwrite the parseHash function to load the test data
 // if it's not yet loaded
-original_parse_hash = parse_hash;
-parse_hash = async function() {
-    let [state, test_file] = await get_test_data();
+originalParseHash = parseHash;
+parseHash = async function() {
+    let [state, test_file] = await getTestData();
     if (state === "loading") {
         localStorage.setItem("urlList", JSON.stringify(test_file.test_links));
     } else {
         // do nothing
     }
-    // call and return the original parse_hash function
-    return await original_parse_hash();
+    // call and return the original parseHash function
+    return await originalParseHash();
 }
 
 // Change confirm to a boolean to stop the upgrade build alert
@@ -185,8 +185,8 @@ function compareDeepEquals(one, two) {
 //
 function checkPowders(old_powder_arr, new_powder_arr) {
     for (let [old_powders, new_powders] of zip2(old_powder_arr, new_powder_arr)) {
-        old_powders = collect_powders(old_powders);
-        new_powders = collect_powders(new_powders);
+        old_powders = collectPowders(old_powders);
+        new_powders = collectPowders(new_powders);
         assert(compareDeepEquals(new_powders, old_powders), "Powders don't match!");
     }
 }
@@ -285,11 +285,7 @@ BuildEncodeNode = class extends ComputeNode {
             localStorage.setItem("testArray", JSON.stringify(testing_array, replacer));
             localStorage.setItem("encodedSkillpoints", 0);
         } else {
-            return encode_build(build, powders, skillpoints, atree, atree_state, aspects);
-        }
-
-        if (linkIndex === url_list.length * 2) {
-            location.replace(URL_PREPATH);
+            return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
         }
 
         // After collecting the data from two builds, check for their equivalence
@@ -299,13 +295,18 @@ BuildEncodeNode = class extends ComputeNode {
             localStorage.setItem("testArray", JSON.stringify([]));
         }
 
+        if (linkIndex === url_list.length * 2) {
+            localStorage.setItem("testSuccessful", 1);
+            location.replace(URL_PREPATH);
+        }
+
         if (linkIndex % 2 === 0) {
             // move to the next URL in the test list
             const url = new URL(url_list[linkIndex / 2]);
             history.pushState(null, "", URL_PREPATH + url.search + url.hash);
         // We just collected the old data, collect the new data next
         } else {
-            const hash = encode_build(build, powders, skillpoints, atree, atree_state, aspects).toB64();
+            const hash = encodeBuild(build, powders, skillpoints, atree, atree_state, aspects).toB64();
             history.pushState(null, "", URL_PREPATH + "#" + hash);
         };
 
@@ -358,7 +359,7 @@ URLUpdateNode = class extends ComputeNode { compute_func() {} }
 
 function resetTest() {
     localStorage.clear();
-    init_test_storage();
+    initTestStorage();
     location.replace(URL_PREPATH);
 }
 
