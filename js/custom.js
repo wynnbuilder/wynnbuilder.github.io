@@ -42,7 +42,7 @@ const non_rolled_strings = ["name", "lore", "tier", "set", "type", "material", "
 // TODO: Add an exclude list
 
 const CUSTOM_ENC = {
-    CUSTOM_VERSION_BITLEN: 10,
+    CUSTOM_VERSION_BITLEN: 7,
     CUSTOM_ENCODING_VERSION: 2,
     CUSTOM_FIXED_IDS_FLAG: {
         FIXED: 0,

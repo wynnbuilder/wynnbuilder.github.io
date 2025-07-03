@@ -249,7 +249,7 @@ Used to allow versioning of the encoder itself in case something breaking change
 
 | field   | length (in bits) | values  | range     |
 | ------- | ---------------- | ------- | --------- |
-| Version | 10               | `uin32` | [0, 1023] |
+| Version | 7                | `uin32` | [0, 1023] |
 
 #### 3 - Ingredients
 The 6 ingredients dictating the stats of the crafted item. each ingredient ID is encoded as-is, with 4000 being the ID of the "None" ingredient, and 4001-4030 being the IDs for powders when they're used as ingredients.
