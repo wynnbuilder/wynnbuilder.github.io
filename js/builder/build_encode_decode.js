@@ -42,11 +42,11 @@ function getDataVersionLegacy() {
     const urlParams = new URLSearchParams(window.location.search);
     const versionID = urlParams.get('v');
     let wynnVerison = parseInt(versionID); // Declared in load_item.js
-    if (isNaN(wynnVerison) || wynnVerison > WYNN_VERSION_LATEST || wynnVerison < 0) {
+    if (isNaN(wynnVerison) || wynnVerison > LAST_LEGACY_VERSION || wynnVerison < 0) {
         // TODO: maybe make the NAN try to use the human readable version?
         // NOTE: Failing silently... do we want to raise a loud error?
         console.log("Explicit version not found or invalid, using latest version");
-        wynnVerison = WYNN_VERSION_LATEST;
+        wynnVerison = LAST_LEGACY_VERSION;
     }
     else {
         console.log(`Build link for wynn version ${wynnVerison} (${wynn_version_names[wynnVerison]})`);
@@ -81,6 +81,8 @@ async function loadOlderVersion() {
     await Promise.all(loadPromises);
 }
 
+LAST_LEGACY_VERSION = 18
+
 /*
  * Parse legacy hashes.
  *
@@ -111,11 +113,7 @@ async function parseHashLegacy(url_tag) {
 
     // the deal with this is because old versions should default to 0 (oldest wynn item version), and v8+ defaults to latest.
     // its ugly... but i think this is the behavior we want...
-    if (wynn_version_id != WYNN_VERSION_LATEST) {
-        await loadOlderVersion();
-    } else if (wynn_version_id == WYNN_VERSION_LATEST) {
-        await loadLatestVersion();
-    }
+    await loadOlderVersion();
 
     //equipment (items)
     // TODO: use filters
@@ -237,7 +235,7 @@ async function parseHashLegacy(url_tag) {
         let item_type;
         if (equipment[8].slice(0, 3) == "CI-") { item_type = getCustomFromHash(equipment[8]).statMap.get("type"); }
         else if (equipment[8].slice(0, 3) == "CR-") { item_type = getCraftFromHash(equipment[8]).statMap.get("type"); }
-        else { item = itemMap.get(equipment[8]).type };
+        else { item_type = itemMap.get(equipment[8]).type };
 
         const player_class = wep_to_class.get(item_type);
         const class_aspects_by_id = aspect_id_map.get(player_class);
@@ -264,10 +262,6 @@ async function parseHashLegacy(url_tag) {
         setValue(powder_inputs[i], powdering[i]);
     }
 
-    // skp_deltas is used in binary encoding to denote
-    // the changes for each skillpoint, so it's necessary
-    // to pass "null" in it's place because of the current builder graph
-    // implementation.
     return skillpoints;
 }
 
@@ -752,7 +746,6 @@ async function handleLegacyHash(urlTag) {
     wynn_version_id = getDataVersionLegacy();
 
     // wynn_version 18 is the last version that supports legacy encoding.
-    if (wynn_version_id > 18) wynn_version_id = 18;
     return await parseHashLegacy(urlTag);
 }
 

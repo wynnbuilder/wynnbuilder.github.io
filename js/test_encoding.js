@@ -19,7 +19,8 @@ const test_states = [
     ["testArray", JSON.stringify([])],
     ["linkIndex", -1],
     ["urlList", ""],
-    ["encodedSkillpoints", 0]
+    ["encodedSkillpoints", 0],
+    ["compRatio", 0]
 ]
 
 function initTestStorage() {
@@ -289,29 +290,36 @@ BuildEncodeNode = class extends ComputeNode {
         }
 
         // After collecting the data from two builds, check for their equivalence
-        if (linkIndex !== 0 && linkIndex % 2 === 0) {
-            const arr = JSON.parse(localStorage.getItem("testArray"), reviver)
-            testEntries(arr);
-            localStorage.setItem("testArray", JSON.stringify([]));
-        }
-
-        if (linkIndex === url_list.length * 2) {
-            localStorage.setItem("testSuccessful", 1);
-            location.replace(URL_PREPATH);
-        }
-
         if (linkIndex % 2 === 0) {
-            // move to the next URL in the test list
-            const url = new URL(url_list[linkIndex / 2]);
-            history.pushState(null, "", URL_PREPATH + url.search + url.hash);
-        // We just collected the old data, collect the new data next
+            const arr = JSON.parse(localStorage.getItem("testArray"), reviver)
+            if (linkIndex > 0) {
+                testEntries(arr);
+                const previous_old_url = new URL(url_list[linkIndex / 2 - 1]);
+                const previous_encoding = previous_old_url.search.substring(1) + previous_old_url.hash.substring(1)
+                const current_encoding = location.hash.substring(1);
+                const ratio = current_encoding.length / previous_encoding.length;
+                const accu = parseFloat(localStorage.getItem("compRatio"));
+                localStorage.setItem("compRatio", accu + ratio);
+            }
+            localStorage.setItem("testArray", JSON.stringify([]));
+
+            // This is the "break" condition
+            if (linkIndex === url_list.length * 2) {
+                localStorage.setItem("testSuccessful", 1);
+                const sum_ratios = parseFloat(localStorage.getItem("compRatio"));
+                localStorage.setItem("finalRatio", sum_ratios / url_list.length);
+                location.replace(URL_PREPATH);
+            }
+
+            const new_url = new URL(url_list[linkIndex / 2]);
+            history.pushState(null, "", URL_PREPATH + new_url.search + new_url.hash);
         } else {
             const hash = encodeBuild(build, powders, skillpoints, atree, atree_state, aspects).toB64();
             history.pushState(null, "", URL_PREPATH + "#" + hash);
         };
 
-        setTimeout(() => location.reload(), 1000);
-        // return encode_build(build, powders, skillpoints, atree, atree_state, aspects);
+
+        setTimeout(() => location.reload(), 750);
     }
 }
 
@@ -325,8 +333,6 @@ SkillPointSetterNode = class extends ComputeNode {
         for (const child of this.notify_nodes) {
             child.link_to(this);
             child.fail_cb = true;
-            // This is needed because initially there is a value mismatch possibly... due to setting skillpoints manually
-            child.mark_input_clean(this.name, null);
         }
     }
 
@@ -346,6 +352,11 @@ SkillPointSetterNode = class extends ComputeNode {
         }
         localStorage.setItem("linkIndex", parseInt(localStorage.getItem("linkIndex")) + 1);
         localStorage.setItem("encodedSkillpoints", 1);
+        // Force an update even if the value is the same as the previous one, i.e
+        // there was no skillpoint encoding to trigger a second update
+        for (const node of this.notify_nodes) {
+            node.valid_val = null;
+        }
     }
 
     update(skillpoints=undefined) {

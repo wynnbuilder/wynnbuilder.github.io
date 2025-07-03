@@ -1010,8 +1010,6 @@ class SkillPointSetterNode extends ComputeNode {
         for (const child of this.notify_nodes) {
             child.link_to(this);
             child.fail_cb = true;
-            // This is needed because initially there is a value mismatch possibly... due to setting skillpoints manually
-            child.mark_input_clean(this.name, null);
         }
     }
 
