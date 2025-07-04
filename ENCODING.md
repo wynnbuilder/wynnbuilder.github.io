@@ -238,7 +238,7 @@ Crafted encoding is composed of the following sections:
 - 6-bit padding
 
 #### 1 - Legacy flag
-a 1 bit indicator to indicate whether the craft should be parsed with legacy encoding or binary encoding.
+a 1 bit indicator to indicate whether the craft should be decoded with legacy encoding or binary encoding.
 
 | field       | length (in bits) | values                 | range  |
 | ----------- | ---------------- | ---------------------- | ------ |

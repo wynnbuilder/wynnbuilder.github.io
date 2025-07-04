@@ -154,8 +154,8 @@ class ItemInputNode extends InputNode {
         }
 
         let item;
-        if (item_text.slice(0, 3) == "CI-") { item = parseCustom({hash: item_text.substring(3)}); }
-        else if (item_text.slice(0, 3) == "CR-") { item = parseCraft({hash: item_text.substring(3)}); } 
+        if (item_text.slice(0, 3) == "CI-") { item = decodeCustom({hash: item_text.substring(3)}); }
+        else if (item_text.slice(0, 3) == "CR-") { item = decodeCraft({hash: item_text.substring(3)}); } 
         else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 

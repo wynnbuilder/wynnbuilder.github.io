@@ -1,6 +1,12 @@
 let recipeTypes = ["HELMET","CHESTPLATE","LEGGINGS","BOOTS","RELIK","WAND","SPEAR","DAGGER","BOW","RING","NECKLACE","BRACELET","POTION", "SCROLL","FOOD"];
 let levelTypes = ["1-3","3-5","5-7","7-9","10-13","13-15","15-17","17-19","20-23","23-25","25-27","27-29","30-33","33-35","35-37","37-39","40-43","43-45","45-47","47-49","50-53","53-55","55-57","57-59","60-63","63-65","65-67","67-69","70-73","73-75","75-77","77-79","80-83","83-85","85-87","87-89","90-93","93-95","95-97","97-99","100-103","103-105",]
 
+/**
+ * A constant encompassing all the necessary info for crafted item encoding.
+ * if something in this structure changes, the version number must be increased
+ * and handled in the respective decoder.
+ * The values are detailed in ENCODING.md.
+ */
 const CRAFTER_ENC = {
     CRAFTED_ATK_SPD: {
         "SLOW": 0, 
@@ -18,7 +24,8 @@ const CRAFTER_ENC = {
     CRAFTED_ENCODING_VERSION: 2,
 }
 
-CRAFTER_ENC.CRAFTED_ATK_SPD_ID = Object.keys(CRAFTER_ENC.CRAFTED_ATK_SPD);
+// An array which is the inverse of CRAFTER_ENC.CRAFTED_STK_SPD to map ID => name
+CRAFTER_ENC.CRAFTED_ATK_SPD_ID = Object.keys(CRAFTER_ENC.CRAFTED_ATK_SPD).slice(0, -1);
 
 /**
  * @param {Craft} craft 
@@ -57,14 +64,16 @@ function encodeCraft(craft) {
 }
 
 /**
- * Parses a given craft and returns the resulting crafted item.
-    * @param {Object} arg 
-    * @param {BitVectorCursor} arg.cursor - A bit vector cursor pointing to the beginning of the crafted hash.
-    * @param {string} arg.hash - A Base64 string representation of the crafted item.
+ * Decodes a given craft and returns the resulting crafted item.
+ * Falls back to legacy parsing if the hash is in legacy format, see `getCraftFromHash`.
+ * 
+ * @param {Object} arg 
+ * @param {BitVectorCursor} arg.cursor - A bit vector cursor pointing to the beginning of the crafted hash.
+ * @param {string} arg.hash - A Base64 string representation of the crafted item.
  */
-function parseCraft({cursor, hash}) {
+function decodeCraft({cursor, hash}) {
     if (cursor === undefined) {
-        assert(hash !== undefined, "parseCraft must be called with either a URL or a BitVectorCursor.");
+        assert(hash !== undefined, "decodeCraft must be called with either a URL or a BitVectorCursor.");
         cursor = new BitVectorCursor(new BitVector(hash, hash.length * 6));
     }
 
@@ -82,23 +91,23 @@ function parseCraft({cursor, hash}) {
     // Here for future usage
     const version = cursor.advanceBy(CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
 
-    // Parse ingredients
+    // Decode ingredients
     const ings = [];
     for (let i = 0; i < CRAFTER_ENC.NUM_INGS; ++i) {
         const ing = ingMap.get(ingIDMap.get(cursor.advanceBy(CRAFTER_ENC.ING_ID_BITLEN)));
         ings.push(expandIngredient(ing)); 
     }
 
-    // Parse recipe
+    // Decode recipe
     const recipe = expandRecipe(recipeMap.get(recipeIDMap.get(cursor.advanceBy(CRAFTER_ENC.RECIPE_ID_BITLEN))));
 
-    // Parse material tiers
+    // Decode material tiers
     const matTiers = [];
     for (let i = 0; i < CRAFTER_ENC.NUM_MATS; ++i) {
         matTiers.push(cursor.advanceBy(CRAFTER_ENC.MAT_TIER_BITLEN) + 1);
     }
 
-    // Parse attack speed, set default to slow
+    // Decode attack speed, set default to slow
     let atkSpd = "SLOW";
     if (weaponTypes.includes(recipe.get("type").toLowerCase())) {
         atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advanceBy(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
@@ -112,6 +121,7 @@ function parseCraft({cursor, hash}) {
 
 /**
  * Legacy version of `encodeCraft`.
+ * here for documentation only.
  */
 function encodeCraftLegacy(craft) {
     if (craft) {
@@ -132,7 +142,7 @@ function encodeCraftLegacy(craft) {
 }
 
 /**
- * Legacy verison of `parseCraft`.
+ * Legacy verison of `decodeCraft`.
  */
 function getCraftFromHash(hash) {
     let name = hash.slice();
@@ -169,8 +179,9 @@ function getCraftFromHash(hash) {
 }
 
 
-/* Creates a crafted item object.
-*/
+/** 
+ * Creates a crafted item object.
+ */
 class Craft{
     /* Constructs a craft.
        @param recipe: Helmet-1-3 (id), etc. A recipe object.

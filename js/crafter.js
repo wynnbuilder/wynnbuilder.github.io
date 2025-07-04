@@ -57,7 +57,7 @@ function init_crafter() {
         }
 
         populateFields();
-        decodeCraft(ing_url_tag);
+        decodeCraftFromURL(ing_url_tag);
     } catch (error) {
         console.log(error);
     }
@@ -196,13 +196,13 @@ function calculateCraft() {
     
 }
 
-function decodeCraft(ing_url_tag) {
+function decodeCraftFromURL(ing_url_tag) {
     if (ing_url_tag) {
         if (ing_url_tag.startsWith("CR-")) {
             ing_url_tag = ing_url_tag.substring(3);
             location.hash = ing_url_tag;
         }
-        const craft = parseCraft({hash: ing_url_tag});
+        const craft = decodeCraft({hash: ing_url_tag});
 
         for (let i = 0; i < 6; i ++ ) {
             const ing = craft.ingreds[i];
@@ -219,11 +219,11 @@ function decodeCraft(ing_url_tag) {
         updateCraftedImage();
         setValue("level-choice", recipe_level);
 
-        for (let i = 0; i < CRAFTER_ENC["NUM_MATS"]; ++i) {
+        for (let i = 0; i < CRAFTER_ENC.NUM_MATS; ++i) {
             toggleMaterial(`mat-${i + 1}-${craft.mat_tiers[i]}`);
         }
 
-        const atkSpdId = CRAFTER_ENC["CRAFTED_ATK_SPD"][craft.atkSpd];
+        const atkSpdId = CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd];
         let atkSpdButtons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
         toggleAtkSpd(atkSpdButtons[atkSpdId]);
         
@@ -366,7 +366,7 @@ function resetFields() {
 }
 
 (async function() {
-    let load_promises = [ ingredient_loader.load_init(), load_encoding_constants(wynn_version_names[WYNN_VERSION_LATEST], wynn_version_names[WYNN_VERSION_LATEST]) ];
+    let load_promises = [ ingredient_loader.load_init() ];
     await Promise.all(load_promises);
     init_crafter();
 })();

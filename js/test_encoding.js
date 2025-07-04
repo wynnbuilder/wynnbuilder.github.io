@@ -60,18 +60,18 @@ async function getTestData() {
     }
 }
 
-// Overwrite the parseHash function to load the test data
+// Overwrite the decodeHash function to load the test data
 // if it's not yet loaded
-originalParseHash = parseHash;
-parseHash = async function() {
+originalDecodeHash = decodeHash;
+decodeHash = async function() {
     let [state, test_file] = await getTestData();
     if (state === "loading") {
         localStorage.setItem("urlList", JSON.stringify(test_file.test_links));
     } else {
         // do nothing
     }
-    // call and return the original parseHash function
-    return await originalParseHash();
+    // call and return the original decodeHash function
+    return await originalDecodeHash();
 }
 
 // Change confirm to a boolean to stop the upgrade build alert
