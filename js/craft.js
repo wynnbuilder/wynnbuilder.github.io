@@ -1,7 +1,129 @@
 let recipeTypes = ["HELMET","CHESTPLATE","LEGGINGS","BOOTS","RELIK","WAND","SPEAR","DAGGER","BOW","RING","NECKLACE","BRACELET","POTION", "SCROLL","FOOD"];
 let levelTypes = ["1-3","3-5","5-7","7-9","10-13","13-15","15-17","17-19","20-23","23-25","25-27","27-29","30-33","33-35","35-37","37-39","40-43","43-45","45-47","47-49","50-53","53-55","55-57","57-59","60-63","63-65","65-67","67-69","70-73","73-75","75-77","77-79","80-83","83-85","85-87","87-89","90-93","93-95","95-97","97-99","100-103","103-105",]
 
+/**
+ * A constant encompassing all the necessary info for crafted item encoding.
+ * if something in this structure changes, the version number must be increased
+ * and handled in the respective decoder.
+ * The values are detailed in ENCODING.md.
+ */
+const CRAFTER_ENC = {
+    CRAFTED_ATK_SPD: {
+        "SLOW": 0, 
+        "NORMAL": 1, 
+        "FAST": 2,
+        "BITLEN": 4,
+    },
+    MAT_TIERS: 3,
+    MAT_TIER_BITLEN: 3,
+    NUM_MATS: 2,
+    NUM_INGS: 6,
+    ING_ID_BITLEN: 12,
+    RECIPE_ID_BITLEN: 12,
+    CRAFTED_VERSION_BITLEN: 7,
+    CRAFTED_ENCODING_VERSION: 2,
+}
+
+// An array which is the inverse of CRAFTER_ENC.CRAFTED_STK_SPD to map ID => name
+CRAFTER_ENC.CRAFTED_ATK_SPD_ID = Object.keys(CRAFTER_ENC.CRAFTED_ATK_SPD).slice(0, -1);
+
+/**
+ * @param {Craft} craft 
+ * Encodes a given craft and returns the resulting bit vector.
+ */
 function encodeCraft(craft) {
+    let craftVec = new EncodingBitVector(0, 0, CRAFTER_ENC);  
+    if (!craft) return craftVec;
+    // Legacy versions always start with their first bit set
+    craftVec.append(0, 1);
+
+    // Encode version
+    craftVec.append(CRAFTER_ENC.CRAFTED_ENCODING_VERSION, CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
+
+    // Encode ingredients
+    for (const ing of craft.ingreds) {
+        craftVec.append(ing.get("id"), CRAFTER_ENC.ING_ID_BITLEN);
+    }
+
+    // Encode recipe
+    craftVec.append(craft.recipe.get("id"), CRAFTER_ENC.RECIPE_ID_BITLEN);
+
+    // Encode material tiers
+    for (const mat_tier of craft.mat_tiers) {
+        craftVec.append(mat_tier - 1, CRAFTER_ENC.MAT_TIER_BITLEN);
+    }
+
+    // Encode attack speed
+    if (craft.statMap.get("category") === "weapon") {
+        craftVec.append(CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd], CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)
+    }
+
+    // Pad to fit into a B64 string perfectly
+    craftVec.append(0, 6 - (craftVec.length % 6));
+    return craftVec;
+}
+
+/**
+ * Decodes a given craft and returns the resulting crafted item.
+ * Falls back to legacy parsing if the hash is in legacy format, see `getCraftFromHash`.
+ * 
+ * @param {Object} arg 
+ * @param {BitVectorCursor} arg.cursor - A bit vector cursor pointing to the beginning of the crafted hash.
+ * @param {string} arg.hash - A Base64 string representation of the crafted item.
+ */
+function decodeCraft({cursor, hash}) {
+    if (cursor === undefined) {
+        assert(hash !== undefined, "decodeCraft must be called with either a URL or a BitVectorCursor.");
+        cursor = new BitVectorCursor(new BitVector(hash, hash.length * 6));
+    }
+
+    // Since the cursor doesn't necessarily point to the beginning of the hash
+    // (in the case where it's part of a build's URL encoding) save it so we can
+    // slice off just the hash of the item.
+    const hashStartIdx = cursor.currIdx;
+
+    // 1 if legacy encoding, 0 otherwise
+    const legacy = cursor.advance();
+    if (legacy) {
+        return getCraftFromHash("CR-" + hash);
+    }
+
+    // Here for future usage
+    const version = cursor.advanceBy(CRAFTER_ENC.CRAFTED_VERSION_BITLEN);
+
+    // Decode ingredients
+    const ings = [];
+    for (let i = 0; i < CRAFTER_ENC.NUM_INGS; ++i) {
+        const ing = ingMap.get(ingIDMap.get(cursor.advanceBy(CRAFTER_ENC.ING_ID_BITLEN)));
+        ings.push(expandIngredient(ing)); 
+    }
+
+    // Decode recipe
+    const recipe = expandRecipe(recipeMap.get(recipeIDMap.get(cursor.advanceBy(CRAFTER_ENC.RECIPE_ID_BITLEN))));
+
+    // Decode material tiers
+    const matTiers = [];
+    for (let i = 0; i < CRAFTER_ENC.NUM_MATS; ++i) {
+        matTiers.push(cursor.advanceBy(CRAFTER_ENC.MAT_TIER_BITLEN) + 1);
+    }
+
+    // Decode attack speed, set default to slow
+    let atkSpd = "SLOW";
+    if (weaponTypes.includes(recipe.get("type").toLowerCase())) {
+        atkSpd = CRAFTER_ENC.CRAFTED_ATK_SPD_ID[cursor.advanceBy(CRAFTER_ENC.CRAFTED_ATK_SPD.BITLEN)];
+    }
+
+    // Skip padding
+    cursor.skip(6 - ((cursor.currIdx - hashStartIdx) % 6));
+
+    return new Craft(recipe, matTiers, ings, atkSpd, cursor.bitVec.sliceB64(hashStartIdx, cursor.currIdx));
+}
+
+/**
+ * Legacy version of `encodeCraft`.
+ * here for documentation only.
+ */
+function encodeCraftLegacy(craft) {
     if (craft) {
         let atkSpds = ["SLOW","NORMAL","FAST"];
         let craft_string =  "1" + 
@@ -19,7 +141,9 @@ function encodeCraft(craft) {
     return "";
 }
 
-//constructs a craft from a hash 'CR-qwoefsabaoe' or 'qwoefsaboe'
+/**
+ * Legacy verison of `decodeCraft`.
+ */
 function getCraftFromHash(hash) {
     let name = hash.slice();
     try {
@@ -55,8 +179,9 @@ function getCraftFromHash(hash) {
 }
 
 
-/* Creates a crafted item object.
-*/
+/** 
+ * Creates a crafted item object.
+ */
 class Craft{
     /* Constructs a craft.
        @param recipe: Helmet-1-3 (id), etc. A recipe object.

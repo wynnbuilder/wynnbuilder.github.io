@@ -3,8 +3,6 @@
  * but its mostly constants for builder page specifically.
  */
 
-const url_tag = location.hash.slice(1);
-
 const BUILD_VERSION = "7.0.20";
 
 

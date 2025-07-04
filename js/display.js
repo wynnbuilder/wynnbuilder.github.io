@@ -256,8 +256,8 @@ function displayExpandedItem(item, parent_id){
                     
                     let powders = item.get("powders");
                     for (let i = 0; i < powders.length; i++) {
-                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i]/6)+1]+"_powder"], {
-                            textContent: numerals.get((powders[i]%6)+1)+" "
+                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i]/POWDER_TIERS)+1]+"_powder"], {
+                            textContent: numerals.get((powders[i]%POWDER_TIERS)+1)+" "
                         }));
                     }
 

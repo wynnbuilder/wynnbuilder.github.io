@@ -154,8 +154,8 @@ class ItemInputNode extends InputNode {
         }
 
         let item;
-        if (item_text.slice(0, 3) == "CI-") { item = getCustomFromHash(item_text); }
-        else if (item_text.slice(0, 3) == "CR-") { item = getCraftFromHash(item_text); } 
+        if (item_text.slice(0, 3) == "CI-") { item = decodeCustom({hash: item_text.substring(3)}); }
+        else if (item_text.slice(0, 3) == "CR-") { item = decodeCraft({hash: item_text.substring(3)}); } 
         else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
@@ -377,7 +377,8 @@ class URLUpdateNode extends ComputeNode {
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "URLUpdateNode accepts exactly one input (build_str)"; }
         const [build_str] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        location.hash = build_str;
+        // Using `history.pushState` instead of `location.replace` prevents the browser from refreshing the page upon URL change.
+        window.history.pushState(null, "", location.origin + location.pathname + '#' + build_str.toB64());
     }
 }
 
@@ -409,6 +410,9 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('ring2'),
             input_map.get('bracelet'),
             input_map.get('necklace'),
+        ];
+
+        let tomes = [
             input_map.get('weaponTome1'),
             input_map.get('weaponTome2'),
             input_map.get('armorTome1'),
@@ -423,21 +427,21 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('dungeonXpTome2'),
             input_map.get('mobXpTome1'),
             input_map.get('mobXpTome2'),
+
         ];
+
         let weapon = input_map.get('weapon');
+
         let level = parseInt(input_map.get('level-input'));
         if (isNaN(level)) {
             level = 106;
         }
 
-        let all_none = weapon.statMap.has('NONE');
-        for (const item of equipments) {
-            all_none = all_none && item.statMap.has('NONE');
-        }
+        const all_none = equipments.concat([...tomes, weapon]).every(x => x.statMap.has('NONE'));
         if (all_none && !location.hash) {
             return null;
         }
-        return new Build(level, equipments, weapon);
+        return new Build(level, equipments, tomes, weapon);
     }
 }
 
@@ -479,7 +483,7 @@ class PowderInputNode extends InputNode {
         let powdering = [];
         let errorederrors = [];
         while (input) {
-            let first = input.slice(0, 2);
+            let first = input.slice(0, 2).toLowerCase();
             let powder = powderIDs.get(first);
             if (powder === undefined) {
                 if (first.length > 0) {
@@ -1002,20 +1006,34 @@ class SkillPointSetterNode extends ComputeNode {
     constructor(notify_nodes) {
         super("builder-skillpoint-setter");
         this.notify_nodes = notify_nodes.slice();
+        this.skillpoints = null;
         for (const child of this.notify_nodes) {
             child.link_to(this);
             child.fail_cb = true;
-            // This is needed because initially there is a value mismatch possibly... due to setting skillpoints manually
-            child.mark_input_clean(this.name, null);
         }
     }
 
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "SkillPointSetterNode accepts exactly one input (build)"; }
         const [build] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
+
         for (const [idx, elem] of skp_order.entries()) {
             document.getElementById(elem+'-skp').value = build.total_skillpoints[idx];
         }
+
+        if (this.skillpoints !== null) {
+            for (const [idx, elem] of skp_order.entries()) {
+                if (this.skillpoints[idx] !== null) {
+                    document.getElementById(elem+'-skp').value = this.skillpoints[idx];
+                }
+            }
+            this.skillpoints = null;
+        }
+    }
+
+    update(skillpoints=null) {
+        this.skillpoints = skillpoints;
+        return super.update()
     }
 }
 
@@ -1063,7 +1081,7 @@ let atree_graph_creator;
  * Parameters:
  *  save_skp:   bool    True if skillpoints are modified away from skp engine defaults.
  */
-function builder_graph_init(save_skp) {
+function builder_graph_init(skillpoints) {
     // Phase 1/3: Set up item input, propagate updates, etc.
 
     // Level input node.
@@ -1208,12 +1226,13 @@ function builder_graph_init(save_skp) {
         const atree_state = atree_state_node.value;
         if (atree_data.length > 0) {
             try {
-                const active_nodes = decode_atree(atree_node.value, atree_data);
+                const active_nodes = decodeAtree(atree_node.value, atree_data);
                 for (const node of active_nodes) {
                     atree_set_state(atree_state.get(node.ability.id), true);
                 }
                 atree_state_node.mark_dirty().update();
             } catch (e) {
+                console.error(e);
                 console.log("Failed to decode atree. This can happen when updating versions. Give up!")
             }
         }
@@ -1246,9 +1265,7 @@ function builder_graph_init(save_skp) {
 
     let skp_output = new SkillPointSetterNode(skp_inputs);
     skp_output.link_to(build_node);
-    if (!save_skp) {
-        skp_output.update().mark_dirty().update();
-    }
+    skp_output.update().mark_dirty().update(skillpoints);
 
     let build_warnings_node = new DisplayBuildWarningsNode();
     build_warnings_node.link_to(build_node, 'build');

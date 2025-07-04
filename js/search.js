@@ -235,8 +235,8 @@ function init_filter_drag() {
     let container = document.getElementById("filter-container");
 
     container.addEventListener("dragstart", function(e) {
-        if (e.path[0].classList.contains("reorder-filter")) {
-            currently_dragging = filters[Array.from(e.path[3].children).indexOf(e.path[2]) - 1];
+        if (e.composedPath()[0].classList.contains("reorder-filter")) {
+            currently_dragging = filters[Array.from(e.composedPath()[3].children).indexOf(e.composedPath()[2]) - 1];
         } else {
             e.preventDefault();
         }
@@ -263,10 +263,11 @@ function init_filter_drag() {
         for (const el of document.getElementsByClassName("filter-dragged-over")) {
             el.classList.remove("filter-dragged-over");
         }
-        if (!e.path.includes(currently_dragging.div)) {
-            for (let i = 0; i < e.path.length; i++) {
-                if (e.path[i].classList.contains("filter-row")) {
-                    e.path[i].classList.add("filter-dragged-over");
+        if (!e.composedPath().includes(currently_dragging.div)) {
+            for (let i = 0; i < e.composedPath().length; i++) {
+                let child_classes = e.composedPath()[i].classList;
+                if (child_classes && child_classes.contains("filter-row")) {
+                    child_classes.add("filter-dragged-over");
                     break;
                 }
             }
@@ -278,11 +279,12 @@ function init_filter_drag() {
         for (const el of document.getElementsByClassName("filter-dragged-over")) {
             el.classList.remove("filter-dragged-over");
         }
-        if (!e.path.includes(currently_dragging.div)) {
-            for (let i = 0; i < e.path.length; i++) {
-                if (e.path[i].classList.contains("filter-row")) {
+        if (!e.composedPath().includes(currently_dragging.div)) {
+            for (let i = 0; i < e.composedPath().length; i++) {
+                let child_classes = e.composedPath()[i].classList;
+                if (child_classes && child_classes.contains("filter-row")) {
                     let old_index = filters.indexOf(currently_dragging);
-                    let new_index = Array.from(e.path[i + 1].children).indexOf(e.path[i]) - 1;
+                    let new_index = Array.from(e.composedPath()[i + 1].children).indexOf(e.composedPath()[i]) - 1;
                     filters.splice(old_index, 1);
                     filters.splice(new_index, 0, currently_dragging);
                     currently_dragging.div.remove();

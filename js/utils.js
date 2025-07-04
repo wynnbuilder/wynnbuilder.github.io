@@ -52,6 +52,17 @@ function round_near(value) {
     return value;
 }
 
+/**
+ * Javascript's "%" is a remainder operator, which is inconvenient if
+ * a and b in a % b are of different signs, as it behaves differently
+ * from the modolus operator.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
+ */
+function mod(v, m) {
+    return ((v % m) + m) % m;
+}
+
 function setText(id, text) {
     document.getElementById(id).textContent = text;
 }
@@ -78,63 +89,144 @@ function log(b, n) {
     return Math.log(n) / Math.log(b);
 }
 
-// Base 64 encoding tools
-// https://stackoverflow.com/a/27696695
-// Modified for fixed precision
-
-// Base64.fromInt(-2147483648); // gives "200000"
-// Base64.toInt("200000"); // gives -2147483648
-Base64 = (function () {
-    var digitsStr =
+/**
+ * Base 64 encoding tools.
+ * Source: https://stackoverflow.com/a/27696695
+ * Modified for fixed precision.
+ *
+ * Examples:
+ * Base64.fromInt(-2147483648); // gives "200000"
+ * Base64.toInt("200000"); // gives -2147483648
+ */
+class Base64 {
+    static #digitsStr =
     //   0       8       16      24      32      40      48      56     63
     //   v       v       v       v       v       v       v       v      v
         "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+-";
-    var digits = digitsStr.split('');
-    var digitsMap = {};
-    for (var i = 0; i < digits.length; i++) {
-        digitsMap[digits[i]] = i;
-    }
-    return {
-        fromIntV: function(int32) {
-            var result = '';
-            while (true) {
-                result = digits[int32 & 0x3f] + result;
-                int32 >>>= 6;
-                if (int32 === 0)
-                    break;
-            }
-            return result;
-        },
-        fromIntN: function(int32, n) {
-            var result = '';
-            for (let i = 0; i < n; ++i) {
-                result = digits[int32 & 0x3f] + result;
-                int32 >>= 6;
-            }
-            return result;
-        },
-        toInt: function(digitsStr) {
-            var result = 0;
-            var digits = digitsStr.split('');
-            for (var i = 0; i < digits.length; i++) {
-                result = (result << 6) + digitsMap[digits[i]];
-            }
-            return result;
-        },
-        toIntSigned: function(digitsStr) {
-            var result = 0;
-            var digits = digitsStr.split('');
-            if (digits[0] && (digitsMap[digits[0]] & 0x20)) {
-                result = -1;
-            }
-            for (var i = 0; i < digits.length; i++) {
-                result = (result << 6) + digitsMap[digits[i]];
-            }
-            return result;
-        }
-    };
-})();
 
+    /** @type {string[]} */
+    static #digits = Base64.#digitsStr.split('');
+
+    /** @type {Record<string, number>} */
+    static #digitsMap = Object.fromEntries(Base64.#digits.map((x, i) => [x, i]));
+
+    /**
+     * Encode a 32 bit number as a base64 string.
+     * @param {number} int32
+     *
+     * @returns string
+     */
+    static fromIntV(int32) {
+        let result = '';
+        while (true) {
+            result = Base64.#digits[int32 & 0x3f] + result;
+            int32 >>>= 6;
+            if (int32 === 0)
+                break;
+        }
+        return result;
+    }
+
+    /**
+     * Return an integer from a Base64 compatible string.
+     * result must fit into Number.MAX_SAFE_INTEGER.
+     *
+     * @param {string} digitsStr
+     */
+    static toInt(digitsStr) {
+        let result = 0;
+        let digits = digitsStr.split('');
+        for (let i = 0; i < digits.length; i++) {
+            result = (result << 6) + Base64.#digitsMap[digits[i]];
+        }
+        return result;
+    }
+
+    /**
+     * Like fromIntV, but to a fixed number of characters N.
+     *
+     * @param {number} int32 - the number to encode
+     * @param {number} n - the precision
+     */
+    static fromIntN(int32, n) {
+        let result = '';
+        for (let i = 0; i < n; ++i) {
+            result = Base64.#digits[int32 & 0x3f] + result;
+            int32 >>= 6;
+        }
+        return result;
+    }
+
+    /**
+     * Encode a Base64 string from raw bytes
+     * @param {Uint8Array} arr - an array of bytes
+     */
+    static fromBytes(arr) {
+        let b64String = "";
+        let rem = 0;
+
+        for (let i in arr) {
+            const iMod = i % 3;
+            const num = (arr[i] << (iMod * 2)) & 0x3F | rem;
+            rem = arr[i] >> (6 - iMod * 2);
+            b64String = Base64.#digits[num] + b64String;
+            if (iMod === 2) {
+                b64String = Base64.#digits[rem] + b64String;
+                rem = 0;
+            }
+        }
+        if (arr.length % 3 !== 0) b64String = Base64.#digits[rem] + b64String;
+
+        return b64String;
+    }
+
+    /**
+     * Decode a b64_string into raw bytes
+     * @param {string} b64_string - a Base64 string to decode
+     * @returns Uint8Array
+     */
+    static intoBytes(b64_string) {
+        const arr = new Uint8Array(Math.floor(b64_string.length * (6/8)));
+
+        // Loop in reverse because we need to decode from lowest to highest
+        for (let i = 0, j = b64_string.length - 1; j > 0; --j, ++i) {
+            const iMod = i % 3;
+            arr[i] = Base64.toInt(b64_string[j]) >>> (iMod * 2);
+            arr[i] |= (Base64.toInt(b64_string[j - 1]) << (6 - iMod * 2)) & 0xFF;
+            if (iMod == 2) { --j; }
+        }
+
+        return arr;
+    }
+
+    /**
+     * Return an integer, signed, from a Base64 compatible string.
+     * @param {string} digitsStr
+     */
+    static toIntSigned(digitsStr) {
+        let result = 0;
+        let digits = digitsStr.split('');
+        if (digits[0] && (Base64.#digitsMap[digits[0]] & 0x20)) {
+            result = -1;
+        }
+        for (let i = 0; i < digits.length; i++) {
+            result = (result << 6) + Base64.#digitsMap[digits[i]];
+        }
+        return result;
+    }
+
+    /**
+     * Test whether a given string is made entirely out of Base64 characters.
+     * @param {string} digitStr
+     */
+    static isB64(str) {
+        return str.split('').every(c => Base64.#digitsMap[c] !== undefined);
+    }
+}
+
+// THe length, in bits of the version (one in data/*) to be used in binary encoding.
+// TODO:(@orgold) - move this.
+const VERISON_BITLEN = 10
 
 /** A class used to represent an arbitrary length bit vector. Very useful for encoding and decoding.
  *
@@ -149,26 +241,26 @@ Base64 = (function () {
      * The structure of the Uint32Array should be [[last, ..., first], ..., [last, ..., first], [empty space, last, ..., first]]
      */
     constructor(data, length) {
-        let bit_vec = [];
+        let bitVec = [];
 
         if (typeof data === "string") {
             let int = 0;
-            let bv_idx = 0;
+            let bvIdx = 0;
             length = data.length * 6;
 
             for (let i = 0; i < data.length; i++) {
                 let char = Base64.toInt(data[i]);
-                let pre_pos = bv_idx % 32;
-                int |= (char << bv_idx);
-                bv_idx += 6;
-                let post_pos = bv_idx % 32;
-                if (post_pos < pre_pos) { //we have to have filled up the integer
-                    bit_vec.push(int);
-                    int = (char >>> (6 - post_pos));
+                let prePos = bvIdx % 32;
+                int |= (char << bvIdx);
+                bvIdx += 6;
+                let postPos = bvIdx % 32;
+                if (postPos < prePos) { //we have to have filled up the integer
+                    bitVec.push(int);
+                    int = (char >>> (6 - postPos));
                 }
 
-                if (i == data.length - 1 && post_pos != 0) {
-                    bit_vec.push(int);
+                if (i == data.length - 1 && postPos != 0) {
+                    bitVec.push(int);
                 }
             }
         } else if (typeof data === "number") {
@@ -184,13 +276,32 @@ Base64 = (function () {
             if (data > 2**32 - 1 || data < -(2 ** 32 - 1)) {
                 throw new RangeError("Numerical data has to fit within a 32-bit integer range to instantiate a BitVector.");
             }
-            bit_vec.push(data);
+            bitVec.push(data);
         } else {
             throw new TypeError("BitVector must be instantiated with a Number or a B64 String");
         }
 
-        this.length = length;
-        this.bits = new Uint32Array(bit_vec);
+        this.length = length;              // The length, in bits, of the bitvector
+        this.tailIdx = bitVec.length;    // Index to the first uninitialized entry of the underlying ArrayBuffer, interpreted as a Uint32Array.
+
+        let byteLength = Math.floor(this.length / 4) + 1; // Length in bytes for ArrayBuffer creation.
+        if (byteLength < 4) byteLength = 4;              // The ArrayBuffer is interepreted as Uint32Array, so we must reserve at least 4 bytes.
+        this.arr = new ArrayBuffer(byteLength, {maxByteLength: 2 << 16});
+
+        const bitsView = new Uint32Array(this.arr);
+        for (const i in bitVec) {
+            bitsView[i] = bitVec[i];
+        }
+    }
+
+    /**
+     * Return a Uint32Array representation of the underlying ArrayBuffer.
+     * this does not copy the array.
+     *
+     * @returns Uint32Array
+     */
+    get bits() {
+        return new Uint32Array(this.arr);
     }
 
     /** Return value of bit at index idx.
@@ -199,7 +310,7 @@ Base64 = (function () {
      *
      * @returns The bit value at position idx
      */
-    read_bit(idx) {
+    readBit(idx) {
         if (idx < 0 || idx >= this.length) {
             throw new RangeError("Cannot read bit outside the range of the BitVector. ("+idx+" > "+this.length+")");
         }
@@ -215,6 +326,7 @@ Base64 = (function () {
      */
     slice(start, end) {
         //TO NOTE: JS shifting is ALWAYS in mod 32. a << b will do a << (b mod 32) implicitly.
+        const bitVec = this.bits;
 
         if (end < start) {
             throw new RangeError("Cannot slice a range where the end is before the start.");
@@ -228,13 +340,13 @@ Base64 = (function () {
         let res = 0;
         if (Math.floor((end - 1) / 32) == Math.floor(start / 32)) {
             //the range is within 1 uint32 section - do some relatively fast bit twiddling
-            res = (this.bits[Math.floor(start / 32)] & ~((((~0) << ((end - 1))) << 1) | ~((~0) << (start)))) >>> (start % 32);
+            res = (bitVec[Math.floor(start / 32)] & ~((((~0) << ((end - 1))) << 1) | ~((~0) << (start)))) >>> (start % 32);
         } else {
             //the number of bits in the uint32s
-            let start_pos = (start % 32);
-            let int_idx = Math.floor(start/32);
-            res = (this.bits[int_idx] & ((~0) << (start))) >>> (start_pos);
-            res |= (this.bits[int_idx + 1] & ~((~0) << (end))) << (32 - start_pos);
+            let startPos = (start % 32);
+            let intPos = Math.floor(start/32);
+            res = (bitVec[intPos] & ((~0) << (start))) >>> (startPos);
+            res |= (bitVec[intPos + 1] & ~((~0) << (end))) << (32 - startPos);
         }
 
         return res;
@@ -245,11 +357,27 @@ Base64 = (function () {
         // }
     }
 
+    // TODO:(@orgold): optimize this code
+    sliceB64(start, end) {
+        if (end < start) {
+            throw new RangeError("Cannot slice a range where the end is before the start.");
+        } else if (end > this.length) {
+            throw new RangeError("Cannot slice past the end of the vector.");
+        } else if (end == start) {
+            return "0";
+        }
+        let b64String = "";
+        for (let i = start; i < end; i += 6) {
+            b64String += Base64.fromIntN(this.slice(i, i + 6), 1);
+        }
+        return b64String;
+    }
+
     /** Assign bit at index idx to 1.
      *
      * @param {Number} idx - The index to set.
      */
-    set_bit(idx) {
+    setBit(idx) {
         if (idx < 0 || idx >= this.length) {
             throw new RangeError("Cannot set bit outside the range of the BitVector.");
         }
@@ -260,7 +388,7 @@ Base64 = (function () {
      *
      * @param {Number} idx - The index to clear.
      */
-    clear_bit(idx) {
+    clearBit(idx) {
         if (idx < 0 || idx >= this.length) {
             throw new RangeError("Cannot clear bit outside the range of the BitVector.");
         }
@@ -275,14 +403,14 @@ Base64 = (function () {
         if (this.length == 0) {
             return "";
         }
-        let b64_str = "";
+        let b64String = "";
         let i = 0;
         while (i < this.length) {
-            b64_str += Base64.fromIntN(this.slice(i, i + 6), 1);
+            b64String += Base64.fromIntN(this.slice(i, i + 6), 1);
             i += 6;
         }
 
-        return b64_str;
+        return b64String;
     }
 
     /** Returns a BitVector in bitstring format. Probably only useful for dev debugging.
@@ -290,11 +418,11 @@ Base64 = (function () {
      * @returns A bit string representation of the BitVector. Goes from higher-indexed bits to lower-indexed bits. (n ... 0)
      */
     toString() {
-        let ret_str = "";
+        let retStr = "";
         for (let i = 0; i < this.length; i++) {
-            ret_str = (this.read_bit(i) == 0 ? "0": "1") + ret_str;
+            retStr = (this.readBit(i) == 0 ? "0": "1") + retStr;
         }
-        return ret_str;
+        return retStr;
     }
 
      /** Returns a BitVector in bitstring format. Probably only useful for dev debugging.
@@ -302,79 +430,234 @@ Base64 = (function () {
      * @returns A bit string representation of the BitVector. Goes from lower-indexed bits to higher-indexed bits. (0 ... n)
      */
     toStringR() {
-        let ret_str = "";
+        let retStr = "";
         for (let i = 0; i < this.length; i++) {
-            ret_str += (this.read_bit(i) == 0 ? "0": "1");
+            retStr += (this.readBit(i) == 0 ? "0": "1");
         }
-        return ret_str;
+        return retStr;
+    }
+
+    /**
+     * Appends data from a Base64 string to the vector.
+     * @param {string} data - A Base64 string.
+     */
+    appendB64(data) {
+        if (typeof data !== "string") throw new Error("`BitVector.appendB64` can only be used to append Base 64 strings. Try `BitVector.append`.")
+        const length = data.length * 6;
+
+        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
+            this.arr.resize(this.arr.byteLength * 2);
+        }
+
+        let bitVec = this.bits;
+
+        // If the last character lined up perfectly, increase the tail
+        if (this.length % 32 === 0) this.tailIdx += 1;
+
+        for (const c of data) {
+            const v = Base64.toInt(c);
+            const prePos = this.length % 32;
+            const posPos = (prePos + 6) % 32;
+            bitVec[this.tailIdx - 1] |= v << prePos;
+            if (prePos > posPos) {
+                bitVec[this.tailIdx] = v >>> (6 - posPos);
+                this.tailIdx += 1;
+            }
+            this.length += 6;
+        }
+        // If the last character lined up perfectly we overshot the tail
+        if (this.length % 32 === 0) --this.tailIdx;
     }
 
     /** Appends data to the BitVector.
      *
      * @param {Number | String} data - The data to append.
-     * @param {Number} length - The length, in bits, of the new data. This is ignored if data is a string.
+     * @param {Number} length - The length, in bits, of the new data.
      */
      append(data, length) {
+        if (typeof data !== "number") throw new Error("`BitVector.append` can only be used to append integers. Try `BitVector.appendB64`.")
         if (length < 0) {
             throw new RangeError("BitVector length must increase by a nonnegative number.");
         }
 
-        let bit_vec = [];
-        for (const uint of this.bits) {
-            bit_vec.push(uint);
-        }
-        if (typeof data === "string") {
-            let int = bit_vec[bit_vec.length - 1];
-            let bv_idx = this.length;
-            length = data.length * 6;
-            let updated_curr = false;
-            for (let i = 0; i < data.length; i++) {
-                let char = Base64.toInt(data[i]);
-                let pre_pos = bv_idx % 32;
-                int |= (char << bv_idx);
-                bv_idx += 6;
-                let post_pos = bv_idx % 32;
-                if (post_pos < pre_pos) { //we have to have filled up the integer
-                    if (bit_vec.length == this.bits.length && !updated_curr) {
-                        bit_vec[bit_vec.length - 1] = int;
-                        updated_curr = true;
-                    } else {
-                        bit_vec.push(int);
-                    }
-                    int = (char >>> (6 - post_pos));
-                }
-
-                if (i == data.length - 1) {
-                    if (bit_vec.length == this.bits.length && !updated_curr) {
-                        bit_vec[bit_vec.length - 1] = int;
-                    } else if (post_pos != 0) {
-                        bit_vec.push(int);
-                    }
-                }
-            }
-        } else if (typeof data === "number") {
-            //convert to int just in case
-            let int = Math.round(data);
-
-            //range of numbers that "could" fit in a uint32 -> [0, 2^32) U [-2^31, 2^31)
-            if (data > 2**32 - 1 || data < -(2 ** 31)) {
-                throw new RangeError("Numerical data has to fit within a 32-bit integer range to instantiate a BitVector.");
-            }
-            //could be split between multiple new ints
-            //reminder that shifts implicitly mod 32
-            bit_vec[bit_vec.length - 1] |= ((int & ~((~0) << length)) << (this.length));
-            if (((this.length - 1) % 32 + 1) + length > 32) {
-                bit_vec.push(int >>> (32 - this.length));
-            }
-        } else {
-            throw new TypeError("BitVector must be appended with a Number or a B64 String");
+        // Reallocate the underlying array if necessary
+        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
+            this.arr.resize(this.arr.byteLength * 2); 
         }
 
-        this.bits = new Uint32Array(bit_vec);
+        let bitVec = this.bits;
+
+        //convert to int just in case
+        let int = data & 0xFFFFFFFF;
+
+        //range of numbers that "could" fit in a uint32 -> [0, 2^32) U [-2^31, 2^31)
+        if (data > 2**32 - 1 || data < -(2 ** 31)) {
+            throw new RangeError("Numerical data has to fit within a 32-bit integer range to instantiate a BitVector.");
+        }
+        if (length !== 32 && (int & ((1 << (length)) - 1)) !== int) {
+            throw new RangeError(`${int} doesn't fit in ${length} bits!`)
+        }
+        //could be split between multiple new ints
+        //reminder that shifts implicitly mod 32
+        const bitsOccupied = (((this.length) - 1) % 32) + 1;
+        bitVec[this.tailIdx - 1] |= (int & (~-(bitsOccupied === 32))) << this.length;
+        if (bitsOccupied + length > 32) {
+            bitVec[this.tailIdx] = int >>> (32 - this.length);
+            this.tailIdx += 1;
+        }
+
         this.length += length;
+    }
+
+    /**
+     * Merge bit vectors together.
+     * changes the vector in-place.
+     *
+     * @param {BitVector[]} bitVecs A list of BitVectors.
+     */
+    merge(bitVecs) {
+        for (const bitVec of bitVecs) {
+            let bitVecLen = bitVec.length;
+            for (let i = 0; i < bitVec.tailIdx; ++i) {
+                if (i === bitVec.tailIdx - 1) {
+                    this.append(bitVec.bits[i], bitVecLen);
+                } else {
+                    this.append(bitVec.bits[i], 32);
+                    bitVecLen -= 32;
+                }
+            }
+        }
     }
 };
 
+/**
+ * Cursor for easy bit navigation of a bitvector.
+ * Must be instantiated with a BitVector or it's subclass.
+ *
+ * @prop {BitVector} #bitVec - the underlying bit vector. 
+ * @prop {number} #currIdx - the current index pointed to by the cursor.
+ * @prop {number} #endIdx - the last index the cursor is permitted to travel to.
+ */
+class BitVectorCursor {
+    #bitVec;
+    #currIdx;
+    #endIdx;
+
+    /**
+     * Construct a new Cursor from an existing bit vector. 
+     * @param {BitVector} bitvec - the underlying bit vector.
+     * @param {number} [idx=0] - the index the cursor will point to upon construction.
+     * @param {number} [span=(bitvec.length - idx)] - the number of bits the cursor is allowed to travel from idx.
+     */
+    constructor(bitvec, idx=0, span=(bitvec.length - idx)) {
+        if (span < 0 || idx < 0) {
+            throw new Error("Span and index must be positive.");
+        }
+        if (idx + span > bitvec.length) {
+            throw new RangeError("idx and span must satisfy `idx + span <= bitvec.length`.") 
+        }
+        this.#bitVec = bitvec;
+        this.#currIdx = idx;
+        this.#endIdx = idx + span;
+    };
+
+    get bitVec() {
+        return this.#bitVec;
+    }
+
+    get currIdx() { 
+        return this.#currIdx; 
+    }
+
+    get endIdx() { 
+        return this.#endIdx; 
+    }
+
+    /**
+     * Create another cursor at the same index with a new span.
+     */
+    spawn(span, idx=this.#currIdx) {
+        return new BitVectorCursor(this.#bitVec, idx, span);
+    }
+
+    /**
+     * Return whether the cursor reached the end of it's span.
+     */
+    end() {
+        return this.#currIdx === this.#endIdx;
+    }
+
+    /**
+      * @returns the result of BitVector.readBit(idx) and advances the cursor to the next byte.
+      */
+    advance() {
+        if (this.end()) {
+            throw new Error("Cannot advance further - reached the end of the vector.");
+        }
+        const idx = this.#currIdx;
+        this.#currIdx += 1;
+        return this.#bitVec.readBit(idx);
+    }
+
+    /**
+      * @param {number} amount
+      *
+      * @returns the result of BitVector.slice(cursor.#currIdx, amount) and advances the cursor by `amount` bits.
+      */
+    advanceBy(amount) {
+        if (this.#currIdx + amount > this.#endIdx) {
+            throw new Error(`Cannot advance ${this.#currIdx} by ${amount} bits - the cursor window ends at ${this.#endIdx}`);
+        } else if (((this.#currIdx + amount - 1) % 32) + 1 > 32) {
+            throw new Error(`Unsafe - result of advanceBy will not fit in a 32 bit integer.`)
+        }
+        const idx = this.#currIdx;
+        this.#currIdx += amount;
+        return this.#bitVec.slice(idx, this.#currIdx);
+    }
+
+    /**
+     * Advance the cursor `amount` bits without reading any of them.
+     * @param {number} amount - the amount to advance by. Must be in the cursor's range.
+     */
+    skip(amount) {
+        assert(this.#currIdx + amount <= this.#endIdx, "Can't skip more than the cursor's allowed span.");
+        this.#currIdx += amount;
+    }
+
+    /**
+     * Consume the cursor until the end of the bitvector.
+     * This method removes the reference to the vector, rendering
+     * the cursor unusable.
+     */
+    consume() {
+        let idx = this.#currIdx;
+        this.#currIdx = this.#endIdx
+        let len = this.#endIdx - idx;
+        let vec = new BitVector(0, 0);
+        while (len > 32) {
+            vec.append(this.#bitVec.slice(idx, idx + 32), 32);
+            idx += 32;
+            len -= 32;
+        }
+        vec.append(this.#bitVec.slice(idx, idx + len), len);
+        this.#bitVec = null;
+        return vec;
+    }
+}
+
+/**
+ * A Bit Vector with specific helpers for encoding.
+ */
+class EncodingBitVector extends BitVector {
+    constructor(data, length, bitcodeMap=ENC) {
+        super(data, length);
+        this.bitcodeMap = bitcodeMap;
+    }
+
+    appendFlag(field, flag) {
+        this.append(this.bitcodeMap[field][flag], this.bitcodeMap[field]["BITLEN"]);
+    }
+}
 
 /*
     Turns a raw stat and a % stat into a final stat on the basis that - raw and >= 100% becomes 0 and + raw and <=-100% becomes negative.

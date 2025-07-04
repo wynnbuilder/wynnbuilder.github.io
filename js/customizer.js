@@ -17,6 +17,7 @@ let var_stats = []
 // Ripped from search.js.
 function create_stat() {
     let data = {};
+    const fixIDs = document.getElementById("fixID-choice").classList.contains("toggleOn");
 
     let row = make_elem("div", ["row"], {style: "padding-bottom: 5px"});
     let col = make_elem("div", ["col"], {});
@@ -62,6 +63,11 @@ function create_stat() {
     row2.appendChild(max);
     data.max_elem = max;
     col.append(row2);
+
+    if (fixIDs) {
+        min.setAttribute("hidden", "");
+        base.setAttribute("hidden", "");
+    }
 
     base.addEventListener("focusout", (event) => {
         base_to_range(search_input, base, min, max);
@@ -140,7 +146,7 @@ function init_stat_dropdown(stat_block) {
 function init_customizer() {
     try {
         init_var_stat_maps();
-        decodeCustom(custom_url_tag);
+        decodeCustomFromURL(custom_url_tag);
         populateFields();
 
         // Variable stats.
@@ -218,12 +224,11 @@ function calculateCustom() {
         }
         for (const stat_box of var_stats) {
             let id = var_stats_rev_map.get(stat_box.input_elem.value);
-            console.log(id);
             if (id === undefined) {
                 continue;
             }
             if (fix_id) {
-                let val = parseInt(stat_box.base_elem.value, 10);
+                let val = parseInt(stat_box.max_elem.value, 10);
                 statMap.get("minRolls").set(id, val);
                 statMap.get("maxRolls").set(id, val);
             }
@@ -237,7 +242,7 @@ function calculateCustom() {
 
         player_custom_item = new Custom(statMap);
 
-        let custom_str = encodeCustom(player_custom_item.statMap, true);
+        let custom_str = encodeCustom(player_custom_item, true).toB64();
         location.hash = custom_str;
         player_custom_item.setHash(custom_str);
 
@@ -273,25 +278,57 @@ function calculateCustom() {
     
 }
 
-function decodeCustom(custom_url_tag) {
+function decodeCustomFromURL(custom_url_tag) {
+    if (!custom_url_tag) return;
+    if (custom_url_tag.slice(0,3) === "CI-") {
+        location.hash = custom_url_tag.substring(3);
+    } 
+
+    const custom = decodeCustom({hash: location.hash.substring(1)});
+
+    const minRolls = custom.statMap.get("minRolls");
+    if (custom.statMap.get("fixID") === true) { toggleButton("fixID-choice") };
+
+    for (let [id, val] of minRolls.entries()) {
+        if (["0-0", 0].includes(val)) continue;
+
+        if (rolledIDs.includes(id)) {
+            let stat_box = create_stat();
+            stat_box.input_elem.value = var_stats_map.get(id);
+            stat_box.min_elem.value = val;
+            if (custom.statMap.get("fixID") === true) {
+                stat_box.max_elem.value = val;
+            } else {
+                stat_box.max_elem.value = custom.statMap.get("maxRolls").get(id);
+            }
+            continue;
+        }
+    }
+
+    for (let [id, val] of custom.statMap) {
+        if (["", "0-0", 0, []].includes(val)) continue;
+        const element = document.getElementById(id+'-choice');
+        if (element) {
+            val = custom.statMap.get(id);
+            setValue(id+"-choice", val);
+        }
+    }
+    toggleFixed();
+    calculateCustom();
+}
+
+function decodeCustomLegacy(custom_url_tag) {
     if (custom_url_tag) {
         if (custom_url_tag.slice(0,3) === "CI-") {
             custom_url_tag = custom_url_tag.substring(3);
             location.hash = location.hash.substring(3);
         } 
-        let version = custom_url_tag.charAt(0);
-        let fixID = Boolean(parseInt(custom_url_tag.charAt(1),10));
-        let tag = custom_url_tag.substring(2);
-        let statMap = new Map();
-        statMap.set("minRolls", new Map());
-        statMap.set("maxRolls", new Map());
 
         if (version === "1") {
             //do the things
             if (fixID) {
                 statMap.set("fixId", true);
                 toggleButton("fixID-choice");
-                toggleFixed(document.getElementById("fixID-choice").classList.contains("toggleOn"));
             }
             while (tag !== "") {
                 let id = ci_save_order[Base64.toInt(tag.slice(0,2))];
@@ -357,6 +394,7 @@ function decodeCustom(custom_url_tag) {
                     setValue(id+"-choice", val);
                 }
             }
+            toggleFixed();
             statMap.set("hash",custom_url_tag);
             calculateCustom();
             player_custom_item.setHash(custom_url_tag);
@@ -412,16 +450,13 @@ function populateFields() {
  */
 function toggleFixed() {
     let fixedID_bool = document.getElementById("fixID-choice").classList.contains("toggleOn");
-    for (const id of rolledIDs) {
-        let elem = document.getElementById(id);
-        if (elem) {    
-            if (fixedID_bool) { //now fixed IDs -> go to 1 input
-                document.getElementById(id+"-choice-fixed-container").style = "";
-                document.getElementById(id+"-choice-container").style = "display:none";
-            } else { //now rollable -> go to 2 inputs
-                document.getElementById(id+"-choice-fixed-container").style = "display:none";
-                document.getElementById(id+"-choice-container").style = "";
-            }
+    for (const stat_box of var_stats) {
+        if (fixedID_bool) {
+            stat_box.base_elem.setAttribute("hidden", "");
+            stat_box.min_elem.setAttribute("hidden", "");
+        } else {
+            stat_box.base_elem.removeAttribute("hidden", "");
+            stat_box.min_elem.removeAttribute("hidden", "");
         }
     }
 }
@@ -432,37 +467,37 @@ function toggleFixed() {
  */
 function useBaseItem(elem) {
     let itemName = getValue(elem);
-    let baseItem;
+    let baseItem = itemMap.get(itemName);
+    baseItem = baseItem ? expandItem(baseItem) : undefined;
 
-    //Check items db.
-    for (const [name,itemObj] of itemMap) {
-        if (itemName === name) {
-            baseItem = expandItem(itemObj);
-            break;
-        }
-    }
-
-    //If it starts with CR-, try creating a craft
+    // If it's not a normal item, try parsing from a crafted or custom item
     if(!baseItem) {
-        baseItem = getCraftFromHash(itemName) ? getCraftFromHash(itemName) : (getCustomFromHash(itemName) ? getCustomFromHash(itemName) : null);
+        switch (itemName.slice(0, 3)) {
+            case "CR-": baseItem = decodeCraft({hash: itemName.substring(3)}); break;
+            case "CI-": baseItem = decodeCustom({hash: itemName.substring(3)}); break;
+            default: baseItem = null;
+        }
         baseItem = baseItem.statMap;
-        console.log(baseItem);
     }
 
     //If the item exists, go through stats and assign to values!
     if(baseItem) {
         resetFields();
 
+        const fixID_button_toggled = document.getElementById("fixID-choice").classList.contains("toggleOn");
         //Rolled IDs
-        if (document.getElementById("fixID-choice").textContent === "yes") { //fixed IDs
+        if (baseItem.get("fixID") === true) { //fixed IDs
+            if (!fixID_button_toggled) toggleButton('fixID-choice');
             for (const id of rolledIDs) { //use maxrolls
                 if (baseItem.get("maxRolls").get(id)) {
                     let stat_box = create_stat();
                     stat_box.input_elem.value = var_stats_map.get(id);
-                    stat_box.base_elem.value = baseItem.get("maxRolls").get(id);
+                    stat_box.min_elem.value = baseItem.get("maxRolls").get(id);
+                    stat_box.max_elem.value = baseItem.get("maxRolls").get(id);
                 }
             }
         } else { //use both
+            if (fixID_button_toggled) toggleButton('fixID-choice');
             for (const id of rolledIDs) {
                 if (baseItem.get("maxRolls").get(id)) {
                     let stat_box = create_stat();
@@ -472,6 +507,7 @@ function useBaseItem(elem) {
                 }
             }
         }
+        toggleFixed();
 
         //Static IDs
         for (const id of nonRolledIDs) {
@@ -512,7 +548,6 @@ function copyCustom() {
 function copyHash() {
     if (player_custom_item) {
         let hash = player_custom_item.statMap.get("hash");
-        console.log(hash);
         copyTextToClipboard(hash);
         document.getElementById("copy-button-hash").textContent = "Copied!";
     }
@@ -555,11 +590,11 @@ function base_to_range(id_elem, base_elem, min_elem, max_elem) {
             max_elem.value = 0;
         }
         else if ((base > 0) != (reversedIDs.includes(id))) { // logical XOR. positive rolled IDs
-            max_elem.value = idRound(Math.round(pos_range[1]*base));
-            min_elem.value = idRound(Math.round(pos_range[0]*base));
+            max_elem.value = idRound(pos_range[1]*base);
+            min_elem.value = idRound(pos_range[0]*base);
         } else { //negative rolled IDs
-            max_elem.value = idRound(Math.round(neg_range[1]*base));
-            min_elem.value = idRound(Math.round(neg_range[0]*base))
+            max_elem.value = idRound(neg_range[1]*base);
+            min_elem.value = idRound(neg_range[0]*base);
         }
 
     }
