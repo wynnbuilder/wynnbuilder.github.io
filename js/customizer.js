@@ -146,7 +146,7 @@ function init_stat_dropdown(stat_block) {
 function init_customizer() {
     try {
         init_var_stat_maps();
-        decodeCustom(custom_url_tag);
+        decodeCustomFromURL(custom_url_tag);
         populateFields();
 
         // Variable stats.
@@ -224,7 +224,6 @@ function calculateCustom() {
         }
         for (const stat_box of var_stats) {
             let id = var_stats_rev_map.get(stat_box.input_elem.value);
-            console.log(id);
             if (id === undefined) {
                 continue;
             }
@@ -279,13 +278,13 @@ function calculateCustom() {
     
 }
 
-function decodeCustom(custom_url_tag) {
+function decodeCustomFromURL(custom_url_tag) {
     if (!custom_url_tag) return;
     if (custom_url_tag.slice(0,3) === "CI-") {
         location.hash = custom_url_tag.substring(3);
     } 
 
-    const custom = parseCustom({hash: location.hash.substring(1)});
+    const custom = decodeCustom({hash: location.hash.substring(1)});
 
     const minRolls = custom.statMap.get("minRolls");
     if (custom.statMap.get("fixID") === true) { toggleButton("fixID-choice") };
@@ -305,8 +304,6 @@ function decodeCustom(custom_url_tag) {
             continue;
         }
     }
-
-    console.log(custom);
 
     for (let [id, val] of custom.statMap) {
         if (["", "0-0", 0, []].includes(val)) continue;
@@ -476,13 +473,12 @@ function useBaseItem(elem) {
     // If it's not a normal item, try parsing from a crafted or custom item
     if(!baseItem) {
         switch (itemName.slice(0, 3)) {
-            case "CR-": baseItem = parseCraft({hash: itemName.substring(3)}); break;
-            case "CI-": baseItem = parseCustom({hash: itemName.substring(3)}); break;
+            case "CR-": baseItem = decodeCraft({hash: itemName.substring(3)}); break;
+            case "CI-": baseItem = decodeCustom({hash: itemName.substring(3)}); break;
             default: baseItem = null;
         }
         baseItem = baseItem.statMap;
     }
-    console.log(baseItem);
 
     //If the item exists, go through stats and assign to values!
     if(baseItem) {
@@ -552,7 +548,6 @@ function copyCustom() {
 function copyHash() {
     if (player_custom_item) {
         let hash = player_custom_item.statMap.get("hash");
-        console.log(hash);
         copyTextToClipboard(hash);
         document.getElementById("copy-button-hash").textContent = "Copied!";
     }
