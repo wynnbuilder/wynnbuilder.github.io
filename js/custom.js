@@ -61,13 +61,11 @@ const CUSTOM_ENC = {
     ITEM_TIER_BITLEN: 4,
     ITEM_ATK_SPD_BITLEN: 4,
     ITEM_CLASS_REQ_BITLEN: 4,
-    TEXT_ENCODING: {
-        BASE_64: 0,
-        UTF_8: 1,
-        BITLEN: 1
-    },
     TEXT_CHAR_LENGTH_BITLEN: 16,
 }
+
+/** Used to encode the text portions of a custom item. */
+const bootstringEncoder = new BootstringEncoder(0, 1, 52, 104, 700, 38, '-');
 
 /**
  * Encode a custom item and return the resulting vector.
@@ -140,17 +138,10 @@ function encodeCustom(custom, verbose) {
                     case "classReq": customVec.append(classes.indexOf(capitalizeFirst(idVal)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
                     default: {
                         const lenMask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
-                        if (Base64.isB64(idVal)) {
-                            customVec.appendFlag("TEXT_ENCODING", "BASE_64");
-                            customVec.append(idVal.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
-                            customVec.appendB64(idVal);
-                        } else {
-                            const encoder = new TextEncoder();
-                            const b64String = Base64.fromBytes(encoder.encode(idVal));
-                            customVec.appendFlag("TEXT_ENCODING", "UTF_8");
-                            customVec.append(b64String.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
-                            customVec.appendB64(b64String);
-                        }
+                        const encodedText = bootstringEncoder.encode(idVal);
+                        console.log(encodedText.length);
+                        customVec.append(encodedText.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
+                        customVec.appendB64(encodedText);
                         break;
                     }
                 }
@@ -312,18 +303,9 @@ function decodeCustom({cursor: cursor, hash: hash}) {
                 case "atkSpd": idVal = attackSpeeds[cursor.advanceBy(CUSTOM_ENC.ITEM_ATK_SPD_BITLEN)]; break;
                 case "classReq": idVal = classes[cursor.advanceBy(CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN)]; break;
                 default: {
-                    const textEncoding = cursor.advanceBy(CUSTOM_ENC.TEXT_ENCODING.BITLEN);
                     let textLen = cursor.advanceBy(CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) & 0xFFFFFFFF;
-                    let chars = [];
-                    while (textLen > 0) {
-                        chars.push(Base64.fromIntN(cursor.advanceBy(6), 1))
-                        textLen -= 1;
-                    }
-                    idVal = chars.join("");
-                    if (textEncoding === CUSTOM_ENC.TEXT_ENCODING.UTF_8) {
-                        const decoder = new TextDecoder();
-                        idVal = decoder.decode(Base64.intoBytes(idVal));
-                    }
+                    const text = cursor.advanceByChars(textLen);
+                    idVal = bootstringEncoder.decode(text); 
                     break;
                 }
             }

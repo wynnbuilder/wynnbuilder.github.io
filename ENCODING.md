@@ -339,17 +339,12 @@ These are IDs with predetermined possible values and therefore sizes, and they i
 | class requirement (optional) | 4                | `uint32` | [0, 15] |
 
 ##### 2.3 - Non-Rolled variable length string IDs
-These are IDs that can hold any string value. the IDs are encoded as Base64 in two possible ways:
-1. Base64 string that is read as text.
-2. Base64 string that is read as UTF-8 binary.
+These are IDs that can hold any string value. the IDs are encoded as a Bootstring encoded string with it's domain alphabet set to Wynnbuilder Base64 excluding '-' which is used as a delimeter, and '+', whish is unused to keep things mod 2, just in case. Bootstring refers to the algorithm underlying Punycode as described in section 3 of IETF RFC 3492. the utility class for it is located in `js/utils.js`, and you can find the domain parameters in `js/custom.js`.
 
-| field                         | length (in bits) | values                | range     |
-| ----------------------------- | ---------------- | --------------------- | --------- |
-| Text type                     | 1                | `BASE\_64`, `UTF\_8`  | [0, 1]    |
-| Text length (in Base64 chars) | 16               | `uint32`              | [0, 2^16) |
-| Text content                  | Variable         | UTF-8 Encoded string  | undefined |
-
-If the text content is entirely Base64 compatible, as is the case with some single-word names, a text type of `BASE_64` is encoded. otherwise, a text type of `UTF_8` is encoded and the text is encoded into `Base64`. Afterwards, the length (in bits) of the resulting Base64 string is encoded, clamped to a 24-bit maximum value, followed by the string itself.
+| field                         | length (in bits) | values                     | range     |
+| ----------------------------- | ---------------- | -------------------------- | --------- |
+| Text length (in Base64 chars) | 16               | `uint32`                   | [0, 2^16) |
+| Text content                  | Variable         | Bootstring Encoded string  | undefined |
 
 ##### 2.4 - Non-Rolled variable length numeric IDs
 These are encoded exactly the same as the `FIXED` case of rolledIDs.

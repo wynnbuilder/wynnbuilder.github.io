@@ -222,6 +222,18 @@ class Base64 {
     static isB64(str) {
         return str.split('').every(c => Base64.#digitsMap[c] !== undefined);
     }
+
+    /**
+     * Check whether a given Unicode codepoint is part of the Wynnbuilder Base64 charset.
+     * @param {number} cp - the codepoint to check
+     */
+    static isB64Codepoint(cp) {
+        const isNumber = (cp > 47 && cp < 58); // [0-9] => [48, 57]
+        const isAlphanumLowercase = (cp > 96 && cp < 123); // [a-z] => [97, 122]
+        const isAlphanumUppercase = (cp > 64 && cp < 91); // [A-Z] => [65, 90]
+        const isPlusMinus = (cp === 43) || (cp === 45); // [+-] => 43 || 45
+        return isNumber || isAlphanumLowercase || isAlphanumUppercase || isPlusMinus;
+    }
 }
 
 // THe length, in bits of the version (one in data/*) to be used in binary encoding.
@@ -616,6 +628,17 @@ class BitVectorCursor {
     }
 
     /**
+     * Advances the cursor by `amount` chars and returns the resulting Base64 string.
+     * @param {number} amount - the amount of characters to advance by.
+     */
+    advanceByChars(amount) {
+        const idx = this.#currIdx;
+        this.#currIdx += amount * 6;
+        return this.bitVec.sliceB64(idx, this.#currIdx);
+
+    }
+
+    /**
      * Advance the cursor `amount` bits without reading any of them.
      * @param {number} amount - the amount to advance by. Must be in the cursor's range.
      */
@@ -656,6 +679,246 @@ class EncodingBitVector extends BitVector {
 
     appendFlag(field, flag) {
         this.append(this.bitcodeMap[field][flag], this.bitcodeMap[field]["BITLEN"]);
+    }
+}
+
+/**
+ * A bootstring implementation similar to https://github.com/frereit/bootstring,
+ * according to IETF RFC 3492 - https://datatracker.ietf.org/doc/html/rfc3492
+ * sections 3, 6 and 7. 
+ * You can also read up on https://docs.omniverse.nvidia.com/kit/docs/omni-transcoding/latest/docs/algorithm.html.
+ *
+ * This particular bootstring's alphabet is fixed for Wynnbuilder purposes, however it should be trivial
+ * to make it part of the domain parameters.
+ *
+ * The encoder should only be used via the `encode` and `decode` functions.
+ *
+ * NOTE: VLI as seen throughout the class docs and methods refer to variable-length-integers, as
+ * detailed in the RFC.
+ *
+ * Usage:
+ * let bootstringEncoder = new BootstringEncoder();
+ * let encodedText = bootstringEncoder.encode(unicodeText);
+ * let decodedText = bootstringEncoder.decode(encodedText);
+ */
+class BootstringEncoder {
+    // Private properties
+    #initial_n;
+    #tmin;
+    #tmax;
+    #initial_bias;
+    #damp;
+    #skew;
+    #delim
+
+    // Private static properties
+    static #base = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split('');
+    static #baseMap = Object.fromEntries(BootstringEncoder.#base.map((x, i) => [x, i]));
+    static #b = BootstringEncoder.#base.length;
+
+
+    /**
+     * Create a new encoder with the given domain parameters.
+     * explanation for each parameter is avilable in the specification.
+     * @param {number} initial_n 
+     * @param {number} tmin
+     * @param {number} tmax
+     * @param {number} initial_bias
+     * @param {number} damp 
+     * @param {number} skew
+     * @param {number} delim
+     */
+    constructor(initial_n, tmin, tmax, initial_bias, damp, skew, delim) {
+        if (tmax % 2 !== 0) {
+            throw new Error("Please choose a tmax value that is a multiple of 2.");
+        }
+        this.#initial_n = initial_n;
+        this.#tmin = tmin;
+        this.#tmax = tmax;
+        this.#initial_bias = initial_bias;
+        this.#damp = damp;
+        this.#skew = skew;
+        this.#delim = delim;
+    }
+
+    /**
+     * Calculate the threshold for the given position in a Variable Length Integer.
+     */
+    #threshold(i, bias) {
+        // t(i) = b * (i + 1) - bias
+        return clamp(BootstringEncoder.#b * (i + 1) - bias, this.#tmin, this.#tmax);
+    }
+
+    /**
+     * decode a varialbe length integer.
+     *
+     * @param {string} str - a `base` conforming string.
+     * @returns {number} - the decoded number.
+     */
+    #decodeVLI(str, bias) {
+        let i = 0;
+        let w = 1; // initial weight
+        let res = 0; // Initial delta
+        for (const char of str) {
+            let d = BootstringEncoder.#baseMap[char];
+            res += d * w;
+            let t = this.#threshold(i, bias);
+            if (d < t) break;
+            w *= BootstringEncoder.#b - t;
+            i += 1;
+        }
+        return [res, str.slice(i + 1)];
+
+    }
+
+    /**
+     * Encode a number as a varialbe length integer.
+     *
+     * @param {number} value - the number to encode
+     * @returns {string} - a `base` encoded string
+     */
+    #encodeVLI(value, bias) {
+        let enc = [""];
+        let i = 0;
+        while (true) {
+            const t = this.#threshold(i, bias); 
+            if (value < t) {
+                enc.push(BootstringEncoder.#base[value]);
+                break;
+            }
+            enc.push(BootstringEncoder.#base[t + ((value - t) % (BootstringEncoder.#b - t))]);
+            value = Math.floor((value - t) / (BootstringEncoder.#b - t));
+            i += 1;
+        }
+        return enc.join('');
+    }
+
+    /**
+     * seperates the basic codepoints from the extended ones.
+     *
+     * returns a tuple containing 
+     * - The basic characters
+     * - A set of the extended codepoints, sorted by magnitude
+     * - The length of the basic portion of the string
+     *
+     * @param {string} raw - The original extended string.
+     *
+     * @returns {[string[], Set<number>, number]}
+     */
+    #splitBasicExtended(raw) {
+        let basicCodepoints = [];
+        let nonBasicCodepoints = [];
+        for (const x of raw) {
+            if (Base64.isB64(x)) {
+                basicCodepoints.push(x);
+            }  else {
+                nonBasicCodepoints.push(x.codePointAt(0));
+            }
+        }
+        const encodedCount = basicCodepoints.length;
+        if (encodedCount > 0) basicCodepoints.push(this.#delim);
+        return [basicCodepoints, new Set(nonBasicCodepoints.sort((a, b) => (a > b) - (a < b))), encodedCount];
+    }
+
+    /**
+     * Bias adaption algorithm.
+     * This tries to to make sure the deltas are encoded to be as small as possible by
+     * adjusting the threshold calculation for the VLI.
+     * 
+     * @param {number} delta
+     * @param {number} length
+     * @param {boolean} firstIteration
+     */
+    #adaptBias(delta, length, firstIteration) {
+        delta = firstIteration ? Math.floor(delta / this.#damp) : delta >> 1;
+        delta = Math.floor(delta / length); 
+        let k = 0;
+        const thresh = ((BootstringEncoder.#b - this.#tmin) * this.#tmax) >> 1;
+        while (delta > thresh) {
+            delta = Math.floor(delta / (BootstringEncoder.#b - this.#tmin));
+            k += BootstringEncoder.#b;
+        }
+        const ret = k + Math.floor(((BootstringEncoder.#b - this.#tmin + 1) * delta) / (delta + this.#skew))
+        return ret;
+    }
+
+    /**
+     * Split the literal and delta portions of an encoded string.
+     * @param {string} encodedStr
+     */
+    #splitLiteralsAndDetlas(encodedStr) {
+        const delimIdx = encodedStr.lastIndexOf(this.#delim);
+        //     basic portion                                       extended portion
+        return [delimIdx < 0 ? "" : encodedStr.slice(0, delimIdx), encodedStr.slice(delimIdx + 1)];
+    }
+
+    /**
+     * Encodes a raw Unicode string into a Bootstring.
+     * @param {string} raw - The string to encode.
+     */
+    encode(raw) {
+        let [basic, nonBasic, encodedCount] = this.#splitBasicExtended(raw);
+        if (nonBasic.size === 0) {
+            return basic.join('');
+        }
+
+        // Account for the delimiter, there are no surrogate pairs in the basic codepoints
+        let delta = 0;
+        let n = this.#initial_n;
+        let bias = this.#initial_bias;
+        // Count in code points
+        let firstIteration = true;
+        for (const codepoint of nonBasic) {
+            delta += (codepoint - n) * (encodedCount + 1);
+            n = codepoint;
+            for (const c of raw) {
+                let currCodepoint = c.codePointAt(0);
+
+                if (currCodepoint < n || Base64.isB64Codepoint(currCodepoint)) {
+                    delta += 1;
+                }
+
+                if (currCodepoint === n) {
+                    basic.push(this.#encodeVLI(delta, bias));
+                    encodedCount += 1;
+                    bias = this.#adaptBias(delta, encodedCount, firstIteration);
+                    delta = 0;
+                    firstIteration = false;
+                }
+            }
+            delta += 1;
+            n += 1;
+        }
+        return basic.join('');
+    }
+
+    /**
+     * Decode a Bootstring into the original Unicode string. 
+     * @param {string} bootStr - The string to decode.
+     */
+    decode(bootStr) {
+        let [encodedStr, deltaStr] = this.#splitLiteralsAndDetlas(bootStr);
+        // Javascript String.length calculates length in # of 16 bit chars (counts surrogate UTF-16 pairs),
+        // we need it in Unicode codepoints.
+        let codepoints = [...encodedStr].length; 
+        let bias = this.#initial_bias;
+        let n = this.#initial_n;
+        let i = 0;
+        let firstIteration = true;
+        let delta = 0;
+
+        while (deltaStr !== "") {
+            [delta, deltaStr] = this.#decodeVLI(deltaStr, bias); 
+            let steps = delta + Number(!firstIteration);
+            n += Math.floor((i + steps) / (codepoints + 1))
+            i = (i + steps) % (codepoints + 1)
+            let cp = String.fromCodePoint(n);
+            encodedStr = encodedStr.slice(0, i) + cp + encodedStr.slice(i);
+            codepoints += 1;
+            bias = this.#adaptBias(delta, codepoints, firstIteration);
+            firstIteration = false;
+        }
+        return encodedStr;
     }
 }
 
