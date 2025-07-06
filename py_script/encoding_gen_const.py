@@ -214,8 +214,7 @@ def diff_versions(prev_version_data, current_version_data, path=""):
 
 if __name__ == "__main__":
     all_data_versions = get_data_versions()
-    if version not in all_data_versions:
-        assert version in all_data_versions, f"INVALID VERSION {version}: if this is indeed the version you meant to use please create a folder in `data/`."
+    assert version in all_data_versions, f"INVALID VERSION {version}: if this is indeed the version you meant to use please create a folder in `data/`."
     curr_version_idx = all_data_versions.index(version)
     assert curr_version_idx == 0 or override == True, f"WARNING: You are trying to modify an older encoding version. this could break backwards compatability. to override pass the --override flag."
 
