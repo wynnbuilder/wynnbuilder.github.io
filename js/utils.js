@@ -294,7 +294,9 @@ const VERISON_BITLEN = 10
         }
 
         this.length = length;              // The length, in bits, of the bitvector
-        this.tailIdx = bitVec.length;    // Index to the first uninitialized entry of the underlying ArrayBuffer, interpreted as a Uint32Array.
+        // Index to the first uninitialized entry of the underlying ArrayBuffer, interpreted as a Uint32Array.
+        // For simplicity, the first entry is always treated as initialized even if the vector length is 0.
+        this.tailIdx = bitVec.length === 0 ? 1 : bitVec.length;
 
         let byteLength = Math.floor(this.length / 4) + 1; // Length in bytes for ArrayBuffer creation.
         if (byteLength < 4) byteLength = 4;              // The ArrayBuffer is interepreted as Uint32Array, so we must reserve at least 4 bytes.
@@ -449,6 +451,18 @@ const VERISON_BITLEN = 10
         return retStr;
     }
 
+    updateTailInt(bitVec, v, vLen) {
+        const prePos = this.length % 32; // insertion pos
+        const postPos = prePos + vLen; // excess insertion pos
+
+        bitVec[this.tailIdx - 1] |= v << prePos; // mask the tail with the bits of the new int that fit
+        this.tailIdx += postPos >= 32; // if we've exhausted the tail, increment it
+
+        // if we've overflowed and there's excess bits, add them to the new tail
+        bitVec[this.tailIdx - 1] |= (v & ((postPos <= 32) - 1)) >>> (32 - prePos);
+        this.length += vLen;
+    }
+
     /**
      * Appends data from a Base64 string to the vector.
      * @param {string} data - A Base64 string.
@@ -462,23 +476,10 @@ const VERISON_BITLEN = 10
         }
 
         let bitVec = this.bits;
-
-        // If the last character lined up perfectly, increase the tail
-        if (this.length % 32 === 0) this.tailIdx += 1;
-
         for (const c of data) {
             const v = Base64.toInt(c);
-            const prePos = this.length % 32;
-            const posPos = (prePos + 6) % 32;
-            bitVec[this.tailIdx - 1] |= v << prePos;
-            if (prePos > posPos) {
-                bitVec[this.tailIdx] = v >>> (6 - posPos);
-                this.tailIdx += 1;
-            }
-            this.length += 6;
+            this.updateTailInt(bitVec, v, 6);
         }
-        // If the last character lined up perfectly we overshot the tail
-        if (this.length % 32 === 0) --this.tailIdx;
     }
 
     /** Appends data to the BitVector.
@@ -497,7 +498,6 @@ const VERISON_BITLEN = 10
             this.arr.resize(this.arr.byteLength * 2); 
         }
 
-        let bitVec = this.bits;
 
         //convert to int just in case
         let int = data & 0xFFFFFFFF;
@@ -509,16 +509,8 @@ const VERISON_BITLEN = 10
         if (length !== 32 && (int & ((1 << (length)) - 1)) !== int) {
             throw new RangeError(`${int} doesn't fit in ${length} bits!`)
         }
-        //could be split between multiple new ints
-        //reminder that shifts implicitly mod 32
-        const bitsOccupied = (((this.length) - 1) % 32) + 1;
-        bitVec[this.tailIdx - 1] |= (int & (~-(bitsOccupied === 32))) << this.length;
-        if (bitsOccupied + length > 32) {
-            bitVec[this.tailIdx] = int >>> (32 - this.length);
-            this.tailIdx += 1;
-        }
 
-        this.length += length;
+        this.updateTailInt(this.bits, int, length);
     }
 
     /**

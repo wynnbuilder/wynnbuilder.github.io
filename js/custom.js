@@ -139,7 +139,6 @@ function encodeCustom(custom, verbose) {
                     default: {
                         const lenMask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
                         const encodedText = bootstringEncoder.encode(idVal);
-                        console.log(encodedText.length);
                         customVec.append(encodedText.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
                         customVec.appendB64(encodedText);
                         break;
