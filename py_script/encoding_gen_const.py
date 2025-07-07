@@ -63,20 +63,20 @@ bit_len_map["POWDER_TIERS"] = 6
 bit_len_map["POWDER_WRAPPER_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) - 1 - 1)
 bit_len_map["POWDER_ID_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) * bit_len_map["POWDER_TIERS"])
 bit_len_map["POWDER_REPEAT_OP"] = generate_id_map(["REPEAT", "NO_REPEAT"])
-bit_len_map["POWDER_REPEAT_TIER_OP"] = generate_id_map(["REPEAT", "NO_REPEAT"])
+bit_len_map["POWDER_REPEAT_TIER_OP"] = generate_id_map(["REPEAT_TIER", "CHANGE_POWDER"])
 bit_len_map["POWDER_CHANGE_OP"] = generate_id_map(["NEW_POWDER", "NEW_ITEM"])
 
 # Tomes
-bit_len_map["TOME_FLAG"] = generate_id_map(["NONE", "HAS_TOME"])
-bit_len_map["TOME_KIND"] = generate_id_map(["NONE", "USED"])
+bit_len_map["TOMES_FLAG"] = generate_id_map(["NO_TOMES", "HAS_TOMES"])
+bit_len_map["TOME_SLOT_FLAG"] = generate_id_map(["UNUSED", "USED"])
 bit_len_map["TOME_NUM"] = 14
 
 # Aspects
 bit_len_map["ASPECT_TIERS"] = 4
 bit_len_map["NUM_ASPECTS"] = 5
 bit_len_map["ASPECT_TIER_BITLEN"] = get_bitlen(bit_len_map["ASPECT_TIERS"] - 1) # tiers are [1, ASPECT_TITERS], we can map to [0, ASPECT_TITERS - 1]
-bit_len_map["ASPECT_FLAG"] = generate_id_map(["NONE", "HAS_ASPECTS"])
-bit_len_map["ASPECT_KIND"] = generate_id_map(["NONE", "USED"])
+bit_len_map["ASPECTS_FLAG"] = generate_id_map(["NO_ASPECTS", "HAS_ASPECTS"])
+bit_len_map["ASPECT_SLOT_FLAG"] = generate_id_map(["UNUSED", "USED"])
 
 # Atree
 
@@ -150,7 +150,7 @@ def get_max_id(lst):
     # Account for an ID of 0.
     if len(lst) - 1 > max_id or (len(lst) - 1 == max_id and zero_id == False):
         print(f"WARNING: There are more items in the list ({len(lst)}) than there are IDs ({max_id}).") 
-        print(f"WARNING: Encoding len(lst) instead of item IDs.") 
+        print(f"WARNING: Encoding bitlen for len(lst) instead of item IDs. This could be an error - check manually.") 
         max_id = len(lst)
     return max_id
 
@@ -227,7 +227,7 @@ if __name__ == "__main__":
         print("NOTE: Make sure to review errors and warnings.\n")
 
     if len(all_data_versions) != curr_version_idx:
-        prev_version = all_data_versions[curr_version_idx + 1]
+        prev_version = all_data_versions[curr_version_idx + 1] if curr_version_idx == len(all_data_versions) else version
         with open(f"../data/{prev_version}/encoding_consts.json", "r") as infile:
             prev_version_data = json.load(infile)
             if diff_versions(prev_version_data, bit_len_map):

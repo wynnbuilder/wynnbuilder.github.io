@@ -71,14 +71,14 @@ async function loadOlderVersion() {
 function encodeTomes(tomes) {
     const tomesVec = new EncodingBitVector(0, 0);
     if (tomes.every(t => t.statMap.has("NONE"))) {
-        tomesVec.appendFlag("TOME_FLAG", "NONE"); 
+        tomesVec.appendFlag("TOMES_FLAG", "NO_TOMES");
     } else {
-        tomesVec.appendFlag("TOME_FLAG", "HAS_TOME"); 
+        tomesVec.appendFlag("TOMES_FLAG", "HAS_TOMES");
         for (const tome of tomes) {
             if (tome.statMap.get("NONE")) {
-                tomesVec.appendFlag("TOME_KIND", "NONE")
+                tomesVec.appendFlag("TOME_SLOT_FLAG", "UNUSED")
             } else {
-                tomesVec.appendFlag("TOME_KIND", "USED")
+                tomesVec.appendFlag("TOME_SLOT_FLAG", "USED")
                 tomesVec.append(tome.statMap.get("id"), ENC.TOME_ID_BITLEN);
             }
         }
@@ -131,14 +131,14 @@ function encodePowders(powderset, version) {
         if (previousPowder >= 0) {
             powdersVec.appendFlag("POWDER_REPEAT_OP", "NO_REPEAT");
             if (powder % POWDER_TIERS === previousPowder % POWDER_TIERS) {
-                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "REPEAT");
+                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "REPEAT_TIER");
                 const numElements = ENC.POWDER_ELEMENTS.length;
                 const powderElement = Math.floor(powder % numElements);
                 const previousPowderElement = Math.floor(previousPowder % numElements);
                 const elementWrapper = mod(powderElement - previousPowderElement, numElements) - 1; 
                 powdersVec.append(elementWrapper, ENC.POWDER_WRAPPER_BITLEN);
             } else {
-                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "NO_REPEAT");
+                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
                 powdersVec.appendFlag("POWDER_CHANGE_OP", "NEW_POWDER");
                 powdersVec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
             }
@@ -151,7 +151,7 @@ function encodePowders(powderset, version) {
         previousPowder = powder;
     }
     powdersVec.appendFlag("POWDER_REPEAT_OP", "NO_REPEAT");
-    powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "NO_REPEAT");
+    powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
     powdersVec.appendFlag("POWDER_CHANGE_OP", "NEW_ITEM")
 
     return powdersVec;
@@ -303,14 +303,14 @@ function encodeAspects(aspects, version) {
     const aspectsVec = new EncodingBitVector(0, 0);
 
     if (aspects.every(([aspect, _]) => aspect.NONE === true)) {
-        aspectsVec.appendFlag("ASPECT_FLAG", "NONE");
+        aspectsVec.appendFlag("ASPECTS_FLAG", "NO_ASPECTS");
     } else {
-        aspectsVec.appendFlag("ASPECT_FLAG", "HAS_ASPECTS");
+        aspectsVec.appendFlag("ASPECTS_FLAG", "HAS_ASPECTS");
         for (const [aspect, tier] of aspects) {
             if (aspect.NONE === true) {
-                aspectsVec.appendFlag("ASPECT_KIND", "NONE");
+                aspectsVec.appendFlag("ASPECT_SLOT_FLAG", "UNUSED");
             } else {
-                aspectsVec.appendFlag("ASPECT_KIND", "USED");
+                aspectsVec.appendFlag("ASPECT_SLOT_FLAG", "USED");
                 aspectsVec.append(aspect.id, ENC.ASPECT_ID_BITLEN);
                 aspectsVec.append(tier - 1, ENC.ASPECT_TIER_BITLEN);
             }
@@ -408,7 +408,7 @@ function decodePowders(cursor) {
             case DEC.POWDER_REPEAT_OP.NO_REPEAT: {
                 switch (cursor.advanceBy(DEC.POWDER_REPEAT_TIER_OP.BITLEN)) {
                     // Decode a new powder
-                    case DEC.POWDER_REPEAT_TIER_OP.REPEAT: {
+                    case DEC.POWDER_REPEAT_TIER_OP.REPEAT_TIER: {
                         const powderWrap = cursor.advanceBy(DEC.POWDER_WRAPPER_BITLEN);
                         const prevPowderElem = Math.floor(prevPowder / POWDER_TIERS); 
                         const prevPowderTier = prevPowder % POWDER_TIERS;
@@ -417,7 +417,7 @@ function decodePowders(cursor) {
                         powders.push(newPowder);
                         break repeat;
                     };
-                    case DEC.POWDER_REPEAT_TIER_OP.NO_REPEAT: {
+                    case DEC.POWDER_REPEAT_TIER_OP.CHANGE_POWDER: {
                         switch (cursor.advanceBy(DEC.POWDER_CHANGE_OP.BITLEN)) {
                             case DEC.POWDER_CHANGE_OP.NEW_POWDER: {
                                 powders.push(decodePowderIdx(cursor.advanceBy(DEC.POWDER_ID_BITLEN), DEC.POWDER_TIERS));
@@ -496,13 +496,13 @@ function decodeEquipment(cursor) {
  */
 function decodeTomes(cursor) {
     tomes = [];
-    switch (cursor.advanceBy(DEC.TOME_FLAG.BITLEN)) {
-        case DEC.TOME_FLAG.NONE: break;
-        case DEC.TOME_FLAG.HAS_TOME: {
+    switch (cursor.advanceBy(DEC.TOMES_FLAG.BITLEN)) {
+        case DEC.TOMES_FLAG.NO_TOMES: break;
+        case DEC.TOMES_FLAG.HAS_TOMES: {
             for (let i = 0; i < DEC.TOME_NUM; ++i) {
-                switch (cursor.advanceBy(DEC.TOME_KIND.BITLEN)) {
-                    case DEC.TOME_KIND.NONE: tomes.push(null); break;
-                    case DEC.TOME_KIND.USED: tomes.push(tomeIDMap.get(cursor.advanceBy(DEC.TOME_ID_BITLEN))); break;
+                switch (cursor.advanceBy(DEC.TOME_SLOT_FLAG.BITLEN)) {
+                    case DEC.TOME_SLOT_FLAG.UNUSED: tomes.push(null); break;
+                    case DEC.TOME_SLOT_FLAG.USED: tomes.push(tomeIDMap.get(cursor.advanceBy(DEC.TOME_ID_BITLEN))); break;
                 }
             }
         }
@@ -555,18 +555,18 @@ function decodeLevel(cursor) {
 }
 
 function decodeAspects(cursor, cls) {
-    const flag = cursor.advanceBy(DEC.ASPECT_FLAG.BITLEN) 
+    const flag = cursor.advanceBy(DEC.ASPECTS_FLAG.BITLEN);
     const aspects = [];
     switch (flag) {
-        case DEC.ASPECT_FLAG.NONE: break;
-        case DEC.ASPECT_FLAG.HAS_ASPECTS: {
+        case DEC.ASPECTS_FLAG.NO_ASPECTS: break;
+        case DEC.ASPECTS_FLAG.HAS_ASPECTS: {
             for (let i = 0; i < DEC.NUM_ASPECTS; ++i) {
-                switch (cursor.advanceBy(DEC.ASPECT_KIND.BITLEN)) {
-                    case DEC.ASPECT_KIND.NONE: {
+                switch (cursor.advanceBy(DEC.ASPECT_SLOT_FLAG.BITLEN)) {
+                    case DEC.ASPECT_SLOT_FLAG.UNUSED: {
                         aspects.push(null); 
                         break;
                     }
-                    case DEC.ASPECT_KIND.USED: {
+                    case DEC.ASPECT_SLOT_FLAG.USED: {
                         const aspectID = cursor.advanceBy(DEC.ASPECT_ID_BITLEN);
                         const aspectTier = cursor.advanceBy(DEC.ASPECT_TIER_BITLEN);
                         aspects.push([aspect_id_map.get(cls).get(aspectID).displayName, aspectTier + 1]);

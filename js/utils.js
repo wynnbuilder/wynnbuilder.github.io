@@ -302,20 +302,10 @@ const VERISON_BITLEN = 10
         if (byteLength < 4) byteLength = 4;              // The ArrayBuffer is interepreted as Uint32Array, so we must reserve at least 4 bytes.
         this.arr = new ArrayBuffer(byteLength, {maxByteLength: 2 << 16});
 
-        const bitsView = new Uint32Array(this.arr);
+        this.bits = new Uint32Array(this.arr, 0);
         for (const i in bitVec) {
-            bitsView[i] = bitVec[i];
+            this.bits[i] = bitVec[i];
         }
-    }
-
-    /**
-     * Return a Uint32Array representation of the underlying ArrayBuffer.
-     * this does not copy the array.
-     *
-     * @returns Uint32Array
-     */
-    get bits() {
-        return new Uint32Array(this.arr);
     }
 
     /** Return value of bit at index idx.
@@ -340,8 +330,6 @@ const VERISON_BITLEN = 10
      */
     slice(start, end) {
         //TO NOTE: JS shifting is ALWAYS in mod 32. a << b will do a << (b mod 32) implicitly.
-        const bitVec = this.bits;
-
         if (end < start) {
             throw new RangeError("Cannot slice a range where the end is before the start.");
         } else if (end == start) {
@@ -354,13 +342,13 @@ const VERISON_BITLEN = 10
         let res = 0;
         if (Math.floor((end - 1) / 32) == Math.floor(start / 32)) {
             //the range is within 1 uint32 section - do some relatively fast bit twiddling
-            res = (bitVec[Math.floor(start / 32)] & ~((((~0) << ((end - 1))) << 1) | ~((~0) << (start)))) >>> (start % 32);
+            res = (this.bits[Math.floor(start / 32)] & ~((((~0) << ((end - 1))) << 1) | ~((~0) << (start)))) >>> (start % 32);
         } else {
             //the number of bits in the uint32s
             let startPos = (start % 32);
             let intPos = Math.floor(start/32);
-            res = (bitVec[intPos] & ((~0) << (start))) >>> (startPos);
-            res |= (bitVec[intPos + 1] & ~((~0) << (end))) << (32 - startPos);
+            res = (this.bits[intPos] & ((~0) << (start))) >>> (startPos);
+            res |= (this.bits[intPos + 1] & ~((~0) << (end))) << (32 - startPos);
         }
 
         return res;
@@ -451,16 +439,26 @@ const VERISON_BITLEN = 10
         return retStr;
     }
 
-    updateTailInt(bitVec, v, vLen) {
+    updateTailInt(v, vLen) {
         const prePos = this.length % 32; // insertion pos
         const postPos = prePos + vLen; // excess insertion pos
 
-        bitVec[this.tailIdx - 1] |= v << prePos; // mask the tail with the bits of the new int that fit
+        this.bits[this.tailIdx - 1] |= v << prePos; // mask the tail with the bits of the new int that fit
         this.tailIdx += postPos >= 32; // if we've exhausted the tail, increment it
 
         // if we've overflowed and there's excess bits, add them to the new tail
-        bitVec[this.tailIdx - 1] |= (v & ((postPos <= 32) - 1)) >>> (32 - prePos);
+        this.bits[this.tailIdx - 1] |= (v & ((postPos <= 32) - 1)) >>> (32 - prePos);
         this.length += vLen;
+    }
+
+    /**
+     * Resizes the unerlying buffer if necessary.
+     * @param {number} length - The number of bits being added to the vector.
+     */
+    checkResize(length) {
+        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
+            this.arr.resize(this.arr.byteLength * 2);
+        }
     }
 
     /**
@@ -470,15 +468,11 @@ const VERISON_BITLEN = 10
     appendB64(data) {
         if (typeof data !== "string") throw new Error("`BitVector.appendB64` can only be used to append Base 64 strings. Try `BitVector.append`.")
         const length = data.length * 6;
+        this.checkResize(length);
 
-        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
-            this.arr.resize(this.arr.byteLength * 2);
-        }
-
-        let bitVec = this.bits;
         for (const c of data) {
             const v = Base64.toInt(c);
-            this.updateTailInt(bitVec, v, 6);
+            this.updateTailInt(v, 6);
         }
     }
 
@@ -487,17 +481,12 @@ const VERISON_BITLEN = 10
      * @param {Number | String} data - The data to append.
      * @param {Number} length - The length, in bits, of the new data.
      */
-     append(data, length) {
+    append(data, length) {
         if (typeof data !== "number") throw new Error("`BitVector.append` can only be used to append integers. Try `BitVector.appendB64`.")
         if (length < 0) {
             throw new RangeError("BitVector length must increase by a nonnegative number.");
         }
-
-        // Reallocate the underlying array if necessary
-        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
-            this.arr.resize(this.arr.byteLength * 2); 
-        }
-
+        this.checkResize(length)
 
         //convert to int just in case
         let int = data & 0xFFFFFFFF;
@@ -510,7 +499,7 @@ const VERISON_BITLEN = 10
             throw new RangeError(`${int} doesn't fit in ${length} bits!`)
         }
 
-        this.updateTailInt(this.bits, int, length);
+        this.updateTailInt(int, length);
     }
 
     /**

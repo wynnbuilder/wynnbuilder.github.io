@@ -132,11 +132,11 @@ The number of elements is stored to decode the "powder wrapping" part of repeati
 
 #### 3 - Tomes
 
-| field                         | length (in bits) | values                  | range    |
-| ----------------------------- | ---------------- | ----------------------- | -------- |
-| Has Tomes                     | 1                | `HAS_TOMES`, `NO_TOMES` | [0, 1]   |
-| Slot in use (iff `HAS_TOMES`) | 1                | `UNUSED`, `USED`        | [0, 1]   |
-| Tome ID (iff `USED`)          | L (Dynamic)      | `uint32`                | [0, 2^L) |
+| field                            | length (in bits) | values                  | range    |
+| -----------------------------    | ---------------- | ----------------------- | -------- |
+| Tomes flag                       | 1                | `HAS_TOMES`, `NO_TOMES` | [0, 1]   |
+| Tome slot flag (iff `HAS_TOMES`) | 1                | `UNUSED`, `USED`        | [0, 1]   |
+| Tome ID (iff `USED`)             | L (Dynamic)      | `uint32`                | [0, 2^L) |
 
 Tomes are very simple:
 1. If the build has no tomes, encode `NO_TOMES`, continue.
@@ -144,13 +144,13 @@ Tomes are very simple:
 
 #### 4 - Skillpoints
 
-| field                                      | length (in bits) | values                             | range         |
-| ------------------------------------------ | ---------------- | ---------------------------------- | ------------- |
-| Assigned SKP                               | 1                | `ASSIGNED`, `UNASSIGNED`           | [0, 1]        |
-| Element Assigned (iff `ASSIGNED`)          | 1                | `ASSIGNED_ELEM`, `UNASSIGNED_ELEM` | [0, 1]        |
-| Skillpoints Assigned (iff `ASSIGNED_ELEM`) | 12               | `int32`                            | [-2048, 2047] |
+| field                                      | length (in bits) | values                                   | range         |
+| ------------------------------------------ | ---------------- | ---------------------------------------- | ------------- |
+| Assigned SKP                               | 1                | `ASSIGNED`, `AUTOMATIC`                  | [0, 1]        |
+| Element Assigned flag (iff `ASSIGNED`)     | 1                | `ELEMENT_ASSIGNED`, `ELEMENT_UNASSIGNED` | [0, 1]        |
+| Skillpoints Assigned (iff `ASSIGNED_ELEM`) | 12               | `int32`                                  | [-2048, 2047] |
 
-skillpoints are only encoded if the user changed the automatically calculated values. If there has been no change, an "Assigned SKP" `UNASSIGNED` flag is appended. otherwise, an `ASSIGNED` flag is appended.
+skillpoints are only encoded if the user changed the automatically calculated values. If there has been no change, an `AUTOMATIC` flag is appended. otherwise, an `ASSIGNED` flag is appended.
 
 if `ASSIGNED` is present, encode each skillpoint element in the order `etwfa` accordingly:
 1. if the element has manually assigned skillpoints, encode `ASSIGNED_ELEM` alongside the new value truncated to 12 bits. 
@@ -162,18 +162,18 @@ Notice that since "Skillpoints Assigned" is a signed integer, when decoding, the
 
 | field                 | length (in bits) | values           | range    |
 | --------------------- | ---------------- | ---------------- | -------- |
-| Max Level             | 1                | `MAX`, `NOT_MAX` | [0, 1]   |
-| Level (iff `NOT_MAX`) | L (Dynamic)      | `uint32`         | [0, 2^L) |
+| Max Level flag        | 1                | `MAX`, `OTHER`   | [0, 1]   |
+| Level (iff `OTHER`)   | L (Dynamic)      | `uint32`         | [0, 2^L) |
 
-If the build level is the version's max level, encode `MAX`. Otherwise, encode `NOT_MAX` followed by the level.
+If the build level is the version's max level, encode `MAX`. Otherwise, encode `OTHER` followed by the level.
 
 #### 6 - Aspects
 
-| field                             | length (in bits) | values                      | range    |
-| --------------------------------- | ---------------- | --------------------------- | -------- |
-| Has Aspects                       | 1                | `HAS_ASPECTS`, `NO_ASPECTS` | [0, 1]   |
-| Aspect in use (iff `HAS_ASPECTS`) | 1                | `UNUSED`, `USED`            | [0, 1]   |
-| Aspect ID (iff `USED`)            | L (Dynamic)      | `uint32`                    | [0, 2^L) |
+| field                                | length (in bits) | values                      | range    |
+| ------------------------------------ | ---------------- | --------------------------- | -------- |
+| Has Aspects flag                     | 1                | `HAS_ASPECTS`, `NO_ASPECTS` | [0, 1]   |
+| Aspect slot flag (iff `HAS_ASPECTS`) | 1                | `UNUSED`, `USED`            | [0, 1]   |
+| Aspect ID (iff `USED`)               | L (Dynamic)      | `uint32`                    | [0, 2^L) |
 
 Aspects are encoded exactly like tomes. When decoding, make sure to load the correct aspect map based on the current weapon.
 
