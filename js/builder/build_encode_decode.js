@@ -280,7 +280,7 @@ function encodeSp(finalSp, originalSp, version) {
  * - Max level - encode a LEVEL_FLAG.MAX flag.
  * - Any other level - encode a LEVEL_FLAG.OTHER flag, then endcode the level in LEVEL_BITLEN bits.
  *
- * @param {nubmer} level - The build's level.
+ * @param {number} level - The build's level.
  * @param {version} version - The data verison.
  */
 function encodeLevel(level, version) {
@@ -668,17 +668,17 @@ function getDataVersionLegacy() {
     // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
     const urlParams = new URLSearchParams(window.location.search);
     const versionID = urlParams.get('v');
-    let wynnVerison = parseInt(versionID); // Declared in load_item.js
-    if (isNaN(wynnVerison) || wynnVerison > LAST_LEGACY_VERSION || wynnVerison < 0) {
+    let wynnVersion = parseInt(versionID); // Declared in load_item.js
+    if (isNaN(wynnVersion) || wynnVersion > LAST_LEGACY_VERSION || wynnVersion < 0) {
         // TODO: maybe make the NAN try to use the human readable version?
         // NOTE: Failing silently... do we want to raise a loud error?
         console.log("Explicit version not found or invalid, using latest version");
-        wynnVerison = LAST_LEGACY_VERSION;
+        wynnVersion = LAST_LEGACY_VERSION;
     }
     else {
-        console.log(`Build link for wynn version ${wynnVerison} (${wynn_version_names[wynnVerison]})`);
+        console.log(`Build link for wynn version ${wynnVersion} (${wynn_version_names[wynnVersion]})`);
     }
-    return wynnVerison;
+    return wynnVersion;
 }
 
 /**

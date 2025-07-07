@@ -22,11 +22,9 @@ This section details each part of the encoded vectors and how to interpret them.
 in case of changes to the specification, an additional section titled "Specification VXX" will be appended, only detailing the changes made to the previous spec version.
 
 - **Lengths denoted as "Dynamic"** are automatically generated from the versioned data in `data/*.json` files and from manually tracked data such as max in-game level, number of powder tiers etc.
-
 - **String values in SCREAMING_CASE without an explicit associated integer value** (example of an associated value: `"SOME_NAME"=1`) are essentially enum variants. They need not be stable between versions.
-
+  - These are technically generated separately for each Wynn data version, but the generator script should be used as a reference for their values: `py_script/encoding_gen_const.py`.
 - **Optional fields** are fields that are only encoded under specific conditions which are described in the same section as they're declared.
-
 - **iff fields** are fields that must be encoded under the specified condition.
 
 ## Section A - Build Encoding
@@ -38,8 +36,13 @@ in case of changes to the specification, an additional section titled "Specifica
 | Legacy  | 6                | `uint32` | [0, 63]   |
 | Version | 10               | `uint32` | [0, 1023] |
 
-Each build must have it's first 6 bits set to a number representing whether it is a legacy or binary encoded build.
-"Legacy" larger than 11 indicates a binary encoded build. anything less indicates a legacy build.
+The "Legacy" field determines whether to use legacy encoding or binary encoding.
+If the field is 11 or less, legacy encoding is used, as described in `dev/index.html`.
+Otherwise, the field should be set to 12.
+
+In practice, the decoding code interprets the first character of the build hash (6 bits) as a Base64 number (matching the legacy decoder).
+If the number is 11 or less, the legacy decoder is used as a fallback, and binary decoding is skipped.
+Otherwise, we proceed as described below.
 
 Each build must also have an associated "version" with it from which it loads the data. each vesrion corresponds to a folder in `data/`, and the
 translation between version numbers and names can be found in `js/load_item.js:wynn_version_names`.
@@ -335,7 +338,7 @@ These are IDs with predetermined possible values and therefore sizes, and they i
 | ---------------------------- | ---------------- | -------- | ------- |
 | type (optional)              | 4                | `uint32` | [0, 15] |
 | tier (optional)              | 4                | `uint32` | [0, 15] |
-| attak speed (optional)       | 4                | `uint32` | [0, 15] |
+| attack speed (optional)      | 4                | `uint32` | [0, 15] |
 | class requirement (optional) | 4                | `uint32` | [0, 15] |
 
 ##### 2.3 - Non-Rolled variable length string IDs
