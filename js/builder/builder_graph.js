@@ -155,17 +155,37 @@ class ItemInputNode extends InputNode {
 
         let item;
         if (item_text.slice(0, 3) == "CI-") { item = decodeCustom({hash: item_text.substring(3)}); }
-        else if (item_text.slice(0, 3) == "CR-") { item = decodeCraft({hash: item_text.substring(3)}); } 
-        else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
+        else if (item_text.slice(0, 3) == "CR-") { item = decodeCraft({hash: item_text.substring(3)}); }
+        else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); }
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
         if (item) {
             let type_match;
             if (this.category == 'weapon') {
                 type_match = item.statMap.get('category') == 'weapon';
+            } else if (item.statMap.get("crafted")) {
+                const fieldType = this.none_item.statMap.get('type');
+                const fieldSkill = type_to_skill(fieldType);
+                const itemSkillMatchesField = item.recipe.get('skill') === fieldSkill;
+
+                type_match = item.statMap.get('type') === fieldType;
+
+                // Different type but same crafting skill group, re-encode the item to the correct type
+                if (!type_match && itemSkillMatchesField) {
+                    const originalRecipeName = item.recipe.get("name");
+                    const levelRange = originalRecipeName.substring(originalRecipeName.indexOf("-") + 1);
+                    const recipeName = `${capitalizeFirst(fieldType)}-${levelRange}`;
+                    const newRecipe = expandRecipe(recipeMap.get(recipeName));
+                    // TODO(@orgold): the way crafted items handle hash setting is kinda silly? why not just automatically apply based on calc?
+                    item = new Craft(newRecipe, item.mat_tiers, item.ingreds, item.atkSpd, "");
+                    item.setHash(encodeCraft(item).toB64());
+                    this.input_field.value = item.hash;
+                    type_match = true;
+                }
             } else {
                 type_match = item.statMap.get('type') == this.none_item.statMap.get('type');
             }
+
             if (type_match) {
                 return item;
             }
