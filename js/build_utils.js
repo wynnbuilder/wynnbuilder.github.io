@@ -74,6 +74,7 @@ const baseDamageMultiplier = [ 0.51, 0.83, 1.5, 2.05, 2.5, 3.1, 4.3 ];
 //0.51, 0.82, 1.50, 2.05, 2.50, 3.11, 4.27
 const classes = ["Warrior", "Assassin", "Mage", "Archer", "Shaman"];
 const wep_to_class = new Map([["dagger", "Assassin"], ["spear", "Warrior"], ["wand", "Mage"], ["bow", "Archer"], ["relik", "Shaman"]])
+
 const tiers = ["Normal", "Unique", "Rare", "Legendary", "Fabled", "Mythic", "Set", "Crafted"] //I'm not sure why you would make a custom crafted but if you do you should be able to use it w/ the correct powder formula
 const all_types = armorTypes.concat(accessoryTypes).concat(weaponTypes).concat(consumableTypes).concat(tome_types).map(x => x.substring(0,1).toUpperCase() + x.substring(1));
 //weaponTypes.push("sword");
@@ -337,4 +338,27 @@ function merge_stat(stats, name, value) {
         stats.set(name, stats.get(name) + value);
     }
     else { stats.set(name, value); }
+}
+
+/**
+ * Return a crafting skill from a crafted item's type.
+ * returns null if the gear type is not armor or accessory.
+ * @param {string} t - a crafted item type/category
+ * @returns {string | null}
+ */
+function type_to_skill(t) {
+    switch (t) {
+        case "helmet":
+        case "chestplate":
+            return "ARMOURING";
+        case "leggings":
+        case "boots":
+            return "TAILORING";
+        case "ring":
+        case "necklace":
+        case "bracelet":
+            return "JEWELING";
+        default:
+            return null
+    }
 }
