@@ -29,7 +29,6 @@ function do_item_search() {
             document.getElementById("summary").innerHTML = "Error: The minimum of filter " + filter.input_elem.value + " (" + min + ") is greater than its maximum (" + max + ")";
             return;
         }
-        let zero_in_min_max = (isNaN(min) || min < 0) && (isNaN(max) || max > 0);
 
         let raw_name = filter.input_elem.value;
         if (raw_name == "") {
@@ -50,9 +49,6 @@ function do_item_search() {
         }
         if (!isNaN(max)) {
             queries.push("f:" + filter_name + "<=" + max);
-        }
-        if (zero_in_min_max) {
-            queries.push("f:" + filter_name + "!=0");
         }
         queries.push("s:" + (filter.ascending ? "0-" : "") + filter_name);
     }

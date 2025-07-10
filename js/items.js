@@ -133,7 +133,8 @@ const translate_mappings = {
     "Slow Enemy": "slowEnemy",
     "Max Mana": "maxMana",
     "Main Attack Range": "mainAttackRange",
-    "Release Order": "id"
+    "Release Order": "id",
+    "Attack Speed Tier": "atkspd"
 };
 
 const special_mappings = {
@@ -141,6 +142,7 @@ const special_mappings = {
     "Sum (Mana Sustain)": "mr/5+ms/3",
     "Sum (Life Sustain)": "hpr+ls",
     "Sum (Health + Health Bonus)": "hp+hpBonus",
+    "Sum (Base Damage)": "sumdmg",
     "Base DPS (Pre-Powder)": "sumdmg * atkspdmod(atkspd)",
     "Base DPS (Post-Powder)": "(sumdmg+powders*11.5) * atkspdmod(atkspd)",
     "Sum (Melee Damages Raw)": "mdRaw+rMdRaw+nMdRaw+eMdRaw+tMdRaw+wMdRaw+fMdRaw+aMdRaw",
@@ -222,7 +224,7 @@ function filter_types_tiers(queries) {
 }
 
 function init_values() {
-    search_db = items.filter( i => ! i.remapID ).map( i => [i, expandItem(i, [])] );
+    search_db = items.filter( i => ! i.remapID ).map( i => [i, expandItem(i)] );
     expr_parser = new ExprParser(itemQueryProps, queryFuncs);
 }
 

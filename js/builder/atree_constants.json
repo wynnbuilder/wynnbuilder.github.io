@@ -5279,12 +5279,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Luster Purge:0.Melee",
-                            "value": 40
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.Luster Purge:0.Powder Special",
+                            "name": "nConvBase:0.Melee",
                             "value": 40
                         }
                     ]
