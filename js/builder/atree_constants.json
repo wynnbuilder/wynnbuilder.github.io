@@ -10830,6 +10830,21 @@
                     "type": "add_spell_prop",
                     "base_spell": 1,
                     "target_part": "Per Hit",
+                    "behavior": "modify",
+                    "multipliers": [
+                        20,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Spin Attack",
+                    "behavior": "modify",
                     "multipliers": [
                         20,
                         0,
@@ -12488,7 +12503,9 @@
                 "col": 3,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "lunatic_damage": 35
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -12504,7 +12521,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Mask",
-                            "value": 35
+                            "value": "Uproot.lunatic_damage"
                         },
                         {
                             "type": "stat",
@@ -13010,7 +13027,9 @@
                 "col": 4,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "fanatic_res": 35
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -13031,7 +13050,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Mask",
-                            "value": 35
+                            "value": "Uproot.fanatic_res"
                         },
                         {
                             "type": "stat",
@@ -13562,7 +13581,7 @@
                 "Mask of the Heretic"
             ],
             "dependencies": [
-                "Uproot"
+                "Overseer"
             ],
             "blockers": [],
             "cost": 2,
@@ -13628,7 +13647,9 @@
                 "col": 4,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "heretic_speed": 80
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -13644,7 +13665,7 @@
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 80
+                            "value": "Uproot.heretic_speed"
                         },
                         {
                             "type": "stat",
@@ -14512,17 +14533,17 @@
                         {
                             "type": "stat",
                             "name": "damMult.Mask",
-                            "value": 35
+                            "value": "Uproot.lunatic_damage"
                         },
                         {
                             "type": "stat",
                             "name": "defMult.Mask",
-                            "value": 35
+                            "value": "Uproot.fanatic_res"
                         },
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 80
+                            "value": "Uproot.heretic_speed"
                         },
                         {
                             "type": "stat",

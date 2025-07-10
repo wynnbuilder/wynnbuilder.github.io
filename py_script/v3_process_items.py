@@ -211,7 +211,10 @@ for tome in tomes:
 
 tome_value_map = {}
 for item in old_items:
-    if item["name"] not in known_item_names:
+    if "persistent" in item:
+        print(f'Old API hidden item: {item["name"]}')
+        items.append(item)
+    elif item["name"] not in known_item_names:
         print(f'Unknown old item: {item["name"]}!!!')
 for ingred in old_ingreds:
     if ingred["name"] not in known_ingred_names:

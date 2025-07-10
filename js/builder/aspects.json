@@ -2120,7 +2120,36 @@
                   "slider": true,
                   "slider_name": "Hits dealt",
                   "slider_max": 6,
-                  "max": 30
+                  "output": [
+                    {
+                        "type": "stat",
+                        "name": "nDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamRaw"
+                    }
+                  ],
+                  "max": 30,
+                  "scaling": [
+                    5
+                  ]
                 }
               ]
             }
@@ -2138,7 +2167,36 @@
                   "slider": true,
                   "slider_name": "Hits dealt",
                   "slider_max": 6,
-                  "max": 30
+                  "output": [
+                    {
+                        "type": "stat",
+                        "name": "nDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamRaw"
+                    }
+                  ],
+                  "max": 30,
+                  "scaling": [
+                    5
+                  ]
                 }
               ]
             },
@@ -2163,7 +2221,36 @@
                   "slider": true,
                   "slider_name": "Hits dealt",
                   "slider_max": 10,
-                  "max": 50
+                  "output": [
+                    {
+                        "type": "stat",
+                        "name": "nDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamRaw"
+                    }
+                  ],
+                  "max": 50,
+                  "scaling": [
+                    5
+                  ]
                 }
               ]
             },
@@ -4207,68 +4294,12 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Lunatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 5
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Fanatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 5
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Heretic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 10
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Awakened",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 10
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "lunatic_damage": 5,
+                "fanatic_res": 5,
+                "heretic_speed": 10
+              },
+              "effects": []
             }
           ]
         },
@@ -4278,68 +4309,12 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Lunatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 8
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Fanatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 8
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Heretic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 16
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Awakened",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 8
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 16
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "lunatic_damage": 8,
+                "fanatic_res": 8,
+                "heretic_speed": 16
+              },
+              "effects": []
             }
           ]
         },
@@ -4349,68 +4324,12 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Lunatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 10
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Fanatic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 10
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Mask of the Heretic",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 20
-                    }
-                  ]
-                },
-                {
-                  "type": "raw_stat",
-                  "toggle": "Awakened",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "damMult.Mask",
-                      "value": 10
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "defMult.Mask",
-                      "value": 10
-                    },
-                    {
-                      "type": "stat",
-                      "behavior": "modify",
-                      "name": "spd",
-                      "value": 20
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "lunatic_damage": 10,
+                "fanatic_res": 10,
+                "heretic_speed": 20
+              },
+              "effects": []
             }
           ]
         }

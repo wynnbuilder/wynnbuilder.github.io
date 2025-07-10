@@ -114139,51 +114139,6 @@
       "id": 1222
     },
     {
-      "name": "Ivy Whip",
-      "category": "weapon",
-      "type": "relik",
-      "atkSpd": "SLOW",
-      "averageDps": 68,
-      "restrict": "untradable",
-      "drop": "never",
-      "fixID": true,
-      "lvl": 19,
-      "classReq": "shaman",
-      "strReq": 5,
-      "slots": 1,
-      "lore": "\"The vines you'll find among the foilage make for great rope!\" -Alekin's Guide to Plant Fiber Cordage",
-      "dropInfo": {
-        "name": "Infested Pit",
-        "type": "dungeonMerchant",
-        "coordinates": [
-          -157,
-          54,
-          -1819
-        ]
-      },
-      "icon": {
-        "format": "attribute",
-        "value": {
-          "id": "minecraft:iron_horse_armor",
-          "customModelData": "409",
-          "name": "relik.earth1"
-        }
-      },
-      "str": 2,
-      "spPct4": -15,
-      "kb": 30,
-      "eDamPct": 8,
-      "nDam": "15-25",
-      "eDam": "25-25",
-      "tier": "Unique",
-      "displayName": "Ivy Whip",
-      "tDam": "0-0",
-      "wDam": "0-0",
-      "fDam": "0-0",
-      "aDam": "0-0",
-      "id": 4108
-    },
-    {
       "name": "Fangs",
       "category": "weapon",
       "type": "dagger",
@@ -114226,6 +114181,51 @@
       "fDam": "0-0",
       "aDam": "0-0",
       "id": 799
+    },
+    {
+      "name": "Ivy Whip",
+      "category": "weapon",
+      "type": "relik",
+      "atkSpd": "SLOW",
+      "averageDps": 68,
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "lvl": 19,
+      "classReq": "shaman",
+      "strReq": 5,
+      "slots": 1,
+      "lore": "\"The vines you'll find among the foliage make for great rope!\" -Alekin's Guide to Plant Fiber Cordage",
+      "dropInfo": {
+        "name": "Infested Pit",
+        "type": "dungeonMerchant",
+        "coordinates": [
+          -157,
+          54,
+          -1819
+        ]
+      },
+      "icon": {
+        "format": "attribute",
+        "value": {
+          "id": "minecraft:iron_horse_armor",
+          "customModelData": "409",
+          "name": "relik.earth1"
+        }
+      },
+      "str": 2,
+      "spPct4": -15,
+      "kb": 30,
+      "eDamPct": 8,
+      "nDam": "15-25",
+      "eDam": "25-25",
+      "tier": "Unique",
+      "displayName": "Ivy Whip",
+      "tDam": "0-0",
+      "wDam": "0-0",
+      "fDam": "0-0",
+      "aDam": "0-0",
+      "id": 4108
     },
     {
       "name": "Pursuit",
@@ -125327,6 +125327,31 @@
       "tier": "Unique",
       "displayName": "Blue Wynnter Sweater",
       "id": 3792
+    },
+    {
+      "name": "Inhibitor",
+      "category": "armor",
+      "type": "chestplate",
+      "persistent": true,
+      "armourMaterial": "leather",
+      "dropInfo": {
+        "name": "The Qira Hive",
+        "type": "challenge",
+        "coordinates": [
+          373,
+          64,
+          -5497
+        ]
+      },
+      "lvl": 100,
+      "mr": -18,
+      "sdRaw": -4000,
+      "sdPct": -300,
+      "mdRaw": -5000,
+      "mdPct": -300,
+      "tier": "Fabled",
+      "displayName": "Inhibitor",
+      "id": 3650
     }
   ],
   "version": 2.0,
@@ -127300,6 +127325,20 @@
           "hpBonus": 1500,
           "rSdPct": 40,
           "rSdRaw": 200
+        }
+      ]
+    },
+    "Taiga Elk": {
+      "items": [
+        "Rime-Webbed Antlers",
+        "Elk's Hoof"
+      ],
+      "bonuses": [
+        {},
+        {
+          "atkTier": 1,
+          "mainAttackRange": 33,
+          "spPct2": -14
         }
       ]
     }
