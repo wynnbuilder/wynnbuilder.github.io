@@ -298,14 +298,8 @@ const VERISON_BITLEN = 10
         // For simplicity, the first entry is always treated as initialized even if the vector length is 0.
         this.tailIdx = bitVec.length === 0 ? 1 : bitVec.length;
 
-        let byteLength = Math.floor(this.length / 4) + 1; // Length in bytes for ArrayBuffer creation.
-        if (byteLength < 4) byteLength = 4;              // The ArrayBuffer is interepreted as Uint32Array, so we must reserve at least 4 bytes.
-        this.arr = new ArrayBuffer(byteLength, {maxByteLength: 2 << 16});
-
-        this.bits = new Uint32Array(this.arr, 0);
-        for (const i in bitVec) {
-            this.bits[i] = bitVec[i];
-        }
+        this.bits = new Uint32Array(this.tailIdx);
+        this.bits.set(bitVec, 0);
     }
 
     /** Return value of bit at index idx.
@@ -456,8 +450,13 @@ const VERISON_BITLEN = 10
      * @param {number} length - The number of bits being added to the vector.
      */
     checkResize(length) {
-        while (Math.floor((this.length + length) / 4) + 1 >= this.arr.byteLength) {
-            this.arr.resize(this.arr.byteLength * 2);
+        let resizeLen = this.bits.length;
+        let needed = (Math.floor(this.length + length) / 32) + 1;
+        if (needed >= resizeLen) {
+            resizeLen = (resizeLen + needed) * 2;
+            let newBits = new Uint32Array(resizeLen * 2);
+            newBits.set(this.bits, 0)
+            this.bits = newBits;
         }
     }
 
