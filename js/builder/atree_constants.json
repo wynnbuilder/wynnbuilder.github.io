@@ -5279,7 +5279,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "nConvBase:0.Melee",
+                            "name": "damMult.Luster Purge:0.Melee",
                             "value": 40
                         }
                     ]
