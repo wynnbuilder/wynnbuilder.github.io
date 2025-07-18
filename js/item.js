@@ -55,7 +55,7 @@ function toggleAmps(button_id) {
             amp_state = button_id;
         } 
     }    
-    displaysq2IDProbabilities("identification-probabilities", item, amp_state);
+    displayIDProbabilities("identification-probabilities", item, amp_state);
 }
 
 
