@@ -450,6 +450,15 @@
                                 "value": 100
                             }
                         ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 6,
+                        "target_part": "Puppet Explosion Burst",
+                        "hits": {
+                            "Puppet Explosion": "Totem.num_totems"
+                        },
+                        "display": "Puppet Explosion"
                     }
                 ]
             }

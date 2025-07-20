@@ -12942,7 +12942,8 @@
                 "icon": "node_4"
             },
             "properties": {
-                "duration": 10
+                "duration": 10,
+                "damage_boost": 20
             },
             "effects": [
                 {
@@ -12952,12 +12953,37 @@
                         {
                             "type": "stat",
                             "name": "damMult.Bullwhip:6.Puppet Hit",
-                            "value": 20
+                            "value": "Bullwhip.damage_boost"
                         },
                         {
                             "type": "stat",
                             "name": "damMult.Bullwhip:7.Effigy Hit",
-                            "value": 20
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:6.Puppet Explosion",
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:1.Smash Damage",
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:1.Tick Damage",
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:5.Explosion Damage",
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:12.Hummingbird Hit",
+                            "value": "Bullwhip.damage_boost"
                         }
                     ]
                 }

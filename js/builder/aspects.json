@@ -4599,26 +4599,11 @@
           "description": "Bullwhip gains +5% Damage Bonus to Summons.",
           "abilities": [
             {
-              "base_spell": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Bullwhip",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:6.Puppet Hit",
-                      "value": 5
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:7.Effigy Hit",
-                      "value": 5
-                    }
-                  ]
-                }
-              ]
+              "base_abil": "Bullwhip",
+              "properties": {
+                "damage_boost": 5
+              },
+              "effects": []
             }
           ]
         },
@@ -4627,26 +4612,11 @@
           "description": "Bullwhip gains +9% Damage Bonus to Summons.",
           "abilities": [
             {
-              "base_spell": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Bullwhip",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:6.Puppet Hit",
-                      "value": 9
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:7.Effigy Hit",
-                      "value": 9
-                    }
-                  ]
-                }
-              ]
+              "base_abil": "Bullwhip",
+              "properties": {
+                "damage_boost": 9
+              },
+              "effects": []
             }
           ]
         },
@@ -4655,26 +4625,11 @@
           "description": "Bullwhip gains +12% Damage Bonus to Summons.",
           "abilities": [
             {
-              "base_spell": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Bullwhip",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:6.Puppet Hit",
-                      "value": 12
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:7.Effigy Hit",
-                      "value": 12
-                    }
-                  ]
-                }
-              ]
+              "base_abil": "Bullwhip",
+              "properties": {
+                "damage_boost": 12
+              },
+              "effects": []
             }
           ]
         },
@@ -4683,26 +4638,11 @@
           "description": "Bullwhip gains +15% Damage Bonus to Summons.",
           "abilities": [
             {
-              "base_spell": "Uproot",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Bullwhip",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:6.Puppet Hit",
-                      "value": 15
-                    },
-                    {
-                      "type": "stat",
-                      "name": "damMult.Bullwhip:7.Effigy Hit",
-                      "value": 15
-                    }
-                  ]
-                }
-              ]
+              "base_abil": "Bullwhip",
+              "properties": {
+                "damage_boost": 15
+              },
+              "effects": []
             }
           ]
         }
@@ -4799,7 +4739,7 @@
           "description": "Flaming Tongue gains +1 hit, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -14% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -11%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -1%)   </br>&emsp;(<span class='Fire'>Fire</span>: -2%)",
           "abilities": [
             {
-              "base_spell": "Uproot",
+              "base_abil": "Uproot",
               "dependencies": [
                 "Flaming Tongue"
               ],
@@ -4836,7 +4776,7 @@
           "description": "Flaming Tongue gains +2 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -17%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -2%)   </br>&emsp;(<span class='Fire'>Fire</span>: -4%)",
           "abilities": [
             {
-              "base_spell": "Uproot",
+              "base_abil": "Uproot",
               "dependencies": [
                 "Flaming Tongue"
               ],
@@ -4873,7 +4813,7 @@
           "description": "Flaming Tongue gains +3 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -29% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -3%)   </br>&emsp;(<span class='Fire'>Fire</span>: -6%)",
           "abilities": [
             {
-              "base_spell": "Uproot",
+              "base_abil": "Uproot",
               "dependencies": [
                 "Flaming Tongue"
               ],
@@ -4910,7 +4850,7 @@
           "description": "Flaming Tongue gains +4 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -34% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -22%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -4%)   </br>&emsp;(<span class='Fire'>Fire</span>: -8%)",
           "abilities": [
             {
-              "base_spell": "Uproot",
+              "base_abil": "Uproot",
               "dependencies": [
                 "Flaming Tongue"
               ],
