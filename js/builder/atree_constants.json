@@ -40,6 +40,7 @@
                         {
                             "name": "Self Damage",
                             "type": "damage",
+                            "use_str": false,
                             "multipliers": [
                                 10,
                                 0,
@@ -5951,6 +5952,7 @@
                     "name": "Bloodlust Damage",
                     "base_spell": 10,
                     "display": "Annihilation",
+                    "ignored_mults": ["Enraged"],
                     "parts": [
                         {
                             "name": "Annihilation",
@@ -5975,7 +5977,7 @@
                         "name": "damMult.Bloodlust:10.Annihilation"
                     },
                     "scaling": [
-                        2.5
+                        5.0
                     ]
                 }
             ]
@@ -10192,28 +10194,7 @@
                 "range": 10,
                 "cooldown": 2
             },
-            "effects": [
-                {
-                    "type": "replace_spell",
-                    "name": "Violent Vortex",
-                    "base_spell": 5,
-                    "display": "Total Damage",
-                    "parts": [
-                        {
-                            "name": "Total Damage",
-                            "type": "damage",
-                            "multipliers": [
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "effects": []
         },
         {
             "display_name": "Delirious Gas",
@@ -10901,28 +10882,7 @@
                 "icon": "node_0"
             },
             "properties": {},
-            "effects": [
-                {
-                    "type": "replace_spell",
-                    "name": "Violent Vortex",
-                    "base_spell": 5,
-                    "display": "Total Damage",
-                    "parts": [
-                        {
-                            "name": "Total Damage",
-                            "type": "damage",
-                            "multipliers": [
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "effects": []
         },
         {
             "display_name": "Harvester",
@@ -13487,6 +13447,7 @@
                     "parts": [
                         {
                             "name": "Tether Tick",
+                            "use_str": false,
                             "multipliers": [
                                 35,
                                 0,

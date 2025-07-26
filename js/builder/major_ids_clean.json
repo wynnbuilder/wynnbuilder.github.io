@@ -1483,7 +1483,7 @@
                             "name": "damMult.Bloodlust:10.Annihilation"
                         },
                         "scaling": [
-                            2.5
+                            5.0
                         ]
                     }
                 ]
@@ -1775,7 +1775,7 @@
                             "name": "damMult.Focus"
                         },
                         "scaling": [
-                            10
+                            25
                         ],
                         "slider_max": 2
                     }

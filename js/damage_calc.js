@@ -28,7 +28,7 @@ function get_base_dps(item) {
 }
 
 
-function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ignore_speed=false, part_filter=undefined) {
+function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ignore_speed=false, part_filter=undefined, ignore_str=false, ignored_mults=[]) {
     // TODO: Roll all the loops together maybe
 
     // Array of neutral + ewtfa damages. Each entry is a pair (min, max).
@@ -188,24 +188,28 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
 
     // 6. Strength boosters
     // str/dex, as well as any other mutually multiplicative effects
-    let strBoost = 1 + skill_boost[1];
+    let strBoost = ignore_str ? 1 : 1 + skill_boost[1];
     let total_dam_norm = [0, 0];
     let total_dam_crit = [0, 0];
     let damages_results = [];
     const mult_map = stats.get("damMult");
     let damage_mult = 1;
-    for (const [k, v] of mult_map.entries()) {
-        if (k.includes(':')) {
-            // TODO: fragile... checking for specific part multipliers.
-            const spell_match = k.split(':')[1];
-            if (spell_match !== part_filter) {
+    if (!ignore_str) {
+        for (const [k, v] of mult_map.entries()) {
+            if (k.includes(':')) {
+                // TODO: fragile... checking for specific part multipliers.
+                const spell_match = k.split(':')[1];
+                if (spell_match !== part_filter) {
+                    continue;
+                }
+            }
+            if (ignored_mults.includes(k)) {
                 continue;
             }
+            damage_mult *= (1 + v/100);
         }
-        damage_mult *= (1 + v/100);
     }
-
-    const crit_mult = 1+(stats.get("critDamPct")/100);
+    const crit_mult = ignore_str ? 0 : 1+(stats.get("critDamPct")/100);
 
     for (const damage of damages) {
         if(damage[0] < 0) damage[0] = 0;
