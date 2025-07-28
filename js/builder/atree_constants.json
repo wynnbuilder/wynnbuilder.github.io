@@ -3932,8 +3932,7 @@
                     "base_spell": 3,
                     "target_part": "Total Damage",
                     "hits": {
-                        "Fireworks": 1,
-                        "Smite Damage": 1
+                        "Fireworks": 1
                     }
                 }
             ]
@@ -4082,7 +4081,7 @@
         },
         {
             "display_name": "Iron Lungs",
-            "desc": "War Scream and Air Shout will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS, for War Scream)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)   </br>&emsp;(<span class='Air'>Air</span>: +30%) </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Air Shout)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +15%)   </br>&emsp;(<span class='Air'>Air</span>: +15%)",
+            "desc": "War Scream and Air Shout will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS, for War Scream)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)   </br>&emsp;(<span class='Air'>Air</span>: +30%) </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Air Shout)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +10%)   </br>&emsp;(<span class='Air'>Air</span>: +10%)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "War Scream",
@@ -4118,12 +4117,12 @@
                     "base_spell": 4,
                     "target_part": "Air Shout",
                     "multipliers": [
-                        15,
+                        10,
                         0,
                         0,
                         0,
                         0,
-                        15
+                        10
                     ]
                 }
             ]
@@ -4175,12 +4174,12 @@
                     "base_spell": 4,
                     "target_part": "Air Shout",
                     "multipliers": [
-                        40,
+                        45,
                         0,
                         0,
                         0,
                         0,
-                        10
+                        15
                     ]
                 },
                 {
@@ -4195,7 +4194,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Additional Air Shout hits",
-                    "slider_max": 9,
+                    "slider_max": 2,
                     "output": {
                         "type": "stat",
                         "name": "damMult.Air Shout:4.Air Shout"
@@ -4367,7 +4366,7 @@
         },
         {
             "display_name": "Counter",
-            "desc": "Gain a 30% chance to take no damage and instantly attack back when dodging an enemy attack with Agility. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 20%)",
+            "desc": "You take 20% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 20%)</br>Cooldown: 2s",
             "archetype": "Battle Monk",
             "parents": [
                 "Aerodynamics",
@@ -4405,11 +4404,12 @@
                 },
                 {
                     "type": "raw_stat",
+                    "toggle": "Activate Counter",
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "agiDef",
-                            "value": 3
+                            "name": "defMult.Counter",
+                            "value": 20
                         }
                     ]
                 }
@@ -4439,7 +4439,7 @@
         },
         {
             "display_name": "Blood Pact",
-            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> Spells cast using health instead of mana will deal +15% damage.",
+            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> Spells cast using health instead of mana will deal +15% to 25% damage, depending on how much of its cost is paid in blood.",
             "archetype": "Fallen",
             "archetype_req": 4,
             "parents": [
@@ -4454,8 +4454,8 @@
                 "icon": "node_3"
             },
             "properties": {
-                "health_cost": 0.4,
-                "damage_boost": 15
+                "health_cost": 0.35,
+                "damage_boost": 25
             },
             "effects": [
                 {
@@ -4464,47 +4464,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.BloodPact:1.Single Hit",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:2.Flying Kick",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:2.Flyby Jab",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:3.Uppercut",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:3.Fireworks",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:3.Comet",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:4.War Scream",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:4.Air Shout",
-                            "value": "Blood Pact.damage_boost"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.BloodPact:0.Powder Special",
+                            "name": "damMult.BloodPact",
                             "value": "Blood Pact.damage_boost"
                         }
                     ]
@@ -4582,7 +4542,7 @@
         },
         {
             "display_name": "Sacred Surge",
-            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1%. </br> Uppercut will spend 25% Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 115%)   </br>&emsp;(<span class='Water'>Water</span>: 20%)   </br>&emsp;(<span class='Air'>Air</span>: 15%)",
+            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1%. </br> Uppercut will spend 25% Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 50%)   </br>&emsp;(<span class='Water'>Water</span>: 40%)   </br>&emsp;(<span class='Air'>Air</span>: 15%)",
             "archetype": "Paladin",
             "archetype_req": 5,
             "parents": [
@@ -4619,17 +4579,17 @@
                         {
                             "type": "stat",
                             "name": "nConvBase:3.Smite Damage",
-                            "value": 115
+                            "value": 285
                         },
                         {
                             "type": "stat",
                             "name": "wConvBase:3.Smite Damage",
-                            "value": 20
+                            "value": 50
                         },
                         {
                             "type": "stat",
                             "name": "aConvBase:3.Smite Damage",
-                            "value": 15
+                            "value": 40
                         }
                     ]
                 }
@@ -4692,10 +4652,11 @@
         },
         {
             "display_name": "Riposte",
-            "desc": "Increase your chance to attack with Counter by +30%.",
+            "desc": "Increase the damage reduction of Counter by +10%. Increase the damage of Counter.",
+            "base_abil": "Counter",
             "parents": [
-                "Crushing Blow",
-                "Flying Kick"
+                "Radiant Devotee",
+                "Whirlwind Strike"
             ],
             "dependencies": [
                 "Counter"
@@ -4703,19 +4664,33 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 21,
-                "col": 5,
+                "row": 27,
+                "col": 3,
                 "icon": "node_0"
             },
             "properties": {},
             "effects": [
                 {
+                    "type": "add_spell_prop",
+                    "base_spell": 5,
+                    "target_part": "Counter Damage",
+                    "multipliers": [
+                        30,
+                        0,
+                        10,
+                        0,
+                        0,
+                        10
+                    ]
+                },
+                {
                     "type": "raw_stat",
+                    "toggle": "Activate Counter",
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "agiDef",
-                            "value": 3
+                            "name": "defMult.Counter",
+                            "value": 10
                         }
                     ]
                 }
@@ -4929,8 +4904,7 @@
                     "target_part": "Total Damage",
                     "cost": 0,
                     "hits": {
-                        "Comet": 1,
-                        "Smite Damage": 1
+                        "Comet": 1
                     }
                 }
             ]
@@ -5170,7 +5144,7 @@
         },
         {
             "display_name": "Armour Breaker",
-            "desc": "While Corrupted, losing 30% Health will make your next Uppercut give you a damage boost. </br> </br>Effect: +20% Damage Bonus to Self </br>Duration: 8s </br>Cooldown: 12s",
+            "desc": "While Corrupted, losing 40% Health will make your next Uppercut give you a damage boost. </br> </br>Effect: +30% Damage Bonus to Self </br>Duration: 8s </br>Cooldown: 16s",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Uppercut",
@@ -5268,7 +5242,7 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 27,
+                "row": 28,
                 "col": 6,
                 "icon": "node_2"
             },
@@ -5300,7 +5274,7 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 27,
+                "row": 28,
                 "col": 8,
                 "icon": "node_2"
             },
@@ -5484,28 +5458,25 @@
         },
         {
             "display_name": "Massacre",
-            "desc": "While Corrupted, hitting an enemy with your Main Attack will add +4% Corruption to your Corrupted bar. </br> </br>Cooldown: 2s",
+            "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption per second.",
             "archetype": "Fallen",
             "archetype_req": 5,
             "base_abil": 999,
             "parents": [
-                "Tempest",
-                "Massive Bash",
-                "Axe Kick"
+                "Boiling Blood",
+                "Comet"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
             ],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
-                "row": 29,
-                "col": 1,
-                "icon": "node_2"
+                "row": 24,
+                "col": 2,
+                "icon": "node_1"
             },
-            "properties": {
-                "cooldown": 2
-            },
+            "properties": {},
             "effects": []
         },
         {
@@ -5515,7 +5486,7 @@
             "parents": [
                 "Tempest",
                 "Spirit of the Rabbit",
-                "Massacre"
+                "Mindless Slaughter"
             ],
             "dependencies": [],
             "blockers": [],
@@ -5602,7 +5573,7 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 31,
+                "row": 32,
                 "col": 0,
                 "icon": "node_0"
             },
@@ -5628,8 +5599,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 32,
-                "col": 1,
+                "row": 33,
+                "col": 2,
                 "icon": "node_0"
             },
             "properties": {},
@@ -5664,19 +5635,20 @@
         },
         {
             "display_name": "Discombobulate",
-            "desc": "Damaging enemies will inflict them with +5 Discombobulated. (Max 150) </br> You will deal +1 neutral and elemental damage to enemies for every Discombobulated they have. -5 of the bonus decays every second.",
+            "desc": "Damaging enemies will inflict them with +2 Discombobulated. (Max 150) </br> You will deal +1 neutral and elemental damage to enemies for every Discombobulated they have. -4 of the bonus decays every second.",
             "archetype": "Battle Monk",
             "archetype_req": 11,
             "parents": [
-                "Cyclone"
+                "Thunderclap",
+                "Pressure"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 31,
-                "col": 2,
-                "icon": "node_3"
+                "row": 33,
+                "col": 4,
+                "icon": "node_2"
             },
             "properties": {},
             "effects": [
@@ -5726,7 +5698,8 @@
             "base_abil": "Bash",
             "parents": [
                 "Cyclone",
-                "Consecration"
+                "Consecration",
+                "Pressure"
             ],
             "dependencies": [],
             "blockers": [],
@@ -5792,15 +5765,13 @@
             "archetype": "Battle Monk",
             "archetype_req": 0,
             "parents": [
-                "Spirit of the Rabbit",
-                "Consecration",
-                "Discombobulate"
+                "Spirit of the Rabbit"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 31,
+                "row": 30,
                 "col": 4,
                 "icon": "node_2"
             },
@@ -5834,12 +5805,12 @@
         },
         {
             "display_name": "Consecration",
-            "desc": "Increases the damage of Sacred Surge. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +80%)   </br>&emsp;(<span class='Water'>Water</span>: +10%)   </br>&emsp;(<span class='Air'>Air</span>: +10%)",
+            "desc": "Increases the damage of Sacred Surge. </br> </br><span class='mc-white'>Total Damage</span>: +250% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +200%)   </br>&emsp;(<span class='Water'>Water</span>: +25%)   </br>&emsp;(<span class='Air'>Air</span>: +25%)",
             "archetype": "Paladin",
             "archetype_req": 9,
             "parents": [
                 "Blessed Bulwark",
-                "Cyclone"
+                "Thunderclap"
             ],
             "dependencies": [
                 "Sacred Surge"
@@ -5847,7 +5818,7 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 31,
+                "row": 32,
                 "col": 7,
                 "icon": "node_0"
             },
@@ -5860,17 +5831,17 @@
                         {
                             "type": "stat",
                             "name": "nConvBase:3.Smite Damage",
-                            "value": 80
+                            "value": 200
                         },
                         {
                             "type": "stat",
                             "name": "wConvBase:3.Smite Damage",
-                            "value": 10
+                            "value": 25
                         },
                         {
                             "type": "stat",
                             "name": "aConvBase:3.Smite Damage",
-                            "value": 10
+                            "value": 25
                         }
                     ]
                 }
@@ -5888,7 +5859,7 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 33,
+                "row": 35,
                 "col": 7,
                 "icon": "node_3"
             },
@@ -5906,8 +5877,8 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 34,
-                "col": 4,
+                "row": 36,
+                "col": 1,
                 "icon": "node_4"
             },
             "properties": {},
@@ -5931,7 +5902,8 @@
             "archetype": "Fallen",
             "archetype_req": 10,
             "parents": [
-                "Cheaper War Scream II"
+                "Cheaper War Scream II",
+                "Thaumic Adrenaline"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
@@ -5939,8 +5911,8 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 33,
-                "col": 0,
+                "row": 34,
+                "col": 1,
                 "icon": "node_3"
             },
             "properties": {
@@ -5994,8 +5966,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 34,
-                "col": 6,
+                "row": 36,
+                "col": 4,
                 "icon": "node_0"
             },
             "properties": {},
@@ -6019,7 +5991,7 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 34,
+                "row": 36,
                 "col": 8,
                 "icon": "node_4"
             },
@@ -6031,7 +6003,7 @@
         },
         {
             "display_name": "Haemorrhage",
-            "desc": "Reduce Blood Pact's health cost. (0.25% health per mana)",
+            "desc": "Reduce Blood Pact's health cost. (0.235% health per mana)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Blood Pact",
@@ -6044,8 +6016,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 34,
-                "col": 2,
+                "row": 35,
+                "col": 0,
                 "icon": "node_0"
             },
             "properties": {},
@@ -6057,9 +6029,188 @@
                             "type": "prop",
                             "abil": "Blood Pact",
                             "name": "health_cost",
-                            "value": -0.25
+                            "value": -0.115
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "display_name": "Freestream Flow",
+            "desc": "You fall more slowly during Charge. Duration: 2s",
+            "base_abil": "Charge",
+            "parents": [
+                "Whirlwind Strike"
+            ],
+            "dependencies": [
+                "Aerodynamics"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 27,
+                "col": 5,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": []
+        },
+        {
+            "display_name": "Mindless Slaughter",
+            "desc": "Massacre adds twice as much Corruption. Your Main Attack and Powder Specials now cost 1% health to use, activating Blood pact.",
+            "base_abil": "Charge",
+            "parents": [
+                "Massive Bash",
+                "Tempest",
+                "Axe Kick"
+            ],
+            "dependencies": [
+                "Massacre"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 29,
+                "col": 1,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": []
+        },
+        {
+            "display_name": "Pressure",
+            "desc": "When Generalist acts on a spell, it is enhanced. </br>Bash gains 2x as many hits and is 0.1s faster.</br>Uppercut deals +330% damage (+55% in all types)</br>War Scream grants a +10% damage for 12s.",
+            "base_abil": "Generalist",
+            "archetype": "Battle Monk",
+            "archetype_req": 10,
+            "parents": [
+                "Cyclone",
+                "Thunderclap"
+            ],
+            "dependencies": [
+                "Generalist"
+            ],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 32,
+                "col": 3,
+                "icon": "node_3"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "toggle": "Activate Pressure",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "nConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "eConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "tConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "wConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "fConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "aConvBase:3.Uppercut",
+                            "value": 55
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Pressure:1.Single Hit",
+                            "value": 100
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Pressure:1.Thunderclap Bonus",
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Activate Pressure Strength",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Pressure",
+                            "value": 10
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Thaumic Adrenaline",
+            "desc": "For every 1% health you are missing, your Health Regen and Lifesteal IDs are 2% stronger, based on the lowest health in the last 5s.",
+            "parents": [
+                "Pressure",
+                "Bloodlust"
+            ],
+            "dependencies": [],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 34,
+                "col": 3,
+                "icon": "node_4"
+            },
+            "properties": {},
+            "effects": []
+        },
+        {
+            "display_name": "Reverberance",
+            "desc": "Air Shout can hit +1 time, +10% thunder & air dmg",
+            "base_abil": "War Scream",
+            "parents": [
+                "Discombobulate"
+            ],
+            "dependencies": [],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 34,
+                "col": 5,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Air Shout",
+                    "multipliers": [
+                        0,
+                        0,
+                        10,
+                        0,
+                        0,
+                        10
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Additional Air Shout hits",
+                    "slider_max": 1
                 }
             ]
         }
