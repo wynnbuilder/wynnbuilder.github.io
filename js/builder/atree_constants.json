@@ -5173,7 +5173,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.ArmorBreaker",
-                            "value": 20
+                            "value": 30
                         }
                     ]
                 }
@@ -6134,14 +6134,11 @@
                             "value": 55
                         },
                         {
-                            "type": "stat",
-                            "name": "damMult.Pressure:1.Single Hit",
-                            "value": 100
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.Pressure:1.Thunderclap Bonus",
-                            "value": 100
+                            "type": "prop",
+                            "abil": "Bash",
+                            "name": "hits",
+                            "mult": true,
+                            "value": 2
                         }
                     ]
                 },

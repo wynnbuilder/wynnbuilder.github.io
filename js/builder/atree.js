@@ -702,13 +702,16 @@ const atree_scaling = new (class extends ComputeNode {
 
         // Apply a stat bonus.
         function apply_bonus(bonus_info, value) {
-            const { type, name, abil = null} = bonus_info;
+            const { type, name, abil = null, mult = false} = bonus_info;
             if (type === 'stat') {
                 merge_stat(ret_effects, name, atree_translate(atree_merged, value));
             } else if (type === 'prop') {
                 const merge_abil = atree_edit.get(abil);
                 if (merge_abil) {
-                    merge_abil.properties[name] += atree_translate(atree_edit, value);
+                    if (mult)
+                        merge_abil.properties[name] *= atree_translate(atree_edit, value);
+                    else
+                        merge_abil.properties[name] += atree_translate(atree_edit, value);
                 }
             }
         }

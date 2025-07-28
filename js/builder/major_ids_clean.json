@@ -944,9 +944,7 @@
                 "dependencies": [
                     "Blood Sorrow"
                 ],
-                "properties": {
-                    "duration": -4.0
-                },
+                "properties": {},
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -960,6 +958,18 @@
                             0,
                             0,
                             0
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Blood Sorrow",
+                                "name": "duration",
+                                "mult": true,
+                                "value": 0.25
+                            }
                         ]
                     }
                 ]
