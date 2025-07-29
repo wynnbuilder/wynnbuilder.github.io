@@ -5459,8 +5459,6 @@
         {
             "display_name": "Massacre",
             "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption per second.",
-            "archetype": "Fallen",
-            "archetype_req": 5,
             "base_abil": 999,
             "parents": [
                 "Boiling Blood",
@@ -6058,7 +6056,8 @@
         {
             "display_name": "Mindless Slaughter",
             "desc": "Massacre adds twice as much Corruption. Your Main Attack and Powder Specials now cost 1% health to use, activating Blood pact.",
-            "base_abil": "Charge",
+            "archetype": "Fallen",
+            "base_abil": "Massacre",
             "parents": [
                 "Massive Bash",
                 "Tempest",
