@@ -13444,6 +13444,7 @@
                     "name": "Twisted Tether",
                     "base_spell": 8,
                     "display": "Tether Tick",
+                    "ignored_mults": ["Mask"],
                     "parts": [
                         {
                             "name": "Tether Tick",

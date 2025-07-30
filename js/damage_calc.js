@@ -194,20 +194,18 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
     let damages_results = [];
     const mult_map = stats.get("damMult");
     let damage_mult = 1;
-    if (!ignore_str) {
-        for (const [k, v] of mult_map.entries()) {
-            if (k.includes(':')) {
-                // TODO: fragile... checking for specific part multipliers.
-                const spell_match = k.split(':')[1];
-                if (spell_match !== part_filter) {
-                    continue;
-                }
-            }
-            if (ignored_mults.includes(k)) {
+    for (const [k, v] of mult_map.entries()) {
+        if (k.includes(':')) {
+            // TODO: fragile... checking for specific part multipliers.
+            const spell_match = k.split(':')[1];
+            if (spell_match !== part_filter) {
                 continue;
             }
-            damage_mult *= (1 + v/100);
         }
+        if (ignored_mults.includes(k)) {
+            continue;
+        }
+        damage_mult *= (1 + v/100);
     }
     const crit_mult = ignore_str ? 0 : 1+(stats.get("critDamPct")/100);
 
