@@ -34,7 +34,9 @@ replace_strings = {
     " \u231a": "", # Timelocked
 
     " \ue019": "", # Marks
-    " \ue030": "", # Clones
+    " \ue040": "", # Mirror Clones
+    " \ue041": "", # Mirage Clones
+    " \ue042": "", # Shadow Clones
     " \ue013": "", # Momentum
     " \u2765": "", # Lured
 
@@ -60,14 +62,15 @@ replace_strings = {
     "\u00b0": " degrees", # Degree symbol
 
     "Total Damage": "</br><span class='mc-white'>Total Damage</span>", # Total Damage Breakdown
-    "\\(\ue005 Neutral": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # turns out tclap doesnt follow below
-    "\\(\ue005 Damage": "</br>&emsp;(<span class='Neutral'>Neutral</span>", # Neutral just says "Damage"
-    "\\(\ue004 Water": "</br>&emsp;(<span class='Water'>Water</span>", # Water
-    "\\(\ue003 Thunder": "</br>&emsp;(<span class='Thunder'>Thunder</span>", # Thunder
-    "\\(\ue002 Fire": "</br>&emsp;(<span class='Fire'>Fire</span>", # Fire
-    "\\(\ue001 Earth": "</br>&emsp;(<span class='Earth'>Earth</span>", # Earth
-    "\\(\ue000 Air": "</br>&emsp;(<span class='Air'>Air</span>", # Air
+    "\\(\ue005 Damage": "</br>&emsp;(<span class='nDam'>Damage</span>", # Neutral
+    "\\(\ue004 Water": "</br>&emsp;(<span class='wDam'>Water</span>", # Water
+    "\\(\ue003 Thunder": "</br>&emsp;(<span class='tDam'>Thunder</span>", # Thunder
+    "\\(\ue002 Fire": "</br>&emsp;(<span class='fDam'>Fire</span>", # Fire
+    "\\(\ue001 Earth": "</br>&emsp;(<span class='eDam'>Earth</span>", # Earth
+    "\\(\ue000 Air": "</br>&emsp;(<span class='aDam'>Air</span>", # Air
+    "\\(\ue001\ue003\ue004\ue002\ue000 Damage": "</br>&emsp;(<span class='nDam'>Rainbow Damage</span>", # Rainbow just says "Damage"
 
+    "\ue005 ": "</br>", # Neutral/Damage
     "\ue004 ": "</br>", # Water
     "\ue003 ": "</br>", # Thunder
     "\ue002 ": "</br>", # Fire

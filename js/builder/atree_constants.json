@@ -2,7 +2,7 @@
     "Archer": [
         {
             "display_name": "Arrow Bomb",
-            "desc": "Click Combo: LEFT-RIGHT-RIGHT </br> Shoots a long-ranged arrow that explodes and deals high damage over a large area. (Self-damage for 10% of your DPS) </br> Mana Cost: 45 </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 140%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Range: \u00b126 Blocks </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: LEFT-RIGHT-RIGHT </br> Shoots a long-ranged arrow that explodes and deals high damage over a large area. (Self-damage for 10% of your DPS) </br> Mana Cost: 45 </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 140%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: \u00b126 Blocks </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
             "parents": [],
             "dependencies": [],
             "blockers": [],
@@ -122,7 +122,7 @@
         },
         {
             "display_name": "Heart Shatter",
-            "desc": "Hitting a mob directly with Arrow Bomb, will shatter its heart and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +100%)",
+            "desc": "Hitting a mob directly with Arrow Bomb, will shatter its heart and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Bow Proficiency"
@@ -260,7 +260,7 @@
         },
         {
             "display_name": "Arrow Storm",
-            "desc": "Click Combo: LEFT-RIGHT-LEFT </br> Shoots a stream of 8 arrows, dealing significant damage to close mobs and pushing them away. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 10%) </br>Range: \u00b116 Blocks",
+            "desc": "Click Combo: LEFT-RIGHT-LEFT </br> Shoots a stream of 8 arrows, dealing significant damage to close mobs and pushing them away. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%) </br>Range: \u00b116 Blocks",
             "parents": [
                 "Double Shots",
                 "Cheaper Escape I"
@@ -339,7 +339,7 @@
         },
         {
             "display_name": "Arrow Shield",
-            "desc": "Click Combo: LEFT-LEFT-RIGHT </br> Forms a shield around you that slightly reduces the damage you take. Being hit will consume one charge of the shield. Enemies that get too close will take damage and be knocked away. (3 charges) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 70% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 10%) </br>Effect: 20% Resistance Bonus </br>Area of Effect: 2.3 Blocks (Circle-Shaped) </br>Duration: 60s",
+            "desc": "Click Combo: LEFT-LEFT-RIGHT </br> Forms a shield around you that slightly reduces the damage you take. Being hit will consume one charge of the shield. Enemies that get too close will take damage and be knocked away. (3 charges) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 70% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Effect: 20% Resistance Bonus </br>Area of Effect: 2.3 Blocks (Circle-Shaped) </br>Duration: 60s",
             "parents": [
                 "Power Shots",
                 "Cheaper Escape I"
@@ -401,7 +401,7 @@
         },
         {
             "display_name": "Windy Feet",
-            "desc": "Casting Escape grants a speed buff to you and nearby players. </br> </br>Effect: +40% Walk Speed to Allies </br>Duration: 120s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+            "desc": "Casting Escape grants a speed buff to you and nearby players. </br> </br>Effect: +40% Speed Bonus to Allies </br>Duration: 120s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "base_abil": "Escape",
             "parents": [
                 "Arrow Storm"
@@ -634,7 +634,7 @@
         },
         {
             "display_name": "Nimble String",
-            "desc": "Doubles the speed of Arrow Storm and shoots +6 arrows per stream. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -5%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -5%)",
+            "desc": "Doubles the speed of Arrow Storm and shoots +6 arrows per stream. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -5%)",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Air Mastery",
@@ -679,7 +679,7 @@
         },
         {
             "display_name": "Arrow Rain",
-            "desc": "When Arrow Shield loses its last charge, spew 150 arrows around you to rain down on enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 150%)   </br>&emsp;(<span class='Air'>Air</span>: 100%)",
+            "desc": "When Arrow Shield loses its last charge, spew 150 arrows around you to rain down on enemies. (Each enemy can only be hit by one arrow) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='aDam'>Air</span>: 100%)",
             "base_abil": "Arrow Shield",
             "parents": [
                 "Nimble String",
@@ -714,7 +714,7 @@
         },
         {
             "display_name": "Bryophyte Roots",
-            "desc": "Hitting an enemy with Arrow Storm will create an area of effect that slows them down and deals damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Earth'>Earth</span>: 10%) </br>Effect: 40% Slowness to Enemies </br>Duration: 5s </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "Hitting an enemy with Arrow Storm will create an area of effect that slows them down and deals damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%) </br>Effect: 40% Slowness to Enemies </br>Duration: 5s </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "base_abil": "Arrow Storm",
             "archetype": "Trapper",
             "archetype_req": 1,
@@ -764,7 +764,7 @@
         },
         {
             "display_name": "Fire Creep",
-            "desc": "Arrow Bomb will leave a trail of fire for 6s. Enemies that walk into it take damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Duration: 6s </br>Cooldown: 3s",
+            "desc": "Arrow Bomb will leave a trail of fire for 6s. Enemies that walk into it take damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Duration: 6s </br>Cooldown: 3s",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Phantom Ray",
@@ -808,7 +808,7 @@
         },
         {
             "display_name": "Phantom Ray",
-            "desc": "Condense Arrow Storm into a single ray that damages enemies 10 times per second. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 25%)   </br>&emsp;(<span class='Water'>Water</span>: 5%) </br>Range: 16 Blocks </br>Duration: 1.2s",
+            "desc": "Condense Arrow Storm into a single ray that damages enemies 10 times per second. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%) </br>Range: 16 Blocks </br>Duration: 1.2s",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Water Mastery",
@@ -958,7 +958,7 @@
         },
         {
             "display_name": "Guardian Angels",
-            "desc": "Your Arrow Shield arrows turn into sentient bows that attack nearby enemies up to 8 times each. Arrow Shield loses -1 charge. (Arrow Shield will no longer knock enemies away or provide resistance) </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Air'>Air</span>: 10%) </br>Range: 6 Blocks </br>Duration: 60s",
+            "desc": "Your Arrow Shield arrows turn into sentient bows that attack nearby enemies up to 8 times each. Arrow Shield loses -1 charge. (Arrow Shield will no longer knock enemies away or provide resistance) </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Range: 6 Blocks </br>Duration: 60s",
             "archetype": "Boltslinger",
             "archetype_req": 3,
             "base_abil": "Arrow Shield",
@@ -1047,7 +1047,7 @@
         },
         {
             "display_name": "Basaltic Trap",
-            "desc": "When you hit the ground with Arrow Bomb, leave a Trap that damages enemies. (Max 2 Traps) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 210%)   </br>&emsp;(<span class='Earth'>Earth</span>: 20%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Range: 2 Blocks (Circle-Shaped) </br>Area of Effect: 7 Blocks (Circle-Shaped)",
+            "desc": "When you hit the ground with Arrow Bomb, leave a Trap that damages enemies. (Max 2 Traps) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 210%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: 2 Blocks (Circle-Shaped) </br>Area of Effect: 7 Blocks (Circle-Shaped)",
             "archetype": "Trapper",
             "archetype_req": 2,
             "parents": [
@@ -1097,7 +1097,7 @@
         },
         {
             "display_name": "Focus",
-            "desc": "When hitting an aggressive enemy 5+ blocks away, gain +1 Focus. (Max 3) (Focus resets if you miss once) </br> Damage Bonus: +15% (per focus) </br>Cooldown: 1.1s",
+            "desc": "When hitting an aggressive enemy 5+ blocks away, gain +1 Focus. (Max 3) (Lose 50% Focus if you miss once) </br> Damage Bonus: +15% (per focus) </br>Cooldown: 1s",
             "archetype": "Sharpshooter",
             "archetype_req": 2,
             "parents": [
@@ -1130,7 +1130,7 @@
         },
         {
             "display_name": "Windstorm",
-            "desc": "Arrow Storm will shoot +1 stream of arrows and +2 extra arrows per stream. </br> Arrow Storm gains recoil while midair. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -9%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -3%)   </br>&emsp;(<span class='Air'>Air</span>: +2%)",
+            "desc": "Arrow Storm will shoot +1 stream of arrows and +2 extra arrows per stream. </br> Arrow Storm gains recoil while midair. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -9%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%)   </br>&emsp;(<span class='aDam'>Air</span>: +2%)",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Guardian Angels",
@@ -1208,7 +1208,7 @@
         },
         {
             "display_name": "Implosion",
-            "desc": "Arrow Bomb pulls enemies towards you. If a Trap is nearby, it will pull them towards it instead. Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +40%)",
+            "desc": "Arrow Bomb pulls enemies towards you. If a Trap is nearby, it will pull them towards it instead. Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Bomb",
@@ -1244,7 +1244,7 @@
         },
         {
             "display_name": "Arrow Wall",
-            "desc": "Gives Arrow Shield +2 extra charges. Reduces Guardian Angels' damage. </br> </br><span class='mc-white'>Total Damage</span>: -18% (of your DPS, for Guardian Angels, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -13%)   </br>&emsp;(<span class='Air'>Air</span>: -5%)",
+            "desc": "Gives Arrow Shield +2 extra charges. Reduces Guardian Angels' damage. </br> </br><span class='mc-white'>Total Damage</span>: -18% (of your DPS, for Guardian Angels, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -13%)   </br>&emsp;(<span class='aDam'>Air</span>: -5%)",
             "base_abil": "Arrow Shield",
             "parents": [
                 "Focus",
@@ -1428,7 +1428,7 @@
         },
         {
             "display_name": "Stormy Feet",
-            "desc": "Windy Feet will last longer and grant a stronger speed buff. </br> </br>Effect: +60% Walk Speed to Allies </br>Duration: +60s",
+            "desc": "Windy Feet will last longer and grant a stronger speed buff. </br> </br>Effect: +60% Speed Bonus to Allies </br>Duration: +60s",
             "archetype": "Boltslinger",
             "base_abil": "Escape",
             "parents": [
@@ -1451,7 +1451,7 @@
         },
         {
             "display_name": "Call of the Hound",
-            "desc": "Arrow Shield summons a Hound that will attack aggressive enemies every 0.25s and drag them towards your traps. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 40%) </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 60s",
+            "desc": "Arrow Shield summons a Hound that will attack aggressive enemies every 0.25s and drag them towards your traps. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%) </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 60s",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Shield",
@@ -1582,7 +1582,7 @@
         },
         {
             "display_name": "Ivyroot Mamba",
-            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 80%)   </br>&emsp;(<span class='Earth'>Earth</span>: 20%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
+            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
             "archetype": "Trapper",
             "archetype_req": 3,
             "base_abil": "Arrow Storm",
@@ -1651,7 +1651,7 @@
         },
         {
             "display_name": "Twain's Arc",
-            "desc": "If you have 2+ Focus, holding shift will summon the Twain's Arc. Charge it up to shoot a destructive long-range beam. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 220%   </br>&emsp;(<span class='Neutral'>Neutral</span>: 220%) </br>Range: 64 Blocks",
+            "desc": "If you have 2+ Focus, holding shift will summon Twain's Arc. Charge it up to shoot a destructive long-range beam. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 300%   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br>Range: 48 Blocks",
             "archetype": "Sharpshooter",
             "archetype_req": 4,
             "parents": [
@@ -1685,7 +1685,7 @@
                             "name": "Single Shot",
                             "type": "damage",
                             "multipliers": [
-                                220,
+                                300,
                                 0,
                                 0,
                                 0,
@@ -1699,7 +1699,7 @@
         },
         {
             "display_name": "Rocket Jump",
-            "desc": "Arrow Bomb's recoil is increased, and its self-damage is reduced to 5%.",
+            "desc": "Arrow Bomb's recoil is increased, and its self-damage is reduced to 1%.",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Ivyroot Mamba",
@@ -1735,7 +1735,7 @@
         },
         {
             "display_name": "Scorched Earth",
-            "desc": "Fire Creep becomes much stronger. </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +10%)   </br>&emsp;(<span class='Fire'>Fire</span>: +5%) </br>Duration: +2s",
+            "desc": "Fire Creep becomes much stronger. </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Duration: +2s",
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "parents": [
@@ -1808,7 +1808,7 @@
         },
         {
             "display_name": "Refined Gunpowder",
-            "desc": "Increase the damage of Arrow Bomb. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +50%)",
+            "desc": "Increase the damage of Arrow Bomb. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Leap",
@@ -1841,7 +1841,7 @@
         },
         {
             "display_name": "Fierce Stomp",
-            "desc": "When using Escape, hold shift to quickly drop down and deal damage. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "When using Escape, hold shift to quickly drop down and deal damage. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "base_abil": "Escape",
@@ -1917,7 +1917,7 @@
         },
         {
             "display_name": "Honed Shield",
-            "desc": "Arrow Shield's radius, knockback, and damage is increased. Guardian Angels' damage is increased. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, for Arrow Shield)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +40%) </br>Area of Effect: +1 Blocks (Circle-Shaped) </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Guardian Angels, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +3%)",
+            "desc": "Arrow Shield's radius, knockback, and damage is increased. Guardian Angels' damage is increased. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, for Arrow Shield)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%) </br>Area of Effect: +1 Blocks (Circle-Shaped) </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Guardian Angels, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
             "base_abil": "Arrow Shield",
             "parents": [
                 "Ivyroot Mamba",
@@ -1982,7 +1982,7 @@
         },
         {
             "display_name": "Shocking Bomb",
-            "desc": "Arrow Bomb will be unaffected by gravity and increase its explosion damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +20%)",
+            "desc": "Arrow Bomb will be unaffected by gravity and increase its explosion damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "archetype": "Sharpshooter",
             "archetype_req": 4,
             "base_abil": "Arrow Bomb",
@@ -2120,7 +2120,7 @@
         },
         {
             "display_name": "Cheaper Arrow Storm II",
-            "desc": "Reduce the Mana cost of Arrow Storm by 5.",
+            "desc": "Reduce the Mana cost of Arrow Storm. </br> Mana Cost: -5",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Initiator",
@@ -2213,7 +2213,7 @@
         },
         {
             "display_name": "Escape Artist",
-            "desc": "When casting Escape, release 100 arrows towards the ground. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 50%)",
+            "desc": "When casting Escape, release 100 arrows towards the ground. (Each enemy can only be hit by one arrow) </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 50%)",
             "base_abil": "Escape",
             "parents": [
                 "Vigilant Sentinels",
@@ -2258,7 +2258,7 @@
         },
         {
             "display_name": "Murder Flock",
-            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
+            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
             "archetype": "Trapper",
             "archetype_req": 5,
             "base_abil": "Arrow Shield",
@@ -2318,7 +2318,7 @@
         },
         {
             "display_name": "Decimator",
-            "desc": "Phantom Ray will increase its damage by 10% every time you do not miss with it. (Max 70%) </br> Phantom Ray gains extra forward range. </br> </br>Range: +8 Blocks",
+            "desc": "Phantom Ray will increase its damage by 15% every time you do not miss with it. (Max 90%) </br> Phantom Ray gains extra forward range. </br> </br>Range: +8 Blocks",
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "base_abil": "Arrow Storm",
@@ -2344,13 +2344,13 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Phantom Ray hits",
-                    "slider_max": 7,
+                    "slider_max": 6,
                     "output": {
                         "type": "stat",
                         "name": "damMult.Phantom Ray:1.Single Tick"
                     },
                     "scaling": [
-                        10
+                        15
                     ]
                 }
             ]
@@ -2375,7 +2375,7 @@
         },
         {
             "display_name": "Phasing Beam",
-            "desc": "Twain's Arc charges 20% faster, and can now pierce through up to 5 enemies, dealing reduced damage after piercing. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: -120% (after piercing)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -120%)",
+            "desc": "Twain's Arc charges 25% faster, and can now pierce through up to 5 enemies, dealing reduced damage after piercing. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: -150% (after piercing)   </br>&emsp;(<span class='nDam'>Damage</span>: -150%)",
             "archetype": "Sharpshooter",
             "base_abil": "Twain's Arc",
             "parents": [
@@ -2399,7 +2399,7 @@
                     "base_spell": 5,
                     "target_part": "Pierce Damage",
                     "multipliers": [
-                        80,
+                        150,
                         0,
                         0,
                         0,
@@ -2430,7 +2430,7 @@
         },
         {
             "display_name": "Shrapnel Bomb",
-            "desc": "Arrow Bomb's explosion will fling 25 shrapnel, dealing damage in a large area. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS, per shrapnel)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 80%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%)",
+            "desc": "Arrow Bomb's explosion will fling 25 shrapnel, dealing damage in a large area. (Each enemy can only be hit by one shrapnel) </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS, per shrapnel)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%)",
             "archetype": "Boltslinger",
             "archetype_req": 2,
             "base_abil": "Arrow Bomb",
@@ -2468,7 +2468,7 @@
         },
         {
             "display_name": "Cheaper Escape II",
-            "desc": "Reduce the Mana cost of Escape by 5.",
+            "desc": "Reduce the Mana cost of Escape. </br> Mana Cost: -5",
             "base_abil": "Escape",
             "parents": [
                 "Murder Flock",
@@ -2494,7 +2494,7 @@
         },
         {
             "display_name": "Cheaper Arrow Shield II",
-            "desc": "Reduce the Mana cost of Arrow Shield by 5.",
+            "desc": "Reduce the Mana cost of Arrow Shield. </br> Mana Cost: -5",
             "base_abil": "Arrow Shield",
             "parents": [
                 "Phasing Beam",
@@ -2580,7 +2580,7 @@
         },
         {
             "display_name": "Arrow Hurricane",
-            "desc": "Arrow Storm will shoot +2 extra streams of arrows. </br> Arrow Storm's recoil is doubled. </br> </br><span class='mc-white'>Total Damage</span>: -5% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -3%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -1%)   </br>&emsp;(<span class='Air'>Air</span>: -1%)",
+            "desc": "Arrow Storm will shoot +2 extra streams of arrows. </br> Arrow Storm's recoil is doubled. </br> </br><span class='mc-white'>Total Damage</span>: -5% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -3%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -1%)   </br>&emsp;(<span class='aDam'>Air</span>: -1%)",
             "archetype": "Boltslinger",
             "archetype_req": 10,
             "base_abil": "Arrow Storm",
@@ -2627,7 +2627,7 @@
         },
         {
             "display_name": "Tangled Traps",
-            "desc": "Your Traps will be connected by a rope that deals damage to enemies every 0.2s. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 20%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)",
+            "desc": "Your Traps will be connected by a rope that deals damage to enemies every 0.2s. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Basaltic Trap",
@@ -2686,7 +2686,7 @@
         },
         {
             "display_name": "Beast Lore",
-            "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase the damage of your Hound. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +40%)",
+            "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase the damage of your Hound. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
             "base_abil": "Call of the Hound",
             "archetype": "Trapper",
             "archetype_req": 7,
@@ -2738,7 +2738,7 @@
         },
         {
             "display_name": "Crepuscular Ray",
-            "desc": "If you have 5+ Focus, casting Arrow Storm while 4+ blocks above the ground will cause you to levitate and shoot 20 homing arrows per second until you run out of Focus. </br> While in this state, you will lose 1 Focus per second. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 35%)   </br>&emsp;(<span class='Water'>Water</span>: 15%)",
+            "desc": "If you have 5+ Focus, casting Arrow Storm while 4+ blocks above the ground will cause you to levitate and shoot 20 homing arrows per second until you run out of Focus. </br> While in this state, lose 1 Focus every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%)",
             "archetype": "Sharpshooter",
             "archetype_req": 10,
             "parents": [
@@ -2765,10 +2765,10 @@
                         {
                             "name": "Single Arrow",
                             "multipliers": [
-                                35,
+                                90,
                                 0,
                                 0,
-                                15,
+                                30,
                                 0,
                                 0
                             ]
@@ -2791,7 +2791,7 @@
         },
         {
             "display_name": "Chilling Snare",
-            "desc": "Attach an icy snare to Basaltic Trap, drastically inhibiting and damaging nearby enemies every 0.2s after it detonates. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 40%)   </br>&emsp;(<span class='Water'>Water</span>: 10%) </br>Effects: 10% Slowness to Enemies, per hit (Max 90%) </br>Duration: 5s </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Cooldown: 12s",
+            "desc": "Attach an icy snare to Basaltic Trap, drastically inhibiting and damaging nearby enemies every 0.2s after it detonates. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%) </br>Effects: 10% Slowness to Enemies, per hit (Max 90%) </br>Duration: 5s </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Cooldown: 12s",
             "archetype": "Trapper",
             "archetype_req": 11,
             "base_abil": "Basaltic Trap",
@@ -2840,7 +2840,7 @@
         },
         {
             "display_name": "All-Seeing Panoptes",
-            "desc": "Your bows from Guardian Angels become all-seeing, increasing their range, damage and letting them shoot up to +4 times each. </br> </br><span class='mc-white'>Total Damage</span>: +7% (of your DPS, per arrow)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +5%)   </br>&emsp;(<span class='Fire'>Fire</span>: +2%) </br>Range: +4 Blocks",
+            "desc": "Your bows from Guardian Angels become all-seeing, increasing their range, damage and letting them shoot up to +4 times each. </br> </br><span class='mc-white'>Total Damage</span>: +7% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +5%)   </br>&emsp;(<span class='fDam'>Fire</span>: +2%) </br>Range: +4 Blocks",
             "archetype": "Boltslinger",
             "base_abil": "Arrow Shield",
             "parents": [
@@ -2962,7 +2962,7 @@
         },
         {
             "display_name": "More Focus II",
-            "desc": "Add +2 max Focus.",
+            "desc": "Increase your maximum Focus by +2.",
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "base_abil": "Focus",
@@ -2999,7 +2999,7 @@
         },
         {
             "display_name": "Ghostly Trigger",
-            "desc": "While midair after using Escape, Twain's Arc will fire immediately upon using your Main Attack. </br> </br>Cooldown: 10s",
+            "desc": "While midair after using Escape, Twain's Arc will fire immediately upon using your Main Attack. </br> </br>Cooldown: 5s",
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "base_abil": "Focus",
@@ -3043,7 +3043,7 @@
         },
         {
             "display_name": "Geyser Stomp",
-            "desc": "Fierce Stomp will create geysers, dealing more damage and pushing enemies away vertically. </br> </br><span class='mc-white'>Total Damage</span>: +80% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +50%)   </br>&emsp;(<span class='Water'>Water</span>: +30%) </br>Area of Effect: +1 Blocks (Circle-Shaped)",
+            "desc": "Fierce Stomp will create geysers, dealing more damage and pushing enemies away vertically. </br> </br><span class='mc-white'>Total Damage</span>: +80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='wDam'>Water</span>: +30%) </br>Area of Effect: +1 Blocks (Circle-Shaped)",
             "base_abil": "Escape",
             "parents": [
                 "Arrow Hurricane",
@@ -3097,7 +3097,7 @@
         },
         {
             "display_name": "Grape Bomb",
-            "desc": "Arrow Bomb will throw 3 additional smaller bombs when exploding. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "Arrow Bomb will throw 3 additional smaller bombs when exploding. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Geyser Stomp",
@@ -3134,7 +3134,7 @@
         },
         {
             "display_name": "Cheaper Arrow Bomb II",
-            "desc": "Reduce the Mana cost of Arrow Bomb by 5.",
+            "desc": "Reduce the Mana cost of Arrow Bomb. </br> Mana Cost: -5",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Grape Bomb",
@@ -3162,7 +3162,7 @@
     "Warrior": [
         {
             "display_name": "Bash",
-            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Violently bash the ground, dealing high damage in a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 170%)   </br>&emsp;(<span class='Earth'>Earth</span>: 30%) </br>Area of Effect: 4 Blocks (Circle-Shaped) </br>Range: 3 Blocks",
+            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Violently bash the ground, dealing high damage in a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 170%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Area of Effect: 4 Blocks (Circle-Shaped) </br>Range: 3 Blocks",
             "parents": [],
             "dependencies": [],
             "blockers": [],
@@ -3291,7 +3291,7 @@
         },
         {
             "display_name": "Double Bash",
-            "desc": "Bash will hit a second time at a farther range. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS, per bash)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -30%) </br>Range: +3 Blocks",
+            "desc": "Bash will hit a second time at a farther range. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: -30%) </br>Range: +3 Blocks",
             "parents": [
                 "Spear Proficiency 1"
             ],
@@ -3356,7 +3356,7 @@
         },
         {
             "display_name": "Heavy Impact",
-            "desc": "After using Charge, violently crash down unto the ground and deal damage. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%) </br>Area of Effect: 4 Blocks",
+            "desc": "After using Charge, violently crash down unto the ground and deal damage. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%) </br>Area of Effect: 4 Blocks",
             "base_abil": "Charge",
             "parents": [
                 "Uppercut"
@@ -3456,7 +3456,7 @@
         },
         {
             "display_name": "Tougher Skin",
-            "desc": "Harden your skin and gain +5% Base Defence. </br> For every 1% or 1 Raw Health Regen you have from items, gain +10 Health (Max 100)",
+            "desc": "Harden your skin and gain +5% Base Resistance. </br> For every 1% or 1 Raw Health Regen you have from items, gain +10 Health (Max 100)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -3511,7 +3511,7 @@
         },
         {
             "display_name": "Uppercut",
-            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Hurls enemies upwards and deal massive damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 340% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 260%)   </br>&emsp;(<span class='Earth'>Earth</span>: 40%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 40%) </br>Area of Effect: 1-4 Blocks (Cone-Shaped) </br>Range: 6.5 Blocks",
+            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Hurls enemies upwards and deal massive damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 340% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 260%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Area of Effect: 1-4 Blocks (Cone-Shaped) </br>Range: 6.5 Blocks",
             "parents": [
                 "Vehement",
                 "Cheaper Charge"
@@ -3587,7 +3587,7 @@
         },
         {
             "display_name": "War Scream",
-            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a roar that deals damage, pulls nearby enemies and gives you and nearby players resistance. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 75%)   </br>&emsp;(<span class='Fire'>Fire</span>: 25%) </br>Effect: 20% Resistance Bonus to Allies </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Duration: 30s",
+            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a roar that deals damage, pulls nearby enemies and gives you and nearby players resistance. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%) </br>Effect: 20% Resistance Bonus to Allies </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Duration: 30s",
             "parents": [
                 "Tougher Skin",
                 "Cheaper Charge"
@@ -3848,7 +3848,7 @@
         },
         {
             "display_name": "Quadruple Bash",
-            "desc": "Bash will cast 4 times consecutively at double the speed. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per bash)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -20%) </br>Range: +6 Blocks",
+            "desc": "Bash will cast 4 times consecutively at double the speed. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%) </br>Range: +6 Blocks",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Bash",
@@ -3896,7 +3896,7 @@
         },
         {
             "display_name": "Fireworks",
-            "desc": "Mobs hit by Uppercut will explode mid-air and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +80%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +20%)",
+            "desc": "Mobs hit by Uppercut will explode mid-air and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Uppercut",
@@ -3939,7 +3939,7 @@
         },
         {
             "display_name": "Half-Moon Swipe",
-            "desc": "Uppercut will deal a footsweep attack at a longer and wider angle. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -60%)   </br>&emsp;(<span class='Water'>Water</span>: +30%) </br>Range: +1.5 Blocks",
+            "desc": "Uppercut will deal a footsweep attack at a longer and wider angle. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -60%)   </br>&emsp;(<span class='wDam'>Water</span>: +30%) </br>Range: +1.5 Blocks",
             "archetype": "Battle Monk",
             "archetype_req": 1,
             "base_abil": "Uppercut",
@@ -3979,7 +3979,7 @@
         },
         {
             "display_name": "Flyby Jab",
-            "desc": "Damages enemies in your way when using Charge. </br> </br><span class='mc-white'>Total Damage</span>: 120%   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Air'>Air</span>: 20%) </br>Area of Effect: 2 Blocks",
+            "desc": "Damages enemies in your way when using Charge. </br> </br><span class='mc-white'>Total Damage</span>: 120%   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks",
             "base_abil": "Charge",
             "parents": [
                 "Air Mastery",
@@ -4023,7 +4023,7 @@
         },
         {
             "display_name": "Flaming Uppercut",
-            "desc": "Uppercut will light mobs on fire, dealing damage every 0.6 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 35%)   </br>&emsp;(<span class='Fire'>Fire</span>: 15%) </br>Duration: 3s",
+            "desc": "Uppercut will light mobs on fire, dealing damage every 0.6 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 35%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%) </br>Duration: 3s",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "Uppercut",
@@ -4081,7 +4081,7 @@
         },
         {
             "display_name": "Iron Lungs",
-            "desc": "War Scream and Air Shout will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS, for War Scream)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)   </br>&emsp;(<span class='Air'>Air</span>: +30%) </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Air Shout)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +10%)   </br>&emsp;(<span class='Air'>Air</span>: +10%)",
+            "desc": "War Scream and Air Shout will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS, for War Scream)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Air Shout)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "War Scream",
@@ -4148,7 +4148,7 @@
         },
         {
             "display_name": "Air Shout",
-            "desc": "War Scream will fire a projectile that can go through walls and deal damage multiple times. </br> </br><span class='mc-white'>Total Damage</span>: 50%   </br>&emsp;(<span class='Neutral'>Neutral</span>: 40%)   </br>&emsp;(<span class='Air'>Air</span>: 10%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
+            "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 60%   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
             "archetype": "Battle Monk",
             "base_abil": "War Scream",
             "parents": [
@@ -4243,7 +4243,7 @@
         },
         {
             "display_name": "Bak'al's Grasp",
-            "desc": "Casting War Scream will make you Corrupted. (Shift + War Scream to cancel) </br> While Corrupted, you lose the ability  to heal, and every 2% health you lose will grant you +4 Raw Damage (Max 120) </br> </br>Cooldown: 10s",
+            "desc": "Casting War Scream will make you Corrupted. (Shift + War Scream to cancel) </br> While Corrupted, you lose the ability  to heal, and every 1% health you lose will grant you +1% Corrupted. </br> Gain +4 Raw Damage per 2% Corrupted. (Max +120) </br> </br>Cooldown: 10s",
             "archetype": "Fallen",
             "archetype_req": 2,
             "parents": [
@@ -4355,18 +4355,18 @@
             ],
             "dependencies": [],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
                 "row": 17,
                 "col": 5,
-                "icon": "node_2"
+                "icon": "node_1"
             },
             "properties": {},
             "effects": []
         },
         {
             "display_name": "Counter",
-            "desc": "You take 20% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 20%)</br>Cooldown: 2s",
+            "desc": "You take 20% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Cooldown: 2s",
             "archetype": "Battle Monk",
             "parents": [
                 "Aerodynamics",
@@ -4439,7 +4439,7 @@
         },
         {
             "display_name": "Blood Pact",
-            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> Spells cast using health instead of mana will deal +15% to 25% damage, depending on how much of its cost is paid in blood.",
+            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> A spell cast using health instead of mana will deal +15% to +25% bonus damage, depending on how much of its cost is paid in blood.",
             "archetype": "Fallen",
             "archetype_req": 4,
             "parents": [
@@ -4473,7 +4473,7 @@
         },
         {
             "display_name": "Flying Kick",
-            "desc": "Hitting mobs with Charge will halt your momentum and knock them away. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 150%)   </br>&emsp;(<span class='Air'>Air</span>: 30%)   </br>&emsp;(<span class='Water'>Water</span>: 20%)",
+            "desc": "Hitting mobs with Charge will halt your momentum and knock them away. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 175%)   </br>&emsp;(<span class='aDam'>Air</span>: 45%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Area of Effect: 4 Blocks",
             "archetype": "Battle Monk",
             "archetype_req": 1,
             "base_abil": "Charge",
@@ -4517,7 +4517,7 @@
         },
         {
             "display_name": "Cheaper Bash II",
-            "desc": "Reduce the Mana cost of Bash by 5.",
+            "desc": "Reduce the Mana cost of Bash. </br> Mana Cost: -5",
             "base_abil": "Bash",
             "parents": [
                 "Rejuvenating Skin",
@@ -4542,7 +4542,7 @@
         },
         {
             "display_name": "Sacred Surge",
-            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1%. </br> Uppercut will spend 25% Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 50%)   </br>&emsp;(<span class='Water'>Water</span>: 40%)   </br>&emsp;(<span class='Air'>Air</span>: 15%)",
+            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1%. </br> Uppercut will spend 25% Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 285%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%)",
             "archetype": "Paladin",
             "archetype_req": 5,
             "parents": [
@@ -4616,7 +4616,7 @@
         },
         {
             "display_name": "Enraged Blow",
-            "desc": "While Corrupted, every 1% of Health you lose will increase your damage by +1.5%. (Max 65%)",
+            "desc": "Gain +1.5% damage per 1% Corrupted. (Max +65%)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Bak'al's Grasp",
@@ -4652,7 +4652,7 @@
         },
         {
             "display_name": "Riposte",
-            "desc": "Increase the damage reduction of Counter by +10%. Increase the damage of Counter.",
+            "desc": "Increase the damage reduction of Counter by +10% </br> Increase the damage of Counter. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
             "base_abil": "Counter",
             "parents": [
                 "Radiant Devotee",
@@ -4763,7 +4763,7 @@
         },
         {
             "display_name": "Crushing Blow",
-            "desc": "Increase the damage of Bash. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)",
+            "desc": "Increase the damage of Bash. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, per Bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)",
             "base_abil": "Bash",
             "parents": [
                 "Flying Kick",
@@ -4796,7 +4796,7 @@
         },
         {
             "display_name": "Boiling Blood",
-            "desc": "Bash will leave a puddle of boiling blood after its first explosion, slowing down and damaging enemies in it every 0.4 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 25%)   </br>&emsp;(<span class='Fire'>Fire</span>: 5%) </br>Effect: 20% Slowness to Enemies </br>Duration: 3s </br>Cooldown: 3s",
+            "desc": "Bash will leave a puddle of boiling blood after its first explosion, slowing down and damaging enemies in it every 0.4 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='fDam'>Fire</span>: 5%) </br>Effect: 20% Slowness to Enemies </br>Duration: 3s </br>Cooldown: 3s",
             "base_abil": "Bash",
             "parents": [
                 "Enraged Blow",
@@ -4841,7 +4841,7 @@
         },
         {
             "display_name": "Intoxicating Blood",
-            "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted.",
+            "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted. </br> </br>Cooldown: 0.5s (for hits)",
             "archetype": "Fallen",
             "base_abil": "Bak'al's Grasp",
             "parents": [
@@ -4863,7 +4863,7 @@
         },
         {
             "display_name": "Comet",
-            "desc": "After being hit by Fireworks, enemies will crash unto the ground and receive more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +80%)   </br>&emsp;(<span class='Earth'>Earth</span>: +20%)",
+            "desc": "After being hit by Fireworks, enemies will crash unto the ground and receive more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +80%)   </br>&emsp;(<span class='eDam'>Earth</span>: +20%)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Uppercut",
@@ -4911,7 +4911,7 @@
         },
         {
             "display_name": "Collide",
-            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 115%)   </br>&emsp;(<span class='Fire'>Fire</span>: 35%) </br>Area of Effect: 4 Blocks </br> Flying Kick deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +80% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)   </br>&emsp;(<span class='Air'>Air</span>: +30%)   </br>&emsp;(<span class='Water'>Water</span>: +20%)",
+            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 115%)   </br>&emsp;(<span class='fDam'>Fire</span>: 35%) </br>Area of Effect: 4 Blocks </br> Flying Kick deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   (</br>Air: +50%)",
             "archetype": "Battle Monk",
             "archetype_req": 4,
             "base_abil": "Charge",
@@ -5076,7 +5076,7 @@
         },
         {
             "display_name": "Whirlwind Strike",
-            "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +10%)   </br>&emsp;(<span class='Air'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
+            "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
             "archetype": "Battle Monk",
             "archetype_req": 6,
             "base_abil": "Uppercut",
@@ -5144,7 +5144,7 @@
         },
         {
             "display_name": "Armour Breaker",
-            "desc": "While Corrupted, losing 40% Health will make your next Uppercut give you a damage boost. </br> </br>Effect: +30% Damage Bonus to Self </br>Duration: 8s </br>Cooldown: 16s",
+            "desc": "Gaining 40% Corrupted will make your next Uppercut give you a damage boost. </br> </br>Effect: +30% Damage Bonus to Self </br>Duration: 8s </br>Cooldown: 16s",
             "archetype": "Fallen",
             "archetype_req": 0,
             "base_abil": "Uppercut",
@@ -5181,7 +5181,7 @@
         },
         {
             "display_name": "Shield Strike",
-            "desc": "You gain a broken mantle whenever Mantle of the Bovemist loses a charge. </br> Hitting an enemy with Bash sends all broken mantles at them, dealing damage to nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per broken mantle)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 200%)   </br>&emsp;(<span class='Fire'>Fire</span>: 50%) </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 20s",
+            "desc": "You gain a broken mantle whenever Mantle of the Bovemists loses a charge. </br> Hitting an enemy with Bash sends all broken mantles at them, dealing damage to nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per broken mantle)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Duration: 20s",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "Mantle of the Bovemists",
@@ -5231,7 +5231,7 @@
         },
         {
             "display_name": "Luster Purge",
-            "desc": "Your Main Attacks are empowered with holy energy while you have at least 10% Holy Power, dealing additional damage and gaining range. </br> Main Attack Damage: +40% </br>Main Attack Range: +25%",
+            "desc": "While you have 10% Holy Power, your Main Attacks are empowered, and grant you 1% Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -5263,7 +5263,7 @@
         },
         {
             "display_name": "Sparkling Hope",
-            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 40%)   </br>&emsp;(<span class='Water'>Water</span>: 10%)   </br>&emsp;(<span class='Fire'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 5 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -5305,7 +5305,7 @@
         },
         {
             "display_name": "Massive Bash",
-            "desc": "While Corrupted, every 3% Health you lose will increase Bash's area of effect radius by +1. (Max 10)",
+            "desc": "Increase Bash's area of effect radius by +1 per 3% Corrupted. (Max +10)",
             "archetype": "Fallen",
             "archetype_req": 7,
             "base_abil": "Bak'al's Grasp",
@@ -5341,7 +5341,7 @@
         },
         {
             "display_name": "Tempest",
-            "desc": "War Scream will ripple the ground and deal damage to enemies 3 times over a large area every 0.6s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS, per ripple)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Earth'>Earth</span>: 10%)   </br>&emsp;(<span class='Air'>Air</span>: 10%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
+            "desc": "War Scream will ripple the ground and deal damage to enemies 3 times over a large area every 0.6s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
             "archetype": "Battle Monk",
             "archetype_req": 0,
             "base_abil": "War Scream",
@@ -5458,7 +5458,7 @@
         },
         {
             "display_name": "Massacre",
-            "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption per second.",
+            "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption, per second. (Powder Specials always add +3%)",
             "base_abil": 999,
             "parents": [
                 "Boiling Blood",
@@ -5479,7 +5479,7 @@
         },
         {
             "display_name": "Axe Kick",
-            "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +15 </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +150%)",
+            "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +15 </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +150%)",
             "base_abil": "Uppercut",
             "parents": [
                 "Tempest",
@@ -5514,7 +5514,7 @@
         },
         {
             "display_name": "Radiance",
-            "desc": "Bash will buff positive IDs of yourself and allies. (Tomes are excluded, as well as XP Bonus, Loot Bonus, Loot Quality, Gather XP Bonus, and Gather Speed Bonus) </br> </br>Effect: +20% ID Effectiveness to Allies </br>Duration: 8s </br>Cooldown: 15s",
+            "desc": "Bash will buff positive IDs of yourself and allies. (XP Bonus, Loot Bonus, Loot Quality, Gather XP Bonus, and Gather Speed Bonus are excluded) </br> </br>Effect: +20% ID Effectiveness to Allies </br>Duration: 8s </br>Cooldown: 15s",
             "archetype": "Paladin",
             "archetype_req": 3,
             "base_abil": "Bash",
@@ -5562,7 +5562,7 @@
         },
         {
             "display_name": "Cheaper War Scream II",
-            "desc": "Reduce the Mana cost of War Scream by 5.",
+            "desc": "Reduce the Mana cost of War Scream. </br> Mana Cost: -5",
             "base_abil": "War Scream",
             "parents": [
                 "Massive Bash"
@@ -5690,7 +5690,7 @@
         },
         {
             "display_name": "Thunderclap",
-            "desc": "Bash will cast at the player's position at double the speed and with an increased area of effect. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS, per bash)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +40%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +60%) </br>Area of Effect: +3 Blocks (Circle-Shaped) </br> With Quadruple Bash, gain less damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, per bash)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +20%)",
+            "desc": "Bash will cast at the player's position at double the speed and with an increased area of effect. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +60%) </br>Area of Effect: +3 Blocks (Circle-Shaped) </br> With Quadruple Bash, gain less damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, per bash)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "archetype": "Battle Monk",
             "archetype_req": 6,
             "base_abil": "Bash",
@@ -5759,7 +5759,7 @@
         },
         {
             "display_name": "Cyclone",
-            "desc": "After casting War Scream, envelop yourself with a vortex that damages nearby enemies every 0.5s.  </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 20%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Fire'>Fire</span>: 10%) </br>Duration: 20s </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "After casting War Scream, envelop yourself with a vortex that damages nearby enemies every 0.35s.  </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Duration: 20s </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "archetype": "Battle Monk",
             "archetype_req": 0,
             "parents": [
@@ -5803,7 +5803,7 @@
         },
         {
             "display_name": "Consecration",
-            "desc": "Increases the damage of Sacred Surge. </br> </br><span class='mc-white'>Total Damage</span>: +250% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +200%)   </br>&emsp;(<span class='Water'>Water</span>: +25%)   </br>&emsp;(<span class='Air'>Air</span>: +25%)",
+            "desc": "Increases the damage of Sacred Surge. </br> </br><span class='mc-white'>Total Damage</span>: +250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +200%)   </br>&emsp;(<span class='wDam'>Water</span>: +25%)   </br>&emsp;(<span class='aDam'>Air</span>: +25%)",
             "archetype": "Paladin",
             "archetype_req": 9,
             "parents": [
@@ -5896,12 +5896,11 @@
         },
         {
             "display_name": "Bloodlust",
-            "desc": "After leaving Corrupted, annihilate all enemies around you. For every 1% Corrupted you had, damage increases by 5%. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 300%)   </br>&emsp;(<span class='Fire'>Fire</span>: 100%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
+            "desc": "After leaving Corrupted, annihilate all enemies around you. For every 1% Corrupted you had, damage increases by 5%. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
             "archetype": "Fallen",
             "archetype_req": 10,
             "parents": [
-                "Cheaper War Scream II",
-                "Thaumic Adrenaline"
+                "Cheaper War Scream II"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
@@ -5922,7 +5921,9 @@
                     "name": "Bloodlust Damage",
                     "base_spell": 10,
                     "display": "Annihilation",
-                    "ignored_mults": ["Enraged"],
+                    "ignored_mults": [
+                        "Enraged"
+                    ],
                     "parts": [
                         {
                             "name": "Annihilation",
@@ -6035,7 +6036,7 @@
         },
         {
             "display_name": "Freestream Flow",
-            "desc": "You fall more slowly during Charge. Duration: 2s",
+            "desc": "You fall more slowly during Charge. </br> </br>Duration: 2s",
             "base_abil": "Charge",
             "parents": [
                 "Whirlwind Strike"
@@ -6055,7 +6056,7 @@
         },
         {
             "display_name": "Mindless Slaughter",
-            "desc": "Massacre adds twice as much Corruption. Your Main Attack and Powder Specials now cost 1% health to use, activating Blood pact.",
+            "desc": "Massacre adds twice as much Corruption. </br> Your Main Attack and Powder Specials now cost 0.5% health to use, activating Blood Pact.",
             "archetype": "Fallen",
             "base_abil": "Massacre",
             "parents": [
@@ -6078,7 +6079,7 @@
         },
         {
             "display_name": "Pressure",
-            "desc": "When Generalist acts on a spell, it is enhanced. </br>Bash gains 2x as many hits and is 0.1s faster.</br>Uppercut deals +330% damage (+55% in all types)</br>War Scream grants a +10% damage for 12s.",
+            "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 2.5x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
             "base_abil": "Generalist",
             "archetype": "Battle Monk",
             "archetype_req": 10,
@@ -6096,7 +6097,12 @@
                 "col": 3,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "pressure_rainbow_uppercut": 55,
+                "pressure_neutral_uppercut": 170,
+                "pressure_bash_hits": 2,
+                "pressure_scream_boost": 10
+            },
             "effects": [
                 {
                     "type": "raw_stat",
@@ -6105,39 +6111,39 @@
                         {
                             "type": "stat",
                             "name": "nConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_neutral_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "eConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "tConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "wConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "fConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "aConvBase:3.Uppercut",
-                            "value": 55
+                            "value": "Generalist.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "prop",
                             "abil": "Bash",
                             "name": "hits",
                             "mult": true,
-                            "value": 2
+                            "value": "Generalist.pressure_bash_hits"
                         }
                     ]
                 },
@@ -6148,33 +6154,15 @@
                         {
                             "type": "stat",
                             "name": "damMult.Pressure",
-                            "value": 10
+                            "value": "Generalist.pressure_scream_boost"
                         }
                     ]
                 }
             ]
         },
         {
-            "display_name": "Thaumic Adrenaline",
-            "desc": "For every 1% health you are missing, your Health Regen and Lifesteal IDs are 2% stronger, based on the lowest health in the last 5s.",
-            "parents": [
-                "Pressure",
-                "Bloodlust"
-            ],
-            "dependencies": [],
-            "blockers": [],
-            "cost": 2,
-            "display": {
-                "row": 34,
-                "col": 3,
-                "icon": "node_4"
-            },
-            "properties": {},
-            "effects": []
-        },
-        {
             "display_name": "Reverberance",
-            "desc": "Air Shout can hit +1 time, +10% thunder & air dmg",
+            "desc": "Air Shout can hit +1 time, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%)",
             "base_abil": "War Scream",
             "parents": [
                 "Discombobulate"
@@ -6214,7 +6202,7 @@
     "Mage": [
         {
             "display_name": "Meteor",
-            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Conjures a slow but powerful meteor from the sky, dealing massive damage over a large area. </br> Mana Cost: 50 </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 330%)   </br>&emsp;(<span class='Earth'>Earth</span>: 70%) </br>Range: 18 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Conjures a slow but powerful meteor from the sky, dealing massive damage over a large area. </br> Mana Cost: 50 </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 330%)   </br>&emsp;(<span class='eDam'>Earth</span>: 70%) </br>Range: 18 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "parents": [],
             "dependencies": [],
             "blockers": [],
@@ -6485,7 +6473,7 @@
         },
         {
             "display_name": "Heal",
-            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Heals you and nearby allies in  a large area around you. (When healing others, you can't heal more than 30% of their max health) </br> Mana Cost: 35 </br>Total Heal: 15% (of your max health) </br>Range: 5 Blocks </br>Duration: 0.6s",
+            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Heals you and nearby allies in  a large area around you. (When healing others, you can't heal more than 50% of their max health) </br> Mana Cost: 35 </br>Total Heal: 15% (of your max health) </br>Range: 5 Blocks </br>Duration: 0.6s",
             "parents": [
                 "Wand Proficiency II",
                 "Cheaper Teleport"
@@ -6552,7 +6540,7 @@
         },
         {
             "display_name": "Ice Snake",
-            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Conjures a fast-moving ice snake that damages and slows enemies. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 175% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%)   </br>&emsp;(<span class='Water'>Water</span>: 55%) </br>Range: 18 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
+            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Conjures a fast-moving ice snake that damages and slows enemies. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 175% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='wDam'>Water</span>: 55%) </br>Range: 18 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
             "parents": [
                 "Wisdom",
                 "Cheaper Teleport"
@@ -6803,7 +6791,7 @@
         },
         {
             "display_name": "Wind Slash",
-            "desc": "When using Teleport, slash through the air and deal damage to enemies you pierce. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 75%)   </br>&emsp;(<span class='Air'>Air</span>: 25%) </br>Area of Effect: 1.5 Blocks (Circle-Shaped)",
+            "desc": "When using Teleport, slash through the air and deal damage to enemies you pierce. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='aDam'>Air</span>: 25%) </br>Area of Effect: 1.5 Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
             "base_abil": "Teleport",
             "parents": [
@@ -6857,7 +6845,7 @@
         },
         {
             "display_name": "Thunderstorm",
-            "desc": "After casting Meteor, generate 3 lightning strikes and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +45% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +30%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +15%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "After casting Meteor, generate 3 lightning strikes and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +45% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +15%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "base_abil": "Meteor",
             "parents": [
                 "Wind Slash",
@@ -6931,7 +6919,7 @@
         },
         {
             "display_name": "Burning Sigil",
-            "desc": "Meteor and Ophanim will leave a sigil of fire on the ground that damages enemies every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 25%)   </br>&emsp;(<span class='Fire'>Fire</span>: 15%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "Meteor and Ophanim will leave a sigil of fire on the ground that damages enemies every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
             "base_abil": "Meteor",
             "parents": [
                 "Fire Mastery",
@@ -6985,7 +6973,7 @@
         },
         {
             "display_name": "Sunshower",
-            "desc": "Heal emits a strong light, damaging nearby enemies. </br> Arcane Transfer will damage nearby enemies when transferring 30+ Mana. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 70%)   </br>&emsp;(<span class='Water'>Water</span>: 30%)",
+            "desc": "Heal emits a strong light, damaging nearby enemies. </br> Arcane Transfer will damage nearby enemies when transferring 30+ Mana. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 70%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%)",
             "archetype": "Light Bender",
             "base_abil": "Heal",
             "parents": [
@@ -7020,7 +7008,7 @@
         },
         {
             "display_name": "Crashing Comet",
-            "desc": "Increase the damage of Meteor. </br> </br><span class='mc-white'>Total Damage</span>: +120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +90%)   </br>&emsp;(<span class='Earth'>Earth</span>: +30%)",
+            "desc": "Increase the damage of Meteor. </br> </br><span class='mc-white'>Total Damage</span>: +120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +90%)   </br>&emsp;(<span class='eDam'>Earth</span>: +30%)",
             "base_abil": "Meteor",
             "archetype": "Arcanist",
             "archetype_req": 2,
@@ -7057,7 +7045,7 @@
         },
         {
             "display_name": "Windsweeper",
-            "desc": "Your Main Attack will add +1 Winded to enemies you hit. (Max 10, 0.2s Cooldown) </br> Ice Snake will deal additional damage to enemies for every Winded they have. </br> Winded will decay once every 5s. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 10%)   </br>&emsp;(<span class='Water'>Water</span>: 5%)",
+            "desc": "Your Main Attack will add +1 Winded to enemies you hit. (Max 10, 0.2s Cooldown) </br> Ice Snake will deal additional damage to enemies for every Winded they have. </br> Winded will decay once every 5s. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%)",
             "archetype": "Riftwalker",
             "archetype_req": 3,
             "parents": [
@@ -7131,7 +7119,7 @@
         },
         {
             "display_name": "Ophanim",
-            "desc": "When casting Meteor, instead summon 2 orbs of light with 200 Health that will attack when you use your Main Attack. </br> When they damage an enemy, they lose 20% of their Health. They can be healed back. </br> Mana Cost: +30 </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 90%)   </br>&emsp;(<span class='Water'>Water</span>: 15%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 15%) </br>Range: 22 Blocks",
+            "desc": "When casting Meteor, instead summon 2 orbs of light with 200 Health that will attack when you use your Main Attack. </br> When they damage an enemy, they lose 20% of their Health. They can be healed back. </br> Mana Cost: +30 </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 15%) </br>Range: 22 Blocks",
             "archetype": "Light Bender",
             "archetype_req": 2,
             "parents": [
@@ -7294,7 +7282,7 @@
         },
         {
             "display_name": "Sentient Snake",
-            "desc": "Ice Snake will follow the direction you're facing, allowing you to control it. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +25%)   </br>&emsp;(<span class='Water'>Water</span>: +15%)",
+            "desc": "Ice Snake will follow the direction you're facing, allowing you to control it. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%)",
             "base_abil": "Ice Snake",
             "parents": [
                 "Arcane Transfer",
@@ -7349,7 +7337,7 @@
         },
         {
             "display_name": "Breathless",
-            "desc": "Meteor and Ophanim will deal additional damage to enemies for every Winded they have. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 25%)   </br>&emsp;(<span class='Earth'>Earth</span>: 5%) </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, with Thunderstorm, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 8%)   </br>&emsp;(<span class='Earth'>Earth</span>: 2%) </br> </br><span class='mc-white'>Total Damage</span>: 3% (of your DPS, with Ophanim, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 2%)   </br>&emsp;(<span class='Earth'>Earth</span>: 1%)",
+            "desc": "Meteor and Ophanim will deal additional damage to enemies for every Winded they have. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='eDam'>Earth</span>: 5%) </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, with Thunderstorm, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 8%)   </br>&emsp;(<span class='eDam'>Earth</span>: 2%) </br> </br><span class='mc-white'>Total Damage</span>: 3% (of your DPS, with Ophanim, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 2%)   </br>&emsp;(<span class='eDam'>Earth</span>: 1%)",
             "base_abil": "Windsweeper",
             "archetype": "Riftwalker",
             "archetype_req": 0,
@@ -7529,7 +7517,7 @@
         },
         {
             "display_name": "Cheaper Teleport II",
-            "desc": "Reduce the Mana cost of Teleport by 5.",
+            "desc": "Reduce the mana cost of Teleport. </br> Mana Cost: -5",
             "base_abil": "Teleport",
             "parents": [
                 "Fortitude",
@@ -7555,7 +7543,7 @@
         },
         {
             "display_name": "Pyrokinesis",
-            "desc": "When your Mana Bank reaches 30, your Main Attack will explode upon impact with enemies. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 200%   </br>&emsp;(<span class='Neutral'>Neutral</span>: 200%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "When your Mana Bank reaches 30, your Main Attack will explode upon impact with enemies. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 200%   </br>&emsp;(<span class='nDam'>Damage</span>: 200%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
             "base_abil": 999,
             "archetype": "Arcanist",
             "archetype_req": 4,
@@ -7645,7 +7633,7 @@
         },
         {
             "display_name": "Freezing Sigil",
-            "desc": "Ice Snake will leave a sigil of ice beneath you that slows and damages enemies every 0.8s. Allies standing on the sigil will be immune to knockback. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 15%)   </br>&emsp;(<span class='Water'>Water</span>: 5%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Effects: 15% Slowness to Enemies, per hit (Max 60%)    Knockback Immunity to Allies </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "Ice Snake will leave a sigil of ice beneath you that slows and damages enemies every 0.8s. Allies standing on the sigil will be immune to knockback. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Effects: 15% Slowness to Enemies, per hit (Max 60%)    Knockback Immunity to Allies </br>Duration: 8s </br>Cooldown: 8s",
             "archetype": "Light Bender",
             "base_abil": "Ice Snake",
             "parents": [
@@ -7724,7 +7712,7 @@
         },
         {
             "display_name": "Snake Nest",
-            "desc": "Ice Snake will summon 3 snakes. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +35%)   </br>&emsp;(<span class='Water'>Water</span>: +15%)",
+            "desc": "Ice Snake will summon 3 snakes. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +35%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%)",
             "base_abil": "Ice Snake",
             "parents": [
                 "Pyrokinesis",
@@ -7798,7 +7786,7 @@
         },
         {
             "display_name": "Transonic Warp",
-            "desc": "Teleport will deal additional damage to enemies for every Winded they have. </br> </br><span class='mc-white'>Total Damage</span>: 16% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 10%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 3%)   </br>&emsp;(<span class='Air'>Air</span>: 3%)",
+            "desc": "Teleport will deal additional damage to enemies for every Winded they have. </br> </br><span class='mc-white'>Total Damage</span>: 16% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 3%)   </br>&emsp;(<span class='aDam'>Air</span>: 3%)",
             "base_abil": "Windsweeper",
             "archetype": "Riftwalker",
             "archetype_req": 5,
@@ -8017,7 +8005,7 @@
         },
         {
             "display_name": "Incandescence",
-            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +20%)   </br>&emsp;(<span class='Air'>Air</span>: +10%)",
+            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
             "base_abil": "Ophanim",
             "parents": [
                 "Orphion's Pulse",
@@ -8077,7 +8065,7 @@
         },
         {
             "display_name": "Lightweaver",
-            "desc": "Healing 50% of your max health within 10s will summon a rotating orb that damages enemies upon contact. (Max 3 orbs) </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%)   </br>&emsp;(<span class='Fire'>Fire</span>: 30%) </br>Range: 7 Blocks </br>Area of Effect: 1.5 Block (Circle-Shaped) </br>Duration: 20s",
+            "desc": "Healing 50% of your max health within 10s will summon a rotating orb that damages enemies upon contact. (Max 3 orbs) </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='fDam'>Fire</span>: 30%) </br>Range: 7 Blocks </br>Area of Effect: 1.5 Block (Circle-Shaped) </br>Duration: 20s",
             "archetype": "Light Bender",
             "archetype_req": 7,
             "parents": [
@@ -8239,7 +8227,7 @@
         },
         {
             "display_name": "Cheaper Ice Snake II",
-            "desc": "Reduce the Mana cost of Ice Snake by 5.",
+            "desc": "Reduce the mana cost of Ice Snake. </br> Mana Cost: -5",
             "base_abil": "Ice Snake",
             "parents": [
                 "Diffusion",
@@ -8264,7 +8252,7 @@
         },
         {
             "display_name": "Explosive Entrance",
-            "desc": "Deal damage in an area on the location you Teleport to. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+            "desc": "Deal damage in an area on the location you Teleport to. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
             "base_abil": "Teleport",
             "parents": [
                 "Cheaper Ice Snake II",
@@ -8320,7 +8308,7 @@
         },
         {
             "display_name": "Cheaper Meteor II",
-            "desc": "Reduce the Mana cost of Meteor by 5.",
+            "desc": "Reduce the mana cost of Meteor. </br> Mana Cost: -5",
             "base_abil": "Meteor",
             "parents": [
                 "Explosive Entrance",
@@ -8368,7 +8356,7 @@
         },
         {
             "display_name": "Time Dilation",
-            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (Step out or stop running to cancel) </br> </br>Effect: +10% Speed Bonus to Allies (per 1s, +300% Max) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (You lose 30% Speed Bonus every second once you stop running) </br> </br>Effect: +10% Walk Speed to Allies (per 1s, +300% Max) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
             "archetype_req": 5,
             "parents": [
@@ -8401,7 +8389,7 @@
         },
         {
             "display_name": "Gust",
-            "desc": "Ice Snake will add +3 Winded to enemies and deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +15%)   </br>&emsp;(<span class='Air'>Air</span>: +15%)",
+            "desc": "Ice Snake will add +3 Winded to enemies and deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='aDam'>Air</span>: +15%)",
             "base_abil": "Ice Snake",
             "archetype": "Riftwalker",
             "archetype_req": 5,
@@ -8495,7 +8483,7 @@
         },
         {
             "display_name": "Searing Light",
-            "desc": "Increase the damage of Sunshower. </br> </br><span class='mc-white'>Total Damage</span>: +80% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +50%)   </br>&emsp;(<span class='Water'>Water</span>: +20%)   </br>&emsp;(<span class='Fire'>Fire</span>: +10%)",
+            "desc": "Increase the damage of Sunshower. </br> </br><span class='mc-white'>Total Damage</span>: +80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='wDam'>Water</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
             "archetype": "Light Bender",
             "base_abil": "Heal",
             "parents": [
@@ -8673,7 +8661,7 @@
         },
         {
             "display_name": "Divination",
-            "desc": "Increases your maximum orbs from Ophanim by +3 and reduces their damage. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -20%)   </br>&emsp;(<span class='Water'>Water</span>: -5%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -5%)",
+            "desc": "Increases your maximum orbs from Ophanim by +3 and reduces their damage. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%)   </br>&emsp;(<span class='wDam'>Water</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -5%)",
             "base_abil": "Ophanim",
             "archetype": "Light Bender",
             "archetype_req": 0,
@@ -8803,7 +8791,7 @@
         },
         {
             "display_name": "Timelock",
-            "desc": "Holding shift and casting Heal will absorb all Winded on nearby enemies and make you Timelocked. </br> While Timelocked, your mana will not be depleted and you become immovable from external forces. All enemies will receive damage as if they had the amount of Winded you absorbed. (Max 60) </br> </br>Range: 12 Blocks </br>Duration: +1s (per 5 Winded absorbed, Max 6s)",
+            "desc": "Holding shift and casting Heal will absorb all Winded on nearby enemies and make you Timelocked. </br> While Timelocked, your mana will not be depleted and you become immovable from external forces. All enemies will receive damage as if they had the amount of Winded you absorbed. (Max 60) </br> </br>Range: 12 Blocks </br>Duration: +1.25s (per 5 Winded absorbed, Max 7.5s)",
             "archetype": "Riftwalker",
             "archetype_req": 12,
             "parents": [
@@ -8825,7 +8813,7 @@
         },
         {
             "display_name": "Cheaper Heal II",
-            "desc": "Reduce the Mana cost of Heal by 5.",
+            "desc": "Reduce the mana cost of Heal. </br> Mana Cost: -5",
             "base_abil": "Heal",
             "parents": [
                 "Timelock",
@@ -8893,7 +8881,7 @@
     "Assassin": [
         {
             "display_name": "Spin Attack",
-            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Slashes rapidly around you, damaging enemies over a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 30%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Slashes rapidly around you, damaging enemies over a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
             "archetype": "",
             "archetype_req": 0,
             "parents": [],
@@ -9003,7 +8991,7 @@
         },
         {
             "display_name": "Double Spin",
-            "desc": "Spin Attack will activate twice, with a larger area of effect on the second hit. </br> </br><span class='mc-white'>Total Damage</span>: -40% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -40%) </br>Area of Effect: +2 Blocks (Circle-Shaped)",
+            "desc": "Spin Attack will activate twice, with a larger area of effect on the second hit. </br> </br><span class='mc-white'>Total Damage</span>: -40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -40%) </br>Area of Effect: +2 Blocks (Circle-Shaped)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Spin Attack",
@@ -9183,7 +9171,7 @@
         },
         {
             "display_name": "Smoke Bomb",
-            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Throws a bomb that slowly emanates smoke, damaging all enemies in it every 0.5s. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 25%)   </br>&emsp;(<span class='Air'>Air</span>: 5%)   </br>&emsp;(<span class='Earth'>Earth</span>: 5%) </br>Range: 10 Blocks </br>Duration: 5s </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Throws a bomb that slowly emanates smoke, damaging all enemies in it every 0.5s. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)   </br>&emsp;(<span class='eDam'>Earth</span>: 5%) </br>Range: 10 Blocks </br>Duration: 5s </br>Area of Effect: 3 Blocks (Circle-Shaped)",
             "archetype": "",
             "archetype_req": 0,
             "parents": [
@@ -9264,7 +9252,7 @@
         },
         {
             "display_name": "Multihit",
-            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Unleashes a rapid flurry of 8 hits to enemies facing you, dealing heavy damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Water'>Water</span>: 10%) </br>Range: 3 Blocks (Cone-Shaped)",
+            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Unleashes a rapid flurry of 8 hits to enemies facing you, dealing heavy damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%) </br>Range: 3 Blocks (Cone-Shaped)",
             "parents": [
                 "Double Slice",
                 "Cheaper Dash"
@@ -9519,7 +9507,7 @@
         },
         {
             "display_name": "Backstab",
-            "desc": "Makes Multihit a single devastating hit. If you strike an enemy from behind, it deals double the damage. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 250%)   </br>&emsp;(<span class='Earth'>Earth</span>: 50%)",
+            "desc": "Makes Multihit a single devastating hit. If you strike an enemy from behind, it deals double the damage. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 50%)",
             "archetype": "Shadestepper",
             "archetype_req": 2,
             "base_abil": "Multihit",
@@ -9635,7 +9623,7 @@
         },
         {
             "display_name": "Finality",
-            "desc": "Multihit's damage ramps up every  hit, dealing additional damage. Damage bonus caps at 8 hits. </br> </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +3%)   </br>&emsp;(<span class='Air'>Air</span>: +1%)",
+            "desc": "Multihit's damage ramps up every  hit, dealing additional damage. Damage bonus caps at 8 hits. </br> </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)   </br>&emsp;(<span class='aDam'>Air</span>: +2%)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Multihit",
@@ -9688,7 +9676,7 @@
             "base_abil": "Dash",
             "parents": [
                 "Backstab",
-                "Sticky Bomb"
+                "Bamboozle"
             ],
             "dependencies": [
                 "Dash"
@@ -9708,23 +9696,22 @@
         },
         {
             "display_name": "Sticky Bomb",
-            "desc": "Smoke Bomb will stick to enemies and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='Fire'>Fire</span>: +10%)",
+            "desc": "Smoke Bomb will stick to enemies and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
             "archetype": "Trickster",
             "archetype_req": 0,
             "base_abil": "Smoke Bomb",
             "parents": [
-                "Vanish",
-                "Fire Mastery"
+                "Smoke Bomb"
             ],
             "dependencies": [
                 "Smoke Bomb"
             ],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
-                "row": 16,
-                "col": 4,
-                "icon": "node_2"
+                "row": 10,
+                "col": 1,
+                "icon": "node_1"
             },
             "properties": {},
             "effects": [
@@ -9816,11 +9803,11 @@
         },
         {
             "display_name": "Mirror Image",
-            "desc": "Summon 3 Clones after reappearing from Vanish that will follow and protect you. </br> When hit, you take 60% less damage. Clones can take 2 hits before dying. </br> </br>Cooldown: 15s",
+            "desc": "Summon 3 Mirror Clones after reappearing from Vanish that will follow and protect you. </br> When hit, lose a Mirror Clone, reducing -25% of incoming damage and granting you a damage bonus for 3s. (1s cooldown) </br> </br>Effect: 30% Damage Bonus to self </br>Cooldown: 15s",
             "archetype": "Trickster",
             "archetype_req": 2,
             "parents": [
-                "Sticky Bomb"
+                "Bamboozle"
             ],
             "dependencies": [
                 "Vanish"
@@ -9844,7 +9831,18 @@
                         {
                             "type": "stat",
                             "name": "defMult.Clone",
-                            "value": 60
+                            "value": 25
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Activate Clone Sacrifice",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Clone",
+                            "value": 30
                         }
                     ]
                 }
@@ -9852,7 +9850,7 @@
         },
         {
             "display_name": "Lacerate",
-            "desc": "Spin Attack will lunge you forward, deal 3 strikes and then lunge you upward. </br> Using Hop while Lacerate is active launches you further. </br> </br><span class='mc-white'>Total Damage</span>: 90% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Air'>Air</span>: 20%)   </br>&emsp;(<span class='Water'>Water</span>: 10%)",
+            "desc": "Spin Attack will lunge you forward, deal 3 strikes and then lunge you upward. </br> Using Hop while Lacerate is active launches you further. </br> </br><span class='mc-white'>Total Damage</span>: 90% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)",
             "archetype": "Acrobat",
             "archetype_req": 3,
             "base_abil": "Spin Attack",
@@ -9923,12 +9921,13 @@
         },
         {
             "display_name": "Wall of Smoke",
-            "desc": "Smoke Bomb will throw +2 bombs. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -10%)",
+            "desc": "Smoke Bomb will throw +2 bombs. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Smoke Bomb",
             "parents": [
-                "Lacerate"
+                "Lacerate",
+                "Foul Play"
             ],
             "dependencies": [
                 "Smoke Bomb"
@@ -10007,7 +10006,7 @@
         },
         {
             "display_name": "Shadow Travel",
-            "desc": "Increases your Walk Speed by +120% when in Vanish.",
+            "desc": "Gain +120% Speed Bonus when in Vanish.",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "base_abil": "Dash",
@@ -10030,41 +10029,6 @@
             "effects": []
         },
         {
-            "display_name": "Dagger Proficiency II",
-            "desc": "Increases your Main Attack's range and damage. </br> Main Attack Damage: +5% </br>Range: +1 Block",
-            "archetype": "",
-            "archetype_req": 0,
-            "base_abil": 999,
-            "parents": [
-                "Mirror Image",
-                "Psithurism"
-            ],
-            "dependencies": [],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 21,
-                "col": 4,
-                "icon": "node_0"
-            },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 0,
-                    "target_part": "Melee",
-                    "multipliers": [
-                        5,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
-                    ]
-                }
-            ]
-        },
-        {
             "display_name": "Cheaper Multihit I",
             "desc": "Reduce the Mana cost of Multihit by 5.",
             "archetype": "",
@@ -10074,7 +10038,7 @@
                 "Shadow Travel",
                 "Finality",
                 "Psithurism",
-                "Dagger Proficiency II"
+                "Last Laugh"
             ],
             "dependencies": [],
             "blockers": [],
@@ -10116,12 +10080,13 @@
         },
         {
             "display_name": "Last Laugh",
-            "desc": "When losing a Clone, it will cast Spin Attack before dying.",
+            "desc": "When losing any Clone, it will cast one of your spells before dying. </br> Mirror Clones will cast Multihit before dying.",
             "archetype": "Trickster",
             "archetype_req": 3,
             "base_abil": "Dash",
             "parents": [
-                "Mirror Image"
+                "Mirror Image",
+                "Psithurism"
             ],
             "dependencies": [
                 "Mirror Image"
@@ -10129,8 +10094,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 20,
-                "col": 3,
+                "row": 21,
+                "col": 4,
                 "icon": "node_1"
             },
             "properties": {},
@@ -10167,7 +10132,7 @@
         },
         {
             "display_name": "Blazing Powder",
-            "desc": "Spin Attack and Lacerate will blind enemies and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='Fire'>Fire</span>: +20%) </br>Effect: Blindness to Enemies </br>Duration: 1s",
+            "desc": "Spin Attack and Lacerate will deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   (</br>Damage: +20%)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Spin Attack",
@@ -10178,11 +10143,11 @@
             ],
             "dependencies": [],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
                 "row": 25,
                 "col": 3,
-                "icon": "node_2"
+                "icon": "node_0"
             },
             "properties": {},
             "effects": [
@@ -10259,9 +10224,9 @@
         },
         {
             "display_name": "Sandbagging",
-            "desc": "Reduces the cooldown on all of your abilities by -3s every time you get hit for less than 5% of your max health. </br> </br>Cooldown: 1s",
+            "desc": "Reduce the cooldown on all of your abilities by 30% every time you get hit for less than 10% of your max health. </br> </br>Cooldown: 1s",
             "archetype": "Trickster",
-            "archetype_req": 0,
+            "archetype_req": 3,
             "parents": [
                 "Blazing Powder",
                 "Mutilate"
@@ -10285,7 +10250,8 @@
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
-                "Stomp"
+                "Stomp",
+                "Bamboozle"
             ],
             "dependencies": [],
             "blockers": [],
@@ -10323,11 +10289,12 @@
         },
         {
             "display_name": "Violent Vortex",
-            "desc": "Dealing over 1.5x of your max health as damage in a single hit will deal 30% of the damage to other nearby enemies. </br> </br>Area of Effect: 10 Blocks (Circle-Shaped) </br>Cooldown: 2s",
+            "desc": "Dealing over 1.5x of your max health as damage in a single hit will deal 45% of the damage to other nearby enemies. </br> </br>Area of Effect: 10 Blocks (Circle-Shaped) </br>Cooldown: 2s",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "parents": [
-                "Cheaper Smoke Bomb"
+                "Cheaper Smoke Bomb",
+                "Duplicity"
             ],
             "dependencies": [],
             "blockers": [],
@@ -10344,36 +10311,34 @@
             "effects": []
         },
         {
-            "display_name": "Delirious Gas",
-            "desc": "While you're inside Smoke Bomb, increase your damage by +25% and gain Luring for 20s. </br> While under Luring, enemies within a 16 block radius of you will become Lured, causing them to move 15% faster and target only you.",
+            "display_name": "Duplicity",
+            "desc": "Summon +2 additional Mirror Clones with Mirror Image. </br> </br>Cooldown: +5s",
             "archetype": "Trickster",
-            "archetype_req": 4,
-            "base_abil": "Smoke Bomb",
+            "archetype_req": 3,
+            "base_abil": "Mirror Image",
             "parents": [
-                "Sandbagging"
+                "Sandbagging",
+                "Violent Vortex"
             ],
             "dependencies": [
-                "Smoke Bomb"
+                "Mirror Image"
             ],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
                 "row": 27,
                 "col": 3,
-                "icon": "node_4"
+                "icon": "node_0"
             },
-            "properties": {},
+            "properties": {
+                "clone": 2
+            },
             "effects": [
                 {
-                    "type": "raw_stat",
-                    "toggle": "Activate Delirious Gas",
-                    "bonuses": [
-                        {
-                            "type": "stat",
-                            "name": "damMult.DeliriousGas",
-                            "value": 25
-                        }
-                    ]
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Spell Copies",
+                    "slider_max": 2
                 }
             ]
         },
@@ -10457,17 +10422,16 @@
             ]
         },
         {
-            "display_name": "Echo",
-            "desc": "Your Clones will mimic your spells and abilities, but you deal -20% damage for every clone that's alive. (Max -65%) </br> Bamboozle becomes significantly stronger. </br> </br><span class='mc-white'>Total Damage</span>: +800% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +720%)   </br>&emsp;(<span class='Fire'>Fire</span>: +80%)",
+            "display_name": "Malicious Mockery",
+            "desc": "Last Laugh stores a number of Tricks  on enemies based on the type of Clone . (Max 25) </br> Casting Dash while sneaking will detonate all nearby stored Tricks , dealing damage based on how many stacks were consumed. </br> Mirror Clones  apply +1 Trick  per hit. Mirage Clones  apply +2 Tricks  per hit. Shadow Clones  apply +6 Tricks  per hit. </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, per Trick)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%) </br>Range: 32 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "archetype": "Trickster",
             "archetype_req": 5,
-            "base_abil": "Mirror Image",
             "parents": [
                 "Sandbagging",
                 "Shurikens"
             ],
             "dependencies": [
-                "Mirror Image"
+                "Last Laugh"
             ],
             "blockers": [
                 "Lacerate"
@@ -10479,9 +10443,75 @@
                 "icon": "node_3"
             },
             "properties": {
-                "penalty_per_clone": -20,
-                "max_penalty": -65
+                "tricks": 0
             },
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Malicious Mockery",
+                    "base_spell": 9,
+                    "display": "Total Damage",
+                    "parts": [
+                        {
+                            "name": "Malicious Mockery Damage",
+                            "multipliers": [
+                                10,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Malicious Mockery Damage": "Malicious Mockery.tricks"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Tricks Detonated",
+                    "slider_step": 1,
+                    "slider_max": 25,
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Malicious Mockery",
+                            "name": "tricks"
+                        }
+                    ],
+                    "scaling": [
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Echo",
+            "desc": "After losing a Mirror Clone , your next Spin Attack or Smoke Bomb will be copied by all active Clones .",
+            "archetype": "Trickster",
+            "archetype_req": 5,
+            "base_abil": "Mirror Image",
+            "parents": [
+                "Cheaper Spin Attack II",
+                "Toxic Sludge",
+                "Shadow Projection"
+            ],
+            "dependencies": [
+                "Mirror Image"
+            ],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 34,
+                "col": 5,
+                "icon": "node_4"
+            },
+            "properties": {},
             "effects": [
                 {
                     "type": "stat_scaling",
@@ -10496,18 +10526,6 @@
                         },
                         {
                             "type": "stat",
-                            "name": "damMult.EchoCast:0.Melee"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoCast:3.Backstab Damage"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoCast:3.Per Hit"
-                        },
-                        {
-                            "type": "stat",
                             "name": "damMult.EchoCast:4.Per Tick"
                         },
                         {
@@ -10518,69 +10536,17 @@
                     "scaling": [
                         100
                     ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Spell Copies",
-                    "output": [
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:1.Spin Attack"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:0.Melee"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:3.Backstab Damage"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:3.Per Hit"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:4.Per Tick"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:4.Single Bomb"
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.EchoPenalty:8.Slash Damage"
-                        }
-                    ],
-                    "scaling": [
-                        "Mirror Image.penalty_per_clone"
-                    ],
-                    "max": "Mirror Image.max_penalty"
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 8,
-                    "target_part": "Slash Damage",
-                    "multipliers": [
-                        720,
-                        0,
-                        0,
-                        0,
-                        80,
-                        0
-                    ]
                 }
             ]
         },
         {
             "display_name": "Shurikens",
-            "desc": "After using Dash, you prepare +3 shurikens (Max 9). </br> Your next Main Attack will throw all your prepared shurikens. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per shuriken)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Fire'>Fire</span>: 20%) </br>Range: 50 Blocks",
+            "desc": "After using Dash, you prepare +3 shurikens. (Max 9) </br> Your next Main Attack will throw all your prepared shurikens. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per shuriken)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: 50 Blocks",
             "archetype": "Acrobat",
             "archetype_req": 0,
             "base_abil": "Dash",
             "parents": [
-                "Echo",
+                "Malicious Mockery",
                 "Blade Fury"
             ],
             "dependencies": [],
@@ -10660,7 +10626,8 @@
             "archetype_req": 0,
             "parents": [
                 "Wall of Smoke",
-                "Dagger Proficiency II"
+                "Last Laugh",
+                "Foul Play"
             ],
             "dependencies": [],
             "blockers": [],
@@ -10723,18 +10690,18 @@
         },
         {
             "display_name": "Cheaper Dash II",
-            "desc": "Reduce the Mana cost of Dash by 5.",
+            "desc": "Reduce the Mana cost of Dash. </br> Mana Cost: -5",
             "base_abil": "Dash",
             "parents": [
-                "Echo",
-                "Death Magnet"
+                "Blade Fury",
+                "Wall Jump"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
                 "row": 31,
-                "col": 4,
+                "col": 8,
                 "icon": "node_0"
             },
             "properties": {},
@@ -10753,7 +10720,7 @@
             "archetype_req": 0,
             "parents": [
                 "Cheaper Spin Attack II",
-                "Choke Bomb"
+                "Cheaper Dash II"
             ],
             "dependencies": [
                 "Swan Dive"
@@ -10782,20 +10749,21 @@
         },
         {
             "display_name": "Cheaper Spin Attack II",
-            "desc": "Reduce the Mana cost of Spin Attack by 5.",
+            "desc": "Reduce the Mana cost of Spin Attack. </br> Mana Cost: -5",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Spin Attack",
             "parents": [
-                "Blade Fury",
-                "Wall Jump"
+                "Aerial Ace",
+                "Wall Jump",
+                "Shadow Projection"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 31,
-                "col": 8,
+                "row": 33,
+                "col": 6,
                 "icon": "node_0"
             },
             "properties": {},
@@ -10814,8 +10782,7 @@
             "archetype_req": 0,
             "base_abil": "Dash",
             "parents": [
-                "Marked",
-                "Cheaper Dash II"
+                "Marked"
             ],
             "dependencies": [
                 "Vanish",
@@ -10833,12 +10800,12 @@
         },
         {
             "display_name": "Cheaper Multihit II",
-            "desc": "Reduce the Mana cost of Multihit by 5.",
+            "desc": "Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
             "base_abil": "Multihit",
             "parents": [
                 "Death Magnet",
                 "Nightcloak Knife",
-                "Hoodwink"
+                "Shadow Projection"
             ],
             "dependencies": [
                 "Multihit"
@@ -10861,45 +10828,21 @@
         },
         {
             "display_name": "Hoodwink",
-            "desc": "When hitting enemies with Spin Attack, reduce the duration of your negative effects by 30% per hit and transfer them onto enemies. </br> Luring can be transferred to most enemies. (Bosses and special enemies are immune)",
+            "desc": "After killing an enemy, salvage 50% of their Tricks. (Max 10 per mob, 40 total) </br> Casting Spin Attack while sneaking will transfer salvaged Tricks onto enemies and immediately detonate them.",
             "archetype": "Trickster",
             "archetype_req": 1,
             "base_abil": "Spin Attack",
             "parents": [
-                "Cheaper Multihit II",
-                "Cheaper Dash II",
-                "Choke Bomb"
+                "Malicious Mockery"
             ],
             "dependencies": [
-                "Spin Attack"
+                "Malicious Mockery"
             ],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 33,
-                "col": 4,
-                "icon": "node_1"
-            },
-            "properties": {},
-            "effects": []
-        },
-        {
-            "display_name": "Choke Bomb",
-            "desc": "Smoke Bomb will slow down enemies while in the smoke. </br> </br>Effect: 40% Slowness to Enemies </br>Duration: 1s",
-            "archetype": "Trickster",
-            "archetype_req": 0,
-            "base_abil": "Smoke Bomb",
-            "parents": [
-                "Hoodwink",
-                "Wall Jump",
-                "Aerial Ace"
-            ],
-            "dependencies": [],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 33,
-                "col": 6,
+                "row": 29,
+                "col": 3,
                 "icon": "node_1"
             },
             "properties": {},
@@ -10911,7 +10854,7 @@
             "archetype": "Acrobat",
             "archetype_req": 5,
             "parents": [
-                "Cheaper Spin Attack II"
+                "Cheaper Dash II"
             ],
             "dependencies": [
                 "Hop"
@@ -10928,14 +10871,13 @@
         },
         {
             "display_name": "Fatal Spin",
-            "desc": "Increases Spin Attack and Lacerate's range and damage, and adds +1 Mark to enemies hit. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +20%) </br>Area of Effect: +1 Block (Circle-Shaped)",
+            "desc": "Increases Spin Attack and Lacerate's range and damage, and adds +1 Mark to enemies hit. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%) </br>Area of Effect: +1 Block (Circle-Shaped)",
             "archetype": "Shadestepper",
             "archetype_req": 8,
             "base_abil": "Spin Attack",
             "parents": [
                 "Nightcloak Knife",
-                "Cheaper Multihit II",
-                "Dissolution"
+                "Cheaper Multihit II"
             ],
             "dependencies": [
                 "Marked"
@@ -10985,7 +10927,7 @@
             "archetype": "Acrobat",
             "base_abil": "Spin Attack",
             "parents": [
-                "Choke Bomb",
+                "Cheaper Spin Attack II",
                 "Aerial Ace"
             ],
             "dependencies": [
@@ -11012,7 +10954,7 @@
         },
         {
             "display_name": "Bladestorm",
-            "desc": "Increases Violent Vortex's damage  by +40% and increases the damage requirement to be 2.5x your max health.",
+            "desc": "Increases Violent Vortex's damage  by +55% and increases the damage requirement to be 2.5x your max health.",
             "archetype": "Shadestepper",
             "archetype_req": 4,
             "parents": [
@@ -11055,14 +10997,15 @@
         },
         {
             "display_name": "Cheaper Smoke Bomb II",
-            "desc": "Reduce the Mana cost of Smoke Bomb by 5.",
+            "desc": "Reduce the Mana cost of Smoke Bomb. </br> Mana Cost: -5",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Smoke Bomb",
             "parents": [
                 "Harvester",
-                "Hoodwink",
-                "Far Reach"
+                "Far Reach",
+                "Toxic Sludge",
+                "Echo"
             ],
             "dependencies": [
                 "Smoke Bomb"
@@ -11085,7 +11028,7 @@
         },
         {
             "display_name": "Blade Fury",
-            "desc": "Multihit gains extra damage and can be aimed in all directions. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS, per hit)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +10%)",
+            "desc": "Multihit gains extra damage and can be aimed in all directions. </br> Multihit Damage: +10% (of your DPS, per hit)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)",
             "archetype": "Acrobat",
             "archetype_req": 0,
             "base_abil": "Multihit",
@@ -11151,17 +11094,16 @@
             ]
         },
         {
-            "display_name": "Deadly Decoys",
-            "desc": "Improve your damage by +5% per Clone while your Clones are active, and reduce their maximum damage penalty by 5%.",
+            "display_name": "Deflagrate",
+            "desc": "Bamboozle coats enemies struck with a flammable catalyst, making them +1% Enkindled whenever you strike them. </br> The catalyst flares up when it reaches 100% or at the end of its duration, dealing damage based on how Enkindled the target was. </br> Enkindled enemies take +30% more </br>Fire damage from you. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per 1% Enkindle)   </br>&emsp;(<span class='nDam'>Damage</span>: 12%)   </br>&emsp;(<span class='fDam'>Fire</span>: 3%) </br>Duration: 8s </br>Cooldown: 8s",
             "archetype": "Trickster",
-            "archetype_req": 6,
-            "base_abil": "Mirror Image",
+            "archetype_req": 8,
             "parents": [
                 "Cheaper Smoke Bomb II",
                 "Far Reach"
             ],
             "dependencies": [
-                "Echo"
+                "Bamboozle"
             ],
             "blockers": [],
             "cost": 2,
@@ -11171,10 +11113,63 @@
                 "icon": "node_2"
             },
             "properties": {
-                "max_penalty": 5,
-                "penalty_per_clone": 5
+                "enkindled_pct": 0
             },
-            "effects": []
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Deflagrate",
+                    "base_spell": 13,
+                    "display": "Total Damage",
+                    "parts": [
+                        {
+                            "name": "Enkindled Damage",
+                            "multipliers": [
+                                12,
+                                0,
+                                0,
+                                0,
+                                3,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Enkindled Damage": "Deflagrate.enkindled_pct"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Enkindled Percent",
+                    "slider_step": 1,
+                    "slider_max": 100,
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Deflagrate",
+                            "name": "enkindled_pct"
+                        }
+                    ],
+                    "scaling": [
+                        1
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Enkindled",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Enkindled;f",
+                            "value": 30
+                        }
+                    ]
+                }
+            ]
         },
         {
             "display_name": "Ricochets",
@@ -11240,62 +11235,47 @@
             ]
         },
         {
-            "display_name": "Forbidden Art",
-            "desc": "Summon +3 additional Clones. </br> Improve your damage by +5% per Clone while your Clones are active, and reduce their maximum damage penalty by 5%. </br> </br>Cooldown: +15s",
+            "display_name": "Noxious Haze",
+            "desc": "Smoke Bomb makes you and any allies become Noxious while standing in it, which lingers after leaving the area. </br> While Noxious, deal +10% damage to enemies for every debuff they have. (Max 5) Allies only receive 30% of the bonus. </br> </br>Duration: 3s",
             "archetype": "Trickster",
-            "archetype_req": 7,
-            "base_abil": "Mirror Image",
+            "archetype_req": 11,
+            "base_abil": "Smoke Bomb",
             "parents": [
                 "Cheaper Smoke Bomb II"
             ],
             "dependencies": [
-                "Mirror Image"
+                "Smoke Bomb"
             ],
             "blockers": [],
             "cost": 2,
             "display": {
                 "row": 39,
                 "col": 4,
-                "icon": "node_4"
+                "icon": "node_3"
             },
-            "properties": {
-                "penalty_per_clone": 5,
-                "max_penalty": 5
-            },
+            "properties": {},
             "effects": [
                 {
                     "type": "stat_scaling",
                     "slider": true,
-                    "slider_name": "Spell Copies",
-                    "slider_max": 3
+                    "slider_name": "Active Debuffs",
+                    "slider_step": 1,
+                    "slider_max": 5,
+                    "output": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Noxious"
+                        }
+                    ],
+                    "scaling": [
+                        10
+                    ]
                 }
             ]
         },
         {
-            "display_name": "Diversion",
-            "desc": "Grants allies within 16 blocks +10% Overhealth whenever you hit a Lured enemy. Overhealth decays over 10s. </br> </br>Cooldown: 9s",
-            "archetype": "Trickster",
-            "archetype_req": 11,
-            "base_abil": "Smoke Bomb",
-            "parents": [
-                "Forbidden Art"
-            ],
-            "dependencies": [
-                "Delirious Gas"
-            ],
-            "blockers": [],
-            "cost": 2,
-            "display": {
-                "row": 40,
-                "col": 5,
-                "icon": "node_3"
-            },
-            "properties": {},
-            "effects": []
-        },
-        {
             "display_name": "Jasmine Bloom",
-            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> Using Swan Dive with a maximum size Jasmine Bloom will trigger a massive explosion and reset the radius of Jasmine Bloom. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS, from bloom)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 60%)   </br>&emsp;(<span class='Water'>Water</span>: 15%)   </br>&emsp;(<span class='Earth'>Earth</span>: 5%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom) </br> </br><span class='mc-white'>Total Damage</span>: 1200% (of your DPS, from explosion, over 5 hits)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 1000%)   </br>&emsp;(<span class='Earth'>Earth</span>: 100%)   </br>&emsp;(<span class='Air'>Air</span>: 100%) </br>Area of Effect: 12 Blocks (explosion)",
+            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> Using Swan Dive with a maximum size Jasmine Bloom will trigger a massive explosion and reset the radius of Jasmine Bloom. (Min 3 Momentum) </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 70%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom) </br> </br><span class='mc-white'>Total Damage</span>: 1500% (of your DPS, from explosion, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 1250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 125%)   </br>&emsp;(<span class='aDam'>Air</span>: 125%) </br>Area of Effect: 12 Blocks (explosion)",
             "archetype": "Acrobat",
             "archetype_req": 12,
             "parents": [
@@ -11332,10 +11312,10 @@
                         {
                             "name": "Per Hit",
                             "multipliers": [
-                                60,
-                                5,
+                                70,
+                                10,
                                 0,
-                                15,
+                                20,
                                 0,
                                 0
                             ]
@@ -11349,12 +11329,12 @@
                         {
                             "name": "Jasmine Bloom Explosion per Hit",
                             "multipliers": [
-                                200,
-                                20,
+                                250,
+                                25,
                                 0,
                                 0,
                                 0,
-                                20
+                                25
                             ]
                         },
                         {
@@ -11425,21 +11405,20 @@
         },
         {
             "display_name": "Bamboozle",
-            "desc": "When Clones are active, casting Multihit while holding shift will instead slay 1 Clone and teleport you forwards with a brutal fiery slash. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 360%)   </br>&emsp;(<span class='Fire'>Fire</span>: 40%) </br>Range: 6 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Multihit will instead teleport you forward and strike with a brutal fiery slash. </br> </br><span class='mc-white'>Total Damage</span>: 350% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 6 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Cooldown: 5s",
             "archetype": "Trickster",
             "archetype_req": 0,
             "base_abil": "Multihit",
             "parents": [
-                "Cheaper Multihit I",
-                "Shadow Travel"
+                "Fire Mastery",
+                "Vanish",
+                "Hop"
             ],
-            "dependencies": [
-                "Mirror Image"
-            ],
+            "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 23,
+                "row": 16,
                 "col": 4,
                 "icon": "node_4"
             },
@@ -11454,11 +11433,11 @@
                         {
                             "name": "Slash Damage",
                             "multipliers": [
-                                360,
+                                300,
                                 0,
                                 0,
                                 0,
-                                40,
+                                50,
                                 0
                             ]
                         }
@@ -11468,36 +11447,229 @@
         },
         {
             "display_name": "Distraction",
-            "desc": "When hitting enemies, reduce their damage by -0.1% per hit. (Max -15%) The debuff decays by -0.3% per second.",
+            "desc": "Detonating 15+ Tricks  on enemies will temporarily reduce their damage. </br> Debuffs applied with Tricks  will last +0.4s longer for each extra Trick  detonated beyond the requirement. </br> </br>Effects: -15% Damage Bonus to Enemies </br>Duration: 10s",
             "archetype": "Trickster",
             "archetype_req": 0,
             "parents": [
-                "Finality",
-                "Cheaper Multihit I"
+                "Malicious Mockery"
+            ],
+            "dependencies": [
+                "Malicious Mockery"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 31,
+                "col": 4,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "toggle": "Distraction",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "defMult.Distraction",
+                            "value": 15
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Misdirection",
+            "desc": "Detonating 25+ Tricks on enemies will make them Confused. </br> Confused enemies take +30% more </br>Thunder damage from you and will take damage whenever they attack. </br> You may store +15 more Tricks on enemies. </br> </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 130%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%) </br>Cooldown: 0.5s </br>Duration: 15s",
+            "archetype": "Trickster",
+            "archetype_req": 0,
+            "base_abil": "Malicious Mockery",
+            "parents": [
+                "Distraction"
+            ],
+            "dependencies": [
+                "Malicious Mockery"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 32,
+                "col": 5,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Misdirection",
+                    "base_spell": 11,
+                    "display": "Total Damage",
+                    "parts": [
+                        {
+                            "name": "Confusion Damage",
+                            "multipliers": [
+                                130,
+                                0,
+                                30,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Confusion Damage": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Tricks Detonated",
+                    "slider_step": 1,
+                    "slider_max": 15,
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Malicious Mockery",
+                            "name": "tricks"
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Confusion",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Confusion;t",
+                            "value": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Shadow Projection",
+            "desc": "When you double jump, throw a Shadow Clone  in the direction you are facing. </br> Double jump again while sneaking to teleport to the clone, detonating it. </br> Shadow Clones  will cast Spin Attack with Last Laugh. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 32 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+            "archetype": "Trickster",
+            "archetype_req": 0,
+            "parents": [
+                "Cheaper Multihit II",
+                "Distraction",
+                "Cheaper Spin Attack II"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 23,
-                "col": 6,
+                "row": 33,
+                "col": 4,
                 "icon": "node_2"
             },
             "properties": {},
             "effects": [
                 {
+                    "type": "replace_spell",
+                    "name": "Shadow Projection",
+                    "base_spell": 10,
+                    "display": "Total Damage",
+                    "parts": [
+                        {
+                            "name": "Spin Attack Damage",
+                            "multipliers": [
+                                250,
+                                0,
+                                0,
+                                0,
+                                50,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Spin Attack Damage": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Toxic Sludge",
+            "desc": "Detonating 20+ Tricks on enemies Contaminates them with toxic ooze. </br> Contaminated enemies take +30% more </br>Earth damage from you and will explode on death, damaging nearby enemies. </br> You may store +15 more Tricks on enemies. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 350%)   </br>&emsp;(<span class='eDam'>Earth</span>: 50%) </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 25s",
+            "archetype": "Trickster",
+            "archetype_req": 0,
+            "base_abil": "Malicious Mockery",
+            "parents": [
+                "Echo",
+                "Shadow Projection",
+                "Cheaper Multihit II"
+            ],
+            "dependencies": [
+                "Malicious Mockery"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 34,
+                "col": 3,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Toxic Sludge",
+                    "base_spell": 12,
+                    "display": "Total Damage",
+                    "parts": [
+                        {
+                            "name": "Toxic Sludge Damage",
+                            "multipliers": [
+                                350,
+                                50,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Toxic Sludge Damage": 1
+                            }
+                        }
+                    ]
+                },
+                {
                     "type": "stat_scaling",
                     "slider": true,
-                    "slider_name": "Distraction Hits",
-                    "output": {
-                        "type": "stat",
-                        "name": "defMult.Distraction"
-                    },
-                    "scaling": [
-                        0.1
-                    ],
+                    "slider_name": "Tricks Detonated",
                     "slider_step": 1,
-                    "slider_max": 150
+                    "slider_max": 15,
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Malicious Mockery",
+                            "name": "tricks"
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Contamination",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Contamination;e",
+                            "value": 30
+                        }
+                    ]
                 }
             ]
         },
@@ -11537,7 +11709,7 @@
                         }
                     ],
                     "scaling": [
-                        9
+                        13
                     ]
                 }
             ]
@@ -11549,8 +11721,6 @@
             "archetype_req": 2,
             "base_abil": "Dash",
             "parents": [
-                "Cheaper Multihit II",
-                "Hoodwink",
                 "Fatal Spin"
             ],
             "dependencies": [
@@ -11559,8 +11729,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 34,
-                "col": 3,
+                "row": 35,
+                "col": 2,
                 "icon": "node_1"
             },
             "properties": {
@@ -11582,7 +11752,7 @@
         },
         {
             "display_name": "Swan Dive",
-            "desc": "Landing 30 hits against an enemy while midair grants you +1 Momentum. (Max 5) </br> Stomp consumes your Momentum, releasing a powerful explosion that deals massive damage and briefly blinds enemies. For each stack of Momentum, this explosion deals +25% more damage. </br> While midair, hold shift to quickly drop down. </br> </br><span class='mc-white'>Total Damage</span>: 480% (of your DPS, over 5 hits)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 400%)   </br>&emsp;(<span class='Earth'>Earth</span>: 40%)   </br>&emsp;(<span class='Air'>Air</span>: 40%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
+            "desc": "Landing 30 hits against an enemy while midair grants you +1 Momentum. (Max 5) </br> Ripple consumes your Momentum, releasing a powerful explosion that deals massive damage and briefly blinds enemies. For each stack of Momentum, this explosion deals +25% more damage. </br> While midair, hold shift to quickly drop down. </br> </br><span class='mc-white'>Total Damage</span>: 480% (of your DPS, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 400%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
             "archetype": "Acrobat",
             "archetype_req": 6,
             "parents": [
@@ -11641,34 +11811,108 @@
             ]
         },
         {
-            "display_name": "Lethal Images",
-            "desc": "Reduce your maximum damage penalty by 5% while Clones are active.",
+            "display_name": "Soul Siphon",
+            "desc": "Detonating 30+ Tricks on enemies will make them 200% Drained and take +30% more </br>Water damage from you. </br> Whenever you or an ally attacks a Drained enemy, siphon 5% of it, converting it into 5% Overhealth that decays over 20s. (Max 25%) </br> You may store +20 more Tricks on enemies. </br> </br>Cooldown: 2s </br>Duration: 25s",
             "archetype": "Trickster",
             "archetype_req": 0,
-            "base_abil": "Mirror Image",
+            "base_abil": "Malicious Mockery",
             "parents": [
-                "Diversion"
+                "Noxious Haze"
             ],
             "dependencies": [
-                "Echo"
+                "Malicious Mockery"
+            ],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 40,
+                "col": 5,
+                "icon": "node_4"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Tricks Detonated",
+                    "slider_step": 1,
+                    "slider_max": 20,
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Malicious Mockery",
+                            "name": "tricks"
+                        }
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Soul Siphon",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.Soul Siphon;w",
+                            "value": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Foul Play",
+            "desc": "While Mirror Image is active, Bamboozle will slay a Mirror Clone  instead of having a cooldown. </br> Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
+            "archetype": "Trickster",
+            "archetype_req": 2,
+            "parents": [
+                "Mirror Image",
+                "Wall of Smoke"
+            ],
+            "dependencies": [
+                "Mirror Image"
             ],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 41,
+                "row": 20,
+                "col": 5,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 3,
+                    "cost": -5
+                }
+            ]
+        },
+        {
+            "display_name": "Mirage",
+            "desc": "After using Bamboozle or Shadow Projection to teleport, leave behind a Mirage Clone which draws mobs within 8 blocks towards it. </br> Mirage Clones disappear when an enemy is within 0.75 blocks or when they expire, and will cast Smoke Bomb with Last Laugh. </br> </br>Duration: 5s </br>Cooldown: 2s",
+            "archetype": "Trickster",
+            "base_abil": "Multihit",
+            "parents": [
+                "Shadow Travel",
+                "Cheaper Multihit I"
+            ],
+            "dependencies": [
+                "Bamboozle"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 23,
                 "col": 4,
-                "icon": "node_0"
+                "icon": "node_1"
             },
-            "properties": {
-                "max_penalty": 5
-            },
+            "properties": {},
             "effects": []
         }
     ],
     "Shaman": [
         {
             "display_name": "Totem",
-            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Summon a Totem that damages enemies around it every 0.4s. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 12% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 6%)   </br>&emsp;(<span class='Air'>Air</span>: 6%) </br>Duration: 30s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Summon a Totem that damages enemies around it every 0.4s. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 12% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 6%)   </br>&emsp;(<span class='aDam'>Air</span>: 6%) </br>Duration: 30s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "parents": [],
             "dependencies": [],
             "blockers": [],
@@ -11807,7 +12051,7 @@
         },
         {
             "display_name": "Totemic Smash",
-            "desc": "Your Totem will deal damage where it lands. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 120%)   </br>&emsp;(<span class='Fire'>Fire</span>: 30%) </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
+            "desc": "Your Totem will deal damage where it lands. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='fDam'>Fire</span>: 30%) </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
             "base_abil": "Totem",
             "parents": [
                 "Relik Proficiency 1"
@@ -11939,7 +12183,7 @@
         },
         {
             "display_name": "Uproot",
-            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a rapid projectile that will explode and knock enemies away. (Hold shift to pull instead) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 130% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 80%)   </br>&emsp;(<span class='Earth'>Earth</span>: 30%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 20%) </br>Range: 18 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a rapid projectile that will explode and knock enemies away. (Hold shift to pull instead) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 130% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%) </br>Range: 18 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "parents": [
                 "Distant Grasp",
                 "Cheaper Haul I"
@@ -12014,7 +12258,7 @@
         },
         {
             "display_name": "Aura",
-            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Radiates an aura from your Totem that damages enemies. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 180% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 150%)   </br>&emsp;(<span class='Water'>Water</span>: 30%) </br>Range: 16 Blocks",
+            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Radiates an aura from your Totem that damages enemies. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 180% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Range: 16 Blocks",
             "parents": [
                 "Hand of the Shaman",
                 "Cheaper Haul I"
@@ -12068,7 +12312,7 @@
         },
         {
             "display_name": "Totem Shove",
-            "desc": "Casting Totem while looking at an existing Totem will instead shove it forwards, dealing damage to any enemy it crashes into. </br> Totemic Smash will activate once the Totem stops moving. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 90%)   </br>&emsp;(<span class='Air'>Air</span>: 30%) </br>Range: ~12 Blocks </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
+            "desc": "Casting Totem while looking at an existing Totem will instead shove it forwards, dealing damage to any enemy it crashes into. (Sneak to reverse its direction) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='aDam'>Air</span>: 30%) </br>Range: ~12 Blocks </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
             "base_abil": "Totem",
             "parents": [
                 "Uproot"
@@ -12307,7 +12551,7 @@
         },
         {
             "display_name": "Nature's Jolt",
-            "desc": "Hitting the ground after using Haul will deal damage around you. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 110%)   </br>&emsp;(<span class='Earth'>Earth</span>: 40%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+            "desc": "Hitting the ground after using Haul will deal damage around you. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 110%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
             "base_abil": "Haul",
             "parents": [
                 "Earth Mastery",
@@ -12387,7 +12631,7 @@
         },
         {
             "display_name": "Rain Dance",
-            "desc": "While mid-air, your Totem will leave a streak of rain that damages enemies under it every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)   </br>&emsp;(<span class='Water'>Water</span>: 30%) </br>Duration: 6s </br>Area of Effect: 3.5 Blocks (Line-Shaped)",
+            "desc": "While mid-air, your Totem will leave a streak of rain that damages enemies under it every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Duration: 6s </br>Area of Effect: 3.5 Blocks (Line-Shaped)",
             "archetype": "Ritualist",
             "base_abil": "Totem",
             "parents": [
@@ -12427,7 +12671,7 @@
         },
         {
             "display_name": "Shocking Aura",
-            "desc": "Aura will travel faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +20%)",
+            "desc": "Aura will travel 0.5s faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "base_abil": "Aura",
             "archetype": "Acolyte",
             "parents": [
@@ -12464,7 +12708,7 @@
         },
         {
             "display_name": "Flaming Tongue",
-            "desc": "Uproot becomes lashing flames, which hit 3 times but will not explode or knockback enemies. </br> Haunting Memory will no longer attach Masks to enemies. </br> </br><span class='mc-white'>Total Damage</span>: -50% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -15%)   </br>&emsp;(<span class='Earth'>Earth</span>: -30%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -15%)   </br>&emsp;(<span class='Fire'>Fire</span>: +10%)",
+            "desc": "Uproot becomes lashing flames, which hit 3 times but will not explode or knockback enemies. </br> Haunting Memory will no longer attach Masks to enemies. </br> </br><span class='mc-white'>Total Damage</span>: -50% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -15%)   </br>&emsp;(<span class='eDam'>Earth</span>: -30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -15%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
             "base_abil": "Uproot",
             "archetype": "Acolyte",
             "parents": [
@@ -12508,7 +12752,7 @@
         },
         {
             "display_name": "Puppet Master",
-            "desc": "Your Totem will summon 1 Puppet every 3s. (Max 3) They throw knives at nearby enemies every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 16%)   </br>&emsp;(<span class='Air'>Air</span>: 2%)   </br>&emsp;(<span class='Earth'>Earth</span>: 2%) </br>Duration: 30s </br>Range: 16 Blocks",
+            "desc": "Your Totem will summon 1 Puppet every 3s. (Max 3) They throw knives at nearby enemies every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 16%)   </br>&emsp;(<span class='aDam'>Air</span>: 2%)   </br>&emsp;(<span class='eDam'>Earth</span>: 2%) </br>Duration: 30s </br>Range: 16 Blocks",
             "archetype": "Summoner",
             "archetype_req": 3,
             "parents": [
@@ -12850,7 +13094,7 @@
         },
         {
             "display_name": "Haunting Memory",
-            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will attach for a short time and debuff them. You will not receive the effects of your Mask until it returns. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 240%) </br>Range: 14 Blocks </br>Effects: -15% Damage Bonus to Enemies (from Lunatic)    -15% Resistance Bonus to Enemies (from Fanatic)    +30% Slowness to Enemies (from Heretic) </br>Duration: 4s",
+            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will attach for a short time and debuff them. You will not receive the effects of your Mask until it returns. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects: -15% Damage Bonus to Enemies (from Lunatic)    -15% Resistance Bonus to Enemies (from Fanatic)    +30% Slowness to Enemies (from Heretic) </br>Duration: 4s",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "parents": [
@@ -12942,7 +13186,7 @@
         },
         {
             "display_name": "Exploding Puppets",
-            "desc": "When your Puppets have 3s left, they will charge towards enemies at high speed and explode. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 150%)   </br>&emsp;(<span class='Fire'>Fire</span>: 50%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+            "desc": "When your Puppets have 3s left, they will charge towards enemies at high speed and explode. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
             "base_abil": "Puppet Master",
             "archetype": "Summoner",
             "parents": [
@@ -13098,7 +13342,7 @@
         },
         {
             "display_name": "More Puppets II",
-            "desc": "Increase your Max Puppets by +2.",
+            "desc": "Increase your maximum Puppets by +2.",
             "base_abil": "Puppet Master",
             "archetype": "Summoner",
             "parents": [
@@ -13191,7 +13435,7 @@
         },
         {
             "display_name": "Lashing Lance",
-            "desc": "Flaming Tongue gains +1 hit, and now inflicts enemies with Bleeding for +1.5s per hit. (Max 6s) </br> Haunting Memory will instead inflict +6s of Bleeding. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.4 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: +0% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -5%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: +5%) </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, from Bleeding)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)",
+            "desc": "Flaming Tongue gains +1 hit, and now inflicts enemies with Bleeding for +1.5s per hit. (Max 6s) </br> Haunting Memory will instead inflict +6s of Bleeding. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: +0% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)",
             "base_abil": "Uproot",
             "archetype": "Acolyte",
             "archetype_req": 4,
@@ -13220,7 +13464,7 @@
                         {
                             "name": "Bleeding Tick",
                             "multipliers": [
-                                30,
+                                60,
                                 0,
                                 0,
                                 0,
@@ -13364,7 +13608,7 @@
         },
         {
             "display_name": "Cheaper Totem II",
-            "desc": "Reduce the Mana cost of Totem by 5.",
+            "desc": "Reduce the mana cost of Totem. </br> Mana Cost: -5",
             "base_abil": "Totem",
             "parents": [
                 "More Puppets II",
@@ -13392,7 +13636,7 @@
         },
         {
             "display_name": "Storm Dance",
-            "desc": "Enemies hit by Aura will be pulled towards your totem. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='Air'>Air</span>: +30%)",
+            "desc": "Enemies hit by Aura will be pulled towards your totem. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
@@ -13464,7 +13708,7 @@
         },
         {
             "display_name": "Cheaper Haul II",
-            "desc": "Reduce the Mana cost of Haul by 5.",
+            "desc": "Reduce the mana cost of Haul. </br> Mana Cost: -5",
             "base_abil": "Haul",
             "parents": [
                 "Storm Dance",
@@ -13491,7 +13735,7 @@
         },
         {
             "display_name": "Cheaper Aura II",
-            "desc": "Reduce the Mana cost of Aura by 5.",
+            "desc": "Reduce the mana cost of Aura. </br> Mana Cost: -5",
             "base_abil": "Aura",
             "parents": [
                 "Crimson Effigy",
@@ -13518,7 +13762,7 @@
         },
         {
             "display_name": "Imbued Totem",
-            "desc": "Increase Totem's damage. </br> </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +4%)",
+            "desc": "Increase Totem's damage. </br> </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)",
             "base_abil": "Totem",
             "parents": [
                 "Mask of the Heretic",
@@ -13567,7 +13811,7 @@
         },
         {
             "display_name": "Twisted Tether",
-            "desc": "Nearby Bleeding enemies will take damage for every 2% Health you lose. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS, per 2% health)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 35%)   </br>&emsp;(<span class='Air'>Air</span>: 15%) </br>Range: 20 Blocks",
+            "desc": "Nearby Bleeding enemies will take damage for every 2% Health you lose. (Max 10 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 65% (of your DPS, per 2% health)   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Range: 20 Blocks",
             "archetype": "Acolyte",
             "archetype_req": 7,
             "parents": [
@@ -13596,12 +13840,12 @@
                             "name": "Tether Tick",
                             "use_str": false,
                             "multipliers": [
-                                35,
+                                45,
                                 0,
                                 0,
                                 0,
                                 0,
-                                15
+                                20
                             ]
                         }
                     ]
@@ -13701,7 +13945,7 @@
         },
         {
             "display_name": "Crimson Effigy",
-            "desc": "Totem will summon an Effigy that will attack enemies and push them towards the nearest Totem. The Effigy will live for as long as its Totem does. </br> Each Totem will summon its own Effigy. Each additional Effigy summoned will decrease all Effigy damage by 0.8x. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 75%)   </br>&emsp;(<span class='Fire'>Fire</span>: 25%)",
+            "desc": "Totem will summon an Effigy that will attack enemies and push them towards the nearest Totem every 0.5s. The Effigy will live for as long as its Totem does. </br> Each Totem will summon its own Effigy. Each additional Effigy summoned will decrease all Effigy damage by 0.8x. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%)",
             "archetype": "Summoner",
             "archetype_req": 6,
             "parents": [
@@ -13812,7 +14056,7 @@
         },
         {
             "display_name": "Eldritch Call",
-            "desc": "Casting Totem while holding shift will spend 30 points of Blood Pool (per Totem) to set all Totem durations to 10s, fabricating 4 nightmarish tentacles that each deal heavy damage to a separate enemy near your Totem, prioritizing high health targets. </br> All enemies within range will be crippled, gaining debuffs and taking x2 Bleeding damage ticks for the duration. </br> While this ability is active, Blood Connection becomes an unrestricted, short-range teleport, and Totem cannot be cast. </br> </br><span class='mc-white'>Total Damage</span>: 840% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 640%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: 100%)   </br>&emsp;(<span class='Fire'>Fire</span>: 100%) </br>Area of Effect: 24 Blocks (Circle-Shaped) </br>Effects: +40% Slowness to Enemies   -20% Resistance Bonus to Enemies",
+            "desc": "Casting Totem while holding shift will spend 30 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles. </br> Tentacles debuff bleeding enemies in range and each deal damage to one enemy every 2s. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 840% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 640%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 18 Blocks (Circle-Shaped) </br>Effects: +40% Slowness to Enemies   -20% Resistance Bonus to Enemies </br>Duration: 10s",
             "archetype": "Acolyte",
             "archetype_req": 7,
             "parents": [
@@ -13866,11 +14110,6 @@
                     "type": "raw_stat",
                     "toggle": "Activate Eldritch Call",
                     "bonuses": [
-                        {
-                            "type": "stat",
-                            "name": "damMult.Eldritch Call:9.Bleeding Tick",
-                            "value": 100
-                        },
                         {
                             "type": "stat",
                             "name": "damMult.Eldritch Call",
@@ -14006,7 +14245,7 @@
         },
         {
             "display_name": "Deeper Wounds",
-            "desc": "Increase Bleeding damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +20%)",
+            "desc": "Increase Bleeding damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)",
             "archetype": "Acolyte",
             "parents": [
                 "Fluid Healing",
@@ -14063,7 +14302,7 @@
         },
         {
             "display_name": "Sanguine Strike",
-            "desc": "Greatly reduce Main Attack spread. </br> Your Main Attack will now inflict enemies with Bleeding for +0.25s per beam. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.4 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, from Bleeding)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 30%)",
+            "desc": "Greatly reduce Main Attack spread. </br> Your Main Attack will now inflict enemies with Bleeding for +0.25s per beam. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)",
             "parents": [
                 "Blood Rite",
                 "Chant of the Heretic"
@@ -14081,7 +14320,7 @@
         },
         {
             "display_name": "Friendly Fire",
-            "desc": "Hitting your Puppets with Main Attack will cause them to lose 2s of their duration per beam.",
+            "desc": "Hitting your Puppets with Main Attack will cause them to lose 2s of their duration per beam and give them a damage boost. </br> </br>Effect: +10% Damage Bonus to Puppets </br>Duration: 2s",
             "archetype": "Summoner",
             "base_abil": 999,
             "parents": [
@@ -14132,7 +14371,7 @@
         },
         {
             "display_name": "Bloodletting",
-            "desc": "Increase Twisted Tether's damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: +20%)",
+            "desc": "Increase Twisted Tether's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)",
             "archetype": "Acolyte",
             "parents": [
                 "Deeper Wounds"
@@ -14154,7 +14393,7 @@
                     "base_spell": 8,
                     "target_part": "Tether Tick",
                     "multipliers": [
-                        20,
+                        25,
                         0,
                         0,
                         0,
@@ -14302,7 +14541,7 @@
         },
         {
             "display_name": "Frog Dance",
-            "desc": "When wearing the Mask of the Heretic, Haul will instead bounce you off the ground 3 times at an increasing speed and damage nearby enemies. </br> Frog Dance does not require Totem to be used. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 150%)   </br>&emsp;(<span class='Water'>Water</span>: 50%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+            "desc": "When wearing the Mask of the Heretic, Haul will instead bounce you off the ground 3 times at an increasing speed and damage nearby enemies. </br> Frog Dance does not require Totem to be used. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "base_abil": "Haul",
             "parents": [
@@ -14695,7 +14934,7 @@
         },
         {
             "display_name": "Blood Sorrow",
-            "desc": "Casting Uproot or Haunting Memory while holding shift will spend 70 points of Blood Pool to cast a destructive beam that chains between enemies and allies, and damages enemies every 0.2s. </br> You and any allies within the beam will receive +2% Overhealth per hit. Bonus health decays over 20s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Water'>Water</span>: 20%) </br>Duration: 5s </br>Range: 24 Blocks",
+            "desc": "Casting Uproot or Haunting Memory while holding shift will spend 70 points of Blood Pool to cast a destructive beam that chains between enemies and allies, and damages enemies every 0.2s. </br> You and any allies within the beam will receive +2% Overhealth per hit. Bonus health decays over 20s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%) </br>Duration: 5s </br>Range: 24 Blocks",
             "archetype": "Acolyte",
             "archetype_req": 12,
             "parents": [
@@ -14750,7 +14989,7 @@
         },
         {
             "display_name": "Cheaper Uproot II",
-            "desc": "Reduce the Mana cost of Uproot by 5.",
+            "desc": "Reduce the mana cost of Uproot. </br> Mana Cost: -5",
             "base_abil": "Uproot",
             "parents": [
                 "Soaring Wingbeats",

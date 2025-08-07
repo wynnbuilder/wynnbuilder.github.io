@@ -852,7 +852,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Guardian Angels will shoot +20% faster.",
+          "description": "Guardian Angels will shoot +29% faster.",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -872,7 +872,7 @@
         },
         {
           "threshold": 5,
-          "description": "Guardian Angels will shoot +20% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Guardian Angels will shoot +29% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -936,7 +936,7 @@
         },
         {
           "threshold": 15,
-          "description": "Guardian Angels will shoot +30% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Guardian Angels will shoot +50% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -1007,31 +1007,12 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your maximum Focus by +1.",
-          "abilities": [
-            {
-              "base_abil": "Focus",
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Focus",
-                  "slider_max": 1,
-                  "output": {
-                    "type": "stat",
-                    "name": "damMult.Focus"
-                  },
-                  "scaling": [
-                    0
-                  ]
-                }
-              ]
-            }
-          ]
+          "description": "Focus' cooldown is reduced by -0.2s.",
+          "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Increase your maximum Focus by +1. </br> Twain's Arc requires -1 Focus to activate. </br> Crepuscular Ray requires -1 Focus to activate.",
+          "description": "Focus' cooldown is reduced by -0.2s. </br> Increase your maximum Focus by +1.",
           "abilities": [
             {
               "base_abil": "Focus",
@@ -1055,7 +1036,7 @@
         },
         {
           "threshold": 15,
-          "description": "Increase your maximum Focus by +1. </br> Twain's Arc requires -1 Focus to activate. Twain's Arc charges 5% faster. </br> Crepuscular Ray requires -2 Focus to activate.",
+          "description": "Focus' cooldown is reduced by -0.3s. </br> Increase your maximum Focus by +1.",
           "abilities": [
             {
               "base_abil": "Focus",
@@ -1108,7 +1089,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your Hound's attack speed by +20%. </br> Increase your Snake's weakness effect by +2%. </br> Increase your Crow's distraction duration by +0.1s.",
+          "description": "Increase your Hound's attack speed by +25%. </br> Increase your Snake's weakness effect by +2%. </br> Increase your Crow's distraction duration by +0.1s.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
@@ -1148,7 +1129,7 @@
         },
         {
           "threshold": 15,
-          "description": "Increase your Hound's attack speed by +20% and movement speed by +25%. </br> Increase your Snake's weakness effect by +3%. </br> Increase your Crow's distraction duration by +0.15s.",
+          "description": "Increase your Hound's attack speed by +25% and movement speed by +25%. </br> Increase your Snake's weakness effect by +3%. </br> Increase your Crow's distraction duration by +0.15s.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
@@ -1188,7 +1169,7 @@
         },
         {
           "threshold": 75,
-          "description": "Increase your Hound's attack speed by +40% and movement speed by +25%. </br> Increase your Snake's weakness effect by +4%. </br> Increase your Crow's distraction duration by +0.2s.",
+          "description": "Increase your Hound's attack speed by +67% and movement speed by +25%. </br> Increase your Snake's weakness effect by +4%. </br> Increase your Crow's distraction duration by +0.2s.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
@@ -1227,55 +1208,112 @@
           ]
         }
       ]
-    }
-  ],
-  "Warrior": [
+    },
     {
-      "displayName": "Aspect of Searing Friction",
-      "id": 0,
+      "displayName": "Aspect of the Steadying Hand",
+      "id": 19,
       "tier": "Fabled",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Flaming Uppercut deals damage 0.1s faster.",
-          "abilities": [
-            {
-              "base_abil": "Uppercut",
-              "properties": {
-                "rate": 0.33333333333
-              },
-              "effects": []
-            }
-          ]
+          "description": "Reduce Ghostly Trigger's cooldown by 1s.",
+          "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Flaming Uppercut deals damage 0.15s faster.",
-          "abilities": [
-            {
-              "base_abil": "Uppercut",
-              "properties": {
-                "rate": 0.55555555555
-              },
-              "effects": []
-            }
-          ]
+          "description": "Reduce Ghostly Trigger's cooldown by 1.5s.",
+          "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Flaming Uppercut deals damage 0.2s faster.",
-          "abilities": [
-            {
-              "base_abil": "Uppercut",
-              "properties": {
-                "rate": 0.83333333333
-              },
-              "effects": []
-            }
-          ]
+          "description": "Reduce Ghostly Trigger's cooldown by 2s.",
+          "abilities": []
         }
       ]
     },
+    {
+      "displayName": "Aspect of Illegal Explosives",
+      "id": 20,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Increase Implosion's pull strength by 10%.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Increase Implosion's pull strength by 15%.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Increase Implosion's pull strength by 20%.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Increase Implosion's pull strength by 25%.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of a Thunderbolt",
+      "id": 21,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Shocking Bomb travels 10% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Shocking Bomb travels 15% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Shocking Bomb travels 20% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Shocking Bomb travels 25% faster.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Iron String",
+      "id": 22,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Phasing Beam can pierce through +1 enemy.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Phasing Beam can pierce through +2 enemies.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Phasing Beam can pierce through +3 enemies.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Phasing Beam can pierce through +4 enemies.",
+          "abilities": []
+        }
+      ]
+    }
+  ],
+  "Warrior": [
     {
       "displayName": "Aspect of Rallying Fervor",
       "id": 1,
@@ -1327,66 +1365,18 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Counter activates +8% more often.",
-          "abilities": [
-            {
-              "base_abil": "Counter",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "agiDef",
-                      "value": 0.8
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "description": "Counter's cooldown is reduced by -0.25s.",
+          "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Counter activates +15% more often.",
-          "abilities": [
-            {
-              "base_abil": "Counter",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "agiDef",
-                      "value": 1.5
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "description": "Counter's cooldown is reduced by -0.35s.",
+          "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Counter activates +20% more often.",
-          "abilities": [
-            {
-              "base_abil": "Counter",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "agiDef",
-                      "value": 2
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "description": "Counter's cooldown is reduced by -0.5s.",
+          "abilities": []
         }
       ]
     },
@@ -1419,7 +1409,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Heavy Impact gains +0.65 Area of Effect.",
+          "description": "Heavy Impact, Flying Kick and Collide gain +0.65 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Charge",
@@ -1432,7 +1422,7 @@
         },
         {
           "threshold": 5,
-          "description": "Heavy Impact gains +1.15 Area of Effect.",
+          "description": "Heavy Impact, Flying Kick and Collide gain +1.15 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Charge",
@@ -1445,7 +1435,7 @@
         },
         {
           "threshold": 30,
-          "description": "Heavy Impact gains +1.65 Area of Effect.",
+          "description": "Heavy Impact, Flying Kick and Collide gain +1.65 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Charge",
@@ -1458,7 +1448,7 @@
         },
         {
           "threshold": 150,
-          "description": "Heavy Impact gains +2 Area of Effect.",
+          "description": "Heavy Impact, Flying Kick and Collide gain +2 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Charge",
@@ -1537,22 +1527,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Sparkling Hope requires -0.75% healing to activate.",
+          "description": "Sparkling Hope requires -0.75% healing to activate. (Max 21.25% at once)",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Sparkling Hope requires -1.5% healing to activate.",
+          "description": "Sparkling Hope requires -1.5% healing to activate. (Max 17.5% at once)",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Sparkling Hope requires -2% healing to activate.",
+          "description": "Sparkling Hope requires -2% healing to activate. (Max 15% at once)",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Sparkling Hope requires -2.5% healing to activate.",
+          "description": "Sparkling Hope requires -2.5% healing to activate. (Max 12.5% at once)",
           "abilities": []
         }
       ]
@@ -1738,7 +1728,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Tempest gains +1 hit, and becomes 0.1s faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per ripple)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -6%)   </br>&emsp;(<span class='Earth'>Earth</span>: -2%)   </br>&emsp;(<span class='Air'>Air</span>: -2%)",
+          "description": "Tempest gains +1 hit, and becomes 0.1s faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -6%)   </br>&emsp;(<span class='eDam'>Earth</span>: -2%)   </br>&emsp;(<span class='aDam'>Air</span>: -2%)",
           "abilities": [
             {
               "base_abil": "War Scream",
@@ -1770,7 +1760,7 @@
         },
         {
           "threshold": 5,
-          "description": "Tempest gains +2 hits, and becomes 0.15s faster. </br><span class='mc-white'>Total Damage</span>: -16% (of your DPS, per ripple)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -10%)   </br>&emsp;(<span class='Earth'>Earth</span>: -3%)   </br>&emsp;(<span class='Air'>Air</span>: -3%)",
+          "description": "Tempest gains +2 hits, and becomes 0.15s faster. </br><span class='mc-white'>Total Damage</span>: -16% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)   </br>&emsp;(<span class='eDam'>Earth</span>: -3%)   </br>&emsp;(<span class='aDam'>Air</span>: -3%)",
           "abilities": [
             {
               "base_abil": "War Scream",
@@ -1802,7 +1792,7 @@
         },
         {
           "threshold": 30,
-          "description": "Tempest gains +3 hits, and becomes 0.2s faster. </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per ripple)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -12%)   </br>&emsp;(<span class='Earth'>Earth</span>: -4%)   </br>&emsp;(<span class='Air'>Air</span>: -4%)",
+          "description": "Tempest gains +3 hits, and becomes 0.2s faster. </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -12%)   </br>&emsp;(<span class='eDam'>Earth</span>: -4%)   </br>&emsp;(<span class='aDam'>Air</span>: -4%)",
           "abilities": [
             {
               "base_abil": "War Scream",
@@ -1834,7 +1824,7 @@
         },
         {
           "threshold": 150,
-          "description": "Tempest gains +4 hits, and becomes 0.25s faster. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, per ripple)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -13%)   </br>&emsp;(<span class='Earth'>Earth</span>: -5%)   </br>&emsp;(<span class='Air'>Air</span>: -5%)",
+          "description": "Tempest gains +4 hits, and becomes 0.25s faster. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -13%)   </br>&emsp;(<span class='eDam'>Earth</span>: -5%)   </br>&emsp;(<span class='aDam'>Air</span>: -5%)",
           "abilities": [
             {
               "base_abil": "War Scream",
@@ -1873,22 +1863,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Cyclone gains +0.65 Area of Effect.",
+          "description": "Cyclone gains +1 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Cyclone gains +1.15 Area of Effect.",
+          "description": "Cyclone gains +1.75 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Cyclone gains +1.65 Area of Effect.",
+          "description": "Cyclone gains +2.5 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Cyclone gains +2 Area of Effect.",
+          "description": "Cyclone gains +3 Area of Effect.",
           "abilities": []
         }
       ]
@@ -1999,7 +1989,7 @@
         },
         {
           "threshold": 5,
-          "description": "Mantle of the Bovemists gains +2 charges. </br> Mythril Skin gains +5% Base Resistance.",
+          "description": "Mantle of the Bovemists gains +2 charges. </br> Sacred Surge spends -5% Holy Power to activate.",
           "abilities": [
             {
               "base_abil": "Mantle of the Bovemists",
@@ -2007,27 +1997,12 @@
                 "charges": 2
               },
               "effects": []
-            },
-            {
-              "base_abil": "Mythril Skin",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Base",
-                      "value": 5
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
         {
           "threshold": 15,
-          "description": "Mantle of the Bovemists gains +3 charges. </br> Mythril Skin gains +5% Base Resistance.",
+          "description": "Mantle of the Bovemists gains +3 charges. </br> Sacred Surge spends -5% Holy Power to activate.",
           "abilities": [
             {
               "base_abil": "Mantle of the Bovemists",
@@ -2035,21 +2010,6 @@
                 "charges": 2
               },
               "effects": []
-            },
-            {
-              "base_abil": "Mythril Skin",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Base",
-                      "value": 5
-                    }
-                  ]
-                }
-              ]
             }
           ]
         }
@@ -2062,7 +2022,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Blood Pact's health cost is reduced by -0.05%.",
+          "description": "Blood Pact's health cost is reduced by 15%.",
           "abilities": [
             {
               "base_abil": "Blood Pact",
@@ -2075,13 +2035,13 @@
         },
         {
           "threshold": 5,
-          "description": "Blood Pact adds +5% more damage to spells cast using health. Blood Pact's health cost is reduced by -0.05%.",
+          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +5% to +8.35% more damage to spells cast using health.",
           "abilities": [
             {
               "base_abil": "Blood Pact",
               "properties": {
                 "health_cost": -0.05,
-                "damage_boost": 5
+                "damage_boost": 8.35
               },
               "effects": []
             }
@@ -2089,13 +2049,13 @@
         },
         {
           "threshold": 15,
-          "description": "Blood Pact adds +8% more damage to spells cast using health. Blood Pact's health cost is reduced by -0.05%.",
+          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +8% to +13.35% more damage to spells cast using health.",
           "abilities": [
             {
               "base_abil": "Blood Pact",
               "properties": {
                 "health_cost": -0.05,
-                "damage_boost": 8
+                "damage_boost": 13.35
               },
               "effects": []
             }
@@ -2110,100 +2070,30 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your maximum Discombobulated by +30.",
+          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%)",
           "abilities": [
             {
-              "base_abil": "Discombobulate",
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 6,
-                  "output": [
-                    {
-                        "type": "stat",
-                        "name": "nDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "eDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "tDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "wDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "fDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "aDamRaw"
-                    }
-                  ],
-                  "max": 30,
-                  "scaling": [
-                    5
-                  ]
-                }
-              ]
+              "base_abil": "Generalist",
+              "properties": {
+                "pressure_rainbow_uppercut": 8,
+                "pressure_neutral_uppercut": 50,
+                "pressure_bash_hits": 0.5
+              },
+              "effects": []
             }
           ]
         },
         {
           "threshold": 5,
-          "description": "Increase your maximum Discombobulated by +30. </br> Bash gains +1 hit.",
+          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +3% Damage Bonus to Players",
           "abilities": [
             {
-              "base_abil": "Discombobulate",
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 6,
-                  "output": [
-                    {
-                        "type": "stat",
-                        "name": "nDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "eDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "tDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "wDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "fDamRaw"
-                    },
-                    {
-                        "type": "stat",
-                        "name": "aDamRaw"
-                    }
-                  ],
-                  "max": 30,
-                  "scaling": [
-                    5
-                  ]
-                }
-              ]
-            },
-            {
-              "base_abil": "Bash",
+              "base_abil": "Generalist",
               "properties": {
-                "hits": 1
+                "pressure_rainbow_uppercut": 8,
+                "pressure_neutral_uppercut": 50,
+                "pressure_bash_hits": 0.5,
+                "pressure_scream_boost": 3
               },
               "effects": []
             }
@@ -2211,7 +2101,30 @@
         },
         {
           "threshold": 15,
-          "description": "Increase your maximum Discombobulated by +50. </br> Bash gains +1 hit.",
+          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits and more damage. </br><span class='mc-white'>Total Damage</span>: +5%   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> Uppercut deals +70% neutral and +10% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +120%   </br>&emsp;(<span class='nDam'>Damage</span>: +70%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +10%) </br> War Scream grants a higher damage boost. Effect: +4% Damage Bonus to Players",
+          "abilities": [
+            {
+              "base_abil": "Generalist",
+              "properties": {
+                "pressure_rainbow_uppercut": 10,
+                "pressure_neutral_uppercut": 70,
+                "pressure_bash_hits": 0.5,
+                "pressure_scream_boost": 4
+              },
+              "effects": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Seeing Stars",
+      "id": 17,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Increase your maximum Discombobulated by +25.",
           "abilities": [
             {
               "base_abil": "Discombobulate",
@@ -2220,31 +2133,125 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": 10,
+                  "slider_max": 6,
                   "output": [
                     {
-                        "type": "stat",
-                        "name": "nDamRaw"
+                      "type": "stat",
+                      "name": "nDamRaw"
                     },
                     {
-                        "type": "stat",
-                        "name": "eDamRaw"
+                      "type": "stat",
+                      "name": "eDamRaw"
                     },
                     {
-                        "type": "stat",
-                        "name": "tDamRaw"
+                      "type": "stat",
+                      "name": "tDamRaw"
                     },
                     {
-                        "type": "stat",
-                        "name": "wDamRaw"
+                      "type": "stat",
+                      "name": "wDamRaw"
                     },
                     {
-                        "type": "stat",
-                        "name": "fDamRaw"
+                      "type": "stat",
+                      "name": "fDamRaw"
                     },
                     {
-                        "type": "stat",
-                        "name": "aDamRaw"
+                      "type": "stat",
+                      "name": "aDamRaw"
+                    }
+                  ],
+                  "max": 25,
+                  "scaling": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 15,
+          "description": "Increase your maximum Discombobulated by +40.",
+          "abilities": [
+            {
+              "base_abil": "Discombobulate",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 6,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "nDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "eDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "tDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "wDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "fDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "aDamRaw"
+                    }
+                  ],
+                  "max": 40,
+                  "scaling": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 75,
+          "description": "Increase your maximum Discombobulated by +50.",
+          "abilities": [
+            {
+              "base_abil": "Discombobulate",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 6,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "nDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "eDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "tDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "wDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "fDamRaw"
+                    },
+                    {
+                      "type": "stat",
+                      "name": "aDamRaw"
                     }
                   ],
                   "max": 50,
@@ -2253,15 +2260,128 @@
                   ]
                 }
               ]
-            },
-            {
-              "base_abil": "Bash",
-              "properties": {
-                "hits": 1
-              },
-              "effects": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Rekindling",
+      "id": 18,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Rejuvenating Skin restores Health 2.5s faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Rejuvenating Skin restores Health 4s faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Rejuvenating Skin restores Health 5s faster.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Berserker",
+      "id": 19,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Armour Breaker gains +4% Damage Bonus to Self.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Armour Breaker gains +6% Damage Bonus to Self.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Armour Breaker gains +8% Damage Bonus to Self.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Tightrope Walk",
+      "id": 20,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Brink of Madness activates at +4% higher Health.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Brink of Madness activates at +6% higher Health.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Brink of Madness activates at +8% higher Health.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Maniacal Frisson",
+      "id": 21,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Exhilarate restores +2% of your Corrupted bar as max health.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Exhilarate restores +3% of your Corrupted bar as max health.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Exhilarate restores +4% of your Corrupted bar as max health.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Exhilarate restores +5% of your Corrupted bar as max health.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Bovine Inspiration",
+      "id": 22,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Emboldening Cry grants +2% Resistance to Allies.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Emboldening Cry grants +3% Resistance to Allies.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Emboldening Cry grants +4% Resistance to Allies.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Emboldening Cry grants +5% Resistance to Allies.",
+          "abilities": []
         }
       ]
     }
@@ -2357,7 +2477,7 @@
                   "target_part": "Total Damage",
                   "base_spell": 2,
                   "hits": {
-                      "Single Teleport": 1
+                    "Single Teleport": 1
                   }
                 }
               ]
@@ -2383,7 +2503,7 @@
                   "target_part": "Total Damage",
                   "base_spell": 2,
                   "hits": {
-                      "Single Teleport": 2
+                    "Single Teleport": 2
                   }
                 }
               ]
@@ -2409,7 +2529,7 @@
                   "target_part": "Total Damage",
                   "base_spell": 2,
                   "hits": {
-                      "Single Teleport": 3
+                    "Single Teleport": 3
                   }
                 }
               ]
@@ -2447,7 +2567,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Thunderstorm gains +1 strike, and hits +33% faster. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -2%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -1%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -1% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +1 strike, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -1%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -1% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2493,7 +2613,7 @@
         },
         {
           "threshold": 15,
-          "description": "Thunderstorm gains +2 strikes, and hits +33% faster. </br><span class='mc-white'>Total Damage</span>: -7% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -4%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -3%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -2% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -2%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +2 strikes, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -7% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -4%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -2% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%) </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2539,7 +2659,7 @@
         },
         {
           "threshold": 75,
-          "description": "Thunderstorm gains +3 strikes, and hits +33% faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per strike)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -6%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -4%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per Winded)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -2%)   </br>&emsp;(<span class='Earth'>Earth</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +3 strikes, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -6%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -4%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%)   </br>&emsp;(<span class='eDam'>Earth</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2973,33 +3093,6 @@
       ]
     },
     {
-      "displayName": "Aspect of the Cone of Cold",
-      "id": 12,
-      "tier": "Legendary",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Snake Nest gains +2 snakes. Snake Nest's angle is increased by +10 degrees.",
-          "abilities": []
-        },
-        {
-          "threshold": 5,
-          "description": "Snake Nest gains +4 snakes. Snake Nest's angle is increased by +20 degrees.",
-          "abilities": []
-        },
-        {
-          "threshold": 30,
-          "description": "Snake Nest gains +6 snakes. Snake Nest's angle is increased by +30 degrees.",
-          "abilities": []
-        },
-        {
-          "threshold": 150,
-          "description": "Snake Nest gains +8 snakes. Snake Nest's angle is increased by +40 degrees.",
-          "abilities": []
-        }
-      ]
-    },
-    {
       "displayName": "Aspect of the Savior",
       "id": 13,
       "tier": "Legendary",
@@ -3065,12 +3158,12 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Timelock gains +0.5s Duration for every 5 Winded absorbed. Timelock gains +3s maximum Duration.",
+          "description": "Timelock gains +0.25s Duration for every 5 Winded absorbed. Timelock gains +1.5s maximum Duration.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Timelock gains +0.5s Duration for every 5 Winded absorbed. Timelock gains +3s maximum Duration. </br> Increase your maximum Winded by +5.",
+          "description": "Timelock gains +0.25s Duration for every 5 Winded absorbed. Timelock gains +1.5s maximum Duration. </br> Increase your maximum Winded by +5.",
           "abilities": [
             {
               "base_abil": "Windsweeper",
@@ -3098,7 +3191,7 @@
         },
         {
           "threshold": 15,
-          "description": "Timelock gains +0.75s Duration for every 5 Winded absorbed. Timelock gains +4.5s maximum Duration. </br> Increase your maximum Winded by +5.",
+          "description": "Timelock gains +0.5s Duration for every 5 Winded absorbed. Timelock gains +3s maximum Duration. </br> Increase your maximum Winded by +5.",
           "abilities": [
             {
               "base_abil": "Windsweeper",
@@ -3139,12 +3232,12 @@
               "base_abil": "Lightweaver",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "target_part": "Orb DPS",
-                    "base_spell": 5,
-                    "hits": {
-                        "Single Orb": 1
-                    }
+                  "type": "add_spell_prop",
+                  "target_part": "Orb DPS",
+                  "base_spell": 5,
+                  "hits": {
+                    "Single Orb": 1
+                  }
                 }
               ]
             }
@@ -3165,12 +3258,12 @@
               "base_abil": "Lightweaver",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "target_part": "Orb DPS",
-                    "base_spell": 5,
-                    "hits": {
-                        "Single Orb": 1
-                    }
+                  "type": "add_spell_prop",
+                  "target_part": "Orb DPS",
+                  "base_spell": 5,
+                  "hits": {
+                    "Single Orb": 1
+                  }
                 }
               ]
             }
@@ -3191,12 +3284,12 @@
               "base_abil": "Lightweaver",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "target_part": "Orb DPS",
-                    "base_spell": 5,
-                    "hits": {
-                        "Single Orb": 1.5
-                    }
+                  "type": "add_spell_prop",
+                  "target_part": "Orb DPS",
+                  "base_spell": 5,
+                  "hits": {
+                    "Single Orb": 1.5
+                  }
                 }
               ]
             }
@@ -3216,12 +3309,88 @@
         },
         {
           "threshold": 5,
-          "description": "Chaos Explosion requires -20 mana to activate. Chaos Explosion casts +1 spell.",
+          "description": "Chaos Explosion requires -20 mana to activate. Chaos Explosion casts 14% faster.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Chaos Explosion requires -20 mana to activate. Chaos Explosion casts +1 spell. </br> Increase your maximum Mana Bank by +30.",
+          "description": "Chaos Explosion requires -20 mana to activate. Chaos Explosion casts 14% faster. </br> Increase your maximum Mana Bank by +25.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Manaflux",
+      "id": 17,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Manastorm requires -10 Mana to activate.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Manastorm requires -15 Mana to activate.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Manastorm requires -20 Mana to activate.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of a Thousand Hours",
+      "id": 18,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Time Dilation gains +0.35 Area of Effect, and increases your speed more quickly.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Time Dilation gains +0.6 Area of Effect, and increases your speed more quickly.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Time Dilation gains +0.85 Area of Effect, and increases your speed more quickly.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Time Dilation gains +1 Area of Effect, and increases your speed more quickly.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of a Scorching Sun",
+      "id": 19,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Pyrokinesis gains +0.65 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Pyrokinesis gains +1.15 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Pyrokinesis gains +1.65 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Pyrokinesis gains +2 Area of Effect.",
           "abilities": []
         }
       ]
@@ -3235,17 +3404,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Ricochets' gains +1 ricochet.",
+          "description": "Ricochets gains +1 bounce.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Ricochets' gains +2 ricochets.",
+          "description": "Ricochets gains +2 bounces.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Ricochets' gains +3 ricochets.",
+          "description": "Ricochets gains +3 bounces.",
           "abilities": []
         }
       ]
@@ -3257,7 +3426,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Shurikens prepares +1 shuriken per Dash. </br> Increase the amount of Shurikens you can hold by +3. </br> </br><span class='mc-white'>Total Damage</span>: -15% (of your DPS, per shuriken)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -10%)   </br>&emsp;(<span class='Fire'>Fire</span>: -5%)",
+          "description": "Shurikens prepares +1 shuriken per Dash. </br> Increase the amount of Shurikens you can hold by. +3 </br> </br><span class='mc-white'>Total Damage</span>: -15% (of your DPS, per shuriken)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)   </br>&emsp;(<span class='fDam'>Fire</span>: -5%)",
           "abilities": [
             {
               "base_abil": "Dash",
@@ -3296,7 +3465,7 @@
         },
         {
           "threshold": 15,
-          "description": "Shurikens prepares +2 shurikens per Dash. </br> Increase the amount of Shurikens you can hold by +6. </br> </br><span class='mc-white'>Total Damage</span>: -28% (of your DPS, per shuriken)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -19%)   </br>&emsp;(<span class='Fire'>Fire</span>: -9%)",
+          "description": "Shurikens prepares +2 shurikens per Dash. </br> Increase the amount of Shurikens you can hold by +6. </br> </br><span class='mc-white'>Total Damage</span>: -28% (of your DPS, per shuriken)   </br>&emsp;(<span class='nDam'>Damage</span>: -19%)   </br>&emsp;(<span class='fDam'>Fire</span>: -9%)",
           "abilities": [
             {
               "base_abil": "Dash",
@@ -3335,7 +3504,7 @@
         },
         {
           "threshold": 75,
-          "description": "Shurikens prepares +3 shurikens per Dash. </br> Increase the amount of Shurikens you can hold by +9. </br> </br><span class='mc-white'>Total Damage</span>: -36% (of your DPS, per shuriken)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -24%)   </br>&emsp;(<span class='Fire'>Fire</span>: -12%)",
+          "description": "Shurikens prepares +3 shurikens per Dash. </br> Increase the amount of Shurikens you can hold by +9. </br> </br><span class='mc-white'>Total Damage</span>: -36% (of your DPS, per shuriken)   </br>&emsp;(<span class='nDam'>Damage</span>: -24%)   </br>&emsp;(<span class='fDam'>Fire</span>: -12%)",
           "abilities": [
             {
               "base_abil": "Dash",
@@ -3381,17 +3550,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Sandbagging's damage threshold is increased by +1.25% of your max health.",
+          "description": "Sandbagging's damage threshold is increased by +5% of your max health.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Sandbagging's damage threshold is increased by +2.25% of your max health.",
+          "description": "Sandbagging's damage threshold is increased by +7.5% of your max health.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Sandbagging's damage threshold is increased by +3% of your max health.",
+          "description": "Sandbagging's damage threshold is increased by +10% of your max health.",
           "abilities": []
         }
       ]
@@ -3488,7 +3657,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +3%.",
+          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +4.5%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -3505,7 +3674,7 @@
                     }
                   ],
                   "scaling": [
-                    3
+                    4.5
                   ]
                 }
               ]
@@ -3514,7 +3683,7 @@
         },
         {
           "threshold": 15,
-          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +8.5%.",
+          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +12%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -3531,7 +3700,7 @@
                     }
                   ],
                   "scaling": [
-                    8.5
+                    12
                   ]
                 }
               ]
@@ -3540,7 +3709,7 @@
         },
         {
           "threshold": 75,
-          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +10%.",
+          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +14%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -3557,7 +3726,7 @@
                     }
                   ],
                   "scaling": [
-                    10
+                    14
                   ]
                 }
               ]
@@ -3929,33 +4098,6 @@
       ]
     },
     {
-      "displayName": "Aspect of Foul Play",
-      "id": 10,
-      "tier": "Legendary",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Bamboozle gains +1 Area of Effect.",
-          "abilities": []
-        },
-        {
-          "threshold": 5,
-          "description": "Bamboozle gains +1.75 Area of Effect.",
-          "abilities": []
-        },
-        {
-          "threshold": 30,
-          "description": "Bamboozle gains +2.5 Area of Effect.",
-          "abilities": []
-        },
-        {
-          "threshold": 150,
-          "description": "Bamboozle gains +3 Area of Effect.",
-          "abilities": []
-        }
-      ]
-    },
-    {
       "displayName": "Aspect of Shadow Armor",
       "id": 11,
       "tier": "Legendary",
@@ -4087,22 +4229,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Multihit and Backstab gain +0.5 Range.",
+          "description": "Multihit gains +0.5 Range. Backstab gains +1 Range.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Multihit and Backstab gain +0.85 Range.",
+          "description": "Multihit gains +0.85 Range. Backstab gains 1.71 Range.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Multihit and Backstab gain +1.2 Range.",
+          "description": "Multihit gains +1.2 Range. Backstab gains +2.4 Range.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Multihit and Backstab gain +1.5 Range.",
+          "description": "Multihit gains +1.5 Range. Backstab gains +3 Range.",
           "abilities": []
         }
       ]
@@ -4184,60 +4326,6 @@
       ]
     },
     {
-      "displayName": "Trickster's Embodiment of the Ultimate Show",
-      "id": 16,
-      "tier": "Mythic",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Mirror Image's cooldown is reduced by -5s.",
-          "abilities": []
-        },
-        {
-          "threshold": 5,
-          "description": "Mirror Image's cooldown is reduced by -5s. </br> Increase your maximum Clones by 1.",
-          "abilities": [
-            {
-              "base_abil": "Mirror Image",
-              "dependencies": [
-                "Echo"
-              ],
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "behavior": "modify",
-                  "slider": true,
-                  "slider_name": "Spell Copies",
-                  "slider_max": 1
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "threshold": 15,
-          "description": "Mirror Image's cooldown is reduced by -7.5s. </br> Increase your maximum Clones by 1.",
-          "abilities": [
-            {
-              "base_abil": "Mirror Image",
-              "dependencies": [
-                "Echo"
-              ],
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "behavior": "modify",
-                  "slider": true,
-                  "slider_name": "Spell Copies",
-                  "slider_max": 1
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "displayName": "Shadestepper's Embodiment of Unseen Execution",
       "id": 17,
       "tier": "Mythic",
@@ -4277,6 +4365,219 @@
         {
           "threshold": 75,
           "description": "Aerial Ace gains +2.5s Duration.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Pernicious Prankster",
+      "id": 19,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "You may store +15 more Tricks \ue03a on enemies.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "You may store +20 more Tricks \ue03a on enemies.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "You may store +25 more Tricks \ue03a on enemies.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Clouded Vision",
+      "id": 20,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Increase Smoke Bomb's duration by 10%.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Increase Smoke Bomb's duration by 20%.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Increase Smoke Bomb's duration by 30%.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Disappearing Act",
+      "id": 21,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Reduce Shadow Projection's cooldown by 1s.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Reduce Shadow Projection's cooldown by 1.5s.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Reduce Shadow Projection's cooldown by 2s.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Unstoppable Force",
+      "id": 22,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Increase your maximum Momentum by +1.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Increase your maximum Momentum by +2.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Increase your maximum Momentum by +3.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Visual Distortion",
+      "id": 23,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Reduce Mirage's cooldown by 0.25s.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Reduce Mirage's cooldown by 0.4s.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Reduce Mirage's cooldown by 0.5s.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Flamboyance",
+      "id": 24,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Bamboozle gains +1 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Bamboozle gains +1.75 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Bamboozle gains +2.5 Area of Effect.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Bamboozle gains +3 Area of Effect.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Athlethicism",
+      "id": 25,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Dash is 5% stronger, and Shadow Projection launches 7% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Dash is 7% stronger, and Shadow Projection launches 10% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Dash is 9% stronger, and Shadow Projection launches 13% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Dash is 10% stronger, and Shadow Projection launches 15% further.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Enduring Illusions",
+      "id": 26,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Mirror Clones reduce damage by -2%.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Mirror Clones reduce damage by -3.5%.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Mirror Clones reduce damage by -5%.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Mirror Clones reduce damage by -6%.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Trickster's Embodiment of Malevolent Mischief",
+      "id": 27,
+      "tier": "Mythic",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Noxious Haze can benefit from +1 debuff.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Noxious Haze can benefit from +1 debuff. </br> Summon +1 additional Mirror Clone with Mirror Image.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Noxious Haze can benefit from +1 debuff, and grants +1% damage per debuff. </br> Summon +1 additional Mirror Clone with Mirror Image.",
           "abilities": []
         }
       ]
@@ -4342,17 +4643,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your maximum Blood Pool by +10 points.",
+          "description": "Increase your maximum Blood Pool and Bleeding duration by +17%.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Increase your maximum Blood Pool by +20 points.",
+          "description": "Increase your maximum Blood Pool and Bleeding duration by +25%.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Increase your maximum Blood Pool by +30 points.",
+          "description": "Increase your maximum Blood Pool and Bleeding duration by +33%.",
           "abilities": []
         }
       ]
@@ -4481,7 +4782,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Puppet Master gains +1 Puppets. </br><span class='mc-white'>Total Damage</span>: -1% (of your DPS)   </br>&emsp;(<span class='Earth'>Earth</span>: -1%)",
+          "description": "Puppet Master gains +1 Puppets. </br><span class='mc-white'>Total Damage</span>: -1% (of your DPS)   </br>&emsp;(<span class='eDam'>Earth</span>: -1%)",
           "abilities": [
             {
               "base_abil": "Puppet Master",
@@ -4517,7 +4818,7 @@
         },
         {
           "threshold": 15,
-          "description": "Puppet Master gains +2 Puppets. </br><span class='mc-white'>Total Damage</span>: -2% (of your DPS)   </br>&emsp;(<span class='Air'>Air</span>: -1%)   </br>&emsp;(<span class='Earth'>Earth</span>: -1%)",
+          "description": "Puppet Master gains +2 Puppets. </br><span class='mc-white'>Total Damage</span>: -2% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: -1%)   </br>&emsp;(<span class='eDam'>Earth</span>: -1%)",
           "abilities": [
             {
               "base_abil": "Puppet Master",
@@ -4553,7 +4854,7 @@
         },
         {
           "threshold": 75,
-          "description": "Puppet Master gains +3 Puppets. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -1%)   </br>&emsp;(<span class='Air'>Air</span>: -1%)   </br>&emsp;(<span class='Earth'>Earth</span>: -1%)",
+          "description": "Puppet Master gains +3 Puppets. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -1%)   </br>&emsp;(<span class='aDam'>Air</span>: -1%)   </br>&emsp;(<span class='eDam'>Earth</span>: -1%)",
           "abilities": [
             {
               "base_abil": "Puppet Master",
@@ -4736,7 +5037,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Flaming Tongue gains +1 hit, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -14% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -11%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -1%)   </br>&emsp;(<span class='Fire'>Fire</span>: -2%)",
+          "description": "Flaming Tongue gains +1 hit, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -14% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -11%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -1%)   </br>&emsp;(<span class='fDam'>Fire</span>: -2%)",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -4773,7 +5074,7 @@
         },
         {
           "threshold": 5,
-          "description": "Flaming Tongue gains +2 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -17%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -2%)   </br>&emsp;(<span class='Fire'>Fire</span>: -4%)",
+          "description": "Flaming Tongue gains +2 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -17%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -2%)   </br>&emsp;(<span class='fDam'>Fire</span>: -4%)",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -4810,7 +5111,7 @@
         },
         {
           "threshold": 30,
-          "description": "Flaming Tongue gains +3 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -29% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -20%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -3%)   </br>&emsp;(<span class='Fire'>Fire</span>: -6%)",
+          "description": "Flaming Tongue gains +3 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -29% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%)   </br>&emsp;(<span class='fDam'>Fire</span>: -6%)",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -4847,7 +5148,7 @@
         },
         {
           "threshold": 150,
-          "description": "Flaming Tongue gains +4 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -34% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='Neutral'>Neutral</span>: -22%)   </br>&emsp;(<span class='Thunder'>Thunder</span>: -4%)   </br>&emsp;(<span class='Fire'>Fire</span>: -8%)",
+          "description": "Flaming Tongue gains +4 hits, and doubles in speed. </br><span class='mc-white'>Total Damage</span>: -34% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -22%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -4%)   </br>&emsp;(<span class='fDam'>Fire</span>: -8%)",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -4980,7 +5281,7 @@
         },
         {
           "threshold": 5,
-          "description": "Blood Sorrow gains +1s Duration. </br> Eldritch Call summons +1 tentacle, and strikes 20% faster.",
+          "description": "Blood Sorrow gains +1s Duration. </br> Eldritch Call summons +1 tentacle, and strikes 25% faster.",
           "abilities": [
             {
               "base_abil": "Blood Sorrow",
@@ -5015,7 +5316,7 @@
         },
         {
           "threshold": 15,
-          "description": "Blood Sorrow gains +2s Duration. </br> Eldritch Call summons +1 tentacle, and strikes 20% faster.",
+          "description": "Blood Sorrow gains +2s Duration. </br> Eldritch Call summons +1 tentacle, and strikes 25% faster.",
           "abilities": [
             {
               "base_abil": "Blood Sorrow",
@@ -5160,7 +5461,7 @@
         },
         {
           "threshold": 15,
-          "description": "Triple Totem gains +1 Totem. Totem and Aura will do 55% less damage. </br> Regeneration and Sacrificial Shrine will heal 55% less health. </br> Hummingbird's Song gains +1 Hummingbird. Hummingbirds gain +8 Range.",
+          "description": "Triple Totem gains +1 Totem. Totem and Aura will do 55% less damage. </br> Regeneration and Sacrificial Shrine will heal 55% less health. </br> Hummingbird's Song gains +1 Hummingbird. Hummingbirds attack 25% faster.",
           "abilities": [
             {
               "base_abil": "Totem",
@@ -5209,9 +5510,157 @@
               "properties": {
                 "count": 1
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Hummingbirds' Song",
+                      "name": "attack_frequency",
+                      "mult": true,
+                      "value": 1.25
+                    }
+                  ]
+                }
+              ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Occupation",
+      "id": 16,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Your Hummingbird Carvings attack enemies for +3.5s.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Your Hummingbird Carvings attack enemies for +6s.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Your Hummingbird Carvings attack enemies for +8.5s.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Your Hummingbird Carvings attack enemies for +10s.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Summer Storms",
+      "id": 17,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Increase Storm Dance's pull strength by 10%.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Increase Storm Dance's pull strength by 10%.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Increase Storm Dance's pull strength by 10%.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Increase Storm Dance's pull strength by 25%.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Acceleration",
+      "id": 18,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Your Puppets and Effigies move 10% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Your Puppets and Effigies move 15% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Your Puppets and Effigies move 20% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Your Puppets and Effigies move 25% faster.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Incineration",
+      "id": 19,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Friendly Fire reduces &BPuppet duration by -0.4s.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Friendly Fire reduces &BPuppet duration by -0.6s.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Friendly Fire reduces &BPuppet duration by -0.8s.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Friendly Fire reduces &BPuppet duration by -1s.",
+          "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Empathy",
+      "id": 20,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Twisted Tether requires -0.2% Health lost to activate.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Twisted Tether requires -0.3% Health lost to activate.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Twisted Tether requires -0.4% Health lost to activate.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Twisted Tether requires -0.5% Health lost to activate.",
+          "abilities": []
         }
       ]
     }

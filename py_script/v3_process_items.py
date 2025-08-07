@@ -239,6 +239,13 @@ replace_strings = {
     "\ue000": "[air]", # Air
 }
 
+attack_speed_dict = {
+    "SUPERSLOW": "SUPER_SLOW",
+    "VERYSLOW": "VERY_SLOW",
+    "VERYFAST": "VERY_FAST",
+    "SUPERFAST": "SUPER_FAST"
+}
+
 for item in items:
     # NOTE: HACKY ITEM FIXES!
     if 'majorIds' in item:
@@ -264,6 +271,9 @@ for item in items:
         item['majorIds'] = majorIds
     if item['tier'] == 'Common':
         item['tier'] = 'Normal'
+
+    if 'atkSpd' in item and item['atkSpd'] in attack_speed_dict:
+        item['atkSpd'] = attack_speed_dict[item['atkSpd']]
 
     if not (item["name"] in id_map):
         while max_id in used_ids:

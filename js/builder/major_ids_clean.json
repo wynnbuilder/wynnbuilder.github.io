@@ -6,7 +6,7 @@
     },
     "EXPLOSIVE_IMPACT": {
         "displayName": "Explosive Impact",
-        "description": "Enemies explode on death, dealing [neutral]300% Main Attack damage in a radius of 5 blocks.",
+        "description": "Exploding gives an additional chance to deal [neutral]300% Main Attack damage in a radius of 5 blocks upon killing an enemy.",
         "abilities": [
             {
                 "class": "Any",
@@ -108,7 +108,7 @@
         "abilities": []
     },
     "HERO": {
-        "displayName": "Saviour’s Sacrifice",
+        "displayName": "Saviour's Sacrifice",
         "description": "While under 50% maximum health, nearby allies gain 15% bonus damage and defence.",
         "abilities": [
             {
@@ -147,7 +147,7 @@
     },
     "ENTROPY": {
         "displayName": "Entropy",
-        "description": "Meteor falls three times faster.",
+        "description": "Meteor's speed is increased by 50%.",
         "abilities": []
     },
     "ROVINGASSASSIN": {
@@ -177,7 +177,7 @@
     },
     "RALLY": {
         "displayName": "Rally",
-        "description": "Cleansing Breeze causes Charge to heal you for 7.5% and nearby allies for 15% on impact, but becomes harmless.",
+        "description": "Cleansing Breeze heals you for 15% and allies for 20%, but Charge becomes harmless.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -191,13 +191,13 @@
                         "base_spell": 2,
                         "display": "Rally Self Heal",
                         "target_part": "Rally Self Heal",
-                        "power": 0.075
+                        "power": 0.15
                     },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 2,
                         "target_part": "Rally Ally Heal",
-                        "power": 0.15
+                        "power": 0.2
                     },
                     {
                         "type": "raw_stat",
@@ -295,7 +295,7 @@
     },
     "FLASHFREEZE": {
         "displayName": "Flashfreeze",
-        "description": "Ice Snake is instant and freezes for +1s.",
+        "description": "Ice Snake travels instantly.",
         "abilities": []
     },
     "GRAVITYWELL": {
@@ -320,7 +320,7 @@
     },
     "TEMBLOR": {
         "displayName": "Temblor",
-        "description": "Bash gains +1 Area of Effect and is 25% faster.",
+        "description": "Bash gains +1 Area of Effect and is 33% faster.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -577,7 +577,7 @@
     },
     "GENTLE_GLOW": {
         "displayName": "Gentle Glow",
-        "description": "Orphion's Pulse restores 20% more health to allies, but heals at a slower rate. Fluid Healing's effectiveness is increased by 150%.",
+        "description": "Orphion's Pulse restores up to 25% more max health to allies, but heals at a slower rate. Fluid Healing's effectiveness is increased by 150%.",
         "abilities": [
             {
                 "class": "Mage",
@@ -613,7 +613,7 @@
     },
     "PERFECT_RECALL": {
         "displayName": "Perfect Recall",
-        "description": "Memory Recollection adds 1 extra spell. Increases Chaos Explosion's mana bank requirement to 150.",
+        "description": "Memory Recollection speeds up Chaos Explosion by 0.1s per spell but increases Chaos Explosion's mana bank requirement by 30.",
         "abilities": []
     },
     "OVERWHELM": {
@@ -763,7 +763,7 @@
     },
     "HELLFIRE": {
         "displayName": "Hellfire",
-        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]225%, [earth]40%, and [fire]60%. Boiling Blood burns faster for [neutral]+40% and [fire]+50% but can't slow.",
+        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]225%, [earth]40%, and [fire]60%. Boiling Bloods cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -895,7 +895,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]40%. Gain +12 traps that cannot be triggered \nby enemies.",
+        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]30%. Gain +12 traps with halved duration that cannot be triggered \nby enemies.",
         "abilities": [
             {
                 "class": "Archer",
@@ -913,7 +913,7 @@
                         "target_part": "Line Damage Tick",
                         "behavior": "modify",
                         "multipliers": [
-                            20,
+                            10,
                             0,
                             0,
                             0,
@@ -1116,7 +1116,7 @@
     },
     "EFFLORESCENCE": {
         "displayName": "Efflorescence",
-        "description": "Jasmine Bloom deals [neutral]15% and \n[earth][thunder][water][fire][air]15% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]90% and [earth][thunder][water][fire][air]30%.",
+        "description": "Jasmine Bloom deals [neutral]10% and \n[earth][thunder][water][fire][air]20% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]50% and [earth][thunder][water][fire][air]50%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -1134,12 +1134,12 @@
                         "target_part": "Per Hit",
                         "behavior": "overwrite",
                         "multipliers": [
-                            15,
-                            15,
-                            15,
-                            15,
-                            15,
-                            15
+                            10,
+                            20,
+                            20,
+                            20,
+                            20,
+                            20
                         ]
                     },
                     {
@@ -1148,12 +1148,12 @@
                         "target_part": "Jasmine Bloom Explosion per Hit",
                         "behavior": "overwrite",
                         "multipliers": [
-                            90,
-                            30,
-                            30,
-                            30,
-                            30,
-                            30
+                            50,
+                            50,
+                            50,
+                            50,
+                            50,
+                            50
                         ]
                     }
                 ]
@@ -1180,7 +1180,7 @@
     },
     "METEOR_CRASH": {
         "displayName": "Meteor Crash",
-        "description": "Burning Sigil deals [neutral]+15%, [fire]+10%, and gains +6 radius, but lasts half as long.",
+        "description": "Burning Sigil gains +6 radius and deals double the damage, but lasts half as long.",
         "abilities": [
             {
                 "class": "Mage",
@@ -1193,17 +1193,13 @@
                 },
                 "effects": [
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 6,
-                        "target_part": "Tick Damage",
-                        "behavior": "modify",
-                        "multipliers": [
-                            15,
-                            0,
-                            0,
-                            0,
-                            10,
-                            0
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.MeteorCrash:6.Tick Damage",
+                                "value": 100
+                            }
                         ]
                     }
                 ]
@@ -1795,7 +1791,7 @@
     },
     "HEAT_SHIMMER": {
         "displayName": "Heat Shimmer",
-        "description": "Your Clones are reduced to a maximum of 1 with no damage penalties and Mirror Image's cooldown is greatly shortened.",
+        "description": "Mirror Image count is reduced to a maximum of 1. Foul Play will no longer slay a Mirror Clone, but will still provide its effects. Tricks application is increased by 50%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -1804,9 +1800,7 @@
                     "Echo"
                 ],
                 "properties": {
-                    "clones": -2,
-                    "penalty_per_clone": 20,
-                    "max_penalty": 65
+                    "clones": -2
                 },
                 "effects": [
                     {
@@ -1817,35 +1811,12 @@
                         "slider_max": 1
                     }
                 ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": "Mirror Image",
-                "dependencies": [
-                    "Deadly Decoys"
-                ],
-                "properties": {
-                    "max_penalty": -5,
-                    "penalty_per_clone": -5
-                },
-                "effects": []
-            },
-            {
-                "class": "Assassin",
-                "base_abil": "Mirror Image",
-                "dependencies": [
-                    "Forbidden Art"
-                ],
-                "properties": {
-                    "max_penalty": 5
-                },
-                "effects": []
             }
         ]
     },
     "VITRIOL": {
         "displayName": "Vitriol",
-        "description": "Uncontainable Corruption decreases Corrupted duration by 75% and gives drastically more damage, but disables Enraged Blow. Massacre has no cooldown.",
+        "description": "Uncontainable Corruption decreases Corrupted duration by 75% and gives drastically more damage, but disables Enraged Blow. Massacre adds 5 times as much corruption.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -2010,7 +1981,7 @@
     },
     "WORMHOLE": {
         "displayName": "Wormhole",
-        "description": "Last Laugh instead casts a meteor.",
+        "description": "Last Laugh instead casts Meteor. Malicious Mockery causes Meteor to apply 13 Trick stacks.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2044,7 +2015,7 @@
     },
     "PIONEERS_ECHO": {
         "displayName": "Pioneer's Echo",
-        "description": "Phantom Ray deals two bursts of [neutral] 150%, [water] 60% over 1.1 seconds. Decimator's increase and cap are raised to 100%.",
+        "description": "Phantom Ray deals two bursts of [neutral] 150%, [water] 60% over 1 second. Decimator's increase and cap are raised to 140%.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2073,7 +2044,7 @@
                         "target_part": "DPS",
                         "behavior": "overwrite",
                         "hits": {
-                            "Single Tick": 1.1818
+                            "Single Tick": 2
                         }
                     },
                     {
@@ -2106,7 +2077,7 @@
                             "name": "damMult.Phantom Ray:1.Single Tick"
                         },
                         "scaling": [
-                            100
+                            140
                         ]
                     }
                 ]
@@ -2415,7 +2386,7 @@
     },
     "SCARCE_COMFORT": {
         "displayName": "Scarce Comfort",
-        "description": "When Generalist acts on Whirlwind Strike, it gains [thunder]+30%, [air]+30%, and +3 radius. When it acts on Charge, it reduces the vertical velocity decay of Aerodynamics.",
+        "description": "Freestream Flow becomes slightly stronger and lasts indefinitely.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -2468,7 +2439,7 @@
     },
     "SUN_EATER": {
         "displayName": "Sun Eater",
-        "description": "Failing to backstab an enemy from behind blinds them for 2s and slows them by 20% for 5s.",
+        "description": "Failing to backstab an enemy from behind blinds them for 0.5s and slows them by 20% for 5s.",
         "abilities": []
     },
     "SELFSUFFICIENT": {
@@ -2478,7 +2449,7 @@
     },
     "ORBITAL_CHAIN": {
         "displayName": "Orbital Chain",
-        "description": "Chain Lightning hits slower, rebounds, adds 6 chains, and pulls mobs closer for a [neutral]750% explosion spell.",
+        "description": "Chain Lightning hits slower, rebounds, adds 6 chains, and pulls mobs closer for a [neutral]1500% explosion spell.",
         "abilities": [
             {
                 "class": "Any",
@@ -2494,7 +2465,7 @@
                                 "name": "Explosion Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    750,
+                                    1500,
                                     0,
                                     0,
                                     0,
@@ -2508,15 +2479,9 @@
             }
         ]
     },
-    "FLASHFREEZE2": {
-        "displayName": "Flashfreeze2",
-        "description": "",
-        "hidden": true,
-        "abilities": []
-    },
     "CANNULATE": {
         "displayName": "Cannulate",
-        "description": "Sacrificial Shrine costs -5 Blood Pool to cast, but health drain is reduced by half.",
+        "description": "Sacrificial Shrine costs -5 Blood Pool to cast and health drain is reduced by half.",
         "abilities": []
     },
     "INTANGIBLE": {
@@ -2637,6 +2602,58 @@
     "COMBO_STOMP": {
         "displayName": "Combo Stomp",
         "description": "Landing directly on an enemy with Fierce Stomp sends you back into the air and resets Escape.",
+        "abilities": []
+    },
+    "TIDAL_DRIFT": {
+        "displayName": "Tidal Drift",
+        "description": "Flying Kick will instead send\nyou forwards.\nThis effect is limited to once per Charge cast.",
+        "abilities": []
+    },
+    "SPACE_GLIDE": {
+        "displayName": "Space Glide",
+        "description": "Lacerate performs a single horizontal jump and slash, dealing [neutral]400%.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Spin Attack",
+                "dependencies": [
+                    "Lacerate"
+                ],
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Space Glide",
+                        "base_spell": 1,
+                        "display": "Total Damage",
+                        "parts": [
+                            {
+                                "name": "Space Glide Damage",
+                                "type": "damage",
+                                "multipliers": [
+                                    400,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            {
+                                "name": "Total Damage",
+                                "type": "total",
+                                "hits": {
+                                    "Space Glide Damage": 1
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "REALITY_REVISION": {
+        "displayName": "Reality Revision",
+        "description": "Phasing Beam instead makes Twain's Arc explode upon hitting an enemy, dealing its damage in a 5 block radius. Twain's Arc now has extreme recoil.",
         "abilities": []
     }
 }
