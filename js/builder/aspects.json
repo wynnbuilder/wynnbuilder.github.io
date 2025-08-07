@@ -2571,6 +2571,9 @@
           "abilities": [
             {
               "base_abil": "Meteor",
+              "dependencies": [
+                "Thunderstorm"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -2617,6 +2620,9 @@
           "abilities": [
             {
               "base_abil": "Meteor",
+              "dependencies": [
+                "Thunderstorm"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -2663,6 +2669,9 @@
           "abilities": [
             {
               "base_abil": "Meteor",
+              "dependencies": [
+                "Thunderstorm"
+              ],
               "effects": [
                 {
                   "type": "add_spell_prop",

@@ -194,30 +194,30 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
     let damages_results = [];
     const mult_map = stats.get("damMult");
     let damage_mult = 1;
+
     let ele_damage_mult = [1, 1, 1, 1, 1, 1];
     let multiplied_conversions = conversions;
-    if (!ignore_str) {
-        for (const [k, v] of mult_map.entries()) {
-            if (k.includes(':')) {
-                // TODO: fragile... checking for specific part multipliers.
-                const spell_match = k.split(':')[1];
-                if (spell_match !== part_filter) {
-                    continue;
-                }
-            }
-            if (ignored_mults.includes(k)) {
+
+    for (const [k, v] of mult_map.entries()) {
+        if (k.includes(':')) {
+            // TODO: fragile... checking for specific part multipliers.
+            const spell_match = k.split(':')[1];
+            if (spell_match !== part_filter) {
                 continue;
             }
+        }
+        if (ignored_mults.includes(k)) {
+            continue;
+        }
 
-            if (k.includes(';')) {
-                const ele_match = damage_elements.indexOf(k.split(';')[1]);
-                if (ele_match !== -1) {
-                    ele_damage_mult[ele_match] *= (1 + v/100);
-                }
+        if (k.includes(';')) {
+            const ele_match = damage_elements.indexOf(k.split(';')[1]);
+            if (ele_match !== -1) {
+                ele_damage_mult[ele_match] *= (1 + v/100);
             }
-            else {
-                damage_mult *= (1 + v/100);
-            }
+        }
+        else {
+            damage_mult *= (1 + v/100);
         }
     }
     const crit_mult = ignore_str ? 0 : 1+(stats.get("critDamPct")/100);
