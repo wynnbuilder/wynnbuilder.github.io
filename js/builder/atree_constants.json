@@ -8660,6 +8660,29 @@
             "effects": []
         },
         {
+            "display_name": "Windcharged",
+            "desc": "Double Meteor's speed.",
+            "base_abil": "Meteor",
+            "parents": [
+                "More Winded II",
+                "Devitalize"
+            ],
+            "dependencies": [
+                "Meteor"
+            ],
+            "blockers": [
+                "Ophanim"
+            ],
+            "cost": 1,
+            "display": {
+                "row": 32,
+                "col": 1,
+                "icon": "node_0"
+            },
+            "properties": {},
+            "effects": []
+        },
+        {
             "display_name": "Divination",
             "desc": "Increases your maximum orbs from Ophanim by +3 and reduces their damage. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%)   </br>&emsp;(<span class='wDam'>Water</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -5%)",
             "base_abil": "Ophanim",
