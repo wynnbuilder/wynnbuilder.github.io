@@ -10414,7 +10414,8 @@
             "archetype": "Shadestepper",
             "archetype_req": 5,
             "parents": [
-                "Violent Vortex"
+                "Violent Vortex",
+                "Duplicity"
             ],
             "dependencies": [],
             "blockers": [],
