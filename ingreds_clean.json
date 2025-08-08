@@ -32,7 +32,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -179,
@@ -67,7 +67,7 @@
       "above": 80,
       "under": 80,
       "touching": -80,
-      "not_touching": -80
+      "notTouching": -80
     },
     "itemIDs": {
       "dura": 0,
@@ -134,7 +134,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -162,
@@ -184,7 +184,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -120,
@@ -225,7 +225,7 @@
       "above": 0,
       "under": 0,
       "touching": -50,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -144,
@@ -267,7 +267,7 @@
       "above": 115,
       "under": 115,
       "touching": -115,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -175,
@@ -316,7 +316,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -156,
@@ -362,7 +362,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -398,7 +398,7 @@
       "above": 0,
       "under": 0,
       "touching": 50,
-      "not_touching": -35
+      "notTouching": -35
     },
     "itemIDs": {
       "dura": 0,
@@ -448,7 +448,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -498,7 +498,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -543,7 +543,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -596,7 +596,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -162,
@@ -645,7 +645,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -691,7 +691,7 @@
       "above": 0,
       "under": 0,
       "touching": 15,
-      "not_touching": -15
+      "notTouching": -15
     },
     "itemIDs": {
       "dura": -154,
@@ -744,7 +744,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -108,
@@ -801,7 +801,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -846,7 +846,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -108,
@@ -923,7 +923,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -968,7 +968,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1017,7 +1017,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -108,
@@ -1071,7 +1071,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -175,
@@ -1125,7 +1125,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -109,
@@ -1171,7 +1171,7 @@
       "above": 0,
       "under": 0,
       "touching": -50,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -1220,7 +1220,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -1269,7 +1269,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -112,
@@ -1319,7 +1319,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -107,
@@ -1364,7 +1364,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -1413,7 +1413,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -109,
@@ -1462,7 +1462,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1507,7 +1507,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -1557,7 +1557,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -126,
@@ -1607,7 +1607,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -1643,7 +1643,7 @@
       "above": -25,
       "under": -25,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1701,7 +1701,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1746,7 +1746,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1796,7 +1796,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -1842,7 +1842,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -107,
@@ -1895,7 +1895,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -151,
@@ -1941,7 +1941,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -1987,7 +1987,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -2036,7 +2036,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -2081,7 +2081,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -2117,7 +2117,7 @@
       "above": 60,
       "under": 60,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -2164,7 +2164,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -111,
@@ -2213,7 +2213,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -2263,7 +2263,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -2325,7 +2325,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -80,
@@ -2370,7 +2370,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -71,
@@ -2419,7 +2419,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 42,
@@ -2468,7 +2468,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -2513,7 +2513,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -80,
@@ -2558,7 +2558,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -2603,7 +2603,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -106,
@@ -2664,7 +2664,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -2709,7 +2709,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -2759,7 +2759,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -2804,7 +2804,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -159,
@@ -2850,7 +2850,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -74,
@@ -2895,7 +2895,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -2941,7 +2941,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -53,
@@ -2991,7 +2991,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -106,
@@ -3033,7 +3033,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -3078,7 +3078,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -3123,7 +3123,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -172,
@@ -3168,7 +3168,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -159,
@@ -3213,7 +3213,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -53,
@@ -3262,7 +3262,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -3308,7 +3308,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -3353,7 +3353,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -3399,7 +3399,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -74,
@@ -3452,7 +3452,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -160,
@@ -3493,7 +3493,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -53,
@@ -3559,7 +3559,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -3609,7 +3609,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -157,
@@ -3645,7 +3645,7 @@
       "above": 110,
       "under": 110,
       "touching": -110,
-      "not_touching": 15
+      "notTouching": 15
     },
     "itemIDs": {
       "dura": -160,
@@ -3692,7 +3692,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -3734,7 +3734,7 @@
       "above": 0,
       "under": 0,
       "touching": 15,
-      "not_touching": 15
+      "notTouching": 15
     },
     "itemIDs": {
       "dura": 0,
@@ -3777,7 +3777,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 39,
@@ -3827,7 +3827,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": -65
+      "notTouching": -65
     },
     "itemIDs": {
       "dura": -165,
@@ -3868,7 +3868,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -3913,7 +3913,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -3958,7 +3958,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -4013,7 +4013,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -156,
@@ -4063,7 +4063,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -4113,7 +4113,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -4158,7 +4158,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4203,7 +4203,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -4245,7 +4245,7 @@
       "above": -120,
       "under": -120,
       "touching": 120,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -115,
@@ -4291,7 +4291,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -107,
@@ -4332,7 +4332,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4381,7 +4381,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -73,
@@ -4426,7 +4426,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4472,7 +4472,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -140,
@@ -4517,7 +4517,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4564,7 +4564,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -104,
@@ -4609,7 +4609,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -4659,7 +4659,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -157,
@@ -4706,7 +4706,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -73,
@@ -4751,7 +4751,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4800,7 +4800,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4849,7 +4849,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4894,7 +4894,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4943,7 +4943,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -4988,7 +4988,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -73,
@@ -5041,7 +5041,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -115,
@@ -5087,7 +5087,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 56,
@@ -5132,7 +5132,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5177,7 +5177,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -5234,7 +5234,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -103,
@@ -5279,7 +5279,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5328,7 +5328,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5377,7 +5377,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -5422,7 +5422,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -99,
@@ -5467,7 +5467,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -5509,7 +5509,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -5554,7 +5554,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5612,7 +5612,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -154,
@@ -5657,7 +5657,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5702,7 +5702,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -5747,7 +5747,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -5796,7 +5796,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -155,
@@ -5841,7 +5841,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -101,
@@ -5887,7 +5887,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -115,
@@ -5933,7 +5933,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -5983,7 +5983,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -6024,7 +6024,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6060,7 +6060,7 @@
       "above": -160,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -154,
@@ -6106,7 +6106,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -153,
@@ -6147,7 +6147,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 22,
@@ -6192,7 +6192,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -61,
@@ -6238,7 +6238,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -101,
@@ -6274,7 +6274,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6321,7 +6321,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -71,
@@ -6366,7 +6366,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6411,7 +6411,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6452,7 +6452,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -6501,7 +6501,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6546,7 +6546,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -6592,7 +6592,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -72,
@@ -6637,7 +6637,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6683,7 +6683,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -6733,7 +6733,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -6774,7 +6774,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -6815,7 +6815,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -6860,7 +6860,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -6912,7 +6912,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -96,
@@ -6961,7 +6961,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -71,
@@ -6998,7 +6998,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -157,
@@ -7048,7 +7048,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7105,7 +7105,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -7150,7 +7150,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -95,
@@ -7200,7 +7200,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -7245,7 +7245,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7286,7 +7286,7 @@
       "above": 0,
       "under": 0,
       "touching": 15,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -155,
@@ -7331,7 +7331,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 80,
@@ -7380,7 +7380,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7421,7 +7421,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7478,7 +7478,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7523,7 +7523,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -94,
@@ -7573,7 +7573,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -7626,7 +7626,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -158,
@@ -7672,7 +7672,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -7721,7 +7721,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7766,7 +7766,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -7811,7 +7811,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -7856,7 +7856,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -99,
@@ -7906,7 +7906,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -102,
@@ -7955,7 +7955,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -148,
@@ -8001,7 +8001,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -8042,7 +8042,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8091,7 +8091,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8148,7 +8148,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -99,
@@ -8197,7 +8197,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -8242,7 +8242,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -8287,7 +8287,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8333,7 +8333,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -8379,7 +8379,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -8424,7 +8424,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -64,
@@ -8470,7 +8470,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -8515,7 +8515,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8560,7 +8560,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8606,7 +8606,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -8651,7 +8651,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -8696,7 +8696,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -8733,7 +8733,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -8775,7 +8775,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 35,
@@ -8822,7 +8822,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -8869,7 +8869,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -8916,7 +8916,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -8963,7 +8963,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -9010,7 +9010,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -9057,7 +9057,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -98,
@@ -9103,7 +9103,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -97,
@@ -9148,7 +9148,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -57,
@@ -9198,7 +9198,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -9239,7 +9239,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -9284,7 +9284,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -68,
@@ -9333,7 +9333,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -145,
@@ -9374,7 +9374,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9419,7 +9419,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9464,7 +9464,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9509,7 +9509,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -9554,7 +9554,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9599,7 +9599,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9644,7 +9644,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -9689,7 +9689,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9734,7 +9734,7 @@
       "above": 0,
       "under": 0,
       "touching": -10,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9775,7 +9775,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -9816,7 +9816,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9865,7 +9865,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -9915,7 +9915,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -96,
@@ -9960,7 +9960,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -10006,7 +10006,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -10068,7 +10068,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -10113,7 +10113,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -10162,7 +10162,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -144,
@@ -10207,7 +10207,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -10252,7 +10252,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -10297,7 +10297,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -145,
@@ -10343,7 +10343,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -10392,7 +10392,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -130,
@@ -10437,7 +10437,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -10483,7 +10483,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -94,
@@ -10525,7 +10525,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -10570,7 +10570,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -10616,7 +10616,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -10661,7 +10661,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -131,
@@ -10711,7 +10711,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -129,
@@ -10760,7 +10760,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 70,
@@ -10796,7 +10796,7 @@
       "above": 25,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -10842,7 +10842,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -10888,7 +10888,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -94,
@@ -10938,7 +10938,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -130,
@@ -10983,7 +10983,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11029,7 +11029,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11078,7 +11078,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -94,
@@ -11119,7 +11119,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11164,7 +11164,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -11217,7 +11217,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -141,
@@ -11264,7 +11264,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -11310,7 +11310,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -11360,7 +11360,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -127,
@@ -11406,7 +11406,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -11447,7 +11447,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11504,7 +11504,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -11545,7 +11545,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -11591,7 +11591,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -11636,7 +11636,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11677,7 +11677,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11722,7 +11722,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11767,7 +11767,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11809,7 +11809,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -11854,7 +11854,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -11900,7 +11900,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -93,
@@ -11946,7 +11946,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -119,
@@ -11995,7 +11995,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -94,
@@ -12044,7 +12044,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -12090,7 +12090,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -12134,7 +12134,7 @@
       "above": 0,
       "under": 0,
       "touching": 25,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -97,
@@ -12183,7 +12183,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -12224,7 +12224,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -12273,7 +12273,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -92,
@@ -12314,7 +12314,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -12360,7 +12360,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -12406,7 +12406,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -12451,7 +12451,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -9,
@@ -12501,7 +12501,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -12550,7 +12550,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -89,
@@ -12604,7 +12604,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -140,
@@ -12649,7 +12649,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 45,
@@ -12691,7 +12691,7 @@
       "above": 0,
       "under": 0,
       "touching": -15,
-      "not_touching": -15
+      "notTouching": -15
     },
     "itemIDs": {
       "dura": -139,
@@ -12737,7 +12737,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -12783,7 +12783,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -12824,7 +12824,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -12869,7 +12869,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -12915,7 +12915,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -12964,7 +12964,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -13010,7 +13010,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -13060,7 +13060,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -92,
@@ -13106,7 +13106,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -13148,7 +13148,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -13194,7 +13194,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -13239,7 +13239,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -13284,7 +13284,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -13325,7 +13325,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -13370,7 +13370,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -13416,7 +13416,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -13469,7 +13469,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -120,
@@ -13510,7 +13510,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -13571,7 +13571,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -93,
@@ -13616,7 +13616,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -13661,7 +13661,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -135,
@@ -13707,7 +13707,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -13755,7 +13755,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 37,
@@ -13820,7 +13820,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -135,
@@ -13866,7 +13866,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -13911,7 +13911,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -13957,7 +13957,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -14002,7 +14002,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14049,7 +14049,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -14090,7 +14090,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14130,7 +14130,7 @@
       "above": -110,
       "under": -20,
       "touching": 35,
-      "not_touching": -30
+      "notTouching": -30
     },
     "itemIDs": {
       "dura": -175,
@@ -14180,7 +14180,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14215,7 +14215,7 @@
       "above": 0,
       "under": 0,
       "touching": -25,
-      "not_touching": -25
+      "notTouching": -25
     },
     "itemIDs": {
       "dura": -140,
@@ -14278,7 +14278,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -14325,7 +14325,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14380,7 +14380,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -149,
@@ -14425,7 +14425,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -89,
@@ -14472,7 +14472,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -89,
@@ -14518,7 +14518,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 63,
@@ -14564,7 +14564,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -120,
@@ -14609,7 +14609,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14655,7 +14655,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -133,
@@ -14690,7 +14690,7 @@
       "above": -160,
       "under": -160,
       "touching": 115,
-      "not_touching": 115
+      "notTouching": 115
     },
     "itemIDs": {
       "dura": 0,
@@ -14732,7 +14732,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -14773,7 +14773,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -14814,7 +14814,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14855,7 +14855,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -14891,7 +14891,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -14939,7 +14939,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -62,
@@ -14984,7 +14984,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -15033,7 +15033,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -15078,7 +15078,7 @@
       "above": 55,
       "under": 55,
       "touching": -110,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -125,
@@ -15113,7 +15113,7 @@
       "above": 0,
       "under": 0,
       "touching": -40,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -15168,7 +15168,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -15214,7 +15214,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -61,
@@ -15268,7 +15268,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -15333,7 +15333,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -15378,7 +15378,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -62,
@@ -15427,7 +15427,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -15472,7 +15472,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -15518,7 +15518,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -15559,7 +15559,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -15600,7 +15600,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -15646,7 +15646,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -15696,7 +15696,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -15741,7 +15741,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -15794,7 +15794,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -15839,7 +15839,7 @@
       "above": 0,
       "under": 0,
       "touching": 30,
-      "not_touching": 30
+      "notTouching": 30
     },
     "itemIDs": {
       "dura": -131,
@@ -15876,7 +15876,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -131,
@@ -15930,7 +15930,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -15984,7 +15984,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -16030,7 +16030,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -16084,7 +16084,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -16130,7 +16130,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -16176,7 +16176,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -16229,7 +16229,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -86,
@@ -16282,7 +16282,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -16327,7 +16327,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -16373,7 +16373,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -61,
@@ -16414,7 +16414,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -16468,7 +16468,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -88,
@@ -16513,7 +16513,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -16562,7 +16562,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -16607,7 +16607,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -16653,7 +16653,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -16690,7 +16690,7 @@
       "above": 0,
       "under": 0,
       "touching": 25,
-      "not_touching": 50
+      "notTouching": 50
     },
     "itemIDs": {
       "dura": -192,
@@ -16745,7 +16745,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -86,
@@ -16787,7 +16787,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -16836,7 +16836,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -16882,7 +16882,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -16928,7 +16928,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -86,
@@ -16977,7 +16977,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -86,
@@ -17022,7 +17022,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -86,
@@ -17067,7 +17067,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17108,7 +17108,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -17157,7 +17157,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17207,7 +17207,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -62,
@@ -17257,7 +17257,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -17299,7 +17299,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -17340,7 +17340,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17389,7 +17389,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17434,7 +17434,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -84,
@@ -17479,7 +17479,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17525,7 +17525,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -85,
@@ -17566,7 +17566,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17612,7 +17612,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -85,
@@ -17657,7 +17657,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -17702,7 +17702,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -17744,7 +17744,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -17802,7 +17802,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -17848,7 +17848,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -17894,7 +17894,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -17941,7 +17941,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -17998,7 +17998,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18039,7 +18039,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -18099,7 +18099,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -101,
@@ -18140,7 +18140,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18182,7 +18182,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -18234,7 +18234,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -18280,7 +18280,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -112,
@@ -18337,7 +18337,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18382,7 +18382,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -124,
@@ -18427,7 +18427,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -18472,7 +18472,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -18514,7 +18514,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -18560,7 +18560,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -124,
@@ -18606,7 +18606,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -18652,7 +18652,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -18697,7 +18697,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18746,7 +18746,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18797,7 +18797,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -18840,7 +18840,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -18882,7 +18882,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -18945,7 +18945,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -18990,7 +18990,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19043,7 +19043,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -19088,7 +19088,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -78,
@@ -19124,7 +19124,7 @@
       "above": 0,
       "under": 0,
       "touching": -100,
-      "not_touching": 60
+      "notTouching": 60
     },
     "itemIDs": {
       "dura": -175,
@@ -19174,7 +19174,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19219,7 +19219,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19269,7 +19269,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -119,
@@ -19318,7 +19318,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19360,7 +19360,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -19401,7 +19401,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19450,7 +19450,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -19492,7 +19492,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19541,7 +19541,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -120,
@@ -19586,7 +19586,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -19639,7 +19639,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19681,7 +19681,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -19730,7 +19730,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19776,7 +19776,7 @@
       "above": 0,
       "under": 0,
       "touching": 15,
-      "not_touching": 15
+      "notTouching": 15
     },
     "itemIDs": {
       "dura": -100,
@@ -19825,7 +19825,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -80,
@@ -19867,7 +19867,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -19910,7 +19910,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -19958,7 +19958,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -20004,7 +20004,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 56,
@@ -20050,7 +20050,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -20096,7 +20096,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 56,
@@ -20145,7 +20145,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -20198,7 +20198,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -20248,7 +20248,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -20297,7 +20297,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -80,
@@ -20342,7 +20342,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -20392,7 +20392,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -78,
@@ -20428,7 +20428,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 55
+      "notTouching": 55
     },
     "itemIDs": {
       "dura": 0,
@@ -20470,7 +20470,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -20516,7 +20516,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -20562,7 +20562,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -20605,7 +20605,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -20650,7 +20650,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -20695,7 +20695,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -87,
@@ -20741,7 +20741,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -20799,7 +20799,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -78,
@@ -20848,7 +20848,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -20893,7 +20893,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -20930,7 +20930,7 @@
       "above": 0,
       "under": 0,
       "touching": 20,
-      "not_touching": 10
+      "notTouching": 10
     },
     "itemIDs": {
       "dura": 0,
@@ -20973,7 +20973,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -21018,7 +21018,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -39,
@@ -21059,7 +21059,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21104,7 +21104,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -78,
@@ -21150,7 +21150,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -78,
@@ -21199,7 +21199,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -117,
@@ -21244,7 +21244,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -21290,7 +21290,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -55,
@@ -21332,7 +21332,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21378,7 +21378,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -77,
@@ -21423,7 +21423,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -39,
@@ -21465,7 +21465,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21511,7 +21511,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -21553,7 +21553,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -77,
@@ -21594,7 +21594,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21639,7 +21639,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -21680,7 +21680,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21737,7 +21737,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -21779,7 +21779,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -21821,7 +21821,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -21867,7 +21867,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -21913,7 +21913,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -21958,7 +21958,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22004,7 +22004,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -22050,7 +22050,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -22103,7 +22103,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22144,7 +22144,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 21,
@@ -22189,7 +22189,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -22235,7 +22235,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22280,7 +22280,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 18,
@@ -22331,7 +22331,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -122,
@@ -22376,7 +22376,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -22433,7 +22433,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22480,7 +22480,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22525,7 +22525,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -22571,7 +22571,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -22620,7 +22620,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22665,7 +22665,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -22707,7 +22707,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -22752,7 +22752,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -22798,7 +22798,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22846,7 +22846,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -22895,7 +22895,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -22940,7 +22940,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -22989,7 +22989,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23035,7 +23035,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -71,
@@ -23081,7 +23081,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -23127,7 +23127,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -23173,7 +23173,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -74,
@@ -23215,7 +23215,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -23260,7 +23260,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23309,7 +23309,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23350,7 +23350,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 5,
@@ -23395,7 +23395,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -73,
@@ -23436,7 +23436,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -23486,7 +23486,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -23531,7 +23531,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23577,7 +23577,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -73,
@@ -23622,7 +23622,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -23667,7 +23667,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -23712,7 +23712,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -23761,7 +23761,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23807,7 +23807,7 @@
       "above": -40,
       "under": -40,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -110,
@@ -23852,7 +23852,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23898,7 +23898,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -23940,7 +23940,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -23981,7 +23981,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24026,7 +24026,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24071,7 +24071,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -69,
@@ -24119,7 +24119,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -24166,7 +24166,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24214,7 +24214,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -105,
@@ -24263,7 +24263,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24311,7 +24311,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -24356,7 +24356,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -24397,7 +24397,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24442,7 +24442,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24479,7 +24479,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24525,7 +24525,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -24571,7 +24571,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24618,7 +24618,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24659,7 +24659,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24705,7 +24705,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -24754,7 +24754,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24797,7 +24797,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24843,7 +24843,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -24889,7 +24889,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -24930,7 +24930,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -24972,7 +24972,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -25018,7 +25018,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -25067,7 +25067,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -25103,7 +25103,7 @@
       "above": -75,
       "under": -75,
       "touching": 120,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -125,
@@ -25154,7 +25154,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -25199,7 +25199,7 @@
       "above": -100,
       "under": -100,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -150,
@@ -25245,7 +25245,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -25291,7 +25291,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -25332,7 +25332,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -25377,7 +25377,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -25422,7 +25422,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -25468,7 +25468,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -25514,7 +25514,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -34,
@@ -25561,7 +25561,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -92,
@@ -25611,7 +25611,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -68,
@@ -25656,7 +25656,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -67,
@@ -25705,7 +25705,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -100,
@@ -25750,7 +25750,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -25792,7 +25792,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 47,
@@ -25840,7 +25840,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -25881,7 +25881,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -25930,7 +25930,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -25975,7 +25975,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -26021,7 +26021,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -26066,7 +26066,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -26111,7 +26111,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -26157,7 +26157,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -26202,7 +26202,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -26244,7 +26244,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -99,
@@ -26290,7 +26290,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -26335,7 +26335,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -26380,7 +26380,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -26425,7 +26425,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -61,
@@ -26474,7 +26474,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -26522,7 +26522,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -75,
@@ -26568,7 +26568,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -26613,7 +26613,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -26659,7 +26659,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -26705,7 +26705,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -26751,7 +26751,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -26792,7 +26792,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -26841,7 +26841,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -46,
@@ -26887,7 +26887,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -26929,7 +26929,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -65,
@@ -26975,7 +26975,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -96,
@@ -27017,7 +27017,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -27059,7 +27059,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -27105,7 +27105,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27150,7 +27150,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -27195,7 +27195,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -27240,7 +27240,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27282,7 +27282,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -27323,7 +27323,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27368,7 +27368,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27417,7 +27417,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -27458,7 +27458,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -19,
@@ -27504,7 +27504,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -27545,7 +27545,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27590,7 +27590,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -27639,7 +27639,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27688,7 +27688,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -27738,7 +27738,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -27787,7 +27787,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -27828,7 +27828,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -27873,7 +27873,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -27915,7 +27915,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -27972,7 +27972,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28021,7 +28021,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -91,
@@ -28067,7 +28067,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -63,
@@ -28112,7 +28112,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -44,
@@ -28158,7 +28158,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -28208,7 +28208,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -28253,7 +28253,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28294,7 +28294,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -28331,7 +28331,7 @@
       "above": 0,
       "under": 0,
       "touching": 25,
-      "not_touching": 25
+      "notTouching": 25
     },
     "itemIDs": {
       "dura": -87,
@@ -28380,7 +28380,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -28425,7 +28425,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -28474,7 +28474,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28527,7 +28527,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28569,7 +28569,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28614,7 +28614,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -91,
@@ -28662,7 +28662,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -28708,7 +28708,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -28773,7 +28773,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -90,
@@ -28818,7 +28818,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28863,7 +28863,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -28912,7 +28912,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -28969,7 +28969,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29026,7 +29026,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29071,7 +29071,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29113,7 +29113,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -29158,7 +29158,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -29207,7 +29207,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29252,7 +29252,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -29293,7 +29293,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -42,
@@ -29339,7 +29339,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -29389,7 +29389,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -29430,7 +29430,7 @@
       "above": 0,
       "under": 0,
       "touching": 25,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -104,
@@ -29475,7 +29475,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -29516,7 +29516,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 60,
@@ -29562,7 +29562,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -29603,7 +29603,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -29644,7 +29644,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -29686,7 +29686,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -29731,7 +29731,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -29766,7 +29766,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29813,7 +29813,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -29858,7 +29858,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -29901,7 +29901,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -29937,7 +29937,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 4,
@@ -29984,7 +29984,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -30030,7 +30030,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -30076,7 +30076,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -30122,7 +30122,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -30168,7 +30168,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -30209,7 +30209,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -30254,7 +30254,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -30299,7 +30299,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -28,
@@ -30341,7 +30341,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -30383,7 +30383,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 21,
@@ -30419,7 +30419,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -30466,7 +30466,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -30507,7 +30507,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 5,
@@ -30548,7 +30548,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -30594,7 +30594,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -30639,7 +30639,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -30684,7 +30684,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -39,
@@ -30730,7 +30730,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -30775,7 +30775,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -55,
@@ -30816,7 +30816,7 @@
       "above": 0,
       "under": 0,
       "touching": 25,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -30862,7 +30862,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -28,
@@ -30907,7 +30907,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -58,
@@ -30949,7 +30949,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -30994,7 +30994,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -82,
@@ -31039,7 +31039,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31084,7 +31084,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -31125,7 +31125,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31170,7 +31170,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -31216,7 +31216,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31261,7 +31261,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -31309,7 +31309,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -54,
@@ -31355,7 +31355,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -31401,7 +31401,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31447,7 +31447,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -31488,7 +31488,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31530,7 +31530,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31575,7 +31575,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -31617,7 +31617,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -31664,7 +31664,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -34,
@@ -31713,7 +31713,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -31754,7 +31754,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -31799,7 +31799,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31845,7 +31845,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -31894,7 +31894,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -80,
@@ -31940,7 +31940,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -31984,7 +31984,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -32036,7 +32036,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -79,
@@ -32079,7 +32079,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -32128,7 +32128,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -32174,7 +32174,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -32222,7 +32222,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -32268,7 +32268,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -51,
@@ -32313,7 +32313,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -32354,7 +32354,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -32400,7 +32400,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -53,
@@ -32446,7 +32446,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -32487,7 +32487,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -32536,7 +32536,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -32582,7 +32582,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -32628,7 +32628,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -32674,7 +32674,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -32719,7 +32719,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -36,
@@ -32765,7 +32765,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -50,
@@ -32811,7 +32811,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -32853,7 +32853,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -32894,7 +32894,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -32936,7 +32936,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -32981,7 +32981,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33023,7 +33023,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33069,7 +33069,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -33111,7 +33111,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33158,7 +33158,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -33204,7 +33204,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33245,7 +33245,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -33292,7 +33292,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -33337,7 +33337,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33379,7 +33379,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33421,7 +33421,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -33467,7 +33467,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -33508,7 +33508,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -33554,7 +33554,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -33603,7 +33603,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -35,
@@ -33648,7 +33648,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33690,7 +33690,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 18,
@@ -33732,7 +33732,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -33778,7 +33778,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33820,7 +33820,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -33866,7 +33866,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -33912,7 +33912,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -33957,7 +33957,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34003,7 +34003,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -34045,7 +34045,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34087,7 +34087,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -34132,7 +34132,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -48,
@@ -34173,7 +34173,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34220,7 +34220,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -47,
@@ -34265,7 +34265,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34316,7 +34316,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -34362,7 +34362,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -34403,7 +34403,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -49,
@@ -34452,7 +34452,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34493,7 +34493,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -33,
@@ -34535,7 +34535,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -37,
@@ -34581,7 +34581,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -34622,7 +34622,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34671,7 +34671,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34717,7 +34717,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -34766,7 +34766,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -68,
@@ -34811,7 +34811,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34853,7 +34853,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -34895,7 +34895,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -34937,7 +34937,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -34978,7 +34978,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -35023,7 +35023,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35071,7 +35071,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -22,
@@ -35113,7 +35113,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -35158,7 +35158,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35200,7 +35200,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -35241,7 +35241,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35287,7 +35287,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -70,
@@ -35332,7 +35332,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -35377,7 +35377,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -45,
@@ -35423,7 +35423,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -31,
@@ -35468,7 +35468,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35510,7 +35510,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35559,7 +35559,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -66,
@@ -35608,7 +35608,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35654,7 +35654,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35695,7 +35695,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35741,7 +35741,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -34,
@@ -35783,7 +35783,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -23,
@@ -35824,7 +35824,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -35869,7 +35869,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -35918,7 +35918,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -35967,7 +35967,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36009,7 +36009,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36050,7 +36050,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36092,7 +36092,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36141,7 +36141,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36182,7 +36182,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36227,7 +36227,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36262,7 +36262,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -52,
@@ -36305,7 +36305,7 @@
       "above": 0,
       "under": 0,
       "touching": -40,
-      "not_touching": -40
+      "notTouching": -40
     },
     "itemIDs": {
       "dura": -40,
@@ -36347,7 +36347,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36389,7 +36389,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36431,7 +36431,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36473,7 +36473,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36515,7 +36515,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -36561,7 +36561,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -29,
@@ -36606,7 +36606,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -36654,7 +36654,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -20,
@@ -36695,7 +36695,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -36740,7 +36740,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -36782,7 +36782,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -36825,7 +36825,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -28,
@@ -36872,7 +36872,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -36914,7 +36914,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -40,
@@ -36955,7 +36955,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37000,7 +37000,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37037,7 +37037,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37084,7 +37084,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -37126,7 +37126,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -19,
@@ -37169,7 +37169,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -19,
@@ -37211,7 +37211,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37263,7 +37263,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -37306,7 +37306,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -37347,7 +37347,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37388,7 +37388,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37433,7 +37433,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37485,7 +37485,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -37543,7 +37543,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -59,
@@ -37585,7 +37585,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37635,7 +37635,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -60,
@@ -37676,7 +37676,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37721,7 +37721,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": -40
+      "notTouching": -40
     },
     "itemIDs": {
       "dura": -58,
@@ -37766,7 +37766,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -38,
@@ -37808,7 +37808,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37853,7 +37853,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37896,7 +37896,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37937,7 +37937,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -37982,7 +37982,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38024,7 +38024,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -38066,7 +38066,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -38108,7 +38108,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -38151,7 +38151,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38190,7 +38190,7 @@
       "above": 0,
       "under": 25,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -30,
@@ -38232,7 +38232,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38274,7 +38274,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -38320,7 +38320,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38363,7 +38363,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -38404,7 +38404,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -56,
@@ -38446,7 +38446,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -21,
@@ -38494,7 +38494,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -24,
@@ -38535,7 +38535,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38577,7 +38577,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -38626,7 +38626,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -26,
@@ -38667,7 +38667,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38708,7 +38708,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38749,7 +38749,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38790,7 +38790,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38831,7 +38831,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38873,7 +38873,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -38919,7 +38919,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -38963,7 +38963,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
@@ -39011,7 +39011,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": 0,
@@ -39057,7 +39057,7 @@
       "above": 0,
       "under": 0,
       "touching": 0,
-      "not_touching": 0
+      "notTouching": 0
     },
     "itemIDs": {
       "dura": -17,
