@@ -428,14 +428,16 @@
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [
-                "Arrow Storm"
+                "Arrow Storm",
+                "Cheaper Escape I",
+                "Fire Mastery"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
                 "row": 13,
-                "col": 0,
+                "col": 2,
                 "icon": "node_0"
             },
             "properties": {},
@@ -469,16 +471,14 @@
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [
-                "Arrow Storm",
-                "Fire Mastery",
-                "Cheaper Escape I"
+                "Arrow Storm"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
                 "row": 13,
-                "col": 2,
+                "col": 0,
                 "icon": "node_0"
             },
             "properties": {},
@@ -512,7 +512,7 @@
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "parents": [
-                "Thunder Mastery",
+                "Air Mastery",
                 "Arrow Shield",
                 "Cheaper Escape I"
             ],
@@ -596,7 +596,7 @@
             "archetype": "Trapper",
             "archetype_req": 0,
             "parents": [
-                "Thunder Mastery",
+                "Air Mastery",
                 "Cheaper Escape I",
                 "Fire Mastery"
             ],
@@ -637,7 +637,7 @@
             "desc": "Doubles the speed of Arrow Storm and shoots +6 arrows per stream. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -5%)",
             "base_abil": "Arrow Storm",
             "parents": [
-                "Air Mastery",
+                "Thunder Mastery",
                 "Arrow Rain"
             ],
             "dependencies": [
@@ -683,7 +683,7 @@
             "base_abil": "Arrow Shield",
             "parents": [
                 "Nimble String",
-                "Thunder Mastery"
+                "Air Mastery"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -1020,7 +1020,7 @@
                             "name": "DPS",
                             "type": "total",
                             "hits": {
-                                "Single Volley": 2.2
+                                "Single Volley": 2.22222222222
                             }
                         },
                         {
@@ -5172,7 +5172,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.ArmorBreaker",
+                            "name": "damMult.ArmourBreaker",
                             "value": 30
                         }
                     ]
@@ -6082,7 +6082,7 @@
             "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 2.5x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
             "base_abil": "Generalist",
             "archetype": "Battle Monk",
-            "archetype_req": 10,
+            "archetype_req": 11,
             "parents": [
                 "Cyclone",
                 "Thunderclap"
@@ -6100,7 +6100,7 @@
             "properties": {
                 "pressure_rainbow_uppercut": 55,
                 "pressure_neutral_uppercut": 170,
-                "pressure_bash_hits": 2,
+                "pressure_bash_hits": 2.5,
                 "pressure_scream_boost": 10
             },
             "effects": [
@@ -8677,7 +8677,7 @@
             "display": {
                 "row": 32,
                 "col": 1,
-                "icon": "node_0"
+                "icon": "node_1"
             },
             "properties": {},
             "effects": []
@@ -9844,7 +9844,8 @@
             },
             "properties": {
                 "clone": 3,
-                "cooldown": 15
+                "cooldown": 15,
+                "damage_reduction": 25
             },
             "effects": [
                 {
@@ -9854,7 +9855,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Clone",
-                            "value": 25
+                            "value": "Mirror Image.damage_reduction"
                         }
                     ]
                 },
@@ -9955,7 +9956,9 @@
             "dependencies": [
                 "Smoke Bomb"
             ],
-            "blockers": [],
+            "blockers": [
+                "Duplicity"
+            ],
             "cost": 2,
             "display": {
                 "row": 20,
@@ -10346,7 +10349,9 @@
             "dependencies": [
                 "Mirror Image"
             ],
-            "blockers": [],
+            "blockers": [
+                "Wall of Smoke"
+            ],
             "cost": 1,
             "display": {
                 "row": 27,
@@ -10447,7 +10452,7 @@
         },
         {
             "display_name": "Malicious Mockery",
-            "desc": "Last Laugh stores a number of Tricks  on enemies based on the type of Clone . (Max 25) </br> Casting Dash while sneaking will detonate all nearby stored Tricks , dealing damage based on how many stacks were consumed. </br> Mirror Clones  apply +1 Trick  per hit. Mirage Clones  apply +2 Tricks  per hit. Shadow Clones  apply +6 Tricks  per hit. </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, per Trick)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%) </br>Range: 32 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "Last Laugh stores a number of Tricks on enemies based on the type of Clone. (Max 25) </br> Casting Dash while sneaking will detonate all nearby stored Tricks, dealing damage based on how many stacks were consumed. </br> Mirror Clones apply +1 Trick per hit. Mirage Clones apply +2 Tricks per hit. Shadow Clones apply +8 Tricks per hit. </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, per Trick)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%) </br>Range: 32 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "archetype": "Trickster",
             "archetype_req": 5,
             "parents": [
@@ -10516,7 +10521,7 @@
         },
         {
             "display_name": "Echo",
-            "desc": "After losing a Mirror Clone , your next Spin Attack or Smoke Bomb will be copied by all active Clones .",
+            "desc": "After losing a Mirror Clone, your next Spin Attack or Smoke Bomb will be copied by all active Clones.",
             "archetype": "Trickster",
             "archetype_req": 5,
             "base_abil": "Mirror Image",
@@ -11471,7 +11476,7 @@
         },
         {
             "display_name": "Distraction",
-            "desc": "Detonating 15+ Tricks  on enemies will temporarily reduce their damage. </br> Debuffs applied with Tricks  will last +0.4s longer for each extra Trick  detonated beyond the requirement. </br> </br>Effects: -15% Damage Bonus to Enemies </br>Duration: 10s",
+            "desc": "Detonating 15+ Tricks on enemies will temporarily reduce their damage. </br> Debuffs applied with Tricks will last +0.4s longer for each extra Trick detonated beyond the requirement. </br> </br>Effects: -15% Damage Bonus to Enemies </br>Duration: 10s",
             "archetype": "Trickster",
             "archetype_req": 0,
             "parents": [
@@ -11577,7 +11582,7 @@
         },
         {
             "display_name": "Shadow Projection",
-            "desc": "When you double jump, throw a Shadow Clone  in the direction you are facing. </br> Double jump again while sneaking to teleport to the clone, detonating it. </br> Shadow Clones  will cast Spin Attack with Last Laugh. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 32 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "When you double jump, throw a Shadow Clone in the direction you are facing. </br> Double jump again while sneaking to teleport to the clone, detonating it. </br> Shadow Clones will cast Spin Attack with Last Laugh. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 32 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
             "archetype": "Trickster",
             "archetype_req": 0,
             "parents": [
@@ -11884,7 +11889,7 @@
         },
         {
             "display_name": "Foul Play",
-            "desc": "While Mirror Image is active, Bamboozle will slay a Mirror Clone  instead of having a cooldown. </br> Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
+            "desc": "While Mirror Image is active, Bamboozle will slay a Mirror Clone instead of having a cooldown. </br> Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
             "archetype": "Trickster",
             "archetype_req": 2,
             "parents": [
@@ -13859,7 +13864,9 @@
                     "name": "Twisted Tether",
                     "base_spell": 8,
                     "display": "Tether Tick",
-                    "ignored_mults": ["Mask"],
+                    "ignored_mults": [
+                        "Mask"
+                    ],
                     "parts": [
                         {
                             "name": "Tether Tick",

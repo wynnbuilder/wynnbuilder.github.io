@@ -330,7 +330,7 @@
             {
               "base_abil": "Grape Bomb",
               "properties": {
-                "grapes": 2
+                "grapes": 1
               },
               "effects": []
             }
@@ -343,7 +343,7 @@
             {
               "base_abil": "Grape Bomb",
               "properties": {
-                "grapes": 3
+                "grapes": 2
               },
               "effects": []
             }
@@ -356,7 +356,7 @@
             {
               "base_abil": "Grape Bomb",
               "properties": {
-                "grapes": 4
+                "grapes": 3
               },
               "effects": []
             }
@@ -861,9 +861,8 @@
                   "type": "add_spell_prop",
                   "base_spell": 4,
                   "target_part": "DPS",
-                  "behavior": "overwrite",
                   "hits": {
-                    "Single Volley": 2.64
+                    "Single Volley": 0.634920634921
                   }
                 }
               ]
@@ -881,9 +880,8 @@
                   "type": "add_spell_prop",
                   "base_spell": 4,
                   "target_part": "DPS",
-                  "behavior": "overwrite",
                   "hits": {
-                    "Single Volley": 2.64
+                    "Single Volley": 0.634920634921
                   }
                 }
               ]
@@ -945,9 +943,8 @@
                   "type": "add_spell_prop",
                   "base_spell": 4,
                   "target_part": "DPS",
-                  "behavior": "overwrite",
                   "hits": {
-                    "Single Volley": 2.86
+                    "Single Volley": 1.11111111111
                   }
                 }
               ]
@@ -1120,7 +1117,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 0.8
+                    "single_hit": 1.0
                   }
                 }
               ]
@@ -1160,7 +1157,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 0.8
+                    "single_hit": 1.0
                   }
                 }
               ]
@@ -1200,7 +1197,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 1.6
+                    "single_hit": 2.66666666667
                   }
                 }
               ]
@@ -2295,17 +2292,80 @@
         {
           "threshold": 1,
           "description": "Armour Breaker gains +4% Damage Bonus to Self.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "dependencies": [
+                "Armour Breaker"
+              ],
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Activate Armour Breaker",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArmourBreaker",
+                      "value": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Armour Breaker gains +6% Damage Bonus to Self.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "dependencies": [
+                "Armour Breaker"
+              ],
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Activate Armour Breaker",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArmourBreaker",
+                      "value": 6
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Armour Breaker gains +8% Damage Bonus to Self.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Uppercut",
+              "dependencies": [
+                "Armour Breaker"
+              ],
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Activate Armour Breaker",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArmourBreaker",
+                      "value": 8
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -4386,17 +4446,80 @@
         {
           "threshold": 1,
           "description": "You may store +15 more Tricks \ue03a on enemies.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Malicious Mockery",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Tricks Detonated",
+                  "slider_step": 1,
+                  "slider_max": 15,
+                  "output": [
+                    {
+                      "type": "prop",
+                      "abil": "Malicious Mockery",
+                      "name": "tricks"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "You may store +20 more Tricks \ue03a on enemies.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Malicious Mockery",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Tricks Detonated",
+                  "slider_step": 1,
+                  "slider_max": 20,
+                  "output": [
+                    {
+                      "type": "prop",
+                      "abil": "Malicious Mockery",
+                      "name": "tricks"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "You may store +25 more Tricks \ue03a on enemies.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Malicious Mockery",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Tricks Detonated",
+                  "slider_step": 1,
+                  "slider_max": 25,
+                  "output": [
+                    {
+                      "type": "prop",
+                      "abil": "Malicious Mockery",
+                      "name": "tricks"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -4452,17 +4575,59 @@
         {
           "threshold": 1,
           "description": "Increase your maximum Momentum by +1.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Swan Dive",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Momentum",
+                  "slider_max": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Increase your maximum Momentum by +2.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Swan Dive",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Momentum",
+                  "slider_max": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Increase your maximum Momentum by +3.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Swan Dive",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Momentum",
+                  "slider_max": 3
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -4550,22 +4715,54 @@
         {
           "threshold": 1,
           "description": "Mirror Clones reduce damage by -2%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "damage_reduction": 2
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Mirror Clones reduce damage by -3.5%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "damage_reduction": 3.5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Mirror Clones reduce damage by -5%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "damage_reduction": 5
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Mirror Clones reduce damage by -6%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "damage_reduction": 6
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -4577,17 +4774,98 @@
         {
           "threshold": 1,
           "description": "Noxious Haze can benefit from +1 debuff.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Active Debuffs",
+                  "slider_max": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Noxious Haze can benefit from +1 debuff. </br> Summon +1 additional Mirror Clone with Mirror Image.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Active Debuffs",
+                  "slider_max": 1
+                }
+              ]
+            },
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "clones": 1
+              },
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Spell Copies",
+                  "slider_max": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Noxious Haze can benefit from +1 debuff, and grants +1% damage per debuff. </br> Summon +1 additional Mirror Clone with Mirror Image.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Active Debuffs",
+                  "slider_max": 1,
+                  "output": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.Noxious"
+                    }
+                  ],
+                  "scaling": [
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Mirror Image",
+              "properties": {
+                "clones": 1
+              },
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "behavior": "modify",
+                  "slider_name": "Spell Copies",
+                  "slider_max": 2
+                }
+              ]
+            }
+          ]
         }
       ]
     }

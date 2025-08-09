@@ -287,6 +287,9 @@ for ingred in ingreds:
     # HACKY ING FIXES!
     ingred['itemIDs']['dura'] = int(ingred['itemIDs']['dura'] / 1000)
     ingred['skills'] = [x.upper() for x in ingred['skills']]
+    if 'posMods' in ingred:
+        if 'not_touching' in ingred['posMods']:
+            ingred['posMods']['notTouching'] = ingred['posMods'].pop('not_touching')
     if 'ids' not in ingred:
         ingred['ids'] = dict()
         print(f"ing missing 'ids': {ingred['name']}")

@@ -13,8 +13,8 @@
     },
     "ids": {
       "damPct": {
-        "minimum": 16,
-        "maximum": 16
+        "minimum": 21,
+        "maximum": 21
       },
       "hpBonus": {
         "minimum": -1500,
@@ -6841,11 +6841,11 @@
     },
     "ids": {
       "sdPct": {
-        "minimum": 3,
+        "minimum": 2,
         "maximum": 4
       },
       "mdPct": {
-        "minimum": 3,
+        "minimum": 2,
         "maximum": 4
       }
     },
