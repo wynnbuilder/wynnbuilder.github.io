@@ -1,4 +1,4 @@
-const ITEM_DB_VERSION = 165;
+const ITEM_DB_VERSION = 166;
 
 let items;
 let sets = new Map();

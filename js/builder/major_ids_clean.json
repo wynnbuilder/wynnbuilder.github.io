@@ -763,7 +763,7 @@
     },
     "HELLFIRE": {
         "displayName": "Hellfire",
-        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]225%, [earth]40%, and [fire]60%. Boiling Bloods cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
+        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]225%, [earth]40%, and [fire]60%. Boiling Blood's cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
         "abilities": [
             {
                 "class": "Warrior",
