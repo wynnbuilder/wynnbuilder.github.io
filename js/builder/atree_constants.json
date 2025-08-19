@@ -4542,7 +4542,7 @@
         },
         {
             "display_name": "Sacred Surge",
-            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1%. </br> Uppercut will spend 25% Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 285%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%)",
+            "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1. </br> Uppercut will spend 25 Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 285%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%)",
             "archetype": "Paladin",
             "archetype_req": 5,
             "parents": [
@@ -4911,7 +4911,7 @@
         },
         {
             "display_name": "Collide",
-            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 115%)   </br>&emsp;(<span class='fDam'>Fire</span>: 35%) </br>Area of Effect: 4 Blocks </br> Flying Kick deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   (</br>Air: +50%)",
+            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 115%)   </br>&emsp;(<span class='fDam'>Fire</span>: 35%) </br>Area of Effect: 4 Blocks </br> Flying Kick deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='fDam'>Fire</span>: +50%)",
             "archetype": "Battle Monk",
             "archetype_req": 4,
             "base_abil": "Charge",
@@ -5231,7 +5231,7 @@
         },
         {
             "display_name": "Luster Purge",
-            "desc": "While you have 10% Holy Power, your Main Attacks are empowered, and grant you 1% Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
+            "desc": "While you have 10 Holy Power, your Main Attacks are empowered, and grant you 1 Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -5852,7 +5852,7 @@
         },
         {
             "display_name": "Heavenly Trumpet",
-            "desc": "Casting War Scream while holding shift with at least 25% Holy Power will spend all of it to sound off a protective trumpet. </br> All nearby allies are granted +1% Overhealth for each point of Holy Power consumed. Overhealth decays over 20s. </br> </br>Range: 16 Blocks (Circle-Shaped) </br>Cooldown: 20s",
+            "desc": "Casting War Scream while holding shift with at least 25 Holy Power will spend all of it to sound off a protective trumpet. </br> All nearby allies are granted +1% Overhealth for each point of Holy Power consumed. Overhealth decays over 20s. </br> </br>Range: 16 Blocks (Circle-Shaped) </br>Cooldown: 20s",
             "archetype": "Paladin",
             "archetype_req": 12,
             "parents": [
@@ -7050,7 +7050,7 @@
         },
         {
             "display_name": "Windsweeper",
-            "desc": "Your Main Attack will add +1 Winded to enemies you hit. (Max 10, 0.2s Cooldown) </br> Ice Snake will deal additional damage to enemies for every Winded they have. </br> Winded will decay once every 5s. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%)",
+            "desc": "Your Main Attack will add +1 Winded to enemies you hit. (Max 10, 0.2s Cooldown) </br> Ice Snake will deal additional damage to enemies for every Winded they have. </br> Winded will decay once every 4s. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%)",
             "archetype": "Riftwalker",
             "archetype_req": 3,
             "parents": [
@@ -8819,7 +8819,7 @@
         },
         {
             "display_name": "Timelock",
-            "desc": "Holding shift and casting Heal will absorb all Winded on nearby enemies and make you Timelocked. </br> While Timelocked, your mana will not be depleted and you become immovable from external forces. All enemies will receive damage as if they had the amount of Winded you absorbed. (Max 60) </br> </br>Range: 12 Blocks </br>Duration: +1.25s (per 5 Winded absorbed, Max 7.5s)",
+            "desc": "Using Heal while sneaking will absorb up to 60  Winded from enemies, making you Timelocked. </br> Timelocked turns Teleport into a deadly piercing ray, provides flight and prevents mana drain. </br> All enemies will receive boosted damage as  if they had the Winded you absorbed. </br> </br>Range: 12 Blocks </br>Duration: +1.25s (per 5 Winded absorbed, Max 7.5s)",
             "archetype": "Riftwalker",
             "archetype_req": 12,
             "parents": [
@@ -9598,7 +9598,7 @@
         },
         {
             "display_name": "Ripple",
-            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Earth'>Earth</span>: 20%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
@@ -12705,7 +12705,7 @@
         },
         {
             "display_name": "Shocking Aura",
-            "desc": "Aura will travel 0.5s faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
+            "desc": "Aura will travel 56% faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "base_abil": "Aura",
             "archetype": "Acolyte",
             "parents": [
