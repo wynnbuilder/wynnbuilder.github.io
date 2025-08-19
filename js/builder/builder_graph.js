@@ -610,7 +610,6 @@ class SpellDamageCalcNode extends ComputeNode {
         let spell_result_map = new Map();
         const use_speed = (('use_atkspd' in spell) ? spell.use_atkspd : true);
         const use_spell = (('scaling' in spell) ? spell.scaling === 'spell' : true);
-        const ignored_mults = (('ignored_mults' in spell) ? spell.ignored_mults : []);
 
         for (const part of spell_parts) {
             const {name, display=true} = part;
@@ -631,6 +630,8 @@ class SpellDamageCalcNode extends ComputeNode {
             const part_id = spell.base_spell + '.' + part.name
             if ('multipliers' in part) { // damage type spell
                 const use_str = (('use_str' in part) ? part.use_str : true);
+                const ignored_mults = (('ignored_mults' in part) ? part.ignored_mults : []);
+
                 let results = calculateSpellDamage(stats, weapon, part.multipliers, use_spell, !use_speed, part_id, !use_str, ignored_mults);
                 spell_result = {
                     type: "damage",

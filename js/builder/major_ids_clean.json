@@ -2122,6 +2122,9 @@
                                     0,
                                     125,
                                     0
+                                ],
+                                "ignored_mults": [
+                                    "SurpriseStrike"
                                 ]
                             },
                             {
@@ -2155,46 +2158,6 @@
             },
             {
                 "class": "Assassin",
-                "base_abil": "Dash",
-                "dependencies": [
-                    "Surprise Strike"
-                ],
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Surprise Strike",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.SurpriseStrike:20.Single Inferno",
-                                "value": -44.444
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": "Dash",
-                "dependencies": [
-                    "Ambush"
-                ],
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Surprise Strike",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.SurpriseStrike:20.Single Inferno",
-                                "value": -10.101
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
                 "base_abil": "Satsujin",
                 "effects": [
                     {
@@ -2212,21 +2175,21 @@
             },
             {
                 "class": "Warrior",
-                "base_abil": "Blood Pact",
+                "base_abil": "Luster Purge",
                 "effects": [
                     {
                         "type": "raw_stat",
-                        "toggle": "Activate Blood Pact",
+                        "toggle": "Activate Luster Purge",
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:20.Single Inferno",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:20.Single Inferno",
+                                "value": 40
                             },
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:20.First Inferno",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:20.First Inferno",
+                                "value": 40
                             }
                         ]
                     }
@@ -2272,6 +2235,9 @@
                                     0,
                                     0,
                                     0
+                                ],
+                                "ignored_mults": [
+                                    "SurpriseStrike"
                                 ]
                             },
                             {
@@ -2281,63 +2247,6 @@
                                     "First Lightning Bolt": 1,
                                     "Single Lightning Bolt": 2
                                 }
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Any",
-                "base_abil": 999,
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Superconductor",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "defMult.Superconductor",
-                                "value": -10
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": "Dash",
-                "dependencies": [
-                    "Surprise Strike"
-                ],
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Surprise Strike",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.SurpriseStrike:20.Single Lightning Bolt",
-                                "value": -44.444
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Assassin",
-                "base_abil": "Dash",
-                "dependencies": [
-                    "Ambush"
-                ],
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Surprise Strike",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.SurpriseStrike:20.Single Lightning Bolt",
-                                "value": -10.101
                             }
                         ]
                     }
@@ -2362,21 +2271,21 @@
             },
             {
                 "class": "Warrior",
-                "base_abil": "Blood Pact",
+                "base_abil": "Luster Purge",
                 "effects": [
                     {
                         "type": "raw_stat",
-                        "toggle": "Activate Blood Pact",
+                        "toggle": "Activate Luster Purge",
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:20.Single Lightning Bolt",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:20.Single Lightning Bolt",
+                                "value": 40
                             },
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:20.First Lightning Bolt",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:20.First Lightning Bolt",
+                                "value": 40
                             }
                         ]
                     }
@@ -2577,21 +2486,21 @@
             },
             {
                 "class": "Warrior",
-                "base_abil": "Blood Pact",
+                "base_abil": "Luster Purge",
                 "effects": [
                     {
                         "type": "raw_stat",
-                        "toggle": "Activate Blood Pact",
+                        "toggle": "Activate Luster Purge",
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:21.Quake Charge Damage",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:21.Quake Charge Damage",
+                                "value": 40
                             },
                             {
                                 "type": "stat",
-                                "name": "damMult.BloodPact:21.Quake Stomp Damage",
-                                "value": "Blood Pact.damage_boost"
+                                "name": "damMult.Luster Purge:21.Quake Stomp Damage",
+                                "value": 40
                             }
                         ]
                     }

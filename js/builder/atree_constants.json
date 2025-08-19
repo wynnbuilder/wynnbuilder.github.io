@@ -4496,12 +4496,12 @@
                     "base_spell": 2,
                     "target_part": "Flying Kick",
                     "multipliers": [
-                        150,
+                        175,
                         0,
                         0,
-                        20,
+                        30,
                         0,
-                        30
+                        45
                     ]
                 },
                 {
@@ -4953,12 +4953,12 @@
                     "behavior": "modify",
                     "target_part": "Flying Kick",
                     "multipliers": [
-                        30,
+                        50,
                         0,
                         0,
-                        20,
                         0,
-                        30
+                        50,
+                        0
                     ]
                 },
                 {
@@ -5255,6 +5255,11 @@
                         {
                             "type": "stat",
                             "name": "damMult.Luster Purge:0.Melee",
+                            "value": 40
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Luster Purge:0.Powder Special",
                             "value": 40
                         }
                     ]
@@ -5921,9 +5926,6 @@
                     "name": "Bloodlust Damage",
                     "base_spell": 10,
                     "display": "Annihilation",
-                    "ignored_mults": [
-                        "Enraged"
-                    ],
                     "parts": [
                         {
                             "name": "Annihilation",
@@ -5934,6 +5936,9 @@
                                 0,
                                 100,
                                 0
+                            ],
+                            "ignored_mults": [
+                                "Enraged"
                             ]
                         }
                     ]
@@ -9592,7 +9597,7 @@
             ]
         },
         {
-            "display_name": "Stomp",
+            "display_name": "Ripple",
             "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='Neutral'>Neutral</span>: 100%)   </br>&emsp;(<span class='Earth'>Earth</span>: 20%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "archetype": "Acrobat",
             "archetype_req": 0,
@@ -9612,17 +9617,17 @@
             "effects": [
                 {
                     "type": "replace_spell",
-                    "name": "Stomp",
+                    "name": "Ripple",
                     "base_spell": 9,
-                    "display": "Stomp Damage",
+                    "display": "Ripple Damage",
                     "parts": [
                         {
-                            "name": "Stomp Damage",
+                            "name": "Ripple Damage",
                             "multipliers": [
                                 100,
+                                0,
+                                0,
                                 20,
-                                0,
-                                0,
                                 0,
                                 0
                             ]
@@ -9635,7 +9640,7 @@
                     "slider_name": "Blocks Fallen",
                     "output": {
                         "type": "stat",
-                        "name": "damMult.Stomp:9.Stomp Damage"
+                        "name": "damMult.Ripple:9.Ripple Damage"
                     },
                     "slider_max": 10,
                     "scaling": [
@@ -9720,8 +9725,6 @@
         {
             "display_name": "Sticky Bomb",
             "desc": "Smoke Bomb will stick to enemies and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
-            "archetype": "Trickster",
-            "archetype_req": 0,
             "base_abil": "Smoke Bomb",
             "parents": [
                 "Smoke Bomb"
@@ -10276,7 +10279,7 @@
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
-                "Stomp",
+                "Ripple",
                 "Bamboozle"
             ],
             "dependencies": [],
@@ -11443,7 +11446,9 @@
                 "Vanish",
                 "Hop"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Multihit"
+            ],
             "blockers": [],
             "cost": 2,
             "display": {
@@ -13864,9 +13869,6 @@
                     "name": "Twisted Tether",
                     "base_spell": 8,
                     "display": "Tether Tick",
-                    "ignored_mults": [
-                        "Mask"
-                    ],
                     "parts": [
                         {
                             "name": "Tether Tick",
@@ -13878,6 +13880,9 @@
                                 0,
                                 0,
                                 20
+                            ],
+                            "ignored_mults": [
+                                "Mask"
                             ]
                         }
                     ]
@@ -14359,7 +14364,9 @@
                 "Cheaper Aura II",
                 "Imbued Totem"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Puppet Master"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
