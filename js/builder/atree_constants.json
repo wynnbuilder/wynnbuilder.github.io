@@ -8822,6 +8822,7 @@
             "desc": "Using Heal while sneaking will absorb up to 60  Winded from enemies, making you Timelocked. </br> Timelocked turns Teleport into a deadly piercing ray, provides flight and prevents mana drain. </br> All enemies will receive boosted damage as  if they had the Winded you absorbed. </br> </br>Range: 12 Blocks </br>Duration: +1.25s (per 5 Winded absorbed, Max 7.5s)",
             "archetype": "Riftwalker",
             "archetype_req": 12,
+            "base_abil": "Windsweeper",
             "parents": [
                 "Cheaper Heal II",
                 "More Winded II"
@@ -8837,7 +8838,15 @@
                 "icon": "node_3"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Winded",
+                    "behavior": "overwrite",
+                    "slider_max": 60
+                }
+            ]
         },
         {
             "display_name": "Cheaper Heal II",
@@ -8868,7 +8877,7 @@
             "display_name": "Manastorm",
             "desc": "If you have more than 100 Mana, casting a spell will give you +5 Mana over 2s.",
             "archetype": "Arcanist",
-            "archetype_req": 4,
+            "archetype_req": 3,
             "parents": [
                 "Cheaper Heal II",
                 "Arcane Overflow",
@@ -9678,12 +9687,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        108,
+                        144,
                         0,
                         0,
                         0,
                         0,
-                        36
+                        72
                     ]
                 },
                 {
@@ -10406,12 +10415,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        90,
+                        120,
                         0,
                         0,
                         0,
                         0,
-                        30
+                        60
                     ]
                 }
             ]

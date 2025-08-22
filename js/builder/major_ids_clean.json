@@ -1082,6 +1082,24 @@
                         "slider_max": 10
                     }
                 ]
+            },
+            {
+                "class": "Mage",
+                "base_abil": "Windsweeper",
+                "dependencies": [
+                    "Devitalize",
+                    "Timelock"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Winded",
+                        "behavior": "overwrite",
+                        "slider_max": 120
+                    }
+                ]
             }
         ]
     },

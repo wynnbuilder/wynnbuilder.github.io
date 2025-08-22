@@ -3941,12 +3941,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    24,
+                    32,
                     0,
                     0,
                     0,
                     0,
-                    8
+                    16
                   ]
                 }
               ]
@@ -3963,12 +3963,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    9,
+                    12,
                     0,
                     0,
                     0,
                     0,
-                    3
+                    6
                   ]
                 }
               ]
@@ -4004,12 +4004,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    48,
+                    64,
                     0,
                     0,
                     0,
                     0,
-                    16
+                    32
                   ]
                 }
               ]
@@ -4026,12 +4026,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    18,
+                    24,
                     0,
                     0,
                     0,
                     0,
-                    6
+                    12
                   ]
                 }
               ]
@@ -4067,12 +4067,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    72,
+                    96,
                     0,
                     0,
                     0,
                     0,
-                    24
+                    48
                   ]
                 }
               ]
@@ -4089,12 +4089,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    27,
+                    36,
                     0,
                     0,
                     0,
                     0,
-                    9
+                    18
                   ]
                 }
               ]
@@ -4130,12 +4130,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    96,
+                    128,
                     0,
                     0,
                     0,
                     0,
-                    32
+                    64
                   ]
                 }
               ]
@@ -4152,12 +4152,12 @@
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
                   "multipliers": [
-                    36,
+                    48,
                     0,
                     0,
                     0,
                     0,
-                    12
+                    24
                   ]
                 }
               ]
