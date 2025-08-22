@@ -608,7 +608,6 @@ const atree_make_interactives = new (class extends ComputeNode {
                     const { slider_name, behavior = 'merge', slider_max = 0, slider_step, slider_default = 0, scaling = [0], max = 0} = effect;
                     if (slider_map.has(slider_name)) {
                         const slider_info = slider_map.get(slider_name);
-                        console.log(slider_info.overwritten);
                         if (behavior === 'overwrite') {
                             if('slider_max' in effect)
                                 slider_info.max = slider_max;
