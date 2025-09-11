@@ -545,6 +545,16 @@ const atree_merge = new (class extends ComputeNode {
                 continue;
             }
             for (const abil of aspect.tiers[tier_num - 1].abilities) {
+                if (abil.dependencies !== undefined) {
+                    let dep_satisfied = true;
+                    for (const dep_id of abil.dependencies) {
+                        if (!atree_state.get(dep_id).active) {
+                            dep_satisfied = false;
+                            break;
+                        }
+                    }
+                    if (!dep_satisfied) { continue; }
+                }
                 merge_abil(abil); 
             }
         }

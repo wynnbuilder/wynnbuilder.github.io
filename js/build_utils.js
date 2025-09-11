@@ -319,7 +319,7 @@ function idRound(id){
  * stupid stupid multiplicative stats
  */
 function merge_stat(stats, name, value) {
-    const start = name.split('.', limit=1)[0];
+    const [start, end] = name.split('.', limit=2);
     if (start === 'damMult' || start === 'defMult' || start === 'healMult') {
         if (!stats.has(start)) {
             stats.set(start, new Map());
@@ -331,10 +331,20 @@ function merge_stat(stats, name, value) {
             }
             return;
         }
+        if (end == 'Potion' || end == 'Vulnerability') {
+            let highest = stats.get(start).get(end);
+            if (highest !== undefined) {
+                if (value > highest) {
+                    map.set(end, value);
+                    stats.set(start, map);
+                }
+                return;
+            }
+        }
         merge_stat(map, name.slice(name.indexOf('.')+1), value);
         return;
     }
-    if (stats.has(name)) { 
+    if (stats.has(name)) {
         stats.set(name, stats.get(name) + value);
     }
     else { stats.set(name, value); }

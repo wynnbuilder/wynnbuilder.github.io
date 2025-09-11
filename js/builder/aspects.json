@@ -768,7 +768,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.ArrowShield",
+                      "name": "defMult.Potion",
                       "value": 3
                     }
                   ]
@@ -790,7 +790,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.ArrowShield",
+                      "name": "defMult.Potion",
                       "value": 6
                     }
                   ]
@@ -812,7 +812,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.ArrowShield",
+                      "name": "defMult.Potion",
                       "value": 8
                     }
                   ]
@@ -834,7 +834,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.ArrowShield",
+                      "name": "defMult.Potion",
                       "value": 10
                     }
                   ]
@@ -3940,6 +3940,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     32,
                     0,
@@ -3954,7 +3955,6 @@
             {
               "base_abil": "Multihit",
               "dependencies": [
-                "Finality",
                 "Mutilate"
               ],
               "effects": [
@@ -3962,6 +3962,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     12,
                     0,
@@ -4003,6 +4004,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     64,
                     0,
@@ -4017,7 +4019,6 @@
             {
               "base_abil": "Multihit",
               "dependencies": [
-                "Finality",
                 "Mutilate"
               ],
               "effects": [
@@ -4025,6 +4026,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     24,
                     0,
@@ -4066,6 +4068,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     96,
                     0,
@@ -4080,7 +4083,6 @@
             {
               "base_abil": "Multihit",
               "dependencies": [
-                "Finality",
                 "Mutilate"
               ],
               "effects": [
@@ -4088,6 +4090,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     36,
                     0,
@@ -4129,6 +4132,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     128,
                     0,
@@ -4143,7 +4147,6 @@
             {
               "base_abil": "Multihit",
               "dependencies": [
-                "Finality",
                 "Mutilate"
               ],
               "effects": [
@@ -4151,6 +4154,7 @@
                   "type": "add_spell_prop",
                   "base_spell": 3,
                   "target_part": "Finality Bonus",
+                  "behavior": "modify",
                   "multipliers": [
                     48,
                     0,

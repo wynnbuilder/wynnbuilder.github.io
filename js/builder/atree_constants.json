@@ -392,7 +392,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "defMult.ArrowShield",
+                            "name": "defMult.Potion",
                             "value": 20
                         }
                     ]
@@ -2571,7 +2571,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.CoursingRestraints",
+                            "name": "damMult.Vulnerability",
                             "value": 15
                         }
                     ]
@@ -5172,7 +5172,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.ArmourBreaker",
+                            "name": "damMult.Potion",
                             "value": 30
                         }
                     ]
@@ -6158,7 +6158,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Pressure",
+                            "name": "damMult.Potion",
                             "value": "Generalist.pressure_scream_boost"
                         }
                     ]
@@ -9687,12 +9687,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        144,
+                        112,
                         0,
                         0,
                         0,
                         0,
-                        72
+                        56
                     ]
                 },
                 {
@@ -9877,7 +9877,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Clone",
+                            "name": "damMult.Potion",
                             "value": 30
                         }
                     ]
@@ -9894,9 +9894,7 @@
                 "Hop"
             ],
             "dependencies": [],
-            "blockers": [
-                "Echo"
-            ],
+            "blockers": [],
             "cost": 2,
             "display": {
                 "row": 19,
@@ -10378,7 +10376,8 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Spell Copies",
-                    "slider_max": 2
+                    "slider_max": 2,
+                    "behavior": "modify"
                 }
             ]
         },
@@ -10415,12 +10414,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        120,
+                        108,
                         0,
                         0,
                         0,
                         0,
-                        60
+                        54
                     ]
                 }
             ]
@@ -10474,9 +10473,7 @@
             "dependencies": [
                 "Last Laugh"
             ],
-            "blockers": [
-                "Lacerate"
-            ],
+            "blockers": [],
             "cost": 2,
             "display": {
                 "row": 28,
@@ -10781,7 +10778,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Aerial Ace",
+                            "name": "damMult.Potion",
                             "value": 35
                         }
                     ]
@@ -12116,7 +12113,7 @@
                     "base_spell": 1,
                     "target_part": "Smash Damage",
                     "multipliers": [
-                        100,
+                        120,
                         0,
                         0,
                         0,
@@ -14158,7 +14155,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Eldritch Call",
+                            "name": "damMult.Vulnerability",
                             "value": 20
                         }
                     ]
@@ -14679,7 +14676,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.LunaticChant",
+                            "name": "damMult.Vulnerability",
                             "value": 15
                         }
                     ]
