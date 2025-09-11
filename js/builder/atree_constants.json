@@ -10564,6 +10564,10 @@
                         },
                         {
                             "type": "stat",
+                            "name": "damMult.EchoCast:1.Per Hit"
+                        },
+                        {
+                            "type": "stat",
                             "name": "damMult.EchoCast:4.Per Tick"
                         },
                         {
