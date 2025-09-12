@@ -2070,7 +2070,7 @@
           "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%)",
           "abilities": [
             {
-              "base_abil": "Generalist",
+              "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 8,
                 "pressure_neutral_uppercut": 50,
@@ -2085,7 +2085,7 @@
           "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +3% Damage Bonus to Players",
           "abilities": [
             {
-              "base_abil": "Generalist",
+              "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 8,
                 "pressure_neutral_uppercut": 50,
@@ -2101,7 +2101,7 @@
           "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits and more damage. </br><span class='mc-white'>Total Damage</span>: +5%   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> Uppercut deals +70% neutral and +10% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +120%   </br>&emsp;(<span class='nDam'>Damage</span>: +70%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +10%) </br> War Scream grants a higher damage boost. Effect: +4% Damage Bonus to Players",
           "abilities": [
             {
-              "base_abil": "Generalist",
+              "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 10,
                 "pressure_neutral_uppercut": 70,

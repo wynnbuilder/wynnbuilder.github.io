@@ -4600,6 +4600,7 @@
             "desc": "War Scream bolsters courage, granting players a damage bonus and additional resistance. </br> </br>Effect: +8% Damage Bonus to Players </br>Effect: +5% Resistance Bonus to Allies",
             "archetype": "Paladin",
             "archetype_req": 0,
+            "base_abil": "War Scream",
             "parents": [
                 "Sacred Surge"
             ],
@@ -4611,7 +4612,9 @@
                 "col": 8,
                 "icon": "node_2"
             },
-            "properties": {},
+            "properties": {
+                "pressure_scream_boost": 8
+            },
             "effects": []
         },
         {
@@ -6085,7 +6088,7 @@
         {
             "display_name": "Pressure",
             "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 2.5x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
-            "base_abil": "Generalist",
+            "base_abil": "War Scream",
             "archetype": "Battle Monk",
             "archetype_req": 11,
             "parents": [
@@ -6116,39 +6119,39 @@
                         {
                             "type": "stat",
                             "name": "nConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_neutral_uppercut"
+                            "value": "War Scream.pressure_neutral_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "eConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_rainbow_uppercut"
+                            "value": "War Scream.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "tConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_rainbow_uppercut"
+                            "value": "War Scream.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "wConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_rainbow_uppercut"
+                            "value": "War Scream.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "fConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_rainbow_uppercut"
+                            "value": "War Scream.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "stat",
                             "name": "aConvBase:3.Uppercut",
-                            "value": "Generalist.pressure_rainbow_uppercut"
+                            "value": "War Scream.pressure_rainbow_uppercut"
                         },
                         {
                             "type": "prop",
                             "abil": "Bash",
                             "name": "hits",
                             "mult": true,
-                            "value": "Generalist.pressure_bash_hits"
+                            "value": "War Scream.pressure_bash_hits"
                         }
                     ]
                 },
@@ -6159,7 +6162,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Potion",
-                            "value": "Generalist.pressure_scream_boost"
+                            "value": "War Scream.pressure_scream_boost"
                         }
                     ]
                 }
