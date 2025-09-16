@@ -55,6 +55,10 @@
             {
                 "class": "Archer",
                 "base_abil": "Arrow Storm",
+                "properties": {
+                    "arrow_streams": 4,
+                    "attack_frequency": -3.33333333334 
+                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -89,6 +93,17 @@
                         }
                     }
                 ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Storm",
+                "dependencies": [
+                    "Nimble String"
+                ],
+                "properties": {
+                    "attack_frequency": -6.66666666667
+                },
+                "effects": []
             }
         ]
     },
@@ -1728,20 +1743,15 @@
                 "dependencies": [
                     "Arrow Hurricane"
                 ],
-                "properties": {},
+                "properties": {
+                    "arrows_per_stream": 64
+                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
                         "base_spell": 1,
-                        "target_part": "Single Stream",
-                        "hits": {
-                            "Single Arrow": 64
-                        }
-                    },
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "DPS",
+                        "target_part": "Arrow Storm DPS",
+                        "behavior": "overwrite",
                         "hits": {
                             "Single Arrow": 6.6667
                         }

@@ -274,7 +274,10 @@
                 "icon": "node_archer"
             },
             "properties": {
-                "range": 16
+                "range": 16,
+                "arrows_per_stream": 8,
+                "attack_frequency": 10,
+                "arrow_streams": 1
             },
             "effects": [
                 {
@@ -299,13 +302,26 @@
                         {
                             "name": "Single Stream",
                             "hits": {
-                                "Single Arrow": 8
+                                "Single Arrow": "Arrow Storm.arrows_per_stream"
+                            }
+                        },
+                        {
+                            "name": "Single Shot",
+                            "hits": {
+                                "Single Arrow": "Arrow Storm.arrow_streams"
+                            },
+                            "display": false
+                        },
+                        {
+                            "name": "Arrow Storm DPS",
+                            "hits": {
+                                "Single Shot": "Arrow Storm.attack_frequency"
                             }
                         },
                         {
                             "name": "Total Damage",
                             "hits": {
-                                "Single Stream": 1
+                                "Single Stream": "Arrow Storm.arrow_streams"
                             }
                         }
                     ]
@@ -652,7 +668,10 @@
                 "col": 0,
                 "icon": "node_2"
             },
-            "properties": {},
+            "properties": {
+                "arrows_per_stream": 6,
+                "attack_frequency": 10
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -666,14 +685,6 @@
                         0,
                         0
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "target_part": "Single Stream",
-                    "hits": {
-                        "Single Arrow": 6
-                    }
                 }
             ]
         },
@@ -1146,7 +1157,10 @@
                 "col": 1,
                 "icon": "node_4"
             },
-            "properties": {},
+            "properties": {
+                "arrow_streams": 1,
+                "arrows_per_stream": 2
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -1160,23 +1174,6 @@
                         0,
                         2
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "target_part": "Total Damage",
-                    "hits": {
-                        "Single Stream": 1
-                    }
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "target_part": "Single Stream",
-                    "cost": 0,
-                    "hits": {
-                        "Single Arrow": 2
-                    }
                 }
             ]
         },
@@ -2600,7 +2597,9 @@
                 "col": 1,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "arrow_streams": 2
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -2614,14 +2613,6 @@
                         0,
                         -1
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "target_part": "Total Damage",
-                    "hits": {
-                        "Single Stream": 2
-                    }
                 }
             ]
         },
@@ -13881,7 +13872,7 @@
                     "type": "replace_spell",
                     "name": "Twisted Tether",
                     "base_spell": 8,
-                    "display": "Tether Tick",
+                    "display": "Totem Drain DPS",
                     "parts": [
                         {
                             "name": "Tether Tick",
@@ -13895,8 +13886,23 @@
                                 20
                             ],
                             "ignored_mults": [
-                                "Mask"
+                                "Mask",
+                                "Potion",
+                                "Vulnerability"
                             ]
+                        },
+                        {
+                            "name": "Tether DPS",
+                            "hits": {
+                                "Tether Tick": "Totem.totem_mul"
+                            },
+                            "display": false
+                        },
+                        {
+                            "name": "Totem Drain DPS",
+                            "hits": {
+                                "Tether DPS": "Totem.num_totems"
+                            }
                         }
                     ]
                 }

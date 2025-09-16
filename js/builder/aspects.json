@@ -103,17 +103,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Stream",
-                  "behavior": "modify",
-                  "hits": {
-                    "Single Arrow": 1
-                  }
-                }
-              ]
+              "properties": {
+                "arrows_per_stream": 1
+              },
+              "effects": []
             }
           ]
         },
@@ -123,17 +116,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Stream",
-                  "behavior": "modify",
-                  "hits": {
-                    "Single Arrow": 2
-                  }
-                }
-              ]
+              "properties": {
+                "arrows_per_stream": 2
+              },
+              "effects": []
             }
           ]
         },
@@ -143,17 +129,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Storm",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Stream",
-                  "behavior": "modify",
-                  "hits": {
-                    "Single Arrow": 4
-                  }
-                }
-              ]
+              "properties": {
+                "arrows_per_stream": 4
+              },
+              "effects": []
             }
           ]
         }
@@ -888,17 +867,10 @@
             },
             {
               "base_abil": "Arrow Storm",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Stream",
-                  "behavior": "modify",
-                  "hits": {
-                    "Single Arrow": 1
-                  }
-                }
-              ]
+              "properties": {
+                "arrows_per_stream": 1
+              },
+              "effects": []
             },
             {
               "base_abil": 999,
@@ -951,17 +923,10 @@
             },
             {
               "base_abil": "Arrow Storm",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 1,
-                  "target_part": "Single Stream",
-                  "behavior": "modify",
-                  "hits": {
-                    "Single Arrow": 1
-                  }
-                }
-              ]
+              "properties": {
+                "arrows_per_stream": 1
+              },
+              "effects": []
             },
             {
               "base_abil": 999,
