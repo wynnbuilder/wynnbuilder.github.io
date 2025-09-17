@@ -17,8 +17,7 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-// TODO: mob vulnerability mults
-const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0] ]);
+const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0] ]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
@@ -33,6 +32,7 @@ let boosts_node = new (class extends ComputeNode {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
                 else if (key === "emboldeningcry") { def_boost += .05 }
+                else if (key === "eldritchcall") { vuln_boost += .20 }
             }
         }
         let res = new Map();

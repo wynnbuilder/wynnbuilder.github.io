@@ -14161,17 +14161,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "type": "raw_stat",
-                    "toggle": "Activate Eldritch Call",
-                    "bonuses": [
-                        {
-                            "type": "stat",
-                            "name": "damMult.Vulnerability",
-                            "value": 20
-                        }
-                    ]
                 }
             ]
         },
