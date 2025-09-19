@@ -15010,7 +15010,7 @@
                         {
                             "name": "Beam Tick Damage",
                             "multipliers": [
-                                125,
+                                100,
                                 0,
                                 0,
                                 20,
