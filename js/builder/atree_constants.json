@@ -11350,7 +11350,7 @@
                     "slider_name": "Momentum",
                     "output": {
                         "type": "stat",
-                        "name": "damMult.Momentum:7.Jasmine Bloom Explosion"
+                        "name": "damMult.Momentum:7.Jasmine Bloom Explosion per Hit"
                     },
                     "scaling": [
                         25
@@ -11831,7 +11831,7 @@
                     "slider_name": "Momentum",
                     "output": {
                         "type": "stat",
-                        "name": "damMult.Momentum:10.Swan Dive Explosion"
+                        "name": "damMult.Momentum:10.Swan Dive Explosion per Hit"
                     },
                     "slider_max": 5,
                     "scaling": [
