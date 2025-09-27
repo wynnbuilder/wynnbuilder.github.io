@@ -740,19 +740,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Shield",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Arrow Defense",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Potion",
-                      "value": 3
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "resistance": 3
+              },
+              "effects": []
             }
           ]
         },
@@ -762,19 +753,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Shield",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Arrow Defense",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Potion",
-                      "value": 6
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "resistance": 6
+              },
+              "effects": []
             }
           ]
         },
@@ -784,19 +766,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Shield",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Arrow Defense",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Potion",
-                      "value": 8
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "resistance": 8
+              },
+              "effects": []
             }
           ]
         },
@@ -806,19 +779,10 @@
           "abilities": [
             {
               "base_abil": "Arrow Shield",
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Arrow Defense",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "defMult.Potion",
-                      "value": 10
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "resistance": 10
+              },
+              "effects": []
             }
           ]
         }
@@ -1283,17 +1247,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Sacred Surge gains +0.25% holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.25 holy power for every spell or ability triggered.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Sacred Surge gains +0.4% holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.4 holy power for every spell or ability triggered.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Sacred Surge gains +0.5% holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.5 holy power for every spell or ability triggered.",
           "abilities": []
         }
       ]
@@ -1489,22 +1453,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Sparkling Hope requires -0.75% healing to activate. (Max 21.25% at once)",
+          "description": "Sparkling Hope requires -0.75% healing to activate.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Sparkling Hope requires -1.5% healing to activate. (Max 17.5% at once)",
+          "description": "Sparkling Hope requires -1.5% healing to activate.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Sparkling Hope requires -2% healing to activate. (Max 15% at once)",
+          "description": "Sparkling Hope requires -2% healing to activate.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Sparkling Hope requires -2.5% healing to activate. (Max 12.5% at once)",
+          "description": "Sparkling Hope requires -2.5% healing to activate.",
           "abilities": []
         }
       ]
@@ -1951,7 +1915,7 @@
         },
         {
           "threshold": 5,
-          "description": "Mantle of the Bovemists gains +2 charges. </br> Sacred Surge spends -5% Holy Power to activate.",
+          "description": "Mantle of the Bovemists gains +2 charges. </br> Sacred Surge spends -5 Holy Power to activate.",
           "abilities": [
             {
               "base_abil": "Mantle of the Bovemists",
@@ -1964,7 +1928,7 @@
         },
         {
           "threshold": 15,
-          "description": "Mantle of the Bovemists gains +3 charges. </br> Sacred Surge spends -5% Holy Power to activate.",
+          "description": "Mantle of the Bovemists gains +3 charges. </br> Sacred Surge spends -5 Holy Power to activate.",
           "abilities": [
             {
               "base_abil": "Mantle of the Bovemists",
@@ -1997,7 +1961,7 @@
         },
         {
           "threshold": 5,
-          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +5% to +8.35% more damage to spells cast using health.",
+          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +5% to +8.35% more damage when using health.",
           "abilities": [
             {
               "base_abil": "Blood Pact",
@@ -2011,7 +1975,7 @@
         },
         {
           "threshold": 15,
-          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +8% to +13.35% more damage to spells cast using health.",
+          "description": "Blood Pact's health cost is reduced by 15%. Blood Pact adds +8% to +13.35% more damage when using health.",
           "abilities": [
             {
               "base_abil": "Blood Pact",
@@ -4543,58 +4507,40 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your maximum Momentum by +1.",
+          "description": "Aerial Ace gains +5% Damage Bonus.",
           "abilities": [
             {
-              "base_abil": "Swan Dive",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "behavior": "modify",
-                  "slider_name": "Momentum",
-                  "slider_max": 1
-                }
-              ]
+              "base_abil": "Aerial Ace",
+              "properties": {
+                "strength": 5
+              },
+              "effects": []
             }
           ]
         },
         {
           "threshold": 15,
-          "description": "Increase your maximum Momentum by +2.",
+          "description": "Aerial Ace gains +8% Damage Bonus.",
           "abilities": [
             {
-              "base_abil": "Swan Dive",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "behavior": "modify",
-                  "slider_name": "Momentum",
-                  "slider_max": 2
-                }
-              ]
+              "base_abil": "Aerial Ace",
+              "properties": {
+                "strength": 8
+              },
+              "effects": []
             }
           ]
         },
         {
           "threshold": 75,
-          "description": "Increase your maximum Momentum by +3.",
+          "description": "Aerial Ace gains +10% Damage Bonus.",
           "abilities": [
             {
-              "base_abil": "Swan Dive",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "behavior": "modify",
-                  "slider_name": "Momentum",
-                  "slider_max": 3
-                }
-              ]
+              "base_abil": "Aerial Ace",
+              "properties": {
+                "strength": 10
+              },
+              "effects": []
             }
           ]
         }
@@ -4645,33 +4591,6 @@
         {
           "threshold": 150,
           "description": "Bamboozle gains +3 Area of Effect.",
-          "abilities": []
-        }
-      ]
-    },
-    {
-      "displayName": "Aspect of Athlethicism",
-      "id": 25,
-      "tier": "Legendary",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Dash is 5% stronger, and Shadow Projection launches 7% further.",
-          "abilities": []
-        },
-        {
-          "threshold": 5,
-          "description": "Dash is 7% stronger, and Shadow Projection launches 10% further.",
-          "abilities": []
-        },
-        {
-          "threshold": 30,
-          "description": "Dash is 9% stronger, and Shadow Projection launches 13% further.",
-          "abilities": []
-        },
-        {
-          "threshold": 150,
-          "description": "Dash is 10% stronger, and Shadow Projection launches 15% further.",
           "abilities": []
         }
       ]
@@ -4835,6 +4754,33 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of Athleticism",
+      "id": 28,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Dash is 8% stronger, and Shadow Projection launches 7% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Dash is 15% stronger, and Shadow Projection launches 10% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Dash is 22% stronger, and Shadow Projection launches 13% further.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Dash is 25% stronger, and Shadow Projection launches 15% further.",
+          "abilities": []
         }
       ]
     }
@@ -5792,22 +5738,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Your Hummingbird Carvings attack enemies for +3.5s.",
+          "description": "Your Hummingbird Carvings attack enemies for +3.5s and gain +2.5 Vision.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Your Hummingbird Carvings attack enemies for +6s.",
+          "description": "Your Hummingbird Carvings attack enemies for +6s and gain +4.5 Vision.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Your Hummingbird Carvings attack enemies for +8.5s.",
+          "description": "Your Hummingbird Carvings attack enemies for +8.5s and gain +6.5 Vision.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Your Hummingbird Carvings attack enemies for +10s.",
+          "description": "Your Hummingbird Carvings attack enemies for +10s and gain +8 Vision.",
           "abilities": []
         }
       ]
@@ -5824,12 +5770,12 @@
         },
         {
           "threshold": 5,
-          "description": "Increase Storm Dance's pull strength by 10%.",
+          "description": "Increase Storm Dance's pull strength by 15%.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Increase Storm Dance's pull strength by 10%.",
+          "description": "Increase Storm Dance's pull strength by 20%.",
           "abilities": []
         },
         {

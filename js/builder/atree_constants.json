@@ -371,7 +371,8 @@
             "properties": {
                 "charges": 3,
                 "duration": 60,
-                "range": 2.3
+                "range": 2.3,
+                "resistance": 20
             },
             "effects": [
                 {
@@ -409,7 +410,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Potion",
-                            "value": 20
+                            "value": "Arrow Shield.resistance"
                         }
                     ]
                 }
@@ -1648,7 +1649,7 @@
         },
         {
             "display_name": "Twain's Arc",
-            "desc": "If you have 2+ Focus, holding shift will summon Twain's Arc. Charge it up to shoot a destructive long-range beam. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 300%   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br>Range: 48 Blocks",
+            "desc": "If you have 2+ Focus, holding shift will summon Twain's Arc. Charge it up to shoot a destructive long-range beam. </br> </br><span class='mc-white'>Total Damage</span>: 300% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br>Range: 48 Blocks",
             "archetype": "Sharpshooter",
             "archetype_req": 4,
             "parents": [
@@ -4835,7 +4836,7 @@
         },
         {
             "display_name": "Intoxicating Blood",
-            "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted. </br> </br>Cooldown: 0.5s (for hits)",
+            "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted. </br> </br>Cooldown: 0.45s (for hits)",
             "archetype": "Fallen",
             "base_abil": "Bak'al's Grasp",
             "parents": [
@@ -6055,7 +6056,7 @@
         },
         {
             "display_name": "Mindless Slaughter",
-            "desc": "Massacre adds twice as much Corruption. </br> Your Main Attack and Powder Specials now cost 0.5% health to use, activating Blood Pact.",
+            "desc": "Massacre adds twice as much Corruption. </br> While Corrupted, your Main Attack and Powder Specials now cost 0.5% health to use, activating Blood Pact.",
             "archetype": "Fallen",
             "base_abil": "Massacre",
             "parents": [
@@ -6161,7 +6162,7 @@
         },
         {
             "display_name": "Reverberance",
-            "desc": "Air Shout can hit +1 time, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%)",
+            "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)",
             "base_abil": "War Scream",
             "parents": [
                 "Discombobulate"
@@ -6181,19 +6182,19 @@
                     "base_spell": 4,
                     "target_part": "Air Shout",
                     "multipliers": [
+                        5,
+                        0,
+                        5,
                         0,
                         0,
-                        10,
-                        0,
-                        0,
-                        10
+                        5
                     ]
                 },
                 {
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Additional Air Shout hits",
-                    "slider_max": 1
+                    "slider_max": 2
                 }
             ]
         }
@@ -7542,7 +7543,7 @@
         },
         {
             "display_name": "Pyrokinesis",
-            "desc": "When your Mana Bank reaches 30, your Main Attack will explode upon impact with enemies. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: 200%   </br>&emsp;(<span class='nDam'>Damage</span>: 200%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "When your Mana Bank reaches 30, your Main Attack will explode upon impact with enemies. </br> </br><span class='mc-white'>Total Damage</span>: 200% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
             "base_abil": 999,
             "archetype": "Arcanist",
             "archetype_req": 4,
@@ -9601,7 +9602,7 @@
         },
         {
             "display_name": "Ripple",
-            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
@@ -9627,12 +9628,12 @@
                         {
                             "name": "Ripple Damage",
                             "multipliers": [
-                                100,
+                                90,
                                 0,
                                 0,
-                                20,
+                                15,
                                 0,
-                                0
+                                15
                             ]
                         }
                     ]
@@ -10768,7 +10769,9 @@
                 "col": 8,
                 "icon": "node_4"
             },
-            "properties": {},
+            "properties": {
+                "strength": 35
+            },
             "effects": [
                 {
                     "type": "raw_stat",
@@ -10777,7 +10780,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Potion",
-                            "value": 35
+                            "value": "Aerial Ace.strength"
                         }
                     ]
                 }
@@ -10959,7 +10962,7 @@
         },
         {
             "display_name": "Eviscerate",
-            "desc": "Lacerate will deal +1 slash.",
+            "desc": "Lacerate deals more damage, and will slash +1 more time. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)",
             "archetype": "Acrobat",
             "base_abil": "Spin Attack",
             "parents": [
@@ -10978,6 +10981,20 @@
             },
             "properties": {},
             "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Per Hit",
+                    "behavior": "modify",
+                    "multipliers": [
+                        0,
+                        0,
+                        10,
+                        0,
+                        0,
+                        0
+                    ]
+                },
                 {
                     "type": "add_spell_prop",
                     "base_spell": 1,
@@ -11311,7 +11328,7 @@
         },
         {
             "display_name": "Jasmine Bloom",
-            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> Using Swan Dive with a maximum size Jasmine Bloom will trigger a massive explosion and reset the radius of Jasmine Bloom. (Min 3 Momentum) </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 70%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom) </br> </br><span class='mc-white'>Total Damage</span>: 1500% (of your DPS, from explosion, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 1250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 125%)   </br>&emsp;(<span class='aDam'>Air</span>: 125%) </br>Area of Effect: 12 Blocks (explosion)",
+            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> Using Swan Dive with a maximum size Jasmine Bloom will trigger a massive explosion and reset the radius of Jasmine Bloom. (Min 3 Momentum) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom) </br> </br><span class='mc-white'>Total Damage</span>: 1500% (of your DPS, from explosion, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 1250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 125%)   </br>&emsp;(<span class='aDam'>Air</span>: 125%) </br>Area of Effect: 12 Blocks (explosion)",
             "archetype": "Acrobat",
             "archetype_req": 12,
             "parents": [
@@ -11333,7 +11350,7 @@
                     "slider_name": "Momentum",
                     "output": {
                         "type": "stat",
-                        "name": "damMult.Momentum:7.Jasmine Bloom Explosion per Hit"
+                        "name": "damMult.Momentum:7.Jasmine Bloom Explosion"
                     },
                     "scaling": [
                         25
@@ -11343,17 +11360,17 @@
                     "type": "replace_spell",
                     "name": "Jasmine Bloom",
                     "base_spell": 7,
-                    "display": "Explosion Total Damage",
+                    "display": "DPS",
                     "parts": [
                         {
                             "name": "Per Hit",
                             "multipliers": [
-                                70,
-                                10,
+                                75,
+                                15,
                                 0,
-                                20,
+                                15,
                                 0,
-                                0
+                                15
                             ]
                         },
                         {
@@ -11374,7 +11391,7 @@
                             ]
                         },
                         {
-                            "name": "Explosion Total Damage",
+                            "name": "Jasmine Bloom Explosion Total Damage",
                             "hits": {
                                 "Jasmine Bloom Explosion per Hit": 5
                             }
@@ -11814,7 +11831,7 @@
                     "slider_name": "Momentum",
                     "output": {
                         "type": "stat",
-                        "name": "damMult.Momentum:10.Swan Dive Explosion per Hit"
+                        "name": "damMult.Momentum:10.Swan Dive Explosion"
                     },
                     "slider_max": 5,
                     "scaling": [
@@ -13044,7 +13061,7 @@
         },
         {
             "display_name": "Rebound",
-            "desc": "Once Aura reaches its maximum range, it will bounce back and deal its effects a second time. </br> Sacrificial Shrine will heal 40% less health.",
+            "desc": "Once Aura reaches its maximum range, it will bounce back and deal its effects a second time. </br> Sacrificial Shrine will heal 35% less health.",
             "base_abil": "Aura",
             "parents": [
                 "Sacrificial Shrine",
@@ -13082,7 +13099,7 @@
                         {
                             "type": "stat",
                             "name": "healMult.Rebound:3.Heal Amount",
-                            "value": -40
+                            "value": -35
                         }
                     ]
                 }
@@ -14001,7 +14018,7 @@
         },
         {
             "display_name": "Crimson Effigy",
-            "desc": "Totem will summon an Effigy that will attack enemies and push them towards the nearest Totem every 0.5s. The Effigy will live for as long as its Totem does. </br> Each Totem will summon its own Effigy. Each additional Effigy summoned will decrease all Effigy damage by 0.8x. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%)",
+            "desc": "Totem will summon an Effigy that will attack enemies and push them towards the nearest Totem every 0.5s. The Effigy will live for as long as its Totem does. </br> Each Totem will summon its own Effigy. Each additional Effigy summoned will decrease all Effigy damage by 0.8x. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%) </br>Vision: 18 Blocks (Circle-Shaped)",
             "archetype": "Summoner",
             "archetype_req": 6,
             "parents": [

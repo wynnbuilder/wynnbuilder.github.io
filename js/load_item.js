@@ -1,4 +1,4 @@
-const ITEM_DB_VERSION = 166;
+const ITEM_DB_VERSION = 167;
 
 let items;
 let sets = new Map();
@@ -220,6 +220,7 @@ const wynn_version_names = [
     '2.1.2.0',
     '2.1.3.0',
     '2.1.3.4',
+    '2.1.4.0',
 ];
 
 const WYNN_VERSION_LATEST = wynn_version_names.length - 1;

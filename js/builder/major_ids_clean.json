@@ -50,14 +50,17 @@
     },
     "HAWKEYE": {
         "displayName": "Hawkeye",
-        "description": "Condense Arrow Storm into a tight beam of 5 arrows per stream that deal [neutral]10%, [thunder]1%, and [air]1%.",
+        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]25%, [thunder]5%, and [air]5% each.",
         "abilities": [
             {
                 "class": "Archer",
                 "base_abil": "Arrow Storm",
+                "dependencies": [
+                    "Arrow Hurricane"
+                ],
                 "properties": {
-                    "arrow_streams": 4,
-                    "attack_frequency": -3.33333333334 
+                    "arrow_streams": 1,
+                    "attack_frequency": -3.33333333334
                 },
                 "effects": [
                     {
@@ -75,22 +78,13 @@
                         "target_part": "Single Arrow",
                         "behavior": "overwrite",
                         "multipliers": [
-                            10,
+                            25,
                             0,
-                            1,
+                            5,
                             0,
                             0,
-                            1
+                            5
                         ]
-                    },
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Total Damage",
-                        "behavior": "modify",
-                        "hits": {
-                            "Single Stream": 4
-                        }
                     }
                 ]
             },
@@ -335,7 +329,7 @@
     },
     "TEMBLOR": {
         "displayName": "Temblor",
-        "description": "Bash gains +1 Area of Effect and is 33% faster.",
+        "description": "Bash gains +1 Area of Effect and is 0.05s faster.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -349,7 +343,7 @@
     },
     "RECKLESS_ABANDON": {
         "displayName": "Reckless Abandon",
-        "description": "Sacrifice War Scream's defense bonus to give Tempest [earth]+5%, [fire]+15%, [air]5% and 2 extra hits.",
+        "description": "Sacrifice War Scream's defense bonus to give Tempest [earth]+5%, [fire]+15%, [air]5% and 3 extra hits.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -378,7 +372,7 @@
                         "target_part": "Tempest Total Damage",
                         "behavior": "modify",
                         "hits": {
-                            "Tempest": 2
+                            "Tempest": 3
                         }
                     }
                 ]
@@ -910,7 +904,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]30%. Gain +12 traps with halved duration that cannot be triggered \nby enemies.",
+        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]26%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
         "abilities": [
             {
                 "class": "Archer",
@@ -926,14 +920,14 @@
                         "type": "add_spell_prop",
                         "base_spell": 7,
                         "target_part": "Line Damage Tick",
-                        "behavior": "modify",
+                        "behavior": "overwrite",
                         "multipliers": [
-                            10,
+                            26,
                             0,
                             0,
                             0,
                             0,
-                            -20
+                            0
                         ]
                     },
                     {
@@ -951,7 +945,7 @@
     },
     "LIFESTREAM": {
         "displayName": "Lifestream",
-        "description": "Blood Sorrow deals [neutral]500% and grants 4 times the overhealth, but shortens its duration by 75%.",
+        "description": "Blood Sorrow deals [neutral]400% and grants 4 times the overhealth, but shortens its duration by 75%.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -967,7 +961,7 @@
                         "target_part": "Beam Tick Damage",
                         "behavior": "overwrite",
                         "multipliers": [
-                            500,
+                            400,
                             0,
                             0,
                             0,
@@ -1167,12 +1161,12 @@
                         "target_part": "Per Hit",
                         "behavior": "overwrite",
                         "multipliers": [
-                            10,
-                            20,
-                            20,
-                            20,
-                            20,
-                            20
+                            25,
+                            25,
+                            25,
+                            25,
+                            25,
+                            25
                         ]
                     },
                     {
@@ -1819,7 +1813,7 @@
     },
     "HEAT_SHIMMER": {
         "displayName": "Heat Shimmer",
-        "description": "Mirror Image count is reduced to a maximum of 1. Foul Play will no longer slay a Mirror Clone, but will still provide its effects. Tricks application is increased by 50%.",
+        "description": "Foul Play will no longer slay a Mirror Clone and will still provide its effects, but Mirror Clone count is reduced to 1. Tricks application is increased by 50%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2418,7 +2412,7 @@
     },
     "CANNULATE": {
         "displayName": "Cannulate",
-        "description": "Sacrificial Shrine costs -5 Blood Pool to cast and health drain is reduced by half.",
+        "description": "Sacrificial Shrine costs -5 Blood Pool to cast and health drain is halved.",
         "abilities": []
     },
     "INTANGIBLE": {
@@ -2592,5 +2586,78 @@
         "displayName": "Reality Revision",
         "description": "Phasing Beam instead makes Twain's Arc explode upon hitting an enemy, dealing its damage in a 5 block radius. Twain's Arc now has extreme recoil.",
         "abilities": []
+    },
+    "WORMHOLE_2": {
+        "displayName": "Wormhole 2",
+        "description": "Teleport will grant you 3 seconds of levitation.",
+        "hidden": true,
+        "abilities": []
+    },
+    "FAN_THE_HAMMER": {
+        "displayName": "Fan the Hammer",
+        "description": "Arrow Storm becomes a single stream of 6 high-powered arrows that deal [neutral]90% and [thunder]35%.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Storm",
+                "properties": {
+                    "attack_frequency": -3.33333333334
+                },
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Stream",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Arrow": 6
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Shot",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Arrow": 1
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Total Damage",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Stream": 1
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Arrow",
+                        "behavior": "overwrite",
+                        "multipliers": [
+                            90,
+                            0,
+                            35,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Storm",
+                "dependencies": [
+                    "Nimble String"
+                ],
+                "properties": {
+                    "attack_frequency": -6.66666666667
+                },
+                "effects": []
+            }
+        ]
     }
 }

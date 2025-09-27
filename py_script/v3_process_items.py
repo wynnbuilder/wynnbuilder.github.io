@@ -251,7 +251,11 @@ for item in items:
     if 'majorIds' in item:
         majorIds = []
         for majid_name, majid_desc in item['majorIds'].items():
-            desc = re.sub('<[^<]+?>', '', majid_desc).split(':', 2)[1].strip()
+            if ':' in majid_desc:
+                desc = re.sub('<[^<]+?>', '', majid_desc).split(':', 2)[1].strip()
+            else:
+                print(f'Hidden Major ID: {majid_name}')
+
             for k, v in replace_strings.items():
                 desc = re.sub(k, v, desc)
 
