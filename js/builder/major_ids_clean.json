@@ -50,7 +50,7 @@
     },
     "HAWKEYE": {
         "displayName": "Hawkeye",
-        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]25%, [thunder]5%, and [air]5% each.",
+        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]33%, [thunder]4%, and [air]4% each.",
         "abilities": [
             {
                 "class": "Archer",
@@ -1143,7 +1143,7 @@
     },
     "EFFLORESCENCE": {
         "displayName": "Efflorescence",
-        "description": "Jasmine Bloom deals [neutral]10% and \n[earth][thunder][water][fire][air]20% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]50% and [earth][thunder][water][fire][air]50%.",
+        "description": "Jasmine Bloom deals [neutral]25% and \n[earth][thunder][water][fire][air]25% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]50% and [earth][thunder][water][fire][air]50%.",
         "abilities": [
             {
                 "class": "Assassin",

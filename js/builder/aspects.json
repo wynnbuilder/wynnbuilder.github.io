@@ -99,12 +99,12 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Arrow Storm gains +1 arrow per stream.",
+          "description": "Arrow Storm gains +2 arrow per stream.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
               "properties": {
-                "arrows_per_stream": 1
+                "arrows_per_stream": 2
               },
               "effects": []
             }
@@ -112,12 +112,12 @@
         },
         {
           "threshold": 15,
-          "description": "Arrow Storm gains +2 arrows per stream.",
+          "description": "Arrow Storm gains +3 arrows per stream.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
               "properties": {
-                "arrows_per_stream": 2
+                "arrows_per_stream": 3
               },
               "effects": []
             }
@@ -190,28 +190,6 @@
               "effects": []
             }
           ]
-        }
-      ]
-    },
-    {
-      "displayName": "Aspect of the Great Escape",
-      "id": 4,
-      "tier": "Fabled",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Elusive requires -1s to activate.",
-          "abilities": []
-        },
-        {
-          "threshold": 15,
-          "description": "Elusive requires -1.65s to activate.",
-          "abilities": []
-        },
-        {
-          "threshold": 75,
-          "description": "Elusive requires -2s to activate.",
-          "abilities": []
         }
       ]
     },
@@ -547,7 +525,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Arrow Storm gains velocity and slightly reduced spread. </br> Phantom Ray gains +2 Range.",
+          "description": "Arrow Storm gains velocity and 8% reduced spread. </br> Phantom Ray gains +2 Range.",
           "abilities": [
             {
               "base_abil": "Phantom Ray",
@@ -560,7 +538,7 @@
         },
         {
           "threshold": 5,
-          "description": "Arrow Storm gains velocity and slightly reduced spread. </br> Phantom Ray gains +3.5 Range.",
+          "description": "Arrow Storm gains velocity and 17% reduced spread. </br> Phantom Ray gains +3.5 Range.",
           "abilities": [
             {
               "base_abil": "Phantom Ray",
@@ -573,7 +551,7 @@
         },
         {
           "threshold": 30,
-          "description": "Arrow Storm gains velocity and slightly reduced spread. </br> Phantom Ray gains +5 Range.",
+          "description": "Arrow Storm gains velocity and 25% reduced spread. </br> Phantom Ray gains +5 Range.",
           "abilities": [
             {
               "base_abil": "Phantom Ray",
@@ -586,7 +564,7 @@
         },
         {
           "threshold": 150,
-          "description": "Arrow Storm gains velocity and slightly reduced spread. </br> Phantom Ray gains +6 Range.",
+          "description": "Arrow Storm gains velocity and 34% reduced spread. </br> Phantom Ray gains +6 Range.",
           "abilities": [
             {
               "base_abil": "Phantom Ray",
@@ -795,18 +773,21 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Guardian Angels will shoot +29% faster.",
+          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead.",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "DPS",
-                  "hits": {
-                    "Single Volley": 0.634920634921
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Divine Intervention Arrow Storm",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArrowStormBoost:4.Single Shot",
+                      "value": 150
+                    }
+                  ]
                 }
               ]
             }
@@ -814,18 +795,21 @@
         },
         {
           "threshold": 5,
-          "description": "Guardian Angels will shoot +29% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "DPS",
-                  "hits": {
-                    "Single Volley": 0.634920634921
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Divine Intervention Arrow Storm",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArrowStormBoost:4.Single Shot",
+                      "value": 150
+                    }
+                  ]
                 }
               ]
             },
@@ -870,18 +854,21 @@
         },
         {
           "threshold": 15,
-          "description": "Guardian Angels will shoot +50% faster. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead. Guardian Angels gain +6 Range. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "DPS",
-                  "hits": {
-                    "Single Volley": 1.11111111111
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Divine Intervention Arrow Storm",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArrowStormBoost:4.Single Shot",
+                      "value": 150
+                    }
+                  ]
                 }
               ]
             },
@@ -1235,6 +1222,73 @@
           "threshold": 150,
           "description": "Phasing Beam can pierce through +4 enemies.",
           "abilities": []
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Heavenly Mandate",
+      "id": 23,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Guardian Angels gain +4 ammunition.",
+          "abilities": [
+            {
+              "base_abil": "Arrow Shield",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Single Bow",
+                    "hits": {
+                      "Single Shot": 4
+                    },
+                    "behavior": "modify"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 15,
+          "description": "Guardian Angels gain +7 ammunition.",
+          "abilities": [
+            {
+              "base_abil": "Arrow Shield",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Single Bow",
+                    "hits": {
+                      "Single Shot": 7
+                    },
+                    "behavior": "modify"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 75,
+          "description": "Guardian Angels gain +9 ammunition.",
+          "abilities": [
+            {
+              "base_abil": "Arrow Shield",
+              "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Single Bow",
+                    "hits": {
+                      "Single Shot": 9
+                    },
+                    "behavior": "modify"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -1654,131 +1708,23 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Tempest gains +1 hit, and becomes 0.1s faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -6%)   </br>&emsp;(<span class='eDam'>Earth</span>: -2%)   </br>&emsp;(<span class='aDam'>Air</span>: -2%)",
-          "abilities": [
-            {
-              "base_abil": "War Scream",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest",
-                  "multipliers": [
-                    -6,
-                    -2,
-                    0,
-                    0,
-                    0,
-                    -2
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest Total Damage",
-                  "hits": {
-                    "Tempest": 1
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tempest hits delay is reduced by 0.1s.",
+          "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Tempest gains +2 hits, and becomes 0.15s faster. </br><span class='mc-white'>Total Damage</span>: -16% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)   </br>&emsp;(<span class='eDam'>Earth</span>: -3%)   </br>&emsp;(<span class='aDam'>Air</span>: -3%)",
-          "abilities": [
-            {
-              "base_abil": "War Scream",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest",
-                  "multipliers": [
-                    -10,
-                    -3,
-                    0,
-                    0,
-                    0,
-                    -3
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest Total Damage",
-                  "hits": {
-                    "Tempest": 2
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tempest hits delay is reduced by 0.2s.",
+          "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Tempest gains +3 hits, and becomes 0.2s faster. </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -12%)   </br>&emsp;(<span class='eDam'>Earth</span>: -4%)   </br>&emsp;(<span class='aDam'>Air</span>: -4%)",
-          "abilities": [
-            {
-              "base_abil": "War Scream",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest",
-                  "multipliers": [
-                    -12,
-                    -4,
-                    0,
-                    0,
-                    0,
-                    -4
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest Total Damage",
-                  "hits": {
-                    "Tempest": 3
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tempest hits delay is reduced by 0.25s.",
+          "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Tempest gains +4 hits, and becomes 0.25s faster. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: -13%)   </br>&emsp;(<span class='eDam'>Earth</span>: -5%)   </br>&emsp;(<span class='aDam'>Air</span>: -5%)",
-          "abilities": [
-            {
-              "base_abil": "War Scream",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest",
-                  "multipliers": [
-                    -13,
-                    -5,
-                    0,
-                    0,
-                    0,
-                    -5
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "target_part": "Tempest Total Damage",
-                  "hits": {
-                    "Tempest": 4
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tempest hits delay is reduced by 0.3s.",
+          "abilities": []
         }
       ]
     },

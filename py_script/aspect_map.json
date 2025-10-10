@@ -22,7 +22,8 @@
     "Aspect of the Steadying Hand": 19,
     "Aspect of Illegal Explosives": 20,
     "Aspect of a Thunderbolt": 21,
-    "Aspect of the Iron String": 22
+    "Aspect of the Iron String": 22,
+    "Aspect of the Heavenly Mandate": 23
   },
   "Warrior": {
     "Aspect of Searing Friction": 0,
@@ -99,7 +100,8 @@
     "Aspect of Flamboyance": 24,
     "Aspect of Athlethicism": 25,
     "Aspect of Enduring Illusions": 26,
-    "Trickster's Embodiment of Malevolent Mischief": 27
+    "Trickster's Embodiment of Malevolent Mischief": 27,
+    "Aspect of Athleticism": 28
   },
   "Shaman": {
     "Aspect of Stances": 0,

@@ -214,7 +214,7 @@ def validate_atree_graph(atree):
     # Pass 2.1: Check node position collisions
     for pos, abils in abil_node_positions.items():
         if len(abils) > 1:
-            abil_names = [f"'{abil['displayName']}'" for abil in abils]
+            abil_names = [f"'{abil['display_name']}'" for abil in abils]
             print(f"ERROR: Position {pos} has multiple abilities! [{', '.join(abil_names)}]")
         
     # Pass 2.2: Check path geometry
