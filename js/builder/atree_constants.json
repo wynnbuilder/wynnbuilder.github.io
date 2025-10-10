@@ -3118,7 +3118,7 @@
         },
         {
             "display_name": "Elusive",
-            "desc": "\u00a77\u00a7nArrow Bomb\u00a77 and \u00a77\u00a7nArrow Storm\u00a77 will no longer have recoil, and your \u00a77\u00a7nArrow Bombs\u00a77 will not deal self-damage.",
+            "desc": "Arrow Bomb and Arrow Storm will no longer have recoil, and your Arrow Bombs will not deal self-damage.",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [

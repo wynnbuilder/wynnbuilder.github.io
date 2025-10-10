@@ -566,21 +566,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "class": "Warrior",
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "radiancePct",
-                                "value": 10
-                            }
-                        ]
-                    }
-                ]
             }
         ]
     },

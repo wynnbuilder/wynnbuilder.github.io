@@ -17,7 +17,7 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0] ]);
+const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0], ["divinehonor", 0.0] ]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
@@ -917,10 +917,16 @@ const radiance_node = new (class extends ComputeNode {
 
     compute_func(input_map) {
         const [statmap] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        let elem = document.getElementById('radiance-boost');
-        if (elem.classList.contains("toggleOn")) {
+        var boost = 1;
+        if (document.getElementById('radiance-boost').classList.contains("toggleOn")) {
+            boost += 0.2;
+        }
+        if (document.getElementById('divinehonor-boost').classList.contains("toggleOn")) {
+            boost += 0.1;
+        }
+
+        if (boost != 1.0) {
             const ret = new Map(statmap);
-            var boost = 1+statmap.get("radiancePct")/100;
             for (const val of radiance_affected) {
                 if (reversedIDs.includes(val)) {
                     if ((ret.get(val) || 0) < 0) {
@@ -949,8 +955,8 @@ const radiance_node = new (class extends ComputeNode {
 
 /* Updates all spell boosts
 */
-function update_radiance() {
-    let elem = document.getElementById('radiance-boost');
+function update_radiance(input) {
+    let elem = document.getElementById(input + '-boost');
     if (elem.classList.contains("toggleOn")) {
         elem.classList.remove("toggleOn");
     } else {
