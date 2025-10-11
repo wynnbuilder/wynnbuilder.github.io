@@ -724,7 +724,7 @@
                 },
                 {
                     "type": "add_spell_prop",
-                    "base_spell": 1,
+                    "base_spell": 4,
                     "target_part": "Total Buckshot Damage",
                     "hits": {
                         "Single Buckshot Arrow": 75
@@ -999,7 +999,8 @@
             "properties": {
                 "range": 6,
                 "duration": 60,
-                "shots": 8
+                "shots": 8,
+                "attack_frequency": 2.22222222222
             },
             "effects": [
                 {
@@ -1040,7 +1041,7 @@
                             "name": "DPS",
                             "type": "total",
                             "hits": {
-                                "Single Volley": 2.22222222222
+                                "Single Volley": "Arrow Shield.attack_frequency"
                             }
                         },
                         {
@@ -1899,9 +1900,10 @@
                     "toggle": "Divine Intervention Arrow Storm",
                     "bonuses": [
                         {
-                            "type": "stat",
-                            "name": "damMult.ArrowStormBoost:4.Single Shot",
-                            "value": 200
+                            "type": "prop",
+                            "abil": "Arrow Shield",
+                            "name": "attack_frequency",
+                            "value": 4.44444444444
                         }
                     ]
                 },

@@ -783,9 +783,10 @@
                   "toggle": "Divine Intervention Arrow Storm",
                   "bonuses": [
                     {
-                      "type": "stat",
-                      "name": "damMult.ArrowStormBoost:4.Single Shot",
-                      "value": 150
+                      "type": "prop",
+                      "abil": "Arrow Shield",
+                      "name": "attack_frequency",
+                      "value": 3.33333333333
                     }
                   ]
                 }
@@ -805,9 +806,10 @@
                   "toggle": "Divine Intervention Arrow Storm",
                   "bonuses": [
                     {
-                      "type": "stat",
-                      "name": "damMult.ArrowStormBoost:4.Single Shot",
-                      "value": 150
+                      "type": "prop",
+                      "abil": "Arrow Shield",
+                      "name": "attack_frequency",
+                      "value": 3.33333333333
                     }
                   ]
                 }
@@ -864,9 +866,10 @@
                   "toggle": "Divine Intervention Arrow Storm",
                   "bonuses": [
                     {
-                      "type": "stat",
-                      "name": "damMult.ArrowStormBoost:4.Single Shot",
-                      "value": 150
+                      "type": "prop",
+                      "abil": "Arrow Shield",
+                      "name": "attack_frequency",
+                      "value": 3.33333333333
                     }
                   ]
                 }
