@@ -999,7 +999,7 @@
             "properties": {
                 "range": 6,
                 "duration": 60,
-                "shots": 8,
+                "shots": 10,
                 "attack_frequency": 2.22222222222
             },
             "effects": [
