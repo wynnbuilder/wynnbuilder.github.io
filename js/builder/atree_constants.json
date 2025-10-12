@@ -1626,7 +1626,7 @@
                 "Vigilant Sentinels",
                 "Parting Gift"
             ],
-            "req_archetype": "Boltslinger",
+            "archetype": "Boltslinger",
             "dependencies": [],
             "blockers": [],
             "cost": 1,
@@ -1866,7 +1866,7 @@
         },
         {
             "display_name": "Divine Intervention",
-            "desc": "Guardian Angels become briefly empowered whenever you cast a spell, and gain +14 ammunition. </br> Casting Arrow Storm will cause them to shoot 3x faster. </br> </br>Duration: 0.9s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 4.5 Blocks (Circle-Shaped) </br>Duration: 3s",
+            "desc": "Guardian Angels become briefly empowered whenever you cast a spell, and gain +14 ammunition. </br> Casting Arrow Storm will cause them to shoot 2.25x faster. </br> </br>Duration: 0.9s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 4.5 Blocks (Circle-Shaped) </br>Duration: 3s",
             "archetype": "Boltslinger",
             "archetype_req": 6,
             "base_abil": "Arrow Shield",
@@ -1892,7 +1892,7 @@
                     "base_spell": 4,
                     "target_part": "Single Bow",
                     "hits": {
-                        "Single Shot": 14
+                        "Single Shot": 8
                     }
                 },
                 {
@@ -1903,7 +1903,7 @@
                             "type": "prop",
                             "abil": "Arrow Shield",
                             "name": "attack_frequency",
-                            "value": 4.44444444444
+                            "value": 2.77777777778
                         }
                     ]
                 },
@@ -2263,7 +2263,7 @@
         },
         {
             "display_name": "Vigilant Sentinels",
-            "desc": "Increase Guardian Angels' range and damage. </br> Casting Arrow Shield while Guardian Angels are active will also cast Buckshot. Increase Buckshot's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Range: +6 Blocks </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Buckshot, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
+            "desc": "Increase Guardian Angels' range and damage. </br> Casting Arrow Shield while Guardian Angels are active will also cast Buckshot. Increase Buckshot's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Range: +3 Blocks </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Buckshot, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "base_abil": "Arrow Shield",

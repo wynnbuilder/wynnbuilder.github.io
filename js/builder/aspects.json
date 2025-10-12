@@ -773,7 +773,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead.",
+          "description": "Divine Intervention will cause Guardian Angels to fire 3x faster instead.",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -786,7 +786,7 @@
                       "type": "prop",
                       "abil": "Arrow Shield",
                       "name": "attack_frequency",
-                      "value": 3.33333333333
+                      "value": 1.66666666667
                     }
                   ]
                 }
@@ -796,7 +796,7 @@
         },
         {
           "threshold": 5,
-          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 3x faster instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -809,7 +809,7 @@
                       "type": "prop",
                       "abil": "Arrow Shield",
                       "name": "attack_frequency",
-                      "value": 3.33333333333
+                      "value": 1.66666666667
                     }
                   ]
                 }
@@ -856,7 +856,7 @@
         },
         {
           "threshold": 15,
-          "description": "Divine Intervention will cause Guardian Angels to fire 4.5x faster instead. Guardian Angels gain +6 Range. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 3x faster and deal 1.35x damage instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -869,7 +869,18 @@
                       "type": "prop",
                       "abil": "Arrow Shield",
                       "name": "attack_frequency",
-                      "value": 3.33333333333
+                      "value": 1.66666666667
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "toggle": "Divine Intervention Arrow Bomb",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArrowBombBoost:4.Single Shot",
+                      "value": 15
                     }
                   ]
                 }
