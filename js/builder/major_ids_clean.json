@@ -151,7 +151,7 @@
     },
     "ARCANES": {
         "displayName": "Transcendence",
-        "description": "30% chance for spells to cost no mana when casted.",
+        "description": "25% chance for spells to cost no mana when casted.",
         "abilities": []
     },
     "ENTROPY": {
@@ -889,7 +889,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]26%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
+        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]30%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
         "abilities": [
             {
                 "class": "Archer",
@@ -907,7 +907,7 @@
                         "target_part": "Line Damage Tick",
                         "behavior": "overwrite",
                         "multipliers": [
-                            26,
+                            30,
                             0,
                             0,
                             0,
