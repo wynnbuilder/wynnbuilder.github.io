@@ -3,7 +3,7 @@ let types;
 let search_tiers;
 const filters = [], excludes = [], sfilters = [];
 let item_filters = [];
-let string_item_filters = [], value_filter = [];
+let string_item_filters = [];
 let filter_id_counter = 0;
 
 let search_db;
@@ -354,7 +354,7 @@ function create_exclude() {
 
     document.getElementById("exclude-container").insertBefore(row, document.getElementById("add-exclude").parentElement);
     excludes.push(data);
-    init_filter_dropdown(data);
+    init_filter_dropdown(data, item_filters);
 }
 
 function create_filter_string() {
@@ -500,46 +500,52 @@ function init_string_operator_dropdown(filter) {
     });
 }
 
-function init_string_options_dropdown(filter) {
+function init_string_options_dropdown(filter, value_filter) {
     filter.onclick = function() {filter.dispatchEvent(new Event('input', {bubbles:true}));};
-    filter.autoComplete = new autoComplete({
-        data: {
-            src: value_filter,
-        },  
-        threshold: 0,
-        selector: "#" + filter.id,
-        wrapper: false,
-        resultsList: {
-            maxResults: 100,
-            tabSelect: true,
-            noResults: true,
-            class: "search-box dark-7 rounded-bottom px-2 fw-bold dark-shadow-sm",
-            element: (list, data) => {
-                let position = filter.getBoundingClientRect();
-                list.style.top = position.bottom + window.scrollY +"px";
-                list.style.left = position.x+"px";
-                list.style.width = position.width+"px";
-                list.style.maxHeight = position.height * 4 +"px";
-                if (!data.results.length) {
-                    const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
-                    list.prepend(message);
-                };
-            },
-        },
-        resultItem: {
-            class: "scaled-font search-item",
-            selected: "dark-5",
-        },
-        events: {
-            input: {
-                selection: (event) => {
-                    if (event.detail.selection.value) {
-                        event.target.value = event.detail.selection.value;
+    console.log(filter.autoComplete);
+    if (filter.autoComplete) {
+        filter.autoComplete.data = {src: value_filter}
+    }
+    else {
+        filter.autoComplete = new autoComplete({
+            data: {
+                src: value_filter,
+            },  
+            threshold: 0,
+            selector: "#" + filter.id,
+            wrapper: false,
+            resultsList: {
+                maxResults: 100,
+                tabSelect: true,
+                noResults: true,
+                class: "search-box dark-7 rounded-bottom px-2 fw-bold dark-shadow-sm",
+                element: (list, data) => {
+                    let position = filter.getBoundingClientRect();
+                    list.style.top = position.bottom + window.scrollY +"px";
+                    list.style.left = position.x+"px";
+                    list.style.width = position.width+"px";
+                    list.style.maxHeight = position.height * 4 +"px";
+                    if (!data.results.length) {
+                        const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
+                        list.prepend(message);
                     };
                 },
             },
-        }
-    });
+            resultItem: {
+                class: "scaled-font search-item",
+                selected: "dark-5",
+            },
+            events: {
+                input: {
+                    selection: (event) => {
+                        if (event.detail.selection.value) {
+                            event.target.value = event.detail.selection.value;
+                        };
+                    },
+                },
+            }
+        });
+    }
 }
 
 function update_value_filter(input, filter) {
@@ -548,12 +554,12 @@ function update_value_filter(input, filter) {
         return; // invalid filter
     }
 
-    value_filter = [];
+    let value_filter = [];
     for (let i = 0; i < items.length; i++) {
         let value = itemQueryProps[filter_name].resolve(items[i]);
         if (value && !value_filter.includes(value)) {
             value_filter.push(value);
         }
     }
-    init_string_options_dropdown(filter.value_elem);
+    init_string_options_dropdown(filter.value_elem, value_filter);
 }

@@ -103,7 +103,7 @@ const itemQueryProps = (function() {
   prop(['majid', 'majorid'], 'string', (i, ie) => ((i.majorIds || [""])[0] || ""));
   prop(['majids', 'majorids'], 'number', (i, ie) => (i.majorIds || []).length);
   prop(['drop', 'droptype'], 'string', (i, ie) => i.dropInfo && Array.isArray(i.dropInfo.type) ? i.dropInfo.type[0] : (i.dropInfo || "").type || (i.drop || "") || "");
-  prop(['restrict', 'restriction'], 'string', (i, ie) => i.restrict);
+  prop(['restrict', 'restriction'], 'string', (i, ie) => i.restrict || "");
   prop(['itemid', 'id'], 'number', (i, ie) => i.id);
 
   prop(['level', 'lvl', 'combatlevel', 'combatlvl'], 'number', (i, ie) => i.lvl);
