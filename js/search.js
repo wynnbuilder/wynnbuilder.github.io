@@ -1,12 +1,19 @@
 
 let types;
 let search_tiers;
-const filters = [], excludes = [];
+const filters = [], excludes = [], sfilters = [];
 let item_filters = [];
+let string_item_filters = [], value_filter = [];
 let filter_id_counter = 0;
 
 let search_db;
 let expr_parser;
+
+let operation_mappings = {
+    "Equals": "=",
+    "Not Equals": "!=",
+    "Contains": "?="
+}
 
 function do_item_search() {
     document.getElementById("summary").style.color = "red"; // to display errors, changed to white if search successful
@@ -55,6 +62,30 @@ function do_item_search() {
             queries.push("f:" + filter_name + "!=0");
         }
         queries.push("s:" + (filter.ascending ? "0-" : "") + filter_name);
+    }
+    
+    // String Filters
+    for (const sfilter of sfilters) {
+        let operator = sfilter.operator_elem.value;
+        let value = sfilter.value_elem.value;
+    
+        if (operator == "") {
+            continue; // empty
+        }
+        if (operation_mappings[operator] === undefined) {
+            document.getElementById("summary").innerHTML = "Error: String Filter operator \"" + operator + "\" is not recognized.";
+            return;
+        }
+
+        let filter_name = string_mappings[sfilter.input_elem.value];
+        if (filter_name === undefined) {
+            document.getElementById("summary").innerHTML = "Error: The filter \"" + value + "\" is not recognized";
+            return;
+        }
+
+        if (value) {
+            queries.push("f:" + filter_name + operation_mappings[operator] + "'" + value + "'");
+        }
     }
 
     // excludes
@@ -157,6 +188,7 @@ function init_search() {
     // filters
     document.getElementById("add-filter").addEventListener("click", create_filter);
     document.getElementById("add-exclude").addEventListener("click", create_exclude);
+    document.getElementById("add-string").addEventListener("click", create_filter_string);
     create_filter();
     filters[0].input_elem.value = "Combat Level";
     init_filter_drag();
@@ -199,7 +231,7 @@ function create_filter() {
 
     let min = make_elem("input",
         ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control", "form-control-sm", "min-max-input"],
-        {type: "number", placeholder: "-\u221E"}
+        {id: "filter-min-input-" + filter_id_counter, type: "textfield", placeholder: "-\u221E"}
     );
     col.appendChild(min);
     data.min_elem = min;
@@ -209,7 +241,7 @@ function create_filter() {
 
     let max = make_elem("input",
         ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control", "form-control-sm", "min-max-input"],
-        {type: "number", placeholder: "\u221E"}
+        {id: "filter-max-input-" + filter_id_counter, type: "textfield", placeholder: "\u221E"}
     );
     col.appendChild(max);
     data.max_elem = max;
@@ -227,7 +259,7 @@ function create_filter() {
 
     document.getElementById("filter-container").insertBefore(row, document.getElementById("add-filter").parentElement);
     filters.push(data);
-    init_filter_dropdown(data);
+    init_filter_dropdown(data, item_filters);
 }
 
 let currently_dragging = null;
@@ -325,12 +357,67 @@ function create_exclude() {
     init_filter_dropdown(data);
 }
 
-function init_filter_dropdown(filter) {
+function create_filter_string() {
+    let data = {};
+
+    let row = make_elem("div", ["row", "filter-row"], {});
+    let col = make_elem("div", ["col"], {});
+    let row_2 = make_elem("div", ["row"], {});
+    row.appendChild(col);
+    row.appendChild(row_2);
+    data.div = row;
+
+    let filter_input = make_elem("input",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control", "form-control-sm", "filter-input"],
+        {id: "filter-input-" + filter_id_counter, type: "text", placeholder: "String Filter"}
+    );
+    filter_input.style.marginLeft = "0";
+    filter_id_counter++;
+    col.appendChild(filter_input);
+    data.input_elem = filter_input;
+
+    let trash = make_elem("img", ["delete-filter"], {src: "../media/icons/trash.svg"});
+    trash.addEventListener("click", function() {
+        for (let f of sfilters) {
+            console.log(f.input_elem.value);
+        }
+        sfilters.splice(Array.from(row.parentElement.children).indexOf(row) - 1, 1);
+        console.log(sfilters);
+        row.remove();
+    });
+    col.appendChild(trash);
+
+    let operator = make_elem("input",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control", "form-control-sm", "min-max-input"],
+        {id: "filter-min-input-" + filter_id_counter, type: "textfield", placeholder: "Operator"}
+    );
+    operator.style.marginLeft = "25px";
+    row_2.appendChild(operator);
+    data.operator_elem = operator;
+
+    let value = make_elem("input",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control", "form-control-sm", "min-max-input"],
+        {id: "filter-max-input-" + filter_id_counter, type: "textfield", placeholder: "Value"}
+    );
+    row_2.appendChild(value);
+    data.value_elem = value;
+
+    filter_input.addEventListener('input', function(event) {
+        update_value_filter(event.target.value, data);
+    });
+
+    document.getElementById("string-container").insertBefore(row, document.getElementById("add-string").parentElement);
+    sfilters.push(data);
+    init_filter_dropdown(data, string_item_filters, true);
+    init_string_operator_dropdown(operator);
+}
+
+function init_filter_dropdown(filter, input_filters, is_string = false) {
     let field_choice = filter.input_elem;
     field_choice.onclick = function() {field_choice.dispatchEvent(new Event('input', {bubbles:true}));};
     filter.autoComplete = new autoComplete({
         data: {
-            src: item_filters,
+            src: input_filters,
         },  
         threshold: 0,
         selector: "#" + field_choice.id,
@@ -361,6 +448,9 @@ function init_filter_dropdown(filter) {
                 selection: (event) => {
                     if (event.detail.selection.value) {
                         event.target.value = event.detail.selection.value;
+                        if (is_string) {
+                            update_value_filter(event.detail.selection.value, filter);
+                        }
                     };
                 },
             },
@@ -368,4 +458,102 @@ function init_filter_dropdown(filter) {
     });
 }
 
+function init_string_operator_dropdown(filter) {
+    filter.onclick = function() {filter.dispatchEvent(new Event('input', {bubbles:true}));};
+    filter.autoComplete = new autoComplete({
+        data: {
+            src: Object.keys(operation_mappings),
+        },  
+        threshold: 0,
+        selector: "#" + filter.id,
+        wrapper: false,
+        resultsList: {
+            maxResults: 100,
+            tabSelect: true,
+            noResults: true,
+            class: "search-box dark-7 rounded-bottom px-2 fw-bold dark-shadow-sm",
+            element: (list, data) => {
+                let position = filter.getBoundingClientRect();
+                list.style.top = position.bottom + window.scrollY +"px";
+                list.style.left = position.x+"px";
+                list.style.width = position.width+"px";
+                list.style.maxHeight = position.height * 4 +"px";
+                if (!data.results.length) {
+                    const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
+                    list.prepend(message);
+                };
+            },
+        },
+        resultItem: {
+            class: "scaled-font search-item",
+            selected: "dark-5",
+        },
+        events: {
+            input: {
+                selection: (event) => {
+                    if (event.detail.selection.value) {
+                        event.target.value = event.detail.selection.value;
+                    };
+                },
+            },
+        }
+    });
+}
 
+function init_string_options_dropdown(filter) {
+    filter.onclick = function() {filter.dispatchEvent(new Event('input', {bubbles:true}));};
+    filter.autoComplete = new autoComplete({
+        data: {
+            src: value_filter,
+        },  
+        threshold: 0,
+        selector: "#" + filter.id,
+        wrapper: false,
+        resultsList: {
+            maxResults: 100,
+            tabSelect: true,
+            noResults: true,
+            class: "search-box dark-7 rounded-bottom px-2 fw-bold dark-shadow-sm",
+            element: (list, data) => {
+                let position = filter.getBoundingClientRect();
+                list.style.top = position.bottom + window.scrollY +"px";
+                list.style.left = position.x+"px";
+                list.style.width = position.width+"px";
+                list.style.maxHeight = position.height * 4 +"px";
+                if (!data.results.length) {
+                    const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
+                    list.prepend(message);
+                };
+            },
+        },
+        resultItem: {
+            class: "scaled-font search-item",
+            selected: "dark-5",
+        },
+        events: {
+            input: {
+                selection: (event) => {
+                    if (event.detail.selection.value) {
+                        event.target.value = event.detail.selection.value;
+                    };
+                },
+            },
+        }
+    });
+}
+
+function update_value_filter(input, filter) {
+    let filter_name = string_mappings[input];
+    if (filter_name === undefined) {
+        return; // invalid filter
+    }
+
+    value_filter = [];
+    for (let i = 0; i < items.length; i++) {
+        let value = itemQueryProps[filter_name].resolve(items[i]);
+        if (value && !value_filter.includes(value)) {
+            value_filter.push(value);
+        }
+    }
+    init_string_options_dropdown(filter.value_elem);
+}

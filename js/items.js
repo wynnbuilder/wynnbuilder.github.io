@@ -153,11 +153,21 @@ const special_mappings = {
     "Sum (Elemental Defense Raw)": "eDef+tDef+wDef+fDef+aDef"
 };
 
+const string_mappings = {
+    "Major ID": "majid",
+    "Drop Type": "drop",
+    "Set": "set",
+    "Restriction": "restrict"
+}
+
 for (let x in translate_mappings) {
     item_filters.push(x);
 }
 for (let x in special_mappings) {
     item_filters.push(x);
+}
+for (let x in string_mappings) {
+    string_item_filters.push(x);
 }
 
 types = {bow: false, spear: false, wand: false, dagger: false, relik: false, helmet: false, chestplate: false, leggings: false, boots: false, ring: false, bracelet: false, necklace: false};
