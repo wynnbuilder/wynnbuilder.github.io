@@ -1039,7 +1039,7 @@
               ]
             },
             {
-              "base_abil": "Call of the Hound",
+              "base_abil": "Arrow Shield",
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -1047,7 +1047,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 1.0
+                    "Single Hit": 1.0
                   }
                 }
               ]
@@ -1079,7 +1079,7 @@
               ]
             },
             {
-              "base_abil": "Call of the Hound",
+              "base_abil": "Arrow Shield",
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -1087,7 +1087,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 1.0
+                    "Single Hit": 1.0
                   }
                 }
               ]
@@ -1119,7 +1119,7 @@
               ]
             },
             {
-              "base_abil": "Call of the Hound",
+              "base_abil": "Arrow Shield",
               "effects": [
                 {
                   "type": "add_spell_prop",
@@ -1127,7 +1127,7 @@
                   "target_part": "DPS",
                   "base_spell": 8,
                   "hits": {
-                    "single_hit": 2.66666666667
+                    "Single Hit": 2.66666666667
                   }
                 }
               ]
@@ -2187,20 +2187,10 @@
               "dependencies": [
                 "Armour Breaker"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Armour Breaker",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.ArmourBreaker",
-                      "value": 4
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "potency": 4
+              },
+              "effects": []
             }
           ]
         },
@@ -2213,20 +2203,10 @@
               "dependencies": [
                 "Armour Breaker"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Armour Breaker",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.ArmourBreaker",
-                      "value": 6
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "potency": 6
+              },
+              "effects": []
             }
           ]
         },
@@ -2239,20 +2219,10 @@
               "dependencies": [
                 "Armour Breaker"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Activate Armour Breaker",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "damMult.ArmourBreaker",
-                      "value": 8
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "potency": 8
+              },
+              "effects": []
             }
           ]
         }

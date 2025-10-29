@@ -156499,11 +156499,11 @@
           "xpb": -5
         },
         {
-          "hpBonus": 325,
+          "hpBonus": 650,
           "xpb": 25,
-          "sdPct": 8,
-          "spPct1": -8,
-          "spPct3": -8
+          "sdPct": 15,
+          "spPct1": -15,
+          "spPct3": -15
         }
       ]
     },
@@ -156518,21 +156518,21 @@
         {},
         {
           "hprPct": 5,
-          "thorns": 7,
+          "thorns": 8,
           "hpBonus": 10,
-          "hprRaw": 1
+          "hprRaw": 4
         },
         {
           "hprPct": 12,
-          "thorns": 18,
-          "hpBonus": 20,
-          "hprRaw": 3
+          "thorns": 13,
+          "hpBonus": 25,
+          "hprRaw": 8
         },
         {
           "hprPct": 25,
-          "thorns": 35,
-          "hpBonus": 60,
-          "hprRaw": 7
+          "thorns": 25,
+          "hpBonus": 65,
+          "hprRaw": 15
         }
       ]
     },
@@ -157265,20 +157265,17 @@
       "bonuses": [
         {},
         {
-          "mdPct": 10,
-          "sdPct": 10,
+          "damPct": 10,
           "hpBonus": 50
         },
         {
-          "mdPct": 15,
-          "sdPct": 15,
+          "damPct": 15,
           "spd": 10,
           "hpBonus": 60
         },
         {
-          "mdPct": 20,
-          "sdPct": 20,
-          "sdRaw": 25,
+          "damPct": 20,
+          "damRaw": 25,
           "spd": 20,
           "hpBonus": 75
         }

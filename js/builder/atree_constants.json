@@ -93,6 +93,15 @@
                         0,
                         0
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 0,
+                    "target_part": "Total Damage",
+                    "hits": {
+                        "Single Shot": 1
+                    },
+                    "display": "Total Damage"
                 }
             ]
         },
@@ -199,9 +208,8 @@
                     "base_spell": 0,
                     "target_part": "Total Damage",
                     "hits": {
-                        "Single Shot": 2
-                    },
-                    "display": "Total Damage"
+                        "Single Shot": 1
+                    }
                 }
             ]
         },
@@ -2512,6 +2520,7 @@
             "display_name": "Recycling",
             "desc": "When any of your projectiles miss, gain +0.1 Mana.",
             "archetype": "Boltslinger",
+            "archetype_req": 3,
             "parents": [
                 "Divine Intervention",
                 "Mana Trap"
@@ -2772,7 +2781,7 @@
         {
             "display_name": "Beast Lore",
             "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase the damage of your Hound. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
-            "base_abil": "Call of the Hound",
+            "base_abil": "Arrow Shield",
             "archetype": "Trapper",
             "archetype_req": 7,
             "parents": [
@@ -5207,7 +5216,8 @@
                 "icon": "node_4"
             },
             "properties": {
-                "duration": 8
+                "duration": 8,
+                "potency": 30
             },
             "effects": [
                 {
@@ -5217,7 +5227,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Potion",
-                            "value": 30
+                            "value": "Uppercut.potency"
                         }
                     ]
                 }
