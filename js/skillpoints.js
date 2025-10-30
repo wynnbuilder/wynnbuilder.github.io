@@ -170,16 +170,12 @@ function calculate_skillpoints(equipment, weapon) {
                 let total_applied = _total_applied;
                 let short_circuit = false;
                 for (const {item} of permutation) {
-                    const needed_skillpoints = apply_to_fit(skillpoints, item, has_skillpoint, activeSetCounts);
+                    needed_skillpoints = apply_to_fit(skillpoints, item, has_skillpoint, activeSetCounts);
                     for (let i = 0; i < 5; ++i) {
                         skp = needed_skillpoints[i];
                         skillpoints_applied[i] += skp;
                         skillpoints[i] += skp;
                         total_applied += skp;
-                        if (skillpoints_applied[i] > 100) {
-                            short_circuit = true;
-                            break; // cannot assign >100 ap failure
-                        }
                     }
                     if (total_applied >= best_total) {
                         short_circuit = true;
