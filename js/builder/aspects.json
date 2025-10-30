@@ -5529,6 +5529,11 @@
                       "type": "stat",
                       "name": "damMult.MultiTotem:5.Explosion Damage",
                       "value": -5
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.QTotem:7.Effigy Hit",
+                      "value": -20
                     }
                   ]
                 }
@@ -5577,6 +5582,11 @@
                       "type": "stat",
                       "name": "damMult.MultiTotem:5.Explosion Damage",
                       "value": -5
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.QTotem:7.Effigy Hit",
+                      "value": -20
                     }
                   ]
                 }
@@ -5632,6 +5642,11 @@
                       "type": "stat",
                       "name": "damMult.MultiTotem:5.Explosion Damage",
                       "value": -5
+                    },
+                    {
+                      "type": "stat",
+                      "name": "damMult.QTotem:7.Effigy Hit",
+                      "value": -20
                     }
                   ]
                 }

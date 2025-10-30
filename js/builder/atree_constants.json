@@ -13711,6 +13711,11 @@
                             "type": "stat",
                             "name": "damMult.MultiTotem:5.Explosion Damage",
                             "value": -40
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.DTotem:7.Effigy Hit",
+                            "value": -20
                         }
                     ]
                 }
@@ -14574,6 +14579,11 @@
                             "type": "stat",
                             "name": "damMult.MultiTotem:5.Explosion Damage",
                             "value": -10
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.TTotem:7.Effigy Hit",
+                            "value": -20
                         }
                     ]
                 }
