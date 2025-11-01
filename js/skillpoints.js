@@ -169,7 +169,6 @@ function calculate_skillpoints(equipment, weapon) {
             const {nodes, children} = sccs[idx];
             if (nodes[0] === terminal) {
                 const total = check_end(_applied, _skillpoints, _sets, _total_applied);
-                console.log("Arrive at solution:", _applied, _skillpoints, total)
 
                 const soln_under_100 = check_under_100(_applied);
                 if (best_under_100 && !soln_under_100) {
@@ -223,7 +222,6 @@ function calculate_skillpoints(equipment, weapon) {
             }
         }
         if (sccs.length === 1) {
-            console.log("scc 1");
             // Only crafteds. Just do end check (check req first, then apply sp after)
             const total = check_end(best_skillpoints, final_skillpoints, best_activeSetCounts, allFalse.slice());
             final_skillpoints = best_skillpoints.slice();
