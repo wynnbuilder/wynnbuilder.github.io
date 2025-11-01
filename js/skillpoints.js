@@ -123,6 +123,14 @@ function calculate_skillpoints(equipment, weapon) {
     let final_skillpoints = static_skillpoints_base.slice();
     let best_skillpoints = [0, 0, 0, 0, 0];
     let best_total = Infinity;
+    // Track if we have found a solution that satisfies hard constraints.
+    // Initializing to False allows a sequence of solutions to be found that do not
+    //     satisfy it, but if any solution does satisfy it (even with higher total)
+    //     then we will accept that one instead.
+    // TODO: Do we want to handle guild tome bonuses? (best under 103/(102+102)/(101*5)?)
+    // For now, nah. Let the user apply the guild tome if they really care about optimality
+    // Though really the guild tome might be part of the optimization problem...
+    let best_under_100 = false;
     let best_activeSetCounts = static_activeSetCounts;
 
     let allFalse = [0, 0, 0, 0, 0];
@@ -144,21 +152,38 @@ function calculate_skillpoints(equipment, weapon) {
                     skillpoints[i] += skp;
                     total_applied += skp;
                 }
-                if (best_total < total_applied) { return -1; }
             }
             return total_applied;
+        }
+        
+        function check_under_100(skillpoints) {
+            for (let i = 0; i < 5; ++i) {
+                if (skillpoints[i] > 100) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         function permute_check(idx, _applied, _skillpoints, _sets, _has, _total_applied, order) {
             const {nodes, children} = sccs[idx];
             if (nodes[0] === terminal) {
                 const total = check_end(_applied, _skillpoints, _sets, _total_applied);
-                if (total !== -1 && total < best_total) {
+                console.log("Arrive at solution:", _applied, _skillpoints, total)
+
+                const soln_under_100 = check_under_100(_applied);
+                if (best_under_100 && !soln_under_100) {
+                    // Reject solution if the current best solution satisfies hard constraints.
+                    return;
+                }
+                
+                if (total < best_total) {
                     final_skillpoints = _skillpoints;
                     best_skillpoints = _applied;
                     best_total = total;
                     best_activeSetCounts = _sets;
                     best = order;
+                    best_under_100 = soln_under_100;
                 }
                 return;
             }
@@ -177,9 +202,19 @@ function calculate_skillpoints(equipment, weapon) {
                         skillpoints[i] += skp;
                         total_applied += skp;
                     }
-                    if (total_applied >= best_total) {
-                        short_circuit = true;
-                        break;  // short circuit failure
+                    // Yay for convex objective
+                    if (best_under_100) {
+                        if (total_applied >= best_total) {
+                            short_circuit = true;
+                            break;  // short circuit failure
+                        }
+                    }
+                    else {
+                        const soln_under_100 = check_under_100(skillpoints_applied);
+                        if (!soln_under_100 && total_applied >= best_total) {
+                            short_circuit = true;
+                            break;  // short circuit failure
+                        }
                     }
                     apply_skillpoints(skillpoints, item, activeSetCounts);
                 }
@@ -188,6 +223,7 @@ function calculate_skillpoints(equipment, weapon) {
             }
         }
         if (sccs.length === 1) {
+            console.log("scc 1");
             // Only crafteds. Just do end check (check req first, then apply sp after)
             const total = check_end(best_skillpoints, final_skillpoints, best_activeSetCounts, allFalse.slice());
             final_skillpoints = best_skillpoints.slice();
