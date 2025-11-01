@@ -96,7 +96,8 @@ function calculate_skillpoints(equipment, weapon) {
             crafted.push(item);
         }
         else if (item.get("reqs").every(x => x === 0)) {
-            // All reqless item without -skillpoints.
+            // All reqless items.
+            // Wynncraft seems to require -sp items go before +sp items
             fixed.push(item);
         }
         // TODO hack: We will treat ALL set items as unsafe :(
