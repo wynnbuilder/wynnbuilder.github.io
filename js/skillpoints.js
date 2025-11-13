@@ -172,12 +172,13 @@ function calculate_skillpoints(equipment, weapon) {
                 const total = check_end(_applied, _skillpoints, _sets, _total_applied);
 
                 const soln_under_100 = check_under_100(_applied);
+                console.log(order, _applied, best_under_100, soln_under_100);
                 if (best_under_100 && !soln_under_100) {
                     // Reject solution if the current best solution satisfies hard constraints.
                     return;
                 }
                 
-                if (total < best_total) {
+                if (total < best_total || (soln_under_100 & !best_under_100)) {
                     final_skillpoints = _skillpoints;
                     best_skillpoints = _applied;
                     best_total = total;
