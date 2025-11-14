@@ -21,6 +21,11 @@ def translate_effect(id_data, effect):
         for bonus in effect["bonuses"]:
             if "abil" in bonus and bonus["abil"] in id_data:
                 bonus["abil"] = id_data[bonus["abil"]]
+            if "value" in bonus:
+                val = bonus["value"]
+                if isinstance(val, str):
+                    abil_id, propname = val.split('.')
+                    bonus["value"] = str(id_data[abil_id])+'.'+propname
     elif effect["type"] == "replace_spell":
         for part in effect['parts']:
             translate_spell_part(id_data, part)
@@ -209,7 +214,7 @@ def validate_atree_graph(atree):
     # Pass 2.1: Check node position collisions
     for pos, abils in abil_node_positions.items():
         if len(abils) > 1:
-            abil_names = [f"'{abil['displayName']}'" for abil in abils]
+            abil_names = [f"'{abil['display_name']}'" for abil in abils]
             print(f"ERROR: Position {pos} has multiple abilities! [{', '.join(abil_names)}]")
         
     # Pass 2.2: Check path geometry

@@ -3,8 +3,6 @@
  * but its mostly constants for builder page specifically.
  */
 
-const url_tag = location.hash.slice(1);
-
 const BUILD_VERSION = "7.0.20";
 
 
@@ -60,7 +58,21 @@ let tome_fields = [
     "armorTome3",
     "armorTome4",
     "guildTome1",
-    "lootrunTome1"
+    "lootrunTome1",
+    "gatherXpTome1",
+    "gatherXpTome2", 
+    "dungeonXpTome1", 
+    "dungeonXpTome2", 
+    "mobXpTome1", 
+    "mobXpTome2"
+]
+
+let aspect_fields = [
+    "aspect1",
+    "aspect2",
+    "aspect3",
+    "aspect4",
+    "aspect5",
 ]
 let equipment_names = [
     "Helmet",
@@ -86,6 +98,8 @@ let tome_names = [
 let equipment_inputs = equipment_fields.map(x => x + "-choice");
 let build_fields = equipment_fields.map(x => x+"-tooltip");
 let tomeInputs = tome_fields.map(x => x + "-choice");
+let aspectInputs = aspect_fields.map(x => x + "-choice");
+let aspectTierInputs = aspect_fields.map(x => x + "-tier-choice");
 
 let powder_inputs = [
     "helmet-powder",
@@ -100,7 +114,7 @@ let armor_keys = ['helmet', 'chestplate', 'leggings', 'boots'];
 let accessory_keys= ['ring1', 'ring2', 'bracelet', 'necklace'];
 let powderable_keys = ['helmet', 'chestplate', 'leggings', 'boots', 'weapon'];
 let equipment_keys = ['helmet', 'chestplate', 'leggings', 'boots', 'ring1', 'ring2', 'bracelet', 'necklace', 'weapon'];
-let tome_keys = ['weaponTome1', 'weaponTome2', 'armorTome1', 'armorTome2', 'armorTome3', 'armorTome4', 'guildTome1', 'lootrunTome1'];
+let tome_keys = ['weaponTome1', 'weaponTome2', 'armorTome1', 'armorTome2', 'armorTome3', 'armorTome4', 'guildTome1', 'lootrunTome1', 'gatherXpTome1', 'gatherXpTome2', 'dungeonXpTome1', 'dungeonXpTome2', 'mobXpTome1', 'mobXpTome2'];
 
 let spell_disp = ['build-melee-stats', 'spell0-info', 'spell1-info', 'spell2-info', 'spell3-info'];
 let other_disp = ['build-order', 'set-info', 'int-info'];

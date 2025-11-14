@@ -17,7 +17,13 @@
     "Aspect of Battlement Fortification": 14,
     "Boltslinger's Embodiment of Rended Skies": 15,
     "Sharpshooter's Embodiment of Laser Precision": 16,
-    "Trapper's Embodiment of Persistence Predation": 17
+    "Trapper's Embodiment of Persistence Predation": 17,
+    "Aspect of the Beastmaster": 18,
+    "Aspect of the Steadying Hand": 19,
+    "Aspect of Illegal Explosives": 20,
+    "Aspect of a Thunderbolt": 21,
+    "Aspect of the Iron String": 22,
+    "Aspect of the Heavenly Mandate": 23
   },
   "Warrior": {
     "Aspect of Searing Friction": 0,
@@ -36,7 +42,13 @@
     "Aspect of Skyward Strikes": 13,
     "Paladin's Embodiment of Undying Determination": 14,
     "Fallen's Embodiment of Blind Fury": 15,
-    "Battle Monk's Embodiment of Complete Synchrony": 16
+    "Battle Monk's Embodiment of Complete Synchrony": 16,
+    "Aspect of Seeing Stars": 17,
+    "Aspect of Rekindling": 18,
+    "Aspect of the Berserker": 19,
+    "Aspect of the Tightrope Walk": 20,
+    "Aspect of Maniacal Frisson": 21,
+    "Aspect of Bovine Inspiration": 22
   },
   "Mage": {
     "Aspect of Runic Extravagance": 0,
@@ -55,7 +67,10 @@
     "Aspect of the Savior": 13,
     "Riftwalker's Embodiment of Chronal Control": 14,
     "Light Bender's Embodiment of Celestial Brilliance": 15,
-    "Arcanist's Embodiment of Total Obliteration": 16
+    "Arcanist's Embodiment of Total Obliteration": 16,
+    "Aspect of Manaflux": 17,
+    "Aspect of a Thousand Hours": 18,
+    "Aspect of a Scorching Sun": 19
   },
   "Assassin": {
     "Aspect of Seeking Stars": 0,
@@ -75,7 +90,18 @@
     "Aspect of Redoublement": 14,
     "Acrobat's Embodiment of Gravity Defiance": 15,
     "Trickster's Embodiment of the Ultimate Show": 16,
-    "Shadestepper's Embodiment of Unseen Execution": 17
+    "Shadestepper's Embodiment of Unseen Execution": 17,
+    "Aspect of the Agile Blade": 18,
+    "Aspect of the Pernicious Prankster": 19,
+    "Aspect of Clouded Vision": 20,
+    "Aspect of the Disappearing Act": 21,
+    "Aspect of the Unstoppable Force": 22,
+    "Aspect of Visual Distortion": 23,
+    "Aspect of Flamboyance": 24,
+    "Aspect of Athlethicism": 25,
+    "Aspect of Enduring Illusions": 26,
+    "Trickster's Embodiment of Malevolent Mischief": 27,
+    "Aspect of Athleticism": 28
   },
   "Shaman": {
     "Aspect of Stances": 0,
@@ -93,6 +119,11 @@
     "Aspect of Reverberation": 12,
     "Ritualist's Embodiment of the Ancestral Avatar": 13,
     "Acolyte's Embodiment of Unwavering Adherence": 14,
-    "Summoner's Embodiment of the Omnipotent Overseer": 15
+    "Summoner's Embodiment of the Omnipotent Overseer": 15,
+    "Aspect of Occupation": 16,
+    "Aspect of Summer Storms": 17,
+    "Aspect of Acceleration": 18,
+    "Aspect of Incineration": 19,
+    "Aspect of Empathy": 20
   }
 }

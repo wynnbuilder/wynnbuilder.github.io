@@ -1,3 +1,4 @@
+// NOTE: DO NOT DELETE ENTRIES FROM ARRAYS FOR BACKWARDS COMPAT REASONS!!!
 const ci_save_order = ["name", "lore", "tier", "set", "slots", "type",
 "material", "drop", "quest",
 "nDam", "fDam", "wDam", "aDam", "tDam", "eDam",
@@ -37,15 +38,135 @@ const non_rolled_strings = ["name", "lore", "tier", "set", "type", "material", "
 //omitted category - can always get this from type
 //omitted fixId - we will denote this early in the string.
 //omitted "nDam_", "fDam_", "wDam_", "aDam_", "tDam_", "eDam_" - will be calculated on display
-// NOTE: DO NOT DELETE ENTRIES FROM ARRAYS FOR BACKWARDS COMPAT REASONS!!!
 
 // TODO: Add an exclude list
 
 /**
+ * A constant encompassing all the necessary info for custom item encoding.
+ * if something in this structure changes, the version number must be increased
+ * and handled in the respective decoder.
+ * The values are detailed in ENCODING.md.
+ */
+const CUSTOM_ENC = {
+    CUSTOM_VERSION_BITLEN: 7,
+    CUSTOM_ENCODING_VERSION: 2,
+    CUSTOM_FIXED_IDS_FLAG: {
+        FIXED: 0,
+        RANGED: 1,
+        BITLEN: 1,
+    },
+    ID_IDX_BITLEN: 10,
+    ID_LENGTH_BITLEN: 5,
+    ITEM_TYPE_BITLEN: 4,
+    ITEM_TIER_BITLEN: 4,
+    ITEM_ATK_SPD_BITLEN: 4,
+    ITEM_CLASS_REQ_BITLEN: 4,
+    TEXT_CHAR_LENGTH_BITLEN: 16,
+}
+
+/** Used to encode the text portions of a custom item. */
+const bootstringEncoder = new BootstringEncoder(0, 1, 52, 104, 700, 38, '-');
+
+/**
+ * Encode a custom item and return the resulting vector.
+ *
+ * @param {Custom} custom - The Custom item object ot encode.
+ * @param {boolean} verbose - whether to store some partially redundent fields.
+ */
+function encodeCustom(custom, verbose) {
+    const customVec = new EncodingBitVector(0, 0, CUSTOM_ENC);
+    if (!custom) return customVec;
+
+    // Legacy versions always have their first bit set.
+    customVec.append(0, 1);
+
+    // Encode the encoding version
+    customVec.append(CUSTOM_ENC.CUSTOM_ENCODING_VERSION, CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
+
+    // Encode whether the IDS are fixed or Not
+    let fixedIDs = false;
+    if (custom.statMap.get("fixID") === true) {
+        fixedIDs = true;
+        customVec.appendFlag("CUSTOM_FIXED_IDS_FLAG", "FIXED");
+    } else {
+        customVec.appendFlag("CUSTOM_FIXED_IDS_FLAG", "RANGED");
+    }
+
+    // Encode IDs
+    for (const [i, id] of ci_save_order.entries()) {
+        // TODO(@orgold): make a set from rolledIDs to make this check O(1).
+        // This check occurs frequently accross the codebase and might be expensive.
+        if (rolledIDs.includes(id)) {
+            // Encode rolled IDs
+            let valMin = custom.statMap.get("minRolls").has(id) ? custom.statMap.get("minRolls").get(id) : 0;
+            let valMax = custom.statMap.get("maxRolls").has(id) ? custom.statMap.get("maxRolls").get(id) : 0;
+            if (valMin === 0 && valMax === 0) continue;
+
+            customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN)
+            const minLen = Math.max(1, Math.floor(Math.log2(Math.abs(valMin))) + 2);
+            const maxLen = Math.max(1, Math.floor(Math.log2(Math.abs(valMax))) + 2);
+            const idLen = clamp(minLen, maxLen, 32);
+            const mask = (1 << idLen) - 1
+            customVec.append(idLen - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
+            customVec.append(valMin & mask, idLen);
+            if (!fixedIDs) customVec.append(valMax & mask, idLen);
+        } else {
+            // Encode non-rolled IDs
+            let damages = ["nDam", "eDam", "tDam", "wDam", "fDam", "aDam"];
+            let idVal = custom.statMap.get(id);
+
+            if (id == "majorIds") {
+                if (idVal.length > 0) {
+                    idVal = idVal[0];
+                } else {
+                    idVal = "";
+                }
+            }
+
+            if (typeof idVal === "string" && idVal !== "") {
+                const verboseIDs = ["lore", "majorIds", "quest", "materials", "drop", "set"];
+                if ((damages.includes(id) && idVal === "0-0") || (!verbose && verboseIDs.includes(id))) {
+                    continue;
+                }
+
+                customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
+
+                switch (id) {
+                    case "type": customVec.append(all_types.indexOf(capitalizeFirst(idVal)), CUSTOM_ENC.ITEM_TYPE_BITLEN); break;
+                    case "tier": customVec.append(tiers.indexOf(idVal), CUSTOM_ENC.ITEM_TIER_BITLEN); break;
+                    case "atkSpd": customVec.append(attackSpeeds.indexOf(idVal), CUSTOM_ENC.ITEM_ATK_SPD_BITLEN); break;
+                    case "classReq": customVec.append(classes.indexOf(capitalizeFirst(idVal)), CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN); break;
+                    default: {
+                        const lenMask = (1 << CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) - 1;
+                        const encodedText = bootstringEncoder.encode(idVal);
+                        customVec.append(encodedText.length & lenMask, CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN);
+                        customVec.appendB64(encodedText);
+                        break;
+                    }
+                }
+            } else if (typeof idVal === "number" && idVal != 0) {
+                // Non rolled numeric IDs
+                customVec.append(i, CUSTOM_ENC.ID_IDX_BITLEN);
+                const len = Math.min(32, Math.floor(Math.log2(Math.abs(idVal))) + 2);
+                const mask = (1 << len) - 1;
+                customVec.append(len - 1, CUSTOM_ENC.ID_LENGTH_BITLEN);
+                customVec.append(idVal & mask, len);
+            }
+        }
+    }
+
+    // Pad with zeroes to fit perfectly in a B64 string
+    customVec.append(0, 6 - (customVec.length % 6));
+    return customVec;
+}
+
+/**
+ * Legacy verison of encodeCustom.
+ *
  * @param {Map} custom - the statMap of the CI
  * @param {boolean} verbose - if we want lore and majorIds to display
  */
-function encodeCustom(custom, verbose) {
+function encodeCustomLegacy(custom, verbose) {
     if (custom) {
         if (custom.statMap) {
             custom = custom.statMap;
@@ -121,11 +242,97 @@ function encodeCustom(custom, verbose) {
     return "";
 }
 
+/**
+ * Decode a custom item from a Base64 string representation or a BitVector. 
+ * Falls back to legacy parsing if the hash supplied is a legacy hash, see "getCustomFromHash".
+ *
+ * @param {Object} arg
+ * @param {BitVectorCursor | undefined} arg.cursor - A cursor into a bit vector representing the custom item. 
+ * @param {string | undefined} arg.hash - A Base64 string representation of the custom item.
+ */
+function decodeCustom({cursor: cursor, hash: hash}) {
+    if (cursor === undefined) {
+        if (hash === undefined) throw new Error("decodeCustom must be called with either a hash or a BitVectorCursor.");
+        cursor = new BitVectorCursor(new BitVector(hash, hash.length * 6));
+    }
 
+    const statMap = new Map();
+    statMap.set("hash", "CI-" + cursor.bitVec.sliceB64(cursor.currIdx, cursor.endIdx));
+
+    const legacy = cursor.advance();
+    if (legacy) {
+        if (hash === undefined) throw new Error("Tried to decode legacy encoded item but got binary.");
+        const customItem = getCustomFromHash("CI-" + hash);
+        return customItem;
+    }
+
+    statMap.set("minRolls", new Map())
+    statMap.set("maxRolls", new Map())
+
+    // here for future reference
+    const version = cursor.advanceBy(CUSTOM_ENC.CUSTOM_VERSION_BITLEN);
+
+    let fixedIDs = cursor.advanceBy(CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.BITLEN) === CUSTOM_ENC.CUSTOM_FIXED_IDS_FLAG.FIXED;
+    if (fixedIDs) statMap.set("fixID", true);
+
+    while (cursor.currIdx + CUSTOM_ENC.ID_IDX_BITLEN <= cursor.endIdx) {
+        const id = ci_save_order[cursor.advanceBy(CUSTOM_ENC.ID_IDX_BITLEN)];
+        if (rolledIDs.includes(id)) {
+            // Sign extend the id_len-bit values
+            const idLen = cursor.advanceBy(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
+            const extension = 32 - idLen;
+            const minRoll = (cursor.advanceBy(idLen) << extension) >> extension;
+            if (!fixedIDs) {
+                let maxRoll = (cursor.advanceBy(idLen) << extension) >> extension;
+                statMap.get("minRolls").set(id, minRoll);
+                statMap.get("maxRolls").set(id, maxRoll);
+            } else {
+                statMap.get("minRolls").set(id, minRoll);
+                statMap.get("maxRolls").set(id, minRoll);
+            }
+            continue;
+        }
+
+        let idVal = null;
+
+        if (non_rolled_strings.includes(id)) {
+            switch (id) {
+                case "type": idVal = all_types[cursor.advanceBy(CUSTOM_ENC.ITEM_TIER_BITLEN)]; break;
+                case "tier": idVal = tiers[cursor.advanceBy(CUSTOM_ENC.ITEM_TYPE_BITLEN)]; break;
+                case "atkSpd": idVal = attackSpeeds[cursor.advanceBy(CUSTOM_ENC.ITEM_ATK_SPD_BITLEN)]; break;
+                case "classReq": idVal = classes[cursor.advanceBy(CUSTOM_ENC.ITEM_CLASS_REQ_BITLEN)]; break;
+                default: {
+                    let textLen = cursor.advanceBy(CUSTOM_ENC.TEXT_CHAR_LENGTH_BITLEN) & 0xFFFFFFFF;
+                    const text = cursor.advanceByChars(textLen);
+                    idVal = bootstringEncoder.decode(text); 
+                    break;
+                }
+            }
+        } else {
+            const idLen = cursor.advanceBy(CUSTOM_ENC.ID_LENGTH_BITLEN) + 1;
+            const extension = 32 - idLen;
+            idVal = cursor.advanceBy(idLen) << extension >> extension;
+        }
+        if (id === "majorIds") idVal = [idVal];
+        statMap.set(id, idVal);
+    }
+
+    statMap.set("custom", true);
+    return new Custom(statMap);
+}
+
+/**
+ * Legacy verison of `decodeCustom`.
+ * NOTE: There's an issue with the interaction between powders and custom items
+ * that causes the elemental of the item to change.
+ * to reproduce check out this link and watch Obsolescent Panoply's elemental defenses after each reload: https://wynnbuilder.github.io/builder/#11_02sCI-10000LObsolescent%20Panoply0230401020500G020ee0H010o0J0215k0K010o0L020Fo0M0201D0O010P0P010P0R010Z0S010Z0T01050U01050V011A0t0106P0u013110z0200c2Z150106P160106P170106P180106P190106P2SH2SI2SJ2SK2SL2SM2SN0Qp0g1D0g0g0g1G10003600000z0z0+0+0+0+0-1T2Y2Y2Z2Z2a2a401401401401401
+ *
+ *
+ * @param {string} hash - A Base64 representation of a custom item.
+ */
 function getCustomFromHash(hash) {
     let name = hash.slice();
     let statMap;
-    console.log("decoding");
     try {
         if (name.slice(0, 3) === "CI-") {
             name = name.substring(3);
@@ -200,7 +407,6 @@ function getCustomFromHash(hash) {
                     }
                     if (id === "majorIds") {
                         val = [val];
-                        console.log(val);
                     }
                     statMap.set(id, val);
                 }
@@ -255,7 +461,7 @@ class Custom {
     */
     initCustomStats() {
         //this.setHashVerbose(); //do NOT move sethash from here please
-        console.log(this.statMap);
+        // console.log(this.statMap);
 
         for (const id of ci_save_order) {
             if (rolledIDs.includes(id)) {
@@ -301,7 +507,7 @@ class Custom {
                 this.statMap.set("category", "weapon");
             } else if (consumableTypes.includes(this.statMap.get("type"))) {
                 this.statMap.set("category", "consumable");
-            } else if (tomeTypes.includes(this.statMap.get("type"))) {
+            } else if (tome_types.includes(this.statMap.get("type"))) {
                 this.statMap.set("category", "tome");
             }
         }

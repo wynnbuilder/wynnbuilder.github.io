@@ -89,7 +89,7 @@
             </a>
         </div>
     </div>
-    <div class="container-fluid overall-box mt-lg-2" style="margin-top: 6vh; display: none;">
+    <div class="container-fluid overall-box mt-lg-2" style="margin-top: 6vh;">
         <!-- REMOVE THIS DIV AT SOME POINT. -->
         <div class = "row scaled-font mx-auto" id = "discord-banner-dev">
                 <div id='discord-banner' class = "col text-center item-title">Join the <a class = "link" href = "https://discord.gg/CGavnAnerv" target = "_blank">discord</a> today to suggest new features, submit bug reports, and hangout/talk to devs!</div>
@@ -480,7 +480,7 @@
                                     Vengeful Spirit (+20%)
                                 </button>
                                 <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="fortitude-boost" onclick="update_boosts('fortitude-boost')">
-                                    Fortitude (+50%)
+                                    Fortitude (+40%)
                                 </button>
                             </div>
                             <div class="col" id="boost-toggles">
@@ -645,23 +645,28 @@
                                 <div class="row row-cols-1 row-cols-1 text-center scaled-font dark-5 rounded dark-shadow">
                                     <div class="col fw-bold dark-4 rounded-top">
                                         <div class = "row">
-                                            <div class = "col-3 py-2">
+                                            <div class = "col py-2">
                                                 <button class = "col-auto button rounded scaled-font fw-bold text-light dark-5" id = "toggle-tomes" onclick = "toggle_tab('tomes-dropdown'); toggleButton('toggle-tomes')">
                                                     Tomes
                                                 </button>
                                             </div>
-                                            <div class = "col-3 py-2">
+                                            <div class = "col py-2">
                                                 <button class = "col-auto button rounded scaled-font fw-bold text-light dark-5" id = "toggle-atree" onclick = "toggle_tab('atree-dropdown'); toggleButton('toggle-atree')">
                                                     Ability Tree
                                                 </button>
                                             </div>
-                                            <div class = "col-3 py-2">
+                                            <div class = "col py-2">
+                                                <button class = "col-auto button rounded scaled-font fw-bold text-light dark-5" id = "toggle-aspects" onclick = "toggle_tab('aspects-dropdown'); toggleButton('toggle-aspects')">
+                                                    Edit Aspects
+                                                </button>
+                                            </div>
+                                            <div class = "col py-2">
                                                 <button class = "button rounded scaled-font fw-bold text-light dark-5" id = "edit-ID-button" onclick = "toggle_tab('edit_id_tab'); toggleButton('edit-ID-button')">
                                                     IDs
                                                 </button>
                                             </div>
-                                            <div class = "col-3 py-2">
-                                                <button class = "button rounded scaled-font fw-bold text-light dark-5" id = "edit-ID-button" onclick = "resetEditableIDs();">
+                                            <div class = "col py-2">
+                                                <button class = "button rounded scaled-font fw-bold text-light dark-5" id = "reset-edit-ID-button" onclick = "resetEditableIDs();">
                                                     Reset IDs
                                                 </button>
                                             </div>
@@ -814,6 +819,150 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='gatherXpTome1-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="gatherXpTome1-img-loc">
+                                                        <div id="gatherXpTome1-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Marathon
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="gatherXpTome1-choice" name="gatherXpTome1-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='gatherXpTome2-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="gatherXpTome2-img-loc">
+                                                        <div id="gatherXpTome2-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Marathon
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="gatherXpTome2-choice" name="gatherXpTome2-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='dungeonXpTome1-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="dungeonXpTome1-img-loc">
+                                                        <div id="dungeonXpTome1-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Mysticism
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="dungeonXpTome1-choice" name="dungeonXpTome1-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='dungeonXpTome2-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="dungeonXpTome2-img-loc">
+                                                        <div id="dungeonXpTome2-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Mysticism
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="dungeonXpTome2-choice" name="dungeonXpTome2-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='mobXpTome1-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="mobXpTome1-img-loc">
+                                                        <div id="mobXpTome1-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Expertise
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="mobXpTome1-choice" name="mobXpTome1-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 dark-shadow rounded" id='mobXpTome2-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="mobXpTome2-img-loc">
+                                                        <div id="mobXpTome2-img" class="img-fluid rounded tome-image"></div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Expertise
+                                                            </div>
+                                                            <div class="col scaled-font fw-bold gx-3">
+                                                                Tome
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col g-0 rounded">
+                                                        <div class="row row-cols-1 h-100 align-items-center">
+                                                            <div class="col d-flex justify-content-end">
+                                                                <input class="equipment-input border-dark text-light dark-10 rounded scaled-font form-control form-control-sm" id="mobXpTome2-choice" name="mobXpTome2-choice" placeholder="No Tome" value=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
                                                 <div class="row h-100 dark-shadow rounded" id='guildTome1-dropdown'>
                                                     <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="guildTome1-img-loc">
                                                         <div id="guildTome1-img" class="img-fluid rounded tome-image"></div>
@@ -874,6 +1023,90 @@
                                                 <div class="col mx-auto" style="" id="atree-warning">
                                                 </div>
                                                 <div class="col mx-auto" style="overflow-y: auto;" id="atree-active">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "col dark-6 rounded-bottom my-3 my-xl-1" id = "aspects-dropdown" style = "display: none;">
+                                        <div class="row h-100 row-cols-2 row-cols-xl-2 gy-2 rounded">
+                                            <div class="col-auto rounded">
+                                                <div class="row h-100 rounded align-items-center" id='aspect1-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="aspect1-img-loc">
+                                                        <div id="aspect1-img" class="img-fluid rounded aspect-image"></div>
+                                                    </div>
+                                                    <div class="col-3 scaled-font fw-bold gx-3">
+                                                        Aspect 1
+                                                    </div>
+                                                    <div class="col-5 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" id="aspect1-choice" name="aspect1-choice" placeholder="No Aspect" value=""/>
+                                                    </div>
+                                                    <div class="col-2 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" type="number" id="aspect1-tier-choice" name="aspect1-tier-choice" placeholder="Tier" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row row-cols-2 h-100 rounded align-items-center" id='aspect2-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="aspect2-img-loc">
+                                                        <div id="aspect2-img" class="img-fluid rounded aspect-image"></div>
+                                                    </div>
+                                                    <div class="col-3 scaled-font fw-bold gx-3">
+                                                        Aspect 2
+                                                    </div>
+                                                    <div class="col-5 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" id="aspect2-choice" name="aspect2-choice" placeholder="No Aspect" value=""/>
+                                                    </div>
+                                                    <div class="col-2 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" type="number" id="aspect2-tier-choice" name="aspect2-tier-choice" placeholder="Tier" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row row-cols-1 h-100 rounded align-items-center" id='aspect3-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="aspect3-img-loc">
+                                                        <div id="aspect3-img" class="img-fluid rounded aspect-image"></div>
+                                                    </div>
+                                                    <div class="col-3 scaled-font fw-bold gx-3">
+                                                        Aspect 3
+                                                    </div>
+                                                    <div class="col-5 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" id="aspect3-choice" name="aspect3-choice" placeholder="No Aspect" value=""/>
+                                                    </div>
+                                                    <div class="col-2 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" type="number" id="aspect3-tier-choice" name="aspect3-tier-choice" placeholder="Tier" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row row-cols-2 h-100 rounded align-items-center" id='aspect4-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="aspect4-img-loc">
+                                                        <div id="aspect4-img" class="img-fluid rounded aspect-image"></div>
+                                                    </div>
+                                                    <div class="col-3 scaled-font fw-bold gx-3">
+                                                        Aspect 4
+                                                    </div>
+                                                    <div class="col-5 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" id="aspect4-choice" name="aspect4-choice" placeholder="No Aspect" value=""/>
+                                                    </div>
+                                                    <div class="col-2 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" type="number" id="aspect4-tier-choice" name="aspect4-tier-choice" placeholder="Tier" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto rounded">
+                                                <div class="row row-cols-2 h-100 rounded align-items-center" id='aspect5-dropdown'>
+                                                    <div class="col-auto g-0 rounded-end my-auto text-center scaled-item-icon" id="aspect5-img-loc">
+                                                        <div id="aspect5-img" class="img-fluid rounded aspect-image"></div>
+                                                    </div>
+                                                    <div class="col-3 scaled-font fw-bold gx-3">
+                                                        Aspect 5
+                                                    </div>
+                                                    <div class="col-5 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" id="aspect5-choice" name="aspect5-choice" placeholder="No Aspect" value=""/>
+                                                    </div>
+                                                    <div class="col-2 rounded gx-0">
+                                                        <input class="aspect-input text-light rounded scaled-font form-control form-control-sm" type="number" id="aspect5-tier-choice" name="aspect5-tier-choice" placeholder="Tier" value=""/>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1339,14 +1572,12 @@
         </div>
     </div>
     
+    <script type="text/javascript" src="../js/redirect_fork.js"></script>
     <script src="/thirdparty/autoComplete.min.js"></script>
     <script src="/thirdparty/macy@2"></script>
     <script type="text/javascript" src="../js/utils.js"></script>
     <script type="text/javascript" src="../js/build_utils.js"></script>
-
     <script type="text/javascript" src="../js/computation_graph.js"></script>
-    <script type="text/javascript">COMPUTE_GRAPH_DEBUG=true</script>
-
     <script type="text/javascript" src="../js/icons.js"></script>
     <script type="text/javascript" src="../js/powders.js"></script>
     <script type="text/javascript" src="../js/skillpoints.js"></script>
@@ -1357,12 +1588,14 @@
     <script type="text/javascript" src="../js/load_item.js"></script>
     <script type="text/javascript" src="../js/load_ing.js"></script>
     <script type="text/javascript" src="../js/load_tome.js"></script>
+    <script type="text/javascript" src="../js/load_aspect.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script> 
     <script type="text/javascript" src="../js/craft.js"></script>  
     <script type="text/javascript" src="../js/builder/build.js"></script>
     <script type="text/javascript" src="../js/builder/builder_constants.js"></script>
     <script type="text/javascript" src="../js/builder/build_encode_decode.js"></script>
     <script type="text/javascript" src="../js/builder/atree.js"></script>
+    <script type="text/javascript" src="../js/builder/aspects.js"></script>
     <script type="text/javascript" src="../js/builder/builder_graph.js"></script>
     <script type="text/javascript" src="../js/builder/builder.js"></script>
     <!--script type="text/javascript" src="../js/builder/optimize.js"></script-->

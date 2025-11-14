@@ -37,7 +37,7 @@ function displaySetBonuses(parent_id,build) {
         
         const bonus = active_set.bonuses[count-1];
         let mock_item = new Map([["fixID", true],
-                                 ["displayName", setName+" Set: "+count+"/"+sets.get(setName).items.length]]);
+                                 ["displayName", setName+" Set: "+count+"/"+sets.get(setName).bonuses.length]]);
         let mock_minRolls = new Map();
         let mock_maxRolls = new Map();
         mock_item.set("minRolls", mock_minRolls);
@@ -117,20 +117,66 @@ function displayBuildStats(parent_id,build,command_group,stats){
                     style === "positive" ? style = "negative" : style = "positive"; 
                 }
                 displayFixedID(parent_div, id, id_val, elemental_format, style);
-                if (id === "ls" && id_val != 0) {
-                    let row = make_elem('div', ['row']);
-                    let value_elem = make_elem('div', ['col', 'text-end']);
+                if (id_val != 0) {
+                    if(id === "ls"){
+                        {
+                            let row = make_elem('div', ['row']);
+                            let value_elem = make_elem('div', ['col', 'text-end']);
 
-                    let prefix_elem = make_elem('b', [], {textContent: "\u279C Effective LS: "});
+                            let prefix_elem = make_elem('b', [], {textContent: "\u279C Effective LS: "});
 
-                    let defStats = getDefenseStats(stats);
-                    let number_elem = make_elem('b', [style], {
-                        textContent: Math.round(defStats[1][0]*id_val/defStats[0]) + "/3s"
-                    });
-                    value_elem.append(prefix_elem);
-                    value_elem.append(number_elem);
-                    row.appendChild(value_elem);
-                    parent_div.appendChild(row);
+                            let defStats = getDefenseStats(stats);
+                            let number_elem = make_elem('b', [style], {
+                                textContent: Math.round(defStats[1][0]*id_val/defStats[0]) + "/3s"
+                            });
+                            value_elem.append(prefix_elem);
+                            value_elem.append(number_elem);
+                            row.appendChild(value_elem);
+                            parent_div.appendChild(row);
+                        }
+                        {
+                            let row = make_elem('div', ['row']);
+                            let value_elem = make_elem('div', ['col', 'text-end']);
+        
+                            let prefix_elem = make_elem('b', [], {textContent: "\u279C Life per hit: "});
+        
+                            let adjAtkSpd = attackSpeeds.indexOf(stats.get("atkSpd")) + stats.get("atkTier");
+                            if(adjAtkSpd > 6) {
+                                adjAtkSpd = 6;
+                            } else if(adjAtkSpd < 0) {
+                                adjAtkSpd = 0;
+                            }
+
+                            let number_elem = make_elem('b', [style], {
+                                textContent: Math.round(id_val/3.0/baseDamageMultiplier[adjAtkSpd])
+                            });
+                            value_elem.append(prefix_elem);
+                            value_elem.append(number_elem);
+                            row.appendChild(value_elem);
+                            parent_div.appendChild(row);
+                        }
+                    }
+                    else if (id == "ms"){
+                        let row = make_elem('div', ['row']);
+                        let value_elem = make_elem('div', ['col', 'text-end']);
+    
+                        let prefix_elem = make_elem('b', [], {textContent: "\u279C Mana per hit: "});
+    
+                        let adjAtkSpd = attackSpeeds.indexOf(stats.get("atkSpd")) + stats.get("atkTier");
+                        if(adjAtkSpd > 6) {
+                            adjAtkSpd = 6;
+                        } else if(adjAtkSpd < 0) {
+                            adjAtkSpd = 0;
+                        }
+
+                        let number_elem = make_elem('b', [style], {
+                            textContent: Math.round(id_val/3.0/baseDamageMultiplier[adjAtkSpd]*10)/10
+                        });
+                        value_elem.append(prefix_elem);
+                        value_elem.append(number_elem);
+                        row.appendChild(value_elem);
+                        parent_div.appendChild(row);
+                    }
                 }
                 last_command = command;
             }
@@ -210,8 +256,8 @@ function displayExpandedItem(item, parent_id){
                     
                     let powders = item.get("powders");
                     for (let i = 0; i < powders.length; i++) {
-                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i]/6)+1]+"_powder"], {
-                            textContent: numerals.get((powders[i]%6)+1)+" "
+                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i]/POWDER_TIERS)+1]+"_powder"], {
+                            textContent: numerals.get((powders[i]%POWDER_TIERS)+1)+" "
                         }));
                     }
 
@@ -222,9 +268,11 @@ function displayExpandedItem(item, parent_id){
 
                     parent_div.appendChild(make_elem("div", ["col"], { textContent: "Set: " + item.get(id).toString() }));
                 } else if (id === "majorIds") {
-                    //console.log(item.get(id));
                     for (let major_id_str of item.get(id)) {
                         if (major_id_str in MAJOR_IDS) {
+                            if(MAJOR_IDS[major_id_str].hidden)
+                               continue;
+
                             let major_id_info = MAJOR_IDS[major_id_str];
                             major_id_str = `+${major_id_info.displayName}: ${major_id_info.description}`;
                         }
@@ -240,6 +288,13 @@ function displayExpandedItem(item, parent_id){
                             title_elem.textContent = name;
                             b_elem.classList.add("Crafted");
                             b_elem.textContent = mid;
+                            b_elem.innerHTML = b_elem.innerHTML
+                                .replaceAll("[neutral]", "<span class='Neutral'></span>")
+                                .replaceAll("[earth]", "<span class='Earth'></span>")
+                                .replaceAll("[thunder]", "<span class='Thunder'></span>")
+                                .replaceAll("[water]", "<span class='Water'></span>")
+                                .replaceAll("[fire]", "<span class='Fire'></span>")
+                                .replaceAll("[air]", "<span class='Air'></span>");
                             p_elem.appendChild(title_elem);
                             p_elem.appendChild(b_elem);
                         } else {
@@ -858,6 +913,68 @@ function displayExpandedIngredient(ingred, parent_id) {
     }    
 }
 
+function displayExpandedSet(set_name, set_value, parent_id, shown_tier){
+    let display_commands = sq2_item_display_commands;
+
+    // Clear the parent div.
+    setHTML(parent_id, "");
+    let parent_div = document.getElementById(parent_id);
+    parent_div.classList.add("border", "border-2", "border-dark");
+    
+    let last_command;
+    let elemental_format = false;
+
+    for (let i = 0; i < display_commands.length; i++) {
+        const command = display_commands[i];
+        if (command.charAt(0) === "!") {
+            if (command === "!elemental") {
+                elemental_format = !elemental_format;
+            }
+            else if (command === "!spacer" && last_command !== "!spacer") {
+                let spacer = make_elem('div', ["row", "my-2"], {});
+                parent_div.appendChild(spacer);
+                last_command = command;
+                continue;
+            }
+        }
+        else {
+            let id = command;
+            let div = document.createElement("div");
+            div.classList.add("row");
+
+            if (command === "displayName") {
+                div.classList.add("box-title", "justify-content-center");
+                let title_elem = document.createElement("a");
+                title_elem.classList.add("col-auto", "text-center", "justify-content-center", "pr-1");
+                title_elem.textContent = set_name + " Set: " + (shown_tier + 1) + "/" + set_value.bonuses.length;
+                title_elem.href = "../items_adv/?f=set=\""+set_name+"\"";
+                div.appendChild(title_elem);
+            }
+            else if (nonRolledIDs.includes(id) || rolledIDs.includes(id)) {
+                if (set_value.bonuses[shown_tier] === undefined || set_value.bonuses[shown_tier][id] === undefined)
+                    continue;
+
+                let style = "positive";
+                if (set_value.bonuses[shown_tier][id] < 0) {
+                    style = "negative";
+                }
+                if(reversedIDs.includes(id)){
+                    style === "positive" ? style = "negative" : style = "positive"; 
+                }
+                p_elem = document.createElement("div");
+                p_elem.classList.add("col", "text-nowrap");
+                displayFixedID(p_elem, id, set_value.bonuses[shown_tier][id], elemental_format, style);
+                parent_div.appendChild(p_elem);
+                last_command = id;
+            }
+            parent_div.appendChild(div);
+        }
+    }
+    let change_tier = make_elem('button', ["button", "row", "row-cols-1", "rounded", "dark-5", "text-light", "fw-bold"], {textContent:"Next Tier"});
+    change_tier.onclick = function() {displayExpandedSet(set_name, set_value, parent_id, (shown_tier+1) % set_value.bonuses.length)};
+    parent_div.appendChild(change_tier);
+}
+
 function displayNextCosts(_stats, spell, spellIdx) { 
     let stats = new Map(_stats);
     let intel = stats.get('int');
@@ -1294,17 +1411,18 @@ function displayPowderSpecials(parent_elem, powderSpecials, stats, weapon) {
                 let critAverage = (totalDamCrit[0]+totalDamCrit[1])/2 || 0;
                 let averageDamage = (1-critChance)*nonCritAverage+critChance*critAverage || 0;
 
-                let averageWrap = document.createElement("p");
-                let averageLabel = document.createElement("span");
-                averageLabel.textContent = "Average: ";
-                
-                let averageLabelDmg = document.createElement("span");
-                averageLabelDmg.classList.add("Damage");
-                averageLabelDmg.textContent = averageDamage.toFixed(2);
+                let averageLabel = document.createElement("p");
+                averageLabel.innerHTML = "Average: <span class='Damage'>" + averageDamage.toFixed(2) + "</span>";
 
-                averageWrap.appendChild(averageLabel);
-                averageWrap.appendChild(averageLabelDmg);
-                specialDamage.appendChild(averageWrap);
+                let critAverageLabel = document.createElement("p");
+                critAverageLabel.innerHTML = "Crit Average: <span class='Damage'>" + critAverage.toFixed(2) + "</span>";
+
+                let nonCritAverageLabel = document.createElement("p");
+                nonCritAverageLabel.innerHTML = "Non-Crit Average: <span class='Damage'>" + nonCritAverage.toFixed(2) + "</span>";
+
+                specialDamage.appendChild(averageLabel);
+                specialDamage.appendChild(critAverageLabel);
+                specialDamage.appendChild(nonCritAverageLabel);
                 
                 specialEffects.append(specialDamage);
             }
@@ -1400,6 +1518,23 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
             let nonCritAverage = (totalDamNormal[0]+totalDamNormal[1])/2 || 0;
             let critAverage = (totalDamCrit[0]+totalDamCrit[1])/2 || 0;
             let averageDamage = (1-critChance)*nonCritAverage+critChance*critAverage || 0;
+
+            if ('multipliers' in spell_info) {
+                let multipliersLabel = make_elem("p", [], {});
+                let totalMultiplier = 0;
+                for (let i = 0; i < 6; i++) {
+                    if (spell_info.multipliers[i] <= 0)
+                        continue;
+
+                    totalMultiplier += spell_info.multipliers[i]
+                    multipliersLabel.innerHTML += "<span class='" + damageClasses[i] + "'>" + Math.round(spell_info.multipliers[i]*10)/10 +"%</span> "
+                }
+                multipliersLabel.innerHTML += "<span class='mc-gray'>(" + Math.round(totalMultiplier*10)/10 +"%)</span> "
+
+                if ('is_spell' in spell_info)
+                    multipliersLabel.innerHTML += spell_info.is_spell ? " Spell" : " Melee"
+                part_div.append(multipliersLabel);
+            }
 
             let averageLabel = make_elem("p", [], { textContent: "Average: "+averageDamage.toFixed(2) });
             // averageLabel.classList.add("damageSubtitle");

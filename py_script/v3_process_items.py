@@ -211,7 +211,10 @@ for tome in tomes:
 
 tome_value_map = {}
 for item in old_items:
-    if item["name"] not in known_item_names:
+    if "persistent" in item:
+        print(f'Old API hidden item: {item["name"]}')
+        items.append(item)
+    elif item["name"] not in known_item_names:
         print(f'Unknown old item: {item["name"]}!!!')
 for ingred in old_ingreds:
     if ingred["name"] not in known_ingred_names:
@@ -227,13 +230,36 @@ with open(major_ids_filename, 'r') as major_ids_file:
     major_ids_map = json.load(major_ids_file)
     major_ids_reverse_map = { v['displayName'] : k for k, v in major_ids_map.items() }
 
+replace_strings = {
+    "\ue005": "[neutral]", # Neutral just says "Damage"
+    "\ue004": "[water]", # Water
+    "\ue003": "[thunder]", # Thunder
+    "\ue002": "[fire]", # Fire
+    "\ue001": "[earth]", # Earth
+    "\ue000": "[air]", # Air
+}
+
+attack_speed_dict = {
+    "SUPERSLOW": "SUPER_SLOW",
+    "VERYSLOW": "VERY_SLOW",
+    "VERYFAST": "VERY_FAST",
+    "SUPERFAST": "SUPER_FAST"
+}
+
 for item in items:
     # NOTE: HACKY ITEM FIXES!
     if 'majorIds' in item:
         majorIds = []
         for majid_name, majid_desc in item['majorIds'].items():
-            if majid_name not in major_ids_reverse_map:
+            if ':' in majid_desc:
                 desc = re.sub('<[^<]+?>', '', majid_desc).split(':', 2)[1].strip()
+            else:
+                print(f'Hidden Major ID: {majid_name}')
+
+            for k, v in replace_strings.items():
+                desc = re.sub(k, v, desc)
+
+            if majid_name not in major_ids_reverse_map:
                 caps_name = majid_name.upper().replace(' ', '_')
                 caps_name = re.sub('[^0-9A-Z_]', '', caps_name)
                 major_ids_map[caps_name] = {
@@ -243,10 +269,15 @@ for item in items:
                 }
                 print(f'New Major ID: {majid_name} ({caps_name})')
                 major_ids_reverse_map[majid_name] = caps_name
+            else:
+                major_ids_map[major_ids_reverse_map[majid_name]]['description'] = desc
             majorIds.append(major_ids_reverse_map[majid_name])
         item['majorIds'] = majorIds
     if item['tier'] == 'Common':
         item['tier'] = 'Normal'
+
+    if 'atkSpd' in item and item['atkSpd'] in attack_speed_dict:
+        item['atkSpd'] = attack_speed_dict[item['atkSpd']]
 
     if not (item["name"] in id_map):
         while max_id in used_ids:
@@ -260,6 +291,9 @@ for ingred in ingreds:
     # HACKY ING FIXES!
     ingred['itemIDs']['dura'] = int(ingred['itemIDs']['dura'] / 1000)
     ingred['skills'] = [x.upper() for x in ingred['skills']]
+    if 'posMods' in ingred:
+        if 'not_touching' in ingred['posMods']:
+            ingred['posMods']['notTouching'] = ingred['posMods'].pop('not_touching')
     if 'ids' not in ingred:
         ingred['ids'] = dict()
         print(f"ing missing 'ids': {ingred['name']}")
@@ -301,7 +335,7 @@ with open("../tome_map.json","w") as tome_map_file:
 with open('item_out.json', "w") as out_file:
     json.dump(old_data, out_file, ensure_ascii=False, separators=(',', ':'))
 
-with open('majid_out.json', 'w') as major_ids_outfile:
+with open('../js/builder/major_ids_clean.json', 'w') as major_ids_outfile:
     json.dump(major_ids_map, major_ids_outfile, ensure_ascii=False, indent=4)
 
 with open('ing_out.json', "w") as out_file:

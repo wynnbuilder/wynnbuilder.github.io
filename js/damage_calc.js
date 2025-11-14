@@ -28,7 +28,7 @@ function get_base_dps(item) {
 }
 
 
-function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ignore_speed=false, part_filter=undefined) {
+function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ignore_speed=false, part_filter=undefined, ignore_str=false, ignored_mults=[]) {
     // TODO: Roll all the loops together maybe
 
     // Array of neutral + ewtfa damages. Each entry is a pair (min, max).
@@ -40,14 +40,14 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
     else {
         weapon_damages = damage_keys.map(x => weapon.get(x));
     }
-    let present = deepcopy(weapon.get(damage_present_key));
+    let present = structuredClone(weapon.get(damage_present_key));
 
     // Also theres prop and rainbow!!
     const damage_elements = ['n'].concat(skp_elements); // netwfa
 
     // 2. Conversions.
     // 2.0: First, modify conversions.
-    let conversions = deepcopy(_conversions);
+    let conversions = structuredClone(_conversions);
     if (part_filter !== undefined) {
         const conv_postfix = ':'+part_filter;
         for (let i in damage_elements) {
@@ -139,8 +139,8 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
         if (i > 0) {
             damageBoost += (stats.get('r'+specific_boost_str+'Pct') + stats.get('rDamPct')) / 100;
         }
-        damages[i][0] *= Math.max(damageBoost, 0);
-        damages[i][1] *= Math.max(damageBoost, 0);
+        damages[i][0] *= damageBoost;
+        damages[i][1] *= damageBoost;
         // Collect total damage post %boost
     }
 
@@ -188,12 +188,16 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
 
     // 6. Strength boosters
     // str/dex, as well as any other mutually multiplicative effects
-    let strBoost = 1 + skill_boost[1];
+    let strBoost = ignore_str ? 1 : 1 + skill_boost[1];
     let total_dam_norm = [0, 0];
     let total_dam_crit = [0, 0];
     let damages_results = [];
     const mult_map = stats.get("damMult");
     let damage_mult = 1;
+
+    let ele_damage_mult = [1, 1, 1, 1, 1, 1];
+    let multiplied_conversions = conversions;
+
     for (const [k, v] of mult_map.entries()) {
         if (k.includes(':')) {
             // TODO: fragile... checking for specific part multipliers.
@@ -202,10 +206,27 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
                 continue;
             }
         }
-        damage_mult *= (1 + v/100);
-    }
+        if (ignored_mults.includes(k)) {
+            continue;
+        }
 
-    const crit_mult = 1+(stats.get("critDamPct")/100);
+        if (k.includes(';')) {
+            const ele_match = damage_elements.indexOf(k.split(';')[1]);
+            if (ele_match !== -1) {
+                ele_damage_mult[ele_match] *= (1 + v/100);
+            }
+        }
+        else {
+            damage_mult *= (1 + v/100);
+        }
+    }
+    const crit_mult = ignore_str ? 0 : 1+(stats.get("critDamPct")/100);
+
+    for (let i in damage_elements) {
+        damages[i][0] *= ele_damage_mult[i];
+        damages[i][1] *= ele_damage_mult[i];
+        multiplied_conversions[i] *= ele_damage_mult[i] * damage_mult;
+    }
 
     for (const damage of damages) {
         if(damage[0] < 0) damage[0] = 0;
@@ -224,7 +245,7 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
         total_dam_crit[1] += res[3];
     }
 
-    return [total_dam_norm, total_dam_crit, damages_results];
+    return [total_dam_norm, total_dam_crit, damages_results, multiplied_conversions];
 }
 
 /*

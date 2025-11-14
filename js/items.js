@@ -33,10 +33,10 @@ const translate_mappings = {
     "Req Intelligence": "intReq",
     "Req Agility": "agiReq",
     "Req Defense": "defReq",
-    "% Health Regen": "hprPct",
+    "Health Regen %": "hprPct",
     "Mana Regen": "mr",
-    "% Spell Damage": "sdPct",
-    "% Melee Damage": "mdPct",
+    "Spell Damage %": "sdPct",
+    "Melee Damage %": "mdPct",
     "Life Steal": "ls",
     "Mana Steal": "ms",
     "XP Bonus": "xpb",
@@ -106,12 +106,12 @@ const translate_mappings = {
     "Air Damage %": "aDamPct",
     "Critical Damage Bonus %": "critDamPct",
 
-    "% Fire Defense": "fDefPct",
-    "% Water Defense": "wDefPct",
-    "% Air Defense": "aDefPct",
-    "% Thunder Defense": "tDefPct",
-    "% Earth Defense": "eDefPct",
-    "% Elemental Defense": "rDefPct",
+    "Fire Defense %": "fDefPct",
+    "Water Defense %": "wDefPct",
+    "Air Defense %": "aDefPct",
+    "Thunder Defense %": "tDefPct",
+    "Earth Defense %": "eDefPct",
+    "Elemental Defense %": "rDefPct",
 
     "1st Spell Cost %": "-spPct1",
     "1st Spell Cost Raw": "-spRaw1",
@@ -133,27 +133,41 @@ const translate_mappings = {
     "Slow Enemy": "slowEnemy",
     "Max Mana": "maxMana",
     "Main Attack Range": "mainAttackRange",
-    "Release Order": "id"
+    "Release Order": "id",
+    "Attack Speed Tier": "atkspd"
 };
 
 const special_mappings = {
-    "Sum (skill points)": "str+dex+int+def+agi",
+    "Sum (Skill Points)": "str+dex+int+def+agi",
     "Sum (Mana Sustain)": "mr/5+ms/3",
     "Sum (Life Sustain)": "hpr+ls",
     "Sum (Health + Health Bonus)": "hp+hpBonus",
-    "Base DPS": "(nDam+fDam+wDam+aDam+tDam+eDam) * atkspdmod(atkspd)",
+    "Sum (Base Damage)": "sumdmg",
+    "Base DPS (Pre-Powder)": "sumdmg * atkspdmod(atkspd)",
+    "Base DPS (Post-Powder)": "(sumdmg+powders*11.5) * atkspdmod(atkspd)",
     "Sum (Melee Damages Raw)": "mdRaw+rMdRaw+nMdRaw+eMdRaw+tMdRaw+wMdRaw+fMdRaw+aMdRaw",
     "Sum (Spell Damages Raw)": "sdRaw+rSdRaw+nSdRaw+eSdRaw+tSdRaw+wSdRaw+fSdRaw+aSdRaw",
     "Sum (All Damages Raw)": "damRaw+rDamRaw+nDamRaw+eDamRaw+tDamRaw+wDamRaw+fDamRaw+aDamRaw",
     "Sum (Spell Damages %)": "sdPct+eSdPct+tSdPct+wSdPct+fSdPct+aSdPct+nSdPct+rSdPct",
-    "Sum (Melee Damages %)": "mdPct+eMdPct+tMdPct+wMdPct+fMdPct+aMdPct+nMdPct+rMdPct"
+    "Sum (Melee Damages %)": "mdPct+eMdPct+tMdPct+wMdPct+fMdPct+aMdPct+nMdPct+rMdPct",
+    "Sum (Elemental Defense Raw)": "eDef+tDef+wDef+fDef+aDef"
 };
+
+const string_mappings = {
+    "Major ID": "majid",
+    "Drop Type": "drop",
+    "Set": "set",
+    "Restriction": "restrict"
+}
 
 for (let x in translate_mappings) {
     item_filters.push(x);
 }
 for (let x in special_mappings) {
     item_filters.push(x);
+}
+for (let x in string_mappings) {
+    string_item_filters.push(x);
 }
 
 types = {bow: false, spear: false, wand: false, dagger: false, relik: false, helmet: false, chestplate: false, leggings: false, boots: false, ring: false, bracelet: false, necklace: false};
@@ -221,7 +235,7 @@ function filter_types_tiers(queries) {
 }
 
 function init_values() {
-    search_db = items.filter( i => ! i.remapID ).map( i => [i, expandItem(i, [])] );
+    search_db = items.filter( i => ! i.remapID ).map( i => [i, expandItem(i)] );
     expr_parser = new ExprParser(itemQueryProps, queryFuncs);
 }
 

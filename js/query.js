@@ -95,14 +95,15 @@ const itemQueryProps = (function() {
   prop('name', 'string', (i, ie) => i.displayName || i.name);
   prop('lore', 'string', (i, ie) => i.lore || "");
   prop('type', 'string', (i, ie) => i.type);
+  prop('set', 'string', (i, ie) => i.set || "");
   prop(['cat', 'category'], 'string', (i, ie) => i.category);
   const tierIndices = { Normal: 0, Unique: 1, Set: 2, Rare: 3, Legendary: 4, Fabled: 5, Mythic: 6 };
   prop(['rarityname', 'raritystr', 'tiername', 'tierstr'], 'string', (i, ie) => i.tier);
   prop(['rarity', 'tier'], 'number', (i, ie) => tierIndices[i.tier]);
   prop(['majid', 'majorid'], 'string', (i, ie) => ((i.majorIds || [""])[0] || ""));
   prop(['majids', 'majorids'], 'number', (i, ie) => (i.majorIds || []).length);
-  prop(['drop', 'droptype'], 'string', (i, ie) => (i.dropInfo || "").type || (i.drop || "") || "");
-  prop(['restrict', 'restriction'], 'string', (i, ie) => i.restrict);
+  prop(['drop', 'droptype'], 'string', (i, ie) => i.dropInfo && Array.isArray(i.dropInfo.type) ? i.dropInfo.type[0] : (i.dropInfo || "").type || (i.drop || "") || "");
+  prop(['restrict', 'restriction'], 'string', (i, ie) => i.restrict || "");
   prop(['itemid', 'id'], 'number', (i, ie) => i.id);
 
   prop(['level', 'lvl', 'combatlevel', 'combatlvl'], 'number', (i, ie) => i.lvl);
@@ -127,25 +128,27 @@ const itemQueryProps = (function() {
   rangeAll(['firedmg', 'firedam', 'fdmg', 'fdam'], (i, ie) => i.fDam);
   rangeAll(['airdmg', 'airdam', 'admg', 'adam'], (i, ie) => i.aDam);
   sum(['sumdmg', 'sumdam', 'totaldmg', 'totaldam'], props.ndam, props.edam, props.tdam, props.wdam, props.fdam, props.adam);
+  prop(['averagedps', 'adps', 'dps', 'basedps'], 'number', (i, ie) => i.averageDps || 0);
 
-  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct'], 'eDamPct');
-  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct'], 'tDamPct');
-  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct'], 'wDamPct');
-  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct'], 'fDamPct');
-  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct'], 'aDamPct');
-  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct'], 'rDamPct');
-  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct'], 'nDamPct');
-  //sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct);
-  maxId(['dmg%', 'dam%', 'dampct'], 'damPct');
+  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
+  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
+  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct', 'wdpct'], 'wDamPct');
+  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct', 'fdpct'], 'fDamPct');
+  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
+  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
+  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
+  maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
+  sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct, props.dampct, props.rdampct, props.ndampct);
 
-  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw'], 'eDamRaw');
-  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw'], 'tDamRaw');
-  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw'], 'wDamRaw');
-  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw'], 'fDamRaw');
-  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw'], 'aDamRaw');
-  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw'], 'rDamRaw');
-  maxId(['ndamraw', 'ndmgraw'], 'nDamRaw');
-  maxId(['dmgraw', 'damraw'], 'damRaw');
+  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
+  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
+  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw', 'wdraw'], 'wDamRaw');
+  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw', 'fdraw'], 'fDamRaw');
+  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw', 'adraw'], 'aDamRaw');
+  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
+  maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
+  maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
+  sum(['sumdmgraw', 'sumdamraw', 'totaldmgraw', 'totaldamraw', 'sumdamraw', 'totaldamraw'], props.edamraw, props.tdamraw, props.wdamraw, props.fdamraw, props.adamraw, props.rdamraw, props.ndamraw, props.damraw);
 
   maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
   maxId(['emdpct'], 'eMdPct');
@@ -155,6 +158,7 @@ const itemQueryProps = (function() {
   maxId(['amdpct'], 'aMdPct');
   maxId(['nmdpct'], 'nMdPct');
   maxId(['rmdpct'], 'rMdPct');
+  sum(['summeleedmg%', 'summeleedam%', 'totalmeleedmg%', 'totalmeleedam%', 'summeleedampct', 'totalmeleedampct'], props.mdpct, props.emdpct, props.tmdpct, props.wmdpct, props.fmdpct, props.amdpct, props.nmdpct, props.nmdpct, props.rmdpct);
 
   maxId(['mainatkrawdmg', 'mainatkrawdam', 'mainatkneutraldmg', 'mainatkneutraldam', 'meleerawdmg', 'meleerawdam', 'meleeneutraldmg', 'meleeneutraldam', 'mdraw'], 'mdRaw');
   maxId(['emdraw'], 'eMdRaw');
@@ -164,6 +168,7 @@ const itemQueryProps = (function() {
   maxId(['amdraw'], 'aMdRaw');
   maxId(['nmdraw'], 'nMdRaw');
   maxId(['rmdraw'], 'rMdRaw');
+  sum(['summeleedmgraw', 'summeleedamraw', 'totalmeleedmgraw', 'totalmeleedamraw', 'summeleedamraw', 'totalmeleedamraw'], props.emdraw, props.tmdraw, props.wmdraw, props.fmdraw, props.amdraw, props.nmdraw, props.rmdraw, props.mdraw);
 
   maxId(['spelldmg', 'spelldam', 'spelldmg%', 'spelldam%', 'sdpct'], 'sdPct');
   maxId(['esdpct'], 'eSdPct');
@@ -173,6 +178,7 @@ const itemQueryProps = (function() {
   maxId(['asdpct'], 'aSdPct');
   maxId(['nsdpct'], 'nSdPct');
   maxId(['rsdpct'], 'rSdPct');
+  sum(['sumspelldmg%', 'sumspelldam%', 'totalspelldmg%', 'totalspelldam%', 'sumspelldampct', 'totalspelldampct'], props.esdpct, props.tsdpct, props.wsdpct, props.fsdpct, props.asdpct, props.nsdpct, props.rsdpct, props.sdpct);
 
   maxId(['spellrawdmg', 'spellrawdam', 'spellneutraldmg', 'spellneutraldam', 'sdraw'], 'sdRaw');
   maxId(['esdraw'], 'eSdRaw');
@@ -182,6 +188,7 @@ const itemQueryProps = (function() {
   maxId(['asdraw'], 'aSdRaw');
   maxId(['nsdraw'], 'nSdRaw');
   maxId(['rainbowraw', 'rsdraw'], 'rSdRaw');
+  sum(['sumspelldmgraw', 'sumspelldamraw', 'totalspelldmgraw', 'totalspelldamraw', 'sumspelldamraw', 'totalspelldamraw'], props.esdraw, props.tsdraw, props.wsdraw, props.fsdraw, props.asdraw, props.nsdraw, props.rsdraw, props.sdraw);
 
   maxId('critdampct', 'critDamPct');
 
@@ -230,6 +237,7 @@ const itemQueryProps = (function() {
   maxId(['spellcost4%', 'spcost4%', 'sppct4'], 'spPct4');
   sum(['sumspellcost', 'totalspellcost', 'sumrawspellcost', 'totalrawspellcost', 'sumspcost', 'totalspcost', 'sumspraw', 'totalspraw'], props.spraw1, props.spraw2, props.spraw3, props.spraw4);
   sum(['sumspellcost%', 'totalspellcost%', 'sumspcost%', 'totalspcost%', 'sumsppct', 'totalsppct'], props.sppct1, props.sppct2, props.sppct3, props.sppct4);
+
 
   maxId(['exploding', 'expl', 'expd'], 'expd');
   maxId('poison', 'poison');
@@ -361,24 +369,24 @@ const ingredientQueryProps = (function() {
   maxId('agi', 'agi');
   sum(['skillpoints', 'skillpts', 'attributes', 'attrs'], props.str, props.dex, props.int, props.def, props.agi);
 
-  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct'], 'eDamPct');
-  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct'], 'tDamPct');
-  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct'], 'wDamPct');
-  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct'], 'fDamPct');
-  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct'], 'aDamPct');
-  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct'], 'rDamPct');
-  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct'], 'nDamPct');
+  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
+  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
+  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct', 'wdpct'], 'wDamPct');
+  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct', 'fdpct'], 'fDamPct');
+  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
+  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
+  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
   //sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct);
-  maxId(['dmg%', 'dam%', 'dampct'], 'damPct');
+  maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
 
-  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw'], 'eDamRaw');
-  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw'], 'tDamRaw');
-  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw'], 'wDamRaw');
-  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw'], 'fDamRaw');
-  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw'], 'aDamRaw');
-  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw'], 'rDamRaw');
-  maxId(['ndamraw', 'ndmgraw'], 'nDamRaw');
-  maxId(['dmgraw', 'damraw'], 'damRaw');
+  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
+  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
+  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw', 'wdraw'], 'wDamRaw');
+  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw', 'fdraw'], 'fDamRaw');
+  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw', 'adraw'], 'aDamRaw');
+  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
+  maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
+  maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
 
   maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
   maxId(['emdpct'], 'eMdPct');

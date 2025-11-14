@@ -1,4 +1,4 @@
-const ITEM_DB_VERSION = 157;
+const ITEM_DB_VERSION = 170;
 
 let items;
 let sets = new Map();
@@ -215,12 +215,18 @@ const wynn_version_names = [
     '2.1.1.3',
     '2.1.1.4',
     '2.1.1.5',
-    '2.1.1.6'
+    '2.1.1.6',
+    '2.1.1.7',
+    '2.1.2.0',
+    '2.1.3.0',
+    '2.1.3.4',
+    '2.1.4.0',
+    '2.1.5.0',
 ];
 
 const WYNN_VERSION_LATEST = wynn_version_names.length - 1;
 // Default to the newest version.
-let wynn_version_id = WYNN_VERSION_LATEST;
+let wynn_version_id = WYNN_VERSION_LATEST; // Required for copy url...
 
 /**
  * A map of all existing major ids.
@@ -243,19 +249,20 @@ async function load_major_id_data(version_str) {
     console.log("Loaded major id data");
 }
 
-let ASPECTS = null;
+let ENC = null;
+let DEC = null
 
-async function load_aspect_data(version_str) {
+async function load_encoding_constants(version_str, decoding_version_str) {
     let getUrl = window.location;
     let baseUrl = `${getUrl.protocol}//${getUrl.host}/`;
     // No random string -- we want to use caching
-    let url = `${baseUrl}/data/${version_str}/aspects.json`;
-    try {
-        ASPECTS = await (await fetch(url)).json();
-        console.log("Loaded aspects data");
-    } catch (error) {
-        ASPECTS = null;
-        console.log("Could not load aspect data -- maybe an older version?");
-        console.log(error);
+    let encoding_url = `${baseUrl}/data/${version_str}/encoding_consts.json`;
+    let decoding_url = `${baseUrl}/data/${decoding_version_str}/encoding_consts.json`;
+    ENC = await (await fetch(encoding_url)).json();
+    if (decoding_version_str !== undefined && decoding_version_str != version_str) {
+       DEC = await (await fetch(decoding_url)).json(); 
+    } else {
+        DEC = ENC;
     }
+    console.log("Loaded encoding data");
 }

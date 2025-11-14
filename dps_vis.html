@@ -57,16 +57,24 @@
                         prepowder (true)
                     </button>
                 </td>
+                <td>
+                    <label class = "button-narrow" for="versionDropdown">Change Version</label>
+                    <select class = "button-narrow" id = "versionDropdown" onchange="changeVersion()">
+                    </select>
+                </td>
             </tr>
         </table>
         <p id="info">
             SELECTED ITEM TYPE: wand
         </p>
 
+        <script type-"text/javascript" src="../js/redirect_fork.js"></script>
         <script src="https://d3js.org/d3.v7.js"></script>
         <script type="text/javascript" src="/js/utils.js"></script>
         <script type="text/javascript" src="/js/loadheader.js"></script>
         <script type="text/javascript" src="/js/icons.js"></script>
+        <script type="text/javascript" src="/js/loader.js"></script>
+        <script type="text/javascript" src="/js/load_item.js"></script>
         <script type="text/javascript" src="/js/debug/dps_vis.js"></script>
     </body>
 </html>

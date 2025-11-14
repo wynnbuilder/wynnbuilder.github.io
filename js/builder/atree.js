@@ -452,7 +452,7 @@ const atree_merge = new (class extends ComputeNode {
 
         let abils_merged = new Map();
         for (const abil of default_abils[player_class]) {
-            let tmp_abil = deepcopy(abil);
+            let tmp_abil = structuredClone(abil);
             if (!('desc' in tmp_abil)) {
                 tmp_abil.desc = [];
             }
@@ -480,11 +480,11 @@ const atree_merge = new (class extends ComputeNode {
                         }
                         else { base_abil.properties[propname] = abil.properties[propname]; }
                     }
-                }
+                } 
                 // do nothing otherwise.
             }
             else {
-                let tmp_abil = deepcopy(abil);
+                let tmp_abil = structuredClone(abil);
                 if (!Array.isArray(tmp_abil.desc)) {
                     tmp_abil.desc = [tmp_abil.desc];
                 }
@@ -535,6 +535,30 @@ const atree_merge = new (class extends ComputeNode {
                 }
             }
         }
+         
+        // Apply aspects. Order is redundent.
+        // Similar to major_ids, each aspect can have multiple abilities.
+        // Unlike major ids, aspects are imlemented to always be valid for the current class.
+        const aspects = input_map.get('final-aspects');
+        for (const [aspect, tier_num] of aspects) {
+            if (aspect.NONE || !aspect.tiers[tier_num - 1].abilities) {
+                continue;
+            }
+            for (const abil of aspect.tiers[tier_num - 1].abilities) {
+                if (abil.dependencies !== undefined) {
+                    let dep_satisfied = true;
+                    for (const dep_id of abil.dependencies) {
+                        if (!atree_state.get(dep_id).active) {
+                            dep_satisfied = false;
+                            break;
+                        }
+                    }
+                    if (!dep_satisfied) { continue; }
+                }
+                merge_abil(abil); 
+            }
+        }
+
         return abils_merged;
     }
 })().link_to(atree_node, 'atree').link_to(atree_state_node, 'atree-state').link_to(atree_validate, 'atree-errors');
@@ -606,8 +630,9 @@ const atree_make_interactives = new (class extends ComputeNode {
                                     }
                                 }
                             }
+                            slider_info.overwritten = true;
                         }
-                        else{
+                        else if (!slider_info.overwritten) {
                             slider_info.max += slider_max;
                             slider_info.default_val += slider_default;
                         }
@@ -682,19 +707,22 @@ const atree_scaling = new (class extends ComputeNode {
 
         const atree_edit = new Map();
         for (const [abil_id, abil] of atree_merged.entries()) {
-            atree_edit.set(abil_id, deepcopy(abil));
+            atree_edit.set(abil_id, structuredClone(abil));
         }
         let ret_effects = new Map();
 
         // Apply a stat bonus.
         function apply_bonus(bonus_info, value) {
-            const { type, name, abil = null} = bonus_info;
+            const { type, name, abil = null, mult = false} = bonus_info;
             if (type === 'stat') {
                 merge_stat(ret_effects, name, atree_translate(atree_merged, value));
             } else if (type === 'prop') {
                 const merge_abil = atree_edit.get(abil);
                 if (merge_abil) {
-                    merge_abil.properties[name] += value;
+                    if (mult)
+                        merge_abil.properties[name] *= atree_translate(atree_edit, value);
+                    else
+                        merge_abil.properties[name] += atree_translate(atree_edit, value);
                 }
             }
         }
@@ -735,7 +763,14 @@ const atree_scaling = new (class extends ComputeNode {
                     else {
                         // TODO: type: prop?
                         for (const [_scaling, input] of zip2(scaling, effect.inputs)) {
-                            total += pre_scale_stats.get(input.name) * atree_translate(atree_merged, _scaling);
+                            if (input.type === 'stat') {
+                                total += pre_scale_stats.get(input.name) * atree_translate(atree_merged, _scaling);
+                            } else if (input.type === 'prop') {
+                                const merge_abil = atree_edit.get(input.abil);
+                                if (merge_abil) {
+                                    total += merge_abil.properties[input.name] * atree_translate(atree_merged, _scaling);
+                                }
+                            }
                         }
                     }
 
@@ -845,7 +880,7 @@ const atree_render_active = new (class extends ComputeNode {
             active_tooltip.append(make_elem('b', ['scaled-font'], { innerHTML: abil.display_name }));
 
             for (const desc of abil.desc) {
-                active_tooltip.append(make_elem('p', ['scaled-font-sm', 'my-0', 'mx-1', 'text-wrap'], { textContent: desc }));
+                active_tooltip.append(make_elem('p', ['scaled-font-sm', 'my-0', 'mx-1', 'text-wrap'], { innerHTML: desc }));
             }
             ret_map.set(abil.id, active_tooltip);
 
@@ -892,11 +927,11 @@ const atree_collect_spells = new (class extends ComputeNode {
                     if (ret_spell) {
                         // NOTE: do not mutate results of previous steps!
                         for (const key in effect) {
-                            ret_spell[key] = deepcopy(effect[key]);
+                            ret_spell[key] = structuredClone(effect[key]);
                         }
                     }
                     else {
-                        ret_spell = deepcopy(effect);
+                        ret_spell = structuredClone(effect);
                         ret_spells.set(effect.base_spell, ret_spell);
                     }
                     for (const part of ret_spell.parts) {
@@ -969,7 +1004,7 @@ const atree_collect_spells = new (class extends ComputeNode {
                         break;
                     }
                     if (!found_part && behavior === 'merge') { // add part. if behavior is merge
-                        let spell_part = deepcopy(effect);
+                        let spell_part = structuredClone(effect);
                         spell_part.name = target_part;  // has some extra fields but whatever
                         if ('hits' in spell_part) {
                             for (const idx in spell_part.hits) {

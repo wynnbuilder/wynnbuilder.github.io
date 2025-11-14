@@ -406,7 +406,7 @@ let sq2_item_display_commands = [
     "atkSpd",
     "!elemental",
     "hp",
-    "nDam_", "fDam_", "wDam_", "aDam_", "tDam_", "eDam_",
+    "nDam_", "eDam_", "tDam_", "wDam_", "fDam_", "aDam_",
     "!spacer",
     "fDef", "wDef", "aDef", "tDef", "eDef",
     "!elemental",

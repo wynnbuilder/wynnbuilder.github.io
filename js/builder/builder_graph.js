@@ -17,24 +17,27 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.50], ["radiance", 0.0] ]);
+const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0], ["divinehonor", 0.0] ]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
 
     compute_func(input_map) {
         let damage_boost = 0;
+        let vuln_boost = 0;
         let def_boost = 0;
         for (const [key, value] of damageMultipliers) {
             let elem = document.getElementById(key + "-boost")
             if (elem.classList.contains("toggleOn")) {
-                damage_boost += value;
+                if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
                 else if (key === "emboldeningcry") { def_boost += .05 }
+                else if (key === "eldritchcall") { vuln_boost += .20 }
             }
         }
         let res = new Map();
         res.set('damMult.Potion', 100*damage_boost);
+        res.set('damMult.Vulnerability', 100*vuln_boost);
         res.set('defMult.Potion', 100*def_boost);
         return res;
     }
@@ -154,18 +157,38 @@ class ItemInputNode extends InputNode {
         }
 
         let item;
-        if (item_text.slice(0, 3) == "CI-") { item = getCustomFromHash(item_text); }
-        else if (item_text.slice(0, 3) == "CR-") { item = getCraftFromHash(item_text); } 
-        else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); } 
+        if (item_text.slice(0, 3) == "CI-") { item = decodeCustom({hash: item_text.substring(3)}); }
+        else if (item_text.slice(0, 3) == "CR-") { item = decodeCraft({hash: item_text.substring(3)}); }
+        else if (itemMap.has(item_text)) { item = new Item(itemMap.get(item_text)); }
         else if (tomeMap.has(item_text)) { item = new Item(tomeMap.get(item_text)); }
 
         if (item) {
             let type_match;
             if (this.category == 'weapon') {
                 type_match = item.statMap.get('category') == 'weapon';
+            } else if (item.statMap.get("crafted")) {
+                const fieldType = this.none_item.statMap.get('type');
+                const fieldSkill = type_to_skill(fieldType);
+                const itemSkillMatchesField = item.recipe.get('skill') === fieldSkill;
+
+                type_match = item.statMap.get('type') === fieldType;
+
+                // Different type but same crafting skill group, re-encode the item to the correct type
+                if (!type_match && itemSkillMatchesField) {
+                    const originalRecipeName = item.recipe.get("name");
+                    const levelRange = originalRecipeName.substring(originalRecipeName.indexOf("-") + 1);
+                    const recipeName = `${capitalizeFirst(fieldType)}-${levelRange}`;
+                    const newRecipe = expandRecipe(recipeMap.get(recipeName));
+                    // TODO(@orgold): the way crafted items handle hash setting is kinda silly? why not just automatically apply based on calc?
+                    item = new Craft(newRecipe, item.mat_tiers, item.ingreds, item.atkSpd, "");
+                    item.setHash(encodeCraft(item).toB64());
+                    this.input_field.value = item.hash;
+                    type_match = true;
+                }
             } else {
                 type_match = item.statMap.get('type') == this.none_item.statMap.get('type');
             }
+
             if (type_match) {
                 return item;
             }
@@ -344,6 +367,7 @@ class BuildEncodeNode extends ComputeNode {
         const build = input_map.get('build');
         const atree = input_map.get('atree');
         const atree_state = input_map.get('atree-state');
+        const aspects = input_map.get('aspects');
         let powders = [
             input_map.get('helmet-powder'),
             input_map.get('chestplate-powder'),
@@ -361,7 +385,7 @@ class BuildEncodeNode extends ComputeNode {
         // TODO: grr global state for copy button..
         player_build = build;
         build_powders = powders;
-        return encodeBuild(build, powders, skillpoints, atree, atree_state);
+        return encodeBuild(build, powders, skillpoints, atree, atree_state, aspects);
     }
 }
 
@@ -376,7 +400,8 @@ class URLUpdateNode extends ComputeNode {
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "URLUpdateNode accepts exactly one input (build_str)"; }
         const [build_str] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        location.hash = build_str;
+        // Using `history.pushState` instead of `location.replace` prevents the browser from refreshing the page upon URL change.
+        window.history.pushState(null, "", location.origin + location.pathname + '#' + build_str.toB64());
     }
 }
 
@@ -408,6 +433,9 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('ring2'),
             input_map.get('bracelet'),
             input_map.get('necklace'),
+        ];
+
+        let tomes = [
             input_map.get('weaponTome1'),
             input_map.get('weaponTome2'),
             input_map.get('armorTome1'),
@@ -415,22 +443,28 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('armorTome3'),
             input_map.get('armorTome4'),
             input_map.get('guildTome1'),
-            input_map.get('lootrunTome1')
+            input_map.get('lootrunTome1'),
+            input_map.get('gatherXpTome1'),
+            input_map.get('gatherXpTome2'),
+            input_map.get('dungeonXpTome1'),
+            input_map.get('dungeonXpTome2'),
+            input_map.get('mobXpTome1'),
+            input_map.get('mobXpTome2'),
+
         ];
+
         let weapon = input_map.get('weapon');
+
         let level = parseInt(input_map.get('level-input'));
         if (isNaN(level)) {
             level = 106;
         }
 
-        let all_none = weapon.statMap.has('NONE');
-        for (const item of equipments) {
-            all_none = all_none && item.statMap.has('NONE');
-        }
+        const all_none = equipments.concat([...tomes, weapon]).every(x => x.statMap.has('NONE'));
         if (all_none && !location.hash) {
             return null;
         }
-        return new Build(level, equipments, weapon);
+        return new Build(level, equipments, tomes, weapon);
     }
 }
 
@@ -472,7 +506,7 @@ class PowderInputNode extends InputNode {
         let powdering = [];
         let errorederrors = [];
         while (input) {
-            let first = input.slice(0, 2);
+            let first = input.slice(0, 2).toLowerCase();
             let powder = powderIDs.get(first);
             if (powder === undefined) {
                 if (first.length > 0) {
@@ -598,7 +632,10 @@ class SpellDamageCalcNode extends ComputeNode {
             let spell_result;
             const part_id = spell.base_spell + '.' + part.name
             if ('multipliers' in part) { // damage type spell
-                let results = calculateSpellDamage(stats, weapon, part.multipliers, use_spell, !use_speed, part_id);
+                const use_str = (('use_str' in part) ? part.use_str : true);
+                const ignored_mults = (('ignored_mults' in part) ? part.ignored_mults : []);
+
+                let results = calculateSpellDamage(stats, weapon, part.multipliers, use_spell, !use_speed, part_id, !use_str, ignored_mults);
                 spell_result = {
                     type: "damage",
                     normal_min: results[2].map(x => x[0]),
@@ -607,6 +644,8 @@ class SpellDamageCalcNode extends ComputeNode {
                     crit_min: results[2].map(x => x[2]),
                     crit_max: results[2].map(x => x[3]),
                     crit_total: results[1],
+                    is_spell: use_spell,
+                    multipliers: results[3]
                 }
             } else if ('power' in part) {
                 // TODO: wynn2 formula
@@ -635,9 +674,10 @@ class SpellDamageCalcNode extends ComputeNode {
                     crit_min: [0, 0, 0, 0, 0, 0],
                     crit_max: [0, 0, 0, 0, 0, 0],
                     crit_total: [0, 0],
-                    heal_amount: 0
+                    heal_amount: 0,
+                    multipliers: [0, 0, 0, 0, 0, 0]
                 }
-                const dam_res_keys = ['normal_min', 'normal_max', 'normal_total', 'crit_min', 'crit_max', 'crit_total'];
+                const dam_res_keys = ['normal_min', 'normal_max', 'normal_total', 'crit_min', 'crit_max', 'crit_total', 'multipliers'];
                 for (const [subpart_name, hits] of Object.entries(part.hits)) {
                     const subpart = eval_part(subpart_name);
                     if (!subpart) { continue; }
@@ -877,18 +917,25 @@ const radiance_node = new (class extends ComputeNode {
 
     compute_func(input_map) {
         const [statmap] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        let elem = document.getElementById('radiance-boost');
-        if (elem.classList.contains("toggleOn")) {
+        var boost = 1;
+        if (document.getElementById('radiance-boost').classList.contains("toggleOn")) {
+            boost += 0.2;
+        }
+        if (document.getElementById('divinehonor-boost').classList.contains("toggleOn")) {
+            boost += 0.1;
+        }
+
+        if (boost != 1.0) {
             const ret = new Map(statmap);
             for (const val of radiance_affected) {
                 if (reversedIDs.includes(val)) {
                     if ((ret.get(val) || 0) < 0) {
-                        ret.set(val, Math.floor((ret.get(val) || 0) * 1.2));
+                        ret.set(val, Math.floor((ret.get(val) || 0) * boost));
                     }
                 }
                 else {
                     if ((ret.get(val) || 0) > 0) {
-                        ret.set(val, Math.floor((ret.get(val) || 0) * 1.2));
+                        ret.set(val, Math.floor((ret.get(val) || 0) * boost));
                     }
                 }
             }
@@ -908,8 +955,8 @@ const radiance_node = new (class extends ComputeNode {
 
 /* Updates all spell boosts
 */
-function update_radiance() {
-    let elem = document.getElementById('radiance-boost');
+function update_radiance(input) {
+    let elem = document.getElementById(input + '-boost');
     if (elem.classList.contains("toggleOn")) {
         elem.classList.remove("toggleOn");
     } else {
@@ -991,20 +1038,34 @@ class SkillPointSetterNode extends ComputeNode {
     constructor(notify_nodes) {
         super("builder-skillpoint-setter");
         this.notify_nodes = notify_nodes.slice();
+        this.skillpoints = null;
         for (const child of this.notify_nodes) {
             child.link_to(this);
             child.fail_cb = true;
-            // This is needed because initially there is a value mismatch possibly... due to setting skillpoints manually
-            child.mark_input_clean(this.name, null);
         }
     }
 
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "SkillPointSetterNode accepts exactly one input (build)"; }
         const [build] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
+
         for (const [idx, elem] of skp_order.entries()) {
             document.getElementById(elem+'-skp').value = build.total_skillpoints[idx];
         }
+
+        if (this.skillpoints !== null) {
+            for (const [idx, elem] of skp_order.entries()) {
+                if (this.skillpoints[idx] !== null) {
+                    document.getElementById(elem+'-skp').value = this.skillpoints[idx];
+                }
+            }
+            this.skillpoints = null;
+        }
+    }
+
+    update(skillpoints=null) {
+        this.skillpoints = skillpoints;
+        return super.update()
     }
 }
 
@@ -1052,7 +1113,7 @@ let atree_graph_creator;
  * Parameters:
  *  save_skp:   bool    True if skillpoints are modified away from skp engine defaults.
  */
-function builder_graph_init(save_skp) {
+function builder_graph_init(skillpoints) {
     // Phase 1/3: Set up item input, propagate updates, etc.
 
     // Level input node.
@@ -1092,7 +1153,7 @@ function builder_graph_init(save_skp) {
         build_node.link_to(item_input, eq);
     }
 
-    for (const [eq, none_item] of zip2(tome_fields, [none_tomes[0], none_tomes[0], none_tomes[1], none_tomes[1], none_tomes[1], none_tomes[1], none_tomes[2], none_tomes[3]])) {
+    for (const [eq, none_item] of zip2(tome_fields, [none_tomes[0], none_tomes[0], none_tomes[1], none_tomes[1], none_tomes[1], none_tomes[1], none_tomes[2], none_tomes[3], none_tomes[4], none_tomes[4], none_tomes[5], none_tomes[5], none_tomes[6], none_tomes[6]])) {
         let input_field = document.getElementById(eq+"-choice");
         let item_image = document.getElementById(eq+"-img");
 
@@ -1145,7 +1206,7 @@ function builder_graph_init(save_skp) {
     }
     pre_scale_agg_node.link_to(edit_agg_node);
 
-    // Phase 3/3: Set up atree stuff.
+    // Phase 3/3: Set up atree and aspect stuff.
 
     let class_node = new PlayerClassNode('builder-class').link_to(build_node);
     // These two are defined in `builder/atree.js`
@@ -1159,14 +1220,35 @@ function builder_graph_init(save_skp) {
 
     build_encode_node.link_to(atree_node, 'atree').link_to(atree_state_node, 'atree-state');
 
+    aspect_agg_node = new AspectAggregateNode('final-aspects');
+    const aspects_dropdown = document.getElementById('aspects-dropdown');
+    for (const field of aspect_fields) {
+        const aspect_input_field = document.getElementById(field+'-choice');
+        const aspect_tier_input_field = document.getElementById(field+'-tier-choice');
+        const aspect_image_div = document.getElementById(field+'-img');
+        const aspect_image_loc_div = document.getElementById(field+'-img-loc');
+        new AspectAutocompleteInitNode(field+'-autocomplete', field).link_to(class_node, 'player-class');
+        const aspect_input = new AspectInputNode(field+'-input', aspect_input_field).link_to(class_node, 'player-class');
+        new AspectInputDisplayNode(field+'-input', aspect_input_field, aspect_image_div).link_to(aspect_input, "aspect-spec");
+        aspect_inputs.push(aspect_input);
+        const aspect_tier_input = new AspectTierInputNode(field+'-tier-input', aspect_tier_input_field).link_to(aspect_input, 'aspect-spec');
+        new AspectRenderNode(field+'-render', aspect_image_loc_div, aspects_dropdown).link_to(aspect_tier_input, 'aspect-tiered-spec');
+        aspect_agg_node.link_to(aspect_tier_input, field+'-tiered');
+    }
+    build_encode_node.link_to(aspect_agg_node, 'aspects');
+
+    atree_merge.link_to(aspect_agg_node);
+
     // ---------------------------------------------------------------
     //  Trigger the update cascade for build!
     // ---------------------------------------------------------------
     for (const input_node of equip_inputs) {
         input_node.update();
     }
+
     armor_powder_node.update();
     level_input.update();
+
 
     atree_graph_creator = new AbilityTreeEnsureNodesNode(build_node, stat_agg_node)
                                     .link_to(atree_collect_spells, 'spells');
@@ -1176,15 +1258,20 @@ function builder_graph_init(save_skp) {
         const atree_state = atree_state_node.value;
         if (atree_data.length > 0) {
             try {
-                const active_nodes = decode_atree(atree_node.value, atree_data);
+                const active_nodes = decodeAtree(atree_node.value, atree_data);
                 for (const node of active_nodes) {
                     atree_set_state(atree_state.get(node.ability.id), true);
                 }
                 atree_state_node.mark_dirty().update();
             } catch (e) {
+                console.error(e);
                 console.log("Failed to decode atree. This can happen when updating versions. Give up!")
             }
         }
+    }
+
+    for (const aspect_input_node of aspect_inputs) {
+        aspect_input_node.update();
     }
 
     // Powder specials.
@@ -1210,9 +1297,7 @@ function builder_graph_init(save_skp) {
 
     let skp_output = new SkillPointSetterNode(skp_inputs);
     skp_output.link_to(build_node);
-    if (!save_skp) {
-        skp_output.update().mark_dirty().update();
-    }
+    skp_output.update().mark_dirty().update(skillpoints);
 
     let build_warnings_node = new DisplayBuildWarningsNode();
     build_warnings_node.link_to(build_node, 'build');
