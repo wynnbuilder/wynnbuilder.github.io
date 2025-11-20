@@ -27,8 +27,7 @@ let player_craft;
 //     document.getElementById("header").classList.add("funnynumber");
 // }
 
-
-
+const atkSpdButtons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
 
 function init_crafter() {
     try {
@@ -37,13 +36,12 @@ function init_crafter() {
             updateCraftedImage();
             calculateCraftSchedule();
         });
-        document.getElementById("recipe-choice").addEventListener("input", (event) => {
-            updateCraftedImage();
-        });
         document.getElementById("level-choice").addEventListener("input", (event) => {
             updateMaterials();
             calculateCraftSchedule();
         });
+        const hash_input = document.getElementById("hash-input");
+        hash_input.addEventListener("input", ev => handleHashInput(hash_input, ev));
         
         for (let i = 1; i < 4; ++i) {
             document.getElementById("mat-1-"+i).addEventListener("click", (e) => calculateCraftSchedule());
@@ -57,13 +55,25 @@ function init_crafter() {
         }
 
         populateFields();
-        decodeCraftFromURL(ing_url_tag);
+        decodeCraftPopulateFields(ing_url_tag);
     } catch (error) {
         console.log(error);
     }
     
     
 }
+
+function handleHashInput(hash_input, inputEvent) {
+    orig_hash = location.hash;
+    hash_input.classList.remove("is-invalid");
+    try {
+        decodeCraftPopulateFields(inputEvent.target.value);
+    } catch {
+        hash_input.classList.add("is-invalid");
+        location.hash = orig_hash;
+    }
+}
+
 function updateMaterials() {
     let recipeName = getValue("recipe-choice") ? getValue("recipe-choice") : "Potion";
     let levelRange = getValue("level-choice") ? getValue("level-choice") : "103-105";
@@ -81,13 +91,13 @@ function updateMaterials() {
         document.getElementById("mat-2").textContent = "Material 2 Tier:";
     }
 }
+
 function toggleAtkSpd(buttonId) {
-    let buttons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
     let elem = document.getElementById(buttonId);
     if (elem.classList.contains("toggleOn")) {
         elem.classList.remove("toggleOn");
     } else {
-        for (const button of buttons) {
+        for (const button of atkSpdButtons) {
             document.getElementById(button).classList.remove("toggleOn");
         }
         elem.classList.add("toggleOn");
@@ -151,6 +161,7 @@ function calculateCraft() {
 
     let craft_str = encodeCraft(player_craft).toB64();
     location.hash = craft_str;
+    setValue("hash-input", "CR-"+craft_str);
     player_craft.setHash(craft_str);
     console.log(player_craft);
     /*console.log(recipe)
@@ -196,7 +207,7 @@ function calculateCraft() {
     
 }
 
-function decodeCraftFromURL(ing_url_tag) {
+function decodeCraftPopulateFields(ing_url_tag) {
     if (ing_url_tag) {
         if (ing_url_tag.startsWith("CR-")) {
             ing_url_tag = ing_url_tag.substring(3);
@@ -220,12 +231,18 @@ function decodeCraftFromURL(ing_url_tag) {
         setValue("level-choice", recipe_level);
 
         for (let i = 0; i < CRAFTER_ENC.NUM_MATS; ++i) {
-            toggleMaterial(`mat-${i + 1}-${craft.mat_tiers[i]}`);
+            const matId = `mat-${i + 1}-${craft.mat_tiers[i]}`
+            const matButton = document.getElementById(matId);
+            if (!matButton.classList.contains("toggleOn")) {
+                toggleMaterial(`mat-${i + 1}-${craft.mat_tiers[i]}`);
+            }
         }
 
         const atkSpdId = CRAFTER_ENC.CRAFTED_ATK_SPD[craft.atkSpd];
-        let atkSpdButtons = ["slow-atk-button", "normal-atk-button", "fast-atk-button"];
-        toggleAtkSpd(atkSpdButtons[atkSpdId]);
+        let button = document.getElementById(atkSpdButtons[atkSpdId]);
+        if (!button.classList.contains("toggleOn")) {
+            toggleAtkSpd(atkSpdButtons[atkSpdId]);
+        }
         
         calculateCraft();
     }
