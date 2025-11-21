@@ -748,7 +748,7 @@ const atree_scaling = new (class extends ComputeNode {
                     continue;
                 case 'stat_scaling':
                     let total = 0;
-                    const {slider = false, scaling = [0], behavior="merge"} = effect;
+                    const {slider = false, scaling = [0], behavior="merge", multiplicative = false} = effect;
                     let { positive = true, round = true } = effect;
                     if (slider) {
                         if (behavior == "modify" && !slider_map.has(effect.slider_name)) {
@@ -756,7 +756,13 @@ const atree_scaling = new (class extends ComputeNode {
                             continue;
                         }
                         const slider_val = slider_map.get(effect.slider_name).slider.value;
-                        total = parseInt(slider_val) * atree_translate(atree_merged, scaling[0]);
+
+                        if (effect.multiplicative) {
+                            total = (((100+atree_translate(atree_merged, scaling[0]))/100) ** parseInt(slider_val)-1) * 100;
+                        }
+                        else {
+                            total = parseInt(slider_val) * atree_translate(atree_merged, scaling[0]);
+                        }
                         round = false;
                         positive = false;
                     }

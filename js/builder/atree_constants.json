@@ -972,15 +972,15 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Hits dealt",
-                    "slider_max": 24,
+                    "slider_max": 60,
                     "output": {
                         "type": "stat",
                         "name": "spd"
                     },
                     "scaling": [
-                        3
+                        1
                     ],
-                    "max": 70
+                    "max": 60
                 }
             ]
         },
@@ -1357,7 +1357,7 @@
         {
             "display_name": "Grappling Hook",
             "base_abil": "Escape",
-            "desc": "When casting Escape, throw a hook that pulls you when hitting a block. If you hit an enemy, pull them towards you instead. (Escape will not throw you backward anymore) </br> </br>Range: 30 Blocks",
+            "desc": "When casting Escape, throw a hook that pulls you when hitting a block. (Escape will not throw you backward anymore) </br> Holding Shift while casting will pull any enemy you hit. </br> </br>Range: 30 Blocks",
             "archetype": "Trapper",
             "archetype_req": 0,
             "parents": [
@@ -1461,7 +1461,7 @@
         },
         {
             "display_name": "Arsenal Synergy",
-            "desc": "For every 16 arrows spent by Arrow Storm, add a Flint Arrow to your Main Attacks. (Max 5) Each Flint Arrow deals damage. </br> </br><span class='mc-white'>Total Damage</span>: 25% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%) </br>Duration: 4s",
+            "desc": "For every 16 arrows shot by Arrow Storm, your Main Attacks will additionally fire a flint arrow that damages enemies. (Max 5) </br> </br><span class='mc-white'>Total Damage</span>: 25% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%) </br>Duration: 6s",
             "base_abil": 999,
             "parents": [
                 "Windstorm",
@@ -1874,7 +1874,7 @@
         },
         {
             "display_name": "Divine Intervention",
-            "desc": "Guardian Angels become briefly empowered whenever you cast a spell, and gain +14 ammunition. </br> Casting Arrow Storm will cause them to shoot 2.25x faster. </br> </br>Duration: 0.9s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 4.5 Blocks (Circle-Shaped) </br>Duration: 3s",
+            "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 2.25x faster. </br> </br>Duration: 0.9s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Duration: 3s",
             "archetype": "Boltslinger",
             "archetype_req": 6,
             "base_abil": "Arrow Shield",
@@ -1940,9 +1940,7 @@
                 "Grape Bomb"
             ],
             "dependencies": [],
-            "blockers": [
-                "Ghostly Trigger"
-            ],
+            "blockers": [],
             "cost": 1,
             "display": {
                 "row": 26,
@@ -2659,7 +2657,7 @@
         },
         {
             "display_name": "Coursing Restraints",
-            "desc": "Shocking Bomb will temporarily shock enemies, reducing their defences. </br> </br>Effect: -15% Resistance Bonus to Enemies </br>Duration: 4s </br>Cooldown: 12s",
+            "desc": "Shocking Bomb will temporarily shock enemies, reducing their defences. </br> </br>Effect: -15% Resistance Bonus to Enemies </br>Duration: 4s </br>Cooldown: 10s",
             "archetype": "Sharpshooter",
             "parents": [
                 "Cheaper Arrow Shield II"
@@ -3104,7 +3102,7 @@
         },
         {
             "display_name": "Ghostly Trigger",
-            "desc": "While midair after using Escape, Twain's Arc will fire immediately upon using your Main Attack. </br> </br>Cooldown: 5s",
+            "desc": "While airborne after casting Escape, your next 3 Main Attacks can be fired in quick succession regardless of attack speed, and will instantly fire from Twain's Arc. </br> </br>Cooldown: 6s",
             "archetype": "Sharpshooter",
             "archetype_req": 0,
             "base_abil": "Focus",
@@ -3115,9 +3113,7 @@
             "dependencies": [
                 "Twain's Arc"
             ],
-            "blockers": [
-                "Fierce Stomp"
-            ],
+            "blockers": [],
             "cost": 2,
             "display": {
                 "row": 35,
@@ -3129,7 +3125,7 @@
         },
         {
             "display_name": "Elusive",
-            "desc": "Arrow Bomb and Arrow Storm will no longer have recoil, and your Arrow Bombs will not deal self-damage.",
+            "desc": "\u00a77\u00a7nArrow Bomb\u00a77 and \u00a77\u00a7nArrow Storm\u00a77 will no longer have recoil, and your \u00a77\u00a7nArrow Bombs\u00a77 will not deal self-damage.",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [
@@ -4132,7 +4128,7 @@
         },
         {
             "display_name": "Iron Lungs",
-            "desc": "War Scream and Air Shout will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS, for War Scream)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Air Shout)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
+            "desc": "War Scream will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "War Scream",
@@ -4162,19 +4158,6 @@
                         0,
                         30
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Air Shout",
-                    "multipliers": [
-                        10,
-                        0,
-                        0,
-                        0,
-                        0,
-                        10
-                    ]
                 }
             ]
         },
@@ -4199,7 +4182,7 @@
         },
         {
             "display_name": "Air Shout",
-            "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 60%   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
+            "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 75%   </br>&emsp;(<span class='nDam'>Damage</span>: 55%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
             "archetype": "Battle Monk",
             "base_abil": "War Scream",
             "parents": [
@@ -4225,12 +4208,12 @@
                     "base_spell": 4,
                     "target_part": "Air Shout",
                     "multipliers": [
-                        45,
+                        55,
                         0,
                         0,
                         0,
                         0,
-                        15
+                        20
                     ]
                 },
                 {
@@ -4417,7 +4400,7 @@
         },
         {
             "display_name": "Counter",
-            "desc": "You take 20% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Cooldown: 2s",
+            "desc": "You take 25% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Cooldown: 2s",
             "archetype": "Battle Monk",
             "parents": [
                 "Aerodynamics",
@@ -4460,7 +4443,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Counter",
-                            "value": 20
+                            "value": 25
                         }
                     ]
                 }
@@ -4524,7 +4507,7 @@
         },
         {
             "display_name": "Flying Kick",
-            "desc": "Hitting mobs with Charge will halt your momentum and knock them away. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 175%)   </br>&emsp;(<span class='aDam'>Air</span>: 45%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Area of Effect: 4 Blocks",
+            "desc": "Hitting mobs with Charge will halt your momentum and knock them away. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 275%)   </br>&emsp;(<span class='aDam'>Air</span>: 75%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%) </br>Area of Effect: 4 Blocks",
             "archetype": "Battle Monk",
             "archetype_req": 1,
             "base_abil": "Charge",
@@ -4547,12 +4530,12 @@
                     "base_spell": 2,
                     "target_part": "Flying Kick",
                     "multipliers": [
-                        175,
+                        275,
                         0,
                         0,
-                        30,
+                        50,
                         0,
-                        45
+                        75
                     ]
                 },
                 {
@@ -4663,9 +4646,7 @@
                 "col": 8,
                 "icon": "node_2"
             },
-            "properties": {
-                "pressure_scream_boost": 8
-            },
+            "properties": {},
             "effects": []
         },
         {
@@ -4705,11 +4686,51 @@
             ]
         },
         {
+            "display_name": "Sparkling Hope",
+            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 5 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "parents": [
+                "Crushing Blow",
+                "Rejuvenating Skin"
+            ],
+            "dependencies": [],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 21,
+                "col": 7,
+                "icon": "node_1"
+            },
+            "properties": {
+                "aoe": 6
+            },
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Sparkling Hope",
+                    "base_spell": 7,
+                    "display": "Damage Tick",
+                    "parts": [
+                        {
+                            "name": "Damage Tick",
+                            "multipliers": [
+                                40,
+                                0,
+                                0,
+                                10,
+                                10,
+                                0
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "display_name": "Riposte",
-            "desc": "Increase the damage reduction of Counter by +10% </br> Increase the damage of Counter. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
+            "desc": "Increase the damage reduction of Counter by +10% </br> Increase the damage of Counter and reduce its cooldown by -0.5s. </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +90%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
             "base_abil": "Counter",
             "parents": [
-                "Radiant Devotee"
+                "Cheaper War Scream I"
             ],
             "dependencies": [
                 "Counter"
@@ -4728,12 +4749,12 @@
                     "base_spell": 5,
                     "target_part": "Counter Damage",
                     "multipliers": [
+                        90,
+                        0,
                         30,
                         0,
-                        10,
                         0,
-                        0,
-                        10
+                        30
                     ]
                 },
                 {
@@ -4773,15 +4794,14 @@
             "desc": "Reduce the Mana cost of War Scream by 5.",
             "base_abil": "War Scream",
             "parents": [
-                "Crushing Blow",
-                "Flying Kick",
-                "Cleansing Breeze"
+                "Whirlwind Strike",
+                "Riposte"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 22,
+                "row": 28,
                 "col": 4,
                 "icon": "node_0"
             },
@@ -4800,7 +4820,7 @@
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
-                "Cheaper War Scream I",
+                "Spirit of the Rabbit",
                 "Cheaper Bash II"
             ],
             "dependencies": [],
@@ -4921,9 +4941,8 @@
             "archetype_req": 0,
             "base_abil": "Uppercut",
             "parents": [
-                "Boiling Blood",
-                "Flying Kick",
-                "Cheaper War Scream I"
+                "Enraged Blow",
+                "Spirit of the Rabbit"
             ],
             "dependencies": [
                 "Fireworks"
@@ -4931,8 +4950,8 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 23,
-                "col": 3,
+                "row": 22,
+                "col": 2,
                 "icon": "node_2"
             },
             "properties": {},
@@ -4964,23 +4983,21 @@
         },
         {
             "display_name": "Collide",
-            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 115%)   </br>&emsp;(<span class='fDam'>Fire</span>: 35%) </br>Area of Effect: 4 Blocks </br> Flying Kick deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='fDam'>Fire</span>: +50%)",
-            "archetype": "Battle Monk",
-            "archetype_req": 4,
+            "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 4 Blocks",
             "base_abil": "Charge",
             "parents": [
-                "Cheaper War Scream I",
+                "Spirit of the Rabbit",
                 "Cleansing Breeze"
             ],
             "dependencies": [
                 "Flying Kick"
             ],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
                 "row": 23,
                 "col": 5,
-                "icon": "node_2"
+                "icon": "node_1"
             },
             "properties": {
                 "aoe": 4
@@ -4992,21 +5009,7 @@
                     "target_part": "Collide",
                     "cost": 0,
                     "multipliers": [
-                        115,
-                        0,
-                        0,
-                        0,
-                        35,
-                        0
-                    ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 2,
-                    "behavior": "modify",
-                    "target_part": "Flying Kick",
-                    "multipliers": [
-                        50,
+                        150,
                         0,
                         0,
                         0,
@@ -5050,7 +5053,7 @@
             "base_abil": "Bak'al's Grasp",
             "parents": [
                 "Boiling Blood",
-                "Spirit of the Rabbit"
+                "Tempest"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
@@ -5092,18 +5095,16 @@
         {
             "display_name": "Radiant Devotee",
             "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen (Max 10/5s)",
-            "archetype": "Battle Monk",
-            "archetype_req": 0,
             "parents": [
                 "Whirlwind Strike",
-                "Riposte"
+                "Tempest"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 28,
-                "col": 4,
+                "row": 27,
+                "col": 3,
                 "icon": "node_0"
             },
             "properties": {},
@@ -5134,7 +5135,7 @@
             "archetype_req": 6,
             "base_abil": "Uppercut",
             "parents": [
-                "Cheaper War Scream I",
+                "Tempest",
                 "Spirit of the Rabbit"
             ],
             "dependencies": [
@@ -5203,7 +5204,7 @@
             "base_abil": "Uppercut",
             "parents": [
                 "Uncontainable Corruption",
-                "Spirit of the Rabbit"
+                "Tempest"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
@@ -5285,12 +5286,12 @@
         },
         {
             "display_name": "Luster Purge",
-            "desc": "While you have 10 Holy Power, your Main Attacks are empowered, and grant you 1 Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
+            "desc": "While you have 10 Holy Power, your Main Attacks are empowered, and grant you 5 Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
                 "Mythril Skin",
-                "Sparkling Hope"
+                "Hallowed Blaze"
             ],
             "dependencies": [],
             "blockers": [],
@@ -5321,15 +5322,17 @@
             ]
         },
         {
-            "display_name": "Sparkling Hope",
-            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 5 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "display_name": "Hallowed Blaze",
+            "desc": "Flaming Uppercut will do more damage, and grant 1 Holy Power</br>whenever it deals damage.</br>(+15% to neutral, +15% to fire)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
                 "Mythril Skin",
                 "Luster Purge"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Flaming Uppercut"
+            ],
             "blockers": [],
             "cost": 2,
             "display": {
@@ -5337,27 +5340,19 @@
                 "col": 8,
                 "icon": "node_2"
             },
-            "properties": {
-                "aoe": 6
-            },
+            "properties": {},
             "effects": [
                 {
-                    "type": "replace_spell",
-                    "name": "Sparkling Hope",
-                    "base_spell": 7,
-                    "display": "Damage Tick",
-                    "parts": [
-                        {
-                            "name": "Damage Tick",
-                            "multipliers": [
-                                40,
-                                0,
-                                0,
-                                10,
-                                10,
-                                0
-                            ]
-                        }
+                    "type": "add_spell_prop",
+                    "base_spell": 8,
+                    "target_part": "Damage Tick",
+                    "multipliers": [
+                        15,
+                        0,
+                        0,
+                        0,
+                        15,
+                        0
                     ]
                 }
             ]
@@ -5369,13 +5364,14 @@
             "archetype_req": 7,
             "base_abil": "Bak'al's Grasp",
             "parents": [
-                "Uncontainable Corruption"
+                "Uncontainable Corruption",
+                "Axe Kick"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 28,
+                "row": 29,
                 "col": 0,
                 "icon": "node_4"
             },
@@ -5405,14 +5401,14 @@
             "base_abil": "War Scream",
             "parents": [
                 "Whirlwind Strike",
-                "Spirit of the Rabbit"
+                "Uncontainable Corruption"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 27,
-                "col": 3,
+                "row": 26,
+                "col": 2,
                 "icon": "node_2"
             },
             "properties": {
@@ -5455,15 +5451,17 @@
             "desc": "Reduce the Mana cost of Charge and increase your Walk Speed by +20%. </br> Mana Cost: -5",
             "base_abil": "Charge",
             "parents": [
-                "Uncontainable Corruption",
-                "Whirlwind Strike"
+                "Crushing Blow",
+                "Flying Kick",
+                "Cleansing Breeze",
+                "Comet"
             ],
             "dependencies": [],
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 26,
-                "col": 2,
+                "row": 22,
+                "col": 4,
                 "icon": "node_0"
             },
             "properties": {},
@@ -5492,7 +5490,7 @@
             "archetype_req": 5,
             "base_abil": "War Scream",
             "parents": [
-                "Radiant Devotee",
+                "Cheaper War Scream I",
                 "Blessed Bulwark"
             ],
             "dependencies": [],
@@ -5517,8 +5515,7 @@
             "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption, per second. (Powder Specials always add +3%)",
             "base_abil": 999,
             "parents": [
-                "Boiling Blood",
-                "Comet"
+                "Boiling Blood"
             ],
             "dependencies": [
                 "Bak'al's Grasp"
@@ -5535,12 +5532,12 @@
         },
         {
             "display_name": "Axe Kick",
-            "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +15 </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +150%)",
+            "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +5 </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
             "base_abil": "Uppercut",
             "parents": [
                 "Riposte",
-                "Radiant Devotee",
-                "Mindless Slaughter"
+                "Cheaper War Scream I",
+                "Massive Bash"
             ],
             "dependencies": [],
             "blockers": [],
@@ -5556,9 +5553,9 @@
                     "type": "add_spell_prop",
                     "base_spell": 3,
                     "target_part": "Uppercut",
-                    "cost": 15,
+                    "cost": 5,
                     "multipliers": [
-                        150,
+                        100,
                         0,
                         0,
                         0,
@@ -5597,7 +5594,7 @@
             "base_abil": "Mantle of the Bovemists",
             "parents": [
                 "Luster Purge",
-                "Sparkling Hope",
+                "Hallowed Blaze",
                 "Provoke"
             ],
             "dependencies": [
@@ -5691,7 +5688,7 @@
             "display_name": "Discombobulate",
             "desc": "Damaging enemies will inflict them with +2 Discombobulated. (Max 150) </br> You will deal +1 neutral and elemental damage to enemies for every Discombobulated they have. -4 of the bonus decays every second.",
             "archetype": "Battle Monk",
-            "archetype_req": 11,
+            "archetype_req": 10,
             "parents": [
                 "Thunderclap",
                 "Pressure"
@@ -5817,9 +5814,8 @@
             "display_name": "Cyclone",
             "desc": "After casting War Scream, envelop yourself with a vortex that damages nearby enemies every 0.35s.  </br> </br><span class='mc-white'>Total Damage</span>: 70% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Duration: 20s </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "archetype": "Battle Monk",
-            "archetype_req": 8,
             "parents": [
-                "Radiant Devotee"
+                "Cheaper War Scream I"
             ],
             "dependencies": [],
             "blockers": [],
@@ -6125,7 +6121,7 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 29,
+                "row": 30,
                 "col": 1,
                 "icon": "node_1"
             },
@@ -6134,10 +6130,10 @@
         },
         {
             "display_name": "Pressure",
-            "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 2.5x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
+            "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 4x as many hits and is 0.2s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
             "base_abil": "War Scream",
             "archetype": "Battle Monk",
-            "archetype_req": 11,
+            "archetype_req": 10,
             "parents": [
                 "Cyclone",
                 "Thunderclap"
@@ -6155,7 +6151,7 @@
             "properties": {
                 "pressure_rainbow_uppercut": 55,
                 "pressure_neutral_uppercut": 170,
-                "pressure_bash_hits": 2.5,
+                "pressure_bash_hits": 4,
                 "pressure_scream_boost": 10
             },
             "effects": [
@@ -6208,7 +6204,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.Potion",
+                            "name": "damMult.Strength",
                             "value": "War Scream.pressure_scream_boost"
                         }
                     ]
@@ -6217,7 +6213,7 @@
         },
         {
             "display_name": "Reverberance",
-            "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)",
+            "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%)",
             "base_abil": "War Scream",
             "parents": [
                 "Discombobulate"
@@ -6237,12 +6233,12 @@
                     "base_spell": 4,
                     "target_part": "Air Shout",
                     "multipliers": [
-                        5,
+                        20,
                         0,
-                        5,
+                        10,
                         0,
                         0,
-                        5
+                        10
                     ]
                 },
                 {
@@ -6954,7 +6950,7 @@
                         "name": "nConvBase:3.Winded Damage"
                     },
                     "scaling": [
-                        -17
+                        -12
                     ]
                 },
                 {
@@ -7237,7 +7233,7 @@
                         "name": "nConvBase:3.Winded Damage"
                     },
                     "scaling": [
-                        -23
+                        -18
                     ]
                 },
                 {
@@ -7421,7 +7417,7 @@
                         "name": "nConvBase:3.Winded Damage"
                     },
                     "scaling": [
-                        25
+                        20
                     ]
                 },
                 {
@@ -9078,7 +9074,7 @@
         },
         {
             "display_name": "Double Spin",
-            "desc": "Spin Attack will activate twice, with a larger area of effect on the second hit. </br> </br><span class='mc-white'>Total Damage</span>: -40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -40%) </br>Area of Effect: +2 Blocks (Circle-Shaped)",
+            "desc": "Spin Attack will activate twice, with a larger area of effect on the second spin. </br> </br><span class='mc-white'>Total Damage</span>: -40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -40%) </br>Area of Effect: +2 Blocks (Circle-Shaped)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Spin Attack",
@@ -9657,7 +9653,7 @@
         },
         {
             "display_name": "Ripple",
-            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
@@ -11083,7 +11079,7 @@
         },
         {
             "display_name": "Harvester",
-            "desc": "After killing an enemy, gain +5 Mana for each leftover Mark it had.",
+            "desc": "Gain +2 Mana for every leftover Mark when killing an enemy, and for every Mark you consume with your abilities.",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "parents": [
@@ -11303,7 +11299,7 @@
         },
         {
             "display_name": "Satsujin",
-            "desc": "If an enemy has 4+ Marks, your next Multihit or Powder Special will deal +100% damage. </br> </br>Cooldown: 15s (per enemy)",
+            "desc": "If an enemy has 4+ Marks, your next Backstab will deal +200% damage, or your next Powder Special will deal +100% damage. </br> Both consume all Marks on the enemy. </br> </br>Cooldown: 15s (per enemy)",
             "archetype": "Shadestepper",
             "archetype_req": 12,
             "parents": [
@@ -11326,12 +11322,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Satsujin:3.Backstab Damage",
-                            "value": 100
-                        },
-                        {
-                            "type": "stat",
-                            "name": "damMult.Satsujin:3.Per Hit",
-                            "value": 100
+                            "value": 200
                         },
                         {
                             "type": "stat",
@@ -11383,7 +11374,7 @@
         },
         {
             "display_name": "Jasmine Bloom",
-            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> Using Swan Dive with a maximum size Jasmine Bloom will trigger a massive explosion and reset the radius of Jasmine Bloom. (Min 3 Momentum) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom) </br> </br><span class='mc-white'>Total Damage</span>: 1500% (of your DPS, from explosion, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 1250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 125%)   </br>&emsp;(<span class='aDam'>Air</span>: 125%) </br>Area of Effect: 12 Blocks (explosion)",
+            "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom)",
             "archetype": "Acrobat",
             "archetype_req": 12,
             "parents": [
@@ -11399,18 +11390,6 @@
             },
             "properties": {},
             "effects": [
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Momentum",
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Momentum:7.Jasmine Bloom Explosion per Hit"
-                    },
-                    "scaling": [
-                        25
-                    ]
-                },
                 {
                     "type": "replace_spell",
                     "name": "Jasmine Bloom",
@@ -11433,23 +11412,39 @@
                             "hits": {
                                 "Per Hit": 3.333333333
                             }
-                        },
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Petal Storm",
+            "desc": "A maximum sized Jasmine Bloom will transform Swan Dive into a huge petal storm, consuming your bloom to give it increased damage and range </br> Explosion Damage: +200% </br>Area of Effect: +3 Blocks",
+            "archetype": "Acrobat",
+            "archetype_req": 0,
+            "parents": [
+                "Jasmine Bloom"
+            ],
+            "dependencies": [
+                "Swan Dive"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 40,
+                "col": 8,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "toggle": "Petal Storm",
+                    "bonuses": [
                         {
-                            "name": "Jasmine Bloom Explosion per Hit",
-                            "multipliers": [
-                                250,
-                                25,
-                                0,
-                                0,
-                                0,
-                                25
-                            ]
-                        },
-                        {
-                            "name": "Jasmine Bloom Explosion Total Damage",
-                            "hits": {
-                                "Jasmine Bloom Explosion per Hit": 5
-                            }
+                            "type": "stat",
+                            "name": "damMult.PetalStorm:10.Swan Dive Explosion per Hit",
+                            "value": 200
                         }
                     ]
                 }
@@ -11457,7 +11452,7 @@
         },
         {
             "display_name": "Devour",
-            "desc": "Harvester will give +5 Mana.",
+            "desc": "Harvester will give +2 Mana.",
             "archetype": "",
             "archetype_req": 0,
             "parents": [
@@ -11684,7 +11679,7 @@
                 {
                     "type": "replace_spell",
                     "name": "Shadow Projection",
-                    "base_spell": 10,
+                    "base_spell": 14,
                     "display": "Total Damage",
                     "parts": [
                         {
@@ -11862,7 +11857,7 @@
         },
         {
             "display_name": "Swan Dive",
-            "desc": "Landing 30 hits against an enemy while midair grants you +1 Momentum. (Max 5) </br> Ripple consumes your Momentum, releasing a powerful explosion that deals massive damage and briefly blinds enemies. For each stack of Momentum, this explosion deals +25% more damage. </br> While midair, hold shift to quickly drop down. </br> </br><span class='mc-white'>Total Damage</span>: 480% (of your DPS, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 400%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
+            "desc": "Landing 15 hits against an enemy while midair grants you +1 Momentum. (Max 10) </br> Ripple consumes your Momentum, releasing a powerful explosion that deals massive damage and briefly blinds enemies. For each stack of Momentum, this explosion deals +10% more damage. </br> While midair, hold shift to quickly drop down. </br> </br><span class='mc-white'>Total Damage</span>: 480% (of your DPS, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 400%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
             "archetype": "Acrobat",
             "archetype_req": 6,
             "parents": [
@@ -11884,13 +11879,14 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Momentum",
+                    "multiplicative": true,
                     "output": {
                         "type": "stat",
                         "name": "damMult.Momentum:10.Swan Dive Explosion per Hit"
                     },
-                    "slider_max": 5,
+                    "slider_max": 10,
                     "scaling": [
-                        25
+                        10
                     ]
                 },
                 {
@@ -11922,7 +11918,7 @@
         },
         {
             "display_name": "Soul Siphon",
-            "desc": "Detonating 30+ Tricks on enemies will make them 200% Drained and take +30% more </br>Water damage from you. </br> Whenever you or an ally attacks a Drained enemy, siphon 5% of it, converting it into 5% Overhealth that decays over 20s. (Max 25%) </br> You may store +20 more Tricks on enemies. </br> </br>Cooldown: 2s </br>Duration: 25s",
+            "desc": "Detonating 30+ Tricks on enemies will make them 200% Drained and take +30% more </br>Water damage from you. </br> Whenever you or an ally attacks a Drained enemy, siphon 7.5% of it, converting it into 7.5% Overhealth that decays over 20s. (Max 25%) </br> You may store +20 more Tricks on enemies. </br> </br>Cooldown: 2s </br>Duration: 25s",
             "archetype": "Trickster",
             "archetype_req": 0,
             "base_abil": "Malicious Mockery",
@@ -12781,7 +12777,7 @@
         },
         {
             "display_name": "Shocking Aura",
-            "desc": "Aura will travel 56% faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
+            "desc": "Aura will travel much faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
             "base_abil": "Aura",
             "archetype": "Acolyte",
             "parents": [
@@ -14189,7 +14185,7 @@
         },
         {
             "display_name": "Eldritch Call",
-            "desc": "Casting Totem while holding shift will spend 30 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles. </br> Tentacles debuff bleeding enemies in range and each deal damage to one enemy every 2s. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 840% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 640%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 18 Blocks (Circle-Shaped) </br>Effects: +40% Slowness to Enemies   -20% Resistance Bonus to Enemies </br>Duration: 10s",
+            "desc": "Casting Totem while holding shift will spend 30 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles. </br> Tentacles debuff bleeding enemies in range and each deal damage to one enemy every 2s. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 840% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 640%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 18 Blocks (Circle-Shaped) </br>Effects: +40% Slowness to Enemies   -15% Resistance Bonus to Enemies </br>Duration: 10s",
             "archetype": "Acolyte",
             "archetype_req": 7,
             "parents": [
@@ -14591,7 +14587,7 @@
         },
         {
             "display_name": "Invigorating Wave",
-            "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +3 mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
+            "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +2 mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
             "archetype": "Summoner",
             "archetype_req": 3,
             "parents": [

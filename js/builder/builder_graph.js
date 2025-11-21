@@ -17,13 +17,14 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.08], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0], ["divinehonor", 0.0] ]);
+const damageMultipliers = new Map([ ["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0], ["divinehonor", 0.0] ]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
 
     compute_func(input_map) {
         let damage_boost = 0;
+        let str_boost = 0;
         let vuln_boost = 0;
         let def_boost = 0;
         for (const [key, value] of damageMultipliers) {
@@ -31,12 +32,13 @@ let boosts_node = new (class extends ComputeNode {
             if (elem.classList.contains("toggleOn")) {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
-                else if (key === "emboldeningcry") { def_boost += .05 }
+                else if (key === "emboldeningcry") { def_boost += .05; str_boost += .08 }
                 else if (key === "eldritchcall") { vuln_boost += .20 }
             }
         }
         let res = new Map();
         res.set('damMult.Potion', 100*damage_boost);
+        res.set('damMult.Strength', 100*str_boost);
         res.set('damMult.Vulnerability', 100*vuln_boost);
         res.set('defMult.Potion', 100*def_boost);
         return res;

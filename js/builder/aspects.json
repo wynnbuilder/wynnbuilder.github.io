@@ -209,14 +209,14 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": 5,
+                  "slider_max": 15,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
                   "max": 15,
                   "scaling": [
-                    3
+                    1
                   ]
                 }
               ]
@@ -234,14 +234,14 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": 10,
+                  "slider_max": 30,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
                   "max": 30,
                   "scaling": [
-                    3
+                    1
                   ]
                 }
               ]
@@ -259,14 +259,14 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": 13,
+                  "slider_max": 40,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
                   "max": 40,
                   "scaling": [
-                    3
+                    1
                   ]
                 }
               ]
@@ -856,7 +856,7 @@
         },
         {
           "threshold": 15,
-          "description": "Divine Intervention will cause Guardian Angels to fire 3x faster and deal 1.35x damage instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 3x faster instead, and cause explosive shots to deal +15% more damage. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -1143,17 +1143,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Reduce Ghostly Trigger's cooldown by 1s.",
+          "description": "Reduce Ghostly Trigger's cooldown by -1s.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Reduce Ghostly Trigger's cooldown by 1.5s.",
+          "description": "Reduce Ghostly Trigger's cooldown by -1.5s.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Reduce Ghostly Trigger's cooldown by 2s.",
+          "description": "Reduce Ghostly Trigger's cooldown by -2s.",
           "abilities": []
         }
       ]
@@ -1181,33 +1181,6 @@
         {
           "threshold": 150,
           "description": "Increase Implosion's pull strength by 25%.",
-          "abilities": []
-        }
-      ]
-    },
-    {
-      "displayName": "Aspect of a Thunderbolt",
-      "id": 21,
-      "tier": "Legendary",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Shocking Bomb travels 10% faster.",
-          "abilities": []
-        },
-        {
-          "threshold": 5,
-          "description": "Shocking Bomb travels 15% faster.",
-          "abilities": []
-        },
-        {
-          "threshold": 30,
-          "description": "Shocking Bomb travels 20% faster.",
-          "abilities": []
-        },
-        {
-          "threshold": 150,
-          "description": "Shocking Bomb travels 25% faster.",
           "abilities": []
         }
       ]
@@ -1252,13 +1225,13 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Single Bow",
-                    "hits": {
-                      "Single Shot": 4
-                    },
-                    "behavior": "modify"
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Single Bow",
+                  "hits": {
+                    "Single Shot": 4
+                  },
+                  "behavior": "modify"
                 }
               ]
             }
@@ -1272,13 +1245,13 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Single Bow",
-                    "hits": {
-                      "Single Shot": 7
-                    },
-                    "behavior": "modify"
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Single Bow",
+                  "hits": {
+                    "Single Shot": 7
+                  },
+                  "behavior": "modify"
                 }
               ]
             }
@@ -1292,17 +1265,44 @@
               "base_abil": "Arrow Shield",
               "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Single Bow",
-                    "hits": {
-                      "Single Shot": 9
-                    },
-                    "behavior": "modify"
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Single Bow",
+                  "hits": {
+                    "Single Shot": 9
+                  },
+                  "behavior": "modify"
                 }
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "displayName": "Aspect of the Thunderbolt",
+      "id": 24,
+      "tier": "Legendary",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Shocking Bomb travels +12% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 5,
+          "description": "Shocking Bomb travels +21% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 30,
+          "description": "Shocking Bomb travels +30% faster.",
+          "abilities": []
+        },
+        {
+          "threshold": 150,
+          "description": "Shocking Bomb travels +35% faster.",
+          "abilities": []
         }
       ]
     }
@@ -1315,17 +1315,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Sacred Surge gains +0.25 holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.25 holy power for every spell or ability triggered. </br> Luster Purge grants +1.25 holy power.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Sacred Surge gains +0.4 holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.4 holy power for every spell or ability triggered. </br> Luster Purge grants +2.0 holy power.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Sacred Surge gains +0.5 holy power for every spell or ability triggered.",
+          "description": "Sacred Surge gains +0.5 holy power for every spell or ability triggered. </br> Luster Purge grants +2.5 holy power.",
           "abilities": []
         }
       ]
@@ -1956,14 +1956,14 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%)",
+          "description": "Pressure is stronger. </br> Bash gains +1x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%)",
           "abilities": [
             {
               "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 8,
                 "pressure_neutral_uppercut": 50,
-                "pressure_bash_hits": 0.5
+                "pressure_bash_hits": 1.0
               },
               "effects": []
             }
@@ -1971,14 +1971,14 @@
         },
         {
           "threshold": 5,
-          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +3% Damage Bonus to Players",
+          "description": "Pressure is stronger. </br> Bash gains +1x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +3% Damage Bonus to Players",
           "abilities": [
             {
               "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 8,
                 "pressure_neutral_uppercut": 50,
-                "pressure_bash_hits": 0.5,
+                "pressure_bash_hits": 1.0,
                 "pressure_scream_boost": 3
               },
               "effects": []
@@ -1987,14 +1987,14 @@
         },
         {
           "threshold": 15,
-          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits and more damage. </br><span class='mc-white'>Total Damage</span>: +5%   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> Uppercut deals +70% neutral and +10% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +120%   </br>&emsp;(<span class='nDam'>Damage</span>: +70%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +10%) </br> War Scream grants a higher damage boost. Effect: +4% Damage Bonus to Players",
+          "description": "Pressure is stronger. </br> Bash gains +1x as many hits and more damage. </br><span class='mc-white'>Total Damage</span>: +5%   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> Uppercut deals +70% neutral and +10% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +120%   </br>&emsp;(<span class='nDam'>Damage</span>: +70%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +10%) </br> War Scream grants a higher damage boost. Effect: +4% Damage Bonus to Players",
           "abilities": [
             {
               "base_abil": "War Scream",
               "properties": {
                 "pressure_rainbow_uppercut": 10,
                 "pressure_neutral_uppercut": 70,
-                "pressure_bash_hits": 0.5,
+                "pressure_bash_hits": 1.0,
                 "pressure_scream_boost": 4
               },
               "effects": []
@@ -2486,7 +2486,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Thunderstorm gains +1 strike, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -1%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -1% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +1 strike. </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2494,19 +2494,6 @@
                 "Thunderstorm"
               ],
               "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Lightning Damage",
-                  "base_spell": 3,
-                  "multipliers": [
-                    -2,
-                    0,
-                    -1,
-                    0,
-                    0,
-                    0
-                  ]
-                },
                 {
                   "type": "add_spell_prop",
                   "target_part": "Total Damage",
@@ -2515,19 +2502,6 @@
                     "Lightning Damage": 1,
                     "Winded Damage": 1
                   }
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Winded",
-                  "behavior": "modify",
-                  "output": {
-                    "type": "stat",
-                    "name": "nConvBase:3.Winded Damage"
-                  },
-                  "scaling": [
-                    -1
-                  ]
                 }
               ]
             }
@@ -2535,7 +2509,7 @@
         },
         {
           "threshold": 15,
-          "description": "Thunderstorm gains +2 strikes, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -7% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -4%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -2% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +2 strikes. </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2543,19 +2517,6 @@
                 "Thunderstorm"
               ],
               "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Lightning Damage",
-                  "base_spell": 3,
-                  "multipliers": [
-                    -4,
-                    0,
-                    -3,
-                    0,
-                    0,
-                    0
-                  ]
-                },
                 {
                   "type": "add_spell_prop",
                   "target_part": "Total Damage",
@@ -2564,19 +2525,6 @@
                     "Lightning Damage": 2,
                     "Winded Damage": 2
                   }
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Winded",
-                  "behavior": "modify",
-                  "output": {
-                    "type": "stat",
-                    "name": "nConvBase:3.Winded Damage"
-                  },
-                  "scaling": [
-                    -2
-                  ]
                 }
               ]
             }
@@ -2584,7 +2532,7 @@
         },
         {
           "threshold": 75,
-          "description": "Thunderstorm gains +3 strikes, and hits +50% faster. </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: -6%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -4%) </br> Breathless becomes slightly less effective. </br><span class='mc-white'>Total Damage</span>: -3% (of your DPS, per Winded)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%)   </br>&emsp;(<span class='eDam'>Earth</span>: -1%) </br> Arcane Transfer gains -1 Mana from Meteor.",
+          "description": "Thunderstorm gains +3 strikes. </br> Arcane Transfer gains -1 Mana from Meteor.",
           "abilities": [
             {
               "base_abil": "Meteor",
@@ -2594,51 +2542,12 @@
               "effects": [
                 {
                   "type": "add_spell_prop",
-                  "target_part": "Lightning Damage",
-                  "base_spell": 3,
-                  "multipliers": [
-                    -6,
-                    0,
-                    -4,
-                    0,
-                    0,
-                    0
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
                   "target_part": "Total Damage",
                   "base_spell": 3,
                   "hits": {
                     "Lightning Damage": 3,
                     "Winded Damage": 3
                   }
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Winded",
-                  "behavior": "modify",
-                  "output": {
-                    "type": "stat",
-                    "name": "nConvBase:3.Winded Damage"
-                  },
-                  "scaling": [
-                    -2
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Winded",
-                  "behavior": "modify",
-                  "output": {
-                    "type": "stat",
-                    "name": "eConvBase:3.Winded Damage"
-                  },
-                  "scaling": [
-                    -1
-                  ]
                 }
               ]
             }

@@ -485,27 +485,28 @@
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Hits dealt",
-                        "slider_max": -18,
                         "output": {
                             "type": "stat",
                             "name": "spd"
                         },
                         "scaling": [
-                            -3
-                        ]
+                            -1
+                        ],
+                        "max": -60
                     },
                     {
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Hits dealt",
+                        "slider_max": -30,
                         "output": {
                             "type": "stat",
                             "name": "spd"
                         },
                         "scaling": [
-                            6
+                            2
                         ],
-                        "max": 35
+                        "max": 30
                     }
                 ]
             },
@@ -767,10 +768,10 @@
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Single Hit",
-                        "behavior": "overwrite",
+                        "behavior": "modify",
                         "multipliers": [
-                            225,
-                            40,
+                            85,
+                            10,
                             0,
                             0,
                             60,
@@ -786,16 +787,6 @@
                             "Bash Hit": 1,
                             "Boiling Blood Tick": 5
                         }
-                    },
-                    {
-                        "type": "raw_stat",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.Hellfire:1.Thunderclap Bonus",
-                                "value": -100
-                            }
-                        ]
                     }
                 ]
             },
@@ -907,12 +898,15 @@
                         "target_part": "Line Damage Tick",
                         "behavior": "overwrite",
                         "multipliers": [
-                            30,
+                            50,
                             0,
                             0,
                             0,
                             0,
                             0
+                        ],
+                        "ignored_mults": [
+                            "Focus"
                         ]
                     },
                     {
@@ -946,7 +940,7 @@
                         "target_part": "Beam Tick Damage",
                         "behavior": "overwrite",
                         "multipliers": [
-                            400,
+                            450,
                             0,
                             0,
                             0,
@@ -1136,9 +1130,7 @@
                 "dependencies": [
                     "Jasmine Bloom"
                 ],
-                "properties": {
-                    "duration": 2.0
-                },
+                "properties": {},
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -1153,19 +1145,29 @@
                             25,
                             25
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                "class": "Assassin",
+                "base_abil": "Swan Dive",
+                "dependencies": [
+                    "Swan Dive"
+                ],
+                "properties": {},
+                "effects": [
                     {
                         "type": "add_spell_prop",
-                        "base_spell": 7,
-                        "target_part": "Jasmine Bloom Explosion per Hit",
+                        "base_spell": 10,
+                        "target_part": "Swan Dive Explosion per Hit",
                         "behavior": "overwrite",
                         "multipliers": [
-                            50,
-                            50,
-                            50,
-                            50,
-                            50,
-                            50
+                            16,
+                            16,
+                            16,
+                            16,
+                            16,
+                            16
                         ]
                     }
                 ]
@@ -1424,11 +1426,11 @@
                         "base_spell": 1,
                         "target_part": "Sunshower Damage",
                         "multipliers": [
-                            80,
                             0,
                             0,
-                            40,
-                            10,
+                            0,
+                            150,
+                            0,
                             0
                         ]
                     }
@@ -1615,21 +1617,21 @@
                             "name": "spd"
                         },
                         "scaling": [
-                            -3
+                            -1
                         ],
-                        "max": -70
+                        "max": -60
                     },
                     {
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Hits dealt",
-                        "slider_max": 18,
+                        "slider_max": 65,
                         "output": {
                             "type": "stat",
                             "name": "spd"
                         },
                         "scaling": [
-                            3
+                            1
                         ],
                         "max": 125
                     }
