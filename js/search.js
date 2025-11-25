@@ -83,9 +83,7 @@ function do_item_search() {
             return;
         }
 
-        if (value) {
-            queries.push("f:" + filter_name + operation_mappings[operator] + "'" + value + "'");
-        }
+        queries.push("f:" + filter_name + operation_mappings[operator] + '"' + value + '"');
     }
 
     // excludes
