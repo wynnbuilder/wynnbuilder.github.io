@@ -4,7 +4,7 @@
  * Depends on `clen_item` from load_item.js
  */
 
-const TOME_DB_VERSION = 12;
+const TOME_DB_VERSION = 13;
 
 let tomes;
 let tomeMap;

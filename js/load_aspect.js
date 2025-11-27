@@ -1,4 +1,4 @@
-let ASPECT_DB_VERSION = 17;
+let ASPECT_DB_VERSION = 18;
 let aspects = {};
 
 // Map<className, Map<string, AspectSpec>>

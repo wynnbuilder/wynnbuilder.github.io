@@ -475,7 +475,7 @@
     },
     "ESCAPE_ROUTE": {
         "displayName": "Escape Route",
-        "description": "Frenzy and Time Dilation charge twice as fast, but to a halved maximum.",
+        "description": "Frenzy and Time Dilation charge twice as fast but also decay twice as fast.",
         "abilities": [
             {
                 "class": "Archer",
@@ -490,23 +490,8 @@
                             "name": "spd"
                         },
                         "scaling": [
-                            -1
-                        ],
-                        "max": -60
-                    },
-                    {
-                        "type": "stat_scaling",
-                        "slider": true,
-                        "slider_name": "Hits dealt",
-                        "slider_max": -30,
-                        "output": {
-                            "type": "stat",
-                            "name": "spd"
-                        },
-                        "scaling": [
-                            2
-                        ],
-                        "max": 30
+                            3
+                        ]
                     }
                 ]
             },
@@ -518,27 +503,13 @@
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Time Dilated",
-                        "slider_max": -22,
                         "output": {
                             "type": "stat",
                             "name": "spd"
                         },
                         "scaling": [
-                            -10
+                            10
                         ]
-                    },
-                    {
-                        "type": "stat_scaling",
-                        "slider": true,
-                        "slider_name": "Time Dilated",
-                        "output": {
-                            "type": "stat",
-                            "name": "spd"
-                        },
-                        "scaling": [
-                            20
-                        ],
-                        "max": 150
                     }
                 ]
             }
@@ -758,7 +729,7 @@
     },
     "HELLFIRE": {
         "displayName": "Hellfire",
-        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]225%, [earth]40%, and [fire]60%. Boiling Blood's cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
+        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]+85%, [earth]+10%, and [fire]+60%. Boiling Blood's cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -880,7 +851,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]30%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
+        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]50%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
         "abilities": [
             {
                 "class": "Archer",
@@ -924,7 +895,7 @@
     },
     "LIFESTREAM": {
         "displayName": "Lifestream",
-        "description": "Blood Sorrow deals [neutral]400% and grants 4 times the overhealth, but shortens its duration by 75%.",
+        "description": "Blood Sorrow deals [neutral]450% and grants 4 times the overhealth, but shortens its duration by 75%.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -1122,7 +1093,7 @@
     },
     "EFFLORESCENCE": {
         "displayName": "Efflorescence",
-        "description": "Jasmine Bloom deals [neutral]25% and \n[earth][thunder][water][fire][air]25% at the cost of 6 blocks of vertical range. \nSwan Dive with a maximum size Jasmine Bloom deals [neutral]50% and [earth][thunder][water][fire][air]50%.",
+        "description": "Jasmine Bloom deals [neutral]25% and \n[earth][thunder][water][fire][air]25% at the cost of 6 blocks of vertical range. \nSwan Dive deals [neutral]16% and [earth][thunder][water][fire][air]16%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -1412,7 +1383,7 @@
     },
     "LUSTRATE": {
         "displayName": "Lustrate",
-        "description": "Heal restores health at a slower rate, but Searing Light deals [neutral]+80%, [water]+40%, and [fire]+10%.",
+        "description": "Heal restores health at a slower rate, but Searing Light deals [water]+150%.",
         "abilities": [
             {
                 "class": "Mage",
@@ -2335,7 +2306,7 @@
     },
     "BRACHIATE": {
         "displayName": "Brachiate",
-        "description": "Grappling Hook has 25% increased range and increased velocity, but no longer pulls enemies.",
+        "description": "Grappling Hook has 25% increased range and increased velocity.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2352,7 +2323,7 @@
     },
     "PHOENIXBORN": {
         "displayName": "Phoenix-Born",
-        "description": "Health Regeneration is increased by 1% for every 1% Health missing.",
+        "description": "Health Regeneration is increased by 0.75% for every 1% Health missing.",
         "abilities": []
     },
     "SUN_EATER": {
@@ -2362,7 +2333,7 @@
     },
     "SELFSUFFICIENT": {
         "displayName": "Self-sufficient",
-        "description": "Powder Specials can no longer be charged manually, but accumulate 7% charge every second.",
+        "description": "Powder Specials can no longer be charged manually, but accumulate 8% charge every second.",
         "abilities": []
     },
     "ORBITAL_CHAIN": {
@@ -2646,5 +2617,72 @@
                 "effects": []
             }
         ]
+    },
+    "HEARTBEAT": {
+        "displayName": "Heartbeat",
+        "description": "Arrow Shield is locked to 2 charges but deals doubled damage.\nArrow Wall triples Arrow Shield damage and doubles Guardian Angels ammo.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "properties": {
+                    "charges": -1
+                },
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Heartbeat:4.Shield Damage",
+                                "value": 100
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Guardian Angels",
+                "properties": {
+                    "charges": 1
+                },
+                "effects": []
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Arrow Wall"
+                ],
+                "properties": {
+                    "charges": -2
+                },
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Heartbeat:4.Shield Damage",
+                                "value": 100
+                            },
+                            {
+                                "type": "prop",
+                                "abil": "Arrow Shield",
+                                "name": "shots",
+                                "mult": true,
+                                "value": 2
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "SPECTRAL_MEMORY": {
+        "displayName": "Spectral Memory",
+        "description": "Ghostly Trigger lasts until landing, but no longer increases attack speed. Its cooldown is reduced by 33%.",
+        "abilities": []
     }
 }
