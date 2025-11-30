@@ -11701,6 +11701,13 @@
                             }
                         }
                     ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Spell Copies",
+                    "slider_max": 1,
+                    "behavior": "modify"
                 }
             ]
         },
@@ -13966,9 +13973,16 @@
                             ]
                         },
                         {
+                            "name": "Tether Drain Threshold",
+                            "hits": {
+                                "Tether Tick": 1
+                            },
+                            "display": false
+                        },
+                        {
                             "name": "Tether DPS",
                             "hits": {
-                                "Tether Tick": "Totem.totem_mul"
+                                "Tether Drain Threshold": "Totem.totem_mul"
                             },
                             "display": false
                         },

@@ -33,7 +33,7 @@ let boosts_node = new (class extends ComputeNode {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
                 else if (key === "emboldeningcry") { def_boost += .05; str_boost += .08 }
-                else if (key === "eldritchcall") { vuln_boost += .20 }
+                else if (key === "eldritchcall") { vuln_boost += .15 }
             }
         }
         let res = new Map();

@@ -153,7 +153,7 @@
               ],
               "base_abil": "Arrow Storm",
               "properties": {
-                "duration": 0.2
+                "ray_duration": 0.2
               },
               "effects": []
             }
@@ -169,7 +169,7 @@
               ],
               "base_abil": "Arrow Storm",
               "properties": {
-                "duration": 0.3
+                "ray_duration": 0.3
               },
               "effects": []
             }
@@ -185,7 +185,7 @@
               ],
               "base_abil": "Arrow Storm",
               "properties": {
-                "duration": 0.4
+                "ray_duration": 0.4
               },
               "effects": []
             }
@@ -4545,7 +4545,7 @@
                   "slider": true,
                   "behavior": "modify",
                   "slider_name": "Spell Copies",
-                  "slider_max": 2
+                  "slider_max": 1
                 }
               ]
             }
@@ -4588,7 +4588,7 @@
                   "slider": true,
                   "behavior": "modify",
                   "slider_name": "Spell Copies",
-                  "slider_max": 2
+                  "slider_max": 1
                 }
               ]
             }
@@ -5701,22 +5701,82 @@
         {
           "threshold": 1,
           "description": "Twisted Tether requires -0.2% Health lost to activate.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Twisted Tether",
+              "dependencies": [],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 8,
+                  "target_part": "Tether Drain Threshold",
+                  "hits": {
+                    "Tether Tick": 0.111111111111
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Twisted Tether requires -0.3% Health lost to activate.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Twisted Tether",
+              "dependencies": [],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 8,
+                  "target_part": "Tether Drain Threshold",
+                  "hits": {
+                    "Tether Tick": 0.176470588235
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 30,
           "description": "Twisted Tether requires -0.4% Health lost to activate.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Twisted Tether",
+              "dependencies": [],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 8,
+                  "target_part": "Tether Drain Threshold",
+                  "hits": {
+                    "Tether Tick": 0.25
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 150,
           "description": "Twisted Tether requires -0.5% Health lost to activate.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Twisted Tether",
+              "dependencies": [],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 8,
+                  "target_part": "Tether Drain Threshold",
+                  "hits": {
+                    "Tether Tick": 0.333333333333
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

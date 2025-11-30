@@ -1006,6 +1006,10 @@ const atree_collect_spells = new (class extends ComputeNode {
                         if ('hide' in effect) {
                             part.display = false;
                         }
+                        if ('ignored_mults' in effect) {
+                            if ('ignored_mults' in part) { part.ignored_mults.push(effect.ignored_mults); }
+                            else { part.ignored_mults = effect.ignored_mults; }
+                        }
                         found_part = true;
                         break;
                     }
