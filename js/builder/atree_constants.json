@@ -403,6 +403,13 @@
                             ]
                         },
                         {
+                            "name": "Shield DPS",
+                            "type": "total",
+                            "hits": {
+                                "Shield Damage": 4
+                            }
+                        },
+                        {
                             "name": "Total Damage",
                             "type": "total",
                             "hits": {
