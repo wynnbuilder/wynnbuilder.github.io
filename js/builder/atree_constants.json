@@ -11864,7 +11864,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Dissolution",
-                            "value": 75
+                            "value": 60
                         }
                     ]
                 }

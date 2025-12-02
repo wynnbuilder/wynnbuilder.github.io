@@ -1068,7 +1068,7 @@
         "abilities": [
             {
                 "class": "Assassin",
-                "base_abil": "Vanish",
+                "base_abil": "Dash",
                 "dependencies": [
                     "Dissolution"
                 ],
@@ -1083,7 +1083,7 @@
                             {
                                 "type": "stat",
                                 "name": "defMult.Dissolution",
-                                "value": -40
+                                "value": -25
                             }
                         ]
                     }

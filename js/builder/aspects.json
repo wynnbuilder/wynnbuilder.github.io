@@ -4303,17 +4303,65 @@
         {
           "threshold": 1,
           "description": "Increase Smoke Bomb's duration by 10%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "behavior": "modify",
+                  "target_part": "Per Bomb",
+                  "hits": {
+                    "Per Tick": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Increase Smoke Bomb's duration by 20%.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "behavior": "modify",
+                  "target_part": "Per Bomb",
+                  "hits": {
+                    "Per Tick": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
           "description": "Increase Smoke Bomb's duration by 30%.",
-          "abilities": []
+          "abilities": [
+                      {
+              "base_abil": "Smoke Bomb",
+              "properties": {},
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "behavior": "modify",
+                  "target_part": "Per Bomb",
+                  "hits": {
+                    "Per Tick": 3
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
