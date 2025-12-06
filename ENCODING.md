@@ -84,7 +84,11 @@ There is nothing to signify reaching the end of the "equipment" block, rather, w
 | Powder Element Wrap (iff `REPEAT_TIER`) | L (Dynamic) = floor(log_2(NUM_ELEMENTS-1))+1   | `uint32`                       | [0, 2^L) |
 | Powder Change Flag                      | 1                                              | `NEW_POWDER`, `NEW_ITEM`       | [0, 1]   |
 
-Before encoding, powders are collected by order of appearance, preserving their original relative position. an Example of that is `E6 A6 E4 E6 A6 => E6 E6 A6 A6 E4`. This is allowed, even though it changes the powder order, because it's consistent with powder application mechanics.
+Before encoding, powders are collected element-wise by order of appearance, preserving their original relative position and tier order within each element. A few examples:
+- `E6 A6 E4 E6 A6 => E6 E4 E6 A6 A6`
+- `A6 F6 T6 A6 F1 F2 => A6 A6 F6 F1 F2 T6`
+- `E1 T2 W4 F2 E1 E1 => E1 E1 E1 T2 W4 F2`
+This transformation is consistent with the in-game powder application mechanics.
 
 They are then are encoded as unique IDs equal to `pid = indexof(PowderElement) * NUM_POWDER_TIERS + (PowderTier - 1)`, where `NUM_POWDER_TIERS` is an unspecified value corresponding to the latest amount of powder tiers. This is analogous to making a matrix of `NUM_POWDER_ELEMENTS * NUM_POWDER_TIERS`, assigning each cell with a powder.
 
