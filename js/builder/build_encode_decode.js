@@ -87,24 +87,30 @@ function encodeTomes(tomes) {
 }
 
 /**
- * Collect identical powders, keeping their original order in place.
+ * Collect identical powder elements, keeping their original order in place.
+ * @WARN(orgold, in-game vers' 2.1.6): Do not change tier order; This affects powder specials.
  *
  * - T6 E6 T6 E6       => T6 T6 E6 E6
- * - T6 T4 T6 T4       => T6 T6 T4 T4
+ * - T6 T4 T6 T4       => T6 T4 T6 T4 (Preserves tier order)
  * - F6 A6 F6 T6 T6 A6 => F6 F6 A6 A6 T6 T6
  *
  * @param {number[]} powders - An array of powder IDs for a given item.
  */
 function collectPowders(powders) {
-    const countingMap = new Map() // Map preserves insertion order even for integers
+    let powderChunks = ENC.POWDER_ELEMENTS.map(e => []);
+    let order = ENC.POWDER_ELEMENTS.map(e => -1);
+    let currOrder = 0;
     for (const powder of powders) {
-        if (countingMap.get(powder) === undefined) {
-            countingMap.set(powder, 1);
+        const elementIdx = Math.floor(powder / ENC.POWDER_TIERS);
+        if (order[elementIdx] < 0) {
+            powderChunks[currOrder].push(powder);
+            order[elementIdx] = currOrder;
+            currOrder += 1;
         } else {
-            countingMap.set(powder, countingMap.get(powder) + 1);
+            powderChunks[order[elementIdx]].push(powder);
         }
     }
-    return countingMap;
+    return powderChunks;
 }
 
 /**
@@ -127,28 +133,33 @@ function encodePowders(powderset, version) {
     powdersVec.appendFlag("EQUIPMENT_POWDERS_FLAG", "HAS_POWDERS");
 
     let previousPowder = -1;
-    for (const [powder, count] of collectedPowders) {
-        if (previousPowder >= 0) {
-            powdersVec.appendFlag("POWDER_REPEAT_OP", "NO_REPEAT");
-            if (powder % POWDER_TIERS === previousPowder % POWDER_TIERS) {
-                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "REPEAT_TIER");
-                const numElements = ENC.POWDER_ELEMENTS.length;
-                const powderElement = Math.floor(powder % numElements);
-                const previousPowderElement = Math.floor(previousPowder % numElements);
-                const elementWrapper = mod(powderElement - previousPowderElement, numElements) - 1; 
-                powdersVec.append(elementWrapper, ENC.POWDER_WRAPPER_BITLEN);
+    for (let powderChunk of collectedPowders) {
+        let i = 0;
+        let powder = undefined;
+        while (i < powderChunk.length) {
+            powder = powderChunk[i];
+            if (previousPowder >= 0) {
+                powdersVec.appendFlag("POWDER_REPEAT_OP", "NO_REPEAT");
+                if (powder % POWDER_TIERS === previousPowder % POWDER_TIERS) {
+                    powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "REPEAT_TIER");
+                    const numElements = ENC.POWDER_ELEMENTS.length;
+                    const powderElement = Math.floor(powder % numElements);
+                    const previousPowderElement = Math.floor(previousPowder % numElements);
+                    const elementWrapper = mod(powderElement - previousPowderElement, numElements) - 1; 
+                    powdersVec.append(elementWrapper, ENC.POWDER_WRAPPER_BITLEN);
+                } else {
+                    powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
+                    powdersVec.appendFlag("POWDER_CHANGE_OP", "NEW_POWDER");
+                    powdersVec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
+                }
             } else {
-                powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
-                powdersVec.appendFlag("POWDER_CHANGE_OP", "NEW_POWDER");
                 powdersVec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
             }
-        } else {
-            powdersVec.append(encodePowderIdx(powder, ENC.POWDER_TIERS), ENC.POWDER_ID_BITLEN);
+            while (++i < powderChunk.length && powderChunk[i] == powder) {
+                powdersVec.appendFlag("POWDER_REPEAT_OP", "REPEAT")
+            }
+            previousPowder = powder;
         }
-        for (let i = 1; i < count; ++i) {
-            powdersVec.appendFlag("POWDER_REPEAT_OP", "REPEAT")
-        }
-        previousPowder = powder;
     }
     powdersVec.appendFlag("POWDER_REPEAT_OP", "NO_REPEAT");
     powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
