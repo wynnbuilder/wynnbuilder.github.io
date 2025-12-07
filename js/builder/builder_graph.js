@@ -1101,6 +1101,110 @@ class SumNumberInputNode extends InputNode {
     }
 }
 
+function generateTomeTooltip(tooltip_elem, tome) {
+    const title = make_elem("p", [tome.statMap.get("tier"), "scaled-font", "mx-1", "my-1"]);
+    const body = make_elem("p", ["mc-gray", "scaled-font", "text-wrap", "mx-1", "my-1"]);
+    title.innerHTML = tome.statMap.get("displayName");
+    let numberRegex = /[+-]?\d+(\.\d+)?[%+s]?/g; // +/- (optional), 1 or more digits, period followed by 1 or more digits (optional), %/+/s (optional)
+
+    // To display:
+    // - Tome level
+    body.appendChild(make_elem("div", ["col"], {
+        textContent: `Combat Level Min: ${tome.statMap.get("lvl")}`
+    }));
+
+    body.appendChild(make_elem("br", [], {}));
+
+    // - Tome skillpoint bonuses
+    let skp_bonuses = tome.statMap.get("skillpoints");
+    if (skp_bonuses) {
+        for (let [i, skp] of skp_order.entries()) {
+            if (skp_bonuses[i] != 0) {
+                let skp_div = make_elem("div", ["col"], { });
+                let skp_title = make_elem("span", ["mc-white"], {
+                    textContent: `${idPrefixes[skp]}`
+                });
+                let bonus_elem = make_elem("span", [skp_bonuses[i] < 0 ? "negative" : "positive"], {
+                    textContent: `${skp_bonuses[i]}`
+                });
+                skp_div.append(skp_title, bonus_elem);
+                body.appendChild(skp_div)
+            }
+        }
+    }
+
+    // - Tome stats
+    let minRolls = tome.statMap.get("minRolls");
+    let maxRolls = tome.statMap.get("maxRolls");
+
+    for (const [id, value] of minRolls) {
+        if (value == 0) continue;
+
+        let value_max = maxRolls.get(id);
+
+        let style = value < 0 ? "negative" : "positive";
+        if(reversedIDs.includes(id)){
+            style === "positive" ? style = "negative" : style = "positive";
+        }
+        let id_row = make_elem("div", ["col"], { });
+        let col_row = make_elem("div", ["row"], { });
+
+        let minElem = make_elem("div", [style, "col", "text-start"], {
+            textContent: `${value}${idSuffixes[id]}`
+        });
+        minElem.style.cssText += "flex-grow: 0"
+
+        let idTitle = make_elem("div", ["mc-white", "col", "text-center"], {
+            textContent: `${idPrefixes[id]}`
+        });
+        idTitle.style.cssText += "flex-grow: 1"
+
+        let maxElem = make_elem("div", [style, "col", "text-end"], {
+            textContent: `${value_max}${idSuffixes[id]}`
+        });
+        maxElem.style.cssText += "flex-grow: 0"
+
+        col_row.append(minElem, idTitle, maxElem);
+        id_row.append(col_row);
+        body.append(id_row)
+    }
+
+    tooltip_elem.appendChild(title);
+    tooltip_elem.appendChild(body);
+}
+
+/*
+ * Renders the tooltips for tomes.
+ * Signature TomeHoverRenderNode(name, trigger, bounding_elem) => None
+ *
+ * @param {name} the name of the node
+ * @param {trigger} the trigger div
+ * @param {bounding_elem} the box bounding (loosely) the elements.
+ *
+ * Notice that we're using the `on{event}` property instead of addEventListener to overwrite the listener
+ * function every time an aspect update occurs.
+ *
+ * TODO(@orgold): Factor this into a more generic function (duplicate aspect logic).
+ */
+class TomeHoverRenderNode extends TooltipGeneratorNode {
+    constructor(name, trigger, bounding_elem) {
+        super(name, trigger, bounding_elem, generateTomeTooltip);
+    }
+
+    compute_func(input_map) {
+        let tome = input_map.get('tooltip-args');
+
+        // Clean up listeners
+        if (tome.statMap.get("NONE")) {
+            this.trigger.onmouseover = undefined;
+            this.trigger.onmouseout = undefined;
+            this.trigger.onclick = undefined;
+            return;
+        };
+        super.compute_func(input_map)
+    }
+}
+
 let item_final_nodes = [];
 let powder_nodes = [];
 let edit_input_nodes = [];
@@ -1163,6 +1267,9 @@ function builder_graph_init(skillpoints) {
         equip_inputs.push(item_input);
         item_final_nodes.push(item_input);
         new ItemInputDisplayNode(eq+'-input-display', eq, item_image).link_to(item_input);
+        let tomeDropdown = document.getElementById('tomes-dropdown');
+        let tomeImage = document.getElementById(`${eq}-img-loc`);
+        new TomeHoverRenderNode(`{eq}-render`, tomeImage, tomeDropdown).link_to(item_input, 'tooltip-args');
         build_node.link_to(item_input, eq);
     }
 
@@ -1234,7 +1341,7 @@ function builder_graph_init(skillpoints) {
         new AspectInputDisplayNode(field+'-input', aspect_input_field, aspect_image_div).link_to(aspect_input, "aspect-spec");
         aspect_inputs.push(aspect_input);
         const aspect_tier_input = new AspectTierInputNode(field+'-tier-input', aspect_tier_input_field).link_to(aspect_input, 'aspect-spec');
-        new AspectRenderNode(field+'-render', aspect_image_loc_div, aspects_dropdown).link_to(aspect_tier_input, 'aspect-tiered-spec');
+        new AspectRenderNode(field+'-render', aspect_image_loc_div, aspects_dropdown).link_to(aspect_tier_input, 'tooltip-args');
         aspect_agg_node.link_to(aspect_tier_input, field+'-tiered');
     }
     build_encode_node.link_to(aspect_agg_node, 'aspects');
