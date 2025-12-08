@@ -613,3 +613,43 @@ a:hover {
     background-position: 100% 0;
     aspect-ratio: 1/1;
 }
+
+.emerald{
+    background-image: url('../media/items/wynn_money.png');
+    image-rendering: pixelated;
+    background-size: 400% 100%;
+    background-position: 0% 0;
+    height: 5%;
+    width: 5%;
+    aspect-ratio: 1/1;
+}
+
+.emerald-block{
+    background-image: url('../media/items/wynn_money.png');
+    image-rendering: pixelated;
+    background-size: 400% 100%;
+    background-position: 33% 0;
+    height: 5%;
+    width: 5%;
+    aspect-ratio: 1/1;
+}
+
+.liquid-emerald{
+    background-image: url('../media/items/wynn_money.png');
+    image-rendering: pixelated;
+    background-size: 400% 100%;
+    background-position: 66% 0;
+    height: 5%;
+    width: 5%;
+    aspect-ratio: 1/1;
+}
+
+.liquid-emerald-stack{
+    background-image: url('../media/items/wynn_money.png');
+    image-rendering: pixelated;
+    background-size: 400% 100%;
+    background-position: 100% 0;
+    height: 5%;
+    width: 5%;
+    aspect-ratio: 1/1;
+}

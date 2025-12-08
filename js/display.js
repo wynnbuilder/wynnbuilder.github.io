@@ -265,8 +265,15 @@ function displayExpandedItem(item, parent_id){
                     parent_div.appendChild(p_elem);
                 } else if (id === "set") {
                     if (item.get("hideSet")) { continue; }
-
-                    parent_div.appendChild(make_elem("div", ["col"], { textContent: "Set: " + item.get(id).toString() }));
+                    setName = item.get(id).toString();
+                    const set_elem = make_elem("a", ["col"], {
+                        textContent: `Set: ${setName}`,
+                        href: `../items_adv/?f=set="${setName}"`,
+                        style: {
+                            color: "inherit",
+                        }
+                    })
+                    parent_div.appendChild(set_elem);
                 } else if (id === "majorIds") {
                     for (let major_id_str of item.get(id)) {
                         if (major_id_str in MAJOR_IDS) {
