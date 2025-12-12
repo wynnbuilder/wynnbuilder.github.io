@@ -56,18 +56,10 @@ function displayIDCosts(elemID, item) {
         let lvl = item.get("lvl");
         if (typeof(lvl) === "string") { lvl = parseFloat(lvl); }
         
-        let title_elem = document.createElement("p");
-        title_elem.classList.add("smalltitle");
-        title_elem.style.color = "white";
-        title_elem.textContent = "Identification Costs";
+        let title_elem = make_elem("p", ["text-center", item.get("tier")], {textContent: "Identification costs"});
         parent_elem.appendChild(title_elem);
-        parent_elem.appendChild(document.createElement("br"));
 
-        let grid_item = document.createElement("div");
-        grid_item.style.display = "flex";
-        grid_item.style.flexDirection = "rows";
-        grid_item.style.flexWrap = "wrap";
-        grid_item.style.gap = "5px";
+        let grid_item = make_elem("div", ["row", "p-2", "justify-content-center"]);
         parent_elem.appendChild(grid_item);
 
         let IDcost = getIDCost(tier, lvl);
@@ -76,46 +68,31 @@ function displayIDCosts(elemID, item) {
         let rerolls = 0;
 
         while(invSpace[0] <= 28 && IDcost > 0) {
-            let container = document.createElement("div");
-            container.classList.add("container");
-            container.style = "grid-item-" + (rerolls+1);
-            container.style.maxWidth = "max(120px, 15%)";
-            
-            let container_title = document.createElement("p");
-            container_title.style.color = "white";
-            if (rerolls == 0) {
-                container_title.textContent = "Initial ID Cost: ";
-            } else {
-                container_title.textContent = "Reroll to [" + (rerolls+1) + "] Cost:";
-            }
-            container.appendChild(container_title);
-            let total_cost_container = document.createElement("p");
-            let total_cost_number = document.createElement("b");
-            total_cost_number.classList.add("Set");
-            total_cost_number.textContent = IDcost + " ";
-            let total_cost_suffix = document.createElement("b");
-            total_cost_suffix.textContent = "emeralds."
-            total_cost_container.appendChild(total_cost_number);
-            total_cost_container.appendChild(total_cost_suffix);
-            container.appendChild(total_cost_container);
+            let container = make_elem("div", ["container", "rounded", "col-lg-3", "col-sm-12", "scaled-font", "border", "border-1", "border-dark", "dark-shadow", "p-3", "m-1"]);
+            let container_title = make_elem("p", ["text-center", "text-decoration-underline"], {
+                style: {color: "white"},
+                textContent: rerolls == 0 ? "Initial ID: " : `Reroll to [${rerolls + 1}]: `,
+            });
 
-            let OR = document.createElement("p");
-            OR.classList.add("center");
-            OR.textContent = "OR";
-            container.appendChild(OR);
+            let total_cost_container = make_elem("p", []);
+            let total_cost_number = make_elem("b", ["Set"], {textContent: `${IDcost} `});
+            let total_cost_suffix = make_elem("b" , [], {textContent: "Emeralds"});
+            total_cost_container.append(total_cost_number, total_cost_suffix);
 
-            let esuffixes = ["", "emeralds.", "EB.", "LE.", "stacks of LE."];
+            container.append(container_title, total_cost_container, make_elem("hr", []));
+
+            let classes = ["", "emerald", "emerald-block", "liquid-emerald", "liquid-emerald-stack"];
+            let esuffixes = ["", "Emeralds", "EB", "LE", "LE Stacks"];
             for (let i = 4; i > 0; i--) {
-                let n_container = document.createElement("p");
-                let n_number = document.createElement("b");
-                n_number.classList.add("Set");
-                n_number.textContent = invSpace[i] + " ";
-                let n_suffix = document.createElement("b");
-                n_suffix.textContent = esuffixes[i];
-                n_container.appendChild(n_number);
-                n_container.appendChild(n_suffix);
+                if (invSpace[i] == 0) continue;
+                let n_container = make_elem("div", ["row", "justify-content-start", "my-2"]);
+                let img = make_elem("div", ["col-2", classes[i]]);
+                let n_number = make_elem("div", ["col-2", "Set"], {textContent: invSpace[i]});
+                let n_suffix = make_elem("div", ["col-8"], {textContent: esuffixes[i]});
+                n_container.append(img, n_number, n_suffix);
                 container.appendChild(n_container);
             }
+
             grid_item.appendChild(container);
             
             rerolls += 1;
@@ -125,6 +102,12 @@ function displayIDCosts(elemID, item) {
     }
 }
 
+function makeInfoRow(title, value) {
+    let row = make_elem("div", ["row", "rounded", "scaled-font", "border", "border-1", "border-dark", "dark-shadow", "p-1", "m-1", "text-capitalize", "justify-content-start"]);
+    row.appendChild(make_elem("span", ["col-4", "col-lg-2"], {textContent: title}));
+    row.appendChild(make_elem("span", ["col"], {textContent: value}));
+    return row;
+}
 /** Displays Additional Info for 
  * 
  * @param {String} elemID - the parent element's id 
@@ -133,28 +116,23 @@ function displayIDCosts(elemID, item) {
  */
 function displayAdditionalInfo(elemID, item) {
     let parent_elem = document.getElementById(elemID);
-    parent_elem.classList.add("left");
 
-    let droptype_elem = document.createElement("div");
-    droptype_elem.classList.add("container");
-    droptype_elem.style.marginBottom = "5px";
-    droptype_elem.style.whiteSpace = "pre";
+    let title_elem = make_elem("p", ["text-center", item.get("tier")], {textContent: "Additional Info"});
+    parent_elem.appendChild(title_elem);
 
     let item_clone = itemMap.get(item.get("displayName"));
 
-    if(item_clone.dropInfo === undefined){
-        droptype_elem.textContent = "Drop type: " + (item.has("drop") ? item.get("drop") : "NEVER");
+    if(item_clone.dropInfo === undefined) {
+        parent_elem.appendChild(makeInfoRow("Drop Type:", item.has("drop") ? item.get("drop") : "NEVER"));
+    } else {
+        parent_elem.appendChild(makeInfoRow("Drops From:", item_clone.dropInfo.name));
+        if(item_clone.dropInfo.type !== undefined) {
+            parent_elem.appendChild(makeInfoRow("Type:", item_clone.dropInfo.type));
+        }
+        if(item_clone.dropInfo.coordinates !== undefined) {
+            parent_elem.appendChild(makeInfoRow("Coordinates:", `(${item_clone.dropInfo.coordinates})`));
+        }
     }
-    else{
-        console.log(item_clone.dropInfo);
-        droptype_elem.textContent = "Drops from: " + item_clone.dropInfo.name;
-        if(item_clone.dropInfo.type !== undefined)
-            droptype_elem.textContent += "\nType: " + item_clone.dropInfo.type;
-        if(item_clone.dropInfo.coordinates !== undefined)
-            droptype_elem.textContent += "\nCoordinates: " + item_clone.dropInfo.coordinates;
-    }
-    parent_elem.appendChild(droptype_elem);
-    return;
 }
 
 
@@ -169,37 +147,25 @@ function displayIDProbabilities(parent_id, item, amp) {
     let parent_elem = document.getElementById(parent_id);
     parent_elem.style.display = "";
     parent_elem.innerHTML = "";
-    let title_elem = document.createElement("p");
-    title_elem.textContent = "Identification Probabilities";
-    title_elem.id = "ID_PROB_TITLE";
-    title_elem.classList.add("Legendary");
-    title_elem.classList.add("title");
+    let title_elem = make_elem("p", ["text-center", "m-auto", "mb-3", "text-decoration-underline", "title"], {textContent: "Identification Probabilities", id: "ID_PROB_TITLE"});
     parent_elem.appendChild(title_elem);
     
-    let disclaimer_elem = document.createElement("p");
-    disclaimer_elem.textContent = "IDs are rolled on a uniform distribution. A chance of 0% means that either the minimum or maximum possible multiplier must be rolled to get this value."
+    let disclaimer_elem = make_elem("p", [], {
+        textContent: "Disclaimer: IDs are rolled on a uniform distribution. A chance of 0% means that either the minimum or maximum possible multiplier must be rolled to get this value."
+    });
+
     parent_elem.appendChild(disclaimer_elem);
 
-    let amp_row = document.createElement("p");
-    amp_row.id = "amp_row";
-    let amp_text = document.createElement("b");
-    amp_text.textContent = "Corkian Amplifier Used: "
-    amp_row.appendChild(amp_text);
-    let amp_1 = document.createElement("button");
-    amp_1.id = "cork_amp_1";
-    amp_1.textContent = "I";
-    amp_row.appendChild(amp_1);
-    let amp_2 = document.createElement("button");
-    amp_2.id = "cork_amp_2";
-    amp_2.textContent = "II";
-    amp_row.appendChild(amp_2);
-    let amp_3 = document.createElement("button");
-    amp_3.id = "cork_amp_3";
-    amp_3.textContent = "III";
-    amp_row.appendChild(amp_3);
-    amp_1.addEventListener("click", (event) => {toggleAmps(1)});
-    amp_2.addEventListener("click", (event) => {toggleAmps(2)});
-    amp_3.addEventListener("click", (event) => {toggleAmps(3)});
+    let amp_row = make_elem("p", ["col"], {id: "amp_row"});
+    amp_row.appendChild(make_elem("b", [], {textContent: "Corkian Amplifier: "}));
+
+    for (let i = 1; i < 4; i++) {
+        let amp = document.createElement("button");
+        amp.id = `cork_amp_${i}`;
+        amp.textContent = "I".repeat(i);
+        amp_row.appendChild(amp);
+        amp.addEventListener("click", (event) => {toggleAmps(i)});
+    }
     parent_elem.appendChild(amp_row);
     
     if (amp != 0) {toggleButton("cork_amp_" + amp)}
@@ -223,7 +189,6 @@ function displayIDProbabilities(parent_id, item, amp) {
             let row_title = document.createElement("tr");
             //row_title.style.textAlign = "left";
             let title_left = document.createElement("td");
-            let left_elem = document.createElement("p");
             let left_val_title = document.createElement("b");
             let left_val_elem = document.createElement("b");
             title_left.style.textAlign = "left";
@@ -234,9 +199,7 @@ function displayIDProbabilities(parent_id, item, amp) {
             } else if (val > 0 == reversedIDs.includes(id)) {
                 left_val_elem.classList.add("negative");
             }
-            left_elem.appendChild(left_val_title);
-            left_elem.appendChild(left_val_elem);
-            title_left.appendChild(left_elem);
+            title_left.append(left_val_title, left_val_elem);
             row_title.appendChild(title_left);
 
             let title_right = document.createElement("td");

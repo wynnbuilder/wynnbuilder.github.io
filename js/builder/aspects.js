@@ -176,52 +176,36 @@ class AspectAggregateNode extends ComputeNode {
     }
 }
 
-function generate_aspect_tooltip(tooltip_elem, aspect, tier) {
-    const title = make_elem("p", [aspect.tier, "scaled-font", "mx-1", "my-1"]);
-    const body = make_elem("p", ["mc-gray", "scaled-font", "text-wrap", "mx-1", "my-1"]);
-    title.innerHTML = aspect.displayName;
-    let numberRegex = /[+-]?\d+(\.\d+)?[%+s]?/g; // +/- (optional), 1 or more digits, period followed by 1 or more digits (optional), %/+/s (optional)
-    body.innerHTML = aspect.tiers[tier - 1].description.replaceAll(numberRegex, (m) => { return "<span class = 'mc-white'>" + m + "</span>" });
-    tooltip_elem.appendChild(title);
-    tooltip_elem.appendChild(body);
-}
-
-function remove_tooltip(tooltip_elem) {
-    tooltip_elem.remove();
-    return null;
-}
-
 /*
- * Renders the tooltips for the aspects.
- * Signature AspectRenderNode(name, image_div, trigger, bounding_elem) => None
+ * Renders the tooltips for hoverable images (etc. aspects, tomes) 
+ * Signature TooltipGeneratorNode(name, trigger, bounding_elem, tooltip_generator_fn) => None
  *
  * @param {name} the name of the node
  * @param {trigger} the trigger div
  * @param {bounding_elem} the box bounding (loosely) the elements.
+ * @param {tooltip_generator_fn} the callback generating tooltips, customizable for each item type
  *
- * Notice that we're using the `on{event}` property instead of addEventListener to overwrite the listener
- * function every time an aspect update occurs.
+ * This class is supposed to be inherited from and not instantiated directly.
+ * TODO(@orgold): Listener cleanup is done in child classes. Handle cleanup in the interface.
+ * TODO(@orgold): Use this for AT tooltip generation.
+ * TODO(@orgold): Move this to a more appropriate file?
  *
- * TODO(@orgold): Factor this into a more generic function and add to tomes.
+ * NOTICE: We're using the `on{event}` property instead of addEventListener to overwrite the listener
+ * function every time an item update occurs, this is necessary.
  */
-class AspectRenderNode extends ComputeNode {
-    constructor(name, trigger, bounding_elem) {
+class TooltipGeneratorNode extends ComputeNode {
+    constructor(name, trigger, bounding_elem, tooltip_generator_fn) {
         super(name);
         this.trigger = trigger;
         this.bounding_elem = bounding_elem;
+        this.tooltip_generator_fn = tooltip_generator_fn;
         this.tooltip_elem = null;
     }
 
     compute_func(input_map) {
-        const [aspect, tier] = input_map.get("aspect-tiered-spec");
+        const args = input_map.get("tooltip-args");
 
-        // Clean up listeners
-        if (aspect.NONE) {
-            this.trigger.onmouseover = undefined;
-            this.trigger.onmouseout = undefined;
-            this.trigger.onclick = undefined;
-            return;
-        };
+        // NOTE: A bit junky, but listener clean-up is done in child classes
 
         // Further comments at js/builder/atrree.js:render-AT
         if (!isMobile) {
@@ -236,7 +220,7 @@ class AspectRenderNode extends ComputeNode {
                     }
                 });
                 this.trigger.appendChild(this.tooltip_elem);
-                generate_aspect_tooltip(this.tooltip_elem, aspect, tier);
+                this.tooltip_generator_fn(this.tooltip_elem, args);
             };
 
             this.trigger.onmouseout = (e) => {
@@ -273,9 +257,40 @@ class AspectRenderNode extends ComputeNode {
                 });
                 document.body.appendChild(bg);
                 bg.appendChild(this.tooltip_elem);
-                generate_aspect_tooltip(this.tooltip_elem, aspect, tier);
+                this.tooltip_generator_fn(this.tooltip_elem, args);
             };
         }
+    }
+}
+
+
+function generate_aspect_tooltip(tooltip_elem, [aspect, tier]) {
+    const title = make_elem("p", [aspect.tier, "scaled-font", "mx-1", "my-1"]);
+    const body = make_elem("p", ["mc-gray", "scaled-font", "text-wrap", "mx-1", "my-1"]);
+    title.innerHTML = aspect.displayName;
+    let numberRegex = /[+-]?\d+(\.\d+)?[%+s]?/g; // +/- (optional), 1 or more digits, period followed by 1 or more digits (optional), %/+/s (optional)
+    body.innerHTML = aspect.tiers[tier - 1].description.replaceAll(numberRegex, (m) => { return "<span class = 'mc-white'>" + m + "</span>" });
+    tooltip_elem.appendChild(title);
+    tooltip_elem.appendChild(body);
+}
+
+class AspectRenderNode extends TooltipGeneratorNode {
+    constructor(name, trigger, bounding_elem) {
+        super(name, trigger, bounding_elem, generate_aspect_tooltip);
+    }
+
+    compute_func(input_map) {
+        const [aspect, _] = input_map.get("tooltip-args");
+
+        // Clean up listeners
+        if (aspect.NONE) {
+            this.trigger.onmouseover = undefined;
+            this.trigger.onmouseout = undefined;
+            this.trigger.onclick = undefined;
+            return;
+        };
+
+        super.compute_func(input_map)
     }
 }
 
