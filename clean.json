@@ -1987,6 +1987,45 @@
       "id": 4114
     },
     {
+      "name": "Verglas Spirit",
+      "category": "armor",
+      "type": "boots",
+      "armourMaterial": "pale_diamond",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "lvl": 104,
+      "agiReq": 70,
+      "slots": 2,
+      "lore": "\"A little belief, and just a little spirit, can go a long way.\"",
+      "icon": {
+        "format": "attribute",
+        "value": {
+          "id": "minecraft:leather_boots",
+          "customModelData": {
+            "rangeDispatch": [
+              15
+            ]
+          },
+          "name": "boots.pale_diamond"
+        }
+      },
+      "lb": 25,
+      "mr": 35,
+      "spd": 20,
+      "maxMana": -50,
+      "aSdPct": 20,
+      "atkTier": -10,
+      "int": -70,
+      "aSdRaw": 200,
+      "hp": 3400,
+      "aDef": 175,
+      "wDef": -100,
+      "tier": "Legendary",
+      "displayName": "Verglas Spirit",
+      "id": 4259
+    },
+    {
       "name": "Xenolith",
       "category": "armor",
       "type": "leggings",
@@ -2270,6 +2309,7 @@
       "lvl": 103,
       "defReq": 57,
       "dexReq": 49,
+      "lore": "A million stinging needles, tangled around your head;\nA crown of thorns;\nA wreath of nematocysts;\nA chaplet of venom and pain.\nFrom that poison cup, you drink and drink, until\u2014\nLike a jellyfish\n\u2014Only the currents decide your way.\nUntil only an addictive Hate compels you.",
       "icon": {
         "format": "attribute",
         "value": {
@@ -6686,6 +6726,7 @@
         "STRINGS_OF_FATE"
       ],
       "slots": 2,
+      "lore": "Aloft among the rafters of the crowded theatre a grin crept from ear to ear. Dim the lights. Tick. Raise the curtains. Tick. This shall be their final act. Tick.",
       "dropInfo": {
         "name": "Silent Expanse Expedition",
         "type": "lootrun",
@@ -9083,6 +9124,47 @@
       "fDam": "0-0",
       "aDam": "0-0",
       "id": 1698
+    },
+    {
+      "name": "Frozen Devotion",
+      "category": "armor",
+      "type": "chestplate",
+      "armourMaterial": "pale_diamond",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "lvl": 99,
+      "agiReq": 60,
+      "intReq": 60,
+      "lore": "\"Crystalline towers and stark white horizons. The sharpest frost shards and the softest snowfall. Before the permafrost monarch of winter, lay your heart down: become the right hand of the cold.\"",
+      "icon": {
+        "format": "attribute",
+        "value": {
+          "id": "minecraft:leather_chestplate",
+          "customModelData": {
+            "rangeDispatch": [
+              15
+            ]
+          },
+          "name": "chestplate.pale_diamond"
+        }
+      },
+      "fDamPct": -80,
+      "eDamPct": -80,
+      "maxMana": 60,
+      "str": -10,
+      "dex": -10,
+      "tDamPct": -80,
+      "spRaw4": -4,
+      "aSdRaw": 230,
+      "wSdRaw": 230,
+      "hp": 3500,
+      "aDef": 160,
+      "fDef": -400,
+      "wDef": 160,
+      "tier": "Legendary",
+      "displayName": "Frozen Devotion",
+      "id": 4260
     },
     {
       "name": "Hearthkeeper",
@@ -17377,6 +17459,44 @@
       "id": 1839
     },
     {
+      "name": "Nocturne",
+      "category": "armor",
+      "type": "leggings",
+      "armourMaterial": "pale_diamond",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "lvl": 96,
+      "agiReq": 45,
+      "strReq": 30,
+      "intReq": 45,
+      "slots": 3,
+      "icon": {
+        "format": "attribute",
+        "value": {
+          "id": "minecraft:leather_leggings",
+          "customModelData": {
+            "rangeDispatch": [
+              15
+            ]
+          },
+          "name": "leggings.pale_diamond"
+        }
+      },
+      "spd": -15,
+      "aDefPct": 30,
+      "wDefPct": 30,
+      "spRaw2": -9,
+      "spRaw3": -2,
+      "rSdRaw": 200,
+      "hp": 3000,
+      "eDef": 120,
+      "tDef": -100,
+      "tier": "Rare",
+      "displayName": "Nocturne",
+      "id": 4261
+    },
+    {
       "name": "Orange Lily",
       "category": "weapon",
       "type": "bow",
@@ -23111,6 +23231,37 @@
       "wDam": "0-0",
       "fDam": "0-0",
       "id": 2628
+    },
+    {
+      "category": "accessory",
+      "name": "Stargazing Lens",
+      "type": "ring",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "lvl": 95,
+      "dexReq": 60,
+      "lore": "A single vibrant star sits at the focus of the mirror. Though, faintly, many more sit in the perimeter of the view... perhaps they mean something?",
+      "icon": {
+        "format": "attribute",
+        "value": {
+          "id": "minecraft:potion",
+          "customModelData": {
+            "rangeDispatch": [
+              1327
+            ]
+          },
+          "name": "ring.thunder2"
+        }
+      },
+      "ref": 12,
+      "tDefPct": 10,
+      "mainAttackRange": 10,
+      "hp": -500,
+      "tDef": 40,
+      "tier": "Set",
+      "displayName": "Stargazing Lens",
+      "id": 4262
     },
     {
       "name": "Starglass",
@@ -77470,46 +77621,6 @@
       "id": 3370
     },
     {
-      "name": "Air Relic Dagger",
-      "category": "weapon",
-      "type": "dagger",
-      "atkSpd": "FAST",
-      "averageDps": 340,
-      "drop": "never",
-      "lvl": 65,
-      "classReq": "assassin",
-      "agiReq": 30,
-      "slots": 3,
-      "icon": {
-        "format": "attribute",
-        "value": {
-          "id": "minecraft:potion",
-          "customModelData": {
-            "rangeDispatch": [
-              1450
-            ]
-          },
-          "name": "dagger.air2"
-        }
-      },
-      "xpb": 15,
-      "aDamPct": 15,
-      "lb": 15,
-      "spd": 20,
-      "aDefPct": 15,
-      "agi": 7,
-      "sdRaw": 85,
-      "nDam": "46-90",
-      "aDam": "46-90",
-      "tier": "Rare",
-      "displayName": "Air Relic Dagger",
-      "eDam": "0-0",
-      "tDam": "0-0",
-      "wDam": "0-0",
-      "fDam": "0-0",
-      "id": 1846
-    },
-    {
       "name": "Air Relic Daggers",
       "category": "weapon",
       "type": "dagger",
@@ -77954,46 +78065,6 @@
       "id": 2592
     },
     {
-      "name": "Fire Relic Dagger",
-      "category": "weapon",
-      "type": "dagger",
-      "atkSpd": "SLOW",
-      "averageDps": 357,
-      "drop": "never",
-      "lvl": 65,
-      "classReq": "assassin",
-      "defReq": 30,
-      "slots": 3,
-      "icon": {
-        "format": "attribute",
-        "value": {
-          "id": "minecraft:potion",
-          "customModelData": {
-            "rangeDispatch": [
-              1456
-            ]
-          },
-          "name": "dagger.fire2"
-        }
-      },
-      "xpb": 15,
-      "lb": 15,
-      "hpBonus": 920,
-      "fDamPct": 10,
-      "def": 7,
-      "fDefPct": 20,
-      "hprRaw": 95,
-      "nDam": "90-148",
-      "fDam": "90-148",
-      "tier": "Rare",
-      "displayName": "Fire Relic Dagger",
-      "eDam": "0-0",
-      "tDam": "0-0",
-      "wDam": "0-0",
-      "aDam": "0-0",
-      "id": 1887
-    },
-    {
       "name": "Fire Relic Daggers",
       "category": "weapon",
       "type": "dagger",
@@ -78095,6 +78166,7 @@
       "agiReq": 30,
       "intReq": 30,
       "slots": 2,
+      "lore": "Among the outcasts of Efilim, some preach that death is not to be feared. They say while the road to his door is hellish, and his messenger most cruel, the beyond forgives. In this gilded spear, you see not only a weapon, but a key, a ticket. You know what to do. Be the messenger.",
       "icon": {
         "format": "attribute",
         "value": {
@@ -113712,6 +113784,7 @@
       "majorIds": [
         "ESCAPE_ROUTE"
       ],
+      "lore": "To the victor go the spoils. To the swift, go the spoils of the victor.",
       "icon": {
         "format": "attribute",
         "value": {
@@ -136156,6 +136229,7 @@
       "classReq": "shaman",
       "defReq": 15,
       "slots": 2,
+      "lore": "The ember manifests kindness. The blaze manifests cruelty. Both share an origin within the sun's flame. But what separates warmth from ruin is not the fire, but the hand that calls upon it. Mercy and wrath are merely reflections cast by the same unblinking star.",
       "icon": {
         "format": "attribute",
         "value": {
@@ -156632,7 +156706,7 @@
           "tDefPct": -40,
           "eDefPct": -40,
           "sprint": -35,
-          "ws": 16,
+          "spd": 16,
           "hpBonus": 1150,
           "sdPct": 14,
           "mdPct": 14,
@@ -156648,7 +156722,7 @@
           "tDefPct": 8,
           "eDefPct": 8,
           "sprint": 8,
-          "ws": 8,
+          "spd": 8,
           "hpBonus": 666,
           "sdPct": 7,
           "mdPct": 7,
@@ -158122,26 +158196,26 @@
         {
           "xpb": 16,
           "hpBonus": 40,
-          "ws": 8,
+          "spd": 8,
           "thorns": 15
         },
         {
           "xpb": 20,
           "hpbonus": 125,
-          "ws": 8,
+          "spd": 8,
           "thorns": 15
         },
         {
           "xpb": 24,
           "hpbonus": 125,
-          "ws": 8,
+          "spd": 8,
           "thorns": 15,
           "ms": 8
         },
         {
           "xpb": 28,
           "hpbonus": 125,
-          "ws": 8,
+          "spd": 8,
           "thorns": 15,
           "ms": 8,
           "mr": 6,
@@ -158150,7 +158224,7 @@
         {
           "xpb": 32,
           "hpbonus": -400,
-          "ws": 15,
+          "spd": 15,
           "thorns": 30,
           "ms": 8,
           "mr": -6,
@@ -158160,7 +158234,7 @@
         {
           "xpb": 36,
           "hpbonus": -1250,
-          "ws": 20,
+          "spd": 20,
           "thorns": 30,
           "ms": 8,
           "mr": -18,
@@ -158277,6 +158351,19 @@
           "atkTier": 1,
           "mainAttackRange": 33,
           "spPct2": -14
+        }
+      ]
+    },
+    "Stargazing": {
+      "items": [
+        "Stargazing Lens"
+      ],
+      "bonuses": [
+        {},
+        {
+          "ls": 400,
+          "ms": 15,
+          "xpb": 20
         }
       ]
     }

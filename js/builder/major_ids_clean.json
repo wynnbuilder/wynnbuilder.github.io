@@ -78,12 +78,12 @@
                         "target_part": "Single Arrow",
                         "behavior": "overwrite",
                         "multipliers": [
-                            25,
+                            33,
                             0,
-                            5,
+                            4,
                             0,
                             0,
-                            5
+                            4
                         ]
                     }
                 ]
@@ -239,7 +239,7 @@
     },
     "CHERRY_BOMBS": {
         "displayName": "Cherry Bombs",
-        "description": "Turns Smoke Bomb into firecrackers that fly farther, tighter, and deal [neutral]85%, [earth]25%, and [air]25% instantly.",
+        "description": "Turns Smoke Bomb into firecrackers that fly farther, tighter, and deal [neutral]100%, [earth]30%, [fire]30%, and [air]30% instantly.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -256,12 +256,12 @@
                                 "name": "Single Bomb",
                                 "type": "damage",
                                 "multipliers": [
-                                    85,
-                                    25,
+                                    100,
+                                    30,
                                     0,
                                     0,
-                                    0,
-                                    25
+                                    30,
+                                    30
                                 ]
                             },
                             {
@@ -386,7 +386,7 @@
     },
     "FOREST_BLESSING": {
         "displayName": "Forest's Blessing",
-        "description": "Your hound gains increased movement speed, attack speed, and vision. Arrow Bomb's damage is reduced by [neutral] -30%.",
+        "description": "Your hound gains increased movement speed, attack speed, vision, and [neutral]+60%. Arrow Bomb's damage is reduced by [neutral] -30%.",
         "abilities": [
             {
                 "class": "Archer",
@@ -399,6 +399,19 @@
                         "behavior": "modify",
                         "multipliers": [
                             -30,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 8,
+                        "target_part": "Single Hit",
+                        "multipliers": [
+                            60,
                             0,
                             0,
                             0,
@@ -1695,32 +1708,49 @@
                 "dependencies": [
                     "Arrow Hurricane"
                 ],
-                "properties": {
-                    "arrows_per_stream": 64
-                },
+                "properties": {},
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Arrow Storm DPS",
-                        "behavior": "overwrite",
-                        "hits": {
-                            "Single Arrow": 6.6667
-                        }
-                    },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Single Arrow",
                         "behavior": "overwrite",
                         "multipliers": [
-                            39,
+                            48,
                             0,
-                            3,
+                            6,
                             0,
                             0,
-                            3
+                            6
                         ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Shot",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Arrow": 1
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Single Stream",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Arrow": 64
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Arrow Storm DPS",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Shot": 6.66666666667
+                        },
+                        "display": "Arrow Storm DPS"
                     },
                     {
                         "type": "add_spell_prop",
@@ -2276,33 +2306,7 @@
     "SCARCE_COMFORT": {
         "displayName": "Scarce Comfort",
         "description": "Freestream Flow becomes slightly stronger and lasts indefinitely.",
-        "abilities": [
-            {
-                "class": "Warrior",
-                "base_abil": "Uppercut",
-                "dependencies": [
-                    "Whirlwind Strike"
-                ],
-                "properties": {
-                    "range": 3
-                },
-                "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "target_part": "Uppercut",
-                        "multipliers": [
-                            0,
-                            0,
-                            30,
-                            0,
-                            0,
-                            30
-                        ]
-                    }
-                ]
-            }
-        ]
+        "abilities": []
     },
     "BRACHIATE": {
         "displayName": "Brachiate",
@@ -2620,7 +2624,7 @@
     },
     "HEARTBEAT": {
         "displayName": "Heartbeat",
-        "description": "Arrow Shield is locked to 2 charges but deals doubled damage.\nArrow Wall triples Arrow Shield damage and doubles Guardian Angels ammo.",
+        "description": "Arrow Shield is locked to 2 charges but deals doubled damage.\nArrow Wall instead triples Arrow Shield damage and doubles Guardian Angels ammo.",
         "abilities": [
             {
                 "class": "Archer",
