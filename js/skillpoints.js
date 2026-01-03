@@ -177,7 +177,7 @@ function calculate_skillpoints(equipment, weapon) {
             }
             console.log("Candidate:", equipped_items.concat([remains_in_order[0]]));
             console.log("Assigned:", applied, total_applied);
-            if (_total_applied < best_total || (soln_under_100 && !best_under_100)) {
+            if (total_applied < best_total || (soln_under_100 && !best_under_100)) {
                 for (const crafted of crafted_items) {
                     apply_skillpoints(skillpoints, crafted, sets);
                 }
