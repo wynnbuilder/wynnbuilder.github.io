@@ -58,6 +58,7 @@ add_spell_prop: {
                                                             //   of the format <ability_id>.propname
     display:        Optional[str]   // Optional change to the displayed entry. Replaces old
     hide:           Optional[str]   // Modify this part to be hidden.
+    ignored_mults:  List[str]       // Damage multiplier effects to ignore.
 }
 
 convert_spell_conv: {
@@ -93,6 +94,9 @@ stat_scaling: {
                                             //     merge: add if exist, make new part if not exist
                                             //     modify: change existing part, by incrementing properties. do nothing if not exist
                                             //     overwrite: set part. do nothing if not exist
+  multiplicative: bool                      // Actually whether or not the stat scaling is exponential.
+                                            //     The slider scaling value is interpreted as a "multiplier" (100+x)/100,
+                                            //     which is raised to the power of the slider value.
   slider_max: Optional[int]                 // affected by behavior
   slider_default: Optional[int]             // affected by behavior
   inputs: Optional[list[scaling_target]]    // List of things to scale. Omit this if using slider
