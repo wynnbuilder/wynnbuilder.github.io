@@ -1413,6 +1413,7 @@ function make_elem(type, classlist = [], args = {}) {
  *
  * This function will define: "visited, assigned, scc" properties
  * Assuming a connected graph. (only one root)
+ * Returns the SCCs as a list in topologically sorted order.
  */
 function make_SCC_graph(root_node, nodes) {
     for (const node of nodes) {
@@ -1431,9 +1432,11 @@ function make_SCC_graph(root_node, nodes) {
         for (const child of u.children) {
             if (!child.visited) { visit(child, res); }
         }
+        // Instead of prepend, we append...
         res.push(u);
     }
     visit(root_node, res);
+    // ...then reverse the list.
     res.reverse();
     const sccs = [];
     function assign(node, cur_scc) {
@@ -1441,27 +1444,30 @@ function make_SCC_graph(root_node, nodes) {
         cur_scc.nodes.push(node);
         node.scc = cur_scc;
         node.assigned = true;
-        for (const parent of node.parents) {
-            assign(parent, cur_scc);
+        for (const _parent of node.parents) {
+            assign(_parent, cur_scc);
         }
     }
+    let idx = 0;
     for (const node of res) {
         if (node.assigned) { continue; }
         const cur_scc = {
+            index: idx,
             nodes: [],
             children: new Set(),
             parents: new Set()
         };
         assign(node, cur_scc);
         sccs.push(cur_scc);
+        idx += 1;
     }
     for (const scc of sccs) {
         for (const node of scc.nodes) {
             for (const child of node.children) {
                 scc.children.add(child.scc);
             }
-            for (const parent of node.parents) {
-                scc.parents.add(parent.scc);
+            for (const _parent of node.parents) {
+                scc.parents.add(_parent.scc);
             }
         }
     }
