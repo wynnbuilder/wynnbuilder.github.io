@@ -109,39 +109,6 @@ function calculate_skillpoints(equipment, weapon) {
         }
     }
 
-    // Precomputed itemwise strict parent relationships.
-    // is_parent[a][b] records if b is a parent of a
-    // parent means b is strictly before a, by skillpoint order
-    let is_parent = [];
-    for (let i = 0; i < equipment.length; ++i) {
-        is_parent[i] = new Array(equipment.length).fill(false);
-    }
-    const [root, terminal, sccs] = construct_scc_graph(equipment);
-    let responsibilities = [];
-    for (const scc of sccs) {
-        responsibilities.push(new Set([]));
-    }
-    // Loop looks scary but remember that all the graph sizes
-    // are bounded by constant 9
-    for (let i = sccs.length - 2; i > 0; --i) {
-        const scc = sccs[i];
-        let _aggregate = []
-        for (const child_idx of responsibilities[i]) {
-            for (const subnode of scc.nodes) {
-                // equipment node index
-                is_parent[child_idx][subnode.index] = true;
-            }
-        }
-        for (const subnode of scc.nodes) {
-            _aggregate.push(subnode.index);
-        }
-        const aggregate = new Set(_aggregate)
-        for (const _parent of scc.parents) {
-            // scc node index
-            responsibilities[_parent.index] = responsibilities[_parent.index].union(aggregate);
-        }
-    }
-
     let best_order = equipment;
     let best_skillpoints = [0, 0, 0, 0, 0];
     let final_skillpoints = [0, 0, 0, 0, 0];
@@ -277,59 +244,5 @@ function calculate_skillpoints(equipment, weapon) {
     console.log(end - start, "ms elapsed");
     console.log(items_tried, "item equips,", full_tried, "full builds evaluated", checks, "items checked for satisfaction");
     return [best_order, best_skillpoints, final_skillpoints, best_total, best_activeSetCounts];
-}
-
-function construct_scc_graph(items_to_consider) {
-    let nodes = [];
-    let terminal_node = {
-        item: null,
-        children: [],
-        parents: nodes
-    };
-    let root_node = {
-        item: null,
-        children: nodes,
-        parents: [],
-    };
-    for (let i = 0; i < items_to_consider.length; ++i) {
-        const item = items_to_consider[i];
-        const set_neg = [false, false, false, false, false];
-        const set_pos = [false, false, false, false, false];
-        const set_name = item.set;
-        const reqless = item.get("reqs").every(x => x === 0);
-        if (set_name) {
-            const bonuses = sets.get(set_name).bonuses;
-            for (const bonus of bonuses) {
-                for (const i in skp_order) {
-                    if (bonus[skp_order[i]] > 0) { set_pos[i] = true; }
-                    if (bonus[skp_order[i]] < 0) { set_neg[i] = true; }
-                }
-            }
-        }
-        nodes.push({item: item, index: i, children: [terminal_node], parents: [root_node], set_pos: set_pos, set_neg: set_neg, reqless: reqless});
-    }
-    // Dependency graph construction.
-    for (const node_a of nodes) {
-        const {item: a, children: a_children, set_pos: a_set_pos} = node_a;
-        try_nodes: for (const node_b of nodes) {
-            const {item: b, parents: b_parents, set_neg: b_set_neg, reqless: b_reqless} = node_b;
-            if (b_reqless) {
-                // Reqless nodes never depend on others.
-                continue;
-            }
-
-            for (let i = 0; i < 5; ++i) {
-                if (b.reqs[i] < a.reqs[i]) {
-                    continue try_nodes;
-                }
-            }
-            // Every b requirement is greater than or equal to an a requirement
-            a_children.push(node_b);
-            b_parents.push(node_a);
-        }
-    }
-    // see: js/utils.js
-    const sccs = make_SCC_graph(root_node, nodes);
-    return [root_node, terminal_node, sccs];
 }
 
