@@ -454,6 +454,18 @@ class BuildAssembleNode extends ComputeNode {
             input_map.get('mobXpTome2'),
 
         ];
+        // I hate wynncraft but I'm lazy
+        const wynn_equip = [
+            input_map.get('boots'),
+            input_map.get('leggings'),
+            input_map.get('chestplate'),
+            input_map.get('helmet'),
+            input_map.get('ring1'),
+            input_map.get('ring2'),
+            input_map.get('bracelet'),
+            input_map.get('necklace'),
+            input_map.get('guildTome1')
+        ];
 
         let weapon = input_map.get('weapon');
 
@@ -466,7 +478,7 @@ class BuildAssembleNode extends ComputeNode {
         if (all_none && !location.hash) {
             return null;
         }
-        return new Build(level, equipments, tomes, weapon);
+        return new Build(level, equipments, tomes, weapon, wynn_equip);
     }
 }
 

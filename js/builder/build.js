@@ -18,8 +18,10 @@ class Build {
      * @param {String[]} items: List of equipment names that make up the build.
      *                    In order: Helmet, Chestplate, Leggings, Boots, Ring1, Ring2, Brace, Neck, Tomes [x7].
      * @param {Item} weapon: Weapon that this build is using.
+     * @param {List[Item]} _wynn_order_equipment: Equipment to consider for skillpoint
+     *                    calculation, in wynn order (boots->helmet, ring1->neck, tome)
      */
-    constructor(level, equipment, tomes, weapon){
+    constructor(level, equipment, tomes, weapon, _wynn_order_equipment){
 
         if (level < 1) { //Should these be constants?
             this.level = 1;
@@ -41,7 +43,7 @@ class Build {
         this.weapon = weapon;
 
         // calc skillpoints requires statmaps only
-        let result = calculate_skillpoints(this.equipment.concat(this.tomes).map((x) => x.statMap), this.weapon.statMap);
+        let result = calculate_skillpoints(_wynn_order_equipment.map((x) => x.statMap), this.weapon.statMap);
         const _equip_order = result[0].slice();
         this.equip_order = [];
         for (const item of _equip_order) {
