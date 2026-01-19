@@ -50,7 +50,9 @@ function fix_should_pop(skillpoints, item) {
     let applied = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; ++i) {
         if (item.reqs[i] == 0) continue;
-        const req = item.reqs[i] + item.skillpoints[i];
+        let req;
+        if (item.get("crafted")) { req = item.reqs[i]; }
+        else { req = item.reqs[i] + item.skillpoints[i]; }
         const cur = skillpoints[i];
         if (req > cur) {
             const diff = req - cur;
@@ -238,7 +240,9 @@ function calculate_skillpoints(equipment, weapon) {
         }
     }
 
-    recurse_check([0, 0, 0, 0, 0], [0, 0, 0, 0, 0], new Map(),
+    recurse_check([0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 0],
+                  new Map(),
                   0, [], [], [], [0, 1, 2, 3, 4, 5, 6, 7, 8]);
     const end = performance.now();
     console.log(end - start, "ms elapsed");
