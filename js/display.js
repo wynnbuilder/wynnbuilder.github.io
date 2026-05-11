@@ -1614,3 +1614,206 @@ function toggle_spell_tab(arrow_img, target) {
         arrow_img.src = arrow_img.src.replace("up", "down");
     }
 }
+
+// ── Item hover popup ──────────────────────────────────────────────────────────
+/**
+ * Floating popup on equipment icon hover/click.
+ * Hover shows item stats near icon; click locks; click elsewhere dismisses.
+ * Disabled on touch/mobile devices.
+ *
+ * @param {string[]} eq_keys  equipment slot IDs
+ */
+function initItemHoverPopups(eq_keys) {
+    const mql = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (!mql.matches) return;
+
+    const IDLE = 0, HOVERING = 1, LOCKED = 2;
+    let state = IDLE;
+    let active_eq = null;
+    let grace_timer = null;
+    const GRACE_MS = 100;
+
+    // Create single popup element
+    const popup = document.createElement('div');
+    popup.className = 'item-hover-popup scaled-font';
+    popup.style.display = 'none';
+    document.body.appendChild(popup);
+
+    function clearHighlight() {
+        if (!active_eq) return;
+        const img = document.getElementById(active_eq + '-img');
+        if (img) {
+            img.classList.remove('item-icon-hover-active');
+            img.style.outlineColor = '';
+        }
+    }
+
+    function highlightIcon(eq) {
+        const img = document.getElementById(eq + '-img');
+        if (!img) return;
+        img.classList.add('item-icon-hover-active');
+        // Match outline color to the tier box-shadow color
+        const shadow = getComputedStyle(img).boxShadow;
+        const m = shadow.match(/rgba?\([^)]+\)/);
+        if (m) img.style.outlineColor = m[0];
+    }
+
+    function dismiss() {
+        clearTimeout(grace_timer);
+        grace_timer = null;
+        popup.style.display = 'none';
+        popup.innerHTML = '';
+        popup.classList.remove('popup-locked');
+        clearHighlight();
+        active_eq = null;
+        state = IDLE;
+    }
+
+    // Auto-dismiss if media changes (e.g. DevTools device toolbar toggled)
+    mql.addEventListener('change', () => { if (!mql.matches) dismiss(); });
+
+    /**
+     * Clone tooltip children into popup. The builder calls collapse_element after rendering,
+     * which toggles every child's display:none state — so on builder the first child (linked
+     * title row) ends up hidden while the previously-hidden nolink title becomes visible.
+     * If we detect that collapsed state, invert each child's display so the popup shows the
+     * fully-expanded item.
+     */
+    function populatePopup(eq) {
+        const tooltip = document.getElementById(eq + '-tooltip');
+        if (!tooltip || !tooltip.innerHTML.trim()) return false;
+        const collapsed = tooltip.firstElementChild && tooltip.firstElementChild.style.display === 'none';
+        popup.innerHTML = '';
+        for (const child of tooltip.children) {
+            const clone = child.cloneNode(true);
+            if (collapsed && clone.style) {
+                clone.style.display = (clone.style.display === 'none') ? '' : 'none';
+            }
+            popup.appendChild(clone);
+        }
+        return popup.children.length > 0;
+    }
+
+    /** Position popup near icon: right side preferred, fallback left, clamped to viewport. */
+    function positionPopup(icon_elem) {
+        const rect = icon_elem.getBoundingClientRect();
+        const gap = 8;
+
+        // Show off-screen to measure
+        popup.style.display = '';
+        popup.style.left = '-9999px';
+        popup.style.top = '0px';
+        const pw = popup.offsetWidth;
+        const ph = popup.offsetHeight;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        let left;
+        if (rect.right + gap + pw <= vw) {
+            left = rect.right + gap;
+        } else if (rect.left - gap - pw >= 0) {
+            left = rect.left - gap - pw;
+        } else {
+            left = Math.max(4, vw - pw - 4);
+        }
+
+        let top = rect.top;
+        if (top + ph > vh - 4) top = Math.max(4, vh - ph - 4);
+        if (top < 4) top = 4;
+
+        popup.style.left = left + 'px';
+        popup.style.top = top + 'px';
+    }
+
+    function startGrace() {
+        clearTimeout(grace_timer);
+        grace_timer = setTimeout(() => {
+            if (state === HOVERING) dismiss();
+        }, GRACE_MS);
+    }
+
+    function cancelGrace() {
+        clearTimeout(grace_timer);
+        grace_timer = null;
+    }
+
+    // Popup mouse events — hovering into popup keeps it alive
+    popup.addEventListener('mouseenter', () => {
+        if (state === HOVERING) cancelGrace();
+    });
+    popup.addEventListener('mouseleave', () => {
+        if (state === HOVERING) startGrace();
+    });
+
+    // Per-icon events
+    for (const eq of eq_keys) {
+        const img_loc = document.getElementById(eq + '-img-loc');
+        if (!img_loc) continue;
+
+        img_loc.addEventListener('mouseenter', () => {
+            if (!mql.matches) return;
+            if (state === LOCKED) return;
+            if (state === HOVERING && active_eq === eq) { cancelGrace(); return; }
+            // Switch from different icon
+            if (state === HOVERING && active_eq !== eq) clearHighlight();
+            cancelGrace();
+            if (!populatePopup(eq)) return;
+            active_eq = eq;
+            state = HOVERING;
+            highlightIcon(eq);
+            positionPopup(img_loc);
+        });
+
+        img_loc.addEventListener('mouseleave', () => {
+            if (state === HOVERING && active_eq === eq) startGrace();
+        });
+
+        img_loc.addEventListener('click', (e) => {
+            // Re-check at event time: if media no longer matches (e.g. DevTools
+            // switched to mobile emulation after page load), fall through to
+            // the normal row-level click handler.
+            if (!mql.matches) return;
+            e.stopPropagation();
+
+            if (state === LOCKED && active_eq === eq) {
+                dismiss();
+                return;
+            }
+            if (state === LOCKED && active_eq !== eq) dismiss();
+
+            if (!populatePopup(eq)) { dismiss(); return; }
+            active_eq = eq;
+            state = LOCKED;
+            cancelGrace();
+            popup.classList.add('popup-locked');
+            highlightIcon(eq);
+            positionPopup(img_loc);
+        });
+    }
+
+    // Click elsewhere dismisses locked popup
+    document.addEventListener('click', (e) => {
+        if (state !== LOCKED) return;
+        if (popup.contains(e.target)) return;
+        const img_loc = document.getElementById(active_eq + '-img-loc');
+        if (img_loc && img_loc.contains(e.target)) return;
+        dismiss();
+    });
+
+    // Scroll: dismiss hover, reposition lock (ignore scrolls inside popup)
+    window.addEventListener('scroll', (e) => {
+        if (popup.contains(e.target) || popup === e.target) return;
+        if (state === HOVERING) dismiss();
+        else if (state === LOCKED && active_eq) {
+            const img_loc = document.getElementById(active_eq + '-img-loc');
+            if (img_loc) positionPopup(img_loc);
+        }
+    }, true);
+
+    // Resize: reposition
+    window.addEventListener('resize', () => {
+        if (state === IDLE || !active_eq) return;
+        const img_loc = document.getElementById(active_eq + '-img-loc');
+        if (img_loc) positionPopup(img_loc);
+    });
+}
