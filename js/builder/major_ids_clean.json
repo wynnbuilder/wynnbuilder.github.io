@@ -538,7 +538,7 @@
     },
     "GENTLE_GLOW": {
         "displayName": "Gentle Glow",
-        "description": "Orphion's Pulse restores up to 25% more max health to allies, but heals at a slower rate. Fluid Healing's effectiveness is increased by 150%.",
+        "description": "Orphion's Pulse restores 5% more max health per pulse, but heals at a slower rate.",
         "abilities": [
             {
                 "class": "Mage",
@@ -846,7 +846,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]50%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
+        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]65%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2316,7 +2316,7 @@
     },
     "ORBITAL_CHAIN": {
         "displayName": "Orbital Chain",
-        "description": "Chain Lightning hits slower, rebounds, adds 6 chains, and pulls mobs closer for a [neutral]1500% explosion spell.",
+        "description": "Chain Lightning hits slower, rebounds, adds 6 chains, and pulls mobs closer for a [neutral]8000% explosion spell.",
         "abilities": [
             {
                 "class": "Any",
@@ -3413,7 +3413,7 @@
     },
     "BURNT_SHADOWS": {
         "displayName": "Burnt Shadows",
-        "description": "Buried Light burns faster and is controlled by the direction you face. Enemies in the light instead take [fire]80% and recieve 10% more damage.",
+        "description": "Buried Light burns faster and is controlled by the direction you face. Enemies in the light instead take [fire]120%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3595,7 +3595,7 @@
     },
     "BLINDING_LIGHTS": {
         "displayName": "Blinding Lights",
-        "description": "All Ophanim orbs deal 250% increased damage, gain +5 Crystallize per hit, and instead orbit around you. Using Main Attack causes all orbs to travel faster.",
+        "description": "All Ophanim orbs deal 250% damage, gain +5 Crystallize per hit, and instead orbit around you. Using Main Attack causes all orbs to travel faster.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3738,7 +3738,7 @@
     },
     "LIVING_MUSEUM": {
         "displayName": "Living Museum",
-        "description": "Players within 10 blocks of Mirage, Shadow, or Another Self clones will get 20% resistance, and be healed 10%, 20%, or 50% max health when the respective clone is destroyed.",
+        "description": "Players within 10 blocks of Mirage, Shadow, or Another Self clones will get 20% resistance, and be healed 8%, 15%, or 50% max health when the respective clone is destroyed.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -3781,7 +3781,7 @@
     },
     "STARCROSSED": {
         "displayName": "Starcrossed",
-        "description": "Hitting an enemy with Haunting Memory makes it Linked. You can have up to two targets Linked at once. When one Linked enemy takes damage, the other Linked enemy takes that damage as well.",
+        "description": "Hitting an enemy with Haunting Memory makes it Linked. You can have up to two targets Linked at once. When one Linked enemy takes damage, the other Linked enemy takes that damage as well. Haunted Memory's duration is increased by 5 seconds and its range is increased by 10 blocks.",
         "abilities": []
     },
     "OUTBREAK": {
@@ -3833,6 +3833,11 @@
     "BACKSTEP": {
         "displayName": "Backstep",
         "description": "Charge and Teleport will travel backwards.",
+        "abilities": []
+    },
+    "AUBRIS_TEARS": {
+        "displayName": "Aubri's Tears",
+        "description": "Pool of Rejuvenation's range and duration are doubled, but Frog Dance deals no damage.",
         "abilities": []
     }
 }

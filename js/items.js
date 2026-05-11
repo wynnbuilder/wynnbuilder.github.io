@@ -181,7 +181,7 @@ for (let x in string_mappings) {
 }
 
 types = {bow: false, spear: false, wand: false, dagger: false, relik: false, helmet: false, chestplate: false, leggings: false, boots: false, ring: false, bracelet: false, necklace: false};
-search_tiers = {normal: true, unique: true, set: true, rare: true, legendary: true, fabled: true, mythic: true};
+search_tiers = {normal: true, unique: true, rare: true, legendary: true, fabled: true, mythic: true};
 
 function display(items_copy) {
     let items_parent = document.getElementById("search-results");

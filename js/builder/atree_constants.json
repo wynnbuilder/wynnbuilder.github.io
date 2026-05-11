@@ -10162,9 +10162,7 @@
             "dependencies": [
                 "Meteor"
             ],
-            "blockers": [
-                "Ophanim"
-            ],
+            "blockers": [],
             "cost": 1,
             "display": {
                 "row": 32,
@@ -17918,7 +17916,22 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 3,
+                    "behavior": "modify",
+                    "target_part": "Single Wave",
+                    "multipliers": [
+                        10,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
         },
         {
             "display_name": "Totemic Hammer",
@@ -17939,7 +17952,22 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Smash Damage",
+                    "behavior": "modify",
+                    "multipliers": [
+                        40,
+                        0,
+                        0,
+                        0,
+                        10,
+                        0
+                    ]
+                }
+            ]
         },
         {
             "display_name": "Pool of Rejuvenation",

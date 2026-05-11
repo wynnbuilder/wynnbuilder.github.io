@@ -300,12 +300,13 @@
           "description": "Grape Bomb gains +25% neutral damage.",
           "abilities": [
             {
-              "base_abil": "Grape Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {},
               "effects": [
                 {
                   "type": "add_spell_prop",
                   "base_spell": 3,
+                  "behavior": "modify",
                   "target_part": "Grape Bomb",
                   "multipliers": [
                     25,
@@ -325,7 +326,7 @@
           "description": "Grape Bomb gains +25% neutral damage. </br> Grape Bomb gains +1 grape.",
           "abilities": [
             {
-              "base_abil": "Grape Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "grapes": 1
               },
@@ -333,6 +334,7 @@
                 {
                   "type": "add_spell_prop",
                   "base_spell": 3,
+                  "behavior": "modify",
                   "target_part": "Grape Bomb",
                   "multipliers": [
                     25,
@@ -352,7 +354,7 @@
           "description": "Grape Bomb gains +45% neutral damage. </br> Grape Bomb gains +1 grape.",
           "abilities": [
             {
-              "base_abil": "Grape Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "grapes": 1
               },
@@ -360,6 +362,7 @@
                 {
                   "type": "add_spell_prop",
                   "base_spell": 3,
+                  "behavior": "modify",
                   "target_part": "Grape Bomb",
                   "multipliers": [
                     45,

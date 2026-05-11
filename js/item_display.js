@@ -180,9 +180,9 @@ function displayIDProbabilities(parent_id, item, amp) {
             let min = item.get("minRolls").get(id);
             let max = item.get("maxRolls").get(id);
             //Apply corkian amps
-            if (val > 0) {
+            if (val > 0 == !reversedIDs.includes(id)) {
                 let base = itemMap.get(item_name)[id];
-                if (reversedIDs.includes(id)) {max = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)} 
+                if (reversedIDs.includes(id)) {min = Math.min( Math.floor((0.3 + 0.05*amp) * base), -1)} 
                 else {min = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)}
             }
 
@@ -317,19 +317,32 @@ function stringPDF(id,val,base,amp) {
      *  [0.3, 1.3] minr, maxr [0.3b, 1.3b] min, max
      *  the minr/maxr decimal roll that corresponds to val -> minround, maxround
      */
-    let p; let min; let max; let minr; let maxr; let minround; let maxround;
-    if (base > 0) {
+    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
+    if (base > 0 == !reversedIDs.includes(id)) {
         minr = 0.3 + 0.05*amp; maxr = 1.3;
-        min = Math.max(1, Math.round(minr*base)); max = Math.max(1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        }
     } else {
         minr = 1.3; maxr = 0.7;
-        min = Math.min(-1, Math.round(minr*base)); max = Math.min(-1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        }
     }
-    
     p = Math.abs(maxround-minround)/Math.abs(maxr-minr)*100;
     p = p.toFixed(3);
 
@@ -348,22 +361,36 @@ function stringPDF(id,val,base,amp) {
 }
 
 function stringCDF(id,val,base,amp) {
-    let p; let min; let max; let minr; let maxr; let minround; let maxround;
-    if (base > 0) {
-        minr = 0.3 + 0.05*amp; maxr = 1.3;
-        min = Math.max(1, Math.round(minr*base)); max = Math.max(1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
+    if (base > 0 == !reversedIDs.includes(id)) {
+        minr = 0.3 + 0.05*amp; maxr = 1.3; 
+        if (reversedIDs.includes(id)) {
+            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        }
     } else {
         minr = 1.3; maxr = 0.7;
-        min = Math.min(-1, Math.round(minr*base)); max = Math.min(-1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        }
     }
-
     if (reversedIDs.includes(id)) {
-        p = Math.abs(minr-maxround)/Math.abs(maxr-minr)*100;
-    } else {
+        p = Math.abs(maxr-maxround)/Math.abs(maxr-minr)*100;
+    }
+    else {
         p = Math.abs(maxr-minround)/Math.abs(maxr-minr)*100;
     }
     p = p.toFixed(3);

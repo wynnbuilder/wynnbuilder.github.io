@@ -18,10 +18,10 @@
 
 #tier-box {
     cursor: pointer;
-    width: 58.33%;
+    width: 50%;
 }
 #tier-box > div {
-    width: calc(100% / 7);
+    width: calc(100% / 6);
     aspect-ratio: 1/1;
     position: relative;
     display: inline-block;
