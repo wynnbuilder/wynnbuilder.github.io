@@ -277,6 +277,8 @@ async function init() {
     for (const eq of equipment_keys) {
         document.querySelector("#"+eq+"-tooltip").addEventListener("click", () => collapse_element('#'+eq+'-tooltip'));
     }
+    // Hover popup on item icons (desktop only). Tomes already have their own hover via TomeHoverRenderNode.
+    initItemHoverPopups(equipment_keys);
     //  Armor Specials
     for (let i = 0; i < 5; ++i) {
         const powder_special = powderSpecialStats[i];
