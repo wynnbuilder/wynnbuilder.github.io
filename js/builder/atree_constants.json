@@ -1502,7 +1502,6 @@
         {
             "display_name": "Arsenal Synergy",
             "desc": "For every 16 arrows shot by Arrow Storm recently, your Main Attacks will additionally fire a flint arrow that damages enemies. (Max 5 flints per main attack) </br> </br><span class='mc-white'>Total Damage</span>: 25% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%) </br>Duration: 6s",
-            "base_abil": 999,
             "parents": [
                 "Windstorm",
                 "Cheaper Arrow Storm I"
