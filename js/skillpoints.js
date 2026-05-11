@@ -33,7 +33,7 @@ function vadd5(a, b) {
 
 function can_equip(skillpoints, item) {
     for (let i = 0; i < 5; i++) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         if (item.reqs[i] > skillpoints[i]) { return false; }
     }
     return true;
@@ -43,7 +43,7 @@ function can_equip(skillpoints, item) {
 function fix_should_pop(skillpoints, item) {
     let applied = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; ++i) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         let req;
         if (item.get("crafted")) { req = item.reqs[i]; }
         else { req = item.reqs[i] + item.skillpoints[i]; }
@@ -76,7 +76,7 @@ function check_under_100(skillpoints) {
 function apply_to_fit(skillpoints, item) {
     let applied = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; i++) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         const req = item.reqs[i];
         const cur = skillpoints[i];
         if (req > cur) {
