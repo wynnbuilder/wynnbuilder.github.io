@@ -2854,24 +2854,13 @@
                 ],
                 "effects": [
                     {
-                        "type": "replace_spell",
-                        "name": "Battlefield Brilliance",
-                        "base_spell": 22,
-                        "scaling": "melee",
-                        "use_atkspd": false,
-                        "display": "Total Damage",
-                        "parts": [
+                        "type": "raw_stat",
+                        "toggle": "Battlefield Brilliance",
+                        "bonuses": [
                             {
-                                "name": "Total Damage",
-                                "type": "damage",
-                                "multipliers": [
-                                    400,
-                                    0,
-                                    0,
-                                    0,
-                                    0,
-                                    0
-                                ]
+                                "type": "stat",
+                                "name": "damMult.BattlefieldBrilliance:0.Melee",
+                                "value": 300
                             }
                         ]
                     }
@@ -3407,7 +3396,7 @@
         ]
     },
     "PSYCHIC_OBSESSION": {
-        "displayName": "+Psychic Obsession",
+        "displayName": "Psychic Obsession",
         "description": "Your Totems will now all move towards you at an increased rate, if you are using Mask of the Heretic.",
         "abilities": []
     },
@@ -3432,19 +3421,8 @@
                             0,
                             0,
                             0,
-                            80,
+                            120,
                             0
-                        ]
-                    },
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Activate Burnt Shadows",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.Vulnerability",
-                                "value": 10
-                            }
                         ]
                     }
                 ]
@@ -3763,11 +3741,11 @@
                         "parts": [
                             {
                                 "name": "Mirage Clone Heal",
-                                "power": 0.1
+                                "power": 0.08
                             },
                             {
                                 "name": "Shadow Clone Heal",
-                                "power": 0.2
+                                "power": 0.15
                             },
                             {
                                 "name": "Another Self Clone Heal",
