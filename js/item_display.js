@@ -120,10 +120,74 @@ function displayAdditionalInfo(elemID, item) {
     let title_elem = make_elem("p", ["text-center", item.get("tier")], {textContent: "Additional Info"});
     parent_elem.appendChild(title_elem);
 
-    let item_clone = itemMap.get(item.get("displayName"));
+    let item_clone;
+    if (itemMap) {
+        item_clone = itemMap.get(item.get("displayName"));
+    }
+    else if (ingMap) {
+        item_clone = ingMap.get(item.get("displayName"));
+    }
 
-    if(item_clone.dropInfo === undefined) {
-        parent_elem.appendChild(makeInfoRow("Drop Type:", item.has("drop") ? item.get("drop") : "NEVER"));
+    if (item_clone.droppedBy) {
+        // For some reason, sometimes the metadata for coords is stored as an array or the droppedBy array has duplicate entries
+        dropMap = new Map();
+        for (dropData of item_clone.droppedBy) {
+            if (dropMap.has(dropData.name) && dropData.coords) {
+                if (Array.isArray(dropData.coords[0])) {
+                    for (subDrop of dropData.coords) {
+                        dropMap.get(dropData.name).push(subDrop);
+                    }
+                }
+                else {
+                    dropMap.get(dropData.name).push(dropData.coords);
+                }
+            }
+            else if (dropData.coords) {
+                if (Array.isArray(dropData.coords[0])) {
+                    for (subDrop of dropData.coords) {
+                        dropMap.set(dropData.name, [subDrop]);
+                    }
+                }
+                else {
+                    dropMap.set(dropData.name, [dropData.coords]);
+                }
+            }
+            else {
+                dropMap.set(dropData.name, []);
+            }
+        }
+        let dropDisplay = make_elem("div", ["row", "rounded", "scaled-font", "border", "border-1", "border-dark", "dark-shadow", "p-1", "m-1", "text-capitalize", "justify-content-start"]);
+        dropDisplay.appendChild(make_elem("b", ["text-center", "text-decoration-underline"], {textContent: "Dropped By"}));
+
+        let list = make_elem("ul", [], {});
+        list.style.cssText = "padding: 0; margin: 0; list-style: none; width: 100%;";
+
+        for (const [name, coords] of dropMap) {
+            let item = make_elem("li", [], {});
+            item.style.cssText = "border-bottom: 1px solid #ccc; padding: 0.25rem 0.5rem;";
+
+            item.appendChild(make_elem("b", [], {textContent: name}));
+
+            if (coords.length > 0) {
+                let coordList = make_elem("ul", [], {});
+                coordList.style.cssText = "display: flex; flex-wrap: wrap; padding: 0; margin: 0; list-style: none;";
+
+                for (coord of coords) {
+                    let coordItem = make_elem("li", [], {textContent: "[" + coord[0] + ", " + coord[1] + ", " + coord[2] + "]"});
+                    coordItem.style.cssText = "padding: 0.5rem;";
+                    coordList.appendChild(coordItem);
+                }
+                item.appendChild(coordList);
+            }
+
+            list.appendChild(item);
+        }
+
+        dropDisplay.appendChild(list);
+        parent_elem.appendChild(dropDisplay);
+    }
+    else if(item_clone.dropInfo === undefined) {
+        parent_elem.appendChild(makeInfoRow("Drop Type:", item.has("drop") ? item.get("drop") : "No drop metadata found."));
     } else {
         parent_elem.appendChild(makeInfoRow("Drops From:", item_clone.dropInfo.name));
         if(item_clone.dropInfo.type !== undefined) {

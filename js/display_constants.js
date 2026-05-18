@@ -318,6 +318,7 @@ let build_overall_display_commands = [
     "eSteal",
     "gXp", "gSpd",
     "kb", "weakenEnemy", "slowEnemy",
+    "mainAttackRange"
 ];
 
 let build_detailed_display_commands = [

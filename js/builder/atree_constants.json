@@ -263,7 +263,9 @@
                 "col": 6,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "range": 5
+            },
             "effects": []
         },
         {
@@ -2170,7 +2172,9 @@
                 "col": 5,
                 "icon": "node_4"
             },
-            "properties": {},
+            "properties": {
+                "range": 55
+            },
             "effects": []
         },
         {
@@ -4003,7 +4007,7 @@
                 "icon": "node_0"
             },
             "properties": {
-                "melee_range": 1
+                "range": 1
             },
             "effects": [
                 {
@@ -5041,7 +5045,7 @@
                 "icon": "node_0"
             },
             "properties": {
-                "melee_range": 1
+                "range": 1
             },
             "effects": [
                 {
@@ -6025,7 +6029,8 @@
                 "icon": "node_2"
             },
             "properties": {
-                "meleeBonus": 40
+                "meleeBonus": 40,
+                "rangeBonus": 25
             },
             "effects": [
                 {
@@ -6036,6 +6041,11 @@
                             "type": "stat",
                             "name": "damMult.Luster Purge;m",
                             "value": "Luster Purge.meleeBonus"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "mainAttackRange",
+                            "value": "Luster Purge.rangeBonus"
                         }
                     ]
                 }
@@ -7690,7 +7700,9 @@
                 "col": 4,
                 "icon": "node_0"
             },
-            "properties": {},
+            "properties": {
+                "range": 2
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -7768,7 +7780,9 @@
                 "col": 2,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "range": 2
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -8513,7 +8527,7 @@
                     "type": "replace_spell",
                     "name": "Ophanim",
                     "base_spell": 3,
-                    "display": "Per Melee (max)",
+                    "display": "Total Orb DPS",
                     "parts": [
                         {
                             "name": "Per Orb",
@@ -8530,6 +8544,12 @@
                             "name": "Per Melee (max)",
                             "hits": {
                                 "Per Orb": "Ophanim.num_orbs"
+                            }
+                        },
+                        {
+                            "name": "Total Orb DPS",
+                            "hits": {
+                                "Per Melee (max)": 1.25
                             }
                         }
                     ]
@@ -10623,6 +10643,27 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Activate Effective Crystallize",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "nConvBase:5.Single Orb",
+                            "value": 105
+                        },
+                        {
+                            "type": "stat",
+                            "name": "wConvBase:5.Single Orb",
+                            "value": 17.5
+                        },
+                        {
+                            "type": "stat",
+                            "name": "aConvBase:5.Single Orb",
+                            "value": 17.5
+                        }
+                    ]
                 }
             ]
         },
@@ -10630,6 +10671,7 @@
             "display_name": "Diffraction",
             "desc": "When an enemy dies, leftover Crystallized is transferred to other nearby enemies. </br> Ophanim also applies +2 Crystallized. </br> </br>Range: 8 Blocks",
             "archetype": "Light Bender",
+            "base_abil": "Crystallize",
             "parents": [
                 "Crystallize"
             ],
@@ -10644,7 +10686,29 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "toggle": "Activate Effective Crystallize",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "nConvBase:3.Per Orb",
+                            "value": 30
+                        },
+                        {
+                            "type": "stat",
+                            "name": "wConvBase:3.Per Orb",
+                            "value": 5
+                        },
+                        {
+                            "type": "stat",
+                            "name": "aConvBase:3.Per Orb",
+                            "value": 5
+                        }
+                    ]
+                }
+            ]
         },
         {
             "display_name": "Gleam",
@@ -11290,6 +11354,7 @@
             "desc": "For every 2% or 2 Raw Main Attack Damage you have from items, gain +5/3s Poison Damage. (Max 50/3s) </br> Your Main Attack gains additional range. </br> </br>Range: +1 Block",
             "archetype": "Shadestepper",
             "archetype_req": 0,
+            "base_abil": 999,
             "parents": [
                 "Dash"
             ],
@@ -11303,7 +11368,9 @@
                 "col": 2,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "range": 1
+            },
             "effects": [
                 {
                     "type": "stat_scaling",
@@ -14709,7 +14776,9 @@
                 "col": 4,
                 "icon": "node_0"
             },
-            "properties": {},
+            "properties": {
+                "range": 32.25
+            },
             "effects": [
                 {
                     "type": "replace_spell",

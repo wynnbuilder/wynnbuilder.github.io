@@ -729,6 +729,9 @@
             {
                 "class": "Warrior",
                 "base_abil": "Bash",
+                "properties": {
+                    "hellfire_bashes": 1
+                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -750,7 +753,7 @@
                         "target_part": "Total Damage",
                         "behavior": "overwrite",
                         "hits": {
-                            "Bash Hit": 1,
+                            "Bash Hit": "Bash.hellfire_bashes",
                             "Boiling Blood Tick": 5
                         }
                     }
@@ -779,6 +782,27 @@
                             0,
                             50,
                             0
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "War Scream",
+                "dependencies": [
+                    "Pressure"
+                ],
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Pressure",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Bash",
+                                "name": "hellfire_bashes",
+                                "value": 2
+                            }
                         ]
                     }
                 ]
@@ -1905,7 +1929,7 @@
                             0,
                             0,
                             400,
-                            0,
+                            -50,
                             0,
                             0
                         ]
@@ -3385,7 +3409,7 @@
                         "slider_max": 26,
                         "output": {
                             "type": "stat",
-                            "name": "damMult.SurpriseStrike"
+                            "name": "damMult.ManicEdge"
                         },
                         "scaling": [
                             5
@@ -3588,15 +3612,15 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.BlindingLights:3.Per Orb",
-                                "value": 250
+                                "value": 150
                             }
                         ]
                     },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 3,
-                        "display": "Total Orb DPS",
-                        "target_part": "Total Orb DPS",
+                        "target_part": "Total Orbit DPS",
+                        "display": "Total Orbit DPS",
                         "hits": {
                             "Per Orb DPS": "Ophanim.num_orbs"
                         }
@@ -3628,6 +3652,15 @@
                         "hide": true
                     },
                     {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Total Orb DPS",
+                        "hits": {
+                            "Per Orb": 0
+                        },
+                        "hide": true
+                    },
+                    {
                         "type": "raw_stat",
                         "toggle": "Activate Blinding Lights",
                         "bonuses": [
@@ -3642,6 +3675,36 @@
                                 "abil": "Ophanim",
                                 "name": "blinding_lights_atkrate",
                                 "value": 0.3
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Mage",
+                "base_abil": "Crystallize",
+                "dependencies": [
+                    "Diffraction"
+                ],
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Effective Crystallize",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "nConvBase:3.Per Orb",
+                                "value": 12
+                            },
+                            {
+                                "type": "stat",
+                                "name": "wConvBase:3.Per Orb",
+                                "value": 2
+                            },
+                            {
+                                "type": "stat",
+                                "name": "aConvBase:3.Per Orb",
+                                "value": 2
                             }
                         ]
                     }

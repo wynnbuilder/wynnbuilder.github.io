@@ -141,35 +141,35 @@ const default_abils = {
         display_name: "Mage Melee",
         id: 999,
         desc: "Mage basic attack.",
-        properties: {range: 5000},
+        properties: {range: 12},
         effects: [default_spells.wand[0]]
     }, elem_mastery_abil ],
     Warrior: [{
         display_name: "Warrior Melee",
         id: 999,
         desc: "Warrior basic attack.",
-        properties: {range: 2},
+        properties: {range: 4},
         effects: [default_spells.spear[0]]
     }, elem_mastery_abil ],
     Archer: [{
         display_name: "Archer Melee",
         id: 999,
         desc: "Archer basic attack.",
-        properties: {range: 20},
+        properties: {range: 9},
         effects: [default_spells.bow[0]]
     }, elem_mastery_abil ],
     Assassin: [{
         display_name: "Assassin Melee",
         id: 999,
         desc: "Assassin basic attack.",
-        properties: {range: 2},
+        properties: {range: 3},
         effects: [default_spells.dagger[0]]
     }, elem_mastery_abil ],
     Shaman: [{
         display_name: "Shaman Melee",
         id: 999,
         desc: "Shaman basic attack.",
-        properties: {range: 15, speed: 0},
+        properties: {range: 32.25, speed: 0},
         effects: [default_spells.relik[0]]
     }, elem_mastery_abil ],
 };
