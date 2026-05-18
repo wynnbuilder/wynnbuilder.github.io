@@ -228,6 +228,26 @@ function displayBuildStats(parent_id, build, command_group, stats) {
                         row.appendChild(value_elem);
                         parent_div.appendChild(row);
                     }
+                    else if (id == "mainAttackRange") {
+                        let row = make_elem('div', ['row']);
+                        let value_elem = make_elem('div', ['col', 'text-end']);
+
+                        let prefix_elem = make_elem('b', [], { textContent: "\u279C Total Range: " });
+
+                        let number_elem = make_elem('b', [style], {
+                            textContent: Math.round(atree_merge.value.get(999).properties.range * (1 + 0.01 * id_val) * 10) / 10
+                        });
+
+                        let suffix_elem = make_elem('b', [], {
+                            textContent: " Blocks"
+                        });
+
+                        value_elem.append(prefix_elem);
+                        value_elem.append(number_elem);
+                        value_elem.append(suffix_elem);
+                        row.appendChild(value_elem);
+                        parent_div.appendChild(row);
+                    }
                 }
                 last_command = command;
             }
@@ -827,9 +847,11 @@ function displayExpandedIngredient(ingred, parent_id) {
             div.classList.add("row");
             if (command === "displayName") {
                 div.classList.add("box-title");
-                let title_elem = document.createElement("div");
-                title_elem.classList.add("col-auto", "justify-content-center", "pr-1");
+                let title_elem = document.createElement("a");
+                console.log(ingred);
+                title_elem.classList.add("col-auto", "justify-content-center", "pr-1", "item-title", "mc-white");
                 title_elem.textContent = ingred.get("displayName");
+                title_elem.href = "../ingredient/#" + ingred.get("displayName");
                 div.appendChild(title_elem);
 
                 let tier = ingred.get("tier"); //tier in [0,3]
