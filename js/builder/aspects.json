@@ -6079,161 +6079,33 @@
       ]
     },
     {
-      "displayName": "Aspect of Lashing Fire",
+      "displayName": "Aspect of Gushing Blood",
       "id": 10,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Flaming Tongue gains +1 hit, and doubles in speed. Flaming Tongue inflicts -0.25s of Bleeding. </br><span class='mc-white'>Total Damage</span>: -14% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -11%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -1%)   </br>&emsp;(<span class='fDam'>Fire</span>: -2%)",
-          "abilities": [
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Flaming Tongue"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Single Hit",
-                  "multipliers": [
-                    -11,
-                    0,
-                    -1,
-                    0,
-                    -2,
-                    0
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Single Hit": 1
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Lashing Lance inflicts +0.15s of Bleeding per hit.",
+          "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Flaming Tongue gains +2 hits, and doubles in speed. Flaming Tongue inflicts -0.45s of Bleeding. </br><span class='mc-white'>Total Damage</span>: -23% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -17%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -2%)   </br>&emsp;(<span class='fDam'>Fire</span>: -4%)",
-          "abilities": [
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Flaming Tongue"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Single Hit",
-                  "multipliers": [
-                    -17,
-                    0,
-                    -2,
-                    0,
-                    -4,
-                    0
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Single Hit": 2
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Lashing Lance inflicts +0.2s of Bleeding per hit.",
+          "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Flaming Tongue gains +3 hits, and doubles in speed. Flaming Tongue inflicts -0.55s of Bleeding. </br><span class='mc-white'>Total Damage</span>: -29% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%)   </br>&emsp;(<span class='fDam'>Fire</span>: -6%)",
-          "abilities": [
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Flaming Tongue"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Single Hit",
-                  "multipliers": [
-                    -20,
-                    0,
-                    -3,
-                    0,
-                    -6,
-                    0
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Single Hit": 3
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Lashing Lance inflicts +0.25s of Bleeding per hit.",
+          "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Flaming Tongue gains +4 hits, and doubles in speed. Flaming Tongue inflicts -0.65s of Bleeding. </br><span class='mc-white'>Total Damage</span>: -34% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -22%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -4%)   </br>&emsp;(<span class='fDam'>Fire</span>: -8%)",
-          "abilities": [
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Flaming Tongue"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Single Hit",
-                  "multipliers": [
-                    -22,
-                    0,
-                    -4,
-                    0,
-                    -8,
-                    0
-                  ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "base_spell": 4,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Single Hit": 4
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Lashing Lance inflicts +0.3s of Bleeding per hit.",
+          "abilities": []
         }
       ],
       "aliases": [
-        "flamingTongueCount"
+        "flamingLashingBleed"
       ]
     },
     {

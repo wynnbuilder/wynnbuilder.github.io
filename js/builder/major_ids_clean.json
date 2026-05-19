@@ -544,7 +544,6 @@
                 "class": "Mage",
                 "base_abil": "Heal",
                 "dependencies": [
-                    "Fluid Healing",
                     "Orphion's Pulse"
                 ],
                 "properties": {
@@ -552,21 +551,10 @@
                 },
                 "effects": [
                     {
-                        "type": "stat_scaling",
-                        "slider": false,
-                        "inputs": [
-                            {
-                                "type": "stat",
-                                "name": "wDamPct"
-                            }
-                        ],
-                        "output": {
-                            "type": "stat",
-                            "name": "healMult.FluidHealing"
-                        },
-                        "scaling": [
-                            0.45
-                        ]
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Heal",
+                        "power": 0.05
                     }
                 ]
             }
@@ -3393,7 +3381,7 @@
     },
     "MANIC_EDGE": {
         "displayName": "Manic Edge",
-        "description": "While vanished, lose 5% of your max mana per second. Increase Surprise Strike's damage bonus by 5% per mana lost from this effect, up to 130%.",
+        "description": "While vanished, lose 5% of your max mana per second. Surprise Strike further increases your damage by 3% per mana lost from this effect, up to 70%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -3406,14 +3394,15 @@
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Mana Lost",
-                        "slider_max": 26,
+                        "slider_max": 24,
                         "output": {
                             "type": "stat",
                             "name": "damMult.ManicEdge"
                         },
                         "scaling": [
-                            5
-                        ]
+                            3
+                        ],
+                        "max": 70
                     }
                 ]
             }
