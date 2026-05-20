@@ -16592,7 +16592,6 @@
                     "parts": [
                         {
                             "name": "Tether Tick",
-                            "use_str": false,
                             "multipliers": [
                                 45,
                                 0,
@@ -16613,6 +16612,13 @@
                             "name": "Tether DPS",
                             "hits": {
                                 "Tether Drain Threshold": "Totem.totem_mul"
+                            },
+                            "display": false
+                        },
+                        {
+                            "name": "Shatter Tether per Totem",
+                            "hits": {
+                                "Tether Drain Threshold": 20
                             },
                             "display": false
                         },
@@ -16673,6 +16679,15 @@
                             "value": 1900
                         }
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 8,
+                    "target_part": "Shatter Tether DPS",
+                    "display": "Shatter Tether DPS",
+                    "hits": {
+                        "Shatter Tether per Totem": "Totem.num_totems"
+                    }
                 }
             ]
         },
