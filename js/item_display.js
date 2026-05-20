@@ -223,10 +223,10 @@ function displayIDProbabilities(parent_id, item, amp) {
     let amp_row = make_elem("p", ["col"], {id: "amp_row"});
     amp_row.appendChild(make_elem("b", [], {textContent: "Corkian Amplifier: "}));
 
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 5; i++) {
         let amp = document.createElement("button");
         amp.id = `cork_amp_${i}`;
-        amp.textContent = "I".repeat(i);
+        amp.textContent = ROMAN_NUMERAL_MAP.get(i);
         amp_row.appendChild(amp);
         amp.addEventListener("click", (event) => {toggleAmps(i)});
     }
