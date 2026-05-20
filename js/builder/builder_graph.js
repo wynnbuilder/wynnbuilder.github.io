@@ -17,7 +17,7 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["radiance", 0.0], ["eldritchcall", 0.0], ["divinehonor", 0.0]]);
+const damageMultipliers = new Map([["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["hauntingfanatic", 0.0], ["hauntinglunatic", 0.0]]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
@@ -27,13 +27,15 @@ let boosts_node = new (class extends ComputeNode {
         let str_boost = 0;
         let vuln_boost = 0;
         let def_boost = 0;
+        let weaken_boost = 0;
         for (const [key, value] of damageMultipliers) {
             let elem = document.getElementById(key + "-boost")
             if (elem.classList.contains("toggleOn")) {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
                 else if (key === "emboldeningcry") { def_boost += .05; str_boost += .08 }
-                else if (key === "eldritchcall") { vuln_boost += .15 }
+                else if (key === "hauntingfanatic") { vuln_boost += .15 }
+                else if (key === "hauntinglunatic") { weaken_boost += .15 }
             }
         }
         let res = new Map();
@@ -41,6 +43,7 @@ let boosts_node = new (class extends ComputeNode {
         res.set('damMult.Strength', 100 * str_boost);
         res.set('damMult.Vulnerability', 100 * vuln_boost);
         res.set('defMult.Potion', 100 * def_boost);
+        res.set('defMult.AbilityWeaken', 100 * weaken_boost);
 
         if (document.getElementById('judgement-boost').classList.contains("toggleOn")) {
             res.set('damMult.Judgement', 20);
