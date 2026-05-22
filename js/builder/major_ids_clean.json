@@ -162,7 +162,24 @@
     "MADNESS": {
         "displayName": "Madness",
         "description": "Casts a random spell of your class every 3 seconds.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Mage",
+                "base_abil": "Arcane Transfer",
+                "dependencies": [
+                    "Arcane Transfer"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Madness Heal",
+                        "display": "Madness Heal",
+                        "power": 0.15
+                    }
+                ]
+            }
+        ]
     },
     "LIGHTWEIGHT": {
         "displayName": "Lightweight",
@@ -1291,7 +1308,7 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 5,
-                        "target_part": "Explosion Heal",
+                        "target_part": "Heal per Shatter",
                         "power": 0.05
                     }
                 ]
@@ -2344,7 +2361,7 @@
                                 "name": "Explosion Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    1500,
+                                    8000,
                                     0,
                                     0,
                                     0,

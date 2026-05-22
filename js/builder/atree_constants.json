@@ -16455,8 +16455,18 @@
                 {
                     "type": "add_spell_prop",
                     "base_spell": 5,
-                    "target_part": "Explosion Heal",
+                    "target_part": "Heal per Shatter",
+                    "display": "Heal per Shatter",
                     "power": 0.1
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 5,
+                    "target_part": "Shatter Healing per Second",
+                    "display": "Shatter Healing per Second",
+                    "hits": {
+                        "Heal per Shatter": "Totem.num_totems"
+                    }
                 }
             ]
         },
@@ -16655,7 +16665,7 @@
                     "type": "replace_spell",
                     "name": "Totemic Shatter",
                     "base_spell": 5,
-                    "display": "Explosion Damage",
+                    "display": "Shatter DPS",
                     "parts": [
                         {
                             "name": "Explosion Damage",
@@ -16667,6 +16677,12 @@
                                 0,
                                 6
                             ]
+                        },
+                        {
+                            "name": "Shatter DPS",
+                            "hits": {
+                                "Explosion Damage": "Totem.num_totems"
+                            }
                         }
                     ]
                 },
