@@ -8640,6 +8640,7 @@
             "display_name": "Purification",
             "desc": "Heal and Arcane Transfer will purify allies of all negative effects and fire. </br> </br>Cooldown: 3s",
             "base_abil": "Heal",
+            "archetype": "Light Bender",
             "parents": [
                 "Ophanim",
                 "Cheaper Heal"
@@ -13340,6 +13341,7 @@
                     "type": "add_spell_prop",
                     "base_spell": 3,
                     "target_part": "Per Hit",
+                    "behavior": "modify",
                     "multipliers": [
                         0,
                         0,
@@ -17156,7 +17158,6 @@
         {
             "display_name": "Bloodletting",
             "desc": "Increase Twisted Tether's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)",
-            "archetype": "Acolyte",
             "parents": [
                 "Scourge"
             ],
