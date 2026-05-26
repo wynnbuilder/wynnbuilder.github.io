@@ -3078,6 +3078,8 @@
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Lit Fuse",
+                        "scaling": "melee",
+                        "use_atkspd": false,
                         "multipliers": [
                             500,
                             0,
