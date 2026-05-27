@@ -7469,7 +7469,9 @@
             "parents": [
                 "Buried Light"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Shield Strike"
+            ],
             "blockers": [],
             "cost": 2,
             "display": {
@@ -8445,8 +8447,8 @@
                     "target_part": "Meteor Damage",
                     "behavior": "modify",
                     "multipliers": [
-                        90,
-                        30,
+                        70,
+                        20,
                         0,
                         0,
                         0,
