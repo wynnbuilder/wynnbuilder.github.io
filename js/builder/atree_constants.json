@@ -6561,25 +6561,29 @@
             },
             "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Cyclone",
-                    "multipliers": [
-                        40,
-                        0,
-                        0,
-                        0,
-                        10,
-                        20
+                    "type": "replace_spell",
+                    "name": "Cyclone",
+                    "base_spell": 14,
+                    "display": "Cyclone DPS",
+                    "parts": [
+                        {
+                            "name": "Damage per Tick",
+                            "multipliers": [
+                                40,
+                                0,
+                                0,
+                                0,
+                                10,
+                                20
+                            ]
+                        },
+                        {
+                           "name": "Cyclone DPS",
+                            "hits": {
+                                "Damage per Tick": 2.85714285714
+                            }
+                        }
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Cyclone DPS",
-                    "hits": {
-                        "Cyclone": 2.85714285714
-                    }
                 }
             ]
         },
@@ -7235,10 +7239,10 @@
             "effects": [
                 {
                     "type": "add_spell_prop",
-                    "base_spell": 4,
+                    "base_spell": 14,
                     "target_part": "Cyclone DPS",
                     "hits": {
-                        "Cyclone": 2.14285714286
+                        "Damage per Tick": 2.14285714286
                     }
                 },
                 {
