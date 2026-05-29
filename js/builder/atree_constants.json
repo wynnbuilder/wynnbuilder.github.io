@@ -6578,7 +6578,7 @@
                             ]
                         },
                         {
-                           "name": "Cyclone DPS",
+                            "name": "Cyclone DPS",
                             "hits": {
                                 "Damage per Tick": 2.85714285714
                             }
@@ -10914,7 +10914,7 @@
         },
         {
             "display_name": "Paradox",
-            "desc": "You send 25% of the damage you take to the future, dealing it over 10s and borrow mana from the past, refunding 25% of your spent mana over 10s. </br> For every +1 Distortion, the mana is refunded -0.02s faster.",
+            "desc": "You send 20% of the damage you take to the future, dealing it over 8s and borrow mana from the past, refunding 25% of your spent mana over 10s. </br> For every +1 Distortion, the mana is refunded -0.02s faster.",
             "archetype": "Riftwalker",
             "parents": [
                 "Portal to the Beyond",
@@ -11018,8 +11018,7 @@
         },
         {
             "display_name": "Induced Instability",
-            "desc": "Judrajim applies Unstable to enemies. </br> Meteor and Pyrokinesis consume Unstable to deal +100% damage.",
-            "archetype": "Arcanist",
+            "desc": "Judrajim applies Unstable to enemies. </br> Meteor, Pyrokinesis and Powder Specials consume Unstable to deal +100% damage.",
             "parents": [
                 "Arcane Overflow"
             ],
@@ -11044,7 +11043,7 @@
                         },
                         {
                             "type": "stat",
-                            "name": "damMult.Unstable:0.Melee",
+                            "name": "damMult.Unstable;m",
                             "value": 100
                         },
                         {
@@ -11106,7 +11105,7 @@
         },
         {
             "display_name": "Tangled Origin",
-            "desc": "Click Combo: F </br> Summons a Thunder Serpent and a Fire Serpent, which will attack nearby enemies. </br> The Thunder Serpent strikes up to 4 enemies with arcing lightning every 1s, making them Unstable. </br> The Fire Serpent detonates Unstable targets every 3s, consuming the effect. </br> </br>Vision: 15 Blocks </br>Duration: 20s </br> </br><span class='mc-white'>Total Damage</span>: 900% (of your DPS, Thunder)   </br>&emsp;(<span class='nDam'>Damage</span>: 600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS, Fire)   </br>&emsp;(<span class='nDam'>Damage</span>: 1300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 700%) </br>Area of Effect: 3 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Summons a Thunder Serpent and a Fire Serpent, which will attack nearby enemies. </br> The Thunder Serpent strikes up to 4 enemies with arcing lightning every 1s, making them Unstable. </br> The Fire Serpent detonates Unstable targets every 3s, consuming the effect. </br> </br>Vision: 15 Blocks </br>Duration: 30s </br> </br><span class='mc-white'>Total Damage</span>: 900% (of your DPS, Thunder)   </br>&emsp;(<span class='nDam'>Damage</span>: 600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS, Fire)   </br>&emsp;(<span class='nDam'>Damage</span>: 1300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 700%) </br>Area of Effect: 3 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Arcanist",
             "archetype_req": 18,
             "parents": [
@@ -17056,7 +17055,7 @@
         },
         {
             "display_name": "Sanguine Strike",
-            "desc": "Your Main Attack will now inflict enemies with Bleeding for +2s. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Cooldown: 2s (per enemy)",
+            "desc": "Greatly reduce Main Attack spread. </br> Your Main Attack will now inflict enemies with Bleeding for +2s. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Cooldown: 2s (per enemy)",
             "parents": [
                 "Blood Rite",
                 "Chorus of the Ancients"
@@ -17856,7 +17855,7 @@
         },
         {
             "display_name": "Crystal Knives",
-            "desc": "Your Puppet's knives become stronger, and can pass through walls and enemies. (Max 2 enemies) </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)   </br>&emsp;(<span class='eDam'>Earth</span>: +2%)",
+            "desc": "Your Puppet's knives become stronger, and can pass through walls and enemies. (Max 2 enemies) </br> </br><span class='mc-white'>Total Damage</span>: +5% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)   </br>&emsp;(<span class='eDam'>Earth</span>: +2%)",
             "archetype": "Summoner",
             "archetype_req": 8,
             "base_abil": "Puppet Master",
