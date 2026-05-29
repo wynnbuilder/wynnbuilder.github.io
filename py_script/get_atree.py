@@ -106,27 +106,10 @@ replace_strings = {
 def clean_description(string):
     return re.sub(cleaner, '', string)
 
-def stylize_description(strings):
-    def sub(s):
-        for k, v in replace_strings.items():
-            s = re.sub(k, v, s)
-        return s
-    result = []
-    for text in strings:
-        if '</br>' in text:
-            result.append('</br>')
-            continue
-        if 'Archetype' in text or 'Ability Points' in text or 'Unlocking will block:' in text:
-            break  
-        result.append(sub(re.sub(cleaner, '', text)))
-
-    if result[0] == "</br>":
-        result[0] = ""
-        
-    if result[len(result)-1] == "</br>":
-        result[len(result)-1] = ""
-
-    return ' '.join(result).strip()
+def sub(s):
+    for k, v in replace_strings.items():
+        s = re.sub(k, v, s)
+    return s
 
 
 if __name__ == "__main__":
@@ -171,6 +154,31 @@ if __name__ == "__main__":
                             old_ability["display"]["icon"] = icon_dict[color]
                             print(f"Replaced color on node \"{ability_name}\", should be {icon_dict[color]}")
 
+                        description_lines = []
+                        for text in ability["description"]:
+                            if '</br>' in text:
+                                description_lines.append('</br>')
+                                continue
+                            if 'Archetype' in text:
+                                new_archetype = sub(re.sub(cleaner, '', text)).removesuffix('Archetype').strip()
+                                if "archetype" not in old_ability or old_ability["archetype"] != new_archetype:
+                                    old_ability["archetype"] = new_archetype
+                                    print(f"Replaced archetype association on \"{ability_name}\" to \"{new_archetype}\"")
+                                break
+                            if 'Ability Points' in text or 'Unlocking will block:' in text:
+                                break  
+                            description_lines.append(sub(re.sub(cleaner, '', text)))
+
+                        if description_lines[0] == "</br>":
+                            description_lines[0] = ""
+                            
+                        if description_lines[len(description_lines)-1] == "</br>":
+                            description_lines[len(description_lines)-1] = ""
+
+                        description = ' '.join(description_lines).strip()
+
+                        old_ability["desc"] = description
+
                         requirement = ability["requirements"]
                         if "ARCHETYPE" in requirement and "archetype" in ability:
                             if 'archetype_req' not in old_ability or old_ability["archetype_req"] != requirement["ARCHETYPE"]["amount"]:
@@ -180,9 +188,6 @@ if __name__ == "__main__":
                         if "ABILITY_POINTS" in requirement and old_ability["cost"] != requirement["ABILITY_POINTS"]:
                             old_ability["cost"] = requirement["ABILITY_POINTS"]
                             print(f"Replaced cost on node \"{ability_name}\", should be {requirement["ABILITY_POINTS"]}")
-
-                        description = stylize_description(ability["description"])
-                        old_ability["desc"] = description
 
     with open("../js/builder/atree_constants.json", "w") as output_file:
         json.dump(new_tree_data, output_file, indent=4)
