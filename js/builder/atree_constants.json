@@ -11019,6 +11019,7 @@
         {
             "display_name": "Induced Instability",
             "desc": "Judrajim applies Unstable to enemies. </br> Meteor, Pyrokinesis and Powder Specials consume Unstable to deal +100% damage.",
+            "archetype": "Arcanist",
             "parents": [
                 "Arcane Overflow"
             ],
