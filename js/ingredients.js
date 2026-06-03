@@ -134,8 +134,8 @@ const special_mappings = {
     "Sum (Life Sustain)": "hpr+ls",
     "Sum (Melee Damage Raw)": "summeleedamraw+sumdamraw",
     "Sum (Spell Damage Raw)": "sumspelldamraw+sumdamraw",
-    "Sum (Spell Damages %)": "sumspelldampct+sumdampct",
-    "Sum (Melee Damages %)": "summeleedampct+sumdampct"
+    "Sum (Spell Damages %)": "max(edpct+esdpct,tdpct+tsdpct,wdpct+wsdpct,fdpct+fsdpct,adpct+asdpct,ndpct+nsdpct)+sdpct+dpct+rdpct+rsdpct",
+    "Sum (Melee Damages %)": "max(edpct+emdpct,tdpct+tmdpct,wdpct+wmdpct,fdpct+fmdpct,adpct+amdpct,ndpct+nmdpct)+mdpct+dpct+rdpct+rmdpct",
 };
 
 const weapon_expression_mappings = {
