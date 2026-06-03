@@ -514,7 +514,16 @@ function decodeTomes(cursor) {
             for (let i = 0; i < DEC.TOME_NUM; ++i) {
                 switch (cursor.advanceBy(DEC.TOME_SLOT_FLAG.BITLEN)) {
                     case DEC.TOME_SLOT_FLAG.UNUSED: tomes.push(null); break;
-                    case DEC.TOME_SLOT_FLAG.USED: tomes.push(tomeIDMap.get(cursor.advanceBy(DEC.TOME_ID_BITLEN))); break;
+                    case DEC.TOME_SLOT_FLAG.USED: {
+                        let id = cursor.advanceBy(DEC.TOME_ID_BITLEN);
+                        if (tomeRedirectMap.has(id)){
+                            tomes.push(tomeIDMap.get(tomeRedirectMap.get(id)));
+                        }
+                        else {
+                            tomes.push(tomeIDMap.get(id));
+                        }
+                        break;
+                    }
                 }
             }
         }
