@@ -1480,7 +1480,7 @@
     },
     "LAST_RESORT": {
         "displayName": "Last Resort",
-        "description": "Bloodlust has doubled corrupted scaling and knockback, but deals [neutral]-100% [fire]-60%.",
+        "description": "Bloodlust has doubled corrupted scaling and knockback, but deals [neutral]-200% [fire]-120%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -1493,11 +1493,11 @@
                         "target_part": "Annihilation",
                         "behavior": "modify",
                         "multipliers": [
-                            -100,
+                            -200,
                             0,
                             0,
                             0,
-                            -60,
+                            -120,
                             0
                         ]
                     },
