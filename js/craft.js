@@ -465,9 +465,9 @@ class Craft{
             for (const [key, value] of ingred.get("itemIDs")) {
                 if(key !== "dura"  && !consumableTypes.includes(statMap.get("type"))) { //consumables NEVER get reqs
                     if (!ingred.get("isPowder")) {
-                        statMap.set(key, Math.round(statMap.get(key) + value*eff_mult)); 
+                        statMap.set(key, statMap.get(key) + Math.round(value*eff_mult+1e-9));
                     } else {
-                        statMap.set(key, Math.round(statMap.get(key) + value));
+                        statMap.set(key, statMap.get(key) + Math.round(value));
                     }
                 } else { //durability, NOT affected by effectiveness
                     statMap.set("durability", statMap.get("durability").map(x => x + value));
