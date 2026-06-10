@@ -523,7 +523,7 @@ const queryFuncs = {
           }
           damage_weight += avg_dps/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'SdRaw');
         }
-        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'sdRaw') + getOrNullToZero(max_roll,'rSdRaw');
+        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'sdRaw') + getOrNullToZero(max_roll,'rSdRaw') + getOrNullToZero(max_roll,'rDamRaw');
       }
       else {
         const damage_elements = ['n'].concat(skp_elements);
@@ -539,7 +539,7 @@ const queryFuncs = {
           }
           damage_weight += avg_dmg/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'MdRaw');
         }
-        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'mdRaw') + getOrNullToZero(max_roll,'rMdRaw');
+        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'mdRaw') + getOrNullToZero(max_roll,'rMdRaw') + getOrNullToZero(max_roll,'rDamRaw');
       }
 
       return damage_weight;
