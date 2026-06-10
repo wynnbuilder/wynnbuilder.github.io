@@ -574,7 +574,7 @@
     },
     "GENTLE_GLOW": {
         "displayName": "Gentle Glow",
-        "description": "Orphion's Pulse restores 5% more max health per pulse, but heals at a slower rate.",
+        "description": "Orphion's Pulse restores 10% more max health per pulse, but heals at a slower rate.",
         "abilities": [
             {
                 "class": "Mage",
@@ -590,7 +590,7 @@
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Heal",
-                        "power": 0.05
+                        "power": 0.1
                     }
                 ]
             }
@@ -665,7 +665,7 @@
     },
     "GRUESOME_KNOTS": {
         "displayName": "Gruesome Knots",
-        "description": "Bleeding and Twisted Tether deal double damage, but Bleeding duration is reduced.",
+        "description": "Bleeding and Twisted Tether deal 1.5x damage, but Bleeding duration is reduced.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -677,12 +677,12 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:8.Tether Tick",
-                                "value": 100
+                                "value": 50
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:9.Bleeding Tick",
-                                "value": 100
+                                "value": 50
                             }
                         ]
                     }
@@ -1224,7 +1224,7 @@
     },
     "METEOR_CRASH": {
         "displayName": "Meteor Crash",
-        "description": "Burning Sigil gains +6 radius and deals double the damage, but lasts half as long.",
+        "description": "Burning Sigil gains +6 radius and deals quadruple the damage, but lasts half as long.",
         "abilities": [
             {
                 "class": "Mage",
@@ -1242,7 +1242,7 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.MeteorCrash:6.Tick Damage",
-                                "value": 100
+                                "value": 300
                             }
                         ]
                     }
@@ -2504,7 +2504,7 @@
     },
     "SPACE_GLIDE": {
         "displayName": "Space Glide",
-        "description": "Lacerate performs a single horizontal jump and slash, dealing [neutral]400%.",
+        "description": "Lacerate performs a single horizontal jump and slash, dealing [neutral]500%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2523,7 +2523,7 @@
                                 "name": "Space Glide Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    400,
+                                    500,
                                     0,
                                     0,
                                     0,
@@ -3337,7 +3337,7 @@
     },
     "REGICIDES_VANTAGE": {
         "displayName": "Regicide",
-        "description": "Your deal 2% more damage for every block you are away from your target (Max 120%).",
+        "description": "You deal 2% more damage for every block you are away from your target (Max 120%).",
         "abilities": [
             {
                 "class": "Archer",
@@ -3362,7 +3362,7 @@
     },
     "DIVINE_RIGHT": {
         "displayName": "Divine Right",
-        "description": "Your Maximum Health is reduced by 60%. For every 100 HP lost, Sacred Surge's damage is increased by 5%.",
+        "description": "Your Maximum Health is reduced by 75%. For every 100 HP lost, Sacred Surge's damage is increased by 3%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3386,8 +3386,8 @@
                             "name": "damMult.DivineRight:3.Smite Damage"
                         },
                         "scaling": [
-                            0.03,
-                            0.03
+                            0.0225,
+                            0.0225
                         ]
                     },
                     {
@@ -3409,8 +3409,8 @@
                             "name": "hp"
                         },
                         "scaling": [
-                            -0.6,
-                            -0.6
+                            -0.75,
+                            -0.75
                         ]
                     }
                 ]
@@ -3864,7 +3864,7 @@
     },
     "HEROINES_BLESSING": {
         "displayName": "Heroine's Blessing",
-        "description": "Devout Union gains +25% damage redirection and +8 radius. Additionally, Enlightenment now only requires 1 broken mantle per mantle given to allies.",
+        "description": "Devout Union gains +25% damage redirection and +8 radius. Additionally, Mantles given by Enlightenment have +20% damage reduction.",
         "abilities": []
     },
     "ELVEN_CURRENT": {
