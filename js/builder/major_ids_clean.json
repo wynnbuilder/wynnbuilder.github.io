@@ -104,7 +104,26 @@
     "GREED": {
         "displayName": "Greed",
         "description": "Picking up emeralds heals you and nearby players for 8% max health.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Greed Heal",
+                        "base_spell": 30,
+                        "display": "Heal per Emerald",
+                        "parts": [
+                            {
+                                "name": "Heal per Emerald",
+                                "power": 0.08
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "GUARDIAN": {
         "displayName": "Guardian",
