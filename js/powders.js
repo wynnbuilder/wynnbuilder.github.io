@@ -34,6 +34,8 @@ let powderStats = [
 // Thankfully, powders on armors give the same HP regardless of element
 let powderArmorHealth = [5, 10, 20, 30, 45, 60, 75]
 
+let powderLevelReq = [1, 5, 15, 25, 40, 55, 70]
+
 //Ordering: [weapon special name, weapon special effects, armor special name, armor special effects]
 class PowderSpecial{
     constructor(wSpName, wSpEff, aSpName, aSpEff, cap){
@@ -182,10 +184,10 @@ function calc_weapon_powder(weapon, damageBases) {
         }
     }
 
+    //2.2 for some reason decided that all crafted powders are 0% effectiveness?
     //New 2.1 calculations for crafted ingredient powders
     //TODO: more verification that this is correct?
-    //Essentially, ingredient powders now apply after the powder master application.
-    if (weapon.get("tier") === "Crafted" && !weapon.get("custom")) {
+    /*if (weapon.get("tier") === "Crafted" && !weapon.get("custom")) {
         for (const p of weapon.get("ingredPowders")) {
             const powder = powderStats[p];  //use min, max, and convert
             // Bitwise to force conversion to integer (integer division).
@@ -212,7 +214,7 @@ function calc_weapon_powder(weapon, damageBases) {
                 powder_apply_map.set(element, apply_info);
             }
         }
-    }
+    }*/
 
     for (const element of powder_apply_order) {
         const apply_info = powder_apply_map.get(element);
