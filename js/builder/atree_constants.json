@@ -2578,8 +2578,8 @@
                     "base_spell": 3,
                     "target_part": "Shrapnel Bomblet",
                     "multipliers": [
-                        40,
-                        10,
+                        80,
+                        20,
                         0,
                         0,
                         0,
@@ -2590,7 +2590,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Shrapnel Hits",
-                    "slider_max": 5,
+                    "slider_max": 3,
                     "output": {
                         "type": "prop",
                         "name": "shrapnel_hits",
@@ -3390,9 +3390,9 @@
                     "target_part": "Courier's Edict",
                     "cost": 0,
                     "multipliers": [
-                        100,
+                        30,
                         0,
-                        100,
+                        30,
                         0,
                         0,
                         0
@@ -3404,7 +3404,7 @@
                     "target_part": "Total Damage",
                     "cost": 0,
                     "hits": {
-                        "Courier's Edict": 1
+                        "Courier's Edict": 3
                     },
                     "display": "Total Damage"
                 }
@@ -10235,56 +10235,6 @@
                             "abil": "Distortion",
                             "name": "meteor_attack_frequency",
                             "value": 1
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "display_name": "Mana Current",
-            "desc": "Dimensional Tear reduces the mana cost of your spells while inside it. </br> Mana Cost: -25%",
-            "base_abil": "Distortion",
-            "archetype": "Riftwalker",
-            "archetype_req": 7,
-            "parents": [
-                "Influx Shift",
-                "Devitalize"
-            ],
-            "dependencies": [
-                "Meteor"
-            ],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 32,
-                "col": 3,
-                "icon": "node_1"
-            },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "raw_stat",
-                    "toggle": "Activate Dimensional Tear",
-                    "bonuses": [
-                        {
-                            "type": "stat",
-                            "name": "spPct1Final",
-                            "value": -25
-                        },
-                        {
-                            "type": "stat",
-                            "name": "spPct2Final",
-                            "value": -25
-                        },
-                        {
-                            "type": "stat",
-                            "name": "spPct3Final",
-                            "value": -25
-                        },
-                        {
-                            "type": "stat",
-                            "name": "spPct4Final",
-                            "value": -25
                         }
                     ]
                 }
@@ -18206,7 +18156,7 @@
                         "name": "damMult.Transfused:11.Single Hit"
                     },
                     "scaling": [
-                        7
+                        15
                     ],
                     "slider_max": 3
                 }
@@ -18462,7 +18412,7 @@
             "display_name": "Monument to Gloom",
             "desc": "Click Combo: F </br> Your Totem becomes possessed by an eldritch demon, granting +5% Blood Pool to nearby acolytes every 0.4s </br> Others receive +5% Health </br>every 0.4s </br> </br>Duration: 15s </br> Activate abilities or lose health to charge your Ultimate Meter to 100%.",
             "archetype": "Acolyte",
-            "archetype_req": 19,
+            "archetype_req": 18,
             "parents": [
                 "Haemomagnetic",
                 "Bloodiest"
