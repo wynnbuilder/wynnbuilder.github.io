@@ -11599,8 +11599,8 @@
     ],
     "ids": {
       "hpBonus": {
-        "minimum": 600,
-        "maximum": 750
+        "minimum": 500,
+        "maximum": 600
       },
       "sdPct": {
         "minimum": 5,
@@ -18183,8 +18183,8 @@
         "maximum": -3
       },
       "healPct": {
-        "minimum": 5,
-        "maximum": 5
+        "minimum": 6,
+        "maximum": 7
       }
     },
     "consumableIDs": {
@@ -23633,7 +23633,7 @@
         "maximum": -8
       },
       "healPct": {
-        "minimum": 1,
+        "minimum": 3,
         "maximum": 4
       }
     },
@@ -29086,7 +29086,7 @@
       },
       "healPct": {
         "minimum": 2,
-        "maximum": 2
+        "maximum": 4
       }
     },
     "consumableIDs": {
@@ -61962,13 +61962,13 @@
       "ALCHEMISM"
     ],
     "ids": {
-      "wDamPct": {
-        "minimum": 8,
-        "maximum": 9
+      "damPct": {
+        "minimum": 6,
+        "maximum": 7
       },
       "healPct": {
-        "minimum": -4,
-        "maximum": -4
+        "minimum": -6,
+        "maximum": -6
       }
     },
     "consumableIDs": {
@@ -64964,7 +64964,7 @@
       },
       "healPct": {
         "minimum": 3,
-        "maximum": 3
+        "maximum": 4
       }
     },
     "consumableIDs": {
