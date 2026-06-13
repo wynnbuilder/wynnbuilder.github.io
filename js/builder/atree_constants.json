@@ -7088,9 +7088,9 @@
                         "name": "crush_mult"
                     },
                     "scaling": [
-                        0.01
+                        0.08
                     ],
-                    "max": 0.04
+                    "max": 0.1828
                 },
                 {
                     "type": "stat_scaling",
