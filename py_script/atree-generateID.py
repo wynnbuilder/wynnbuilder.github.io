@@ -164,11 +164,17 @@ def validate_atree_graph(atree):
                 positions.append((row, child_c))
         return positions
 
-    # Occupancy grid, pair(row, col) -> (none, Set of parents).
-    # Set if the tile has a "path".
-    abil_path_parents = {}
-    # Occupancy grid, pair(row, col) -> (none, Set of nodes).
+    # Collect all node positions so path checks can reference them
     abil_node_positions = {}
+    for abil in atree:
+        if abil['id'] not in abil_lookup:
+            continue
+        pos = (abil['display']['row'], abil['display']['col'])
+        abil_node_positions.setdefault(pos, []).append(abil)
+
+    # set of (child_id, parent_id) edge tuples passing through this tile
+    abil_path_edges = {}
+
     print("Validation Pass 1")
     for abil in atree:
         abil_name = abil['display_name']
@@ -198,12 +204,7 @@ def validate_atree_graph(atree):
         #       Each path stores a list of parents.
         #       This will be checked in a second iteration after all parents are filled in.
 
-        # Pass 1: Fill out node positions.
         abil_r, abil_c = abil['display']['row'], abil['display']['col']
-        abil_pos = (abil_r, abil_c)
-        if abil_pos not in abil_node_positions:
-            abil_node_positions[abil_pos] = []
-        abil_node_positions[abil_pos].append(abil)
 
         # Pass 1: Fill out paths and parents.
         for target in abil['parents']:
@@ -231,11 +232,20 @@ def validate_atree_graph(atree):
                     if other_parent['display']['row'] == parent_r and target in other_parent['parents']:
                         print(f"WARNING: '{other_parent['display_name']}' to '{abil_name}' goes through parent '{parent_name}', check '{abil_name}'")
             
-            for pos in get_path_positions(parent, abil):
-                if pos not in abil_path_parents:
-                    abil_path_parents[pos] = set()
-                abil_path_parents[pos].add(parent['id'])
+            path_positions = get_path_positions(parent, abil)
 
+            # Check whether any intermediate path tile coincides with a node that
+            # is neither the declared parent nor the child itself.
+            for pos in path_positions:
+                if pos in abil_node_positions:
+                    for blocking_abil in abil_node_positions[pos]:
+                        blocking_id = blocking_abil['id']
+                        if blocking_id == abil_id or blocking_id == parent['id']:
+                            continue
+                        print(f"ERROR: path from '{parent_name}' to '{abil_name}' passes through node '{blocking_abil['display_name']}'")
+
+            for pos in path_positions:
+                abil_path_edges.setdefault(pos, set()).add((abil_id, parent['id']))
 
     # Pass 2.1: Check node position collisions
     for pos, abils in abil_node_positions.items():
@@ -249,30 +259,31 @@ def validate_atree_graph(atree):
         abil_name = abil['display_name']
         abil_id = abil['id']
         if abil_id not in abil_lookup:
-            # Already warned previously.
             continue
 
+        abil_r, abil_c = abil['display']['row'], abil['display']['col']
         warned_parents = set()
         for target in abil['parents']:
             if target not in abil_lookup:
-                # Already warned previously.
                 continue
             parent = abil_lookup[target]
-            parent_name = parent['display_name']
             parent_r = parent['display']['row']
             if abil_r < parent_r:
-                # Already warned previously.
                 continue
 
             for pos in get_path_positions(parent, abil):
-                for path_parent_id in abil_path_parents[pos]:
-                    if path_parent_id == abil_id:
+                if pos in abil_node_positions:
+                    continue
+                for (edge_child_id, edge_parent_id) in abil_path_edges.get(pos, set()):
+                    # Only care about edges that share this child
+                    if edge_child_id != abil_id:
                         continue
-                    if path_parent_id not in abil['parents']:
-                        if path_parent_id not in warned_parents:
-                            path_parent = abil_lookup[path_parent_id]
-                            print(f"ERROR: '{abil_name}' is connected to '{path_parent['display_name']}' visually but not in code")
-                            warned_parents.add(path_parent_id)
+                    if edge_parent_id == parent['id']:
+                        continue
+                    if edge_parent_id not in abil['parents'] and edge_parent_id not in warned_parents:
+                        path_parent = abil_lookup[edge_parent_id]
+                        print(f"ERROR: '{abil_name}' is connected to '{path_parent['display_name']}' visually but not in code")
+                        warned_parents.add(edge_parent_id)
 
 
 def validate_atree_data(atree_data):

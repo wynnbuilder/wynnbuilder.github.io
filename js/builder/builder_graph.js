@@ -918,6 +918,20 @@ class DisplayBuildWarningsNode extends ComputeNode {
                 baditem.textContent = item.statMap.get("displayName") + " requires level " + item_lvl + " to use.";
                 lvlWarning.appendChild(baditem);
             }
+            
+            let powders = item.statMap.get("powders");
+            if (powders) {
+                for (const powder of powders) {
+                    if (item_lvl < powderLevelReq[powder % POWDER_TIERS]) {
+                        if (!lvlWarning) {
+                            lvlWarning = document.createElement("p");
+                            lvlWarning.classList.add("itemp"); lvlWarning.classList.add("warning");
+                            lvlWarning.textContent = item.statMap.get("displayName") + " cannot have tier " + (powder % POWDER_TIERS + 1) + " powders. Item must be level " + powderLevelReq[powder % POWDER_TIERS] + " or higher.";
+                            break;
+                        }
+                    }
+                }
+            }
         }
         if (lvlWarning) {
             summarybox.append(lvlWarning);

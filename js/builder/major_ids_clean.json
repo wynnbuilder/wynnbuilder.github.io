@@ -574,7 +574,7 @@
     },
     "GENTLE_GLOW": {
         "displayName": "Gentle Glow",
-        "description": "Orphion's Pulse restores 5% more max health per pulse, but heals at a slower rate.",
+        "description": "Orphion's Pulse restores 10% more max health per pulse, but heals at a slower rate.",
         "abilities": [
             {
                 "class": "Mage",
@@ -590,7 +590,7 @@
                         "type": "add_spell_prop",
                         "base_spell": 1,
                         "target_part": "Heal",
-                        "power": 0.05
+                        "power": 0.1
                     }
                 ]
             }
@@ -665,7 +665,7 @@
     },
     "GRUESOME_KNOTS": {
         "displayName": "Gruesome Knots",
-        "description": "Bleeding and Twisted Tether deal double damage, but Bleeding duration is reduced.",
+        "description": "Bleeding and Twisted Tether deal double the damage, but Bleeding duration is reduced.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -677,12 +677,12 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:8.Tether Tick",
-                                "value": 100
+                                "value": 50
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:9.Bleeding Tick",
-                                "value": 100
+                                "value": 50
                             }
                         ]
                     }
@@ -782,6 +782,17 @@
                         }
                     }
                 ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Bash",
+                "dependencies": [
+                    "Final Crush"
+                ],
+                "properties": {
+                    "hellfire_bashes": 0.4
+                },
+                "effects": []
             },
             {
                 "class": "Warrior",
@@ -1224,7 +1235,7 @@
     },
     "METEOR_CRASH": {
         "displayName": "Meteor Crash",
-        "description": "Burning Sigil gains +6 radius and deals double the damage, but lasts half as long.",
+        "description": "Burning Sigil gains +6 radius and deals 4x the damage, but lasts half as long.",
         "abilities": [
             {
                 "class": "Mage",
@@ -1242,7 +1253,7 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.MeteorCrash:6.Tick Damage",
-                                "value": 100
+                                "value": 300
                             }
                         ]
                     }
@@ -1499,7 +1510,7 @@
     },
     "LAST_RESORT": {
         "displayName": "Last Resort",
-        "description": "Bloodlust has doubled corrupted scaling and knockback, but deals [neutral]-200% [fire]-120%.",
+        "description": "Bloodlust has doubled corrupted scaling and knockback, but deals [neutral]-100% [fire]-60%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -2504,7 +2515,7 @@
     },
     "SPACE_GLIDE": {
         "displayName": "Space Glide",
-        "description": "Lacerate performs a single horizontal jump and slash, dealing [neutral]400%.",
+        "description": "Lacerate performs a single horizontal jump and slash, dealing [neutral]500%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2523,7 +2534,7 @@
                                 "name": "Space Glide Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    400,
+                                    500,
                                     0,
                                     0,
                                     0,
@@ -2923,7 +2934,7 @@
     },
     "SOLAR_WIND": {
         "displayName": "Solar Wind",
-        "description": "Thunderstorm disables Meteor and grants +3 thunderbolts, +3 radius and deal [neutral]100% and [thunder]110% each. Unstable now activates on Thunderstorm for 400% bonus damage.",
+        "description": "Thunderstorm disables Meteor, grants +3 thunderbolts, +3 radius and deals [neutral]100% and [thunder]110% each. Unstable now activates on Thunderstorm for 400% bonus damage.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3337,7 +3348,7 @@
     },
     "REGICIDES_VANTAGE": {
         "displayName": "Regicide",
-        "description": "Your deal 2% more damage for every block you are away from your target (Max 120%).",
+        "description": "You deal 2% more damage for every block you are away from your target (Max 120%).",
         "abilities": [
             {
                 "class": "Archer",
@@ -3362,7 +3373,7 @@
     },
     "DIVINE_RIGHT": {
         "displayName": "Divine Right",
-        "description": "Your Maximum Health is reduced by 60%. For every 100 HP lost, Sacred Surge's damage is increased by 5%.",
+        "description": "Your Maximum Health is reduced by 75%. For every 100 HP lost, Sacred Surge's damage is increased by 3%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3386,8 +3397,8 @@
                             "name": "damMult.DivineRight:3.Smite Damage"
                         },
                         "scaling": [
-                            0.03,
-                            0.03
+                            0.0225,
+                            0.0225
                         ]
                     },
                     {
@@ -3409,8 +3420,8 @@
                             "name": "hp"
                         },
                         "scaling": [
-                            -0.6,
-                            -0.6
+                            -0.75,
+                            -0.75
                         ]
                     }
                 ]
@@ -3864,7 +3875,7 @@
     },
     "HEROINES_BLESSING": {
         "displayName": "Heroine's Blessing",
-        "description": "Devout Union gains +25% damage redirection and +8 radius. Additionally, Enlightenment now only requires 1 broken mantle per mantle given to allies.",
+        "description": "Devout Union gains +25% damage redirection and +8 radius. Additionally, Mantles given by Enlightenment have +20% damage reduction.",
         "abilities": []
     },
     "ELVEN_CURRENT": {
@@ -3907,5 +3918,100 @@
         "displayName": "Aubri's Tears",
         "description": "Pool of Rejuvenation's range and duration are doubled, but Frog Dance deals no damage.",
         "abilities": []
+    },
+    "BLAZING_EFFIGY": {
+        "displayName": "Blazing Effigy",
+        "description": "Regeneration increases Totem's damage by [neutral]+14% [fire]+6% instead of restoring health.",
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": "Totem",
+                "dependencies": [
+                    "Regeneration"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Blazing Effigy Bonus",
+                        "multipliers": [
+                            14,
+                            0,
+                            0,
+                            0,
+                            6,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Tick DPS (Per Totem)",
+                        "display": "Tick DPS",
+                        "behavior": "modify",
+                        "hits": {
+                            "Blazing Effigy Bonus": "Totem.totem_mul"
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 5,
+                        "target_part": "Blazing Effigy Bonus",
+                        "multipliers": [
+                            14,
+                            0,
+                            0,
+                            0,
+                            6,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.TotemShatter:5.Blazing Effigy Bonus",
+                                "value": 1900
+                            }
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 5,
+                        "target_part": "Shatter DPS",
+                        "display": "Shatter DPS",
+                        "behavior": "modify",
+                        "hits": {
+                            "Blazing Effigy Bonus": "Totem.num_totems"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "PHANTOM_SLIP": {
+        "displayName": "Phantom Slip",
+        "description": "Activating Life Steal or Mana Steal will grant +60% speed bonus for 0.7 seconds.",
+        "abilities": []
+    },
+    "REQUIEM": {
+        "displayName": "Requiem",
+        "description": "Sunflare regenerates twice the health and mana.",
+        "abilities": [
+            {
+                "class": "Mage",
+                "base_abil": "Heal",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "behavior": "modify",
+                        "target_part": "Sunflare Healing per Second",
+                        "power": 0.05
+                    }
+                ]
+            }
+        ]
     }
 }

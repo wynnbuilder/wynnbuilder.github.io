@@ -144,7 +144,7 @@ const special_mappings = {
     "Sum (Health + Health Bonus)": "hp+hpBonus",
     "Sum (Base Damage)": "sumdmg",
     "Base DPS (Pre-Powder)": "sumdmg*atkspdmod(atkspd)",
-    "Base DPS (Post-Powder)": "(sumdmg+powders*13)*atkspdmod(atkspd)",
+    "Base DPS (Post-Powder)": "(sumdmg+slots*leveltopowderavgdmg(lvl))*atkspdmod(atkspd)",
     "Sum (Melee Damage Raw)": "summeleedamraw+sumdamraw",
     "Sum (Spell Damage Raw)": "sumspelldamraw+sumdamraw",
     "Sum (Spell Damages %)": "max(edpct+esdpct,tdpct+tsdpct,wdpct+wsdpct,fdpct+fsdpct,adpct+asdpct,ndpct+nsdpct)+sdpct+dpct+rdpct+rsdpct",

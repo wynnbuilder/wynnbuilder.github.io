@@ -544,6 +544,18 @@ const queryFuncs = {
 
       return damage_weight;
     }
+  },
+  leveltopowderavgdmg: {
+    type: 'number',
+    fn: function(item, itemExp, args) {
+      if (args.length < 1) throw new Error('Not enough args to levelToPowderAvgDmg()');
+      for (let i = powderLevelReq.length; i >= 0; i--) {
+        if (args[0] >= powderLevelReq[i]) {
+          return [4.5, 6.5, 8, 8.5, 10, 11.5, 13][i];
+        }
+      }
+      return 0;
+    }
   }
 };
 
