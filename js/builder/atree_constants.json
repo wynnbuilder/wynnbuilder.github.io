@@ -14733,13 +14733,15 @@
                             "name": "Tick DPS (Per Totem)",
                             "hits": {
                                 "Tick Damage": "Totem.totem_mul"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Heal Rate (Per Totem)",
                             "hits": {
                                 "Heal Tick": "Totem.totem_mul"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Tick DPS",
@@ -15581,7 +15583,8 @@
                             "name": "Puppet DPS",
                             "hits": {
                                 "Puppet Hit": "Puppet Master.attack_frequency"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Total Puppet DPS",
@@ -16827,7 +16830,8 @@
                             "name": "Single Effigy DPS",
                             "hits": {
                                 "Effigy Hit": "Crimson Effigy.attack_frequency"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Total Effigy DPS",
@@ -17308,7 +17312,7 @@
             "effects": [
                 {
                     "type": "raw_stat",
-                    "toggle": "Invigorate Puppets",
+                    "toggle": "Invigorate Summons",
                     "bonuses": [
                         {
                             "type": "prop",
@@ -17648,7 +17652,8 @@
                             "name": "Single Hummingbird DPS",
                             "hits": {
                                 "Hummingbird Hit": "Hummingbirds' Song.attack_frequency"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Total Hummingbird DPS",
@@ -18310,7 +18315,7 @@
             },
             "properties": {
                 "melee_speed": 0.8,
-                "ranged_speed": 0.571428571429
+                "ranged_speed": 0.571
             },
             "effects": [
                 {
@@ -18336,14 +18341,16 @@
                             "type": "total",
                             "hits": {
                                 "Patch Hit": "Patchwork Abomination.melee_speed"
-                            }
+                            },
+                            "tick_rounding": true
                         },
                         {
                             "name": "Patch Long-Ranged DPS",
                             "type": "total",
                             "hits": {
                                 "Patch Hit": "Patchwork Abomination.ranged_speed"
-                            }
+                            },
+                            "tick_rounding": true
                         }
                     ]
                 }

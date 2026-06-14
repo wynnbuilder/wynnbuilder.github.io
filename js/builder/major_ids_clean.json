@@ -3236,7 +3236,8 @@
                                 "name": "Remnant DPS",
                                 "hits": {
                                     "Remnant Hit": "Friendly Fire.remnant_atkspd"
-                                }
+                                },
+                                "tick_rounding": true
                             },
                             {
                                 "name": "Total Remnant DPS",
@@ -3313,7 +3314,7 @@
                 "effects": [
                     {
                         "type": "raw_stat",
-                        "toggle": "Invigorate Puppets",
+                        "toggle": "Invigorate Summons",
                         "bonuses": [
                             {
                                 "type": "prop",
