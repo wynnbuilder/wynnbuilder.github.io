@@ -166,7 +166,24 @@
     "ARCANES": {
         "displayName": "Transcendence",
         "description": "25% chance for spells to cost no mana when casted.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "manaMult.Transcendence",
+                                "value": 33.34
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "ENTROPY": {
         "displayName": "Entropy",
@@ -3872,7 +3889,24 @@
     "ENLIGHTENMENT": {
         "displayName": "Enlightenment",
         "description": "25% chance for spells to cost no mana and instead refund 25% of their original cost.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "manaMult.Transcendence",
+                                "value": 45.45
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "HEROINES_BLESSING": {
         "displayName": "Heroine's Blessing",

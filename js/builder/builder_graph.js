@@ -847,6 +847,7 @@ class BuildDisplayNode extends ComputeNode {
         // displayDefenseStats(document.getElementById("defensive-stats"), stats);
 
         displayPoisonDamage(document.getElementById("build-poison-stats"), stats);
+        manaInputChanged(build, stats);
     }
 }
 
@@ -1360,6 +1361,7 @@ let build_node;
 let stat_agg_node;
 let edit_agg_node;
 let atree_graph_creator;
+let build_disp_node;
 
 /**
  * Parameters:
@@ -1468,6 +1470,7 @@ function builder_graph_init(skillpoints) {
     atree_node.link_to(class_node, 'player-class');
     atree_merge.link_to(class_node, 'player-class');
     pre_scale_agg_node.link_to(atree_raw_stats, 'atree-raw-stats');
+    pre_scale_agg_node.link_to(raid_buff_node, 'raid-buff');
     radiance_node.link_to(pre_scale_agg_node, 'stats');
     atree_scaling.link_to(radiance_node, 'scale-stats');
     stat_agg_node.link_to(radiance_node, 'pre-scaling');
@@ -1503,7 +1506,7 @@ function builder_graph_init(skillpoints) {
 
     armor_powder_node.update();
     level_input.update();
-
+    raid_buff_node.update();
 
     atree_graph_creator = new AbilityTreeEnsureNodesNode(build_node, stat_agg_node)
         .link_to(atree_collect_spells, 'spells');
@@ -1537,16 +1540,11 @@ function builder_graph_init(skillpoints) {
     stat_agg_node.link_to(armor_powder_node, 'armor-powder');
     powder_special_input.update();
 
-    // Raid Buffs
-    raid_buff_node.update();
-    stat_agg_node.link_to(raid_buff_node, 'raid-buff');
-
     // Potion boost.
     stat_agg_node.link_to(boosts_node, 'potion-boost');
 
     // Also do something similar for skill points
-
-    let build_disp_node = new BuildDisplayNode()
+    build_disp_node = new BuildDisplayNode();
     build_disp_node.link_to(build_node, 'build');
     build_disp_node.link_to(stat_agg_node, 'stats');
 
@@ -1557,7 +1555,6 @@ function builder_graph_init(skillpoints) {
     let skp_output = new SkillPointSetterNode(skp_inputs);
     skp_output.link_to(build_node);
     skp_output.update().mark_dirty().update(skillpoints);
-
     let build_warnings_node = new DisplayBuildWarningsNode();
     build_warnings_node.link_to(build_node, 'build');
     for (const [skp_input, skp] of zip2(skp_inputs, skp_order)) {

@@ -4168,7 +4168,8 @@
                 "Shurikens"
               ],
               "properties": {
-                "count": 3
+                "count": 3,
+                "reload": 1
               },
               "effects": [
                 {
@@ -4184,14 +4185,6 @@
                     -5,
                     0
                   ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 6,
-                  "hits": {
-                    "Per Shuriken": 1
-                  }
                 }
               ]
             }
@@ -4207,7 +4200,8 @@
                 "Shurikens"
               ],
               "properties": {
-                "count": 6
+                "count": 6,
+                "reload": 2
               },
               "effects": [
                 {
@@ -4223,14 +4217,6 @@
                     -9,
                     0
                   ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 6,
-                  "hits": {
-                    "Per Shuriken": 2
-                  }
                 }
               ]
             }
@@ -4246,7 +4232,8 @@
                 "Shurikens"
               ],
               "properties": {
-                "count": 9
+                "count": 9,
+                "reload": 3
               },
               "effects": [
                 {
@@ -4262,14 +4249,6 @@
                     -9,
                     0
                   ]
-                },
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 6,
-                  "hits": {
-                    "Per Shuriken": 3
-                  }
                 }
               ]
             }
@@ -4604,17 +4583,10 @@
           "abilities": [
             {
               "base_abil": "Multihit",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 1
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 1
+              },
+              "effects": []
             },
             {
               "base_abil": "Multihit",
@@ -4668,17 +4640,10 @@
           "abilities": [
             {
               "base_abil": "Multihit",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 2
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 2
+              },
+              "effects": []
             },
             {
               "base_abil": "Multihit",
@@ -4732,17 +4697,10 @@
           "abilities": [
             {
               "base_abil": "Multihit",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 3
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 3
+              },
+              "effects": []
             },
             {
               "base_abil": "Multihit",
@@ -4796,17 +4754,10 @@
           "abilities": [
             {
               "base_abil": "Multihit",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 4
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 4
+              },
+              "effects": []
             },
             {
               "base_abil": "Multihit",
@@ -5039,17 +4990,10 @@
               "dependencies": [
                 "Lacerate"
               ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 1,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 2
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 2
+              },
+              "effects": []
             }
           ]
         },
@@ -5062,17 +5006,10 @@
               "dependencies": [
                 "Lacerate"
               ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 1,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 2
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 2
+              },
+              "effects": []
             }
           ]
         },
@@ -5085,17 +5022,10 @@
               "dependencies": [
                 "Lacerate"
               ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 1,
-                  "behavior": "modify",
-                  "hits": {
-                    "Per Hit": 3
-                  }
-                }
-              ]
+              "properties": {
+                "hit_count": 3
+              },
+              "effects": []
             }
           ]
         }
@@ -5247,18 +5177,10 @@
           "abilities": [
             {
               "base_abil": "Smoke Bomb",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "behavior": "modify",
-                  "target_part": "Per Bomb",
-                  "hits": {
-                    "Per Tick": 1
-                  }
-                }
-              ]
+              "properties": {
+                "duration": 0.5
+              },
+              "effects": []
             }
           ]
         },
@@ -5268,18 +5190,10 @@
           "abilities": [
             {
               "base_abil": "Smoke Bomb",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "behavior": "modify",
-                  "target_part": "Per Bomb",
-                  "hits": {
-                    "Per Tick": 2
-                  }
-                }
-              ]
+              "properties": {
+                "duration": 1
+              },
+              "effects": []
             }
           ]
         },
@@ -5289,18 +5203,10 @@
           "abilities": [
             {
               "base_abil": "Smoke Bomb",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 4,
-                  "behavior": "modify",
-                  "target_part": "Per Bomb",
-                  "hits": {
-                    "Per Tick": 3
-                  }
-                }
-              ]
+              "properties": {
+                "duration": 1.5
+              },
+              "effects": []
             }
           ]
         }

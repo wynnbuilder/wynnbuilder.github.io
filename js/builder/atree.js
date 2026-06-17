@@ -59,6 +59,7 @@ add_spell_prop: {
     display:        Optional[str]   // Optional change to the displayed entry. Replaces old
     hide:           Optional[str]   // Modify this part to be hidden.
     ignored_mults:  List[str]       // Damage multiplier effects to ignore.
+    mana_gained:    Optional[int]   // The amount of mana gained on spell use, used for mana calculator.
 }
 
 convert_spell_conv: {
@@ -978,18 +979,22 @@ const atree_collect_spells = new (class extends ComputeNode {
                     // Already handled above.
                     continue;
                 case 'add_spell_prop': {
-                    const { base_spell, target_part = null, cost = 0, behavior = 'merge'} = effect;
+                    const { base_spell, target_part = null, cost = 0, mana_gained = 0, behavior = 'merge'} = effect;
                     if (!ret_spells.has(base_spell)) {
                         continue;
                     }
 
                     const ret_spell = ret_spells.get(base_spell);
-
                     // :enraged:
                     // NOTE to hpp: this is out here because:
                     // target_part doesn't exist for spell cost modification abilities
                     // except when it does... in which case it should apply exactly once.
                     if ('cost' in ret_spell) { ret_spell.cost += cost; }
+                    if (mana_gained) { 
+                        console.log(atree_merged);
+                        const val = atree_translate(atree_merged, mana_gained);
+                        ret_spell.mana_gained = ret_spell.mana_gained == null ? val : ret_spell.mana_gained + val;
+                    }
 
                     // NOTE: see above comment for the weird placement of this code block.
                     if (target_part === null) { continue; }

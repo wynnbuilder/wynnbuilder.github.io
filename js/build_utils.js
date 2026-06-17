@@ -326,7 +326,7 @@ function idRound(id){
 const nonstacking_stats = ['Potion', 'Vulnerability', 'Mask']
 function merge_stat(stats, name, value) {
     const [start, end] = name.split('.', limit=2);
-    if (start === 'damMult' || start === 'defMult' || start === 'healMult') {
+    if (start === 'damMult' || start === 'defMult' || start === 'healMult' || start === 'manaMult') {
         if (!stats.has(start)) {
             stats.set(start, new Map());
         }

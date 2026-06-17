@@ -1807,7 +1807,7 @@
                 </div>
             </div>
             <div class="col-xl-3 mb-3 order-2 order-lg-0">
-                <div class="row row-cols-1 rounded dark-shadow dark-6 scaled-font">
+                <div class="row row-cols-1 mb-3 rounded dark-shadow dark-6 scaled-font">
                     <div class="col rounded-top">
                         <div class="row">
                             <div id="summary-stats-btn" class="col text-center fake-button border-bottom border-dark rounded-top dark-4u border border-2 border-dark-7 selected-btn" onclick="show_tab('summary-stats', ['detailed-stats', 'summary-stats'])">
@@ -1820,6 +1820,31 @@
                     </div>
                     <div style="display: none;" id="detailed-stats" class="col text-nowrap"></div>
                     <div id="summary-stats" class="col text-nowrap"></div>
+                </div>
+                <div class="row row-cols-1 rounded dark-shadow dark-6 scaled-font">
+                    <div class="col rounded-top text-center">
+                        <div class="mt-2">
+                            <label for="spell-cycle" class="form-label text-light">Spell Cycle</label>
+                            <input id='spell-cycle' class='equipment-input form-control text-light mx-auto' placeholder='e.g. 1213'>
+                        </div>
+                        <div class="mt-2">
+                            <label for="cps-count" class="form-label text-light">Clicks per Second</label>
+                            <input id='cps-count' class='equipment-input form-control text-light mx-auto' placeholder='9'>
+                        </div>
+                        <div class="form-check d-flex mt-2">
+                            <input class="form-check-input me-2" type="checkbox" id="mana-steal-check">
+                            <label class="form-check-label text-light" for="mana-steal-check">
+                                Include Mana Steal
+                            </label>
+                        </div>
+                        <div class="col mt-3 text-center text-light">
+                            <hr class="border-secondary">
+
+                            <div class="mb-2">Mana Used/s: <span id="mana-used">-</span></div>
+                            <div class="mb-2">Mana Gained/s: <span id="mana-gained">-</span></div>
+                            <div class="mb-2">Net Mana/s: <span id="net-mana">-</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xl-3 mb-3 px-0">
@@ -1946,7 +1971,8 @@
     <script type="text/javascript" src="../js/load_tome.js"></script>
     <script type="text/javascript" src="../js/load_aspect.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script> 
-    <script type="text/javascript" src="../js/craft.js"></script>  
+    <script type="text/javascript" src="../js/craft.js"></script>
+    <script type="text/javascript" src="../js/mana_calc.js"></script>
     <script type="text/javascript" src="../js/builder/build.js"></script>
     <script type="text/javascript" src="../js/builder/builder_constants.js"></script>
     <script type="text/javascript" src="../js/builder/build_encode_decode.js"></script>
