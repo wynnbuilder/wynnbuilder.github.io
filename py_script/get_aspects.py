@@ -106,7 +106,7 @@ def stylize_description(strings):
 
 
 if __name__ == "__main__":
-    with open("aspect_map.json", "r") as aspect_ids_file:
+    with open("../data/baseline/maps/aspect_map.json", "r") as aspect_ids_file:
         aspect_ids = json.load(aspect_ids_file)
 
     classes = [
@@ -131,11 +131,11 @@ if __name__ == "__main__":
         ]
     }
 
-    with open("../js/builder/aspects.json", "r") as aspects_data_file:
+    with open("../data/baseline/aspects.json", "r") as aspects_data_file:
         old_aspect_data = json.load(aspects_data_file)
     
     try:
-        with open("api_aspects.json", "r") as old_api_file:
+        with open("../data/temp/api_aspects.json", "r") as old_api_file:
             old_api_data = json.load(old_api_file)
     except FileNotFoundError:
         old_api_data = {c: None for c in classes}
@@ -225,11 +225,11 @@ if __name__ == "__main__":
             print("No Changes")
         print("---------------------")
 
-    with open("api_aspects.json", "w") as api_file:
+    with open("../data/temp/api_aspects.json", "w") as api_file:
         json.dump(api_data, api_file, indent=2)
 
-    with open("aspects.json", "w") as output_file:
+    with open("../data/temp/aspects.json", "w") as output_file:
         json.dump(all_output, output_file, indent=2)
 
-    with open("aspect_map.json", "w") as aspect_ids_file:
+    with open("../data/baseline/maps/aspect_map.json", "w") as aspect_ids_file:
         json.dump(aspect_ids, aspect_ids_file, indent=2)

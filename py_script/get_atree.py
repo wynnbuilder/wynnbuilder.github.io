@@ -116,7 +116,7 @@ if __name__ == "__main__":
     with open("../js/builder/atree_ids.json", "r") as atree_ids_file:
         atree_ids = json.load(atree_ids_file)
 
-    with open("../js/builder/atree_constants.json", "r") as tree_data_file:
+    with open("../data/baseline/atree_constants.json", "r") as tree_data_file:
         old_tree_data = json.load(tree_data_file)
 
     classes = [
@@ -189,6 +189,6 @@ if __name__ == "__main__":
                             old_ability["cost"] = requirement["ABILITY_POINTS"]
                             print(f"Replaced cost on node \"{ability_name}\", should be {requirement["ABILITY_POINTS"]}")
 
-    with open("../js/builder/atree_constants.json", "w") as output_file:
+    with open("../data/temp/atree_constants.json", "w") as output_file:
         json.dump(new_tree_data, output_file, indent=4)
 

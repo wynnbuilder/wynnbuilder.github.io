@@ -15,7 +15,7 @@ delete_keys = [
 if __name__ == "__main__":
     # SELF TEST: compare dict keys with `item_metadata.json`.
     from item_wrapper import Items
-    local_metadata_file = "item_metadata.json"
+    local_metadata_file = "../data/baseline/maps/item_metadata.json"
 
     def debug(*args, **kwargs):
         print(*args, **kwargs)

@@ -10,7 +10,7 @@ let none_items = [];
 
 class ItemLoader extends Loader {
     get remote_paths() {
-        return 'compress';
+        return 'data/baseline/compressed/compress';
     }
 
     get old_data_paths() {

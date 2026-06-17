@@ -28,7 +28,7 @@ if args.infile is None:
     from item_wrapper import Items
     api_data = Items().get_all_items()
     #print(api_data)
-    json.dump(api_data, open('dump.json', 'w'))
+    json.dump(api_data, open('../data/temp/dump.json', 'w'))
 else:
     with open(args.infile, "r") as in_file:
         api_data = json.load(in_file)
@@ -179,14 +179,14 @@ def translate_entry(entry):
     # I think the only things left are charms, we just don't classify them.
     return None, None
 
-with open("id_map.json", "r") as id_map_file:
+with open("../data/baseline/maps/id_map.json", "r") as id_map_file:
     id_map = json.load(id_map_file)
 used_ids = set([v for k, v in id_map.items()])
 max_id = 0
 
-with open("ing_map.json","r") as ing_map_file:
+with open("../data/baseline/maps/ing_map.json","r") as ing_map_file:
     ing_map = json.load(ing_map_file)
-with open("../tome_map.json","r") as tome_map_file:
+with open("../data/baseline/maps/tome_map.json","r") as tome_map_file:
     tome_map = json.load(tome_map_file)
 
 items = []
@@ -206,12 +206,12 @@ for entry in api_data:
     elif entry_type == 'tome':
         tomes.append(res)
 
-with open("../clean.json", "r") as oldfile:
+with open("../data/baseline/clean.json", "r") as oldfile:
     old_data = json.load(oldfile)
     old_items = old_data['items']
-with open("../ingreds_clean.json", "r") as ingfile:
+with open("../data/baseline/ingreds_clean.json", "r") as ingfile:
     old_ingreds = json.load(ingfile)
-with open("../tomes.json", "r") as tomefile:
+with open("../data/baseline/tomes.json", "r") as tomefile:
     old_tome_data = json.load(tomefile)
     old_tomes = old_tome_data['tomes']
 
@@ -241,7 +241,7 @@ for tome in old_tomes:
     tome_value_map[tome['name']] = tome
 
 # TODO hack pull the major id file
-major_ids_filename = "../js/builder/major_ids_clean.json"
+major_ids_filename = "../data/baseline/major_ids_clean.json"
 with open(major_ids_filename, 'r') as major_ids_file:
     major_ids_map = json.load(major_ids_file)
     major_ids_reverse_map = { v['displayName'] : k for k, v in major_ids_map.items() }
@@ -371,23 +371,23 @@ for tome in tomes:
 old_data["items"] = items
 
 #save id map
-with open("id_map.json","w") as id_map_file:
+with open("../data/baseline/maps/id_map.json","w") as id_map_file:
     json.dump(id_map, id_map_file, indent=2)
-with open("ing_map.json","w") as ing_map_file:
+with open("../data/baseline/maps/ing_map.json","w") as ing_map_file:
     json.dump(ing_map, ing_map_file, indent=2)
-with open("../tome_map.json","w") as tome_map_file:
+with open("../data/baseline/maps/tome_map.json","w") as tome_map_file:
     json.dump(tome_map, tome_map_file, indent=2)
 
 
 #write the data back to the outfile
-with open('item_out.json', "w") as out_file:
+with open('../data/temp/item_out.json', "w") as out_file:
     json.dump(old_data, out_file, ensure_ascii=False, separators=(',', ':'))
 
-with open('../js/builder/major_ids_clean.json', 'w') as major_ids_outfile:
+with open('../data/temp/major_ids_clean.json', 'w') as major_ids_outfile:
     json.dump(major_ids_map, major_ids_outfile, ensure_ascii=False, indent=4)
 
-with open('ing_out.json', "w") as out_file:
+with open('../data/temp/ing_out.json', "w") as out_file:
     json.dump(ingreds, out_file, ensure_ascii=False, separators=(',', ':'))
 
-with open('tome_out.json', "w") as out_file:
+with open('../data/temp/tome_out.json', "w") as out_file:
     json.dump({'tomes': tomes}, out_file, ensure_ascii=False, separators=(',', ':'))
