@@ -15,6 +15,11 @@ def translate_spell_part(id_data, part):
             if isinstance(v, str):
                 abil_id, propname = v.split('.')
                 hits_mapping[k] = str(id_data[abil_id])+'.'+propname
+    if 'mana_gained' in part:    # Translate parametrized hits...
+        val = part['mana_gained']
+        if isinstance(val, str):
+            abil_id, propname = val.split('.')
+            part['mana_gained'] = str(id_data[abil_id])+'.'+propname
 
 def translate_effect(id_data, effect):
     if effect["type"] == "raw_stat":

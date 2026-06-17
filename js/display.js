@@ -1443,16 +1443,24 @@ function displayPowderSpecials(parent_elem, powderSpecials, stats, weapon) {
 
                 let averageLabel = document.createElement("p");
                 averageLabel.innerHTML = "Average: <span class='Damage'>" + averageDamage.toFixed(2) + "</span>";
-
-                let critAverageLabel = document.createElement("p");
-                critAverageLabel.innerHTML = "Crit Average: <span class='Damage'>" + critAverage.toFixed(2) + "</span>";
+                
+                const damage_elements = ['n'].concat(skp_elements); // netwfa
 
                 let nonCritAverageLabel = document.createElement("p");
                 nonCritAverageLabel.innerHTML = "Non-Crit Average: <span class='Damage'>" + nonCritAverage.toFixed(2) + "</span>";
+                let nonCritRangeLabel = document.createElement("p");
+                nonCritRangeLabel.innerHTML = "<span class='" + damage_elements[element_num] + "Dam'>" + totalDamNormal[0].toFixed(2) + " - " + totalDamNormal[1].toFixed(2) + "</span>";
+                nonCritAverageLabel.appendChild(nonCritRangeLabel);
+
+                let critAverageLabel = document.createElement("p");
+                critAverageLabel.innerHTML = "Crit Average: <span class='Damage'>" + critAverage.toFixed(2) + "</span>";
+                let critRangeLabel = document.createElement("p");
+                critRangeLabel.innerHTML = "<span class='" + damage_elements[element_num] + "Dam'>" + totalDamCrit[0].toFixed(2) + " - " + totalDamCrit[1].toFixed(2) + "</span>";
+                critAverageLabel.appendChild(critRangeLabel);
 
                 specialDamage.appendChild(averageLabel);
-                specialDamage.appendChild(critAverageLabel);
                 specialDamage.appendChild(nonCritAverageLabel);
+                specialDamage.appendChild(critAverageLabel);
 
                 specialEffects.append(specialDamage);
             }
@@ -1493,7 +1501,7 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
     const overallparent_elem = make_elem("div", ['col'])
     let title_elemavg = document.createElement("b");
 
-    if ('cost' in spell) {
+    if ('cost' in spell && getBaseSpellCost(stats, spell) != 0) {
         let first = make_elem("span", [], { textContent: spell.name + " (" });
         title_elem.appendChild(first.cloneNode(true)); //cloneNode is needed here.
         title_elemavg.appendChild(first);
