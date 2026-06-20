@@ -184,10 +184,9 @@ function calc_weapon_powder(weapon, damageBases) {
         }
     }
 
-    //2.2 for some reason decided that all crafted powders are 0% effectiveness?
     //New 2.1 calculations for crafted ingredient powders
     //TODO: more verification that this is correct?
-    /*if (weapon.get("tier") === "Crafted" && !weapon.get("custom")) {
+    if (weapon.get("tier") === "Crafted" && !weapon.get("custom")) {
         for (const p of weapon.get("ingredPowders")) {
             const powder = powderStats[p];  //use min, max, and convert
             // Bitwise to force conversion to integer (integer division).
@@ -214,7 +213,7 @@ function calc_weapon_powder(weapon, damageBases) {
                 powder_apply_map.set(element, apply_info);
             }
         }
-    }*/
+    }
 
     for (const element of powder_apply_order) {
         const apply_info = powder_apply_map.get(element);
