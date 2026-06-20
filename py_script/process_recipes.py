@@ -23,8 +23,9 @@ with open(infile, "r") as in_file:
     recipe_data = json.loads(in_file.read())
 recipes = recipe_data["recipes"]
 
-if os.path.exists("recipe_map.json"):
-    with open("recipe_map.json","r") as recipe_mapfile:
+recipe_map_path = "../data/baseline/maps/recipe_map.json"
+if os.path.exists(recipe_map_path):
+    with open(recipe_map_path,"r") as recipe_mapfile:
         recipe_map = json.load(recipe_mapfile)
 else:
     recipe_map = {recipe["name"]: i for i, recipe in enumerate(recipes)}
@@ -51,7 +52,7 @@ for recipe in recipes:
     recipe["id"] = recipe_map[recipe["name"]]
 
 #save recipe id map
-with open("recipe_map.json", "w") as recipe_mapfile:
+with open(recipe_map_path, "w") as recipe_mapfile:
     json.dump(recipe_map, recipe_mapfile, indent = 2)
 
 #save recipe data

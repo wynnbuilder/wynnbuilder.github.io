@@ -133,10 +133,10 @@
                 </p>
                 <div class = "row section" title = "ID number specifics">
                     <p>
-                        For items, you can download the item DB here: <a href = "../clean.json" target = "_blank">clean.json</a>. Each item has an id value that can be put in a map. The NoneItem ID numbers start at 10000 in the canonical order: [helmet, chestplate, leggings, boots, ring 1, ring 2, bracelet, necklace, weapon] (No Weapon has an id of 10008).
+                        For items, you can download the item DB here: <a href = "../data/baseline/clean.json" target = "_blank">clean.json</a>. Each item has an id value that can be put in a map. The NoneItem ID numbers start at 10000 in the canonical order: [helmet, chestplate, leggings, boots, ring 1, ring 2, bracelet, necklace, weapon] (No Weapon has an id of 10008).
                     </p>
                     <p>
-                        For tomes, you can download the tome DB here: <a href = "../tome_map.json" target = "_blank">tome_map.json</a>. The NoneTome ID numbers start at 61 in the order [no weapon tome, no armor tome, no guild tome] so that we can store tome IDs in 1 B64 character.
+                        For tomes, you can download the tome DB here: <a href = "../data/baseline/maps/tome_map.json" target = "_blank">tome_map.json</a>. The NoneTome ID numbers start at 61 in the order [no weapon tome, no armor tome, no guild tome] so that we can store tome IDs in 1 B64 character.
                     </p>
                     <p>
                         For powders: id numbers <number>1</number> through <number>30</number> map to Earth I, Earth II, ..., Earth VI, 
@@ -164,7 +164,7 @@
                         Version 7 was made to account for ability trees in wynncraft 2.0. Version 7 introduces a new field at the end of the build hash, for ability tree data. Atree data is compressed using a depth first search algorithm into a binary blob, which is then base-64 encoded and appended to the V6 hash. The binry blob is decompressed by using the corresponding traversal.
                     </p>
                     <p>
-                        The tree structure defining the ability tree can be found in a json file (by default, <code>js/builder/atree_constants_min.json</code>). The file defines connections between the ability tree nodes: Each node has an unordered list of parent nodes, and an ordered list of child nodes.
+                        The tree structure defining the ability tree can be found in a json file (the hand-edited source is <code>data/baseline/atree_constants.json</code>; the minified form is generated to <code>data/temp/atree_constants_min.json</code>). The file defines connections between the ability tree nodes: Each node has an unordered list of parent nodes, and an ordered list of child nodes.
                     </p>
                     <p>
                         A reference implementation of the encoding/decoding algorithms can be found in <code>js/builder/build_encode_decode.js</code>. A pseudocode description of the algorithms is given here:
@@ -642,10 +642,10 @@ function decode(tree_data, tree_state, tree_bitvector):
                 </p>
                 <div class = "row section" title = "ID number specifics">
                     <p>
-                        For ingredients, you can download the ingredient id map here: <a href = "../ing_map.json" target = "_blank">ing_map.json</a>. The ID number for No Ingredient is 4000.
+                        For ingredients, you can download the ingredient id map here: <a href = "../data/baseline/maps/ing_map.json" target = "_blank">ing_map.json</a>. The ID number for No Ingredient is 4000.
                     </p>
                     <p>
-                        For recipes, you can download the recipe id map here: <a href = "../recipe_map.json" target = "_blank">recipe_map.json</a> or the recipe DB here: <a href = "recipes_clean.json" target = "_blank">recipes_clean.json</a>. 
+                        For recipes, you can download the recipe id map here: <a href = "../data/baseline/maps/recipe_map.json" target = "_blank">recipe_map.json</a> or the recipe DB here: <a href = "../data/baseline/recipes_clean.json" target = "_blank">recipes_clean.json</a>. 
                     </p>
                 </div>
 
