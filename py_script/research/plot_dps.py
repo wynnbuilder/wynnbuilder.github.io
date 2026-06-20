@@ -177,8 +177,8 @@ for name, item in item_map.items():
 item_dat["baseline_xs"] = baselines_known_x.tolist()
 item_dat["baseline_ys"] = baselines_known_y.tolist()
 #item_dat["baseline_ys_new"] = baselines_known_y_new.tolist()
-json.dump(item_dat, open("dps_data.json", "w"), indent=2)
-json.dump(item_dat, open("dps_data_compress.json", "w"))
+json.dump(item_dat, open("../../data/temp/dps_data.json", "w"), indent=2)
+json.dump(item_dat, open("../../data/temp/dps_data_compress.json", "w"))
 # item_lvl, item_dps, item_tiercolor = zip(*item_dat)
 # plt.scatter(item_lvl, item_dps, color=item_tiercolor)
 # 

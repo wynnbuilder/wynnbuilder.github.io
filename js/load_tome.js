@@ -19,7 +19,7 @@ class TomeLoader extends Loader {
     }
     
     get remote_paths() {
-        return "tomes";
+        return "data/baseline/tomes";
     }
 
     process_local(tsx, reject) {

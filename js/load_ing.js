@@ -56,7 +56,7 @@ class IngredientLoader extends Loader {
     }
 
     get remote_paths() {
-        return [`ingreds_compress`, `recipes_compress`];
+        return [`data/baseline/compressed/ingreds_compress`, `data/baseline/compressed/recipes_compress`];
     }
 
     process_remote(data, tsx, reject) {
