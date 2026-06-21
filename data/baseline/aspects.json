@@ -2342,7 +2342,17 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.05
+                "health_cost": -0.0525
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Blood Pact",
+              "dependencies": [
+                "Haemorrhage"
+              ],
+              "properties": {
+                "health_cost": -0.01725
               },
               "effects": []
             }
@@ -2355,8 +2365,18 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.05,
+                "health_cost": -0.0525,
                 "damage_boost": 6.25
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Blood Pact",
+              "dependencies": [
+                "Haemorrhage"
+              ],
+              "properties": {
+                "health_cost": -0.01725
               },
               "effects": []
             }
@@ -2369,8 +2389,18 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.05,
+                "health_cost": -0.0525,
                 "damage_boost": 10
+              },
+              "effects": []
+            },
+            {
+              "base_abil": "Blood Pact",
+              "dependencies": [
+                "Haemorrhage"
+              ],
+              "properties": {
+                "health_cost": -0.01725
               },
               "effects": []
             }

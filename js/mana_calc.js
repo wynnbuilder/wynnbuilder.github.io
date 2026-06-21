@@ -118,9 +118,27 @@ function calculateMana(cycle, build, stats) {
     
     const manaUsed = cps * cycle_cost.reduce((acc, val) => acc + val, 0) / cycle_cost.length / 3;
     const netMana = manaGained - manaUsed;
+    const bpactUsage = manaUsed - Math.max(manaGained, 0);
     document.getElementById('mana-used').textContent = manaUsed.toFixed(2);
     document.getElementById('mana-gained').textContent = manaGained.toFixed(2);
     const netEl = document.getElementById('net-mana');
     netEl.textContent = netMana.toFixed(2);
     netEl.style.color = netMana >= 0 ? '#4caf50' : '#f44336';
+    const parent_div = netEl.parentElement.parentElement;
+
+    for (let elem of parent_div.children) {
+        if (elem.classList.contains('other-resource')) {
+            elem.remove();
+        }
+    }
+
+    if (bpactUsage > 0 && stats.get("bloodPactCost")) {
+        const healthDrain = stats.get("bloodPactCost")/100 * bpactUsage;
+        const bpactLabel = make_elem("span", ['other-resource'], { textContent: "Blood Pact/s: " });
+        const bpactDrain = make_elem("span", ['Health'], { textContent: healthDrain.toFixed(2) + "%" });
+        const bpactDuration = make_elem("span", [], { textContent: " | " +(100/healthDrain).toFixed(2) + "s" });
+        bpactLabel.appendChild(bpactDrain);
+        bpactLabel.appendChild(bpactDuration);
+        parent_div.appendChild(bpactLabel)
+    }
 }

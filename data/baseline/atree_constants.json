@@ -5359,6 +5359,24 @@
                             "value": "Blood Pact.damage_boost"
                         }
                     ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": false,
+                    "inputs": [
+                        {
+                            "type": "prop",
+                            "abil": "Blood Pact",
+                            "name": "health_cost"
+                        }
+                    ],
+                    "output": {
+                        "type": "stat",
+                        "name": "bloodPactCost"
+                    },
+                    "scaling": [
+                        100
+                    ]
                 }
             ]
         },
@@ -6976,20 +6994,10 @@
                 "col": 0,
                 "icon": "node_0"
             },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Blood Pact",
-                            "name": "health_cost",
-                            "value": -0.115
-                        }
-                    ]
-                }
-            ]
+            "properties": {
+                "health_cost": -0.115
+            },
+            "effects": []
         },
         {
             "display_name": "Freestream Flow",
@@ -7499,7 +7507,6 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Acceleration",
-                    "behavior": "modify",
                     "output": {
                         "type": "stat",
                         "name": "damMult.Acceleration:2.Flying Kick"
@@ -18695,10 +18702,10 @@
                             "name": "Thundercloud Hit",
                             "type": "damage",
                             "multipliers": [
-                                1500,
+                                1600,
                                 0,
-                                375,
-                                375,
+                                400,
+                                400,
                                 0,
                                 0
                             ]
