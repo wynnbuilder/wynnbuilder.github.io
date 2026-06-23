@@ -92,6 +92,7 @@
                 "class": "Archer",
                 "base_abil": "Arrow Storm",
                 "dependencies": [
+                    "Arrow Hurricane",
                     "Nimble String"
                 ],
                 "properties": {

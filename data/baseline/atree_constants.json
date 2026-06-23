@@ -3767,6 +3767,7 @@
             "display_name": "Shrieking Arrows",
             "desc": "Arrow Storm and Phantom Ray will deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +8% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +6%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +1%)   </br>&emsp;(<span class='aDam'>Air</span>: +1%) </br> </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, per ray)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)   </br>&emsp;(<span class='wDam'>Water</span>: +2%)",
             "archetype": "Boltslinger",
+            "base_abil": "Arrow Storm",
             "parents": [
                 "Overgrowth",
                 "Transience",

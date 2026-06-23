@@ -507,6 +507,29 @@ const atree_merge = new (class extends ComputeNode {
             }
             merge_abil(node.ability);
         }
+        
+        // Apply aspects. Order is redundent.
+        // Similar to major_ids, each aspect can have multiple abilities.
+        // Unlike major ids, aspects are imlemented to always be valid for the current class.
+        const aspects = input_map.get('final-aspects');
+        for (const [aspect, tier_num] of aspects) {
+            if (aspect.NONE || !aspect.tiers[tier_num - 1].abilities) {
+                continue;
+            }
+            for (const abil of aspect.tiers[tier_num - 1].abilities) {
+                if (abil.dependencies !== undefined) {
+                    let dep_satisfied = true;
+                    for (const dep_id of abil.dependencies) {
+                        if (!atree_state.get(dep_id).active) {
+                            dep_satisfied = false;
+                            break;
+                        }
+                    }
+                    if (!dep_satisfied) { continue; }
+                }
+                merge_abil(abil); 
+            }
+        }
 
         // Apply major IDs.
         const build_class = wep_to_class.get(build.weapon.statMap.get("type"));
@@ -541,29 +564,6 @@ const atree_merge = new (class extends ComputeNode {
                         merge_abil(abil);
                     }
                 }
-            }
-        }
-         
-        // Apply aspects. Order is redundent.
-        // Similar to major_ids, each aspect can have multiple abilities.
-        // Unlike major ids, aspects are imlemented to always be valid for the current class.
-        const aspects = input_map.get('final-aspects');
-        for (const [aspect, tier_num] of aspects) {
-            if (aspect.NONE || !aspect.tiers[tier_num - 1].abilities) {
-                continue;
-            }
-            for (const abil of aspect.tiers[tier_num - 1].abilities) {
-                if (abil.dependencies !== undefined) {
-                    let dep_satisfied = true;
-                    for (const dep_id of abil.dependencies) {
-                        if (!atree_state.get(dep_id).active) {
-                            dep_satisfied = false;
-                            break;
-                        }
-                    }
-                    if (!dep_satisfied) { continue; }
-                }
-                merge_abil(abil); 
             }
         }
 
@@ -991,7 +991,6 @@ const atree_collect_spells = new (class extends ComputeNode {
                     // except when it does... in which case it should apply exactly once.
                     if ('cost' in ret_spell) { ret_spell.cost += cost; }
                     if (mana_gained) { 
-                        console.log(atree_merged);
                         const val = atree_translate(atree_merged, mana_gained);
                         ret_spell.mana_gained = ret_spell.mana_gained == null ? val : ret_spell.mana_gained + val;
                     }
