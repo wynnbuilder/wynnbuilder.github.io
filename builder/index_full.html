@@ -1825,7 +1825,7 @@
                     <div class="col rounded-top text-center">
                         <div class="mt-2">
                             <label for="spell-cycle" class="form-label text-light">Spell Cycle</label>
-                            <input id='spell-cycle' class='equipment-input form-control text-light mx-auto' placeholder='e.g. 1213'>
+                            <input id='spell-cycle' class='equipment-input form-control text-light mx-auto' placeholder='e.g. 1213' pattern='[1-4]+' oninput="this.value = this.value.replace(/[^1-4]/g, '')">
                         </div>
                         <div class="mt-2">
                             <label for="cps-count" class="form-label text-light">Clicks per Second</label>

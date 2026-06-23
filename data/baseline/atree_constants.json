@@ -7397,7 +7397,9 @@
             "parents": [
                 "Ecstasy"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Fireworks"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {

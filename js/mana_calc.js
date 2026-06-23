@@ -8,7 +8,7 @@ function getCycle() {
     for (let i = 0; i < spellCycleStr.length; i++) {
         const spellIndex = parseInt(spellCycleStr.charAt(i));
         const spell = atree_collect_spells.value.get(spellIndex);
-        if (spellIndex > 0 && spell) {
+        if (spell) {
             cycle.push(spellIndex);
         }
     }
@@ -113,7 +113,7 @@ function calculateMana(cycle, build, stats) {
     // Wrap-around penalty
     if (cycle[cycle.length - 1][2] === cycle[cycle.length - 2][2]) {
         repeat++;
-        cycle_cost[0] += repeat * 5;
+        cycle_cost[0] += Math.max(repeat * 5 + Math.min(cycle[0][0], 0), 0);
     }
     
     const manaUsed = cps * cycle_cost.reduce((acc, val) => acc + val, 0) / cycle_cost.length / 3;
