@@ -3430,17 +3430,9 @@
             "properties": {},
             "effects": [
                 {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Flint Arrows",
-                    "output": {
-                        "type": "prop",
-                        "abil": "Arrow Storm",
-                        "name": "arrows_per_stream"
-                    },
-                    "scaling": [
-                        1
-                    ]
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "display": "Arrow Storm DPS"
                 }
             ]
         },

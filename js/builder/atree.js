@@ -994,6 +994,9 @@ const atree_collect_spells = new (class extends ComputeNode {
                         const val = atree_translate(atree_merged, mana_gained);
                         ret_spell.mana_gained = ret_spell.mana_gained == null ? val : ret_spell.mana_gained + val;
                     }
+                    if ('display' in effect) {
+                        ret_spell.display = effect.display;
+                    }
 
                     // NOTE: see above comment for the weird placement of this code block.
                     if (target_part === null) { continue; }
@@ -1049,9 +1052,6 @@ const atree_collect_spells = new (class extends ComputeNode {
                             spell_part.display = false;
                         }
                         ret_spell.parts.push(spell_part);
-                    }
-                    if ('display' in effect) {
-                        ret_spell.display = effect.display;
                     }
                     continue;
                 }
