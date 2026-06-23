@@ -5552,7 +5552,9 @@
                 "col": 1,
                 "icon": "node_4"
             },
-            "properties": {},
+            "properties": {
+                "max_damage_bonus": 55
+            },
             "effects": [
                 {
                     "type": "stat_scaling",
@@ -5562,7 +5564,7 @@
                         "type": "stat",
                         "name": "damMult.Enraged"
                     },
-                    "max": 55,
+                    "max": "Bak'al's Grasp.max_damage_bonus",
                     "scaling": [
                         1.5
                     ]
@@ -6567,35 +6569,10 @@
                 "col": 2,
                 "icon": "node_0"
             },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "stat_scaling",
-                    "slider_name": "Corrupted",
-                    "slider": true,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Enraged"
-                    },
-                    "max": -65,
-                    "scaling": [
-                        -1.5
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider_name": "Corrupted",
-                    "slider": true,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Enraged"
-                    },
-                    "max": 95,
-                    "scaling": [
-                        1.5
-                    ]
-                }
-            ]
+            "properties": {
+                "max_damage_bonus": 30
+            },
+            "effects": []
         },
         {
             "display_name": "Discombobulate",
@@ -7336,6 +7313,7 @@
         {
             "display_name": "Ecstasy",
             "desc": "Increase the cap of Enraged Blow by +25%. </br> Increase Bloodlust's bonus damage per 1% Corrupted by +2%.",
+            "base_abil": "Bak'al's Grasp",
             "parents": [
                 "Rumble"
             ],
@@ -7347,7 +7325,9 @@
                 "col": 0,
                 "icon": "node_0"
             },
-            "properties": {},
+            "properties": {
+                "max_damage_bonus": 25
+            },
             "effects": [
                 {
                     "type": "stat_scaling",
@@ -7360,32 +7340,6 @@
                     },
                     "scaling": [
                         2.0
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider_name": "Corrupted",
-                    "slider": true,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Enraged"
-                    },
-                    "max": -65,
-                    "scaling": [
-                        -1.5
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider_name": "Corrupted",
-                    "slider": true,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Enraged"
-                    },
-                    "max": 90,
-                    "scaling": [
-                        1.5
                     ]
                 }
             ]
