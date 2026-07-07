@@ -724,6 +724,7 @@
             "display_name": "Buckshot",
             "desc": "When Arrow Shield loses its last charge, spew 75 piercing arrows forth from your bow. </br> </br><span class='mc-white'>Total Damage</span>: 4% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 3%)   </br>&emsp;(<span class='aDam'>Air</span>: 1%)",
             "base_abil": "Arrow Shield",
+            "archetype": "Boltslinger",
             "parents": [
                 "Nimble String",
                 "Triple Shots"
