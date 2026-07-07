@@ -2148,7 +2148,7 @@
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.Lifestream:1.Single Tick",
+                                "name": "damMult.PioneersEcho:1.Single Tick",
                                 "value": 600
                             }
                         ]
@@ -2172,26 +2172,6 @@
                         "behavior": "overwrite",
                         "hits": {
                             "Single Tick": 2,
-                            "DPS": 0
-                        }
-                    }
-                ]
-            },
-            {
-                "class": "Archer",
-                "base_abil": "Arrow Storm",
-                "dependencies": [
-                    "Phantom Ray",
-                    "Nimble String"
-                ],
-                "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Total Damage",
-                        "behavior": "overwrite",
-                        "hits": {
-                            "Single Tick": 4,
                             "DPS": 0
                         }
                     }

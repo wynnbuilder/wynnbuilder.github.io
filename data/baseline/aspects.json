@@ -3474,7 +3474,7 @@
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 5
+                "speed_boost": 10
               },
               "effects": []
             }
@@ -3487,7 +3487,7 @@
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 5
+                "speed_boost": 15
               },
               "effects": []
             }
@@ -3500,7 +3500,7 @@
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 5
+                "speed_boost": 20
               },
               "effects": []
             }
