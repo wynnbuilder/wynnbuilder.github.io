@@ -1577,7 +1577,7 @@
         },
         {
             "display_name": "Murder Flock",
-            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
+            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Shield",
@@ -1679,7 +1679,7 @@
         },
         {
             "display_name": "Ivyroot Mamba",
-            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
+            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
             "archetype": "Trapper",
             "archetype_req": 3,
             "base_abil": "Arrow Storm",
@@ -2347,7 +2347,7 @@
         },
         {
             "display_name": "Vigilant Sentinels",
-            "desc": "Increase Guardian Angels' range and damage. </br> Casting Arrow Shield while Guardian Angels are active will also cast Buckshot. Increase Buckshot's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Range: +3 Blocks </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Buckshot, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
+            "desc": "Increase Guardian Angels' range and damage. </br> Casting Arrow Shield while Guardian Angels are active will also cast Buckshot. Increase Buckshot's damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Range: +3 Blocks </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Buckshot, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "base_abil": "Arrow Shield",
