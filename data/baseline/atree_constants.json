@@ -271,7 +271,7 @@
         },
         {
             "display_name": "Arrow Storm",
-            "desc": "Click Combo: LEFT-RIGHT-LEFT </br> Shoots a stream of 8 arrows, dealing significant damage to close mobs and pushing them away. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%) </br>Range: 16 Blocks",
+            "desc": "Click Combo: LEFT-RIGHT-LEFT </br> Shoots a stream of 8 arrows, dealing significant damage to close mobs and pushing them away. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 35%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Range: 16 Blocks",
             "parents": [
                 "Double Shots",
                 "Cheaper Escape I"
@@ -302,9 +302,9 @@
                         {
                             "name": "Single Arrow",
                             "multipliers": [
-                                30,
+                                35,
                                 0,
-                                10,
+                                5,
                                 0,
                                 0,
                                 0
@@ -2036,7 +2036,7 @@
         },
         {
             "display_name": "Honed Shield",
-            "desc": "Arrow Shield's radius, knockback, and damage is increased. </br> Guardian Angels' damage is increased. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Arrow Shield)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%) </br>Area of Effect: +1 Blocks (Circle-Shaped) </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)",
+            "desc": "Arrow Shield's radius, knockback, and damage is increased. </br> Guardian Angels' damage is increased. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Arrow Shield)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%) </br>Area of Effect: +1 Blocks (Circle-Shaped) </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
             "base_abil": "Arrow Shield",
             "parents": [
                 "Ivyroot Mamba",
