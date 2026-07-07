@@ -878,7 +878,7 @@
         },
         {
           "threshold": 5,
-          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead, and cause explosive shots to deal +5% more damage. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -894,15 +894,19 @@
                       "value": 0.666666666668
                     }
                   ]
+                },
+                {
+                  "type": "raw_stat",
+                  "toggle": "Divine Intervention Arrow Bomb",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "damMult.ArrowBombBoost:4.Single Shot",
+                      "value": 5
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "base_abil": "Arrow Storm",
-              "properties": {
-                "arrows_per_stream": 1
-              },
-              "effects": []
             },
             {
               "base_abil": 999,
@@ -938,7 +942,7 @@
         },
         {
           "threshold": 15,
-          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead, and cause explosive shots to deal +10% more damage. </br> Arrow Storm gains +1 arrow per stream. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead, and cause explosive shots to deal +10% more damage. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -3777,22 +3781,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Time Dilation gains +0.35 Area of Effect, and increases your speed more quickly.",
+          "description": "Time Dilation gains +1 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Time Dilation gains +0.6 Area of Effect, and increases your speed more quickly.",
+          "description": "Time Dilation gains +1.75 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Time Dilation gains +0.85 Area of Effect, and increases your speed more quickly.",
+          "description": "Time Dilation gains +2.5 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Time Dilation gains +1 Area of Effect, and increases your speed more quickly.",
+          "description": "Time Dilation gains +3 Area of Effect.",
           "abilities": []
         }
       ],

@@ -230,7 +230,7 @@
     },
     "TAUNT": {
         "displayName": "Taunt",
-        "description": "Provoke's Cooldown is lowered by -3s.",
+        "description": "Provoke's Cooldown is reduced to 8s but its duration is reduced to 3s.",
         "abilities": []
     },
     "RALLY": {
@@ -1311,7 +1311,7 @@
     },
     "TOTEMIC_FUSE": {
         "displayName": "Totemic Fuse",
-        "description": "Totemic Smash deals [neutral]+40%, [earth]+90%, [thunder]+90%, and [fire]+60% at the cost of half of Totem's duration.",
+        "description": "Totemic Smash deals [neutral]+150%, [earth]+150%, [thunder]+150%, and [fire]+120% at the cost of half of Totem's duration.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -1329,11 +1329,11 @@
                         "target_part": "Smash Damage",
                         "behavior": "modify",
                         "multipliers": [
-                            40,
-                            90,
-                            90,
+                            150,
+                            150,
+                            150,
                             0,
-                            60,
+                            120,
                             0
                         ]
                     }
@@ -1889,6 +1889,20 @@
                             25
                         ],
                         "slider_max": 2
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 6,
+                        "target_part": "Single Arrow",
+                        "behavior": "modify",
+                        "multipliers": [
+                            30,
+                            0,
+                            0,
+                            30,
+                            0,
+                            0
+                        ]
                     }
                 ]
             }
@@ -2120,7 +2134,7 @@
     },
     "PIONEERS_ECHO": {
         "displayName": "Pioneer's Echo",
-        "description": "Phantom Ray deals two bursts of [neutral] 150%, [water] 60% over 1 second. Decimator's increase and cap are raised to 140% and Quick Draw's activation threshold is decreased to 2.",
+        "description": "Phantom Ray deals 7x damage, but only hits twice over 1 second. Decimator's increase and cap are raised to 140% and Quick Draw's activation threshold is decreased to 2.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2130,27 +2144,26 @@
                 ],
                 "effects": [
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Single Tick",
-                        "behavior": "modify",
-                        "multipliers": [
-                            125,
-                            0,
-                            0,
-                            55,
-                            0,
-                            0
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Lifestream:1.Single Tick",
+                                "value": 600
+                            }
                         ]
                     },
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "DPS",
-                        "behavior": "overwrite",
-                        "hits": {
-                            "Single Tick": 2
-                        }
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Arrow Storm",
+                                "name": "ray_rate",
+                                "mult": true,
+                                "value": 0.1
+                            }
+                        ]
                     },
                     {
                         "type": "add_spell_prop",
@@ -2159,6 +2172,26 @@
                         "behavior": "overwrite",
                         "hits": {
                             "Single Tick": 2,
+                            "DPS": 0
+                        }
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Storm",
+                "dependencies": [
+                    "Phantom Ray",
+                    "Nimble String"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Total Damage",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Single Tick": 4,
                             "DPS": 0
                         }
                     }
@@ -3315,7 +3348,7 @@
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "damMult.Bullwhip:23.Remnant Hit",
+                                "name": "damMult.Bullwhip:24.Remnant Hit",
                                 "value": "Bullwhip.damage_boost"
                             }
                         ]
