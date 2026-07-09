@@ -1,5 +1,5 @@
 let recipeTypes = ["HELMET","CHESTPLATE","LEGGINGS","BOOTS","RELIK","WAND","SPEAR","DAGGER","BOW","RING","NECKLACE","BRACELET","POTION", "SCROLL","FOOD"];
-let levelTypes = ["1-3","3-5","5-7","7-9","10-13","13-15","15-17","17-19","20-23","23-25","25-27","27-29","30-33","33-35","35-37","37-39","40-43","43-45","45-47","47-49","50-53","53-55","55-57","57-59","60-63","63-65","65-67","67-69","70-73","73-75","75-77","77-79","80-83","83-85","85-87","87-89","90-93","93-95","95-97","97-99","100-103","103-105",]
+let levelTypes = ["1-3","3-5","5-7","7-9","10-13","13-15","15-17","17-19","20-23","23-25","25-27","27-29","30-33","33-35","35-37","37-39","40-43","43-45","45-47","47-49","50-53","53-55","55-57","57-59","60-63","63-65","65-67","67-69","70-73","73-75","75-77","77-79","80-83","83-85","85-87","87-89","90-93","93-95","95-97","97-99","100-103","103-105","105-107","107-109","110-113","113-115","115-117","117-119"]
 
 /**
  * A constant encompassing all the necessary info for crafted item encoding.
@@ -465,9 +465,9 @@ class Craft{
             for (const [key, value] of ingred.get("itemIDs")) {
                 if(key !== "dura"  && !consumableTypes.includes(statMap.get("type"))) { //consumables NEVER get reqs
                     if (!ingred.get("isPowder")) {
-                        statMap.set(key, Math.round(statMap.get(key) + value*eff_mult)); 
+                        statMap.set(key, statMap.get(key) + Math.round(value*eff_mult+1e-9));
                     } else {
-                        statMap.set(key, Math.round(statMap.get(key) + value));
+                        statMap.set(key, statMap.get(key) + Math.round(value));
                     }
                 } else { //durability, NOT affected by effectiveness
                     statMap.set("durability", statMap.get("durability").map(x => x + value));
@@ -491,13 +491,19 @@ class Craft{
             }
         }
         for (const d in statMap.get("durability")) {
-            if(statMap.get("durability")[d] < 1) { statMap.get("durability")[d] = 1;} 
+            if(statMap.get("durability")[d] < 1) {
+                statMap.set("missingDurability", statMap.get("durability")[d]);
+                statMap.get("durability")[d] = 0;
+            } 
             else {
                 statMap.get("durability")[d] = Math.floor(statMap.get("durability")[d]);
             }
         }
         for (const d in statMap.get("duration")) {
-            if(!allNone && statMap.get("duration")[d] < 10) { statMap.get("duration")[d] = 10;}
+            if(!allNone && statMap.get("duration")[d] < 1) {
+                statMap.set("missingDuration", statMap.get("duration")[d]);
+                statMap.get("duration")[d] = 1;
+            }
         }
         if(statMap.has("charges") && statMap.get("charges") < 1 ) { statMap.set("charges",1)}
 

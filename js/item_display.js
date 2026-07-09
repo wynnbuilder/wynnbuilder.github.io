@@ -120,10 +120,74 @@ function displayAdditionalInfo(elemID, item) {
     let title_elem = make_elem("p", ["text-center", item.get("tier")], {textContent: "Additional Info"});
     parent_elem.appendChild(title_elem);
 
-    let item_clone = itemMap.get(item.get("displayName"));
+    let item_clone;
+    if (itemMap) {
+        item_clone = itemMap.get(item.get("displayName"));
+    }
+    else if (ingMap) {
+        item_clone = ingMap.get(item.get("displayName"));
+    }
 
-    if(item_clone.dropInfo === undefined) {
-        parent_elem.appendChild(makeInfoRow("Drop Type:", item.has("drop") ? item.get("drop") : "NEVER"));
+    if (item_clone.droppedBy) {
+        // For some reason, sometimes the metadata for coords is stored as an array or the droppedBy array has duplicate entries
+        dropMap = new Map();
+        for (dropData of item_clone.droppedBy) {
+            if (dropMap.has(dropData.name) && dropData.coords) {
+                if (Array.isArray(dropData.coords[0])) {
+                    for (subDrop of dropData.coords) {
+                        dropMap.get(dropData.name).push(subDrop);
+                    }
+                }
+                else {
+                    dropMap.get(dropData.name).push(dropData.coords);
+                }
+            }
+            else if (dropData.coords) {
+                if (Array.isArray(dropData.coords[0])) {
+                    for (subDrop of dropData.coords) {
+                        dropMap.set(dropData.name, [subDrop]);
+                    }
+                }
+                else {
+                    dropMap.set(dropData.name, [dropData.coords]);
+                }
+            }
+            else {
+                dropMap.set(dropData.name, []);
+            }
+        }
+        let dropDisplay = make_elem("div", ["row", "rounded", "scaled-font", "border", "border-1", "border-dark", "dark-shadow", "p-1", "m-1", "text-capitalize", "justify-content-start"]);
+        dropDisplay.appendChild(make_elem("b", ["text-center", "text-decoration-underline"], {textContent: "Dropped By"}));
+
+        let list = make_elem("ul", [], {});
+        list.style.cssText = "padding: 0; margin: 0; list-style: none; width: 100%;";
+
+        for (const [name, coords] of dropMap) {
+            let item = make_elem("li", [], {});
+            item.style.cssText = "border-bottom: 1px solid #ccc; padding: 0.25rem 0.5rem;";
+
+            item.appendChild(make_elem("b", [], {textContent: name}));
+
+            if (coords.length > 0) {
+                let coordList = make_elem("ul", [], {});
+                coordList.style.cssText = "display: flex; flex-wrap: wrap; padding: 0; margin: 0; list-style: none;";
+
+                for (coord of coords) {
+                    let coordItem = make_elem("li", [], {textContent: "[" + coord[0] + ", " + coord[1] + ", " + coord[2] + "]"});
+                    coordItem.style.cssText = "padding: 0.5rem;";
+                    coordList.appendChild(coordItem);
+                }
+                item.appendChild(coordList);
+            }
+
+            list.appendChild(item);
+        }
+
+        dropDisplay.appendChild(list);
+        parent_elem.appendChild(dropDisplay);
+    }
+    else if(item_clone.dropInfo === undefined) {
+        parent_elem.appendChild(makeInfoRow("Drop Type:", item.has("drop") ? item.get("drop") : "No drop metadata found."));
     } else {
         parent_elem.appendChild(makeInfoRow("Drops From:", item_clone.dropInfo.name));
         if(item_clone.dropInfo.type !== undefined) {
@@ -159,10 +223,10 @@ function displayIDProbabilities(parent_id, item, amp) {
     let amp_row = make_elem("p", ["col"], {id: "amp_row"});
     amp_row.appendChild(make_elem("b", [], {textContent: "Corkian Amplifier: "}));
 
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 5; i++) {
         let amp = document.createElement("button");
         amp.id = `cork_amp_${i}`;
-        amp.textContent = "I".repeat(i);
+        amp.textContent = ROMAN_NUMERAL_MAP.get(i);
         amp_row.appendChild(amp);
         amp.addEventListener("click", (event) => {toggleAmps(i)});
     }
@@ -180,9 +244,9 @@ function displayIDProbabilities(parent_id, item, amp) {
             let min = item.get("minRolls").get(id);
             let max = item.get("maxRolls").get(id);
             //Apply corkian amps
-            if (val > 0) {
+            if (val > 0 == !reversedIDs.includes(id)) {
                 let base = itemMap.get(item_name)[id];
-                if (reversedIDs.includes(id)) {max = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)} 
+                if (reversedIDs.includes(id)) {min = Math.min( Math.floor((0.3 + 0.05*amp) * base), -1)} 
                 else {min = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)}
             }
 
@@ -317,19 +381,32 @@ function stringPDF(id,val,base,amp) {
      *  [0.3, 1.3] minr, maxr [0.3b, 1.3b] min, max
      *  the minr/maxr decimal roll that corresponds to val -> minround, maxround
      */
-    let p; let min; let max; let minr; let maxr; let minround; let maxround;
-    if (base > 0) {
+    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
+    if (base > 0 == !reversedIDs.includes(id)) {
         minr = 0.3 + 0.05*amp; maxr = 1.3;
-        min = Math.max(1, Math.round(minr*base)); max = Math.max(1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        }
     } else {
         minr = 1.3; maxr = 0.7;
-        min = Math.min(-1, Math.round(minr*base)); max = Math.min(-1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        }
     }
-    
     p = Math.abs(maxround-minround)/Math.abs(maxr-minr)*100;
     p = p.toFixed(3);
 
@@ -348,22 +425,36 @@ function stringPDF(id,val,base,amp) {
 }
 
 function stringCDF(id,val,base,amp) {
-    let p; let min; let max; let minr; let maxr; let minround; let maxround;
-    if (base > 0) {
-        minr = 0.3 + 0.05*amp; maxr = 1.3;
-        min = Math.max(1, Math.round(minr*base)); max = Math.max(1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
+    if (base > 0 == !reversedIDs.includes(id)) {
+        minr = 0.3 + 0.05*amp; maxr = 1.3; 
+        if (reversedIDs.includes(id)) {
+            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
+        }
     } else {
         minr = 1.3; maxr = 0.7;
-        min = Math.min(-1, Math.round(minr*base)); max = Math.min(-1, Math.round(maxr*base));
-        minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-        maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        if (reversedIDs.includes(id)) {
+            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
+            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
+        }
+        else {
+            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
+            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
+            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
+        }
     }
-
     if (reversedIDs.includes(id)) {
-        p = Math.abs(minr-maxround)/Math.abs(maxr-minr)*100;
-    } else {
+        p = Math.abs(maxr-maxround)/Math.abs(maxr-minr)*100;
+    }
+    else {
         p = Math.abs(maxr-minround)/Math.abs(maxr-minr)*100;
     }
     p = p.toFixed(3);

@@ -57,6 +57,10 @@ replace_strings = {
     " \u2698": "", # Puppets
     " \u265a": "", # Awakened
     " \u21f6": "", # Whipped
+    "\ue022 ": "", # Heretic Mask
+    "\ue023 ": "", # Fanatic Mask
+    "\ue024 ": "", # Lunatic Mask
+
 
     " \\(\ue00d\\)": "", # Slowness
     " \\(\ue00b\\)": "", # Blindness
@@ -72,6 +76,15 @@ replace_strings = {
     " \u2764": "", # Overhealth
 
     "\u00b0": " degrees", # Degree symbol
+    "\u00b1": "", # Range
+
+    " \ue044": "", # Ultimate charge
+    " \ue04b": "", # Twilight stacks
+    " \ue045": "", # Crystallize
+    " \ue046": "", # Unstable
+    " \ue047": "", # Shining
+    " \ue049": "", # Paradox
+    " \ue03b": "", # Hypoxia
 
     "Total Damage": "</br><span class='mc-white'>Total Damage</span>", # Total Damage Breakdown
     "\\(\ue005 Damage": "</br>&emsp;(<span class='nDam'>Damage</span>", # Neutral
@@ -93,34 +106,17 @@ replace_strings = {
 def clean_description(string):
     return re.sub(cleaner, '', string)
 
-def stylize_description(strings):
-    def sub(s):
-        for k, v in replace_strings.items():
-            s = re.sub(k, v, s)
-        return s
-    result = []
-    for text in strings:
-        if '</br>' in text:
-            result.append('</br>')
-            continue
-        if 'Archetype' in text or 'Ability Points' in text or 'Unlocking will block:' in text:
-            break  
-        result.append(sub(re.sub(cleaner, '', text)))
-
-    if result[0] == "</br>":
-        result[0] = ""
-        
-    if result[len(result)-1] == "</br>":
-        result[len(result)-1] = ""
-
-    return ' '.join(result).strip()
+def sub(s):
+    for k, v in replace_strings.items():
+        s = re.sub(k, v, s)
+    return s
 
 
 if __name__ == "__main__":
     with open("../js/builder/atree_ids.json", "r") as atree_ids_file:
         atree_ids = json.load(atree_ids_file)
 
-    with open("../js/builder/atree_constants.json", "r") as tree_data_file:
+    with open("../data/baseline/atree_constants.json", "r") as tree_data_file:
         old_tree_data = json.load(tree_data_file)
 
     classes = [
@@ -158,6 +154,31 @@ if __name__ == "__main__":
                             old_ability["display"]["icon"] = icon_dict[color]
                             print(f"Replaced color on node \"{ability_name}\", should be {icon_dict[color]}")
 
+                        description_lines = []
+                        for text in ability["description"]:
+                            if '</br>' in text:
+                                description_lines.append('</br>')
+                                continue
+                            if 'Archetype' in text:
+                                new_archetype = sub(re.sub(cleaner, '', text)).removesuffix('Archetype').strip()
+                                if "archetype" not in old_ability or old_ability["archetype"] != new_archetype:
+                                    old_ability["archetype"] = new_archetype
+                                    print(f"Replaced archetype association on \"{ability_name}\" to \"{new_archetype}\"")
+                                break
+                            if 'Ability Points' in text or 'Unlocking will block:' in text:
+                                break  
+                            description_lines.append(sub(re.sub(cleaner, '', text)))
+
+                        if description_lines[0] == "</br>":
+                            description_lines[0] = ""
+                            
+                        if description_lines[len(description_lines)-1] == "</br>":
+                            description_lines[len(description_lines)-1] = ""
+
+                        description = ' '.join(description_lines).strip()
+
+                        old_ability["desc"] = description
+
                         requirement = ability["requirements"]
                         if "ARCHETYPE" in requirement and "archetype" in ability:
                             if 'archetype_req' not in old_ability or old_ability["archetype_req"] != requirement["ARCHETYPE"]["amount"]:
@@ -168,9 +189,6 @@ if __name__ == "__main__":
                             old_ability["cost"] = requirement["ABILITY_POINTS"]
                             print(f"Replaced cost on node \"{ability_name}\", should be {requirement["ABILITY_POINTS"]}")
 
-                        description = stylize_description(ability["description"])
-                        old_ability["desc"] = description
-
-    with open("../js/builder/atree_constants.json", "w") as output_file:
+    with open("../data/temp/atree_constants.json", "w") as output_file:
         json.dump(new_tree_data, output_file, indent=4)
 

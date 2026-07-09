@@ -4,7 +4,7 @@ Generate a minified JSON Ability Tree [atree_constants_min.json] AND a minified 
  - Extra JSON File with Class: [Original name as key and Assigned IDs as value].
 given [atree_constants.js] .js form of the Ability Tree with reference as string.
 """
-import json
+import json, os
 
 def translate_spell_part(id_data, part):
     if 'hits' in part:    # Translate parametrized hits...
@@ -15,6 +15,11 @@ def translate_spell_part(id_data, part):
             if isinstance(v, str):
                 abil_id, propname = v.split('.')
                 hits_mapping[k] = str(id_data[abil_id])+'.'+propname
+    if 'mana_gained' in part:    # Translate parametrized hits...
+        val = part['mana_gained']
+        if isinstance(val, str):
+            abil_id, propname = val.split('.')
+            part['mana_gained'] = str(id_data[abil_id])+'.'+propname
 
 def translate_effect(id_data, effect):
     if effect["type"] == "raw_stat":
@@ -60,6 +65,16 @@ def translate_effect(id_data, effect):
             if isinstance(val, str):
                 abil_id, propname = val.split('.')
                 effect["max"] = str(id_data[abil_id])+'.'+propname
+        if "slider_max" in effect:
+            val = effect["slider_max"]
+            if isinstance(val, str):
+                abil_id, propname = val.split('.')
+                effect["slider_max"] = str(id_data[abil_id])+'.'+propname
+        if "slider_max_mult" in effect:
+            val = effect["slider_max_mult"]
+            if isinstance(val, str):
+                abil_id, propname = val.split('.')
+                effect["slider_max_mult"] = str(id_data[abil_id])+'.'+propname
 
 def translate_abil(id_data, abil, tree=True):
     def translate(path, ref):
@@ -102,6 +117,7 @@ def validate_atree_graph(atree):
     # Set up lookup mapping
     abil_lookup = {998: 'elemental master', 999: 'melee'}
     for abil in atree:
+        abil_name = abil['display_name']
         # Sanity check for display.
         fatal_err = False
         if 'display' not in abil:
@@ -112,6 +128,13 @@ def validate_atree_graph(atree):
                 if field not in abil['display']:
                     print(f"ERROR: '{abil_name}'.display missing '{field}'")
                     fatal_err = True
+            abil_icon = abil['display']['icon']
+            if abil['cost'] == 1:
+                if abil_icon == 'node_2' or abil_icon == 'node_3' or abil_icon == 'node_4':
+                    print(f"WARNING: '{abil_name}' is a different cost than standard, should be 2 if icon is '{abil_icon}'")
+            elif abil['cost'] == 2:
+                if abil_icon == 'node_0' or abil_icon == 'node_1':
+                    print(f"WARNING: '{abil_name}' is a different cost than standard, should be 1 if icon is '{abil_icon}'")
         if 'parents' not in abil:
             print(f"ERROR: '{abil_name}' missing 'parents'")
             fatal_err = True
@@ -146,11 +169,17 @@ def validate_atree_graph(atree):
                 positions.append((row, child_c))
         return positions
 
-    # Occupancy grid, pair(row, col) -> (none, Set of parents).
-    # Set if the tile has a "path".
-    abil_path_parents = {}
-    # Occupancy grid, pair(row, col) -> (none, Set of nodes).
+    # Collect all node positions so path checks can reference them
     abil_node_positions = {}
+    for abil in atree:
+        if abil['id'] not in abil_lookup:
+            continue
+        pos = (abil['display']['row'], abil['display']['col'])
+        abil_node_positions.setdefault(pos, []).append(abil)
+
+    # set of (child_id, parent_id) edge tuples passing through this tile
+    abil_path_edges = {}
+
     print("Validation Pass 1")
     for abil in atree:
         abil_name = abil['display_name']
@@ -180,12 +209,7 @@ def validate_atree_graph(atree):
         #       Each path stores a list of parents.
         #       This will be checked in a second iteration after all parents are filled in.
 
-        # Pass 1: Fill out node positions.
         abil_r, abil_c = abil['display']['row'], abil['display']['col']
-        abil_pos = (abil_r, abil_c)
-        if abil_pos not in abil_node_positions:
-            abil_node_positions[abil_pos] = []
-        abil_node_positions[abil_pos].append(abil)
 
         # Pass 1: Fill out paths and parents.
         for target in abil['parents']:
@@ -205,11 +229,28 @@ def validate_atree_graph(atree):
                 if abil_id not in parent['parents']:
                     print(f"WARNING: parent of '{abil_name}' ('{parent_name}') has same row but no path")
             
-            for pos in get_path_positions(parent, abil):
-                if pos not in abil_path_parents:
-                    abil_path_parents[pos] = set()
-                abil_path_parents[pos].add(parent['id'])
+            if abil_c == parent['display']['col']:
+                for other_target in abil['parents']:
+                    other_parent = abil_lookup[other_target]
+                    if target == other_parent:
+                        continue
+                    if other_parent['display']['row'] == parent_r and target in other_parent['parents']:
+                        print(f"WARNING: '{other_parent['display_name']}' to '{abil_name}' goes through parent '{parent_name}', check '{abil_name}'")
+            
+            path_positions = get_path_positions(parent, abil)
 
+            # Check whether any intermediate path tile coincides with a node that
+            # is neither the declared parent nor the child itself.
+            for pos in path_positions:
+                if pos in abil_node_positions:
+                    for blocking_abil in abil_node_positions[pos]:
+                        blocking_id = blocking_abil['id']
+                        if blocking_id == abil_id or blocking_id == parent['id']:
+                            continue
+                        print(f"ERROR: path from '{parent_name}' to '{abil_name}' passes through node '{blocking_abil['display_name']}'")
+
+            for pos in path_positions:
+                abil_path_edges.setdefault(pos, set()).add((abil_id, parent['id']))
 
     # Pass 2.1: Check node position collisions
     for pos, abils in abil_node_positions.items():
@@ -223,30 +264,31 @@ def validate_atree_graph(atree):
         abil_name = abil['display_name']
         abil_id = abil['id']
         if abil_id not in abil_lookup:
-            # Already warned previously.
             continue
 
+        abil_r, abil_c = abil['display']['row'], abil['display']['col']
         warned_parents = set()
         for target in abil['parents']:
             if target not in abil_lookup:
-                # Already warned previously.
                 continue
             parent = abil_lookup[target]
-            parent_name = parent['display_name']
             parent_r = parent['display']['row']
             if abil_r < parent_r:
-                # Already warned previously.
                 continue
 
             for pos in get_path_positions(parent, abil):
-                for path_parent_id in abil_path_parents[pos]:
-                    if path_parent_id == abil_id:
+                if pos in abil_node_positions:
+                    continue
+                for (edge_child_id, edge_parent_id) in abil_path_edges.get(pos, set()):
+                    # Only care about edges that share this child
+                    if edge_child_id != abil_id:
                         continue
-                    if path_parent_id not in abil['parents']:
-                        if path_parent_id not in warned_parents:
-                            path_parent = abil_lookup[path_parent_id]
-                            print(f"ERROR: '{abil_name}' is connected to '{path_parent['display_name']}' visually but not in code")
-                            warned_parents.add(path_parent_id)
+                    if edge_parent_id == parent['id']:
+                        continue
+                    if edge_parent_id not in abil['parents'] and edge_parent_id not in warned_parents:
+                        path_parent = abil_lookup[edge_parent_id]
+                        print(f"ERROR: '{abil_name}' is connected to '{path_parent['display_name']}' visually but not in code")
+                        warned_parents.add(edge_parent_id)
 
 
 def validate_atree_data(atree_data):
@@ -260,7 +302,7 @@ def validate_atree_data(atree_data):
 
 def main():
     abilDict = {}
-    with open("atree_constants.json") as f:
+    with open("../data/baseline/atree_constants.json") as f:
         data = json.load(f)
         for classType, info in data.items():
             _id = 0
@@ -269,32 +311,33 @@ def main():
                 abilDict[classType][abil["display_name"]] = _id
                 _id += 1
 
-        with open("atree_ids.json", "w", encoding='utf-8') as id_dest:
+        os.makedirs(os.path.dirname("../data/temp/atree_ids.json"), exist_ok=True)
+        with open("../data/temp/atree_ids.json", "w", encoding='utf-8') as id_dest:
             json.dump(abilDict, id_dest, ensure_ascii=False, indent=4)
 
         translate_all(abilDict, data)
         validate_atree_data(data)
 
-        with open("major_ids_clean.json") as maj_id_file:
+        with open("../data/baseline/major_ids_clean.json") as maj_id_file:
             maj_id_dat = json.load(maj_id_file)
             for k, v in maj_id_dat.items():
                 for abil in v['abilities']:
                     clazz = abil['class']
                     translate_abil(abilDict[clazz], abil, tree=False)
-            with open("major_ids_min.json", "w", encoding='utf-8') as maj_id_out:
+            with open("../data/temp/major_ids_min.json", "w", encoding='utf-8') as maj_id_out:
                 json.dump(maj_id_dat, maj_id_out, ensure_ascii=False, separators=(',', ':'))
 
-        with open("aspects.json") as aspects_file:
+        with open("../data/baseline/aspects.json") as aspects_file:
             aspect_dat = json.load(aspects_file)
             for clazz, aspects in aspect_dat.items():
                 for aspect in aspects:
                     for aspect_tier in aspect['tiers']:
                         for abil in aspect_tier['abilities']:
                             translate_abil(abilDict[clazz], abil, tree=False)
-            with open("aspects_min.json", "w", encoding='utf-8') as aspects_out:
+            with open("../data/temp/aspects_min.json", "w", encoding='utf-8') as aspects_out:
                 json.dump(aspect_dat, aspects_out, ensure_ascii=False, separators=(',', ':'))
         
-        with open('atree_constants_min.json', 'w', encoding='utf-8') as json_dest:
+        with open('../data/temp/atree_constants_min.json', 'w', encoding='utf-8') as json_dest:
             json.dump(data, json_dest, ensure_ascii=False, separators=(',', ':'))
 
 if __name__ == "__main__":

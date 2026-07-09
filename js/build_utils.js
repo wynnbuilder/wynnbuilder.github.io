@@ -44,8 +44,8 @@ function levelToSkillPoints(level){
 function levelToHPBase(level){
     if(level < 1){ //bad level
         return this.levelToHPBase(1);
-    }else if (level > 106){ //also bad level
-        return this.levelToHPBase(106);
+    }else if (level > 121){ //also bad level
+        return this.levelToHPBase(121);
     }else{ //good level
         return 5*level + 5;
     }
@@ -216,7 +216,12 @@ function expandItem(item) {
     } else { //The item does not have fixed IDs.
         for (const id of rolledIDs) {
             let val = (item[id] || 0);
-            if (val == 0) {
+
+            if (typeof val == 'object' && val['static']) {
+                // Static IDs that are per-item based
+                maxRolls.set(id,val['raw']);
+                minRolls.set(id,val['raw']);
+            } else if (val == 0) {
                 // NOTE: DO NOT remove this case! idRound behavior does not round to 0!
                 maxRolls.set(id,0);
                 minRolls.set(id,0);
@@ -318,9 +323,10 @@ function idRound(id){
 /**
  * stupid stupid multiplicative stats
  */
+const nonstacking_stats = ['Potion', 'Vulnerability', 'Mask']
 function merge_stat(stats, name, value) {
     const [start, end] = name.split('.', limit=2);
-    if (start === 'damMult' || start === 'defMult' || start === 'healMult') {
+    if (start === 'damMult' || start === 'defMult' || start === 'healMult' || start === 'manaMult') {
         if (!stats.has(start)) {
             stats.set(start, new Map());
         }
@@ -331,7 +337,7 @@ function merge_stat(stats, name, value) {
             }
             return;
         }
-        if (end == 'Potion' || end == 'Vulnerability') {
+        if (nonstacking_stats.includes(end)) {
             let highest = stats.get(start).get(end);
             if (highest !== undefined) {
                 if (value > highest) {
@@ -371,4 +377,15 @@ function type_to_skill(t) {
         default:
             return null
     }
+}
+
+/** 
+ * Why do ingredients store non-present rolls as null but items store it as 0?
+ * Returns .get(key) of a map, but if the value is undefined it returns 0 instead.
+ */
+function getOrNullToZero(map, key) {
+    const val = map.get(key);
+    if (val)
+        return val;
+    return 0;
 }

@@ -7,7 +7,7 @@ import json
 import math
 import copy
 
-with open("clean.json") as infile:
+with open("../../data/baseline/clean.json") as infile:
     data = json.load(infile)
 
 def clean_item(item):

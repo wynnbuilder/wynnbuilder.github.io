@@ -76,7 +76,7 @@ function handleHashInput(hash_input, inputEvent) {
 
 function updateMaterials() {
     let recipeName = getValue("recipe-choice") ? getValue("recipe-choice") : "Potion";
-    let levelRange = getValue("level-choice") ? getValue("level-choice") : "103-105";
+    let levelRange = getValue("level-choice") ? getValue("level-choice") : "117-119";
     let recipe = expandRecipe(recipeMap.get(recipeName + "-" + levelRange));
     if (recipe !== undefined) {
         try{
@@ -128,7 +128,7 @@ function calculateCraft() {
     }
     //define the fields that will go into crafting the craft.
     let recipe = getValue("recipe-choice") === "" ? "Potion" : getValue("recipe-choice");
-    let levelrange = getValue("level-choice") === "" ? "103-105" : getValue("level-choice"); 
+    let levelrange = getValue("level-choice") === "" ? "117-119" : getValue("level-choice"); 
     let maxlevel = levelrange.split("-").slice(1);
     recipe = expandRecipe(recipeMap.get(recipe+"-"+levelrange));
     let mat_tiers = [];
@@ -190,7 +190,6 @@ function calculateCraft() {
     warning_elem.textContent = ""; //refresh warnings
     warning_elem.classList.add("warning");
     let type = player_craft["recipe"].get("skill");
-    console.log(maxlevel)
     for (const ingred of player_craft["ingreds"]) {
         if (!(ingred.get("skills").includes(type))) {
             let p = document.createElement("p");
@@ -203,8 +202,21 @@ function calculateCraft() {
             warning_elem.appendChild(p);
         }
     }
+    let missing_durability = player_craft.statMap.get("missingDurability");
+    let missing_duration = player_craft.statMap.get("missingDuration");
 
-    
+    if (player_craft.statMap.get("category") === "consumable") {
+        if (missing_duration) {
+            let p = document.createElement("p");
+            p.textContent = "WARNING: Recipe requires " + (-missing_duration) +" more duration to work!";
+            warning_elem.appendChild(p);
+        }
+    }
+    else if (missing_durability) {
+        let p = document.createElement("p");
+        p.textContent = "WARNING: Recipe requires " + (-missing_durability) +" more durability to work!";
+        warning_elem.appendChild(p);
+    }
 }
 
 function decodeCraftPopulateFields(ing_url_tag) {

@@ -4,7 +4,7 @@
  * Depends on `clen_item` from load_item.js
  */
 
-const TOME_DB_VERSION = 13;
+const TOME_DB_VERSION = 17;
 
 let tomes;
 let tomeMap;
@@ -19,7 +19,7 @@ class TomeLoader extends Loader {
     }
     
     get remote_paths() {
-        return "tomes";
+        return "data/baseline/tomes";
     }
 
     process_local(tsx, reject) {

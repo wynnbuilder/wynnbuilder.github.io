@@ -1,3 +1,6 @@
+let saved_weapon_args;
+let weapon_choice;
+
 // dynamic type casts
 function checkBool(v) {
   if (typeof v !== 'boolean') throw new Error(`Expected boolean, but got ${typeof v}`);
@@ -21,6 +24,125 @@ function checkStr(v) {
 function checkComparable(v) {
   if (typeof v === 'boolean') throw new Error('Boolean is not comparable');
   return v;
+}
+
+// The shared queries between items and ingredients
+function commonQueryProps({ prop, maxId, sum, props }) {
+  sum(['skillpoints', 'skillpts', 'attributes', 'attrs'], props.str, props.dex, props.int, props.def, props.agi);
+
+  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
+  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
+  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct', 'wdpct'], 'wDamPct');
+  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct', 'fdpct'], 'fDamPct');
+  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
+  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
+  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
+  maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
+  sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct, props.dampct, props.rdampct, props.ndampct);
+
+  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
+  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
+  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw', 'wdraw'], 'wDamRaw');
+  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw', 'fdraw'], 'fDamRaw');
+  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw', 'adraw'], 'aDamRaw');
+  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
+  maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
+  maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
+  sum(['sumdmgraw', 'sumdamraw', 'totaldmgraw', 'totaldamraw', 'sumdamraw', 'totaldamraw'], props.edamraw, props.tdamraw, props.wdamraw, props.fdamraw, props.adamraw, props.rdamraw, props.ndamraw, props.damraw);
+
+  maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
+  maxId(['emdpct'], 'eMdPct');
+  maxId(['tmdpct'], 'tMdPct');
+  maxId(['wmdpct'], 'wMdPct');
+  maxId(['fmdpct'], 'fMdPct');
+  maxId(['amdpct'], 'aMdPct');
+  maxId(['nmdpct'], 'nMdPct');
+  maxId(['rmdpct'], 'rMdPct');
+  sum(['summeleedmg%', 'summeleedam%', 'totalmeleedmg%', 'totalmeleedam%', 'summeleedampct', 'totalmeleedampct'], props.mdpct, props.emdpct, props.tmdpct, props.wmdpct, props.fmdpct, props.amdpct, props.nmdpct, props.nmdpct, props.rmdpct);
+
+  maxId(['mainatkrawdmg', 'mainatkrawdam', 'mainatkneutraldmg', 'mainatkneutraldam', 'meleerawdmg', 'meleerawdam', 'meleeneutraldmg', 'meleeneutraldam', 'mdraw'], 'mdRaw');
+  maxId(['emdraw'], 'eMdRaw');
+  maxId(['tmdraw'], 'tMdRaw');
+  maxId(['wmdraw'], 'wMdRaw');
+  maxId(['fmdraw'], 'fMdRaw');
+  maxId(['amdraw'], 'aMdRaw');
+  maxId(['nmdraw'], 'nMdRaw');
+  maxId(['rmdraw'], 'rMdRaw');
+  sum(['summeleedmgraw', 'summeleedamraw', 'totalmeleedmgraw', 'totalmeleedamraw', 'summeleedamraw', 'totalmeleedamraw'], props.emdraw, props.tmdraw, props.wmdraw, props.fmdraw, props.amdraw, props.nmdraw, props.rmdraw, props.mdraw);
+
+  maxId(['spelldmg', 'spelldam', 'spelldmg%', 'spelldam%', 'sdpct'], 'sdPct');
+  maxId(['esdpct'], 'eSdPct');
+  maxId(['tsdpct'], 'tSdPct');
+  maxId(['wsdpct'], 'wSdPct');
+  maxId(['fsdpct'], 'fSdPct');
+  maxId(['asdpct'], 'aSdPct');
+  maxId(['nsdpct'], 'nSdPct');
+  maxId(['rsdpct'], 'rSdPct');
+  sum(['sumspelldmg%', 'sumspelldam%', 'totalspelldmg%', 'totalspelldam%', 'sumspelldampct', 'totalspelldampct'], props.esdpct, props.tsdpct, props.wsdpct, props.fsdpct, props.asdpct, props.nsdpct, props.rsdpct, props.sdpct);
+
+  maxId(['spellrawdmg', 'spellrawdam', 'spellneutraldmg', 'spellneutraldam', 'sdraw'], 'sdRaw');
+  maxId(['esdraw'], 'eSdRaw');
+  maxId(['tsdraw'], 'tSdRaw');
+  maxId(['wsdraw'], 'wSdRaw');
+  maxId(['fsdraw'], 'fSdRaw');
+  maxId(['asdraw'], 'aSdRaw');
+  maxId(['nsdraw'], 'nSdRaw');
+  maxId(['rainbowraw', 'rsdraw'], 'rSdRaw');
+  sum(['sumspelldmgraw', 'sumspelldamraw', 'totalspelldmgraw', 'totalspelldamraw', 'sumspelldamraw', 'totalspelldamraw'], props.esdraw, props.tsdraw, props.wsdraw, props.fsdraw, props.asdraw, props.nsdraw, props.rsdraw, props.sdraw);
+
+  maxId('critdampct', 'critDamPct');
+  maxId(['bonusattackspeed', 'bonusatkspd', 'attackspeedid', 'atkspdid', 'atktier'], 'atkTier');
+
+  maxId(['earthdef%', 'edef%', 'edefpct'], 'eDefPct');
+  maxId(['thunderdef%', 'tdef%', 'tdefpct'], 'tDefPct');
+  maxId(['waterdef%', 'wdef%', 'wdefpct'], 'wDefPct');
+  maxId(['firedef%', 'fdef%', 'fdefpct'], 'fDefPct');
+  maxId(['airdef%', 'adef%', 'adefpct'], 'aDefPct');
+  maxId(['eledef%', 'rdef%', 'rdefpct'], 'rDefPct');
+  sum(['sumdef%', 'totaldef%', 'sumdefpct', 'totaldefpct'], props.edefpct, props.tdefpct, props.wdefpct, props.fdefpct, props.adefpct);
+
+  maxId(['bonushealth', 'healthid', 'bonushp', 'hpid', 'hpbonus'], 'hpBonus');
+
+  maxId(['hpregen', 'hpr', 'hr', 'hprraw'], 'hprRaw');
+  maxId(['hpregen%', 'hpr%', 'hr%', 'hprpct'], 'hprPct');
+  maxId(['lifesteal', 'ls'], 'ls');
+  maxId(['manaregen', 'mr'], 'mr');
+  maxId(['manasteal', 'ms'], 'ms');
+
+  maxId(['walkspeed', 'movespeed', 'ws', 'spd'], 'spd');
+  maxId('sprint', 'sprint');
+  maxId(['sprintregen', 'sprintreg'], 'sprintReg');
+  maxId(['jumpheight', 'jh'], 'jh');
+
+  maxId(['spellcost1', 'rawspellcost1', 'spcost1', 'spraw1'], 'spRaw1');
+  maxId(['spellcost1%', 'spcost1%', 'sppct1'], 'spPct1');
+  maxId(['spellcost2', 'rawspellcost2', 'spcost2', 'spraw2'], 'spRaw2');
+  maxId(['spellcost2%', 'spcost2%', 'sppct2'], 'spPct2');
+  maxId(['spellcost3', 'rawspellcost3', 'spcost3', 'spraw3'], 'spRaw3');
+  maxId(['spellcost3%', 'spcost3%', 'sppct3'], 'spPct3');
+  maxId(['spellcost4', 'rawspellcost4', 'spcost4', 'spraw4'], 'spRaw4');
+  maxId(['spellcost4%', 'spcost4%', 'sppct4'], 'spPct4');
+  sum(['sumspellcost', 'totalspellcost', 'sumrawspellcost', 'totalrawspellcost', 'sumspcost', 'totalspcost', 'sumspraw', 'totalspraw'], props.spraw1, props.spraw2, props.spraw3, props.spraw4);
+  sum(['sumspellcost%', 'totalspellcost%', 'sumspcost%', 'totalspcost%', 'sumsppct', 'totalsppct'], props.sppct1, props.sppct2, props.sppct3, props.sppct4);
+
+
+  maxId(['exploding', 'expl', 'expd'], 'expd');
+  maxId('poison', 'poison');
+  maxId('thorns', 'thorns');
+  maxId(['reflection', 'refl', 'ref'], 'ref');
+  maxId(['soulpointregen', 'spr', 'spregen'], 'spRegen');
+  maxId(['lootbonus', 'lb'], 'lb');
+  maxId(['xpbonus', 'xpb', 'xb'], 'xpb');
+  maxId(['stealing', 'esteal'], 'eSteal');
+  maxId(['lq', 'quality'], 'lq');
+  maxId('gxp', 'gXp');
+  maxId('gspd', 'gSpd');
+  maxId(['healeff', 'healpct'], 'healPct');
+  maxId('kb', 'kb');
+  maxId('weakenenemy', 'weakenEnemy');
+  maxId('slowenemy', 'slowEnemy');
+  maxId('maxmana', 'maxMana');
+  maxId(['mainattackrange','meleerange'], 'mainAttackRange');
 }
 
 // properties of items that can be looked up
@@ -106,6 +228,13 @@ const itemQueryProps = (function() {
   prop(['restrict', 'restriction'], 'string', (i, ie) => i.restrict || "");
   prop(['itemid', 'id'], 'number', (i, ie) => i.id);
 
+  prop('str', 'number', (i, ie) => i.str);
+  prop('dex', 'number', (i, ie) => i.dex);
+  prop('int', 'number', (i, ie) => i.int);
+  prop('def', 'number', (i, ie) => i.def);
+  prop('agi', 'number', (i, ie) => i.agi);
+
+  commonQueryProps({prop, maxId, sum, props});
   prop(['level', 'lvl', 'combatlevel', 'combatlvl'], 'number', (i, ie) => i.lvl);
   prop(['strmin', 'strreq'], 'number', (i, ie) => i.strReq);
   prop(['dexmin', 'dexreq'], 'number', (i, ie) => i.dexReq);
@@ -113,13 +242,6 @@ const itemQueryProps = (function() {
   prop(['defmin', 'defreq'], 'number', (i, ie) => i.defReq);
   prop(['agimin', 'agireq'], 'number', (i, ie) => i.agiReq);
   sum(['summin', 'sumreq', 'totalmin', 'totalreq'], props.strmin, props.dexmin, props.intmin, props.defmin, props.agimin);
-
-  prop('str', 'number', (i, ie) => i.str);
-  prop('dex', 'number', (i, ie) => i.dex);
-  prop('int', 'number', (i, ie) => i.int);
-  prop('def', 'number', (i, ie) => i.def);
-  prop('agi', 'number', (i, ie) => i.agi);
-  sum(['skillpoints', 'skillpts', 'attributes', 'attrs'], props.str, props.dex, props.int, props.def, props.agi);
 
   rangeAll(['neutraldmg', 'neutraldam', 'ndmg', 'ndam'], (i, ie) => i.nDam);
   rangeAll(['earthdmg', 'earthdam', 'edmg', 'edam'], (i, ie) => i.eDam);
@@ -130,71 +252,8 @@ const itemQueryProps = (function() {
   sum(['sumdmg', 'sumdam', 'totaldmg', 'totaldam'], props.ndam, props.edam, props.tdam, props.wdam, props.fdam, props.adam);
   prop(['averagedps', 'adps', 'dps', 'basedps'], 'number', (i, ie) => i.averageDps || 0);
 
-  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
-  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
-  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct', 'wdpct'], 'wDamPct');
-  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct', 'fdpct'], 'fDamPct');
-  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
-  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
-  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
-  maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
-  sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct, props.dampct, props.rdampct, props.ndampct);
-
-  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
-  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
-  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw', 'wdraw'], 'wDamRaw');
-  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw', 'fdraw'], 'fDamRaw');
-  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw', 'adraw'], 'aDamRaw');
-  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
-  maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
-  maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
-  sum(['sumdmgraw', 'sumdamraw', 'totaldmgraw', 'totaldamraw', 'sumdamraw', 'totaldamraw'], props.edamraw, props.tdamraw, props.wdamraw, props.fdamraw, props.adamraw, props.rdamraw, props.ndamraw, props.damraw);
-
-  maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
-  maxId(['emdpct'], 'eMdPct');
-  maxId(['tmdpct'], 'tMdPct');
-  maxId(['wmdpct'], 'wMdPct');
-  maxId(['fmdpct'], 'fMdPct');
-  maxId(['amdpct'], 'aMdPct');
-  maxId(['nmdpct'], 'nMdPct');
-  maxId(['rmdpct'], 'rMdPct');
-  sum(['summeleedmg%', 'summeleedam%', 'totalmeleedmg%', 'totalmeleedam%', 'summeleedampct', 'totalmeleedampct'], props.mdpct, props.emdpct, props.tmdpct, props.wmdpct, props.fmdpct, props.amdpct, props.nmdpct, props.nmdpct, props.rmdpct);
-
-  maxId(['mainatkrawdmg', 'mainatkrawdam', 'mainatkneutraldmg', 'mainatkneutraldam', 'meleerawdmg', 'meleerawdam', 'meleeneutraldmg', 'meleeneutraldam', 'mdraw'], 'mdRaw');
-  maxId(['emdraw'], 'eMdRaw');
-  maxId(['tmdraw'], 'tMdRaw');
-  maxId(['wmdraw'], 'wMdRaw');
-  maxId(['fmdraw'], 'fMdRaw');
-  maxId(['amdraw'], 'aMdRaw');
-  maxId(['nmdraw'], 'nMdRaw');
-  maxId(['rmdraw'], 'rMdRaw');
-  sum(['summeleedmgraw', 'summeleedamraw', 'totalmeleedmgraw', 'totalmeleedamraw', 'summeleedamraw', 'totalmeleedamraw'], props.emdraw, props.tmdraw, props.wmdraw, props.fmdraw, props.amdraw, props.nmdraw, props.rmdraw, props.mdraw);
-
-  maxId(['spelldmg', 'spelldam', 'spelldmg%', 'spelldam%', 'sdpct'], 'sdPct');
-  maxId(['esdpct'], 'eSdPct');
-  maxId(['tsdpct'], 'tSdPct');
-  maxId(['wsdpct'], 'wSdPct');
-  maxId(['fsdpct'], 'fSdPct');
-  maxId(['asdpct'], 'aSdPct');
-  maxId(['nsdpct'], 'nSdPct');
-  maxId(['rsdpct'], 'rSdPct');
-  sum(['sumspelldmg%', 'sumspelldam%', 'totalspelldmg%', 'totalspelldam%', 'sumspelldampct', 'totalspelldampct'], props.esdpct, props.tsdpct, props.wsdpct, props.fsdpct, props.asdpct, props.nsdpct, props.rsdpct, props.sdpct);
-
-  maxId(['spellrawdmg', 'spellrawdam', 'spellneutraldmg', 'spellneutraldam', 'sdraw'], 'sdRaw');
-  maxId(['esdraw'], 'eSdRaw');
-  maxId(['tsdraw'], 'tSdRaw');
-  maxId(['wsdraw'], 'wSdRaw');
-  maxId(['fsdraw'], 'fSdRaw');
-  maxId(['asdraw'], 'aSdRaw');
-  maxId(['nsdraw'], 'nSdRaw');
-  maxId(['rainbowraw', 'rsdraw'], 'rSdRaw');
-  sum(['sumspelldmgraw', 'sumspelldamraw', 'totalspelldmgraw', 'totalspelldamraw', 'sumspelldamraw', 'totalspelldamraw'], props.esdraw, props.tsdraw, props.wsdraw, props.fsdraw, props.asdraw, props.nsdraw, props.rsdraw, props.sdraw);
-
-  maxId('critdampct', 'critDamPct');
-
   const atkSpdIndices = { SUPER_SLOW: -3, VERY_SLOW: -2, SLOW: -1, NORMAL: 0, FAST: 1, VERY_FAST: 2, SUPER_FAST: 3 };
   prop(['attackspeed', 'atkspd'], 'number', (i, ie) => i.atkSpd ? atkSpdIndices[i.atkSpd] : 0);
-  maxId(['bonusattackspeed', 'bonusatkspd', 'attackspeedid', 'atkspdid', 'atktier'], 'atkTier');
   sum(['sumattackspeed', 'totalattackspeed', 'sumatkspd', 'totalatkspd', 'sumatktier', 'totalatktier'], props.atkspd, props.atktier);
 
   prop(['earthdef', 'edef'], 'number', (i, ie) => i.eDef || 0);
@@ -204,58 +263,8 @@ const itemQueryProps = (function() {
   prop(['airdef', 'adef'], 'number', (i, ie) => i.aDef || 0);
   sum(['sumdef', 'totaldef'], props.edef, props.tdef, props.wdef, props.fdef, props.adef);
 
-  maxId(['earthdef%', 'edef%', 'edefpct'], 'eDefPct');
-  maxId(['thunderdef%', 'tdef%', 'tdefpct'], 'tDefPct');
-  maxId(['waterdef%', 'wdef%', 'wdefpct'], 'wDefPct');
-  maxId(['firedef%', 'fdef%', 'fdefpct'], 'fDefPct');
-  maxId(['airdef%', 'adef%', 'adefpct'], 'aDefPct');
-  maxId(['eledef%', 'rdef%', 'rdefpct'], 'rDefPct');
-  sum(['sumdef%', 'totaldef%', 'sumdefpct', 'totaldefpct'], props.edefpct, props.tdefpct, props.wdefpct, props.fdefpct, props.adefpct);
-
   prop(['health', 'hp'], 'number', (i, ie) => i.hp || 0);
-  maxId(['bonushealth', 'healthid', 'bonushp', 'hpid', 'hpbonus'], 'hpBonus');
   sum(['sumhealth', 'sumhp', 'totalhealth', 'totalhp'], props.hp, props.hpid);
-
-  maxId(['hpregen', 'hpr', 'hr', 'hprraw'], 'hprRaw');
-  maxId(['hpregen%', 'hpr%', 'hr%', 'hprpct'], 'hprPct');
-  maxId(['lifesteal', 'ls'], 'ls');
-  maxId(['manaregen', 'mr'], 'mr');
-  maxId(['manasteal', 'ms'], 'ms');
-
-  maxId(['walkspeed', 'movespeed', 'ws', 'spd'], 'spd');
-  maxId('sprint', 'sprint');
-  maxId(['sprintregen', 'sprintreg'], 'sprintReg');
-  maxId(['jumpheight', 'jh'], 'jh');
-
-  maxId(['spellcost1', 'rawspellcost1', 'spcost1', 'spraw1'], 'spRaw1');
-  maxId(['spellcost1%', 'spcost1%', 'sppct1'], 'spPct1');
-  maxId(['spellcost2', 'rawspellcost2', 'spcost2', 'spraw2'], 'spRaw2');
-  maxId(['spellcost2%', 'spcost2%', 'sppct2'], 'spPct2');
-  maxId(['spellcost3', 'rawspellcost3', 'spcost3', 'spraw3'], 'spRaw3');
-  maxId(['spellcost3%', 'spcost3%', 'sppct3'], 'spPct3');
-  maxId(['spellcost4', 'rawspellcost4', 'spcost4', 'spraw4'], 'spRaw4');
-  maxId(['spellcost4%', 'spcost4%', 'sppct4'], 'spPct4');
-  sum(['sumspellcost', 'totalspellcost', 'sumrawspellcost', 'totalrawspellcost', 'sumspcost', 'totalspcost', 'sumspraw', 'totalspraw'], props.spraw1, props.spraw2, props.spraw3, props.spraw4);
-  sum(['sumspellcost%', 'totalspellcost%', 'sumspcost%', 'totalspcost%', 'sumsppct', 'totalsppct'], props.sppct1, props.sppct2, props.sppct3, props.sppct4);
-
-
-  maxId(['exploding', 'expl', 'expd'], 'expd');
-  maxId('poison', 'poison');
-  maxId('thorns', 'thorns');
-  maxId(['reflection', 'refl', 'ref'], 'ref');
-  maxId(['soulpointregen', 'spr', 'spregen'], 'spRegen');
-  maxId(['lootbonus', 'lb'], 'lb');
-  maxId(['xpbonus', 'xpb', 'xb'], 'xpb');
-  maxId(['stealing', 'esteal'], 'eSteal');
-  maxId(['lq', 'quality'], 'lq');
-  maxId('gxp', 'gXp');
-  maxId('gspd', 'gSpd');
-  maxId(['healeff', 'healpct'], 'healPct');
-  maxId('kb', 'kb');
-  maxId('weakenenemy', 'weakenEnemy');
-  maxId('slowenemy', 'slowEnemy');
-  maxId('maxmana', 'maxMana');
-  maxId('mainattackrange', 'mainAttackRange');
 
   prop(['powderslots', 'powders', 'slots', 'sockets'], 'number', (i, ie) => i.slots || 0);
 
@@ -349,6 +358,12 @@ const ingredientQueryProps = (function() {
     modProp(entry.map(i => i.toLowerCase()), entry[0]);
   }
 
+  maxId('str', 'str');
+  maxId('dex', 'dex');
+  maxId('int', 'int');
+  maxId('def', 'def');
+  maxId('agi', 'agi');
+
   prop(['strmin', 'strreq'], 'number', (i, ie) => i["itemIDs"].strReq);
   prop(['dexmin', 'dexreq'], 'number', (i, ie) => i["itemIDs"].dexReq);
   prop(['intmin', 'intreq'], 'number', (i, ie) => i["itemIDs"].intReq);
@@ -362,121 +377,7 @@ const ingredientQueryProps = (function() {
 
   sum(['summin', 'sumreq', 'totalmin', 'totalreq'], props.strmin, props.dexmin, props.intmin, props.defmin, props.agimin);
 
-  maxId('str', 'str');
-  maxId('dex', 'dex');
-  maxId('int', 'int');
-  maxId('def', 'def');
-  maxId('agi', 'agi');
-  sum(['skillpoints', 'skillpts', 'attributes', 'attrs'], props.str, props.dex, props.int, props.def, props.agi);
-
-  maxId(['earthdmg%', 'earthdam%', 'edmg%', 'edam%', 'edampct', 'edpct'], 'eDamPct');
-  maxId(['thunderdmg%', 'thunderdam%', 'tdmg%', 'tdam%', 'tdampct', 'tdpct'], 'tDamPct');
-  maxId(['waterdmg%', 'waterdam%', 'wdmg%', 'wdam%', 'wdampct', 'wdpct'], 'wDamPct');
-  maxId(['firedmg%', 'firedam%', 'fdmg%', 'fdam%', 'fdampct', 'fdpct'], 'fDamPct');
-  maxId(['airdmg%', 'airdam%', 'admg%', 'adam%', 'adampct', 'adpct'], 'aDamPct');
-  maxId(['elementaldmg%', 'elementaldam%', 'rdmg%', 'rdam%', 'rdampct', 'rdpct'], 'rDamPct');
-  maxId(['neutraldmg%', 'neutraldam%', 'ndmg%', 'ndam%', 'ndampct', 'ndpct'], 'nDamPct');
-  //sum(['sumdmg%', 'sumdam%', 'totaldmg%', 'totaldam%', 'sumdampct', 'totaldampct'], props.edampct, props.tdampct, props.wdampct, props.fdampct, props.adampct);
-  maxId(['dmg%', 'dam%', 'dampct', 'dpct'], 'damPct');
-
-  maxId(['earthdmgraw', 'earthdamraw', 'edmgraw', 'edamraw', 'edraw'], 'eDamRaw');
-  maxId(['thunderdmgraw', 'thunderdamraw', 'tdmgraw', 'tdamraw', 'tdraw'], 'tDamRaw');
-  maxId(['waterdmgraw', 'waterdamraw', 'wdmgraw', 'wdamraw', 'wdraw'], 'wDamRaw');
-  maxId(['firedmgraw', 'firedamraw', 'fdmgraw', 'fdamraw', 'fdraw'], 'fDamRaw');
-  maxId(['airdmgraw', 'airdamraw', 'admgraw', 'adamraw', 'adraw'], 'aDamRaw');
-  maxId(['elementaldmgraw', 'elementaldamraw', 'rdmgraw', 'rdamraw', 'rdraw'], 'rDamRaw');
-  maxId(['ndamraw', 'ndmgraw', 'ndraw'], 'nDamRaw');
-  maxId(['dmgraw', 'damraw', 'draw'], 'damRaw');
-
-  maxId(['mainatkdmg', 'mainatkdam', 'mainatkdmg%', 'mainatkdam%', 'meleedmg', 'meleedam', 'meleedmg%', 'meleedam%', 'mdpct'], 'mdPct');
-  maxId(['emdpct'], 'eMdPct');
-  maxId(['tmdpct'], 'tMdPct');
-  maxId(['wmdpct'], 'wMdPct');
-  maxId(['fmdpct'], 'fMdPct');
-  maxId(['amdpct'], 'aMdPct');
-  maxId(['nmdpct'], 'nMdPct');
-  maxId(['rmdpct'], 'rMdPct');
-
-  maxId(['mainatkrawdmg', 'mainatkrawdam', 'mainatkneutraldmg', 'mainatkneutraldam', 'meleerawdmg', 'meleerawdam', 'meleeneutraldmg', 'meleeneutraldam', 'mdraw'], 'mdRaw');
-  maxId(['emdraw'], 'eMdRaw');
-  maxId(['tmdraw'], 'tMdRaw');
-  maxId(['wmdraw'], 'wMdRaw');
-  maxId(['fmdraw'], 'fMdRaw');
-  maxId(['amdraw'], 'aMdRaw');
-  maxId(['nmdraw'], 'nMdRaw');
-  maxId(['rmdraw'], 'rMdRaw');
-
-  maxId(['spelldmg', 'spelldam', 'spelldmg%', 'spelldam%', 'sdpct'], 'sdPct');
-  maxId(['esdpct'], 'eSdPct');
-  maxId(['tsdpct'], 'tSdPct');
-  maxId(['wsdpct'], 'wSdPct');
-  maxId(['fsdpct'], 'fSdPct');
-  maxId(['asdpct'], 'aSdPct');
-  maxId(['nsdpct'], 'nSdPct');
-  maxId(['rsdpct'], 'rSdPct');
-
-  maxId(['spellrawdmg', 'spellrawdam', 'spellneutraldmg', 'spellneutraldam', 'sdraw'], 'sdRaw');
-  maxId(['esdraw'], 'eSdRaw');
-  maxId(['tsdraw'], 'tSdRaw');
-  maxId(['wsdraw'], 'wSdRaw');
-  maxId(['fsdraw'], 'fSdRaw');
-  maxId(['asdraw'], 'aSdRaw');
-  maxId(['nsdraw'], 'nSdRaw');
-  maxId(['rainbowraw', 'rsdraw'], 'rSdRaw');
-
-  maxId('critdampct', 'critDamPct');
-
-  maxId(['bonusattackspeed', 'bonusatkspd', 'attackspeedid', 'atkspdid', 'atktier'], 'atkTier');
-
-  maxId(['earthdef%', 'edef%', 'edefpct'], 'eDefPct');
-  maxId(['thunderdef%', 'tdef%', 'tdefpct'], 'tDefPct');
-  maxId(['waterdef%', 'wdef%', 'wdefpct'], 'wDefPct');
-  maxId(['firedef%', 'fdef%', 'fdefpct'], 'fDefPct');
-  maxId(['airdef%', 'adef%', 'adefpct'], 'aDefPct');
-  maxId(['elementaldef%', 'rdef%', 'rdefpct'], 'rDefPct');
-  sum(['sumdef%', 'totaldef%', 'sumdefpct', 'totaldefpct'], props.edefpct, props.tdefpct, props.wdefpct, props.fdefpct, props.adefpct, props.rDefPct);
-
-  maxId(['bonushealth', 'healthid', 'bonushp', 'hpid', 'hpbonus'], 'hpBonus');
-
-  maxId(['hpregen', 'hpr', 'hr', 'hprraw'], 'hprRaw');
-  maxId(['hpregen%', 'hpr%', 'hr%', 'hprpct'], 'hprPct');
-  maxId(['lifesteal', 'ls'], 'ls');
-  maxId(['manaregen', 'mr'], 'mr');
-  maxId(['manasteal', 'ms'], 'ms');
-
-  maxId(['walkspeed', 'movespeed', 'ws', 'spd'], 'spd');
-  maxId('sprint', 'sprint');
-  maxId(['sprintregen', 'sprintreg'], 'sprintReg');
-  maxId(['jumpheight', 'jh'], 'jh');
-
-  maxId(['spellcost1', 'rawspellcost1', 'spcost1', 'spraw1'], 'spRaw1');
-  maxId(['spellcost1%', 'spcost1%', 'sppct1'], 'spPct1');
-  maxId(['spellcost2', 'rawspellcost2', 'spcost2', 'spraw2'], 'spRaw2');
-  maxId(['spellcost2%', 'spcost2%', 'sppct2'], 'spPct2');
-  maxId(['spellcost3', 'rawspellcost3', 'spcost3', 'spraw3'], 'spRaw3');
-  maxId(['spellcost3%', 'spcost3%', 'sppct3'], 'spPct3');
-  maxId(['spellcost4', 'rawspellcost4', 'spcost4', 'spraw4'], 'spRaw4');
-  maxId(['spellcost4%', 'spcost4%', 'sppct4'], 'spPct4');
-  sum(['sumspellcost', 'totalspellcost', 'sumrawspellcost', 'totalrawspellcost', 'sumspcost', 'totalspcost', 'sumspraw', 'totalspraw'], props.spraw1, props.spraw2, props.spraw3, props.spraw4);
-  sum(['sumspellcost%', 'totalspellcost%', 'sumspcost%', 'totalspcost%', 'sumsppct', 'totalsppct'], props.sppct1, props.sppct2, props.sppct3, props.sppct4);
-
-  maxId(['exploding', 'expl', 'expd'], 'expd');
-  maxId('poison', 'poison');
-  maxId('thorns', 'thorns');
-  maxId(['reflection', 'refl', 'ref'], 'ref');
-  maxId(['soulpointregen', 'spr', 'spregen'], 'spRegen');
-  maxId(['lootbonus', 'lb'], 'lb');
-  maxId(['xpbonus', 'xpb', 'xb'], 'xpb');
-  maxId(['stealing', 'esteal'], 'eSteal');
-  maxId(['lq', 'quality'], 'lq');
-  maxId('gxp', 'gXp');
-  maxId('gspd', 'gSpd');
-  maxId(['healeff', 'healpct'], 'healPct');
-  maxId('kb', 'kb');
-  maxId('weakenenemy', 'weakenEnemy');
-  maxId('slowenemy', 'slowEnemy');
-  maxId('maxmana', 'maxMana');
-  maxId('mainAttackRange', 'mainAttackRange');
+  commonQueryProps({prop, maxId, sum, props});
 
   return props;
 })();
@@ -566,6 +467,94 @@ const queryFuncs = {
       if (args[0] <= -3) return 0.51;
       if (args[0] >= 3) return 4.3;
       throw new Error('Invalid argument to atkSpdMod()');
+    }
+  },
+  weapondmgbonus: {
+    type: 'number',
+    fn: function(item, itemExp, args) {
+      if (args.length < 3) throw new Error('Not enough args to weaponDmgBonus()');
+      let damage_weight = 0;
+      // try not to recalculate the weapon if it's not necessary
+      if (saved_weapon_args == null || saved_weapon_args[0] != args[0] || saved_weapon_args[1] != args[1]) {
+        saved_weapon_args = args;
+        weapon_choice = new Item(itemMap.get(args[0]));
+
+        // copy pasted from PowderInputNode
+        let input = args[1].trim();
+        let powdering = [];
+        while (input) {
+            let first = input.slice(0, 2).toLowerCase();
+            let powder = powderIDs.get(first);
+            if (powder === undefined) {
+                break;
+            } else {
+                powdering.push(powder);
+            }
+            input = input.slice(2);
+        }
+        weapon_choice.statMap.set("powders", powdering);
+        apply_weapon_powders(weapon_choice.statMap);
+      }
+      const use_spell = args[2];
+      let max_roll;
+
+      if (itemExp.has("ids")) {
+        // For ingredients
+        max_roll = itemExp.get("ids").get("maxRolls");
+      } else {
+        // For items
+        max_roll = itemExp.get("maxRolls");
+      }
+
+      if (use_spell) {
+        const damage_elements = ['n'].concat(skp_elements);
+        for (ele of damage_elements) {
+          const dmg_range = weapon_choice.statMap.get(ele + "Dam_");
+          const avg_dmg = (dmg_range[0] + dmg_range[1]) / 2;
+          if (avg_dmg == 0){
+              continue;
+          }
+          const atkspd_idx = { SUPER_SLOW: 0, VERY_SLOW: 1, SLOW: 2, NORMAL: 3, FAST: 4, VERY_FAST: 5, SUPER_FAST: 6 };
+          const avg_dps = avg_dmg * baseDamageMultiplier[atkspd_idx[weapon_choice.statMap.get("atkSpd")]];
+
+          let pct_damage_boost = getOrNullToZero(max_roll,ele+'DamPct') + getOrNullToZero(max_roll,ele+'SdPct') + getOrNullToZero(max_roll,'damPct') + getOrNullToZero(max_roll,'sdPct');
+          if (ele != "n") {
+            pct_damage_boost += getOrNullToZero(max_roll,'rDamPct') + getOrNullToZero(max_roll,'rSdPct');
+          }
+          damage_weight += avg_dps/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'SdRaw');
+        }
+        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'sdRaw') + getOrNullToZero(max_roll,'rSdRaw') + getOrNullToZero(max_roll,'rDamRaw');
+      }
+      else {
+        const damage_elements = ['n'].concat(skp_elements);
+        for (ele of damage_elements) {
+          const dmg_range = weapon_choice.statMap.get(ele + "Dam_");
+          const avg_dmg = (dmg_range[0] + dmg_range[1]) / 2;
+          if (avg_dmg == 0){
+              continue;
+          }
+          let pct_damage_boost = getOrNullToZero(max_roll,ele+'DamPct') + getOrNullToZero(max_roll,ele+'MdPct') + getOrNullToZero(max_roll,'damPct') + getOrNullToZero(max_roll,'mdPct');
+          if (ele != "n") {
+            pct_damage_boost += getOrNullToZero(max_roll,'rDamPct') + getOrNullToZero(max_roll,'rMdPct');
+          }
+          damage_weight += avg_dmg/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'MdRaw');
+        }
+        damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'mdRaw') + getOrNullToZero(max_roll,'rMdRaw') + getOrNullToZero(max_roll,'rDamRaw');
+      }
+
+      return damage_weight;
+    }
+  },
+  leveltopowderavgdmg: {
+    type: 'number',
+    fn: function(item, itemExp, args) {
+      if (args.length < 1) throw new Error('Not enough args to levelToPowderAvgDmg()');
+      for (let i = powderLevelReq.length; i >= 0; i--) {
+        if (args[0] >= powderLevelReq[i]) {
+          return [4.5, 6.5, 8, 8.5, 10, 11.5, 13][i];
+        }
+      }
+      return 0;
     }
   }
 };

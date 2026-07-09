@@ -482,3 +482,12 @@ button.toggleOn:hover {
     height: 100vh;
 }
 
+.drop-row {
+    min-width: 160px;
+    flex: 0 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    min-height: 2rem;
+    padding: 0.25rem 0.5rem;
+}

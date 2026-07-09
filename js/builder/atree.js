@@ -59,6 +59,7 @@ add_spell_prop: {
     display:        Optional[str]   // Optional change to the displayed entry. Replaces old
     hide:           Optional[str]   // Modify this part to be hidden.
     ignored_mults:  List[str]       // Damage multiplier effects to ignore.
+    mana_gained:    Optional[int]   // The amount of mana gained on spell use, used for mana calculator.
 }
 
 convert_spell_conv: {
@@ -98,6 +99,8 @@ stat_scaling: {
                                             //     The slider scaling value is interpreted as a "multiplier" (100+x)/100,
                                             //     which is raised to the power of the slider value.
   slider_max: Optional[int]                 // affected by behavior
+  slider_max_mult: Optional[float]          // Multiplicative factor applied to slider_max after all additive
+                                            //     slider_max contributions are merged. Multiple sources multiply together.
   slider_default: Optional[int]             // affected by behavior
   inputs: Optional[list[scaling_target]]    // List of things to scale. Omit this if using slider
 
@@ -105,6 +108,7 @@ stat_scaling: {
                                             // 1. Single output scaling target
                                             // 2. List of scaling targets (all scaled the same)
                                             // 3. Omitted. no output (useful for modifying slider only without input or output)
+  requirement:  Optional[float]             // The minimum requirement for a slider to start scaling.
   scaling: Optional[list[float]]            // One float for each input. Sums into output.
   max: float                                // Hardcap on this effect (slider value * slider_step). Can be negative if scaling is negative
 }
@@ -138,35 +142,35 @@ const default_abils = {
         display_name: "Mage Melee",
         id: 999,
         desc: "Mage basic attack.",
-        properties: {range: 5000},
+        properties: {range: 12},
         effects: [default_spells.wand[0]]
     }, elem_mastery_abil ],
     Warrior: [{
         display_name: "Warrior Melee",
         id: 999,
         desc: "Warrior basic attack.",
-        properties: {range: 2},
+        properties: {range: 4},
         effects: [default_spells.spear[0]]
     }, elem_mastery_abil ],
     Archer: [{
         display_name: "Archer Melee",
         id: 999,
         desc: "Archer basic attack.",
-        properties: {range: 20},
+        properties: {range: 9},
         effects: [default_spells.bow[0]]
     }, elem_mastery_abil ],
     Assassin: [{
         display_name: "Assassin Melee",
         id: 999,
         desc: "Assassin basic attack.",
-        properties: {range: 2},
+        properties: {range: 3},
         effects: [default_spells.dagger[0]]
     }, elem_mastery_abil ],
     Shaman: [{
         display_name: "Shaman Melee",
         id: 999,
         desc: "Shaman basic attack.",
-        properties: {range: 15, speed: 0},
+        properties: {range: 32.25, speed: 0},
         effects: [default_spells.relik[0]]
     }, elem_mastery_abil ],
 };
@@ -400,10 +404,10 @@ const atree_validate = new (class extends ComputeNode {
             }
             atree_to_add = _add;
         }
-        const atree_level_table = ['lvl0wtf',1,2,2,3,3,4,4,5,5,6,6,7,8,8,9,9,10,11,11,12,12,13,14,14,15,16,16,17,17,18,18,19,19,20,20,20,21,21,22,22,23,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,34,35,35,35,36,36,36,37,37,37,38,38,38,38,39,39,39,39,40,40,40,40,41,41,41,41,42,42,42,42,43,43,43,43,44,44,44,44,45,45,45];
+        const atree_level_table = ['lvl0wtf',1,2,2,3,3,4,4,5,5,6,6,7,8,8,9,9,10,11,11,12,12,13,14,14,15,16,16,17,17,18,18,19,19,20,20,20,21,21,22,22,23,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,34,35,35,35,36,36,36,37,37,37,38,38,38,38,39,39,39,39,40,40,40,40,41,41,41,41,42,42,42,42,43,43,43,43,44,44,44,44,45,45,45,46,46,46,47,47,47,48,48,48,49,49,49,49,50,50];
         let AP_cap;
         if (isNaN(level)) {
-            AP_cap = 45;   
+            AP_cap = 50;   
         }
         else {
             AP_cap = atree_level_table[level];
@@ -503,6 +507,29 @@ const atree_merge = new (class extends ComputeNode {
             }
             merge_abil(node.ability);
         }
+        
+        // Apply aspects. Order is redundent.
+        // Similar to major_ids, each aspect can have multiple abilities.
+        // Unlike major ids, aspects are imlemented to always be valid for the current class.
+        const aspects = input_map.get('final-aspects');
+        for (const [aspect, tier_num] of aspects) {
+            if (aspect.NONE || !aspect.tiers[tier_num - 1].abilities) {
+                continue;
+            }
+            for (const abil of aspect.tiers[tier_num - 1].abilities) {
+                if (abil.dependencies !== undefined) {
+                    let dep_satisfied = true;
+                    for (const dep_id of abil.dependencies) {
+                        if (!atree_state.get(dep_id).active) {
+                            dep_satisfied = false;
+                            break;
+                        }
+                    }
+                    if (!dep_satisfied) { continue; }
+                }
+                merge_abil(abil); 
+            }
+        }
 
         // Apply major IDs.
         const build_class = wep_to_class.get(build.weapon.statMap.get("type"));
@@ -537,29 +564,6 @@ const atree_merge = new (class extends ComputeNode {
                         merge_abil(abil);
                     }
                 }
-            }
-        }
-         
-        // Apply aspects. Order is redundent.
-        // Similar to major_ids, each aspect can have multiple abilities.
-        // Unlike major ids, aspects are imlemented to always be valid for the current class.
-        const aspects = input_map.get('final-aspects');
-        for (const [aspect, tier_num] of aspects) {
-            if (aspect.NONE || !aspect.tiers[tier_num - 1].abilities) {
-                continue;
-            }
-            for (const abil of aspect.tiers[tier_num - 1].abilities) {
-                if (abil.dependencies !== undefined) {
-                    let dep_satisfied = true;
-                    for (const dep_id of abil.dependencies) {
-                        if (!atree_state.get(dep_id).active) {
-                            dep_satisfied = false;
-                            break;
-                        }
-                    }
-                    if (!dep_satisfied) { continue; }
-                }
-                merge_abil(abil); 
             }
         }
 
@@ -638,6 +642,9 @@ const atree_make_interactives = new (class extends ComputeNode {
                         }
                         else if (!slider_info.overwritten) {
                             slider_info.max += slider_max;
+                            if ('slider_max_mult' in effect) {
+                                slider_info.max_mult = (slider_info.max_mult ?? 1) * effect.slider_max_mult;
+                            }
                             slider_info.default_val += slider_default;
                         }
                     }
@@ -666,6 +673,12 @@ const atree_make_interactives = new (class extends ComputeNode {
             if (unprocessed.length == to_process.length) { break; }
             to_process = unprocessed;
             unprocessed = [];
+        }
+        // apply accumulated slider_max_mult factors (multiplicative phase)
+        for (const [_, info] of slider_map) {
+            if (info.max_mult != null && info.max_mult !== 1) {
+                info.max = Math.round(info.max * info.max_mult);
+            }
         }
         // next, render the sliders and toggles onto the abilities.
         for (const [slider_name, slider_info] of slider_map.entries()) {
@@ -752,22 +765,26 @@ const atree_scaling = new (class extends ComputeNode {
                     continue;
                 case 'stat_scaling':
                     let total = 0;
-                    const {slider = false, scaling = [0], behavior="merge", multiplicative = false} = effect;
+                    const {slider = false, scaling = [0], behavior="merge", multiplicative = false, requirement = 0} = effect;
                     let { positive = true, round = true } = effect;
                     if (slider) {
                         if (behavior == "modify" && !slider_map.has(effect.slider_name)) {
                             // Dangerous control flow.. early continue
                             continue;
                         }
-                        const slider_val = slider_map.get(effect.slider_name).slider.value;
 
-                        if (effect.multiplicative) {
-                            total = (((100+atree_translate(atree_merged, scaling[0]))/100) ** parseInt(slider_val)-1) * 100;
+                        const slider_val = slider_map.get(effect.slider_name).slider.value;
+                        if(requirement > slider_val){
+                            continue;
+                        }
+                        const input_value = slider_val - requirement;
+
+                        if (multiplicative) {
+                            total = (((100+atree_translate(atree_merged, scaling[0]))/100) ** parseInt(input_value)-1) * 100;
                         }
                         else {
-                            total = parseInt(slider_val) * atree_translate(atree_merged, scaling[0]);
+                            total = parseInt(input_value) * atree_translate(atree_merged, scaling[0]);
                         }
-                        round = false;
                         positive = false;
                     }
                     else {
@@ -962,18 +979,24 @@ const atree_collect_spells = new (class extends ComputeNode {
                     // Already handled above.
                     continue;
                 case 'add_spell_prop': {
-                    const { base_spell, target_part = null, cost = 0, behavior = 'merge'} = effect;
+                    const { base_spell, target_part = null, cost = 0, mana_gained = 0, behavior = 'merge'} = effect;
                     if (!ret_spells.has(base_spell)) {
                         continue;
                     }
 
                     const ret_spell = ret_spells.get(base_spell);
-
                     // :enraged:
                     // NOTE to hpp: this is out here because:
                     // target_part doesn't exist for spell cost modification abilities
                     // except when it does... in which case it should apply exactly once.
                     if ('cost' in ret_spell) { ret_spell.cost += cost; }
+                    if (mana_gained) { 
+                        const val = atree_translate(atree_merged, mana_gained);
+                        ret_spell.mana_gained = ret_spell.mana_gained == null ? val : ret_spell.mana_gained + val;
+                    }
+                    if ('display' in effect) {
+                        ret_spell.display = effect.display;
+                    }
 
                     // NOTE: see above comment for the weird placement of this code block.
                     if (target_part === null) { continue; }
@@ -1029,9 +1052,6 @@ const atree_collect_spells = new (class extends ComputeNode {
                             spell_part.display = false;
                         }
                         ret_spell.parts.push(spell_part);
-                    }
-                    if ('display' in effect) {
-                        ret_spell.display = effect.display;
                     }
                     continue;
                 }
@@ -1310,6 +1330,14 @@ function render_AT(UI_elem, list_elem, tree) {
                 });
                 generateTooltip(node_wrap.tooltip_elem, node_elem, ability, atree_map);
                 UI_elem.appendChild(node_wrap.tooltip_elem);
+
+                // If the tooltip overflows the bottom of the viewport, show it above the node instead.
+                // Use the same 50px gap as the normal (below) case to keep the tooltip clear of the hitbox.
+                const tooltipRect = node_wrap.tooltip_elem.getBoundingClientRect();
+                if (tooltipRect.bottom > window.innerHeight) {
+                    const nodePageY = node_elem.getBoundingClientRect().top + window.pageYOffset;
+                    node_wrap.tooltip_elem.style.top = (nodePageY - node_wrap.tooltip_elem.offsetHeight - 50) + "px";
+                }
             });
 
             hitbox.addEventListener('mouseout', function(e) {

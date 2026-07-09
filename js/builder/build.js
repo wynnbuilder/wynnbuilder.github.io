@@ -25,9 +25,9 @@ class Build {
 
         if (level < 1) { //Should these be constants?
             this.level = 1;
-        } else if (level > 106) {
-            this.level = 106;
-        } else if (level <= 106 && level >= 1) {
+        } else if (level > 121) {
+            this.level = 121;
+        } else if (level <= 121 && level >= 1) {
             this.level = level;
         } else if (typeof level === "string") {
             this.level = level;
@@ -57,6 +57,8 @@ class Build {
         // How many skillpoints assigned (1 number, sum of base_skillpoints)
         this.assigned_skillpoints = result[3];
         this.activeSetCounts = result[4];
+        // How many skillpoints are from items (used for radiance)
+        this.total_item_skillpoints = result[5];
 
         this.initBuildStats();
     }  
@@ -131,6 +133,7 @@ class Build {
         statMap.set("poisonPct", 0);
         statMap.set("healMult", new Map());
         statMap.get('healMult').set('item', statMap.get('healPct'));
+        statMap.set('manaMult', new Map());
 
         // The stuff relevant for damage calculation!!! @ferricles
         statMap.set("atkSpd", this.weapon.statMap.get("atkSpd"));

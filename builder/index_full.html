@@ -355,7 +355,7 @@
                                                 Level:
                                             </div>
                                             <div class="col d-flex px-1">
-                                                <input class="equipment-input text-light form-control form-control-sm" id="level-choice" name="level-choice" value="106" placeholder="Build level" value="" tabindex="2"/>
+                                                <input class="equipment-input text-light form-control form-control-sm" id="level-choice" name="level-choice" value="121" placeholder="Build level" value="" tabindex="2"/>
                                             </div>
                                             <div class="col-auto px-1 scaled-font">
                                                 <button class="button py-0 fw-bold text-light dark-5 scaled-font rounded" id="reset-button" onclick="resetFields()">Reset</button>
@@ -462,183 +462,528 @@
                     </div>
                     
                     <div class="col mb-1 text-center scaled-font dark-5 rounded dark-shadow">
-                        <div class="row row-cols-1 justify-content-center">
-                            <div class="col fw-bold dark-4 rounded-top">
-                                Active boosts
+                        <div class="row fw-bold dark-4 rounded-top">
+                            <div id = "ability-boosts-btn" class="col dark-4u fake-button selected-btn" onclick="show_tab('ability-boosts', ['ability-boosts', 'powder-specials', 'raid-buffs'])">
+                                Ability Boosts
                             </div>
-                            <div class="col">
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="radiance-boost" onclick="update_radiance('radiance')">
-                                    Radiance (+20%)
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="divinehonor-boost" onclick="update_radiance('divinehonor')">
-                                    Divine Honor (+10%)
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="warscream-boost" onclick="update_boosts('warscream-boost')">
-                                    War Scream
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="emboldeningcry-boost" onclick="update_boosts('emboldeningcry-boost')">
-                                    Emboldening Cry (+8%)
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="totem-boost" onclick="update_boosts('totem-boost')">
-                                    Vengeful Spirit (+20%)
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="fortitude-boost" onclick="update_boosts('fortitude-boost')">
-                                    Fortitude (+40%)
-                                </button>
-                                <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="eldritchcall-boost" onclick="update_boosts('eldritchcall-boost')">
-                                    Eldritch Call (+15%)
-                                </button>
+                            <div id = "powder-specials-btn" class="col dark-4u fake-button" onclick="show_tab('powder-specials', ['ability-boosts', 'powder-specials', 'raid-buffs'])">
+                                Powder Specials
                             </div>
-                            <div class="col" id="boost-toggles">
-
+                            <div id = "raid-buffs-btn" class="col dark-4u fake-button" onclick="show_tab('raid-buffs', ['ability-boosts', 'powder-specials', 'raid-buffs'])">
+                                Raid Buffs
                             </div>
                         </div>
-                        <div class="row row-cols-1 justify-content-center" id="boost-sliders">
-
+                        <div>
+                            <div id="ability-boosts" class="row row-cols-1 justify-content-center">
+                                <div class="col">
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="radiance-boost" onclick="update_radiance('radiance')">
+                                        Radiance (+15%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="divinehonor-boost" onclick="update_radiance('divinehonor')">
+                                        Divine Honor (+5%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="shine-boost" onclick="update_radiance('shine')">
+                                        Shine (+5%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="warscream-boost" onclick="update_boosts('warscream-boost')">
+                                        War Scream
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="emboldeningcry-boost" onclick="update_boosts('emboldeningcry-boost')">
+                                        Emboldening Cry (+8%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="totem-boost" onclick="update_boosts('totem-boost')">
+                                        Vengeful Spirit (+20%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="fortitude-boost" onclick="update_boosts('fortitude-boost')">
+                                        Fortitude (+40%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="hauntinglunatic-boost" onclick="update_boosts('hauntinglunatic-boost')">
+                                        Lunatic Haunt
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="hauntingfanatic-boost" onclick="update_boosts('hauntingfanatic-boost')">
+                                        Fanatic Haunt (+15%)
+                                    </button>
+                                    <button class="button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id="judgement-boost" onclick="update_boosts('judgement-boost');radiance_node.mark_dirty().update()">
+                                        Judgement
+                                    </button>
+                                </div>
+                                <div class="col" id="boost-toggles">
+                                </div>
+                                <div class="row row-cols-1 justify-content-center" id="boost-sliders">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col mb-1">
-                        <div class="row row-cols-1 rounded text-center dark-5 scaled-font">
-                            <div class="row p-0 m-0 text-nowrap">
-                                <div id = "str-boost-btn" class="col eDam dark-4u fake-button elem-boost" onclick="show_tab('str-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
-                                    Earth
+                        <div id="powder-specials" class="col mb-1" style="display: none;">
+                            <div class="row row-cols-1 rounded text-center dark-5 scaled-font">
+                                <div class="row p-0 m-0 text-nowrap">
+                                    <div id = "str-boost-btn" class="col eDam dark-4u fake-button elem-boost" onclick="show_tab('str-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
+                                        Earth
+                                    </div>
+                                    <div id = "dex-boost-btn" class="col tDam dark-4u fake-button elem-boost" onclick="show_tab('dex-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
+                                        Thunder
+                                    </div>
+                                    <div id = "int-boost-btn" class="col wDam dark-4u fake-button elem-boost" onclick="show_tab('int-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
+                                        Water
+                                    </div>
+                                    <div id = "def-boost-btn" class="col fDam dark-4u fake-button elem-boost" onclick="show_tab('def-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
+                                        Fire
+                                    </div>
+                                    <div id = "agi-boost-btn" class="col aDam dark-4u fake-button elem-boost" onclick="show_tab('agi-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
+                                        Air
+                                    </div>
                                 </div>
-                                <div id = "dex-boost-btn" class="col tDam dark-4u fake-button elem-boost" onclick="show_tab('dex-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
-                                    Thunder
+                                <div class="row row-cols-1 p-0 m-0" id="str-boost" style="display: none;">
+                                    <div class="col eDam dark-5">
+                                        Quake (Active)
+                                    </div>
+                                    <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1" >
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-1" onclick = "updatePowderSpecials('Quake-1')">
+                                            Lv.1
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-2" onclick = "updatePowderSpecials('Quake-2')">
+                                            Lv.2
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-3" onclick = "updatePowderSpecials('Quake-3')">
+                                            Lv.3
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-4" onclick = "updatePowderSpecials('Quake-4')">
+                                            Lv.4
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-5" onclick = "updatePowderSpecials('Quake-5')">
+                                            Lv.5
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-6" onclick = "updatePowderSpecials('Quake-6')">
+                                            Lv.6
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-7" onclick = "updatePowderSpecials('Quake-7')">
+                                            Lv.7
+                                        </button>
+                                    </div>
+                                    <div class="col eDam">
+                                        Rage (Passive)
+                                    </div>
                                 </div>
-                                <div id = "int-boost-btn" class="col wDam dark-4u fake-button elem-boost" onclick="show_tab('int-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
-                                    Water
+                                <div class="row row-cols-1 p-0 m-0" id="dex-boost" style="display: none;">
+                                    <div class="col tDam dark-5">
+                                        Chain Lightning (Active)
+                                    </div>
+                                    <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-1" onclick = "updatePowderSpecials('Chain_Lightning-1')">
+                                            Lv.1
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-2" onclick = "updatePowderSpecials('Chain_Lightning-2')">
+                                            Lv.2
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-3" onclick = "updatePowderSpecials('Chain_Lightning-3')">
+                                            Lv.3
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-4" onclick = "updatePowderSpecials('Chain_Lightning-4')">
+                                            Lv.4
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-5" onclick = "updatePowderSpecials('Chain_Lightning-5')">
+                                            Lv.5
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-6" onclick = "updatePowderSpecials('Chain_Lightning-6')">
+                                            Lv.6
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-7" onclick = "updatePowderSpecials('Chain_Lightning-7')">
+                                            Lv.7
+                                        </button>
+                                    </div>
+                                    <div class="col tDam">
+                                        Kill Streak (Passive)
+                                    </div>
                                 </div>
-                                <div id = "def-boost-btn" class="col fDam dark-4u fake-button elem-boost" onclick="show_tab('def-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
-                                    Fire
+                                <div class="row row-cols-1 p-0 m-0" id="int-boost">
+                                    <div class="col wDam dark-5">
+                                        Curse (Active)
+                                    </div>
+                                    <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-1" onclick = "updatePowderSpecials('Curse-1')">
+                                            Lv.1
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-2" onclick = "updatePowderSpecials('Curse-2')">
+                                            Lv.2
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-3" onclick = "updatePowderSpecials('Curse-3')">
+                                            Lv.3
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-4" onclick = "updatePowderSpecials('Curse-4')">
+                                            Lv.4
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-5" onclick = "updatePowderSpecials('Curse-5')">
+                                            Lv.5
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-6" onclick = "updatePowderSpecials('Curse-6')">
+                                            Lv.6
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-7" onclick = "updatePowderSpecials('Curse-7')">
+                                            Lv.7
+                                        </button>
+                                    </div>
+                                    <div class="col wDam">
+                                        Concentration (Passive)
+                                    </div>
                                 </div>
-                                <div id = "agi-boost-btn" class="col aDam dark-4u fake-button elem-boost" onclick="show_tab('agi-boost', ['str-boost', 'dex-boost', 'int-boost', 'def-boost', 'agi-boost'])">
-                                    Air
+                                <div class="row row-cols-1 p-0 m-0" id="def-boost" style="display: none;">
+                                    <div class="col fDam dark-5">
+                                        Courage (Active)
+                                    </div>
+                                    <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-1" onclick = "updatePowderSpecials('Courage-1')">
+                                            Lv.1
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-2" onclick = "updatePowderSpecials('Courage-2')">
+                                            Lv.2
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-3" onclick = "updatePowderSpecials('Courage-3')">
+                                            Lv.3
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-4" onclick = "updatePowderSpecials('Courage-4')">
+                                            Lv.4
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-5" onclick = "updatePowderSpecials('Courage-5')">
+                                            Lv.5
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-6" onclick = "updatePowderSpecials('Courage-6')">
+                                            Lv.6
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-7" onclick = "updatePowderSpecials('Courage-7')">
+                                            Lv.7
+                                        </button>
+                                    </div>
+                                    <div class="col fDam">
+                                        Endurance (Passive)
+                                    </div>
+                                </div>
+                                <div class="row row-cols-1 p-0 m-0" id="agi-boost" style="display: none;">
+                                    <div class="col aDam dark-5">
+                                        Wind Prison (Active)
+                                    </div>
+                                    <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-1" onclick = "updatePowderSpecials('Wind_Prison-1')">
+                                            Lv.1
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-2" onclick = "updatePowderSpecials('Wind_Prison-2')">
+                                            Lv.2
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-3" onclick = "updatePowderSpecials('Wind_Prison-3')">
+                                            Lv.3
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-4" onclick = "updatePowderSpecials('Wind_Prison-4')">
+                                            Lv.4
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-5" onclick = "updatePowderSpecials('Wind_Prison-5')">
+                                            Lv.5
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-6" onclick = "updatePowderSpecials('Wind_Prison-6')">
+                                            Lv.6
+                                        </button>
+                                        <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-7" onclick = "updatePowderSpecials('Wind_Prison-7')">
+                                            Lv.7
+                                        </button>
+                                    </div>
+                                    <div class="col aDam">
+                                        Dodge (Passive)
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row row-cols-1 p-0 m-0" id="str-boost" style="display: none;">
-                                <div class="col eDam dark-5">
-                                    Quake (Active)
+                        </div>
+                        <div id="raid-buffs" class="col mb-1" style="display: none;">
+                           <div class="row row-cols-1 rounded text-center dark-5 scaled-font">
+                                <div class="row p-0 m-0 text-nowrap">
+                                    <div id = "notg-btn" class="col mc-dark-green dark-4u fake-button selected-btn" onclick="show_tab('notg', ['notg', 'nol', 'tcc', 'tna', 'wtp'])">
+                                        NOTG
+                                    </div>
+                                    <div id = "nol-btn" class="col mc-yellow dark-4u fake-button" onclick="show_tab('nol', ['notg', 'nol', 'tcc', 'tna', 'wtp'])">
+                                        NOL
+                                    </div>
+                                    <div id = "tcc-btn" class="col mc-dark-aqua dark-4u fake-button" onclick="show_tab('tcc', ['notg', 'nol', 'tcc', 'tna', 'wtp'])">
+                                        TCC
+                                    </div>
+                                    <div id = "tna-btn" class="col mc-dark-purple dark-4u fake-button" onclick="show_tab('tna', ['notg', 'nol', 'tcc', 'tna', 'wtp'])">
+                                        TNA
+                                    </div>
+                                    <div id = "wtp-btn" class="col mc-red dark-4u fake-button" onclick="show_tab('wtp', ['notg', 'nol', 'tcc', 'tna', 'wtp'])">
+                                        WTP
+                                    </div>
                                 </div>
-                                <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1" >
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-1" onclick = "updatePowderSpecials('Quake-1')">
-                                        Lv.1
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-2" onclick = "updatePowderSpecials('Quake-2')">
-                                        Lv.2
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-3" onclick = "updatePowderSpecials('Quake-3')">
-                                        Lv.3
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-4" onclick = "updatePowderSpecials('Quake-4')">
-                                        Lv.4
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Quake-5" onclick = "updatePowderSpecials('Quake-5')">
-                                        Lv.5
-                                    </button>
+                                <div class="row row-cols-1 p-0 m-0" id="notg">
+                                    <div id="notg-1" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Lightbearer-I" onclick = "updateRaidBuffs('notg', 1, 'Lightbearer-I')">
+                                            Lightbearer I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bioluminescent-I" onclick = "updateRaidBuffs('notg', 1, 'Bioluminescent-I')">
+                                            Bioluminescent I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Berserk-I" onclick = "updateRaidBuffs('notg', 1, 'Berserk-I')">
+                                            Berserk I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Pestilent-I" onclick = "updateRaidBuffs('notg', 1, 'Pestilent-I')">
+                                            Pestilent I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bedrock-I" onclick = "updateRaidBuffs('notg', 1, 'Bedrock-I')">
+                                            Bedrock I
+                                        </button>
+                                    </div>
+                                    <div id="notg-2" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Lightbearer-II" onclick = "updateRaidBuffs('notg', 2, 'Lightbearer-II')">
+                                            Lightbearer II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bioluminescent-II" onclick = "updateRaidBuffs('notg', 2, 'Bioluminescent-II')">
+                                            Bioluminescent II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Berserk-II" onclick = "updateRaidBuffs('notg', 2, 'Berserk-II')">
+                                            Berserk II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Pestilent-II" onclick = "updateRaidBuffs('notg', 2, 'Pestilent-II')">
+                                            Pestilent II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bedrock-II" onclick = "updateRaidBuffs('notg', 2, 'Bedrock-II')">
+                                            Bedrock II
+                                        </button>
+                                    </div>
+                                    <div id="notg-3" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Lightbearer-III" onclick = "updateRaidBuffs('notg', 3, 'Lightbearer-III')">
+                                            Lightbearer III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bioluminescent-III" onclick = "updateRaidBuffs('notg', 3, 'Bioluminescent-III')">
+                                            Bioluminescent III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Berserk-III" onclick = "updateRaidBuffs('notg', 3, 'Berserk-III')">
+                                            Berserk III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Pestilent-III" onclick = "updateRaidBuffs('notg', 3, 'Pestilent-III')">
+                                            Pestilent III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Bedrock-III" onclick = "updateRaidBuffs('notg', 3, 'Bedrock-III')">
+                                            Bedrock III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Palisade" onclick = "updateRaidBuffs('notg', 3, 'Palisade')">
+                                            Palisade
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col eDam">
-                                    Rage (Passive)
+                                <div class="row row-cols-1 p-0 m-0" id="nol" style="display: none;">
+                                    <div id="nol-1" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Cherubim-I" onclick = "updateRaidBuffs('nol', 1, 'Cherubim-I')">
+                                            Cherubim I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Seraphim-I" onclick = "updateRaidBuffs('nol', 1, 'Seraphim-I')">
+                                            Seraphim I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Ophanim-I" onclick = "updateRaidBuffs('nol', 1, 'Ophanim-I')">
+                                            Ophanim I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Throne-I" onclick = "updateRaidBuffs('nol', 1, 'Throne-I')">
+                                            Throne I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Anti-I" onclick = "updateRaidBuffs('nol', 1, 'Anti-I')">
+                                            Anti I
+                                        </button>
+                                    </div>
+                                    <div id="nol-2" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Cherubim-II" onclick = "updateRaidBuffs('nol', 2, 'Cherubim-II')">
+                                            Cherubim II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Seraphim-II" onclick = "updateRaidBuffs('nol', 2, 'Seraphim-II')">
+                                            Seraphim II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Ophanim-II" onclick = "updateRaidBuffs('nol', 2, 'Ophanim-II')">
+                                            Ophanim II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Throne-II" onclick = "updateRaidBuffs('nol', 2, 'Throne-II')">
+                                            Throne II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Anti-II" onclick = "updateRaidBuffs('nol', 2, 'Anti-II')">
+                                            Anti II
+                                        </button>
+                                    </div>
+                                    <div id="nol-3" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Cherubim-III" onclick = "updateRaidBuffs('nol', 3, 'Cherubim-III')">
+                                            Cherubim III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Seraphim-III" onclick = "updateRaidBuffs('nol', 3, 'Seraphim-III')">
+                                            Seraphim III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Ophanim-III" onclick = "updateRaidBuffs('nol', 3, 'Ophanim-III')">
+                                            Ophanim III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Throne-III" onclick = "updateRaidBuffs('nol', 3, 'Throne-III')">
+                                            Throne III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Anti-III" onclick = "updateRaidBuffs('nol', 3, 'Anti-III')">
+                                            Anti III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Neophyte" onclick = "updateRaidBuffs('nol', 3, 'Neophyte')">
+                                            Neophyte
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row row-cols-1 p-0 m-0" id="dex-boost" style="display: none;">
-                                <div class="col tDam dark-5">
-                                    Chain Lightning (Active)
+                                <div class="row row-cols-1 p-0 m-0" id="tcc" style="display: none;">
+                                    <div id="tcc-1" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Intrepid-I" onclick = "updateRaidBuffs('tcc', 1, 'Intrepid-I')">
+                                            Intrepid I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Stonewalker-I" onclick = "updateRaidBuffs('tcc', 1, 'Stonewalker-I')">
+                                            Stonewalker I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Giant-I" onclick = "updateRaidBuffs('tcc', 1, 'Giant-I')">
+                                            Giant I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Elder-I" onclick = "updateRaidBuffs('tcc', 1, 'Elder-I')">
+                                            Elder I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Boulderbreaker-I" onclick = "updateRaidBuffs('tcc', 1, 'Boulderbreaker-I')">
+                                            Boulderbreaker I
+                                        </button>
+                                    </div>
+                                    <div id="tcc-2" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Intrepid-II" onclick = "updateRaidBuffs('tcc', 2, 'Intrepid-II')">
+                                            Intrepid II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Stonewalker-II" onclick = "updateRaidBuffs('tcc', 2, 'Stonewalker-II')">
+                                            Stonewalker II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Giant-II" onclick = "updateRaidBuffs('tcc', 2, 'Giant-II')">
+                                            Giant II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Elder-II" onclick = "updateRaidBuffs('tcc', 2, 'Elder-II')">
+                                            Elder II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Boulderbreaker-II" onclick = "updateRaidBuffs('tcc', 2, 'Boulderbreaker-II')">
+                                            Boulderbreaker II
+                                        </button>
+                                    </div>
+                                    <div id="tcc-3" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Intrepid-III" onclick = "updateRaidBuffs('tcc', 3, 'Intrepid-III')">
+                                            Intrepid III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Stonewalker-III" onclick = "updateRaidBuffs('tcc', 3, 'Stonewalker-III')">
+                                            Stonewalker III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Giant-III" onclick = "updateRaidBuffs('tcc', 3, 'Giant-III')">
+                                            Giant III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Elder-III" onclick = "updateRaidBuffs('tcc', 3, 'Elder-III')">
+                                            Elder III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Boulderbreaker-III" onclick = "updateRaidBuffs('tcc', 3, 'Boulderbreaker-III')">
+                                            Boulderbreaker III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Cirrus" onclick = "updateRaidBuffs('tcc', 3, 'Cirrus')">
+                                            Cirrus
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-1" onclick = "updatePowderSpecials('Chain_Lightning-1')">
-                                        Lv.1
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-2" onclick = "updatePowderSpecials('Chain_Lightning-2')">
-                                        Lv.2
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-3" onclick = "updatePowderSpecials('Chain_Lightning-3')">
-                                        Lv.3
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-4" onclick = "updatePowderSpecials('Chain_Lightning-4')">
-                                        Lv.4
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Chain_Lightning-5" onclick = "updatePowderSpecials('Chain_Lightning-5')">
-                                        Lv.5
-                                    </button>
+                                <div class="row row-cols-1 p-0 m-0" id="tna" style="display: none;">
+                                    <div id="tna-1" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hollowed-I" onclick = "updateRaidBuffs('tna', 1, 'Hollowed-I')">
+                                            Hollowed I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Sojourner-I" onclick = "updateRaidBuffs('tna', 1, 'Sojourner-I')">
+                                            Sojourner I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Fading-I" onclick = "updateRaidBuffs('tna', 1, 'Fading-I')">
+                                            Fading I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Insidious-I" onclick = "updateRaidBuffs('tna', 1, 'Insidious-I')">
+                                            Insidious I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hopeless-I" onclick = "updateRaidBuffs('tna', 1, 'Hopeless-I')">
+                                            Hopeless I
+                                        </button>
+                                    </div>
+                                    <div id="tna-2" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hollowed-II" onclick = "updateRaidBuffs('tna', 2, 'Hollowed-II')">
+                                            Hollowed II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Sojourner-II" onclick = "updateRaidBuffs('tna', 2, 'Sojourner-II')">
+                                            Sojourner II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Fading-II" onclick = "updateRaidBuffs('tna', 2, 'Fading-II')">
+                                            Fading II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Insidious-II" onclick = "updateRaidBuffs('tna', 2, 'Insidious-II')">
+                                            Insidious II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hopeless-II" onclick = "updateRaidBuffs('tna', 2, 'Hopeless-II')">
+                                            Hopeless II
+                                        </button>
+                                    </div>
+                                    <div id="tna-3" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hollowed-III" onclick = "updateRaidBuffs('tna', 3, 'Hollowed-III')">
+                                            Hollowed III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Sojourner-III" onclick = "updateRaidBuffs('tna', 3, 'Sojourner-III')">
+                                            Sojourner III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Fading-III" onclick = "updateRaidBuffs('tna', 3, 'Fading-III')">
+                                            Fading III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Insidious-III" onclick = "updateRaidBuffs('tna', 3, 'Insidious-III')">
+                                            Insidious III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Hopeless-III" onclick = "updateRaidBuffs('tna', 3, 'Hopeless-III')">
+                                            Hopeless III
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Manic" onclick = "updateRaidBuffs('tna', 3, 'Manic')">
+                                            Manic
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col tDam">
-                                    Kill Streak (Passive)
-                                </div>
-                            </div>
-                            <div class="row row-cols-1 p-0 m-0" id="int-boost">
-                                <div class="col wDam dark-5">
-                                    Curse (Active)
-                                </div>
-                                <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-1" onclick = "updatePowderSpecials('Curse-1')">
-                                        Lv.1
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-2" onclick = "updatePowderSpecials('Curse-2')">
-                                        Lv.2
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-3" onclick = "updatePowderSpecials('Curse-3')">
-                                        Lv.3
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-4" onclick = "updatePowderSpecials('Curse-4')">
-                                        Lv.4
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Curse-5" onclick = "updatePowderSpecials('Curse-5')">
-                                        Lv.5
-                                    </button>
-                                </div>
-                                <div class="col wDam">
-                                    Concentration (Passive)
-                                </div>
-                            </div>
-                            <div class="row row-cols-1 p-0 m-0" id="def-boost" style="display: none;">
-                                <div class="col fDam dark-5">
-                                    Courage (Active)
-                                </div>
-                                <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-1" onclick = "updatePowderSpecials('Courage-1')">
-                                        Lv.1
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-2" onclick = "updatePowderSpecials('Courage-2')">
-                                        Lv.2
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-3" onclick = "updatePowderSpecials('Courage-3')">
-                                        Lv.3
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-4" onclick = "updatePowderSpecials('Courage-4')">
-                                        Lv.4
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Courage-5" onclick = "updatePowderSpecials('Courage-5')">
-                                        Lv.5
-                                    </button>
-                                </div>
-                                <div class="col fDam">
-                                    Endurance (Passive)
-                                </div>
-                            </div>
-                            <div class="row row-cols-1 p-0 m-0" id="agi-boost" style="display: none;">
-                                <div class="col aDam dark-5">
-                                    Wind Prison (Active)
-                                </div>
-                                <div class="col skp-tooltip dark-6 rounded-bottom my-3 my-xl-1">
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-1" onclick = "updatePowderSpecials('Wind_Prison-1')">
-                                        Lv.1
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-2" onclick = "updatePowderSpecials('Wind_Prison-2')">
-                                        Lv.2
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-3" onclick = "updatePowderSpecials('Wind_Prison-3')">
-                                        Lv.3
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-4" onclick = "updatePowderSpecials('Wind_Prison-4')">
-                                        Lv.4
-                                    </button>
-                                    <button class = "button-boost m-1 border-0 text-white dark-8u dark-shadow-sm" id = "Wind_Prison-5" onclick = "updatePowderSpecials('Wind_Prison-5')">
-                                        Lv.5
-                                    </button>
-                                </div>
-                                <div class="col aDam">
-                                    Dodge (Passive)
+                                <div class="row row-cols-1 p-0 m-0" id="wtp" style="display: none;">
+                                    <div id="wtp-1" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Relentless-I" onclick = "updateRaidBuffs('wtp', 1, 'Relentless-I')">
+                                            Relentless I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Ingenious-I" onclick = "updateRaidBuffs('wtp', 1, 'Ingenious-I')">
+                                            Ingenious I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Unrestrained-I" onclick = "updateRaidBuffs('wtp', 1, 'Unrestrained-I')">
+                                            Unrestrained I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Opulent-I" onclick = "updateRaidBuffs('wtp', 1, 'Opulent-I')">
+                                            Opulent I
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Omniscient-I" onclick = "updateRaidBuffs('wtp', 1, 'Omniscient-I')">
+                                            Omniscient I
+                                        </button>
+                                    </div>
+                                    <div id="wtp-2" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Relentless-II" onclick = "updateRaidBuffs('wtp', 2, 'Relentless-II')">
+                                            Relentless II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Ingenious-II" onclick = "updateRaidBuffs('wtp', 2, 'Ingenious-II')">
+                                            Ingenious II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Unrestrained-II" onclick = "updateRaidBuffs('wtp', 2, 'Unrestrained-II')">
+                                            Unrestrained II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Opulent-II" onclick = "updateRaidBuffs('wtp', 2, 'Opulent-II')">
+                                            Opulent II
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Omniscient-II" onclick = "updateRaidBuffs('wtp', 2, 'Omniscient-II')">
+                                            Omniscient II
+                                        </button>
+                                    </div>
+                                    <div id="wtp-3" class="col skp-tooltip dark-6 rounded-bottom my-2 my-xl-1" >
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Restless" onclick = "updateRaidBuffs('wtp', 3, 'Restless')">
+                                            Restless
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Apathetic" onclick = "updateRaidBuffs('wtp', 3, 'Apathetic')">
+                                            Apathetic
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Faceless" onclick = "updateRaidBuffs('wtp', 3, 'Faceless')">
+                                            Faceless
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Prideful" onclick = "updateRaidBuffs('wtp', 3, 'Prideful')">
+                                            Prideful
+                                        </button>
+                                        <button class = "button-boost m-1 fs-6 border-0 text-white dark-8u dark-shadow-sm" id = "Isolated" onclick = "updateRaidBuffs('wtp', 3, 'Isolated')">
+                                            Isolated
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -674,6 +1019,11 @@
                                             <div class = "col py-2">
                                                 <button class = "button rounded scaled-font fw-bold text-light dark-5" id = "reset-edit-ID-button" onclick = "resetEditableIDs();">
                                                     Reset IDs
+                                                </button>
+                                            </div>
+                                           <div class = "col py-2">
+                                                <button class = "button rounded scaled-font fw-bold text-light dark-5" id = "optimize-str-dex-button" onclick = "optimizeStrDex();">
+                                                    Optimize Str/Dex
                                                 </button>
                                             </div>
                                         </div>
@@ -1457,19 +1807,44 @@
                 </div>
             </div>
             <div class="col-xl-3 mb-3 order-2 order-lg-0">
-                <div class="row row-cols-1 rounded dark-shadow dark-6 scaled-font">
+                <div class="row row-cols-1 mb-3 rounded dark-shadow dark-6 scaled-font">
                     <div class="col rounded-top">
                         <div class="row">
-                            <div id="detailed-stats-btn" class="col text-center fake-button border-bottom border-dark rounded-top dark-4u border border-2 border-dark-7" onclick="show_tab('detailed-stats', ['detailed-stats', 'summary-stats'])">
-                                Detailed
-                            </div>
                             <div id="summary-stats-btn" class="col text-center fake-button border-bottom border-dark rounded-top dark-4u border border-2 border-dark-7 selected-btn" onclick="show_tab('summary-stats', ['detailed-stats', 'summary-stats'])">
                                 Summary
+                            </div>
+                            <div id="detailed-stats-btn" class="col text-center fake-button border-bottom border-dark rounded-top dark-4u border border-2 border-dark-7" onclick="show_tab('detailed-stats', ['detailed-stats', 'summary-stats'])">
+                                Detailed
                             </div>
                         </div>
                     </div>
                     <div style="display: none;" id="detailed-stats" class="col text-nowrap"></div>
                     <div id="summary-stats" class="col text-nowrap"></div>
+                </div>
+                <div class="row row-cols-1 rounded dark-shadow dark-6 scaled-font">
+                    <div class="col rounded-top text-center">
+                        <div class="mt-2">
+                            <label for="spell-cycle" class="form-label text-light">Spell Cycle</label>
+                            <input id='spell-cycle' class='equipment-input form-control text-light mx-auto' placeholder='e.g. 1213' pattern='[1-4]+' oninput="this.value = this.value.replace(/[^1-4]/g, '')">
+                        </div>
+                        <div class="mt-2">
+                            <label for="cps-count" class="form-label text-light">Clicks per Second</label>
+                            <input id='cps-count' class='equipment-input form-control text-light mx-auto' placeholder='9'>
+                        </div>
+                        <div class="form-check d-flex mt-2">
+                            <input class="form-check-input me-2" type="checkbox" id="mana-steal-check">
+                            <label class="form-check-label text-light" for="mana-steal-check">
+                                Include Mana Steal
+                            </label>
+                        </div>
+                        <div class="col mt-3 text-center text-light">
+                            <hr class="border-secondary">
+
+                            <div class="mb-2">Mana Used/s: <span id="mana-used">-</span></div>
+                            <div class="mb-2">Mana Gained/s: <span id="mana-gained">-</span></div>
+                            <div class="mb-2">Net Mana/s: <span id="net-mana">-</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xl-3 mb-3 px-0">
@@ -1549,7 +1924,7 @@
                     </div>
                     <div class="col-auto">
                         <label for="item-level-choice">Level:</label>
-                        <input class="search-field" type="text" id="item-level-choice" name="item-level-choice" placeholder="1-106"/>
+                        <input class="search-field" type="text" id="item-level-choice" name="item-level-choice" placeholder="1-121"/>
                     </div>
                 </div>
                 <div class="row row-cols-1 row-cols-xl-4 justify-content-center my-1">
@@ -1596,7 +1971,8 @@
     <script type="text/javascript" src="../js/load_tome.js"></script>
     <script type="text/javascript" src="../js/load_aspect.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script> 
-    <script type="text/javascript" src="../js/craft.js"></script>  
+    <script type="text/javascript" src="../js/craft.js"></script>
+    <script type="text/javascript" src="../js/mana_calc.js"></script>
     <script type="text/javascript" src="../js/builder/build.js"></script>
     <script type="text/javascript" src="../js/builder/builder_constants.js"></script>
     <script type="text/javascript" src="../js/builder/build_encode_decode.js"></script>
@@ -1604,7 +1980,7 @@
     <script type="text/javascript" src="../js/builder/aspects.js"></script>
     <script type="text/javascript" src="../js/builder/builder_graph.js"></script>
     <script type="text/javascript" src="../js/builder/builder.js"></script>
-    <!--script type="text/javascript" src="../js/builder/optimize.js"></script-->
+    <script type="text/javascript" src="../js/builder/optimize.js"></script>
     <!--div id="graph_body" style="max-width: 100%; height: 100vh">
         <button id="saveButton">JANKY Export SVG</button>
         <a id="saveLink">savelink</a>

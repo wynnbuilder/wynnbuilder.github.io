@@ -211,8 +211,13 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
         }
 
         if (k.includes(';')) {
-            const ele_match = damage_elements.indexOf(k.split(';')[1]);
-            if (ele_match !== -1) {
+            const ele_bonus = k.split(';')[1];
+            const ele_match = damage_elements.indexOf(ele_bonus);
+            
+            if (ele_bonus === "m" && !use_spell_damage) {
+                damage_mult *= (1 + v/100);
+            }
+            else if (ele_match !== -1) {
                 ele_damage_mult[ele_match] *= (1 + v/100);
             }
         }

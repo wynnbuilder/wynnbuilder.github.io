@@ -143,13 +143,12 @@ const special_mappings = {
     "Sum (Life Sustain)": "hpr+ls",
     "Sum (Health + Health Bonus)": "hp+hpBonus",
     "Sum (Base Damage)": "sumdmg",
-    "Base DPS (Pre-Powder)": "sumdmg * atkspdmod(atkspd)",
-    "Base DPS (Post-Powder)": "(sumdmg+powders*11.5) * atkspdmod(atkspd)",
-    "Sum (Melee Damages Raw)": "mdRaw+rMdRaw+nMdRaw+eMdRaw+tMdRaw+wMdRaw+fMdRaw+aMdRaw",
-    "Sum (Spell Damages Raw)": "sdRaw+rSdRaw+nSdRaw+eSdRaw+tSdRaw+wSdRaw+fSdRaw+aSdRaw",
-    "Sum (All Damages Raw)": "damRaw+rDamRaw+nDamRaw+eDamRaw+tDamRaw+wDamRaw+fDamRaw+aDamRaw",
-    "Sum (Spell Damages %)": "sdPct+eSdPct+tSdPct+wSdPct+fSdPct+aSdPct+nSdPct+rSdPct",
-    "Sum (Melee Damages %)": "mdPct+eMdPct+tMdPct+wMdPct+fMdPct+aMdPct+nMdPct+rMdPct",
+    "Base DPS (Pre-Powder)": "sumdmg*atkspdmod(atkspd)",
+    "Base DPS (Post-Powder)": "(sumdmg+slots*leveltopowderavgdmg(lvl))*atkspdmod(atkspd)",
+    "Sum (Melee Damage Raw)": "summeleedamraw+sumdamraw",
+    "Sum (Spell Damage Raw)": "sumspelldamraw+sumdamraw",
+    "Sum (Spell Damages %)": "max(edpct+esdpct,tdpct+tsdpct,wdpct+wsdpct,fdpct+fsdpct,adpct+asdpct,ndpct+nsdpct)+sdpct+dpct+rdpct+rsdpct",
+    "Sum (Melee Damages %)": "max(edpct+emdpct,tdpct+tmdpct,wdpct+wmdpct,fdpct+fmdpct,adpct+amdpct,ndpct+nmdpct)+mdpct+dpct+rdpct+rmdpct",
     "Sum (Elemental Defense Raw)": "eDef+tDef+wDef+fDef+aDef"
 };
 
@@ -160,18 +159,29 @@ const string_mappings = {
     "Restriction": "restrict"
 }
 
-for (let x in translate_mappings) {
+const weapon_expression_mappings = {
+    "Weapon Melee Damage Bonus": "",
+    "Weapon Spell Damage Bonus": ""
+}
+
+for (let x in weapon_expression_mappings) {
     item_filters.push(x);
 }
+
 for (let x in special_mappings) {
     item_filters.push(x);
 }
+
+for (let x in translate_mappings) {
+    item_filters.push(x);
+}
+
 for (let x in string_mappings) {
     string_item_filters.push(x);
 }
 
 types = {bow: false, spear: false, wand: false, dagger: false, relik: false, helmet: false, chestplate: false, leggings: false, boots: false, ring: false, bracelet: false, necklace: false};
-search_tiers = {normal: true, unique: true, set: true, rare: true, legendary: true, fabled: true, mythic: true};
+search_tiers = {normal: true, unique: true, rare: true, legendary: true, fabled: true, mythic: true};
 
 function display(items_copy) {
     let items_parent = document.getElementById("search-results");

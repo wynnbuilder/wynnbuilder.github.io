@@ -1,7 +1,7 @@
 let powderIDs = new Map();
 let powderNames = new Map();
 let _powderID = 0;
-let POWDER_TIERS = 6;
+let POWDER_TIERS = 7;
 
 for (const x of skp_elements) {
     for (let i = 1; i <= POWDER_TIERS; ++i) {
@@ -11,7 +11,7 @@ for (const x of skp_elements) {
     }
 }
 
-// Ordering: [dmgMin, dmgMax, convert, defPlus, defMinus (+6 mod 5)]
+// Ordering: [dmgMin, dmgMax, convert, defPlus, defMinus (+POWDER_TIERS mod 5)]
 class Powder {
     constructor(min, max, convert, defPlus, defMinus) {
         this.min = min;
@@ -24,12 +24,17 @@ class Powder {
 function _p(a,b,c,d,e) { return new Powder(a,b,c,d,e); } //bruh moment
 
 let powderStats = [
-    _p(3,6,17,2,1), _p(5,8,21,4,2), _p(6,10,25,8,3), _p(7,10,31,14,5), _p(9,11,38,22,9), _p(11,13,46,30,13),
-    _p(1,8,9,3,1), _p(1,12,11,5,1), _p(2,15,13,9,2), _p(3,15,17,14,4), _p(4,17,22,20,7), _p(5,20,28,28,10),
-    _p(3,4,13,3,1), _p(4,6,15,6,1), _p(5,8,17,11,2), _p(6,8,21,18,4), _p(7,10,26,28,7), _p(9,11,32,40,10),
-    _p(2,5,14,3,1), _p(4,8,16,5,2), _p(5,9,19,9,3), _p(6,9,24,16,5), _p(8,10,30,25,9), _p(10,12,37,36,13),
-    _p(2,6,11,3,1), _p(3,10,14,6,2), _p(4,11,17,10,3), _p(5,11,22,16,5), _p(7,12,28,24,9), _p(8,14,35,34,13)
+    _p(4,5,17,2,1), _p(6,7,21,5,2), _p(7,9,25,9,3), _p(8,9,31,14,4), _p(9,11,38,22,7), _p(11,12,46,29,7), _p(12,14,52,37,12),
+    _p(1,8,9,2,1), _p(1,12,11,4,1), _p(2,14,13,8,2), _p(2,15,17,13,3), _p(3,17,22,20,5), _p(4,19,28,28,6), _p(5,21,32,36,11),
+    _p(3,4,13,3,1), _p(5,6,15,6,1), _p(6,8,17,11,3), _p(7,8,21,16,4), _p(8,10,26,23,6), _p(10,13,32,32,10), _p(11,15,38,40,15),
+    _p(2,5,14,3,1), _p(4,7,16,6,1), _p(5,9,19,10,2), _p(6,9,24,15,3), _p(7,11,30,22,5), _p(9,14,37,31,9), _p(10,16,44,39,14),
+    _p(2,6,11,3,1), _p(3,9,14,6,2), _p(4,11,17,10,3), _p(5,11,22,16,5), _p(7,12,28,23,7), _p(8,15,35,30,8), _p(9,17,42,38,13)
 ];
+
+// Thankfully, powders on armors give the same HP regardless of element
+let powderArmorHealth = [5, 10, 20, 30, 45, 60, 75]
+
+let powderLevelReq = [1, 5, 15, 25, 40, 55, 70]
 
 //Ordering: [weapon special name, weapon special effects, armor special name, armor special effects]
 class PowderSpecial{
@@ -44,11 +49,11 @@ class PowderSpecial{
 function _ps(a,b,c,d,e) { return new PowderSpecial(a,b,c,d,e); } //bruh moment
 
 let powderSpecialStats = [
-    _ps("Quake",new Map([["Radius",[4.5,5,5.5,6,6.5]], ["Damage",[240,280,320,360,400]] ]),"Rage",new Map([ ["Damage", [0.2,0.4,0.6,0.8,1.0]],["Description", "% " + "\u2764" + " Missing below 75%"] ]),240), //e
-    _ps("Chain Lightning",new Map([ ["Chains", [5,6,7,8,9]], ["Damage", [200,225,250,275,300]] ]),"Kill Streak",new Map([ ["Damage", [3,4.5,6,7.5,9]],["Duration", [5,5,5,5,5]],["Description", "Mob Killed"] ]),150), //t
-    _ps("Curse",new Map([ ["Duration", [4,4,4,4,4]],["Damage Boost", [10,12.5,15,17.5,20]] ]),"Concentration",new Map([ ["Damage", [0.05,0.1,0.15,0.2,0.25]],["Duration",[1,1,1,1,1]],["Description", "Mana Used"] ]),100), //w
-    _ps("Courage",new Map([ ["Duration", [4,4,4,4,4]],["Damage", [60, 70, 80, 90, 100]],["Damage Boost", [10,12.5,15,17.5,20]] ]),"Endurance",new Map([ ["Damage", [2,3,4,5,6]],["Duration", [8,8,8,8,8]],["Description", "Hit Taken"] ]),100), //f
-    _ps("Wind Prison",new Map([ ["Duration", [3,3.5,4,4.5,5]],["Damage Boost", [100,125,150,175,200]],["Knockback", [8,12,16,20,24]] ]),"Dodge",new Map([ ["Damage",[2,3,4,5,6]],["Duration",[2,3,4,5,6]],["Description","Near Mobs"] ]),100) //a
+    _ps("Quake",new Map([["Radius",[4.5,5,5.5,6,6.5,7,7.5]], ["Damage",[240,280,320,360,400,440,480]] ]),"Rage",new Map([ ["Damage", [0.4,0.5,0.6,0.7,0.8,0.9,1.0]],["Description", "% " + "\u2764" + " Missing below 75%"] ]),300), //e
+    _ps("Chain Lightning",new Map([ ["Chains", [5,6,7,8,9,10,11]], ["Damage", [200,225,250,275,300,325,350]] ]),"Kill Streak",new Map([ ["Damage", [6,7.5,9,10.5,12,13.5,15]],["Duration", [5,5,5,5,5,5,5]],["Description", "Mob Killed"] ]),200), //t
+    _ps("Curse",new Map([ ["Duration", [4,4,4,4,4,4,4]],["Damage Boost", [10,12.5,15,17.5,20,22.5,25]] ]),"Concentration",new Map([ ["Damage", [0.05,0.075,0.1,0.125,0.15,0.175,0.2]],["Duration",[1,1,1,1,1,1,1]],["Description", "Mana Used"] ]),120), //w
+    _ps("Courage",new Map([ ["Duration", [4,4,4,4,4,4,4]],["Damage", [110,125,140,155,170,185,200]],["Damage Boost", [10,12.5,15,17.5,20,22.5,25]] ]),"Endurance",new Map([ ["Damage", [2,3,4,5,6,7,8]],["Duration", [8,8,8,8,8,8,8]],["Description", "Hit Taken"] ]),120), //f
+    _ps("Wind Prison",new Map([ ["Duration", [5,5,5,5,5,5,5]],["Damage Boost", [100,125,150,175,200,225,250]],["Knockback", [8,12,16,20,24,24,24]] ]),"Dodge",new Map([ ["Damage",[2,3,4,5,6,7,8]],["Duration",[20,20,20,20,20,20,20]],["Description","Near Mobs"] ]),120) //a
 ];
 
 /**
@@ -83,6 +88,7 @@ function applyArmorPowders(expandedItem) {
         let prevName = skp_elements[(skp_elements.indexOf(name) + 4 )% 5];
         expandedItem.set(name+"Def", (expandedItem.get(name+"Def") || 0) + powder["defPlus"]);
         expandedItem.set(prevName+"Def", (expandedItem.get(prevName+"Def") || 0) - powder["defMinus"]);
+        expandedItem.set("hp", (expandedItem.get("hp") || 0) + powderArmorHealth[id % POWDER_TIERS]);
     }
 }
 
@@ -158,7 +164,7 @@ function calc_weapon_powder(weapon, damageBases) {
     for (const powderID of powders) {
         const powder = powderStats[powderID];
         // Bitwise to force conversion to integer (integer division).
-        const element = (powderID/6) | 0;
+        const element = (powderID/POWDER_TIERS) | 0;
         const conversion_ratio = powder.convert/100;
 
         if (powder_apply_map.has(element)) {
@@ -180,12 +186,11 @@ function calc_weapon_powder(weapon, damageBases) {
 
     //New 2.1 calculations for crafted ingredient powders
     //TODO: more verification that this is correct?
-    //Essentially, ingredient powders now apply after the powder master application.
     if (weapon.get("tier") === "Crafted" && !weapon.get("custom")) {
         for (const p of weapon.get("ingredPowders")) {
             const powder = powderStats[p];  //use min, max, and convert
             // Bitwise to force conversion to integer (integer division).
-            const element = (p/6) | 0;
+            const element = (p/POWDER_TIERS) | 0;
             
             //Half the normal bonuses for powders
             let powder_max_bonus = Math.floor(powder.max / 2);

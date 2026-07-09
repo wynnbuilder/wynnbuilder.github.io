@@ -128,16 +128,30 @@ const translate_mappings = {
 };
 
 const special_mappings = {
-    "Sum (skill points)": "str+dex+int+def+agi",
-    "Sum (Mana Sustain)": "mr+ms",
+    "Sum (Effectiveness)": "7/3 * touching + 8/3 * nottouching + 2/3 * (top + bottom) + 1/2 * (left + right)",
+    "Sum (Skill Points)": "str+dex+int+def+agi",
+    "Sum (Mana Sustain)": "mr/5+ms/3",
     "Sum (Life Sustain)": "hpr+ls",
-    "Sum (Effectiveness)": "7/3 * touching + 8/3 * nottouching + 2/3 * (top + bottom) + 1/2 * (left + right)"
+    "Sum (Melee Damage Raw)": "summeleedamraw+sumdamraw",
+    "Sum (Spell Damage Raw)": "sumspelldamraw+sumdamraw",
+    "Sum (Spell Damages %)": "max(edpct+esdpct,tdpct+tsdpct,wdpct+wsdpct,fdpct+fsdpct,adpct+asdpct,ndpct+nsdpct)+sdpct+dpct+rdpct+rsdpct",
+    "Sum (Melee Damages %)": "max(edpct+emdpct,tdpct+tmdpct,wdpct+wmdpct,fdpct+fmdpct,adpct+amdpct,ndpct+nmdpct)+mdpct+dpct+rdpct+rmdpct",
 };
 
-for (let x in translate_mappings) {
+const weapon_expression_mappings = {
+    "Weapon Melee Damage Bonus": "",
+    "Weapon Spell Damage Bonus": ""
+}
+
+for (let x in weapon_expression_mappings) {
     item_filters.push(x);
 }
+
 for (let x in special_mappings) {
+    item_filters.push(x);
+}
+
+for (let x in translate_mappings) {
     item_filters.push(x);
 }
 
@@ -207,6 +221,7 @@ function init_values() {
 
 (async function() {
     await Promise.resolve(ingredient_loader.load_init());
+    await Promise.resolve(item_loader.load_init(), load_major_id_data(wynn_version_names[WYNN_VERSION_LATEST]));
     init_search();
 })();
 

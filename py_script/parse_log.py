@@ -34,7 +34,7 @@ def getDisplayName(item):
         return item["displayName"]
     return item["name"]
 
-with open("clean.json", "r") as infile:
+with open("../data/baseline/clean.json", "r") as infile:
     all_json = json.load(infile)
     old_items = all_json["items"]
     old_item_map = dict()
@@ -234,4 +234,4 @@ for k, v in item_dps_by_type.items():
         name = getDisplayName(item)
         print(f"{name}: {-dps:.2f}, {p}")
 
-json.dump(all_json, open("nerf_items.json", "w"), indent=2)
+json.dump(all_json, open("../data/temp/nerf_items.json", "w"), indent=2)

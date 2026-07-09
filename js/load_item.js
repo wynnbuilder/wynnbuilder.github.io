@@ -1,4 +1,4 @@
-const ITEM_DB_VERSION = 173;
+const ITEM_DB_VERSION = 196;
 
 let items;
 let sets = new Map();
@@ -10,7 +10,7 @@ let none_items = [];
 
 class ItemLoader extends Loader {
     get remote_paths() {
-        return 'compress';
+        return 'data/baseline/compressed/compress';
     }
 
     get old_data_paths() {
@@ -222,7 +222,16 @@ const wynn_version_names = [
     '2.1.3.4',
     '2.1.4.0',
     '2.1.5.0',
-    '2.1.6.0'
+    '2.1.6.0',
+    '2.2.0.0',
+    '2.2.0.7',
+    '2.2.0.12',
+    '2.2.0.14',
+    '2.2.0.19',
+    '2.2.0.21',
+    '2.2.0.31',
+    '2.2.1.0',
+    '2.2.2.0'
 ];
 
 const WYNN_VERSION_LATEST = wynn_version_names.length - 1;

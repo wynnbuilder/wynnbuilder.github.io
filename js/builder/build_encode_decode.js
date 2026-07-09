@@ -143,9 +143,7 @@ function encodePowders(powderset, version) {
                 if (powder % POWDER_TIERS === previousPowder % POWDER_TIERS) {
                     powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "REPEAT_TIER");
                     const numElements = ENC.POWDER_ELEMENTS.length;
-                    const powderElement = Math.floor(powder % numElements);
-                    const previousPowderElement = Math.floor(previousPowder % numElements);
-                    const elementWrapper = mod(powderElement - previousPowderElement, numElements) - 1; 
+                    const elementWrapper = mod((powder - previousPowder) / POWDER_TIERS, numElements) - 1; 
                     powdersVec.append(elementWrapper, ENC.POWDER_WRAPPER_BITLEN);
                 } else {
                     powdersVec.appendFlag("POWDER_REPEAT_TIER_OP", "CHANGE_POWDER");
@@ -465,7 +463,10 @@ function decodeEquipment(cursor) {
         // Decode equipment kind
         switch (kind) {
             case DEC.EQUIPMENT_KIND.NORMAL: {
-                const id = cursor.advanceBy(DEC.ITEM_ID_BITLEN);
+                let id = cursor.advanceBy(DEC.ITEM_ID_BITLEN);
+                if (redirectMap.has(id-1)){
+                    id = redirectMap.get(id-1)+1;
+                }
                 if (id === 0) {
                     equipments.push(null);
                 } else {
@@ -513,7 +514,16 @@ function decodeTomes(cursor) {
             for (let i = 0; i < DEC.TOME_NUM; ++i) {
                 switch (cursor.advanceBy(DEC.TOME_SLOT_FLAG.BITLEN)) {
                     case DEC.TOME_SLOT_FLAG.UNUSED: tomes.push(null); break;
-                    case DEC.TOME_SLOT_FLAG.USED: tomes.push(tomeIDMap.get(cursor.advanceBy(DEC.TOME_ID_BITLEN))); break;
+                    case DEC.TOME_SLOT_FLAG.USED: {
+                        let id = cursor.advanceBy(DEC.TOME_ID_BITLEN);
+                        if (tomeRedirectMap.has(id)){
+                            tomes.push(tomeIDMap.get(tomeRedirectMap.get(id)));
+                        }
+                        else {
+                            tomes.push(tomeIDMap.get(id));
+                        }
+                        break;
+                    }
                 }
             }
         }
@@ -1000,8 +1010,15 @@ function shareBuild(build) {
         `> ${build.weapon.statMap.get("displayName")} [${build_powders[4].map(x => powderNames.get(x)).join("")}]`
     ];
 
-    if (!build.tomes.every(tome => tome.statMap.has("NONE"))) {
-        lines.push("> (Has Tomes)")
+    const hasTomes = !build.tomes.every(tome => tome.statMap.has("NONE"));
+    const hasAspects = aspect_agg_node && aspect_agg_node.value
+        && !aspect_agg_node.value.every(([aspect, _]) => aspect.NONE);
+    if (hasTomes && hasAspects) {
+        lines.push("> (Has Tomes and Aspects)");
+    } else if (hasTomes) {
+        lines.push("> (Has Tomes)");
+    } else if (hasAspects) {
+        lines.push("> (Has Aspects)");
     }
 
     const text = lines.join('\n');

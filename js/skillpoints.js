@@ -20,12 +20,6 @@ function apply_skillpoints(skillpoints, item, set_counts) {
             setCount = 0;
             set_counts.set(setName, 1);
         }
-        const new_bonus = sets.get(setName).bonuses[setCount];
-        //let skp_order = ["str","dex","int","def","agi"];
-        for (const i in skp_order) {
-            const delta = (new_bonus[skp_order[i]] || 0) - (old_bonus[skp_order[i]] || 0);
-            skillpoints[i] += delta;
-        }
     }
 }
 
@@ -39,7 +33,7 @@ function vadd5(a, b) {
 
 function can_equip(skillpoints, item) {
     for (let i = 0; i < 5; i++) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         if (item.reqs[i] > skillpoints[i]) { return false; }
     }
     return true;
@@ -49,7 +43,7 @@ function can_equip(skillpoints, item) {
 function fix_should_pop(skillpoints, item) {
     let applied = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; ++i) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         let req;
         if (item.get("crafted")) { req = item.reqs[i]; }
         else { req = item.reqs[i] + item.skillpoints[i]; }
@@ -82,7 +76,7 @@ function check_under_100(skillpoints) {
 function apply_to_fit(skillpoints, item) {
     let applied = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; i++) {
-        if (item.reqs[i] == 0) continue;
+        if (item.reqs[i] <= 0) continue;
         const req = item.reqs[i];
         const cur = skillpoints[i];
         if (req > cur) {
@@ -99,15 +93,24 @@ function calculate_skillpoints(equipment, weapon) {
     // Calculate equipment equipping order and required skillpoints.
     // Return value: [equip_order, best_skillpoints, final_skillpoints, best_total];
     let crafted_items = [];
+    let total_item_skillpoints = [0, 0, 0, 0, 0];
     weapon.skillpoints = weapon.get('skillpoints');
     weapon.reqs = weapon.get('reqs');
     weapon.set = weapon.get('set');
+    for (const i in skp_order) {
+        total_item_skillpoints[i] += weapon.skillpoints[i];
+    }
+
     for (const item of equipment) {
         item.skillpoints = item.get('skillpoints');
         item.reqs = item.get('reqs');
         item.set = item.get('set');
         if (item.get("crafted")) {
             crafted_items.push(item);
+        }
+
+        for (const i in skp_order) {
+            total_item_skillpoints[i] += item.skillpoints[i];
         }
     }
 
@@ -244,9 +247,19 @@ function calculate_skillpoints(equipment, weapon) {
                   [0, 0, 0, 0, 0],
                   new Map(),
                   0, [], [], [], [0, 1, 2, 3, 4, 5, 6, 7, 8]);
+
+    for (const [set_name, count] of best_activeSetCounts) {
+        const bonus = sets.get(set_name).bonuses[count-1];
+        for (const i in skp_order) {
+            const delta = (bonus[skp_order[i]] || 0);
+            final_skillpoints[i] += delta;
+            total_item_skillpoints[i] += delta;
+        }
+    }
+
     const end = performance.now();
     console.log(end - start, "ms elapsed");
     console.log(items_tried, "item equips,", full_tried, "full builds evaluated", checks, "items checked for satisfaction");
-    return [best_order, best_skillpoints, final_skillpoints, best_total, best_activeSetCounts];
+    return [best_order, best_skillpoints, final_skillpoints, best_total, best_activeSetCounts, total_item_skillpoints];
 }
 

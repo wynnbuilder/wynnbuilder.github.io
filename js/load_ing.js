@@ -1,4 +1,11 @@
-const ING_DB_VERSION = 43;
+const ING_DB_VERSION = 53;
+
+/*
+ * Non exhaustive list of dependencies (add them here if you see them!)
+ *
+ * js/powders.js:POWDER_TIER
+ * js/utils.js:ROMAN_NUMERAL_MAP
+ */
 
 let ings;
 let recipes;
@@ -49,7 +56,7 @@ class IngredientLoader extends Loader {
     }
 
     get remote_paths() {
-        return [`ingreds_compress`, `recipes_compress`];
+        return [`data/baseline/compressed/ingreds_compress`, `data/baseline/compressed/recipes_compress`];
     }
 
     process_remote(data, tsx, reject) {
@@ -92,23 +99,22 @@ class IngredientLoader extends Loader {
         ingMap.set(ing.displayName, ing);
         ingList.push(ing.displayName);
         ingIDMap.set(ing.id, ing.displayName);
-        let numerals = new Map([[1, "I"], [2, "II"], [3, "III"], [4, "IV"], [5, "V"], [6, "VI"]]);
 
         // pairs of (dura, req)
         let powder_ing_info = [
-            [-35,0],[-52.5,0],[-70,10],[-91,20],[-112,28],[-133,36]
+            [-35,0],[-52.5,0],[-70,10],[-91,20],[-112,28],[-133,36], [-154,44]
         ];
         for (let i = 0; i < 5; i ++) {
-            for (let powder_tier = 0; powder_tier < 6; ++powder_tier) {
+            for (let powder_tier = 0; powder_tier < POWDER_TIERS; ++powder_tier) {
                 let powder_info = powder_ing_info[powder_tier];
                 let ing = {
-                    name: "" + damageClasses[i+1] + " Powder " + numerals.get(powder_tier + 1),
+                    name: "" + damageClasses[i+1] + " Powder " + ROMAN_NUMERAL_MAP.get(powder_tier + 1),
                     tier: 0,
                     lvl: 0,
                     skills: ["ARMOURING", "TAILORING", "WEAPONSMITHING", "WOODWORKING", "JEWELING"],
                     ids: {},
                     isPowder: true,
-                    pid: 6*i + powder_tier,
+                    pid: POWDER_TIERS*i + powder_tier,
                     itemIDs: {"dura": powder_info[0], "strReq": 0, "dexReq": 0,"intReq": 0,"defReq": 0,"agiReq": 0},
                     consumableIDs: {"dura": 0, "charges": 0},
                     posMods: {"left": 0, "right": 0, "above": 0, "under": 0, "touching": 0, "notTouching": 0}

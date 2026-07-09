@@ -306,25 +306,25 @@ let posModSuffixes = {
 let build_overall_display_commands = [
     "#defense-stats",
     "!spacer",
-    "mr", "ms",
+    "mr", "ms", "#maxManaTotal",
     "ls",
+    "atkTier",
     "poison",
-    "ref", "thorns",
     "expd",
     "spd",
-    "sprint", "sprintReg",
     "jh",
     "xpb", "lb", "lq",
     "spRegen",
     "eSteal",
     "gXp", "gSpd",
     "kb", "weakenEnemy", "slowEnemy",
+    "mainAttackRange"
 ];
 
 let build_detailed_display_commands = [
-    "#defense-stats",
+    "#defense-stats-detailed",
     "!spacer",
-    "mr", "ms", "maxMana",
+    "mr", "ms", "#maxManaTotal",
     "hprRaw", "hprPct", "healPct",
     "ls",
     "!spacer",

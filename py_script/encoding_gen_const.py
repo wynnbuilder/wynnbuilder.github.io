@@ -178,7 +178,7 @@ def gen_aspects():
         bit_len_map["ASPECT_ID_BITLEN"] = 0
 
 def get_data_versions():
-    data_names = os.listdir("../data")
+    data_names = [d for d in os.listdir("../data") if d not in ("baseline", "temp")]
     data_names.sort(reverse=True, key=Version)
     return data_names
 
@@ -234,7 +234,7 @@ if __name__ == "__main__":
                 print("\nWARNING: There's a change in data between old and new data. please make sure that this is intended before writing.")
 
     if write_premission:
-        with open("encoding_consts.json", "w") as outfile:
+        with open("../data/temp/encoding_consts.json", "w") as outfile:
             json.dump(bit_len_map, outfile, indent=2)
         with open(f"../data/{version}/encoding_consts.json", "w") as outfile:
             json.dump(bit_len_map, outfile)
