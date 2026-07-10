@@ -408,7 +408,7 @@ let sq2_item_display_commands = [
     "hp",
     "nDam_", "eDam_", "tDam_", "wDam_", "fDam_", "aDam_",
     "!spacer",
-    "fDef", "wDef", "aDef", "tDef", "eDef",
+    "eDef", "tDef", "wDef", "fDef", "aDef",
     "!elemental",
     "classReq",
     "lvl",

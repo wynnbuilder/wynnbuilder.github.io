@@ -686,7 +686,6 @@
             "properties": {
                 "arrows_per_stream": 6,
                 "attack_frequency": 10,
-                "ray_duration": -0.6,
                 "ray_rate": 10
             },
             "effects": [
@@ -716,6 +715,18 @@
                         0,
                         0,
                         0
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Arrow Storm",
+                            "name": "ray_duration",
+                            "mult": true,
+                            "value": 0.5
+                        }
                     ]
                 }
             ]
@@ -10505,6 +10516,7 @@
                     "name": "Judrajim",
                     "base_spell": 10,
                     "display": "Total Damage",
+                    "cost": 2,
                     "parts": [
                         {
                             "name": "Damage per Tick",
@@ -10603,6 +10615,19 @@
                     "output": {
                         "type": "stat",
                         "name": "damMult.Judrajim:10.Scaled Tick"
+                    },
+                    "scaling": [
+                        20
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Subsequent Judrajim Hits",
+                    "multiplicative": true,
+                    "output": {
+                        "type": "stat",
+                        "name": "spPct10Final"
                     },
                     "scaling": [
                         20
@@ -10915,7 +10940,9 @@
                 "col": 1,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "wisp_count": 500
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -10934,6 +10961,16 @@
                                 100,
                                 0
                             ]
+                        },
+                        {
+                            "name": "Maximum Damage Dealt",
+                            "hits": {
+                                "Wisp Damage": "Dawn.wisp_count"
+                            }
+                        },
+                        {
+                            "name": "Wisp Heal",
+                            "power": 0.1
                         }
                     ]
                 }

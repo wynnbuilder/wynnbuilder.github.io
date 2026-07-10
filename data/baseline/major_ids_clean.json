@@ -749,6 +749,15 @@
                         "target_part": "Heal",
                         "behavior": "overwrite",
                         "power": 0.15
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "target_part": "Total Heal",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Heal": 1
+                        }
                     }
                 ]
             }
@@ -1335,7 +1344,8 @@
                             0,
                             120,
                             0
-                        ]
+                        ],
+                        "display": "Smash Damage"
                     }
                 ]
             }
@@ -1996,7 +2006,7 @@
                             0,
                             0,
                             400,
-                            -50,
+                            0,
                             0,
                             0
                         ]
@@ -2161,7 +2171,7 @@
                                 "abil": "Arrow Storm",
                                 "name": "ray_rate",
                                 "mult": true,
-                                "value": 0.1
+                                "value": 0.2
                             }
                         ]
                     },
@@ -3373,6 +3383,40 @@
                     "range": 6,
                     "charges": 3,
                     "resistance": -20
+                },
+                "effects": []
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Guardian Angels"
+                ],
+                "properties": {
+                    "charges": -3
+                },
+                "effects": []
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Arrow Wall"
+                ],
+                "properties": {
+                    "charges": 2
+                },
+                "effects": []
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Arrow Wall",
+                    "Guardian Angels"
+                ],
+                "properties": {
+                    "charges": -2
                 },
                 "effects": []
             }

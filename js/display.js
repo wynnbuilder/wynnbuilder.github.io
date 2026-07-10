@@ -1501,12 +1501,21 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
     const overallparent_elem = make_elem("div", ['col'])
     let title_elemavg = document.createElement("b");
 
-    if ('cost' in spell) {
+    if ('cost' in spell && spell.cost != 0) {
         let first = make_elem("span", [], { textContent: spell.name + " (" });
         title_elem.appendChild(first.cloneNode(true)); //cloneNode is needed here.
         title_elemavg.appendChild(first);
 
-        let second = make_elem("span", ["Mana"], { textContent: getSpellCost(stats, spell).toFixed(2) });
+        let display_cost = getSpellCost(stats, spell);
+        // For abilities with cost scaling via atree
+        if (isNaN(display_cost)) {
+            display_cost = atree_translate(atree_scaling_tree.value, spell.cost);
+            if (stats.has('spPct' + spell.base_spell + 'Final')) {
+                display_cost *= (1 + stats.get('spPct' + spell.base_spell + 'Final') / 100);
+            }
+        }
+
+        let second = make_elem("span", ["Mana"], { textContent: display_cost.toFixed(2) });
         title_elem.appendChild(second.cloneNode(true));
         title_elemavg.appendChild(second);
 

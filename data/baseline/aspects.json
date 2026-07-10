@@ -536,7 +536,7 @@
           "description": "Shrapnel Bomb gains +8 shrapnel.",
           "abilities": [
             {
-              "base_abil": "Shrapnel Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "bombs": 8
               },
@@ -549,7 +549,7 @@
           "description": "Shrapnel Bomb gains +14 shrapnel.",
           "abilities": [
             {
-              "base_abil": "Shrapnel Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "bombs": 14
               },
@@ -562,7 +562,7 @@
           "description": "Shrapnel Bomb gains +18 shrapnel.",
           "abilities": [
             {
-              "base_abil": "Shrapnel Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "bombs": 18
               },
@@ -575,7 +575,7 @@
           "description": "Shrapnel Bomb gains +22 shrapnel.",
           "abilities": [
             {
-              "base_abil": "Shrapnel Bomb",
+              "base_abil": "Arrow Bomb",
               "properties": {
                 "bombs": 22
               },
@@ -971,13 +971,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "base_abil": "Arrow Storm",
-              "properties": {
-                "arrows_per_stream": 1
-              },
-              "effects": []
             },
             {
               "base_abil": 999,
@@ -1454,7 +1447,7 @@
           "description": "Increase your maximum Flint Arrows by +1. </br> </br><span class='mc-white'>Total Damage</span>: -1% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -1%)",
           "abilities": [
             {
-              "base_abil": 999,
+              "base_abil": "Arsenal Synergy",
               "effects": [
                 {
                   "type": "stat_scaling",
@@ -1478,7 +1471,7 @@
           "description": "Increase your maximum Flint Arrows by +2. </br> </br><span class='mc-white'>Total Damage</span>: -2% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -2%)",
           "abilities": [
             {
-              "base_abil": 999,
+              "base_abil": "Arsenal Synergy",
               "effects": [
                 {
                   "type": "stat_scaling",
@@ -1502,7 +1495,7 @@
           "description": "Increase your maximum Flint Arrows by +3. </br> </br><span class='mc-white'>Total Damage</span>: -3% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -3%)",
           "abilities": [
             {
-              "base_abil": 999,
+              "base_abil": "Arsenal Synergy",
               "effects": [
                 {
                   "type": "stat_scaling",
@@ -2454,13 +2447,28 @@
           "abilities": [
             {
               "base_abil": "War Scream",
+              "dependencies": [
+                "Pressure"
+              ],
               "properties": {
                 "pressure_rainbow_uppercut": 10,
                 "pressure_neutral_uppercut": 70,
                 "pressure_bash_hits": 0.5,
                 "pressure_scream_boost": 4
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "toggle": "Activate Pressure",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "tConvBase:1.Single Hit",
+                      "value": 5
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -4116,7 +4124,7 @@
         },
         {
           "threshold": 5,
-          "description": "Your Ultimate charges 10% faster. </br> Dawn spawns +20% more wisps. Gravitational Collapse lasts +1.6s longer. Tangled Origin attacks +10% faster.",
+          "description": "Your Ultimate charges 10% faster. </br> Dawn spawns +30% more wisps. Gravitational Collapse lasts +1.6s longer. Tangled Origin attacks +10% faster.",
           "abilities": [
             {
               "base_abil": "Tangled Origin",
@@ -4133,12 +4141,22 @@
                   }
                 }
               ]
+            },
+            {
+              "base_abil": "Dawn",
+              "dependencies": [
+                "Dawn"
+              ],
+              "properties": {
+                "wisp_count": 150
+              },
+              "effects": []
             }
           ]
         },
         {
           "threshold": 15,
-          "description": "Your Ultimate charges 15% faster. </br> Dawn spawns +20% more wisps. Gravitational Collapse lasts +1.6s longer. Tangled Origin attacks +10% faster.",
+          "description": "Your Ultimate charges 15% faster. </br> Dawn spawns +30% more wisps. Gravitational Collapse lasts +1.6s longer. Tangled Origin attacks +10% faster.",
           "abilities": [
             {
               "base_abil": "Tangled Origin",
@@ -4155,6 +4173,16 @@
                   }
                 }
               ]
+            },
+            {
+              "base_abil": "Dawn",
+              "dependencies": [
+                "Dawn"
+              ],
+              "properties": {
+                "wisp_count": 150
+              },
+              "effects": []
             }
           ]
         }
