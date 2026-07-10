@@ -113,7 +113,7 @@ def sub(s):
 
 
 if __name__ == "__main__":
-    with open("../js/builder/atree_ids.json", "r") as atree_ids_file:
+    with open("../data/temp/atree_ids.json", "r") as atree_ids_file:
         atree_ids = json.load(atree_ids_file)
 
     with open("../data/baseline/atree_constants.json", "r") as tree_data_file:
