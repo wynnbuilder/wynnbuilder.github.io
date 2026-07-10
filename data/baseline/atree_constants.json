@@ -1647,7 +1647,7 @@
             "display_name": "Leap",
             "desc": "Leap in the direction of your movement when you double jump. </br> The distance scales with your Walk Speed. </br> </br>Cooldown: 2s",
             "archetype": "Boltslinger",
-            "archetype_req": 4,
+            "archetype_req": 3,
             "parents": [
                 "Cheaper Arrow Storm I",
                 "Guardian Angels"
