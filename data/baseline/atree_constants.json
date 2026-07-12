@@ -15,7 +15,8 @@
             "properties": {
                 "aoe": 4.5,
                 "range": 26,
-                "bounce_mult": 1
+                "bounce_mult": 1,
+                "bombs": 1
             },
             "effects": [
                 {
@@ -2690,6 +2691,26 @@
                             "type": "prop",
                             "abil": "Arrow Bomb",
                             "name": "bombs"
+                        }
+                    ],
+                    "output": {
+                        "type": "prop",
+                        "abil": "Recycling",
+                        "name": "arrow_bomb_mult",
+                        "mult": true
+                    },
+                    "scaling": [
+                        1.0
+                    ]                    
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": false,
+                    "inputs": [
+                        {
+                            "type": "prop",
+                            "abil": "Arrow Bomb",
+                            "name": "bounce_mult"
                         }
                     ],
                     "output": {

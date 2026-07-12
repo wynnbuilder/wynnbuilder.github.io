@@ -695,12 +695,12 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:8.Tether Tick",
-                                "value": 50
+                                "value": 100
                             },
                             {
                                 "type": "stat",
                                 "name": "damMult.GruesomeKnots:9.Bleeding Tick",
-                                "value": 50
+                                "value": 100
                             }
                         ]
                     }
