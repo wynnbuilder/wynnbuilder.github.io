@@ -24,8 +24,8 @@ function optimizeStrDex() {
     let best_damage = 0;
     for (let i = 0; i <= remaining; ++i) {
         let total_skillpoints = skillpoints.slice();
-        total_skillpoints[0] = Math.min(total_skillpoints[0] + Math.min(max_str_boost, str_bonus), 150);
-        total_skillpoints[1] = Math.min(total_skillpoints[1] + Math.min(max_dex_boost, dex_bonus), 150);
+        total_skillpoints[0] = Math.min(total_skillpoints[0] + Math.min(max_str_boost, str_bonus));
+        total_skillpoints[1] = Math.min(total_skillpoints[1] + Math.min(max_dex_boost, dex_bonus));
 
         const stats = player_build.statMap;
         stats.set('str', total_skillpoints[0]);
@@ -54,6 +54,11 @@ function optimizeStrDex() {
 
         str_bonus -= 1;
         dex_bonus += 1;
+    }
+
+    // No reason to assign >150 str if not necessary
+    if (best_skillpoints[0] > 150 && skillpoints[0] <= 150){
+        best_skillpoints[0] = 150;
     }
 
     // TODO do not merge for performance reasons
