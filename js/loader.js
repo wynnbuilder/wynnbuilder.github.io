@@ -140,6 +140,7 @@ class Loader {
             let request = window.indexedDB.open(this.db_name, this.db_version);
 
             request.onerror = () => {
+                console.error("DB failed to open:", request.error, " | name: ", this.db_name , " | version: ",this.db_version);
                 reject("DB failed to open...");
             };
 

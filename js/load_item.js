@@ -1,4 +1,4 @@
-const ITEM_DB_VERSION = 197;
+const ITEM_DB_VERSION = 198;
 
 let items;
 let sets = new Map();
@@ -86,6 +86,13 @@ class ItemLoader extends Loader {
     }
 
     init_maps() {
+        if (!Array.isArray(items) || items.length === 0) {
+            throw new Error('Missing item data');
+        }
+        if (!(sets instanceof Map) || sets.size === 0) {
+            throw new Error('Missing set data');
+        }
+
         let none_items_info = [
             ["armor", "helmet", "No Helmet"],
             ["armor", "chestplate", "No Chestplate"],

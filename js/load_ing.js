@@ -80,6 +80,13 @@ class IngredientLoader extends Loader {
     }
 
     init_maps() {
+        if (!Array.isArray(ings) || ings.length === 0) {
+            throw new Error('Missing ingredient data');
+        }
+        if (!Array.isArray(recipes) || recipes.length === 0) {
+            throw new Error('Missing recipe data');
+        }
+
         recipeMap = new Map();
         recipeIDMap = new Map();
 

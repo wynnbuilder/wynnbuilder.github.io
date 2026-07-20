@@ -57,6 +57,10 @@ class TomeLoader extends Loader {
     }
 
     init_maps() {
+        if (!Array.isArray(tomes) || tomes.length === 0) {
+            throw new Error('Missing tome data');
+        }
+        
         const none_tomes_info = [
             ["tome", "weaponTome", "No Weapon Tome", 61],
             ["tome", "armorTome", "No Armor Tome", 62],
