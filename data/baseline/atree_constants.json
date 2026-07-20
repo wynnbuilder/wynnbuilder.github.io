@@ -114,7 +114,9 @@
             "parents": [
                 "Bow Proficiency"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Bomb"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -348,7 +350,9 @@
                 "Arrow Storm",
                 "Arrow Shield"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Escape"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -1245,7 +1249,9 @@
                 "Leap",
                 "Basaltic Trap"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Storm"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -2029,7 +2035,9 @@
                 "Honed Shield",
                 "More Traps"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Shield"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -2306,7 +2314,9 @@
                 "Call of the Hound",
                 "Cheaper Arrow Shield II"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Storm"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -2794,7 +2804,9 @@
                 "Mana Trap",
                 "Initiator"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Escape"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -2820,7 +2832,9 @@
                 "Cheaper Arrow Storm II",
                 "Decimator"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Shield"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -3418,7 +3432,9 @@
                 "Crepuscular Ray",
                 "Snow Storm"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Arrow Bomb"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -4200,7 +4216,9 @@
             "parents": [
                 "Spear Proficiency 1"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Bash"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -4451,7 +4469,9 @@
                 "Uppercut",
                 "War Scream"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Charge"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -4791,7 +4811,6 @@
                 "icon": "node_2"
             },
             "properties": {
-                "hits": -1,
                 "crush_mult": 2 
             },
             "effects": [
@@ -4802,6 +4821,17 @@
                     "hits": {
                         "Bash Hit": "Bash.crush_mult"
                     }
+                },
+                {
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Bash",
+                            "name": "hits",
+                            "value": -1
+                        }
+                    ]
                 }
             ]
         },
@@ -5258,7 +5288,9 @@
                 "Aerodynamics",
                 "Air Shout"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Uppercut"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -5473,7 +5505,9 @@
                 "Rejuvenating Skin",
                 "Cleansing Breeze"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Bash"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -5725,7 +5759,9 @@
                 "Riposte",
                 "Luster Purge"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "War Scream"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -6576,7 +6612,9 @@
                 "Massive Bash",
                 "Overwhelming Rage"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "War Scream"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -6817,7 +6855,7 @@
             "archetype_req": 12,
             "parents": [
                 "Radiance",
-                "Cheaper Uppercut 2"
+                "Cheaper Uppercut II"
             ],
             "dependencies": [],
             "blockers": [],
@@ -6835,7 +6873,7 @@
             "desc": "You gain a +40% Resistance buff if your health is at 25% or less.",
             "parents": [
                 "Bloodlust",
-                "Cheaper Uppercut 2"
+                "Cheaper Uppercut II"
             ],
             "dependencies": [],
             "blockers": [],
@@ -6945,7 +6983,7 @@
             "effects": []
         },
         {
-            "display_name": "Cheaper Uppercut 2",
+            "display_name": "Cheaper Uppercut II",
             "desc": "Reduce the Mana cost of Uppercut by 5.",
             "base_abil": "Uppercut",
             "parents": [
@@ -6954,7 +6992,9 @@
                 "Discombobulate",
                 "Reverberance"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Uppercut"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -7128,6 +7168,13 @@
                             "name": "hits",
                             "mult": true,
                             "value": "War Scream.pressure_bash_hits"
+                        },
+                        {
+                            "type": "prop",
+                            "abil": "Bash",
+                            "name": "crush_mult",
+                            "mult": true,
+                            "value": 2
                         }
                     ]
                 },
@@ -7485,7 +7532,7 @@
             "archetype": "Battle Monk",
             "parents": [
                 "Tempestuous Winds",
-                "Cheaper Uppercut 2",
+                "Cheaper Uppercut II",
                 "Shine"
             ],
             "dependencies": [
@@ -7963,7 +8010,9 @@
             "parents": [
                 "Wand Proficiency I"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Meteor"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -8174,7 +8223,9 @@
                 "Heal",
                 "Ice Snake"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Teleport"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -8853,7 +8904,9 @@
                 "Frozen Tornado",
                 "Purification"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Heal"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -9087,7 +9140,9 @@
                 "Fortitude",
                 "Pyrokinesis"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Ice Snake"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -9135,7 +9190,9 @@
                 "Fortitude",
                 "Purification"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Teleport"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -9879,7 +9936,9 @@
                 "Rift Rupture",
                 "Arcane Speed"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Ice Snake"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -9940,7 +9999,9 @@
                 "Lightweaver",
                 "Rift Rupture"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Meteor"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -10686,7 +10747,9 @@
                 "Riftbound",
                 "Sunflare"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Heal"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -11517,7 +11580,9 @@
             "parents": [
                 "Dagger Proficiency I"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Spin Attack"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -11800,7 +11865,9 @@
                 "Smoke Bomb",
                 "Multihit"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Dash"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -12574,7 +12641,9 @@
                 "Psithurism",
                 "Last Laugh"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Multihit"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -13296,7 +13365,9 @@
                 "Blade Fury",
                 "Wall Jump"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Dash"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -13360,7 +13431,9 @@
                 "Wall Jump",
                 "Shadow Projection"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Spin Attack"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {

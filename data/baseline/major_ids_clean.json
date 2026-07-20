@@ -2792,7 +2792,30 @@
     "SPLIT_SECOND": {
         "displayName": "Split Second",
         "description": "Aura now travels faster with Invigorating Wave unlocked, but no longer gives mana.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": "Invigorating Wave",
+                "dependencies": [
+                    "Invigorating Wave"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Invigorating Wave",
+                                "name": "mana_per_wave",
+                                "mult": true,
+                                "value": 0
+                            }
+                        ]                   
+                    }
+                ]
+            }
+        ]
     },
     "MOB_MENTALITY": {
         "displayName": "Mob Mentality",
