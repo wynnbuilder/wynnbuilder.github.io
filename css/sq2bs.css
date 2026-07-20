@@ -313,6 +313,10 @@ input.aspect-input:not(.is-invalid) {
         font-size: .625rem !important;
     }
 
+    .raid-buff-btn {
+        font-size: 1rem;
+    }
+
     .scaled-item-icon {
         width: 2.6rem;
     }
@@ -376,6 +380,10 @@ input.aspect-input:not(.is-invalid) {
 
     .spellcost-tooltip b {
         font-size: .78rem !important;
+    }
+
+    .raid-buff-btn {
+        font-size: 1rem;
     }
 
     .scaled-item-icon {
