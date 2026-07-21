@@ -1216,10 +1216,10 @@ function render_AT(UI_elem, list_elem, hash_elem, tree) {
     list_elem.append(active_row);
 
     // add hash copy & paste buttons to atree
-    const hash_row = make_elem("div", ["row", "item-title", "mx-auto", "justify-content-center", "flex-nowrap"]);
-    const copy_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "copy-tree-hash", textContent: "Copy Tree", onclick: () => copyTreeHash(tree)});
-    const paste_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "paste-tree-hash", textContent: "Paste Tree", onclick: () => pasteTreeHash(tree)});
-    const clear_tree_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "clear-tree", textContent: "Clear Tree", onclick: () => clearTree(tree)});
+    const hash_row = make_elem("div", ["row", "item-title", "mx-auto", "my-2", "justify-content-center", "flex-nowrap"]);
+    const copy_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "scaled-font", "btn-outline-light"], {id: "copy-tree-hash", textContent: "Copy Tree", onclick: () => copyTreeHash(tree)});
+    const paste_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "scaled-font", "btn-outline-light"], {id: "paste-tree-hash", textContent: "Paste Tree", onclick: () => pasteTreeHash(tree)});
+    const clear_tree_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "scaled-font", "btn-outline-light"], {id: "clear-tree", textContent: "Clear Tree", onclick: () => clearTree(tree)});
 
     hash_row.append(copy_hash_button, paste_hash_button, clear_tree_button);
     list_elem.append(hash_row);
