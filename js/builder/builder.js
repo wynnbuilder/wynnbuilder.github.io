@@ -2,6 +2,9 @@
  * File containing utility functions relevant to the builder page, as well as the setup code (at the very bottom).
  */
 
+let edit_id_field_counter = 0;
+let edited_ids = []
+
 function populateBuildList() {
     const buildList = document.getElementById("build-choice");
     const savedBuilds = window.localStorage.getItem("builds") === null ? {} : JSON.parse(window.localStorage.getItem("builds"));
@@ -269,6 +272,145 @@ function collapse_element(elmnt) {
     document.querySelector(elmnt).style.removeProperty('display');
 }
 
+let var_stats_map = new Map();
+let var_stats_rev_map = new Map();
+let var_stats_names = [];
+function init_var_stat_maps() {
+    for (let id of rolledIDs) {
+        if (idPrefixes[id]) {
+            let name = idPrefixes[id].split(':')[0];
+            var_stats_names.push(name);
+            var_stats_map.set(id, name);
+            var_stats_rev_map.set(name, id);
+        }
+    }
+}
+
+function create_edited_stat() {
+    let data = {};
+    let row = make_elem("div", ["row"], {style: "padding-bottom: 5px;"});
+    data.div = row;
+
+    let search_input = make_elem("input",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control"],
+        {id: "filter-input-" + edit_id_field_counter, type: "text", placeholder: "ID name"}
+    );
+    edit_id_field_counter++;
+    row.appendChild(search_input);
+    data.input_elem = search_input;
+
+    let value = make_elem("input",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control"],
+        {placeholder: "Current"}
+    );
+    data.value_elem = value;
+    row.appendChild(value);
+
+    let base = make_elem("div",
+        ["col", "border-dark", "text-light", "dark-5", "rounded", "scaled-font", "form-control"],
+        {textContent: "Original: "}
+    );
+    row.appendChild(base);
+    
+    let trash = make_elem("img", ["col-auto", "m-0", "p-0", "img-fluid"], {src: "../media/icons/trash.svg", style: "height: 2rem;"});
+    trash.addEventListener("click", function() {
+        edited_ids.splice(Array.from(row.parentElement.children).indexOf(row), 1);
+        row.remove();
+        // clean up the row's link so it stops contributing once removed
+        if (data.stat_node) {
+            edit_agg_node.remove_link(data.stat_node);
+            edit_input_nodes.splice(edit_input_nodes.indexOf(data.stat_node), 1);
+
+            data.stat_node.remove_link(edit_id_output);
+            const idx = edit_id_output.notify_nodes.indexOf(data.stat_node);
+            if (idx !== -1) edit_id_output.notify_nodes.splice(idx, 1);
+
+            edit_agg_node.mark_dirty().update();
+        }
+    });
+    row.appendChild(trash);
+    
+    data.base_elem = base;
+
+    data.stat_node = null; // the single node for this row, created once
+
+    search_input.addEventListener("input", (event) => {
+        const stat_id = var_stats_rev_map.get(search_input.value);
+        if (!stat_id || !player_build.statMap.has(stat_id)) return;
+
+        value.id = stat_id;
+        base.id = stat_id + '-base';
+        value.value = player_build.statMap.get(stat_id);
+        base.textContent = "Original: " + player_build.statMap.get(stat_id);
+
+        // create the node only once
+        if (data.stat_node === null) {
+            data.stat_node = new SumNumberInputNode(search_input.id + '-stat-input', value);
+            edit_agg_node.link_to(data.stat_node, stat_id);
+            edit_input_nodes.push(data.stat_node);
+            
+            // Mirror what EditableIDSetterNode's constructor does for its original nodes,
+            // so a build reset/reload can find and refresh this node too.
+            data.stat_node.link_to(edit_id_output);
+            data.stat_node.fail_cb = true;
+            edit_id_output.notify_nodes.push(data.stat_node);
+        } else {
+            edit_agg_node.inputs.get(data.stat_node.name).translation = stat_id;
+        }
+
+        edit_agg_node.mark_dirty().update();
+        data.stat_node.mark_dirty().update();
+    });
+
+    document.getElementById("edit-stat-container").appendChild(row);
+    edited_ids.push(data);
+    init_stat_dropdown(data);
+    return data;
+}
+
+function init_stat_dropdown(stat_block) {
+    let field_choice = stat_block.input_elem;
+    stat_block.autoComplete = new autoComplete({
+        data: {
+            src: var_stats_names,
+        },  
+        threshold: 0,
+        selector: "#" + field_choice.id,
+        wrapper: false,
+        resultsList: {
+            maxResults: 100,
+            tabSelect: true,
+            noResults: true,
+            class: "search-box dark-7 rounded-bottom px-2 fw-bold dark-shadow-sm",
+            element: (list, data) => {
+                let position = field_choice.getBoundingClientRect();
+                list.style.top = position.bottom + window.scrollY +"px";
+                list.style.left = position.x+"px";
+                list.style.width = position.width+"px";
+                list.style.maxHeight = position.height * 4 +"px";
+                if (!data.results.length) {
+                    const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
+                    list.prepend(message);
+                };
+            },
+        },
+        resultItem: {
+            class: "scaled-font search-item",
+            selected: "dark-5",
+        },
+        events: {
+            input: {
+                selection: (event) => {
+                    if (event.detail.selection.value) {
+                        event.target.value = event.detail.selection.value;
+                        field_choice.dispatchEvent(new Event('input'));
+                    };
+                },
+            },
+        }
+    });
+}
+
 async function init() {
     console.log("builder.js init");
 
@@ -343,6 +485,7 @@ async function init() {
             break;
         }
     }
+    init_var_stat_maps();
 }
 
 window.onerror = function(message, source, lineno, colno, error) {

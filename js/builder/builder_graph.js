@@ -1159,10 +1159,16 @@ class EditableIDSetterNode extends ComputeNode {
     compute_func(input_map) {
         if (input_map.size !== 1) { throw "EditableIDSetterNode accepts exactly one input (build)"; }
         const [build] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
-        for (const id of editable_item_fields) {
+        for (const id of var_stats_map.keys()) {
+            if (!build.statMap.has(id))
+                continue;
+
             const val = build.statMap.get(id);
-            document.getElementById(id).value = val;
-            document.getElementById(id + '-base').textContent = 'Original Value: ' + val;
+            const val_elem = document.getElementById(id);
+            if (val_elem) {
+                val_elem.value = val;
+                document.getElementById(id + '-base').textContent = 'Original: ' + val;
+            }
         }
     }
 
@@ -1439,14 +1445,7 @@ function builder_graph_init(skillpoints) {
     stat_agg_node = new AggregateStatsNode('final-stats');
     edit_agg_node = new AggregateEditableIDNode();
     edit_agg_node.link_to(build_node, 'build');
-    for (const field of editable_item_fields) {
-        // Create nodes that listens to each editable id input, the node name should match the "id"
-        const elem = document.getElementById(field);
-        const node = new SumNumberInputNode('builder-' + field + '-input', elem);
-
-        edit_agg_node.link_to(node, field);
-        edit_input_nodes.push(node);
-    }
+    
     // Edit IDs setter declared up here to set ids so they will be populated by default.
     edit_id_output = new EditableIDSetterNode(edit_input_nodes);    // Makes shallow copy of list.
     edit_id_output.link_to(build_node);

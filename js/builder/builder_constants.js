@@ -5,24 +5,15 @@
 
 const BUILD_VERSION = "7.0.20";
 
-
-// THIS IS SUPER DANGEROUS, WE SHOULD NOT BE KEEPING THIS IN SO MANY PLACES
-let editable_item_fields = [ "sdPct", "sdRaw", "mdPct", "mdRaw", "poison",
-                             "fDamPct", "wDamPct", "aDamPct", "tDamPct", "eDamPct",
-                             "fDefPct", "wDefPct", "aDefPct", "tDefPct", "eDefPct",
-                             "hprRaw", "hprPct", "hpBonus", "atkTier", "ls",
-                             "spPct1", "spRaw1", "spPct2", "spRaw2",
-                             "spPct3", "spRaw3", "spPct4", "spRaw4" ];
-
 let editable_elems = [];
 
-for (let i of editable_item_fields) {
+/*for (let i of editable_item_fields) {
     let elem = document.getElementById(i);
     elem.addEventListener("change", (event) => {
         elem.classList.add("highlight");
     });
     editable_elems.push(elem);
-}
+}*/
 
 for (let i of skp_order) {
     let elem = document.getElementById(i+"-skp");
