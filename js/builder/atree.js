@@ -258,6 +258,7 @@ const atree_render = new (class extends ComputeNode {
         super('builder-atree-render');
         this.UI_elem = document.getElementById("atree-ui");
         this.list_elem = document.getElementById("atree-header");
+        this.hash_elem = document.getElementById("atree-hash");
     }
 
     compute_func(input_map) {
@@ -267,9 +268,10 @@ const atree_render = new (class extends ComputeNode {
         //for some reason we have to cast to string 
         this.list_elem.innerHTML = ""; //reset all atree actives - should be done in a more general way later
         this.UI_elem.innerHTML = ""; //reset the atree in the DOM
+        this.hash_elem.innerHTML = ""; //reset the atree hash
 
         let ret = null;
-        if (atree) { ret = render_AT(this.UI_elem, this.list_elem, atree); }
+        if (atree) { ret = render_AT(this.UI_elem, this.list_elem, this.hash_elem, atree); }
 
         //Toggle on, previously was toggled off
         toggle_tab('atree-dropdown'); toggleButton('toggle-atree');
@@ -1184,9 +1186,10 @@ class AbilityTreeEnsureNodesNode extends ComputeNode {
  * 
  * @param {Element} UI_elem - the DOM element to draw the atree within.
  * @param {Element} list_elem - the DOM element to list selected abilities within.
+ * @param {Element} hash_elem - the DOM element to display the tree hash within.
  * @param {*} tree - the ability tree to work with.
  */
-function render_AT(UI_elem, list_elem, tree) {
+function render_AT(UI_elem, list_elem, hash_elem, tree) {
     console.log("constructing ability tree UI");
 
     // increase padding, since images are larger than the space provided
@@ -1211,6 +1214,15 @@ function render_AT(UI_elem, list_elem, tree) {
 
     active_row.append(active_word, active_AP_container);
     list_elem.append(active_row);
+
+    // add hash copy & paste buttons to atree
+    const hash_row = make_elem("div", ["row", "item-title", "mx-auto", "justify-content-center", "flex-nowrap"]);
+    const copy_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "copy-tree-hash", textContent: "Copy Tree", onclick: () => copyTreeHash(tree)});
+    const paste_hash_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "paste-tree-hash", textContent: "Paste Tree", onclick: () => pasteTreeHash(tree)});
+    const clear_tree_button = make_elem("button", ["col-auto", "mx-2", "px-1", "btn", "btn-sm", "btn-outline-light"], {id: "clear-tree", textContent: "Clear Tree", onclick: () => clearTree(tree)});
+
+    hash_row.append(copy_hash_button, paste_hash_button, clear_tree_button);
+    list_elem.append(hash_row);
 
     const atree_map = new Map();
     const atree_connectors_map = new Map()
