@@ -1083,7 +1083,7 @@ const radiance_node = new (class extends ComputeNode {
                 }
                 else {
                     if ((ret.get(val) || 0) > 0) {
-                        ret.set(val, Math.floor((ret.get(val) || 0) * boost));
+                        ret.set(val, Math.floor(1e-9 + (ret.get(val) || 0) * boost));
                     }
                 }
             }
