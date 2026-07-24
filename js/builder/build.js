@@ -132,7 +132,6 @@ class Build {
         }
         statMap.set("poisonPct", 0);
         statMap.set("healMult", new Map());
-        statMap.get('healMult').set('item', statMap.get('healPct'));
         statMap.set('manaMult', new Map());
 
         // The stuff relevant for damage calculation!!! @ferricles

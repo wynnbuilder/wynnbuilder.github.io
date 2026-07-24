@@ -744,6 +744,7 @@ class SpellDamageCalcNode extends ComputeNode {
                     }
                     heal_mult *= (1 + v / 100);
                 }
+                heal_mult *= (1 + stats.get('healPct') / 100);
                 let _heal_amount = part.power * getDefenseStats(stats)[0] * heal_mult;
                 spell_result = {
                     type: "heal",
