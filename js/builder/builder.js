@@ -288,7 +288,7 @@ function init_var_stat_maps() {
 
 function create_edited_stat() {
     let data = {};
-    let row = make_elem("div", ["row"], {style: "padding-bottom: 5px;"});
+    let row = make_elem("div", ["row"], {style: "margin-bottom: 1rem;"});
     data.div = row;
 
     let search_input = make_elem("input",
@@ -336,7 +336,7 @@ function create_edited_stat() {
 
     search_input.addEventListener("input", (event) => {
         const stat_id = var_stats_rev_map.get(search_input.value);
-        if (!stat_id || !player_build.statMap.has(stat_id)) return;
+        if (!stat_id || !player_build) return;
 
         value.id = stat_id;
         base.id = stat_id + '-base';
@@ -386,8 +386,9 @@ function init_stat_dropdown(stat_block) {
                 let position = field_choice.getBoundingClientRect();
                 list.style.top = position.bottom + window.scrollY +"px";
                 list.style.left = position.x+"px";
-                list.style.width = position.width+"px";
+                list.style.width = "fit-content";
                 list.style.maxHeight = position.height * 4 +"px";
+                list.style.whiteSpace = "nowrap"; 
                 if (!data.results.length) {
                     const message = make_elem('li', ['scaled-font'], {textContent: "No results found!"});
                     list.prepend(message);
