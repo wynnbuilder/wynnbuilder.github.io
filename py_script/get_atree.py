@@ -180,7 +180,7 @@ if __name__ == "__main__":
                         old_ability["desc"] = description
 
                         requirement = ability["requirements"]
-                        if "ARCHETYPE" in requirement and "archetype" in ability:
+                        if "ARCHETYPE" in requirement and "archetype" in old_ability:
                             if 'archetype_req' not in old_ability or old_ability["archetype_req"] != requirement["ARCHETYPE"]["amount"]:
                                 old_ability["archetype_req"] = requirement["ARCHETYPE"]["amount"]
                                 print(f"Replaced requirement on node \"{ability_name}\", should be {requirement["ARCHETYPE"]["amount"]}")

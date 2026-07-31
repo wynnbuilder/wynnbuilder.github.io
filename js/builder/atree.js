@@ -535,7 +535,9 @@ const atree_merge = new (class extends ComputeNode {
 
         // Apply major IDs.
         const build_class = wep_to_class.get(build.weapon.statMap.get("type"));
-        for (const major_id_name of build.statMap.get("activeMajorIDs")) {
+        const raid_buffs = input_map.get('raid-buffs');
+        const active_major_ids = raid_buffs ? raid_buffs.get('activeMajorIDs') : build.statMap.get("activeMajorIDs");
+        for (const major_id_name of active_major_ids) {
 
             // Sometimes, something silly happens and we haven't implemented a major ID that
             //   exists. This makes sure we don't try to apply unimplemented major IDs.

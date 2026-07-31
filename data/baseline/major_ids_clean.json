@@ -1029,7 +1029,7 @@
                         "bonuses": [
                             {
                                 "type": "stat",
-                                "name": "defMult.Devitalize",
+                                "name": "defMult.AbilityWeaken",
                                 "value": 15
                             }
                         ]
@@ -1518,21 +1518,10 @@
                     "Arrow Shield"
                 ],
                 "properties": {
-                    "charges": -1
+                    "charges": -1,
+                    "resistance": 10
                 },
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "toggle": "Arrow Defense",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "defMult.ArrowShield",
-                                "value": 10
-                            }
-                        ]
-                    }
-                ]
+                "effects": []
             }
         ]
     },
@@ -1551,11 +1540,11 @@
                         "target_part": "Annihilation",
                         "behavior": "modify",
                         "multipliers": [
-                            -200,
+                            -100,
                             0,
                             0,
                             0,
-                            -120,
+                            -60,
                             0
                         ]
                     },
@@ -4125,6 +4114,147 @@
                         "behavior": "modify",
                         "target_part": "Sunflare Healing per Second",
                         "power": 0.05
+                    }
+                ]
+            }
+        ]
+    },
+    "FRACTURINGSMITE": {
+        "displayName": "Fracturing Smite",
+        "description": "Quake now deals an additional [earth]+70% damage and launches enemies upward.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "eConvBase:0.Powder Special",
+                                "value": 70
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "CRACKLINGSMITE": {
+        "displayName": "Crackling Smite",
+        "description": "Chain Lightning now deals an additional [thunder]70% damage and stuns enemies for 1.5s.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "tConvBase:0.Powder Special",
+                                "value": 70
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "PELAGICSMITE": {
+        "displayName": "Pelagic Smite",
+        "description": "Curse now weakens enemies by an additional 10% and decreases their damage by 15%.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Pelagic Smite",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Curse",
+                                "value": 10
+                            },
+                            {
+                                "type": "stat",
+                                "name": "defMult.AbilityWeaken",
+                                "value": 15
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "INFERNALSMITE": {
+        "displayName": "Infernal Smite",
+        "description": "Courage's buff is increased by 10% and it now heals you for 20% over 5s.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Infernal Smite",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Courage",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    {
+                        "type": "replace_spell",
+                        "name": "Infernal Smite",
+                        "base_spell": 27,
+                        "display": "Courage Heal",
+                        "parts": [
+                            {
+                                "name": "Courage Heal",
+                                "power": 0.2
+                            },
+                            {
+                                "name": "Courage Heal per Second",
+                                "hits": {
+                                    "Courage Heal": 0.2
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "CYCLONICSMITE": {
+        "displayName": "Cyclonic Smite",
+        "description": "Wind Prison's damage boost is increased by 20% and it now grants 2.5s of speed when activated.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Cyclonic Smite",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Wind Prison",
+                                "value": 20
+                            },
+                            {
+                                "type": "stat",
+                                "name": "spd",
+                                "value": 35
+                            }
+                        ]
                     }
                 ]
             }

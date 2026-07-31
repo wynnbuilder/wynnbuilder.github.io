@@ -135,7 +135,7 @@
         },
         {
             "display_name": "Heart Shatter",
-            "desc": "Hitting a mob directly with Arrow Bomb, will shatter its heart and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
+            "desc": "Hitting a mob directly with Arrow Bomb will shatter its heart and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Bow Proficiency"
@@ -672,7 +672,7 @@
         },
         {
             "display_name": "Nimble String",
-            "desc": "Doubles the speed of Arrow Storm and shoots +6 arrows per stream. </br> </br>Phantom Ray hits twice as fast but lasts half as long.</br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
+            "desc": "\u00a77\u00a7nArrow Storm\u00a77 fires twice as fast and shoots +6 arrows per stream. </br> \u00a77\u00a7nPhantom Ray\u00a77 hits twice as fast but lasts half as long. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per arrow/ray)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Thunder Mastery",
@@ -1169,7 +1169,7 @@
         },
         {
             "display_name": "Focus",
-            "desc": "When hitting an aggressive enemy 5+ blocks away, gain +1 Focus. (Max 3) (Lose 50% Focus if you miss once) </br> Damage Bonus: +15% (per focus) </br>Cooldown: 1s",
+            "desc": "When hitting an aggressive enemy 5+ blocks away, gain +1 Focus. (Max 3) (Lose 50% Focus if you miss once) </br> Damage Bonus: +15% (per Focus) </br>Cooldown: 1s",
             "archetype": "Sharpshooter",
             "archetype_req": 2,
             "parents": [
@@ -1494,7 +1494,7 @@
         },
         {
             "display_name": "Phantom Force",
-            "desc": "Phantom Ray gains extra forward range, and becomes wider. </br> </br>Range: +8 Blocks </br>Area of Effect: +0.2 Blocks",
+            "desc": "Phantom Ray gains extra forward range and becomes wider. </br> </br>Range: +8 Blocks </br>Area of Effect: +0.2 Blocks",
             "base_abil": "Arrow Storm",
             "parents": [
                 "More Focus I",
@@ -1540,7 +1540,7 @@
         },
         {
             "display_name": "Arsenal Synergy",
-            "desc": "For every 16 arrows shot by Arrow Storm recently, your Main Attacks will additionally fire a flint arrow that damages enemies. (Max 5 flints per main attack) </br> </br><span class='mc-white'>Total Damage</span>: 25% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%) </br>Duration: 6s",
+            "desc": "For every 16 arrows shot by Arrow Storm recently, your Main Attacks will additionally fire a flint arrow that damages enemies. (Max 5 flints per main attack) </br> </br><span class='mc-white'>Total Damage</span>: 20% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%) </br>Duration: 6s",
             "parents": [
                 "Leap"
             ],
@@ -1674,7 +1674,7 @@
         },
         {
             "display_name": "Bouncing Bomb",
-            "desc": "Arrow Bomb will bounce once when hitting a block or enemy.",
+            "desc": "\u00a77\u00a7nArrow Bomb\u00a77 will travel \u00a7f20%\u00a77 slower and bounce once when hitting a block or enemy.",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Vigilant Sentinels",
@@ -1697,7 +1697,7 @@
         },
         {
             "display_name": "Ivyroot Mamba",
-            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
+            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 10s",
             "archetype": "Trapper",
             "archetype_req": 3,
             "base_abil": "Arrow Storm",
@@ -1757,7 +1757,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "defMult.Ivyroot Mamba",
+                            "name": "defMult.AbilityWeaken",
                             "value": 15
                         }
                     ]
@@ -1924,7 +1924,7 @@
         },
         {
             "display_name": "Divine Intervention",
-            "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 1.5x faster. </br> </br>Duration: 1.35s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Duration: 3s",
+            "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 1.5x faster while Arrow Storm is active </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +25% damage. </br> </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Duration: 3s",
             "archetype": "Boltslinger",
             "archetype_req": 6,
             "base_abil": "Arrow Shield",
@@ -2160,7 +2160,7 @@
         },
         {
             "display_name": "Bounding Stride",
-            "desc": "Double Leap's horizontal velocity.",
+            "desc": "Leap will launch you further.",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "base_abil": "Leap",
@@ -2281,7 +2281,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -2301,7 +2301,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 }
             ]
         },
@@ -2564,7 +2564,7 @@
         },
         {
             "display_name": "Spectral Hover",
-            "desc": "Slow Falling is applied upon using Escape. Crouching at any point will cancel this effect. </br> </br>Duration: 5s",
+            "desc": "Slow Falling is applied upon using Escape. Crouching at any point will cancel this effect. \u00a78(Effect cannot be refreshed mid-air) </br> </br>Duration: 5s",
             "parents": [
                 "Call of the Hound",
                 "Decimator"
@@ -2671,7 +2671,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -2691,7 +2691,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -2711,7 +2711,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -2731,7 +2731,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 }
             ]
         },
@@ -3550,7 +3550,7 @@
         },
         {
             "display_name": "Courier's Edict",
-            "desc": "Fierce Stomp sends out 3 waves of heavenly light in front of you. </br> Landing after Leap triggers Fierce Stomp. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%)",
+            "desc": "Fierce Stomp sends out 3 waves of heavenly light in front of you. </br> Landing after Leap triggers Fierce Stomp. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, per wave)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%) </br>Range: 25 Blocks",
             "archetype": "Boltslinger",
             "parents": [
                 "Recycling"
@@ -3650,7 +3650,7 @@
         },
         {
             "display_name": "Overgrowth",
-            "desc": "Bryophyte Roots spreads further and deals damage 33% faster. </br> </br>Area of Effect: +1 Blocks (Circle-Shaped)",
+            "desc": "Bryophyte Roots spreads further and deals damage 33% faster. </br> </br>Area of Effect: +1 Block (Circle-Shaped)",
             "archetype": "Trapper",
             "base_abil": "Arrow Storm",
             "parents": [
@@ -3744,7 +3744,7 @@
         },
         {
             "display_name": "Repel",
-            "desc": "Casting Arrow Shield will push back nearby enemies and provide a brief burst of resistance. </br> Reduce this ability's cooldown by 1s every time Arrow Shield loses a charge. </br> </br>Effect: 60% Resistance Bonus </br>Duration: 1s </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Cooldown: 10s",
+            "desc": "Casting Arrow Shield will push back nearby enemies and provide a brief burst of resistance. </br> Reduce this ability's cooldown by 1s every time Arrow Shield loses a charge. </br> </br>Effect: 60% Resistance Bonus to Self </br>Duration: 1s </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Cooldown: 10s",
             "archetype": "Sharpshooter",
             "parents": [
                 "Warding Wisps"
@@ -3785,7 +3785,7 @@
         },
         {
             "display_name": "Mael's Quiver",
-            "desc": "Increase the damage of Crepuscular Ray </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='wDam'>Water</span>: +10%)",
+            "desc": "Increase the damage of Crepuscular Ray. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='wDam'>Water</span>: +10%)",
             "archetype": "Sharpshooter",
             "base_abil": "Crepuscular Ray",
             "parents": [
@@ -3837,7 +3837,7 @@
             "display": {
                 "row": 44,
                 "col": 2,
-                "icon": "node_1"
+                "icon": "node_0"
             },
             "properties": {},
             "effects": [
@@ -3873,7 +3873,7 @@
         },
         {
             "display_name": "Warding Wisps",
-            "desc": "When Arrow Shield loses a charge,  summon a Wisp that follows and  protects you. (Max 12) </br> Your Wisps can possess nearby enemies for 3s, dealing damage every 0.75s and slowing them. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   (</br>Neutral: 75%)   </br>&emsp;(<span class='wDam'>Water</span>: 25%) </br>Effects: 20% Slowness to Enemies </br>Duration: 30s",
+            "desc": "When Arrow Shield loses a charge,  summon a Wisp that follows and  protects you. (Max 12) </br> Your Wisps can possess nearby enemies for 3s, dealing damage every 0.75s and slowing them. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='wDam'>Water</span>: 25%) </br>Effect: 20% Slowness to Enemies </br>Duration: 30s",
             "archetype": "Sharpshooter",
             "archetype_req": 12,
             "parents": [
@@ -3921,7 +3921,7 @@
         },
         {
             "display_name": "Angelic Ascension",
-            "desc": "Click Combo: F </br> Call upon the power of the Light to empower your attacks for 15s and make Leap have no cooldown. </br> Main Attack will instead shoot Light Arrows, that deal 50% more damage over 2s. </br> Arrow Storm and Divine Intervention will last 2.5 times as long. </br> Arrow Bomb will smite enemies it hits directly with a bolt from the heavens. </br> Guardian Angels will have unlimited ammunition, and trigger Buckshot after firing 14 volleys. </br> </br><span class='mc-white'>Total Damage</span>: 550% (of your DPS, Arrow Bomb's smite)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   (</br>Damage: 150%)   (</br>Damage: 100%) </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Call upon the power of the Light to empower your attacks for 15s and make Leap have no cooldown. </br> Main Attack will instead shoot Light Arrows that deal 50% more damage over 2s. </br> Arrow Storm last 2.5 times longer and releases in a tighter spread </br> Arrow Bomb will smite enemies it hits directly with a bolt from the heavens. </br> Guardian Angels will have unlimited ammunition and trigger Buckshot after firing 14 volleys. </br> </br><span class='mc-white'>Total Damage</span>: 550% (of your DPS, Arrow Bomb's smite)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 150%)   </br>&emsp;(<span class='aDam'>Air</span>: 100%) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Boltslinger",
             "archetype_req": 16,
             "parents": [
@@ -4011,7 +4011,7 @@
         },
         {
             "display_name": "The Twilight Zone",
-            "desc": "Click Combo: F </br> Enter a focused state for 8s. </br> While in this state, you jump higher, fall slower, and all enemies within your line of sight are marked by Twilight every 0.05s. (Max 100) </br> At the end of its duration, or by casting F, fire a Spell and a Main Attack arrow at every marked enemy. Arrows will deal bonus damage for each Twilight stack on a target. </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 1500%)   (</br>Damage: 500%) </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS, per Twilight)   </br>&emsp;(<span class='nDam'>Damage</span>: +75%)   (</br>Damage: +25%) </br><span class='mc-white'>Total Damage</span>: 300% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br><span class='mc-white'>Total Damage</span>: +15% (Main Attack Damage, per Twilight)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%) </br>Range: 64 Blocks </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Enter a focused state for 8s. </br> While in this state, you jump higher, fall slower, and all enemies within your line of sight are marked by Twilight every 0.05s. (Max 100) </br> At the end of its duration, or by casting F, fire a Spell and a Main Attack arrow at every marked enemy. Arrows will deal bonus damage for each Twilight stack on a target. </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 1500%)   </br>&emsp;(<span class='wDam'>Water</span>: 500%) </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS, per Twilight)   </br>&emsp;(<span class='nDam'>Damage</span>: +75%)   </br>&emsp;(<span class='wDam'>Water</span>: +25%) </br><span class='mc-white'>Total Damage</span>: 300% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br><span class='mc-white'>Total Damage</span>: +15% (Main Attack Damage, per Twilight)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%) </br>Range: 64 Blocks </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Sharpshooter",
             "archetype_req": 16,
             "parents": [
@@ -4302,7 +4302,7 @@
         },
         {
             "display_name": "Vehement",
-            "desc": "For every 1% or 1 Raw Main Attack Damage you have from items, gain +2% Walk Speed (Max 20%) </br> Damage Bonus: +5 (Raw)",
+            "desc": "For every 1% or 1 Raw Main Attack Damage you have from items, gain +2% Walk Speed. (Max 20%) </br> Damage Bonus: +5 (Raw)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "parents": [
@@ -4357,7 +4357,7 @@
         },
         {
             "display_name": "Tougher Skin",
-            "desc": "Harden your skin and gain +5% Base Resistance. </br> For every 1% or 1 Raw Health Regen you have from items, gain +10 Health (Max 100)",
+            "desc": "Harden your skin and gain +5% Base Resistance. </br> For every 1% or 1 Raw Health Regen you have from items, gain +10 Health. (Max 100)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -4412,7 +4412,7 @@
         },
         {
             "display_name": "Uppercut",
-            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Hurls enemies upwards and deal massive damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 340% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 260%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Area of Effect: 1-4 Blocks (Cone-Shaped) </br>Range: 6.5 Blocks",
+            "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Hurls enemies upwards and deals massive damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 340% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 260%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Area of Effect: 1-4 Blocks (Cone-Shaped) </br>Range: 6.5 Blocks",
             "parents": [
                 "Vehement",
                 "Cheaper Charge"
@@ -4624,7 +4624,7 @@
         {
             "display_name": "Water Mastery",
             "base_abil": 998,
-            "desc": "Increase your damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+            "desc": "Increase your base damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
             "archetype": "Battle Monk",
             "archetype_req": 0,
             "parents": [
@@ -4811,7 +4811,7 @@
                 "icon": "node_2"
             },
             "properties": {
-                "crush_mult": 2 
+                "crush_mult": 2
             },
             "effects": [
                 {
@@ -5058,7 +5058,7 @@
             "display": {
                 "row": 13,
                 "col": 7,
-                "icon": "node_1"
+                "icon": "node_0"
             },
             "properties": {},
             "effects": [
@@ -5403,7 +5403,7 @@
         },
         {
             "display_name": "Blood Pact",
-            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> A spell cast using health instead of mana will deal +15% to +25% bonus damage, depending on how much of its cost is paid in blood.",
+            "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> A spell cast using health will deal +15% to +25% bonus damage, depending on how much of its cost is paid in blood.",
             "archetype": "Fallen",
             "archetype_req": 4,
             "parents": [
@@ -5586,7 +5586,7 @@
         },
         {
             "display_name": "Emboldening Cry",
-            "desc": "War Scream bolsters courage, granting players a damage bonus and additional resistance. </br> </br>Effect: +8% Damage Bonus to Players </br>Effect: +5% Resistance Bonus to Allies",
+            "desc": "War Scream bolsters courage, granting players a damage bonus and additional resistance. </br> </br>Effect: +8% Damage Bonus to Allies </br>Effect: +5% Resistance Bonus to Allies",
             "archetype": "Paladin",
             "archetype_req": 0,
             "base_abil": "War Scream",
@@ -5688,7 +5688,7 @@
         },
         {
             "display_name": "Riposte",
-            "desc": "Increase the damage reduction of Counter by +10% </br> Increase the damage of Counter and reduce its cooldown by -0.5s. </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +90%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
+            "desc": "Increase the damage reduction of Counter by +10%. </br> Increase the damage of Counter and reduce its cooldown by -0.5s. </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +90%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
             "base_abil": "Counter",
             "parents": [
                 "Cheaper War Scream I"
@@ -5800,7 +5800,7 @@
         },
         {
             "display_name": "Crushing Blow",
-            "desc": "Increase the damage of Bash. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, per Bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)",
+            "desc": "Increase the damage of Bash. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)",
             "base_abil": "Bash",
             "parents": [
                 "Flying Kick",
@@ -6058,7 +6058,7 @@
         },
         {
             "display_name": "Radiant Devotee",
-            "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen (Max 10/5s)",
+            "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen. (Max 10/5s)",
             "parents": [
                 "Whirlwind Strike",
                 "Tempest"
@@ -6295,7 +6295,7 @@
         },
         {
             "display_name": "Hallowed Blaze",
-            "desc": "Flaming Uppercut will deal more damage, and grant 1 Holy Power, whenever it deals damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='fDam'>Fire</span>: +15%)",
+            "desc": "Flaming Uppercut will deal more damage and grant 1 Holy Power whenever it deals damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='fDam'>Fire</span>: +15%)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -6456,7 +6456,7 @@
         },
         {
             "display_name": "Provoke",
-            "desc": "Enemies damaged by War Scream will become Provoked, targeting only you for at least 8s. </br> Reduce the Mana cost of War Scream. </br> Mana Cost: -5 </br>Cooldown: 15s",
+            "desc": "Enemies damaged by War Scream will become Provoked, targeting only you for at least 5s. </br> Reduce the Mana cost of War Scream. </br> Mana Cost: -5 </br>Cooldown: 15s",
             "archetype": "Paladin",
             "base_abil": "War Scream",
             "parents": [
@@ -6984,7 +6984,7 @@
         },
         {
             "display_name": "Cheaper Uppercut II",
-            "desc": "Reduce the Mana cost of Uppercut by 5.",
+            "desc": "Reduce the Mana cost of Uppercut. </br> Mana Cost: -5",
             "base_abil": "Uppercut",
             "parents": [
                 "Heavenly Trumpet",
@@ -7193,7 +7193,7 @@
         },
         {
             "display_name": "Reverberance",
-            "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%)",
+            "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
             "base_abil": "War Scream",
             "archetype": "Battle Monk",
             "parents": [
@@ -7232,7 +7232,7 @@
         },
         {
             "display_name": "Rumble",
-            "desc": "Increase Bash's damage by 4% per 1 </br>Area of Effect it has.",
+            "desc": "Increase Bash's damage by 5% per 1 </br>Area of Effect it has.",
             "base_abil": "Bash",
             "archetype": "Fallen",
             "archetype_req": 10,
@@ -7287,7 +7287,7 @@
                     },
                     "scaling": [
                         0.025
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -7628,7 +7628,7 @@
         },
         {
             "display_name": "Shine",
-            "desc": "Increase Radiance's effectiveness and Bash's area of effect. </br> </br>Effect: +5% ID Effectiveness to Allies </br>Area of Effect: +1 Blocks (Circle-Shaped)",
+            "desc": "Increase Radiance's effectiveness. </br> </br>Effect: +5% ID Effectiveness to Allies",
             "archetype": "Paladin",
             "parents": [
                 "Heavenly Trumpet",
@@ -7731,7 +7731,7 @@
         },
         {
             "display_name": "Enlightenment",
-            "desc": "Add +1 additional charge to Mantle of the Bovemists. </br> Shield Strike will deal more damage and grant 1 charge of Mantle of the Bovemist to nearby allies for every 2 broken mantles used. (Max 4) </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +120%)   </br>&emsp;(<span class='fDam'>Fire</span>: +30%) </br>Area of Effect: 16 Blocks (Circle-Shaped)",
+            "desc": "Add +1 additional charge to Mantle of the Bovemists. </br> Shield Strike will deal more damage and grant 1 charge of Mantle of the Bovemists to nearby allies for every 2 broken mantles used. (Max 4) </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +120%)   </br>&emsp;(<span class='fDam'>Fire</span>: +30%) </br>Area of Effect: 16 Blocks (Circle-Shaped)",
             "base_abil": "Mantle of the Bovemists",
             "archetype": "Paladin",
             "parents": [
@@ -7832,7 +7832,7 @@
         },
         {
             "display_name": "Zenith Stance",
-            "desc": "Click Combo: F </br> Manifest your combat mastery as 2 floating fists that you freely command. </br> Casting Main Attack while active performs an attack, and casting F switches them  between dealing Spell and Main Attack damage. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, spell)   </br>&emsp;(<span class='nDam'>Damage</span>: 2100%)   </br>&emsp;(<span class='aDam'>Air</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 1600% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 1400%)   </br>&emsp;(<span class='aDam'>Air</span>: 200%) </br>Area of Effect: 5 Blocks  </br>Range: 7 Blocks </br>Duration: 10s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Manifest your combat mastery as two floating fists that you freely command. </br> Casting F switches them between Spell and Main Attack form.  </br> In Spell form, casting a spell performs an attack. In Main Attack form, Main Attacks perform an attack instead. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, spell)   </br>&emsp;(<span class='nDam'>Damage</span>: 2100%)   </br>&emsp;(<span class='aDam'>Air</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 1600% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 1400%)   </br>&emsp;(<span class='aDam'>Air</span>: 200%) </br>Area of Effect: 5 Blocks  </br>Range: 7 Blocks </br>Duration: 10s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
             "archetype": "Battle Monk",
             "archetype_req": 16,
             "parents": [
@@ -7884,7 +7884,7 @@
         },
         {
             "display_name": "Judgement",
-            "desc": "Click Combo: F </br> Call upon a blade from the heavens, that will deal damage upon impact and grant buffs to nearby allies. </br> </br><span class='mc-white'>Total Damage</span>: 5000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 3500%)   </br>&emsp;(<span class='fDam'>Fire</span>: 1000%)   </br>&emsp;(<span class='eDam'>Earth</span>: 500%) </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Effect: +20% Damage Bonus to Players             +20% Resistance Bonus to Allies             +40% ID Effectiveness to Allies </br>Duration: 15s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Call upon a blade from the heavens that deals damage upon impact and grants buffs to nearby allies. </br> </br><span class='mc-white'>Total Damage</span>: 5000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 3500%)   </br>&emsp;(<span class='fDam'>Fire</span>: 1000%)   </br>&emsp;(<span class='eDam'>Earth</span>: 500%) </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Effects: +20% Damage Bonus to Allies             +20% Resistance Bonus to Allies             +40% ID Effectiveness to Allies </br>Duration: 15s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
             "archetype": "Paladin",
             "archetype_req": 17,
             "parents": [
@@ -8731,7 +8731,7 @@
         },
         {
             "display_name": "Distortion",
-            "desc": "Hitting an enemy with Etheric Slash grants up to +20 Distortion per 4s </br> Each Distortion gives +1 Raw Damage and decays at a rate of -1 per second, increasing as you gain Distortion.",
+            "desc": "Hitting an enemy with Etheric Slash grants up to +20 Distortion per 4s. </br> Each Distortion gives +1 Raw Damage and decays at a rate of -1 per second, increasing as you gain Distortion.",
             "archetype": "Riftwalker",
             "archetype_req": 2,
             "parents": [
@@ -8851,7 +8851,7 @@
         },
         {
             "display_name": "Arcane Transfer",
-            "desc": "Meteor, Ice Snake, and Wind Slash will add 13 Mana to a Mana Bank for every aggressive enemy you hit. Frozen Tornado and Meteor Shower will add 4 Mana. </br> Heal will now transfer the contents of your Mana Bank into usable Mana instead of healing.",
+            "desc": "Meteor, Ice Snake, and Etheric Slash will add +13 Mana to a Mana Bank for every aggressive enemy you hit. Frozen Tornado and Meteor Shower will add +4 Mana. </br> Heal will now transfer the contents of your Mana Bank into usable Mana instead of healing.",
             "archetype": "Arcanist",
             "archetype_req": 2,
             "parents": [
@@ -9415,7 +9415,7 @@
         },
         {
             "display_name": "Seance",
-            "desc": "For every 5/3s Lifesteal you have from items, gain +1% Spell Damage (Max 50%)",
+            "desc": "For every 5/3s Lifesteal you have from items, gain +1% Spell Damage. (Max 50%)",
             "parents": [
                 "Pyrokinesis",
                 "Snake Nest"
@@ -10058,7 +10058,7 @@
         },
         {
             "display_name": "Time Dilation",
-            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (You lose 20% Speed Bonus every second once you stop running) </br> </br>Effect: +10% Walk Speed to Allies (per 1s, +140% Max) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (You lose 20% Walk Speed Bonus every second once you stop running) </br> </br>Effect: +10% Walk Speed to Allies (per 1s, +140% Max) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
             "archetype_req": 5,
             "parents": [
@@ -10270,7 +10270,7 @@
         },
         {
             "display_name": "Arcane Power",
-            "desc": "Meteor, Ice Snake, and Wind Slash will add +8 Mana to your Mana Bank for each aggressive enemy you hit. Frozen Tornado and Meteor Shower will add +4 Mana. </br> Arcane Restoration will restore mana 0.1s faster.",
+            "desc": "Meteor, Ice Snake, and Etheric Slash will add +8 Mana to your Mana Bank for each aggressive enemy you hit. Frozen Tornado and Meteor Shower will add +4 Mana. </br> Arcane Restoration will restore mana 0.1s faster.",
             "base_abil": "Arcane Transfer",
             "archetype": "Arcanist",
             "archetype_req": 0,
@@ -10294,7 +10294,7 @@
         },
         {
             "display_name": "Influx Shift",
-            "desc": "Increase the effects from Distortion by +25%.",
+            "desc": "Increase the effects gained from Distortion by +25%.",
             "base_abil": "Distortion",
             "archetype": "Riftwalker",
             "archetype_req": 10,
@@ -10342,7 +10342,7 @@
         },
         {
             "display_name": "Devitalize",
-            "desc": "Heal and Arcane Transfer weaken nearby enemies. </br> You gain +5 Distortion for every enemy weakened. (Up to +15) </br> </br>Effects: -15% Damage Bonus to Enemies </br>Duration: 6s </br>Cooldown: 6s",
+            "desc": "Heal and Arcane Transfer weaken nearby enemies. </br> You gain +5 Distortion for every enemy weakened. (Up to +15) </br> </br>Effect: -15% Damage Bonus to Enemies </br>Duration: 6s </br>Cooldown: 6s",
             "base_abil": "Distortion",
             "archetype": "Riftwalker",
             "archetype_req": 3,
@@ -10366,7 +10366,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "defMult.Devitalize",
+                            "name": "defMult.AbilityWeaken",
                             "value": 15
                         }
                     ]
@@ -10719,7 +10719,7 @@
         },
         {
             "display_name": "Riftbound",
-            "desc": "Casting Heal while sneaking binds you to your Dimensional Tear, making you Riftbound. </br> While Riftbound, your Dimensional Tear follows you, reaches further and your Distortion stops decaying. </br> </br>Duration: 6s </br>Cooldown: 20s </br>Range: +50% Blocks (Circle-Shaped)",
+            "desc": "Casting Heal while sneaking binds you to your Dimensional Tear, making you Riftbound. </br> While Riftbound, your Dimensional Tear follows you, reaches further and your Distortion stops decaying. </br> </br>Duration: 6s </br>Cooldown: 20s </br>Area of Effect: +50% Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
             "archetype_req": 11,
             "base_abil": "Distortion",
@@ -11374,7 +11374,7 @@
         },
         {
             "display_name": "Thunderstorm",
-            "desc": "After casting Meteor, generate a lightning strike near the point of impact, that adds +8 Mana to your Mana Bank for each aggressive enemy you hit. </br> </br><span class='mc-white'>Total Damage</span>: 270% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 120%) </br>Area of Effect: 2.5 Blocks (Circle-Shaped)",
+            "desc": "After casting Meteor, generate a lightning strike near the point of impact that adds +8 Mana to your Mana Bank for each aggressive enemy you hit. </br> </br><span class='mc-white'>Total Damage</span>: 270% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 120%) </br>Area of Effect: 2.5 Blocks (Circle-Shaped)",
             "archetype": "Arcanist",
             "archetype_req": 9,
             "base_abil": "Meteor",
@@ -11427,7 +11427,7 @@
         },
         {
             "display_name": "Tangled Origin",
-            "desc": "Click Combo: F </br> Summons a Thunder Serpent and a Fire Serpent, which will attack nearby enemies. </br> The Thunder Serpent strikes up to 4 enemies with arcing lightning every 1s, making them Unstable. </br> The Fire Serpent detonates Unstable targets every 3s, consuming the effect. </br> </br>Vision: 15 Blocks </br>Duration: 30s </br> </br><span class='mc-white'>Total Damage</span>: 900% (of your DPS, Thunder)   </br>&emsp;(<span class='nDam'>Damage</span>: 600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS, Fire)   </br>&emsp;(<span class='nDam'>Damage</span>: 1300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 700%) </br>Area of Effect: 3 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Summon a Thunder Serpent and a Fire Serpent, which will attack nearby enemies. </br> The Thunder Serpent strikes up to 4 enemies with arcing lightning every 1s, making them Unstable. </br> The Fire Serpent fires at Unstable targets every 3s, gaining the damage bonus. </br> </br>Vision: 15 Blocks </br>Duration: 30s </br> </br><span class='mc-white'>Total Damage</span>: 900% (of your DPS, Thunder)   </br>&emsp;(<span class='nDam'>Damage</span>: 600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br> </br><span class='mc-white'>Total Damage</span>: 2000% (of your DPS, Fire)   </br>&emsp;(<span class='nDam'>Damage</span>: 1300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 700%) </br>Area of Effect: 3 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Arcanist",
             "archetype_req": 18,
             "parents": [
@@ -12422,7 +12422,7 @@
         },
         {
             "display_name": "Mirror Image",
-            "desc": "Summon 3 Mirror Clones after reappearing from Vanish that will follow and protect you. </br> When hit, lose a Mirror Clone, reducing -25% of incoming damage and granting you a damage bonus for 3s. (1s cooldown) </br> </br>Effect: 30% Damage Bonus to self </br>Cooldown: 15s",
+            "desc": "Summon 3 Mirror Clones after reappearing from Vanish that will follow and protect you. </br> When hit, lose a Mirror Clone, reducing -25% of incoming damage and granting you a damage bonus for 3s. (1s cooldown) </br> </br>Effect: 30% Damage Bonus to Self </br>Cooldown: 15s",
             "archetype": "Trickster",
             "archetype_req": 2,
             "parents": [
@@ -12735,7 +12735,7 @@
         },
         {
             "display_name": "Blazing Powder",
-            "desc": "Spin Attack and Lacerate will deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   (</br>Damage: +20%)",
+            "desc": "Spin Attack and Lacerate will deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='fDam'>Fire</span>: +20%)",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Spin Attack",
@@ -12843,7 +12843,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -12863,7 +12863,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 }
             ]
         },
@@ -13956,7 +13956,7 @@
         },
         {
             "display_name": "Jasmine Bloom",
-            "desc": "After spending 40 Mana or gaining 4 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom)",
+            "desc": "After spending 40 Mana or gaining 4 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom)",
             "archetype": "Acrobat",
             "archetype_req": 12,
             "parents": [
@@ -14767,7 +14767,7 @@
         },
         {
             "display_name": "Disappearing Act",
-            "desc": "After losing all of your Mirror Clones, create an explosion the next time you enter Vanish. </br> </br><span class='mc-white'>Total Damage</span>: 800% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 550%)   (</br>Damage: 250%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+            "desc": "After losing all of your Mirror Clones, create an explosion the next time you enter Vanish. </br> </br><span class='mc-white'>Total Damage</span>: 800% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 550%)   </br>&emsp;(<span class='fDam'>Fire</span>: 250%) </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "archetype": "Trickster",
             "parents": [
                 "Paranoia",
@@ -15578,7 +15578,7 @@
         {
             "display_name": "Water Mastery",
             "base_abil": 998,
-            "desc": "Increase your damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+            "desc": "Increase your base damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
             "archetype": "Ritualist",
             "parents": [
                 "Cheaper Haul I",
@@ -15993,7 +15993,7 @@
         },
         {
             "display_name": "Mystic Masks",
-            "desc": "When casting Uproot, instead wear one of the Mystic Masks. (Shift + Uproot to remove it) </br> Lunatic: +15% Damage Bonus to Self    -15% Resistance Bonus to Self </br> Fanatic: +25% Resistance to Self    -25% Walk Speed to Self </br> Heretic: +50% Walk Speed to Self    -10% Damage Bonus to Self",
+            "desc": "When casting Uproot, instead wear one of the Mystic Masks. (Shift + Uproot to remove it) </br> Lunatic: +15% Damage Bonus to Self    -15% Resistance Bonus to Self </br> Fanatic: +25% Resistance Bonus to Self    -25% Walk Speed to Self </br> Heretic: +50% Walk Speed to Self    -10% Damage Bonus to Self",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 2,
@@ -17215,7 +17215,7 @@
         },
         {
             "display_name": "Tribal Chants",
-            "desc": "When switching masks, cause an effect around yourself. </br> Lunatic: +15% Damage Bonus to Allies </br>Duration: 6s </br> Fanatic: 45% Resistance Bonus to Allies </br>Duration: 3s </br> Heretic: +60% Walk Speed to Allies (-10% of the bonus decays every second) </br> </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Cooldown: 8s (per Chant)",
+            "desc": "Switching Masks buffs nearby allies. </br> Lunatic: +15% Damage Bonus to Allies </br>Duration: 6s </br> Fanatic: +45% Resistance Bonus to Allies </br>Duration: 3s </br> Heretic: +60% Walk Speed to Allies (-10% of the bonus decays every second) </br> </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Cooldown: 8s (per Chant)",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 8,
@@ -17353,7 +17353,7 @@
         },
         {
             "display_name": "Maddening Roots",
-            "desc": "Uproot will slow down enemies. Additionally, increase the damage bonus granted by Bullwhip. </br> </br>Effect: 40% Slowness to Enemies </br>Effect: +15% Bullwhip Damage Bonus </br>Duration: 3s",
+            "desc": "Uproot will slow down enemies. Additionally, increase the damage bonus granted by Bullwhip. </br> </br>Effects: 40% Slowness to Enemies    +15% Bullwhip Damage Bonus </br>Duration: 3s",
             "base_abil": "Bullwhip",
             "archetype": "Summoner",
             "parents": [
@@ -17540,7 +17540,7 @@
         },
         {
             "display_name": "Meticulous Act",
-            "desc": "Your Masks will give higher bonuses. </br> Lunatic: +25% Damage Bonus Fanatic: +20% Resistance Heretic: +40% Walk Speed",
+            "desc": "Your Masks will give higher bonuses. </br> Lunatic: +25% Damage Bonus Fanatic: +20% Resistance Bonus Heretic: +40% Walk Speed",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 11,
@@ -17748,7 +17748,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 },
                 {
                     "type": "stat_scaling",
@@ -17768,7 +17768,7 @@
                     },
                     "scaling": [
                         1.0
-                    ]                    
+                    ]
                 }
             ]
         },
@@ -17842,7 +17842,7 @@
         },
         {
             "display_name": "Artist's Immersion",
-            "desc": "Your Masks reduce the cost of different abilities based on the active mask. </br> Lunatic: -30% Aura Cost Fanatic: -65% Totem Cost Heretic: -50% Haul Cost",
+            "desc": "Your Masks reduce the cost of different abilities based on the active Mask. </br> Lunatic: -30% Aura Cost Fanatic: -65% Totem Cost Heretic: -50% Haul Cost",
             "archetype": "Ritualist",
             "base_abil": "Uproot",
             "parents": [
@@ -18096,7 +18096,7 @@
         },
         {
             "display_name": "Awakened",
-            "desc": "After saving 150 mana from your Masks' mana reductions, switching Masks will cause you to become Awakened for 25s, giving you the upsides of all Masks at once with no downsides. </br> Switching to an attached Mask while Awakened will immediately recall the Mask back to you.",
+            "desc": "After saving 150 mana from your Masks' mana reductions, switching Masks will cause you to become Awakened, giving you the upsides of all Masks at once with no downsides. </br> Switching to an attached Mask while Awakened will immediately recall the Mask back to you. </br> </br>Duration: 25s",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 11,
@@ -18341,7 +18341,7 @@
         },
         {
             "display_name": "Fortified Formation",
-            "desc": "If your health drops to 50% or less, your Effigies protect you until you are above 70% health again. </br> While protected, you take reduced damage and your Effigies strike back at attackers every 2s. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 180%)   </br>&emsp;(<span class='fDam'>Fire</span>: 80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Effects: 50% Resistance Bonus to Self </br>Duration: 10s </br>Cooldown: 15s",
+            "desc": "If your health drops to 50% or less, your Effigies protect you until you are above 70% health again. </br> While protected, you take reduced damage and your Effigies strike back at attackers every 2s. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 180%)   </br>&emsp;(<span class='fDam'>Fire</span>: 80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Effect: 50% Resistance Bonus to Self </br>Duration: 10s </br>Cooldown: 15s",
             "archetype": "Summoner",
             "base_abil": "Crimson Effigy",
             "parents": [
@@ -18466,7 +18466,7 @@
         },
         {
             "display_name": "Pool of Rejuvenation",
-            "desc": "While wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3)</br></br>Gain +1 Mana every 0.2s while inside at least one pool.</br></br>Duration: 8s</br>Area of Effect: 5 Blocks",
+            "desc": "When wearing the Mask of the Heretic \ue022, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +1 Mana every 0.2s while inside of at least one pool. </br> </br>Duration: 8s </br>Area of Effect: 5 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "parents": [
                 "Egomania",
@@ -18517,7 +18517,7 @@
         },
         {
             "display_name": "Rupture",
-            "desc": "Sacrificial Shrine boosts Aura's damage by +15% and consumes up to 2s of Bleeding , granting +2.2 Blood Pool for each second of Bleeding consumed.",
+            "desc": "Sacrificial Shrine boosts Aura's damage by +15% and consumes up to 2s of Bleeding, granting +2.2 Blood Pool for each second of Bleeding consumed.",
             "archetype": "Acolyte",
             "archetype_req": 6,
             "base_abil": "Sacrificial Shrine",
@@ -18553,7 +18553,7 @@
         },
         {
             "display_name": "Eldritch Transfusion",
-            "desc": "Refreshing Eldritch Call while it is already active will imbue its attacks with blood, granting it +1 stack of Transfused (Max 3). </br> For every 1 stack of Transfused Eldritch Call has, its attacks deal more damage. All stacks are lost when Eldritch Call ends. </br> </br>Effect: +15% damage to Eldritch Call (Per stack)",
+            "desc": "Refreshing Eldritch Call while it is already active will imbue its attacks with blood, granting it +1 Transfused. (Max 3) </br> For each Transfused Eldritch Call has, its attacks deal more damage. All Transfused is lost when Eldritch Call expires. </br> </br>Effect: +15% damage to Eldritch Call (Per stack)",
             "archetype": "Acolyte",
             "parents": [
                 "Blood Sorrow"
@@ -18720,7 +18720,7 @@
         },
         {
             "display_name": "Patchwork Abomination",
-            "desc": "Click Combo: F </br> Summons the Patchwork Abomination, a highly unstable summon. </br> Hit the Abomination with Overseer to  switch between close-ranged and  long-range attack mode. </br> The Abomination will attack enemies  every 1.25s in close-ranged mode,  and every 1.75s in long-ranged mode. </br> Exploding Puppets will cause the Abomination to explode when it dies. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, Attack)   </br>&emsp;(<span class='nDam'>Damage</span>: 1600%)   </br>&emsp;(<span class='eDam'>Earth</span>: 500%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 5000% (of your DPS, Explosion)   </br>&emsp;(<span class='nDam'>Damage</span>: 4000%)   </br>&emsp;(<span class='fDam'>Fire</span>: 1000%) </br>Duration: 20s </br>Vision: 32 Blocks (Circle-Shaped) </br>Area of Effect: 12 Blocks (Circle-Shaped, Explosion) </br> Activate abilities to charge your Ultimate Meter to 100%.",
+            "desc": "Click Combo: F </br> Summon the Patchwork Abomination, a highly unstable summon. </br> Hit the Abomination with Overseer whilst sneaking to switch between close and long ranged mode. </br> The Abomination will attack enemies  every 1.25s in close-ranged mode,  and every 1.75s in long-ranged mode. </br> Exploding Puppets will cause the Abomination to explode when it dies. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, Attack)   </br>&emsp;(<span class='nDam'>Damage</span>: 1600%)   </br>&emsp;(<span class='eDam'>Earth</span>: 500%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 5000% (of your DPS, Explosion)   </br>&emsp;(<span class='nDam'>Damage</span>: 4000%)   </br>&emsp;(<span class='fDam'>Fire</span>: 1000%) </br>Duration: 20s </br>Vision: 32 Blocks (Circle-Shaped) </br>Area of Effect: 12 Blocks (Circle-Shaped, Explosion) </br> Activate abilities to charge your Ultimate Meter to 100%.",
             "archetype": "Summoner",
             "archetype_req": 18,
             "parents": [
@@ -18779,7 +18779,7 @@
         },
         {
             "display_name": "Sundered Skies",
-            "desc": "Click Combo: F </br> Your Totem massively grows in size, doubling all of its effects. </br> When your Totem lands, it summons a massive Thundercloud that zaps enemies every 1s, stunning them for 1.5s. </br> Damage is split between all enemies. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 1600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 400%)   </br>&emsp;(<span class='wDam'>Water</span>: 400%) </br>Effect: 100% Slowness to Enemies </br>Radius: 24 Blocks </br>Duration: 18s </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Your Totem massively grows in size, doubling all of its effects. </br> When your Totem lands, it summons a massive Thundercloud that zaps enemies every 1s, stunning them for 1.5s. </br> Damage is split between all enemies. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 1600%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 400%)   </br>&emsp;(<span class='wDam'>Water</span>: 400%) </br>Effect: 100% Slowness to Enemies </br>Duration: 18s </br>Area of Effect: 24 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Ritualist",
             "archetype_req": 15,
             "parents": [
@@ -18838,7 +18838,7 @@
         },
         {
             "display_name": "Monument to Gloom",
-            "desc": "Click Combo: F </br> Your Totem becomes possessed by an eldritch demon, granting +5% Blood Pool to nearby acolytes every 0.4s </br> Others receive +5% Health </br>every 0.4s </br> </br>Duration: 15s </br> Activate abilities or lose health to charge your Ultimate Meter to 100%.",
+            "desc": "Click Combo: F </br> Your Totem becomes possessed by an eldritch demon, granting +5% Blood Pool to nearby acolytes every 0.4s. </br> Others receive +5% Health </br>every 0.4s. </br> </br>Duration: 15s </br> Activate abilities or lose health to charge your Ultimate Meter to 100%.",
             "archetype": "Acolyte",
             "archetype_req": 18,
             "parents": [

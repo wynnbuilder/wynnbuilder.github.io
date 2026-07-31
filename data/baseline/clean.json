@@ -218503,7 +218503,10 @@
           "lb": 50,
           "agi": 20,
           "spd": 60,
-          "hpBonus": 400
+          "hpBonus": 400,
+          "majorIds": [
+            "CYCLONICSMITE"
+          ]
         }
       ]
     },
@@ -218976,7 +218979,10 @@
           "lb": 50,
           "dex": 20,
           "hpBonus": 380,
-          "mdRaw": 105
+          "mdRaw": 105,
+          "majorIds": [
+            "CRACKLINGSMITE"
+          ]
         }
       ]
     },
@@ -219323,7 +219329,10 @@
           "xpb": 25,
           "lb": 50,
           "int": 20,
-          "hpBonus": 360
+          "hpBonus": 360,
+          "majorIds": [
+            "PELAGICSMITE"
+          ]
         }
       ]
     },
@@ -219456,7 +219465,10 @@
           "lb": 50,
           "def": 20,
           "hpBonus": 570,
-          "hprRaw": 100
+          "hprRaw": 100,
+          "majorIds": [
+            "INFERNALSMITE"
+          ]
         }
       ]
     },
@@ -219508,7 +219520,10 @@
           "xpb": 25,
           "lb": 50,
           "str": 20,
-          "hpBonus": 425
+          "hpBonus": 425,
+          "majorIds": [
+            "FRACTURINGSMITE"
+          ]
         }
       ]
     },

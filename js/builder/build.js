@@ -118,11 +118,15 @@ class Build {
         statMap.set('defMult', new Map());
         statMap.get('damMult').set('tome', statMap.get('damMobs'));
         statMap.get('defMult').set('tome', statMap.get('defMobs'));
-        statMap.set("activeMajorIDs", major_ids);
         for (const [setName, count] of this.activeSetCounts) {
             const bonus = sets.get(setName).bonuses[count-1];
             for (const id in bonus) {
-                if (skp_order.includes(id)) {
+                if (id == "majorIds") {
+                    for (const major_id of bonus[id]){
+                        major_ids.add(major_id);
+                    }
+                }
+                else if (skp_order.includes(id)) {
                     // pass. Don't include skillpoints in ids
                 }
                 else {
@@ -130,6 +134,7 @@ class Build {
                 }
             }
         }
+        statMap.set("activeMajorIDs", major_ids);
         statMap.set("poisonPct", 0);
         statMap.set("healMult", new Map());
         statMap.set('manaMult', new Map());

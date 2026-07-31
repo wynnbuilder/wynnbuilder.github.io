@@ -61,6 +61,7 @@ function displaySetBonuses(parent_id, build) {
         }
         mock_item.set("powders", []);
         displayExpandedItem(mock_item, set_elem.id);
+        set_elem.children[0].children[0].href = "../items_adv/?f=set=\"" + setName + "\"";
     }
 }
 

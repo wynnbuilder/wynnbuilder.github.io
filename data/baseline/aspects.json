@@ -1144,7 +1144,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.Ivyroot Mamba",
+                      "name": "defMult.AbilityWeaken",
                       "value": 2
                     }
                   ]
@@ -1184,7 +1184,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.Ivyroot Mamba",
+                      "name": "defMult.AbilityWeaken",
                       "value": 3
                     }
                   ]
@@ -1224,7 +1224,7 @@
                   "bonuses": [
                     {
                       "type": "stat",
-                      "name": "defMult.Ivyroot Mamba",
+                      "name": "defMult.AbilityWeaken",
                       "value": 4
                     }
                   ]
