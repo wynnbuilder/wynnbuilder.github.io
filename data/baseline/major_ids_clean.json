@@ -1106,7 +1106,7 @@
                             "name": "damMult.Distortion:0.Vacuokinesis"
                         },
                         "scaling": [
-                            -0.4
+                            -0.32
                         ]
                     }
                 ]
@@ -1128,7 +1128,7 @@
                             "name": "damMult.Distortion:0.Vacuokinesis"
                         },
                         "scaling": [
-                            -0.14
+                            -0.08
                         ]
                     }
                 ]
@@ -3108,7 +3108,7 @@
     },
     "LIGHTNING_CRASH": {
         "displayName": "Lightning Crash",
-        "description": "Dash becomes a downward dive. Ripple has tripled height amplification and deals [neutral]250% and [thunder]100%.",
+        "description": "Dash becomes a downward dive. Ripple has doubled height amplification and deals [neutral]250% and [thunder]100%.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -3123,7 +3123,7 @@
                             "name": "damMult.Ripple:9.Ripple Damage"
                         },
                         "scaling": [
-                            24
+                            12
                         ]
                     },
                     {

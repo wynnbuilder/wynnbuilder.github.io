@@ -4022,7 +4022,7 @@
                     "name": "damMult.Distortion:0.Vacuokinesis"
                   },
                   "scaling": [
-                    0.08
+                    0.064
                   ]
                 }
               ]
@@ -4048,7 +4048,7 @@
                     "name": "damMult.Distortion:0.Vacuokinesis"
                   },
                   "scaling": [
-                    0.12
+                    0.096
                   ]
                 }
               ]
@@ -4074,7 +4074,7 @@
                     "name": "damMult.Distortion:0.Vacuokinesis"
                   },
                   "scaling": [
-                    0.16
+                    0.128
                   ]
                 }
               ]
@@ -4100,7 +4100,7 @@
                     "name": "damMult.Distortion:0.Vacuokinesis"
                   },
                   "scaling": [
-                    0.2
+                    0.16
                   ]
                 }
               ]

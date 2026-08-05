@@ -17678,7 +17678,7 @@
       "kb": -80,
       "spd": 17,
       "agi": 3,
-      "hprPct": -27,
+      "hprPct": -13,
       "str": 7,
       "eDefPct": 40,
       "dex": 3,
@@ -17722,7 +17722,7 @@
       ],
       "poison": 2000,
       "ls": 205,
-      "hprPct": -17,
+      "hprPct": -8,
       "mdRaw": 154,
       "hp": -550,
       "aDef": 40,
@@ -17769,7 +17769,7 @@
       "lore": "A hissing, cracking harmony swells, a maddening chorus to blare across the broken plains, yet still: unseen and alive, it swells with the beat of the earth, still breathing, still killing.",
       "poison": 23077,
       "spd": 23,
-      "hprPct": -23,
+      "hprPct": -11,
       "str": 10,
       "weakenEnemy": 8,
       "mdRaw": 440,
@@ -44131,7 +44131,7 @@
       ],
       "lvl": 102,
       "classReq": "warrior",
-      "defReq": 110,
+      "defReq": 95,
       "majorIds": [
         "HELLFIRE"
       ],
@@ -47902,7 +47902,7 @@
       ],
       "lvl": 100,
       "classReq": "shaman",
-      "strReq": 100,
+      "strReq": 80,
       "slots": 4,
       "lore": "The Fracturing brought Ahms into a shattered sky, sundering cliffs into an archipelago against the void. The tremors that linger carry an ancient power, bringing mountains to heel with ease and leaving devastation in its wake.",
       "expd": 25,
@@ -53912,7 +53912,7 @@
       ],
       "lvl": 98,
       "classReq": "archer",
-      "dexReq": 105,
+      "dexReq": 80,
       "majorIds": [
         "FALLOUT"
       ],
@@ -67043,7 +67043,7 @@
       "agiReq": 40,
       "strReq": 40,
       "slots": 2,
-      "ls": 305,
+      "ls": 350,
       "ms": 8,
       "hpBonus": -1250,
       "spd": 20,
@@ -68607,7 +68607,7 @@
       ],
       "lvl": 94,
       "classReq": "assassin",
-      "agiReq": 105,
+      "agiReq": 70,
       "majorIds": [
         "GRAND_INFLUENCE"
       ],
@@ -76569,8 +76569,8 @@
       ],
       "lvl": 91,
       "classReq": "mage",
-      "agiReq": 60,
-      "intReq": 80,
+      "agiReq": 30,
+      "intReq": 50,
       "majorIds": [
         "COSMIC_CAPTURE"
       ],
@@ -137818,7 +137818,7 @@
       "id": 1499
     },
     {
-      "displayName": "Kahontsi Ohstyen",
+      "displayName": "Lozendu Haon",
       "name": "Kahontsi Ohstyen",
       "category": "weapon",
       "type": "spear",
@@ -138193,7 +138193,7 @@
       "id": 5241
     },
     {
-      "displayName": "Ohonte Kerhite",
+      "displayName": "Hisel Azetir",
       "name": "Ohonte Kerhite",
       "category": "weapon",
       "type": "wand",
@@ -138249,7 +138249,7 @@
       "id": 12
     },
     {
-      "displayName": "Onenya Hronkas",
+      "displayName": "Ketenya Izul",
       "name": "Onenya Hronkas",
       "category": "armor",
       "type": "chestplate",
@@ -215525,6 +215525,8 @@
       "drop": "normal",
       "lvl": 3,
       "classReq": "archer",
+      "ms": 4,
+      "agi": 5,
       "slots": 1,
       "nDam": "5-8",
       "eDam": "0-0",
@@ -220022,13 +220024,13 @@
           "poison": 6000,
           "mdRaw": 300,
           "spd": 10,
-          "hprPct": -25
+          "hprPct": -15
         },
         {
           "poison": 12000,
           "mdRaw": 600,
           "spd": 20,
-          "hprPct": -60,
+          "hprPct": -35,
           "weakenEnemy": 8,
           "atkTier": 1
         }

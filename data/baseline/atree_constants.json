@@ -6295,7 +6295,7 @@
         },
         {
             "display_name": "Hallowed Blaze",
-            "desc": "Flaming Uppercut will deal more damage and grant 1 Holy Power whenever it deals damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='fDam'>Fire</span>: +15%)",
+            "desc": "Flaming Uppercut will deal more damage and grant 1 Holy Power whenever it deals damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='fDam'>Fire</span>: +30%)",
             "archetype": "Paladin",
             "archetype_req": 0,
             "parents": [
@@ -6319,11 +6319,11 @@
                     "base_spell": 8,
                     "target_part": "Damage Tick",
                     "multipliers": [
-                        15,
+                        30,
                         0,
                         0,
                         0,
-                        15,
+                        30,
                         0
                     ]
                 }
@@ -7649,7 +7649,7 @@
         },
         {
             "display_name": "Buried Light",
-            "desc": "Casting Bash while sneaking will consume  25 Holy Power to summon a beam  of light which slowly moves forward, damaging enemies every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 50%) </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "Casting Bash while sneaking will consume  25 Holy Power to summon a beam  of light which slowly moves forward, damaging enemies every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 280%)   </br>&emsp;(<span class='fDam'>Fire</span>: 60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 60%) </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
             "archetype": "Paladin",
             "parents": [
                 "Shine"
@@ -7676,11 +7676,11 @@
                         {
                             "name": "Damage per Tick",
                             "multipliers": [
-                                200,
+                                280,
                                 0,
-                                50,
+                                60,
                                 0,
-                                50,
+                                60,
                                 0
                             ]
                         },
@@ -8945,7 +8945,7 @@
         },
         {
             "display_name": "Sentient Snake",
-            "desc": "Ice Snake will follow the direction you're facing, allowing you to control it. </br> Frozen Tornado drifts towards nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%) </br>Drift Range: 10 Blocks",
+            "desc": "Ice Snake will follow the direction you're facing, allowing you to control it. </br> Frozen Tornado drifts towards nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%) </br>Drift Range: 10 Blocks",
             "base_abil": "Ice Snake",
             "parents": [
                 "Arcane Transfer",
@@ -8983,7 +8983,7 @@
                     "behavior": "modify",
                     "base_spell": 4,
                     "multipliers": [
-                        15,
+                        10,
                         0,
                         0,
                         5,
@@ -8995,7 +8995,7 @@
         },
         {
             "display_name": "Frozen Tornado",
-            "desc": "Casting Ice Snake instead summons a frozen tornado that deals damage every 0.5s. </br> For every +1 Distortion, the tornado gains +0.025 </br>Area of Effect and +1.1% Damage. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Effect: 50% Slowness to Enemies </br>Tornado Duration: 5s </br>Slow Duration: 1s",
+            "desc": "Casting Ice Snake instead summons a frozen tornado that deals damage every 0.5s. </br> For every +1 Distortion, the tornado gains +0.015 </br>Area of Effect and +1.1% Damage. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Effect: 50% Slowness to Enemies </br>Tornado Duration: 5s </br>Slow Duration: 1s",
             "base_abil": "Distortion",
             "archetype": "Riftwalker",
             "parents": [
@@ -9363,7 +9363,7 @@
         },
         {
             "display_name": "Snake Nest",
-            "desc": "Ice Snake will summon 3 snakes. </br> Frozen Tornado will summon 3 tornados. (Enemies cannot be damaged by multiple tornados or snakes at the same time.) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +35%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%)",
+            "desc": "Ice Snake will summon 3 snakes. </br> Frozen Tornado will summon 3 tornados. (Enemies cannot be damaged by multiple tornados or snakes at the same time.) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +35%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%)",
             "base_abil": "Ice Snake",
             "parents": [
                 "Pyrokinesis",
@@ -9403,7 +9403,7 @@
                     "behavior": "modify",
                     "base_spell": 4,
                     "multipliers": [
-                        20,
+                        15,
                         0,
                         0,
                         5,
@@ -9842,7 +9842,7 @@
         },
         {
             "display_name": "Vacuokinesis",
-            "desc": "Your Main Attack is imbued with vacuum, dealing additional damage. </br> For every +1 Distortion, Vacuokinesis deals +1% Damage. </br> </br><span class='mc-white'>Total Damage</span>: 80% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+            "desc": "Your Main Attack is imbued with vacuum, dealing additional damage. </br> For every +1 Distortion, Vacuokinesis deals +0.8% Damage. </br> </br><span class='mc-white'>Total Damage</span>: 80% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
             "base_abil": "Distortion",
             "archetype": "Riftwalker",
             "archetype_req": 0,
@@ -9895,7 +9895,7 @@
                         "name": "damMult.Distortion:0.Vacuokinesis"
                     },
                     "scaling": [
-                        1
+                        0.8
                     ]
                 }
             ]
@@ -10093,7 +10093,7 @@
         },
         {
             "display_name": "Frigid Grasp",
-            "desc": "Ice Snake and Frozen Tornado now deal  increased damage and their slow is stronger. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%) </br>Effect: +10% Slowness to Enemies",
+            "desc": "Ice Snake and Frozen Tornado now deal  increased damage and their slow is stronger. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)   </br>&emsp;(<span class='wDam'>Water</span>: +15%) </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS, for Frozen Tornado)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='wDam'>Water</span>: +5%) </br>Effect: +10% Slowness to Enemies",
             "base_abil": "Ice Snake",
             "parents": [
                 "Cheaper Meteor II",
@@ -10133,7 +10133,7 @@
                     "behavior": "modify",
                     "base_spell": 4,
                     "multipliers": [
-                        15,
+                        10,
                         0,
                         0,
                         5,
@@ -10335,7 +10335,7 @@
                         "name": "damMult.Distortion:0.Vacuokinesis"
                     },
                     "scaling": [
-                        0.25
+                        0.2
                     ]
                 }
             ]
