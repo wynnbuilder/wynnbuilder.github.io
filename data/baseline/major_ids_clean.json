@@ -226,7 +226,20 @@
     "SORCERY": {
         "displayName": "Sorcery",
         "description": "25% chance for spells and attacks to cast a second time at no additional cost.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Recycling",
+                "dependencies": [
+                    "Recycling"
+                ],
+                "properties": {
+                    "arrow_storm_mult": 0.02,
+                    "arrow_bomb_mult": 0.02
+                },
+                "effects": []
+            }
+        ]
     },
     "TAUNT": {
         "displayName": "Taunt",

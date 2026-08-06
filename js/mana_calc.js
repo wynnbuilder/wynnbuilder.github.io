@@ -1,6 +1,7 @@
 document.getElementById('spell-cycle').addEventListener('input', () => build_disp_node.mark_dirty().update());
 document.getElementById('cps-count').addEventListener('input', () => build_disp_node.mark_dirty().update());
 document.getElementById('mana-steal-check').addEventListener('change', () => build_disp_node.mark_dirty().update());
+document.getElementById('mana-ability-check').addEventListener('change', () => build_disp_node.mark_dirty().update());
 
 function getCycle() {
     const spellCycleStr = document.getElementById('spell-cycle').value;
@@ -34,6 +35,7 @@ function manaInputChanged(build, stats) {
     } else {
         document.getElementById('mana-used').textContent = '-';
         document.getElementById('mana-gained').textContent = '-';
+        document.getElementById('mana-gained-abilities').textContent = '-';
         document.getElementById('net-mana').textContent = '-';
         document.getElementById('net-mana').style.color = '';
     }
@@ -41,6 +43,7 @@ function manaInputChanged(build, stats) {
 
 function calculateMana(cycle, build, stats) {
     const includeManaSteal = document.getElementById('mana-steal-check').checked;
+    const includeManaAbility = document.getElementById('mana-ability-check').checked;
     let cps = parseFloat(document.getElementById('cps-count').value);
     if (Number.isNaN(cps)) {cps = 9;}
     const mr = stats.get("mr") ?? 0;
@@ -91,9 +94,11 @@ function calculateMana(cycle, build, stats) {
     }
 
     let cycle_cost = [];
+    let cycle_gain = [];
     for (let i = 0; i < 2; i++) {
-        const cost = Math.max(cycle[i][0], 1) - cycle[i][1];
+        const cost = Math.max(cycle[i][0], 1)
         cycle_cost.push(cost < 0 ? cost : cost <= 1 ? 1 : cost);
+        cycle_gain.push(cycle[i][1]);
     }
 
     // +5 per consecutive repeat
@@ -101,13 +106,14 @@ function calculateMana(cycle, build, stats) {
     for (let i = 2; i < cycle.length; i++) {
         if (cycle[i - 1][2] === cycle[i - 2][2]) {
             repeat++;
-            const penalized = Math.max(cycle[i][0] + repeat * 5, 1) - cycle[i][1];
+            const penalized = Math.max(cycle[i][0] + repeat * 5, 1);
             cycle_cost.push(penalized);
         } else {
             repeat = 0;
-            const cost = Math.max(cycle[i][0], 1) - cycle[i][1];
+            const cost = Math.max(cycle[i][0], 1);
             cycle_cost.push(cost);
         }
+        cycle_gain.push(cycle[i][1]);
     }
 
     // Wrap-around penalty
@@ -117,10 +123,12 @@ function calculateMana(cycle, build, stats) {
     }
     
     const manaUsed = cps * cycle_cost.reduce((acc, val) => acc + val, 0) / cycle_cost.length / 3;
-    const netMana = manaGained - manaUsed;
+    const manaGainedAbility = cps * cycle_gain.reduce((acc, val) => acc + val, 0) / cycle_gain.length / 3;
+    const netMana = manaGained + (includeManaAbility ? manaGainedAbility : 0) - manaUsed;
     const bpactUsage = manaUsed - Math.max(manaGained, 0);
     document.getElementById('mana-used').textContent = manaUsed.toFixed(2);
     document.getElementById('mana-gained').textContent = manaGained.toFixed(2);
+    document.getElementById('mana-gained-abilities').textContent = manaGainedAbility.toFixed(2);
     const netEl = document.getElementById('net-mana');
     netEl.textContent = netMana.toFixed(2);
     netEl.style.color = netMana >= 0 ? '#4caf50' : '#f44336';
