@@ -133,7 +133,7 @@
     },
     "HERO": {
         "displayName": "Saviour's Sacrifice",
-        "description": "While under 50% maximum health, nearby allies gain 15% bonus damage and defence.",
+        "description": "While under 50% maximum health, allies within 8 blocks gain 15% bonus damage and defence.",
         "abilities": [
             {
                 "class": "Any",
@@ -161,7 +161,7 @@
     },
     "ALTRUISM": {
         "displayName": "Altruism",
-        "description": "Nearby players gain 100% of the health you gain from Health Regen and Life Steal.",
+        "description": "Allies within 16 blocks gain 100% of the health you gain from Health Regen and Life Steal.",
         "abilities": []
     },
     "ARCANES": {
@@ -1333,7 +1333,7 @@
     },
     "TOTEMIC_FUSE": {
         "displayName": "Totemic Fuse",
-        "description": "Totemic Smash deals [neutral]+150%, [earth]+150%, [thunder]+150%, and [fire]+120% at the cost of half of Totem's duration.",
+        "description": "Totemic Smash deals [neutral]+150%, [earth]+150%, [thunder]+150%, and [fire]+120% but totemic smash loses 30% radius.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -2753,7 +2753,7 @@
     },
     "MANA_SURGE": {
         "displayName": "Mana Surge",
-        "description": "Curse instead releases a calming wave with a radius of 8 blocks. Allies affected will have their Mana Regen and Mana Steal are increased by 25% for 6s.",
+        "description": "Curse instead releases a calming wave with a radius of 8 blocks. Allies affected will have their Mana Regen and Mana Steal increased by 25% for 6s.",
         "abilities": []
     },
     "DESPERATE_MEASURES": {
@@ -2813,7 +2813,7 @@
                                 "mult": true,
                                 "value": 0
                             }
-                        ]                   
+                        ]
                     }
                 ]
             }
@@ -3631,7 +3631,7 @@
     },
     "GRAND_INFLUENCE": {
         "displayName": "Grand Influence",
-        "description": "While above 80% maximum health, nearby allies gain 15% increased health gain from all sources and 25% Walk Speed.",
+        "description": "While above 80% maximum health, allies within 12 blocks gain 15% increased health gain from all sources and 25% Walk Speed.",
         "abilities": []
     },
     "IGNITION_WHIRLWIND": {
@@ -3674,7 +3674,7 @@
     },
     "OLD_SPARK": {
         "displayName": "Old Spark",
-        "description": "Whirlwind transforms into a travelling projectile, exploding on contact and knocking enemies into the air. Hold shift to rise with them.",
+        "description": "Whirlwind transforms into a travelling projectile, exploding on contact and knocking enemies into the air. Crouch to rise with them.",
         "abilities": []
     },
     "DEATH_SENTENCE": {
@@ -4266,6 +4266,211 @@
                                 "type": "stat",
                                 "name": "spd",
                                 "value": 35
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "UNCERTAINTY_PRINCIPLE": {
+        "displayName": "Uncertainty Principle",
+        "description": "Arrow and Grape Bombs gain +1 radius and phase through enemies. Bouncing Bomb has decreased velocity and gains +1 bounces, and Grape Bombs gain increased randomness and +2 projectiles.",
+        "abilities": []
+    },
+    "DRAGONS_BREATH": {
+        "displayName": "Dragon's Breath",
+        "description": "Buckshot will heal allies for 100% of your total Health Regen.",
+        "abilities": []
+    },
+    "CINDERCURSE": {
+        "displayName": "Cindercurse",
+        "description": "Uppercut and Meteor do much less damage, but Flaming Uppercut and Burning Sigil gain much more.",
+        "abilities": [
+            {
+                "class": "Mage",
+                "dependencies": [
+                    "Burning Sigil"
+                ],
+                "base_abil": "Meteor",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 6,
+                        "target_part": "Tick Damage",
+                        "behavior": "modify",
+                        "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1000,
+                            1000
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Meteor Damage",
+                        "behavior": "modify",
+                        "multipliers": [
+                            -300,
+                            -50,
+                            0,
+                            0,
+                            -100,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "dependencies": [
+                    "Flaming Uppercut"
+                ],
+                "base_abil": "Uppercut",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Cindercurse:8.Damage Tick",
+                                "value": 3400
+                            }
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Uppercut",
+                        "behavior": "modify",
+                        "multipliers": [
+                            -250,
+                            -30,
+                            -30,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "CHAIN_ROCKET": {
+        "displayName": "Chain Rocket",
+        "description": "Arrow Bomb fires four bombs in a row, each dealing 40% of the damage, and launching less Grape Bombs and Shrapnel per.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Shrapnel Bomb"
+                ],
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Shrapnel Hits",
+                        "slider_max": 9
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Arrow bomb",
+                                "name": "bombs",
+                                "mult": true,
+                                "value": 1.6
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Arrow Bomb"
+                ],
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Arrow Bomb": 3
+                        }
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.ChainRocket:3.Arrow Bomb",
+                                "value": -60
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Heart Shatter"
+                ],
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Heart Shatter": 3
+                        }
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.ChainRocket:3.Heart Shatter",
+                                "value": -60
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "ACCRETION_CHAIN": {
+        "displayName": "Accretion Chain",
+        "description": "Chain Lightning hits slower, rebounds, adds 6 chains, and pulls mobs closer for a [neutral]9999% explosion spell.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Accretion Chain",
+                        "base_spell": 28,
+                        "display": "Explosion Damage",
+                        "parts": [
+                            {
+                                "name": "Explosion Damage",
+                                "type": "damage",
+                                "multipliers": [
+                                    9999,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
                             }
                         ]
                     }

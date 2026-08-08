@@ -14005,8 +14005,7 @@
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
-                "Celerity",
-                "Paranoia"
+                "Celerity"
             ],
             "dependencies": [
                 "Jasmine Bloom"
@@ -14749,8 +14748,7 @@
             "desc": "Gain +20% Walk Speed after losing a Mirror Clone. </br> </br>Duration: 4s",
             "archetype": "Trickster",
             "parents": [
-                "Doppelganger",
-                "Petal Storm"
+                "Doppelganger"
             ],
             "dependencies": [
                 "Mirror Image"
