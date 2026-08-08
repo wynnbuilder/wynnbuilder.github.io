@@ -14871,7 +14871,6 @@
             "desc": "Hop will now prepare 3 shurikens. You can prepare +3 total shurikens. (Max 12)",
             "archetype": "Acrobat",
             "parents": [
-                "Paranoia",
                 "Petal Storm",
                 "Thermobaric Smoke"
             ],
