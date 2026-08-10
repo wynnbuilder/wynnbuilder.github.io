@@ -8574,8 +8574,7 @@
             "effects": [
                 {
                     "type": "add_spell_prop",
-                    "target_part": "Meteor Damage",
-                    "behavior": "modify",
+                    "target_part": "Fragmentation Damage",
                     "base_spell": 3,
                     "multipliers": [
                         90,
@@ -8585,6 +8584,14 @@
                         0,
                         0
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "target_part": "Total Damage",
+                    "base_spell": 3,
+                    "hits": {
+                        "Fragmentation Damage": 1
+                    }
                 },
                 {
                     "type": "add_spell_prop",
@@ -9487,6 +9494,11 @@
                         {
                             "type": "stat",
                             "name": "damMult.MeteorShower:3.Meteor Damage",
+                            "value": -20
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.MeteorShower:3.Fragmentation Damage",
                             "value": -20
                         }
                     ]

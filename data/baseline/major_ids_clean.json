@@ -3221,7 +3221,7 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 3,
-                        "target_part": "Meteor Bounce",
+                        "target_part": "Wavebreak Direct Hit",
                         "multipliers": [
                             200,
                             0,
@@ -3251,10 +3251,10 @@
                         "slider_name": "Meteor Bounces",
                         "output": {
                             "type": "stat",
-                            "name": "damMult.Wavebreak:3.Meteor Bounce"
+                            "name": "damMult.Wavebreak:3.Meteor Damage"
                         },
                         "scaling": [
-                            4
+                            10
                         ]
                     },
                     {
@@ -3262,7 +3262,7 @@
                         "base_spell": 3,
                         "target_part": "Total Damage",
                         "hits": {
-                            "Meteor Bounce": "Meteor.meteor_bounces"
+                            "Wavebreak Direct Hit": 1
                         }
                     }
                 ]
