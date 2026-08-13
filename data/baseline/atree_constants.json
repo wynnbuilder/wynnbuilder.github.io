@@ -4058,6 +4058,10 @@
                                 0,
                                 0,
                                 0
+                            ],
+                            "ignored_mults": [
+                                "Wind Prison",
+                                "Initiator"
                             ]
                         },
                         {
