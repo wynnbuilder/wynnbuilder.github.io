@@ -220,8 +220,11 @@ function init_values() {
 }
 
 (async function() {
-    await Promise.resolve(ingredient_loader.load_init());
-    await Promise.resolve(item_loader.load_init(), load_major_id_data(wynn_version_names[WYNN_VERSION_LATEST]));
+    await Promise.all([
+        ingredient_loader.load_init(),
+        item_loader.load_init(),
+        load_major_id_data(wynn_version_names[WYNN_VERSION_LATEST])
+    ]);
     init_search();
 })();
 

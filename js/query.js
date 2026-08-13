@@ -474,10 +474,17 @@ const queryFuncs = {
     fn: function(item, itemExp, args) {
       if (args.length < 3) throw new Error('Not enough args to weaponDmgBonus()');
       let damage_weight = 0;
+      const damage_elements = ['n'].concat(skp_elements);
       // try not to recalculate the weapon if it's not necessary
       if (saved_weapon_args == null || saved_weapon_args[0] != args[0] || saved_weapon_args[1] != args[1]) {
         saved_weapon_args = args;
-        weapon_choice = new Item(itemMap.get(args[0]));
+        console.log(args);
+        if (args[0].slice(0, 3) == "CR-") {
+          weapon_choice = decodeCraft({hash: args[0].substring(3)});
+        }
+        else {
+          weapon_choice = new Item(itemMap.get(args[0]));
+        }
 
         // copy pasted from PowderInputNode
         let input = args[1].trim();
@@ -494,6 +501,17 @@ const queryFuncs = {
         }
         weapon_choice.statMap.set("powders", powdering);
         apply_weapon_powders(weapon_choice.statMap);
+
+        weapon_choice.base_dmg = {};
+        weapon_choice.base_dps = {};
+        for (ele of damage_elements) {
+          const dmg_range = weapon_choice.statMap.get(ele + "Dam_");
+          const avg_dmg = weapon_choice.statMap.get("crafted") ? (dmg_range[1][0] + dmg_range[1][1]) / 2 : (dmg_range[0] + dmg_range[1]) / 2;
+          const atkspd_idx = { SUPER_SLOW: 0, VERY_SLOW: 1, SLOW: 2, NORMAL: 3, FAST: 4, VERY_FAST: 5, SUPER_FAST: 6 };
+          const avg_dps = avg_dmg * baseDamageMultiplier[atkspd_idx[weapon_choice.statMap.get("atkSpd")]];
+          weapon_choice.base_dmg[ele] = avg_dmg;
+          weapon_choice.base_dps[ele] = avg_dps;
+        }
       }
       const use_spell = args[2];
       let max_roll;
@@ -507,37 +525,28 @@ const queryFuncs = {
       }
 
       if (use_spell) {
-        const damage_elements = ['n'].concat(skp_elements);
         for (ele of damage_elements) {
-          const dmg_range = weapon_choice.statMap.get(ele + "Dam_");
-          const avg_dmg = (dmg_range[0] + dmg_range[1]) / 2;
-          if (avg_dmg == 0){
-              continue;
+          if (weapon_choice.base_dps[ele] == 0) {
+            continue;
           }
-          const atkspd_idx = { SUPER_SLOW: 0, VERY_SLOW: 1, SLOW: 2, NORMAL: 3, FAST: 4, VERY_FAST: 5, SUPER_FAST: 6 };
-          const avg_dps = avg_dmg * baseDamageMultiplier[atkspd_idx[weapon_choice.statMap.get("atkSpd")]];
-
           let pct_damage_boost = getOrNullToZero(max_roll,ele+'DamPct') + getOrNullToZero(max_roll,ele+'SdPct') + getOrNullToZero(max_roll,'damPct') + getOrNullToZero(max_roll,'sdPct');
           if (ele != "n") {
             pct_damage_boost += getOrNullToZero(max_roll,'rDamPct') + getOrNullToZero(max_roll,'rSdPct');
           }
-          damage_weight += avg_dps/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'SdRaw');
+          damage_weight += weapon_choice.base_dps[ele]/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'SdRaw');
         }
         damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'sdRaw') + getOrNullToZero(max_roll,'rSdRaw') + getOrNullToZero(max_roll,'rDamRaw');
       }
       else {
-        const damage_elements = ['n'].concat(skp_elements);
         for (ele of damage_elements) {
-          const dmg_range = weapon_choice.statMap.get(ele + "Dam_");
-          const avg_dmg = (dmg_range[0] + dmg_range[1]) / 2;
-          if (avg_dmg == 0){
-              continue;
+          if (weapon_choice.base_dmg[ele] == 0) {
+            continue;
           }
           let pct_damage_boost = getOrNullToZero(max_roll,ele+'DamPct') + getOrNullToZero(max_roll,ele+'MdPct') + getOrNullToZero(max_roll,'damPct') + getOrNullToZero(max_roll,'mdPct');
           if (ele != "n") {
             pct_damage_boost += getOrNullToZero(max_roll,'rDamPct') + getOrNullToZero(max_roll,'rMdPct');
           }
-          damage_weight += avg_dmg/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'MdRaw');
+          damage_weight += weapon_choice.base_dmg[ele]/100 * pct_damage_boost + getOrNullToZero(max_roll,ele+'DamRaw') + getOrNullToZero(max_roll,ele+'MdRaw');
         }
         damage_weight += getOrNullToZero(max_roll,'damRaw') + getOrNullToZero(max_roll,'mdRaw') + getOrNullToZero(max_roll,'rMdRaw') + getOrNullToZero(max_roll,'rDamRaw');
       }
