@@ -4276,7 +4276,66 @@
     "UNCERTAINTY_PRINCIPLE": {
         "displayName": "Uncertainty Principle",
         "description": "Arrow and Grape Bombs gain +1 radius and phase through enemies. Bouncing Bomb has decreased velocity and gains +1 bounces, and Grape Bombs gain increased randomness and +2 projectiles.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Grape Bomb"
+                ],
+                "properties": {
+                    "grapes": 1
+                },
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Grape Bomb hits",
+                        "output": {
+                            "type": "prop",
+                            "abil": "Arrow Bomb",
+                            "name": "grape_hits"
+                        },
+                        "slider_max": 2
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Bouncing Bomb"
+                ],
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Toggle Bouncing Bomb Hit",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Arrow Bomb",
+                                "name": "bounce_hits",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Grape Bomb hits",
+                        "behavior": "modify",
+                        "slider_max_mult": 1.5
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Shrapnel Hits",
+                        "behavior": "modify",
+                        "slider_max_mult": 1.5
+                    }
+                ]
+            }
+        ]
     },
     "DRAGONS_BREATH": {
         "displayName": "Dragon's Breath",
@@ -4374,7 +4433,8 @@
                         "type": "stat_scaling",
                         "slider": true,
                         "slider_name": "Shrapnel Hits",
-                        "slider_max": 9
+                        "behavior": "modify",
+                        "slider_max_mult": 4
                     },
                     {
                         "type": "raw_stat",
@@ -4387,6 +4447,22 @@
                                 "value": 1.6
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "dependencies": [
+                    "Grape Bomb"
+                ],
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Grape Bomb hits",
+                        "behavior": "modify",
+                        "slider_max_mult": 2
                     }
                 ]
             },

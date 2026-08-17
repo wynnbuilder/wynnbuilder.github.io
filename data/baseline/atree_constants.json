@@ -16,7 +16,8 @@
                 "aoe": 4.5,
                 "range": 26,
                 "bounce_mult": 1,
-                "bombs": 1
+                "bombs": 1,
+                "bounce_hits": 1
             },
             "effects": [
                 {
@@ -56,7 +57,7 @@
                             "name": "Total Damage",
                             "type": "total",
                             "hits": {
-                                "Arrow Bomb": 1
+                                "Arrow Bomb": "Arrow Bomb.bounce_hits"
                             }
                         }
                     ]
@@ -672,7 +673,7 @@
         },
         {
             "display_name": "Nimble String",
-            "desc": "\u00a77\u00a7nArrow Storm\u00a77 fires twice as fast and shoots +6 arrows per stream. </br> \u00a77\u00a7nPhantom Ray\u00a77 hits twice as fast but lasts half as long. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per arrow/ray)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
+            "desc": "Arrow Storm fires twice as fast and shoots +6 arrows per stream. </br> Phantom Ray hits twice as fast but lasts half as long. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per arrow/ray)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Thunder Mastery",
@@ -1674,7 +1675,7 @@
         },
         {
             "display_name": "Bouncing Bomb",
-            "desc": "\u00a77\u00a7nArrow Bomb\u00a77 will travel \u00a7f20%\u00a77 slower and bounce once when hitting a block or enemy.",
+            "desc": "Arrow Bomb will travel 20% slower and bounce once when hitting a block or enemy.",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Vigilant Sentinels",
@@ -1693,7 +1694,34 @@
             "properties": {
                 "bounce_mult": 1
             },
-            "effects": []
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "toggle": "Toggle Bouncing Bomb Hit",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Arrow Bomb",
+                            "name": "bounce_hits",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Grape Bomb hits",
+                  "behavior": "modify",
+                  "slider_max_mult": 2
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Shrapnel Hits",
+                  "behavior": "modify",
+                  "slider_max_mult": 2
+                }
+            ]
         },
         {
             "display_name": "Ivyroot Mamba",
@@ -2994,6 +3022,13 @@
                             "value": 1
                         }
                     ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Grape Bomb hits",
+                    "behavior": "modify",
+                    "slider_max": 1
                 }
             ]
         },
@@ -3405,7 +3440,8 @@
             },
             "properties": {
                 "aoe": 2,
-                "grapes": 3
+                "grapes": 2,
+                "grape_hits": 0
             },
             "effects": [
                 {
@@ -3420,6 +3456,28 @@
                         15,
                         0
                     ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Grape Bomb hits",
+                    "output": {
+                        "type": "prop",
+                        "abil": "Arrow Bomb",
+                        "name": "grape_hits"
+                    },
+                    "scaling": [
+                        1
+                    ],
+                    "slider_max": 2
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 3,
+                    "target_part": "Total Damage",
+                    "hits": {
+                        "Grape Bomb": "Arrow Bomb.grape_hits"
+                    }
                 }
             ]
         },

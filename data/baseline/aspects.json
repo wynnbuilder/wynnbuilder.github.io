@@ -344,6 +344,13 @@
                     0,
                     0
                   ]
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Grape Bomb hits",
+                  "behavior": "modify",
+                  "slider_max": 1
                 }
               ]
             }
@@ -372,6 +379,13 @@
                     0,
                     0
                   ]
+                },
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Grape Bomb hits",
+                  "behavior": "modify",
+                  "slider_max": 1
                 }
               ]
             }
