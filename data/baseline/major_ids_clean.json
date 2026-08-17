@@ -653,16 +653,10 @@
             {
                 "class": "Assassin",
                 "base_abil": "Multihit",
+                "properties": {
+                    "hit_count": 12
+                },
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "target_part": "Total Damage",
-                        "behavior": "modify",
-                        "hits": {
-                            "Per Hit": 12
-                        }
-                    },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 3,
@@ -680,14 +674,38 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 3,
+                        "behavior": "modify",
                         "target_part": "Finality Bonus",
                         "multipliers": [
-                            288,
+                            384,
                             0,
                             0,
                             0,
                             0,
-                            96
+                            192
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Assassin",
+                "base_abil": "Multihit",
+                "dependencies": [
+                    "Mutilate"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "behavior": "modify",
+                        "target_part": "Finality Bonus",
+                        "multipliers": [
+                            144,
+                            0,
+                            0,
+                            0,
+                            0,
+                            72
                         ]
                     }
                 ]
