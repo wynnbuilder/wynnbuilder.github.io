@@ -14735,7 +14735,7 @@
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "damMult.SurpriseStrike",
+                            "name": "damMult.ShadowDance",
                             "value": 50
                         }
                     ]
