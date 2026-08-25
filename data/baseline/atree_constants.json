@@ -11328,7 +11328,7 @@
             "display_name": "Gravitational Collapse",
             "desc": "Click Combo: F </br> Your Dimensional Tear overloads, growing in size and damage while pulling all enemies in. </br> While it is overloaded, it deals +400% increased damage, turns your Teleport into a deadly ray that fires off 5 times in quick succession, provides flight, and prevents mana drain. </br> The Dimensional Tear collapses when it expires, dealing massive damage to nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS, Deadly Beam)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%)   </br>&emsp;(<span class='aDam'>Air</span>: 60%) </br><span class='mc-white'>Total Damage</span>: 8000% (of your DPS, Collapse)   </br>&emsp;(<span class='nDam'>Damage</span>: 6000%)   </br>&emsp;(<span class='eDam'>Earth</span>: 1000%)   </br>&emsp;(<span class='aDam'>Air</span>: 1000%) </br>Area of Effect: +100% </br>Duration: 10s </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Riftwalker",
-            "archetype_req": 16,
+            "archetype_req": 15,
             "parents": [
                 "Paradox",
                 "Portal to the Beyond"
@@ -12744,7 +12744,9 @@
                 "Rolling Fog",
                 "Shadow Travel"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Backstab"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {

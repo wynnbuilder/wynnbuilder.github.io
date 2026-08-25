@@ -3118,13 +3118,17 @@
                 "base_abil": "Nightcloak Knife",
                 "effects": [
                     {
-                        "type": "raw_stat",
-                        "bonuses": [
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Knives Active",
+                        "output": [
                             {
                                 "type": "stat",
-                                "name": "damMult.Nightcloak",
-                                "value": -30
+                                "name": "damMult.Nightcloak"
                             }
+                        ],
+                        "scaling": [
+                            -3.9
                         ]
                     },
                     {
