@@ -239,7 +239,7 @@ class ItemInputNode extends InputNode {
             let type_match;
             if (this.category == 'weapon') {
                 type_match = item.statMap.get('category') == 'weapon';
-            } else if (item.statMap.get("crafted")) {
+            } else if (item.statMap.get("crafted") && "recipe" in item) {
                 const fieldType = this.none_item.statMap.get('type');
                 const fieldSkill = type_to_skill(fieldType);
                 const itemSkillMatchesField = item.recipe.get('skill') === fieldSkill;
