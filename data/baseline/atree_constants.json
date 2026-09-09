@@ -5286,7 +5286,8 @@
                 "icon": "node_3"
             },
             "properties": {
-                "cooldown": 15
+                "cooldown": 15,
+                "raw_per_corrupt": 2
             },
             "effects": [
                 {
@@ -5301,7 +5302,7 @@
                     },
                     "max": 120,
                     "scaling": [
-                        2
+                        "Bak'al's Grasp.raw_per_corrupt"
                     ]
                 }
             ]
@@ -6091,20 +6092,10 @@
                 "col": 0,
                 "icon": "node_0"
             },
-            "properties": {},
+            "properties": {
+                "raw_per_corrupt": 0.5
+            },
             "effects": [
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Corrupted",
-                    "output": {
-                        "type": "stat",
-                        "name": "damRaw"
-                    },
-                    "scaling": [
-                        0.5
-                    ]
-                },
                 {
                     "type": "raw_stat",
                     "bonuses": [
@@ -7295,7 +7286,7 @@
         {
             "display_name": "Rumble",
             "desc": "Increase Bash's damage by 5% per 1 </br>Area of Effect it has.",
-            "base_abil": "Bash",
+            "base_abil": "Bak'al's Grasp",
             "archetype": "Fallen",
             "archetype_req": 10,
             "parents": [
