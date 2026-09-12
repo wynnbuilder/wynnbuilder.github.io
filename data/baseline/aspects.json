@@ -6198,12 +6198,12 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Eye of the Storm strikes 0.5s faster.",
+          "description": "Eye of the Storm strikes 0.3s faster.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
               "properties": {
-                "surge_rate": 0.333333333333
+                "surge_rate": 0.75
               },
               "effects": []
             }
@@ -6211,12 +6211,12 @@
         },
         {
           "threshold": 5,
-          "description": "Eye of the Storm strikes 0.5s faster. </br> Increase your maximum Surge by +1.",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
               "properties": {
-                "surge_rate": 0.333333333333
+                "surge_rate": 0.75
               },
               "effects": [
                 {
@@ -6231,12 +6231,12 @@
         },
         {
           "threshold": 15,
-          "description": "Eye of the Storm strikes 0.5s faster. </br> Increase your maximum Surge by +1. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
               "properties": {
-                "surge_rate": 0.333333333333
+                "surge_rate": 0.75
               },
               "effects": [
                 {

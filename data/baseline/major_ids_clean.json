@@ -3823,7 +3823,7 @@
                         "base_spell": 3,
                         "target_part": "Maximum Orb DPS",
                         "hits": {
-                            "Per Orb": 0.625
+                            "Per Orb": 1.0
                         },
                         "hide": true
                     },

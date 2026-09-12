@@ -17225,7 +17225,7 @@
         },
         {
             "display_name": "Charged Ritual",
-            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 150 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Static)    (\u2723 Damage: 30%)    (\u2726 Thunder: 10%) \u2600 Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 150 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    (\u2723 Damage: 25%)    (\u2726 Thunder: 5%) \u2600 Area of Effect: 4 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 9,
             "parents": [
@@ -17255,9 +17255,9 @@
                         {
                             "name": "Damage per Stack",
                             "multipliers": [
-                                30,
+                                25,
                                 0,
-                                10,
+                                5,
                                 0,
                                 0,
                                 0
@@ -17275,7 +17275,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Static Stacks",
-                    "slider_max": 150,
+                    "slider_max": 300,
                     "output": [
                         {
                             "type": "prop",
@@ -17696,7 +17696,7 @@
         },
         {
             "display_name": "Doom",
-            "desc": "Increase Eye of the Storm's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS, per Surge)    (\u2723 Damage: 60%)    (\u2739 Fire: 20%)",
+            "desc": "Increase Eye of the Storm's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Surge)    (\u2723 Damage: 30%)    (\u2739 Fire: 10%)",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "parents": [
@@ -17717,11 +17717,11 @@
                     "base_spell": 14,
                     "target_part": "Surge Hit",
                     "multipliers": [
-                        60,
+                        30,
                         0,
                         0,
                         0,
-                        20,
+                        10,
                         0
                     ]
                 }
@@ -18054,7 +18054,7 @@
         },
         {
             "display_name": "Eye of the Storm",
-            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 5 Surge) </br> While you have Surge, strike nearby enemies with lightning every 1.5s. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per Surge)    (\u2723 Damage: 90%)    (\u2726 Thunder: 30%) \u27bc Range: 12 Blocks \u2600 Area of Effect: 2 Blocks (Circle-Shaped) \u231b Duration: 18s",
+            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 5 Surge) </br> While you have Surge, strike nearby enemies with lightning every 0.8s. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, per Surge)    (\u2723 Damage: 45%)    (\u2726 Thunder: 15%) \u27bc Range: 12 Blocks \u2600 Area of Effect: 2 Blocks (Circle-Shaped) \u231b Duration: 18s",
             "archetype": "Ritualist",
             "archetype_req": 4,
             "parents": [
@@ -18073,7 +18073,7 @@
             },
             "properties": {
                 "surge_stacks": 0,
-                "surge_rate": 0.666666666667
+                "surge_rate": 1.25
             },
             "effects": [
                 {
@@ -18086,9 +18086,9 @@
                             "name": "Surge Hit",
                             "type": "damage",
                             "multipliers": [
-                                90,
+                                45,
                                 0,
-                                30,
+                                15,
                                 0,
                                 0,
                                 0
@@ -18359,7 +18359,7 @@
         },
         {
             "display_name": "Ritual Circle",
-            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 2 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
+            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 4 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 11,
             "parents": [
@@ -18689,7 +18689,7 @@
         },
         {
             "display_name": "Overcharge",
-            "desc": "Switching Masks while your current Mask is over 150% Mantra will overclock the next Mask to 250% Mantra. </br> \u231a Cooldown: 10s",
+            "desc": "Switching Masks while your current Mask is over 180% Mantra will overclock the next Mask to 250% Mantra. </br> \u231a Cooldown: 10s",
             "archetype": "Ritualist",
             "parents": [
                 "Crystal Knives",
