@@ -16106,7 +16106,7 @@
             "properties": {
                 "lunatic_damage": 15,
                 "lunatic_cost": 0,
-                "fanatic_res": 25,
+                "fanatic_res": 20,
                 "fanatic_cost": 0,
                 "heretic_speed": 50,
                 "heretic_cost": 0

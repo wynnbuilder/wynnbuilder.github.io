@@ -5650,12 +5650,45 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "properties": {
-                "lunatic_damage": 2.25,
-                "fanatic_res": 3.75,
-                "heretic_speed": 7.5
-              },
-              "effects": []
+              "properties": {},
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "lunatic_damage",
+                      "mult": true,
+                      "value": 1.15
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "fanatic_res",
+                      "mult": true,
+                      "value": 1.15
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "heretic_speed",
+                      "mult": true,
+                      "value": 1.15
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -5665,12 +5698,45 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "properties": {
-                "lunatic_damage": 3,
-                "fanatic_res": 5,
-                "heretic_speed": 10
-              },
-              "effects": []
+              "properties": {},
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "lunatic_damage",
+                      "mult": true,
+                      "value": 1.2
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "fanatic_res",
+                      "mult": true,
+                      "value": 1.2
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "heretic_speed",
+                      "mult": true,
+                      "value": 1.2
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -5680,12 +5746,45 @@
           "abilities": [
             {
               "base_abil": "Uproot",
-              "properties": {
-                "lunatic_damage": 3.75,
-                "fanatic_res": 6.25,
-                "heretic_speed": 12.5
-              },
-              "effects": []
+              "properties": {},
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "lunatic_damage",
+                      "mult": true,
+                      "value": 1.25
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "fanatic_res",
+                      "mult": true,
+                      "value": 1.25
+                    }
+                  ]
+                },
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Uproot",
+                      "name": "heretic_speed",
+                      "mult": true,
+                      "value": 1.25
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
