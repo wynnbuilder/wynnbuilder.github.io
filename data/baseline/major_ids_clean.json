@@ -4634,9 +4634,9 @@
         "abilities": [
             {
                 "class": "Mage",
-                "base_abil": "Meteor",
+                "base_abil": "Arcane Transfer",
                 "properties": {
-                    "judrajim_scaling": 30
+                    "judrajim_scaling": 10
                 },
                 "effects": []
             }
