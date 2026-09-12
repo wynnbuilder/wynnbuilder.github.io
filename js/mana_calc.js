@@ -121,9 +121,22 @@ function calculateMana(cycle, build, stats) {
         repeat++;
         cycle_cost[0] += Math.max(repeat * 5 + Math.min(cycle[0][0], 0), 0);
     }
+
+    // Give the 30% that SoH procs every 8s
+    let extraAbilityMana = 0.0;
+    if (stats.get("activateStridesofHeresy")) {
+        for (let i = 0; i < cycle.length; i++) {
+            const spellId = cycle[i][2];
+            if (spellId == 4) {
+                const maxMana = 100 + stats.get('maxMana') + Math.floor(skillPointsToPercentage(stats.get('int') ?? 0) * 100);
+                extraAbilityMana += maxMana * 0.3 / 8;
+                break;
+            }
+        }
+    }
     
     const manaUsed = cps * cycle_cost.reduce((acc, val) => acc + val, 0) / cycle_cost.length / 3;
-    const manaGainedAbility = cps * cycle_gain.reduce((acc, val) => acc + val, 0) / cycle_gain.length / 3;
+    const manaGainedAbility = cps * cycle_gain.reduce((acc, val) => acc + val, 0) / cycle_gain.length / 3 + extraAbilityMana;
     const netMana = manaGained + (includeManaAbility ? manaGainedAbility : 0) - manaUsed;
     const bpactUsage = manaUsed - Math.max(manaGained, 0);
     document.getElementById('mana-used').textContent = manaUsed.toFixed(2);

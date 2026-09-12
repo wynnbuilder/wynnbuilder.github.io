@@ -16928,6 +16928,16 @@
                             "value": 120
                         }
                     ]
+                },
+                {
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "activateStridesofHeresy",
+                            "value": 1
+                        }
+                    ]
                 }
             ]
         },
