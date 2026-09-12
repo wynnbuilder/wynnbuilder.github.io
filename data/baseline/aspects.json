@@ -5656,18 +5656,6 @@
                 "heretic_speed": 7.5
               },
               "effects": []
-            },
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Meticulous Act"
-              ],
-              "properties": {
-                "lunatic_damage": 3.75,
-                "fanatic_res": 3,
-                "heretic_speed": 6
-              },
-              "effects": []
             }
           ]
         },
@@ -5683,18 +5671,6 @@
                 "heretic_speed": 10
               },
               "effects": []
-            },
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Meticulous Act"
-              ],
-              "properties": {
-                "lunatic_damage": 5,
-                "fanatic_res": 4,
-                "heretic_speed": 8
-              },
-              "effects": []
             }
           ]
         },
@@ -5708,18 +5684,6 @@
                 "lunatic_damage": 3.75,
                 "fanatic_res": 6.25,
                 "heretic_speed": 12.5
-              },
-              "effects": []
-            },
-            {
-              "base_abil": "Uproot",
-              "dependencies": [
-                "Meticulous Act"
-              ],
-              "properties": {
-                "lunatic_damage": 6.25,
-                "fanatic_res": 5,
-                "heretic_speed": 10
               },
               "effects": []
             }
@@ -5757,28 +5721,64 @@
       ]
     },
     {
-      "displayName": "Aspect of Seismic Sense",
+      "displayName": "Aspect of the Eternal Dance",
       "id": 2,
       "tier": "Fabled",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Nature's Jolt gains +1.25 Area of Effect.",
-          "abilities": []
+          "description": "Increase the maximum Ritual Circle hits and radius by +1.",
+          "abilities": [
+            {
+              "base_abil": "Ritual Circle",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Ritual Stacks",
+                  "slider_max": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
-          "description": "Nature's Jolt gains +2.25 Area of Effect.",
-          "abilities": []
+          "description": "Increase the maximum Ritual Circle hits and radius by +2.",
+          "abilities": [
+            {
+              "base_abil": "Ritual Circle",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Ritual Stacks",
+                  "slider_max": 2
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 75,
-          "description": "Nature's Jolt gains +3 Area of Effect.",
-          "abilities": []
+          "description": "Increase the maximum Ritual Circle hits and radius by +3.",
+          "abilities": [
+            {
+              "base_abil": "Ritual Circle",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Ritual Stacks",
+                  "slider_max": 3
+                }
+              ]
+            }
+          ]
         }
       ],
       "aliases": [
-        "naturesJoltAOE"
+        "ritualCircleStacks"
       ]
     },
     {
@@ -5788,73 +5788,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Frog Dance gains +2 bounces.",
-          "abilities": [
-            {
-              "base_abil": "Haul",
-              "dependencies": [
-                "Frog Dance"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 2,
-                  "hits": {
-                    "Hop Damage": 2
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Frog Dance gains +20% velocity.",
+          "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Frog Dance gains +3 bounces.",
-          "abilities": [
-            {
-              "base_abil": "Haul",
-              "dependencies": [
-                "Frog Dance"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 2,
-                  "hits": {
-                    "Hop Damage": 3
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Frog Dance gains +30% velocity.",
+          "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Frog Dance gains +4 bounces.",
-          "abilities": [
-            {
-              "base_abil": "Haul",
-              "dependencies": [
-                "Frog Dance"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "target_part": "Total Damage",
-                  "base_spell": 2,
-                  "hits": {
-                    "Hop Damage": 4
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Frog Dance gains +40% velocity.",
+          "abilities": []
         }
       ],
       "aliases": [
-        "frogDanceCount"
+        "frogDanceVelocity"
       ]
     },
     {
@@ -5864,22 +5813,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Tribal Chants gain +2 Area of Effect.",
+          "description": "Tribal Chants applies stacks 0.1s faster.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Tribal Chants gain +3.35 Area of Effect.",
+          "description": "Tribal Chants applies stacks 0.15s faster.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Tribal Chants gain +4 Area of Effect.",
+          "description": "Tribal Chants applies stacks 0.2s faster.",
           "abilities": []
         }
       ],
       "aliases": [
-        "chantAOE"
+        "chantSpeed"
       ]
     },
     {
@@ -6249,18 +6198,74 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Awakened requires -30 mana to activate.",
-          "abilities": []
+          "description": "Eye of the Storm strikes 0.5s faster.",
+          "abilities": [
+            {
+              "base_abil": "Eye of the Storm",
+              "properties": {
+                "surge_rate": 0.333333333333
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 5,
-          "description": "Awakened requires -30 mana to activate. Awakened gains +10s Duration.",
-          "abilities": []
+          "description": "Eye of the Storm strikes 0.5s faster. </br> Increase your maximum Surge by +1.",
+          "abilities": [
+            {
+              "base_abil": "Eye of the Storm",
+              "properties": {
+                "surge_rate": 0.333333333333
+              },
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Surge Stacks",
+                  "slider_max": 1
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 15,
-          "description": "Awakened requires -50 mana to activate. Awakened gains +15s Duration.",
-          "abilities": []
+          "description": "Eye of the Storm strikes 0.5s faster. </br> Increase your maximum Surge by +1. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
+          "abilities": [
+            {
+              "base_abil": "Eye of the Storm",
+              "properties": {
+                "surge_rate": 0.333333333333
+              },
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Surge Stacks",
+                  "slider_max": 1
+                }
+              ]
+            },
+            {
+              "base_abil": "Ritual Circle",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 16,
+                  "target_part": "Damage per Stack",
+                  "multipliers": [
+                    10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -6578,33 +6583,33 @@
       ]
     },
     {
-      "displayName": "Aspect of Summer Storms",
+      "displayName": "Aspect of Bile Waters",
       "id": 17,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase Storm Dance's pull strength by 10%.",
+          "description": "Corroded is +0.5% stronger.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Increase Storm Dance's pull strength by 15%.",
+          "description": "Corroded is +1% stronger.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Increase Storm Dance's pull strength by 20%.",
+          "description": "Corroded is +1.5% stronger.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Increase Storm Dance's pull strength by 25%.",
+          "description": "Corroded is +2% stronger.",
           "abilities": []
         }
       ],
       "aliases": [
-        "stormDancePull"
+        "corrodedStrength"
       ]
     },
     {
@@ -6784,27 +6789,30 @@
       ]
     },
     {
-      "displayName": "Aspect of the Blurred Line",
+      "displayName": "Aspect of Damnation",
       "id": 22,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Corporeal Manifestation spins 25% faster.",
+          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS, as Main Attack damage)    (\u2723 Damage: +4%)",
           "abilities": [
             {
-              "base_abil": "Uproot",
+              "base_abil": 999,
               "dependencies": [
-                "Corporeal Manifestation"
+                "Malediction"
               ],
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "target_part": "Rotation DPS",
-                  "base_spell": 4,
-                  "hits": {
-                    "Mask Throw": 0.25
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Activate Malediction",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "nConvBase:0.Single Beam",
+                      "value": 4
+                    }
+                  ]
                 }
               ]
             }
@@ -6812,21 +6820,24 @@
         },
         {
           "threshold": 5,
-          "description": "Corporeal Manifestation spins 40% faster.",
+          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, as Main Attack damage)    (\u2723 Damage: +6%)",
           "abilities": [
             {
-              "base_abil": "Uproot",
+              "base_abil": 999,
               "dependencies": [
-                "Corporeal Manifestation"
+                "Malediction"
               ],
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "target_part": "Rotation DPS",
-                  "base_spell": 4,
-                  "hits": {
-                    "Mask Throw": 0.4
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Activate Malediction",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "nConvBase:0.Single Beam",
+                      "value": 6
+                    }
+                  ]
                 }
               ]
             }
@@ -6834,21 +6845,24 @@
         },
         {
           "threshold": 30,
-          "description": "Corporeal Manifestation spins 55% faster.",
+          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +8% (of your DPS, as Main Attack damage)    (\u2723 Damage: +8%)",
           "abilities": [
             {
-              "base_abil": "Uproot",
+              "base_abil": 999,
               "dependencies": [
-                "Corporeal Manifestation"
+                "Malediction"
               ],
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "target_part": "Rotation DPS",
-                  "base_spell": 4,
-                  "hits": {
-                    "Mask Throw": 0.55
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Activate Malediction",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "nConvBase:0.Single Beam",
+                      "value": 8
+                    }
+                  ]
                 }
               ]
             }
@@ -6856,21 +6870,24 @@
         },
         {
           "threshold": 150,
-          "description": "Corporeal Manifestation spins 65% faster.",
+          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS, as Main Attack damage)    (\u2723 Damage: +10%)",
           "abilities": [
             {
-              "base_abil": "Uproot",
+              "base_abil": 999,
               "dependencies": [
-                "Corporeal Manifestation"
+                "Malediction"
               ],
               "effects": [
                 {
-                  "type": "add_spell_prop",
-                  "target_part": "Rotation DPS",
-                  "base_spell": 4,
-                  "hits": {
-                    "Mask Throw": 0.65
-                  }
+                  "type": "raw_stat",
+                  "toggle": "Activate Malediction",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "nConvBase:0.Single Beam",
+                      "value": 10
+                    }
+                  ]
                 }
               ]
             }
@@ -6878,7 +6895,7 @@
         }
       ],
       "aliases": [
-        "corporealManifestationSpeed"
+        "maledictionDamage"
       ]
     },
     {
@@ -6955,47 +6972,13 @@
         },
         {
           "threshold": 5,
-          "description": "Your Ultimate charges 20% faster. </br> Patchwork Abomination lasts +6s longer. Sundered Skies' delay between lightning strikes is -0.3s shorter. Monument to Gloom lasts +30% longer.",
-          "abilities": [
-            {
-              "base_abil": "Sundered Skies",
-              "dependencies": [
-                "Sundered Skies"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 14,
-                  "target_part": "Thundercloud DPS",
-                  "hits": {
-                    "Thundercloud Hit": 0.25
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Your Ultimate charges 20% faster. </br> Patchwork Abomination lasts +6s longer. Awakened lasts 5s longer. Monument to Gloom lasts +30% longer.",
+          "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Your Ultimate charges 25% faster. </br> Patchwork Abomination lasts +6s longer. Sundered Skies' delay between lightning strikes is -0.3s shorter. Monument to Gloom lasts +30% longer.",
-          "abilities": [
-            {
-              "base_abil": "Sundered Skies",
-              "dependencies": [
-                "Sundered Skies"
-              ],
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 14,
-                  "target_part": "Thundercloud DPS",
-                  "hits": {
-                    "Thundercloud Hit": 0.25
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Your Ultimate charges 25% faster. </br> Patchwork Abomination lasts +6s longer. Awakened lasts 5s longer. Monument to Gloom lasts +30% longer.",
+          "abilities": []
         }
       ]
     }

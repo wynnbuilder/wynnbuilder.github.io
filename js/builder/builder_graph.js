@@ -17,7 +17,7 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["hauntingfanatic", 0.0], ["hauntinglunatic", 0.0]]);
+const damageMultipliers = new Map([["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["hauntingfanatic", 0.0], ["hauntinglunatic", 0.0], ["chantlunatic", 0.3]]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
@@ -48,6 +48,16 @@ let boosts_node = new (class extends ComputeNode {
         if (document.getElementById('judgement-boost').classList.contains("toggleOn")) {
             res.set('damMult.Judgement', 20);
             res.set('defMult.Judgement', 20);
+        }
+        if (document.getElementById('chantfanatic-boost').classList.contains("toggleOn")) {
+            res.set('defMult.Potion', 30);
+        }
+        // For some reason, yes, they can stack with anything else
+        if (document.getElementById('weathering-boost').classList.contains("toggleOn")) {
+            res.set('defMult.Weathering', 20);
+        }
+        if (document.getElementById('acidrain-boost').classList.contains("toggleOn")) {
+            res.set('damMult.AcidRain', 8);
         }
         return res;
     }

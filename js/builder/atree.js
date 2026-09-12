@@ -82,7 +82,13 @@ stat_bonus: {
   type: "stat" | "prop",
   abil: Optional[int],
   name: str,
-  value: float
+  value: float,
+  mult: Optional[bool]                     // Only valid for type "prop". If true, multiplies the property
+                                            //     instead of adding to it. All "prop" mutations (from any
+                                            //     ability/effect) are fully resolved before any "stat"-type
+                                            //     bonus/output is evaluated, so a "stat" value referencing
+                                            //     a property (ex. "Uproot.lunatic_damage") always sees the
+                                            //     final (post-multiply) value, regardless of effect order.
 }
 stat_scaling: {
   type: "stat_scaling",
@@ -90,7 +96,10 @@ stat_scaling: {
   positive: bool                            // True to keep stat above 0. False to ignore floor. Default: True for normal, False for scaling
   slider_name: Optional[str],
   slider_step: Optional[float],
-  round:       Optional[bool]               // Control floor behavior. True for stats and false for slider by default
+  round:       Optional[bool]               // Control floor behavior. True by default, false for slider by default
+  base:        Optional[float | str]        // Initial value added to the computed total before rounding/clamping.
+                                            //     Useful for "mult" outputs so the multiplier starts at 1 (neutral)
+                                            //     instead of 0 at slider value 0. Can be a "abil.propname" reference.
   behavior:    Optional[str]                // One of: "merge", "modify". default: merge
                                             //     merge: add if exist, make new part if not exist
                                             //     modify: change existing part, by incrementing properties. do nothing if not exist
@@ -115,7 +124,8 @@ stat_scaling: {
 scaling_target: {
   type: "stat" | "prop",
   abil: Optional[int],
-  name: str
+  name: str,
+  mult: Optional[bool]                     // Same meaning as stat_bonus.mult; only valid when type is "prop".
 }
 */
 
@@ -732,11 +742,13 @@ const atree_scaling = new (class extends ComputeNode {
         }
         let ret_effects = new Map();
 
-        // Apply a stat bonus.
-        function apply_bonus(bonus_info, value) {
+        // Apply a stat/prop bonus. `only_type`, when given, restricts application to that bonus type,
+        // so property mutations can all resolve before any "stat" effect reads them (see below).
+        function apply_bonus(bonus_info, value, only_type = null) {
             const { type, name, abil = null, mult = false} = bonus_info;
+            if (only_type && type !== only_type) { return; }
             if (type === 'stat') {
-                merge_stat(ret_effects, name, atree_translate(atree_merged, value));
+                merge_stat(ret_effects, name, atree_translate(atree_edit, value));
             } else if (type === 'prop') {
                 const merge_abil = atree_edit.get(abil);
                 if (merge_abil) {
@@ -747,85 +759,101 @@ const atree_scaling = new (class extends ComputeNode {
                 }
             }
         }
-        for (const [abil_id, abil] of atree_merged.entries()) {
-            if (abil.effects.length == 0) { continue; }
 
-            for (const effect of abil.effects) {
-                switch (effect.type) {
-                case 'raw_stat':
-                    if (effect.toggle) {
-                        const button = button_map.get(effect.toggle).button;
-                        if (!button.classList.contains("toggleOn")) { continue; }
-                        for (const bonus of effect.bonuses) {
-                            apply_bonus(bonus, bonus.value);
-                        }
-                    } else {
-                        for (const bonus of effect.bonuses) {
-                            // Stat was applied earlier...
-                            if (bonus.type === 'stat') { continue; }
-                            apply_bonus(bonus, bonus.value);
+        // Compute a stat_scaling effect's total, using atree_edit so it can see any property
+        // mutations that were already resolved (see two-phase processing below).
+        function compute_stat_scaling_total(effect) {
+            let total = 0;
+            const {slider = false, scaling = [0], behavior = "merge", requirement = 0, base = 0} = effect;
+            let { positive = true } = effect;
+            if (slider) {
+                if (behavior == "modify" && !slider_map.has(effect.slider_name)) {
+                    // Dangerous control flow.. early continue
+                    return null;
+                }
+
+                const slider_val = slider_map.get(effect.slider_name).slider.value;
+                if (requirement > slider_val) { return null; }
+                const input_value = slider_val - requirement;
+
+                if (effect.multiplicative) {
+                    total = (((100+atree_translate(atree_edit, scaling[0]))/100) ** parseInt(input_value)-1) * 100;
+                }
+                else {
+                    total = parseInt(input_value) * atree_translate(atree_edit, scaling[0]);
+                }
+                positive = false;
+            }
+            else {
+                for (const [_scaling, input] of zip2(scaling, effect.inputs)) {
+                    if (input.type === 'stat') {
+                        total += pre_scale_stats.get(input.name) * atree_translate(atree_edit, _scaling);
+                    } else if (input.type === 'prop') {
+                        const merge_abil = atree_edit.get(input.abil);
+                        if (merge_abil) {
+                            total += merge_abil.properties[input.name] * atree_translate(atree_edit, _scaling);
                         }
                     }
-                    continue;
-                case 'stat_scaling':
-                    let total = 0;
-                    const {slider = false, scaling = [0], behavior="merge", multiplicative = false, requirement = 0} = effect;
-                    let { positive = true, round = true } = effect;
-                    if (slider) {
-                        if (behavior == "modify" && !slider_map.has(effect.slider_name)) {
-                            // Dangerous control flow.. early continue
-                            continue;
-                        }
+                }
+            }
+            // Lets e.g. a "mult" output start at a neutral value (1) instead of always starting from 0.
+            total += atree_translate(atree_edit, base);
+            return [total, positive];
+        }
 
-                        const slider_val = slider_map.get(effect.slider_name).slider.value;
-                        if(requirement > slider_val){
-                            continue;
-                        }
-                        const input_value = slider_val - requirement;
+        // Process every ability's effects, only applying bonuses/outputs matching `only_type`.
+        // Running this twice (once for "prop", once for "stat") ensures that any property
+        // multiplied/added-to via a "prop" bonus is fully resolved before a "stat" effect
+        function process_effects(only_type) {
+            for (const [abil_id, abil] of atree_merged.entries()) {
+                if (abil.effects.length == 0) { continue; }
 
-                        if (multiplicative) {
-                            total = (((100+atree_translate(atree_merged, scaling[0]))/100) ** parseInt(input_value)-1) * 100;
-                        }
-                        else {
-                            total = parseInt(input_value) * atree_translate(atree_merged, scaling[0]);
-                        }
-                        positive = false;
-                    }
-                    else {
-                        // TODO: type: prop?
-                        for (const [_scaling, input] of zip2(scaling, effect.inputs)) {
-                            if (input.type === 'stat') {
-                                total += pre_scale_stats.get(input.name) * atree_translate(atree_merged, _scaling);
-                            } else if (input.type === 'prop') {
-                                const merge_abil = atree_edit.get(input.abil);
-                                if (merge_abil) {
-                                    total += merge_abil.properties[input.name] * atree_translate(atree_merged, _scaling);
-                                }
+                for (const effect of abil.effects) {
+                    switch (effect.type) {
+                    case 'raw_stat':
+                        if (effect.toggle) {
+                            const button = button_map.get(effect.toggle).button;
+                            if (!button.classList.contains("toggleOn")) { continue; }
+                            for (const bonus of effect.bonuses) {
+                                apply_bonus(bonus, bonus.value, only_type);
+                            }
+                        } else {
+                            for (const bonus of effect.bonuses) {
+                                // Non-toggled "stat" bonuses are applied by atree_raw_stats instead.
+                                if (bonus.type === 'stat') { continue; }
+                                apply_bonus(bonus, bonus.value, only_type);
                             }
                         }
-                    }
-
-                    if ('output' in effect) { // sometimes nodes will modify slider without having effect.
+                        continue;
+                    case 'stat_scaling':
+                        if (!('output' in effect)) { continue; } // sometimes nodes will modify slider without having effect.
+                        // Sliders default to unrounded (needed for fractional "mult" scaling, ex. 0.01/stack).
+                        const { round = !effect.slider } = effect;
+                        const result = compute_stat_scaling_total(effect);
+                        if (result === null) { continue; }
+                        let [total, positive] = result;
                         if (round) { total = Math.floor(round_near(total)); }
                         if (positive && total < 0) { total = 0; }   // Normal stat scaling will not go negative.
                         if ('max' in effect) {
-                            let effect_max = atree_translate(atree_merged, effect.max);
+                            let effect_max = atree_translate(atree_edit, effect.max);
                             if (effect_max > 0 && total > effect_max) { total = effect.max; }
                             if (effect_max < 0 && total < effect_max) { total = effect.max; }
                         }
                         if (Array.isArray(effect.output)) {
                             for (const output of effect.output) {
-                                apply_bonus(output, total);
+                                apply_bonus(output, total, only_type);
                             }
                         }
                         else {
-                            apply_bonus(effect.output, total);
+                            apply_bonus(effect.output, total, only_type);
                         }
+                        continue;
                     }
-                    continue;
                 }
             }
         }
+        process_effects('prop');
+        process_effects('stat');
         return [atree_edit, ret_effects];
     }
 })().link_to(atree_merge, 'atree-merged').link_to(atree_make_interactives, 'atree-interactive');

@@ -11,6 +11,7 @@ def get_tree_data(wynn_class):
     return tree_data
 
 cleaner = re.compile('<.*?>') 
+mc_color_code = re.compile('\u00a7.')
 
 # man...
 replace_strings = {
@@ -104,9 +105,11 @@ replace_strings = {
 }
 
 def clean_description(string):
+    string = re.sub(mc_color_code, '', string)
     return re.sub(cleaner, '', string)
 
 def sub(s):
+    s = re.sub(mc_color_code, '', s)
     for k, v in replace_strings.items():
         s = re.sub(k, v, s)
     return s
@@ -191,4 +194,3 @@ if __name__ == "__main__":
 
     with open("../data/temp/atree_constants.json", "w") as output_file:
         json.dump(new_tree_data, output_file, indent=4)
-

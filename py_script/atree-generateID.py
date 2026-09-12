@@ -6,6 +6,14 @@ given [atree_constants.js] .js form of the Ability Tree with reference as string
 """
 import json, os
 
+def resolve_abil_ref(id_data, ref):
+    """Translate a 'name.propname' reference's ability part into a numeric id.
+    Accepts either a display/alias name (ex. 'melee') or an already-numeric id (ex. '999')."""
+    abil_id, propname = ref.split('.')
+    if abil_id.lstrip('-').isdigit():
+        return str(int(abil_id))+'.'+propname
+    return str(id_data[abil_id])+'.'+propname
+
 def translate_spell_part(id_data, part):
     if 'hits' in part:    # Translate parametrized hits...
         hits_mapping = part['hits']
@@ -13,13 +21,11 @@ def translate_spell_part(id_data, part):
         for k in keys:
             v = hits_mapping[k]
             if isinstance(v, str):
-                abil_id, propname = v.split('.')
-                hits_mapping[k] = str(id_data[abil_id])+'.'+propname
+                hits_mapping[k] = resolve_abil_ref(id_data, v)
     if 'mana_gained' in part:    # Translate parametrized hits...
         val = part['mana_gained']
         if isinstance(val, str):
-            abil_id, propname = val.split('.')
-            part['mana_gained'] = str(id_data[abil_id])+'.'+propname
+            part['mana_gained'] = resolve_abil_ref(id_data, val)
 
 def translate_effect(id_data, effect):
     if effect["type"] == "raw_stat":
@@ -29,8 +35,7 @@ def translate_effect(id_data, effect):
             if "value" in bonus:
                 val = bonus["value"]
                 if isinstance(val, str):
-                    abil_id, propname = val.split('.')
-                    bonus["value"] = str(id_data[abil_id])+'.'+propname
+                    bonus["value"] = resolve_abil_ref(id_data, val)
     elif effect["type"] == "replace_spell":
         for part in effect['parts']:
             translate_spell_part(id_data, part)
@@ -53,28 +58,23 @@ def translate_effect(id_data, effect):
             if isinstance(effect["scaling"], list):
                 for i, val in enumerate(effect["scaling"]):
                     if isinstance(val, str):
-                        abil_id, propname = val.split('.')
-                        effect["scaling"][i] = str(id_data[abil_id])+'.'+propname
+                        effect["scaling"][i] = resolve_abil_ref(id_data, val)
             else:
                 val = effect["scaling"]
                 if isinstance(val, str):
-                    abil_id, propname = val.split('.')
-                    effect["scaling"] = str(id_data[abil_id])+'.'+propname
+                    effect["scaling"] = resolve_abil_ref(id_data, val)
         if "max" in effect:
             val = effect["max"]
             if isinstance(val, str):
-                abil_id, propname = val.split('.')
-                effect["max"] = str(id_data[abil_id])+'.'+propname
+                effect["max"] = resolve_abil_ref(id_data, val)
         if "slider_max" in effect:
             val = effect["slider_max"]
             if isinstance(val, str):
-                abil_id, propname = val.split('.')
-                effect["slider_max"] = str(id_data[abil_id])+'.'+propname
+                effect["slider_max"] = resolve_abil_ref(id_data, val)
         if "slider_max_mult" in effect:
             val = effect["slider_max_mult"]
             if isinstance(val, str):
-                abil_id, propname = val.split('.')
-                effect["slider_max_mult"] = str(id_data[abil_id])+'.'+propname
+                effect["slider_max_mult"] = resolve_abil_ref(id_data, val)
 
 def translate_abil(id_data, abil, tree=True):
     def translate(path, ref):
@@ -310,6 +310,10 @@ def main():
             for abil in info:
                 abilDict[classType][abil["display_name"]] = _id
                 _id += 1
+            # Hardcoded ids for the class's default abilities (see default_abils in atree.js),
+            # so they can be referenced by name (ex. "melee") instead of a raw numeric id.
+            abilDict[classType]["melee"] = 999
+            abilDict[classType]["mastery"] = 998
 
         os.makedirs(os.path.dirname("../data/temp/atree_ids.json"), exist_ok=True)
         with open("../data/temp/atree_ids.json", "w", encoding='utf-8') as id_dest:

@@ -50,7 +50,7 @@
     },
     "HAWKEYE": {
         "displayName": "Hawkeye",
-        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]45%, [thunder]6%, and [air]6% each.",
+        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]45%, [thunder]6%, and [air]6% each. Feedback loop arrow cap is reduced by 90%",
         "abilities": [
             {
                 "class": "Archer",
@@ -443,12 +443,12 @@
     },
     "ALTEREGO": {
         "displayName": "Alter Ego",
-        "description": "Awakened can be activated after saving 40% less mana, but its duration is reduced by 25%.",
+        "description": "Mantra will overload Masks 150% faster, but also decay them 100% faster.",
         "abilities": []
     },
     "FOREST_BLESSING": {
         "displayName": "Forest's Blessing",
-        "description": "Your hound gains 50% more movement speed, attack speed and vision. Arrow Bomb's damage is reduced by [neutral]-30%.",
+        "description": "Call of the Hound gains 50% movement speed, attack speed and vision at the cost of a [neutral]-30% damage penalty on Arrow Bomb.",
         "abilities": [
             {
                 "class": "Archer",
@@ -648,7 +648,7 @@
     },
     "JUGGLE": {
         "displayName": "Juggle",
-        "description": "Mutilate adds an additional 12 hits. All hits are reduced by [neutral]-10%.",
+        "description": "Mutilate adds an additional 12 hits. All hits are reduced by [neutral]-8% and [water]-2%, and Finality's damage scaling is halved.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -663,10 +663,10 @@
                         "target_part": "Per Hit",
                         "behavior": "modify",
                         "multipliers": [
-                            -10,
+                            -8,
                             0,
                             0,
-                            0,
+                            -2,
                             0,
                             0
                         ]
@@ -683,6 +683,16 @@
                             0,
                             0,
                             192
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Juggle:3.Finality Bonus",
+                                "value": -50
+                            }
                         ]
                     }
                 ]
@@ -1275,19 +1285,22 @@
     },
     "FIND_THYSELF": {
         "displayName": "Find Thyself",
-        "description": "Masquerade now grants 75 Mana after switching between Masks 3 times.",
+        "description": "Mystic Masks grant 25 Mana after switching between Masks 3 times.",
         "abilities": [
             {
                 "class": "Shaman",
-                "base_abil": "Masquerade",
+                "base_abil": "Uproot",
                 "dependencies": [
-                    "Masquerade"
+                    "Mystic Masks"
                 ],
-                "properties": {
-                    "switch_count": 1,
-                    "mana_gain": 45
-                },
-                "effects": []
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 4,
+                        "mana_gained": 8.34
+                    }
+                ]
             }
         ]
     },
@@ -1384,7 +1397,7 @@
     },
     "SUBLIMATION": {
         "displayName": "Sublimation",
-        "description": "Totemic Shatter heals 75% of Regeneration's usual amount at the cost of 2 blocks of radius.",
+        "description": "Totemic Shatter heals 150% of Regeneration's usual amount at the cost of 2 blocks of radius.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -1411,7 +1424,7 @@
     },
     "FALLOUT": {
         "displayName": "Fallout",
-        "description": "Bomb Arrow gains +7.5 range, [fire]+50%, severely increased recoil, and [neutral]25% self-damage.",
+        "description": "Bomb Arrow gains +7.5 area, [fire]+50%, severely increased recoil, and [neutral]25% self-damage.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2008,7 +2021,7 @@
     },
     "FAUSTIAN_GAMBIT": {
         "displayName": "Faustian Gambit",
-        "description": "Frog Dance triggers once with increased vertical velocity and knockback, and deals [thunder]+400%.",
+        "description": "Frog Dance's bounce triggers instantly, and deals [thunder]+400%.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -2130,7 +2143,7 @@
     },
     "WORMHOLE": {
         "displayName": "Wormhole",
-        "description": "Last Laugh instead casts Meteor. Malicious Mockery causes Meteor to apply 13 Trick stacks.",
+        "description": "Mirror and Shadow clones will cast Meteor with Last Laugh. Malicious Mockery causes Meteor to apply 13 Trick stacks.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2234,7 +2247,7 @@
     },
     "DAUNTLESS_INFERNO": {
         "displayName": "Dauntless Inferno",
-        "description": "Courage casts a series of 5 infernos that expand after the last, dealing [fire]150% each, and grants 20% resistance instead of a damage boost.",
+        "description": "Courage casts a series of 5 infernos that expand after the last, dealing [fire]150% each, and grants 25% resistance instead of a damage boost.",
         "abilities": [
             {
                 "class": "Any",
@@ -2404,7 +2417,7 @@
     },
     "BRACHIATE": {
         "displayName": "Brachiate",
-        "description": "Grappling Hook has 25% increased range and increased velocity.",
+        "description": "Grappling Hook has 50% increased range and increased velocity.",
         "abilities": [
             {
                 "class": "Archer",
@@ -2952,7 +2965,7 @@
     },
     "SLOW_BOIL": {
         "displayName": "Slow Boil",
-        "description": "Bakal's Grasp and Enraged Blow have their caps doubled, but Corruption charges 20% as fast.",
+        "description": "Bakal's Grasp and Enraged Blow have their caps doubled, but Corruption charges 40% as fast.",
         "abilities": []
     },
     "STAGNANT_AIR": {
@@ -3018,7 +3031,7 @@
     },
     "SOLAR_WIND": {
         "displayName": "Solar Wind",
-        "description": "Thunderstorm disables Meteor, grants +3 thunderbolts, +3 radius and deals [neutral]100% and [thunder]110% each. Unstable now activates on Thunderstorm for 400% bonus damage.",
+        "description": "Thunderstorm disables Meteor, grants +2 mana bank per hit, +2 thunderbolts, +3 radius, and deals [neutral]130% and [thunder]150% each. Unstable now activates on Thunderstorm for 300% bonus damage.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3043,9 +3056,9 @@
                         "target_part": "Lightning Damage",
                         "behavior": "overwrite",
                         "multipliers": [
-                            100,
+                            130,
                             0,
-                            110,
+                            150,
                             0,
                             0,
                             0
@@ -3056,7 +3069,7 @@
                         "target_part": "Total Damage",
                         "base_spell": 3,
                         "hits": {
-                            "Lightning Damage": 3
+                            "Lightning Damage": 2
                         }
                     }
                 ]
@@ -3075,7 +3088,7 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.Unstable:3.Lightning Damage",
-                                "value": 400
+                                "value": 300
                             }
                         ]
                     }
@@ -3085,7 +3098,7 @@
     },
     "FISSURE": {
         "displayName": "Fissure",
-        "description": "Ice Snake moves much more slowly, but deals massive knockback, [neutral]+275%, and [water]+155%.",
+        "description": "Ice Snake moves much more slowly, but deals massive knockback, [neutral]+350%, and [water]+200%.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3097,10 +3110,10 @@
                         "target_part": "Ice Snake Damage",
                         "behavior": "modify",
                         "multipliers": [
-                            275,
+                            350,
                             0,
                             0,
-                            155,
+                            200,
                             0,
                             0
                         ]
@@ -3218,7 +3231,7 @@
     },
     "WAVEBREAK": {
         "displayName": "Wavebreak",
-        "description": "Meteor's [earth] damage is replaced by [water] damage.\nPsychokinesis can bounce up to 5 times, dealing [neutral]100% and [water]50% area damage, as well\nas [neutral]200% and [water]100% direct hit damage, increasing by 10% after each bounce. Mana Bank gains 3 less mana from Meteor.",
+        "description": "Psychokinesis can bounce up to 5 times, dealing [neutral]100% and [water]50% area damage, as well as [neutral]200% and [water]100% direct hit damage, increasing by 10% after each bounce. Mana Bank gains 3 less mana from Meteor.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3227,19 +3240,6 @@
                     "meteor_bounces": 0
                 },
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "target_part": "Meteor Damage",
-                        "multipliers": [
-                            0,
-                            -70,
-                            0,
-                            70,
-                            0,
-                            0
-                        ]
-                    },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 3,
@@ -3496,7 +3496,7 @@
     },
     "DIVINE_RIGHT": {
         "displayName": "Divine Right",
-        "description": "Your Maximum Health is reduced by 75%. For every 100 HP lost, Sacred Surge's damage is increased by 3%.",
+        "description": "Your Maximum Health is reduced by 75%. For every 100 HP lost, Sacred Surge's damage is increased by 2%.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3520,8 +3520,8 @@
                             "name": "damMult.DivineRight:3.Smite Damage"
                         },
                         "scaling": [
-                            0.0225,
-                            0.0225
+                            0.015,
+                            0.015
                         ]
                     },
                     {
@@ -3696,8 +3696,31 @@
     },
     "OLD_SPARK": {
         "displayName": "Old Spark",
-        "description": "Whirlwind transforms into a travelling projectile, exploding on contact and knocking enemies into the air. Crouch to rise with them.",
-        "abilities": []
+        "description": "Whirlwind transforms into a travelling projectile, dealing [thunder]+40% and knocking enemies into the air. Crouch to rise with them.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Uppercut",
+                "dependencies": [
+                    "Whirlwind Strike"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Uppercut",
+                        "multipliers": [
+                            0,
+                            0,
+                            40,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "DEATH_SENTENCE": {
         "displayName": "Death Sentence",
@@ -3800,7 +3823,16 @@
                         "base_spell": 3,
                         "target_part": "Maximum Orb DPS",
                         "hits": {
-                            "Per Orb": "Ophanim.num_orbs"
+                            "Per Orb": 0.625
+                        },
+                        "hide": true
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Maximum Orbit DPS",
+                        "hits": {
+                            "Maximum Orb DPS": "Ophanim.num_orbs"
                         }
                     },
                     {
@@ -3983,8 +4015,30 @@
     },
     "STARCROSSED": {
         "displayName": "Starcrossed",
-        "description": "Hitting an enemy with Haunting Memory makes it Linked. You can have up to two targets Linked at once. When one Linked enemy takes damage, the other Linked enemy takes that damage as well. Haunted Memory's duration is increased by 5 seconds and its range is increased by 10 blocks.",
-        "abilities": []
+        "description": "Haunting Memory links up to 8 enemies together. While linked, enemies take +50% damage from Malediction and share this damage with every other linked enemy.",
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": 999,
+                "dependencies": [
+                    "Malediction",
+                    "Haunting Memory"
+                ],
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Malediction",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "nConvBase:0.Single Beam",
+                                "value": 20
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "OUTBREAK": {
         "displayName": "Outbreak",
@@ -4366,7 +4420,7 @@
     },
     "CINDERCURSE": {
         "displayName": "Cindercurse",
-        "description": "Uppercut and Meteor do much less damage, but Flaming Uppercut and Burning Sigil gain much more.",
+        "description": "Flaming Uppercut and Burning Sigil deal 7x damage at the cost of -60% of Uppercut, Meteor, and Ophanim's damage.",
         "abilities": [
             {
                 "class": "Mage",
@@ -4376,31 +4430,33 @@
                 "base_abil": "Meteor",
                 "effects": [
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 6,
-                        "target_part": "Tick Damage",
-                        "behavior": "modify",
-                        "multipliers": [
-                            0,
-                            0,
-                            0,
-                            0,
-                            1000,
-                            1000
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Cindercurse:6.Tick Damage",
+                                "value": 600
+                            }
                         ]
                     },
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "target_part": "Meteor Damage",
-                        "behavior": "modify",
-                        "multipliers": [
-                            -300,
-                            -50,
-                            0,
-                            0,
-                            -100,
-                            0
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Cindercurse:3.Meteor Damage",
+                                "value": -60
+                            }
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Cindercurse:3.Per Orb",
+                                "value": -60
+                            }
                         ]
                     }
                 ]
@@ -4418,22 +4474,18 @@
                             {
                                 "type": "stat",
                                 "name": "damMult.Cindercurse:8.Damage Tick",
-                                "value": 3400
+                                "value": 600
                             }
                         ]
                     },
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "target_part": "Uppercut",
-                        "behavior": "modify",
-                        "multipliers": [
-                            -250,
-                            -30,
-                            -30,
-                            0,
-                            0,
-                            0
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Cindercurse:3.Uppercut",
+                                "value": -60
+                            }
                         ]
                     }
                 ]
@@ -4570,6 +4622,82 @@
                                     0
                                 ]
                             }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "VIVID_DREAMSCAPES": {
+        "displayName": "Vivid Dreamscapes",
+        "description": "Your maximum Mana Bank is increased by 50, and Judrajim Mana cost and damage ramping is increased to 30%.",
+        "abilities": [
+            {
+                "class": "Mage",
+                "base_abil": "Meteor",
+                "properties": {
+                    "judrajim_scaling": 30
+                },
+                "effects": []
+            }
+        ]
+    },
+    "SOLAR_FRACTURE": {
+        "displayName": "Solar Fracture",
+        "description": "Hand of the Shaman gains +2 beams.",
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": 999,
+                "dependencies": [
+                    "Hand of the Shaman"
+                ],
+                "properties": {
+                    "total_beams": 2
+                },
+                "effects": []
+            }
+        ]
+    },
+    "PHASE_VECTOR": {
+        "displayName": "Phase Vector",
+        "description": "Shocking Bomb and Arrow Storm become lightning fast with reduced spread.",
+        "abilities": []
+    },
+    "CHAIN_REACTION": {
+        "displayName": "Chain Reaction",
+        "description": "Basaltic Traps arm faster and detonate immediately after arming, gaining +2 range.",
+        "abilities": []
+    },
+    "ASTROBLEME": {
+        "displayName": "Astrobleme",
+        "description": "Final Crush further delays Bash's last hit, but increases its radius by an additional +50%.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Bak'al's Grasp",
+                "dependencies": [
+                    "Rumble"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": false,
+                        "inputs": [
+                            {
+                                "type": "prop",
+                                "abil": "Bash",
+                                "name": "aoe"
+                            }
+                        ],
+                        "output": {
+                            "type": "prop",
+                            "abil": "Bash",
+                            "name": "crush_mult"
+                        },
+                        "scaling": [
+                            0.025
                         ]
                     }
                 ]
