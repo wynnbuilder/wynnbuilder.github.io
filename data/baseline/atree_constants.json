@@ -19134,7 +19134,7 @@
                 {
                     "type": "replace_spell",
                     "name": "Awakened",
-                    "base_spell": 15,
+                    "base_spell": 17,
                     "display": "Damage per Second",
                     "parts": [
                         {
