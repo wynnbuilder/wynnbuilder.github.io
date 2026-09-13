@@ -482,6 +482,9 @@ const queryFuncs = {
         if (args[0].slice(0, 3) == "CR-") {
           weapon_choice = decodeCraft({hash: args[0].substring(3)});
         }
+        else if (args[0].slice(0, 3) == "CI-") {
+          weapon_choice = decodeCustom({hash: args[0].substring(3)});
+        }
         else {
           weapon_choice = new Item(itemMap.get(args[0]));
         }
