@@ -16404,8 +16404,12 @@
                 "Cheaper Aura I",
                 "Cheaper Uproot I"
             ],
-            "dependencies": [],
-            "blockers": [],
+            "dependencies": [
+                "Mystic Masks"
+            ],
+            "blockers": [
+                "Effuse"
+            ],
             "cost": 2,
             "archetype_req": 3,
             "display": {
@@ -17225,7 +17229,7 @@
         },
         {
             "display_name": "Charged Ritual",
-            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 150 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    (\u2723 Damage: 25%)    (\u2726 Thunder: 5%) \u2600 Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    (\u2723 Damage: 25%)    (\u2726 Thunder: 5%) \u2600 Area of Effect: 15 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 9,
             "parents": [
@@ -17350,7 +17354,7 @@
         },
         {
             "display_name": "Mantra",
-            "desc": "While not worn, each Mask's positive effects gradually overload by +20% every 1.5s. (Max +200%) </br> While worn, the overload will decay by -20% every 1s.",
+            "desc": "While not worn, each Mask's positive effects gradually overload by +20% every 2.5s. (Max +200%) </br> While worn, the overload will decay by -20% every 2s.",
             "archetype": "Ritualist",
             "archetype_req": 8,
             "parents": [
@@ -18741,7 +18745,7 @@
         },
         {
             "display_name": "Pool of Rejuvenation",
-            "desc": "When wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +1 Mana every 0.2s if you or a Totem are inside at least 1 pool. </br> </br>Duration: 5s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+            "desc": "When wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +3 Mana every 0.2s if you or a Totem are inside at least 1 pool. </br> </br>Duration: 5s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "parents": [
                 "Overcharge",
@@ -18766,7 +18770,7 @@
                         {
                             "type": "stat",
                             "name": "mr",
-                            "value": 25
+                            "value": 75
                         }
                     ]
                 }
@@ -18883,7 +18887,9 @@
             "dependencies": [
                 "Flaming Tongue"
             ],
-            "blockers": [],
+            "blockers": [
+                "Haunting Memory"
+            ],
             "cost": 2,
             "display": {
                 "row": 38,

@@ -4516,7 +4516,7 @@
       "hprPct": -100,
       "hprRaw": -840,
       "spRaw2": -769,
-      "healPct": -18,
+      "healPct": -15,
       "nDam": "30-65",
       "aDam": "130-160",
       "eDam": "0-0",
@@ -19970,7 +19970,7 @@
       "thorns": 40,
       "ls": 800,
       "ref": 120,
-      "tDamPct": 27,
+      "tDamPct": 25,
       "atkTier": 1,
       "healPct": -15,
       "mdRaw": 1100,
@@ -24551,7 +24551,7 @@
       "slots": 3,
       "lore": "Unruly magics of void and darkness are tamed within this bow's string. While those energies are never to be released, arrows fired from it fire at such blinding speeds so as to phase out of existence when they hit their target.",
       "ls": 1000,
-      "ms": 24,
+      "ms": 25,
       "fDamPct": -550,
       "agi": -550,
       "def": -73,
@@ -24569,8 +24569,9 @@
       "id": 5433
     },
     {
-      "displayName": "Fatal\u058e",
+      "displayName": "Masterwork Fatal",
       "name": "Masterwork Fatal",
+      "persistent": true,
       "category": "weapon",
       "type": "wand",
       "icon": {
@@ -89546,6 +89547,9 @@
       "emblem": "shield_5",
       "tier": "Unique",
       "drop": "normal",
+      "elements": [
+        "air"
+      ],
       "lvl": 86,
       "slots": 3,
       "sprint": 27,
