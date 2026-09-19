@@ -2,7 +2,7 @@
 * Small script to prevent clients from accidentally using the forked versions of wynnbuilder
 * instead of the upstream official site.
 *
-* when developing est REDIRECT_DEV_OVERRIDE to false to prevent the alert from popping up.
+* when developing set REDIRECT_DEV_OVERRIDE to false to prevent the alert from popping up.
 *
 * This script should be loaded at the beginning of every html file.
 */
