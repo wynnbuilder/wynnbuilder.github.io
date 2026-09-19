@@ -106,7 +106,8 @@ function calculateMana(cycle, build, stats) {
     for (let i = 2; i < cycle.length; i++) {
         if (cycle[i - 1][2] === cycle[i - 2][2]) {
             repeat++;
-            const penalized = Math.max(cycle[i][0] + repeat * 5, 1);
+            const finalMult = 1 + (stats.get('spPct' + cycle[i][2] + 'Final') ?? 0) / 100;
+            const penalized = Math.max(cycle[i][0] + repeat * 5 * finalMult, 1);
             cycle_cost.push(penalized);
         } else {
             repeat = 0;
@@ -119,7 +120,8 @@ function calculateMana(cycle, build, stats) {
     // Wrap-around penalty
     if (cycle[cycle.length - 1][2] === cycle[cycle.length - 2][2]) {
         repeat++;
-        cycle_cost[0] += Math.max(repeat * 5 + Math.min(cycle[0][0], 0), 0);
+        const finalMult = 1 + (stats.get('spPct' + cycle[0][2] + 'Final') ?? 0) / 100;
+        cycle_cost[0] += Math.max(repeat * 5 * finalMult + Math.min(cycle[0][0], 0), 0);
     }
 
     // Give the 30% that SoH procs every 8s

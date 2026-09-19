@@ -158,25 +158,37 @@ if __name__ == "__main__":
                             print(f"Replaced color on node \"{ability_name}\", should be {icon_dict[color]}")
 
                         description_lines = []
+                        node_reqs = []
                         for text in ability["description"]:
                             if '</br>' in text:
                                 description_lines.append('</br>')
                                 continue
-                            if 'Archetype' in text:
+                            elif 'Min ' in text:
+                                continue 
+                            elif 'Archetype' in text:
                                 new_archetype = sub(re.sub(cleaner, '', text)).removesuffix('Archetype').strip()
                                 if "archetype" not in old_ability or old_ability["archetype"] != new_archetype:
                                     old_ability["archetype"] = new_archetype
                                     print(f"Replaced archetype association on \"{ability_name}\" to \"{new_archetype}\"")
-                                break
-                            if 'Ability Points' in text or 'Unlocking will block:' in text:
-                                break  
+                                continue
+                            elif 'Ability Points' in text or 'Unlocking will block:' in text:
+                                continue  
+                            elif 'Required Ability: ' in text:
+                                node_reqs.append(sub(re.sub(cleaner, '',text.split("Required Ability: ", 1)[1])))
+                                continue
+                            elif '- ' in text:
+                                continue
                             description_lines.append(sub(re.sub(cleaner, '', text)))
 
-                        if description_lines[0] == "</br>":
-                            description_lines[0] = ""
-                            
-                        if description_lines[len(description_lines)-1] == "</br>":
-                            description_lines[len(description_lines)-1] = ""
+                        if node_reqs != old_ability["dependencies"]:
+                            old_ability["dependencies"] = node_reqs
+                            print(f"Replaced {ability_name}'s reqs to {node_reqs}")
+
+                        while description_lines and description_lines[0] == "</br>":
+                            description_lines.pop(0)
+
+                        while description_lines and description_lines[-1] == "</br>":
+                            description_lines.pop()
 
                         description = ' '.join(description_lines).strip()
 

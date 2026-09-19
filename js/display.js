@@ -1480,8 +1480,14 @@ function displayPowderSpecials(parent_elem, powderSpecials, stats, weapon) {
 }
 
 function getSpellCost(stats, spell, capped = true) {
-    const cost = getBaseSpellCost(stats, spell) * (1 + stats.get('spPct' + spell.base_spell + 'Final') / 100);
-    return capped ? Math.max(1, cost) : cost;
+    const cost = getBaseSpellCost(stats, spell);
+    if (capped) {
+        return Math.max(1, cost) * (1 + stats.get('spPct' + spell.base_spell + 'Final') / 100);
+    }
+    else if (cost < 0) {
+        return cost + (stats.get('spPct' + spell.base_spell + 'Final') / 100);
+    }
+    return cost * (1 + stats.get('spPct' + spell.base_spell + 'Final') / 100);  
 }
 
 function getBaseSpellCost(stats, spell) {
