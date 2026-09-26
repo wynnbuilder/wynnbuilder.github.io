@@ -16397,7 +16397,7 @@
         },
         {
             "display_name": "More Puppets",
-            "desc": "Increase your Max Puppets by +1.",
+            "desc": "Increase your maximum Puppets by +1.",
             "base_abil": "Puppet Master",
             "archetype": "Summoner",
             "parents": [
@@ -16945,7 +16945,7 @@
         },
         {
             "display_name": "Strides of Heresy",
-            "desc": "When entering the Mask of the Heretic, knock back all nearby enemies, regenerate 30% of your Mana, and gain a large Walk Speed boost that decays over 6s. </br> \u2727 Effect: +120% Walk Speed to self \u2600 Area of Effect: 6 Blocks (Circle-Shaped) \u231a Cooldown: 8s",
+            "desc": "When entering the Mask of the Heretic, knock back all nearby enemies, regenerate 30% of your Mana, and gain a large Walk Speed boost that decays over 6s. </br> </br>Effect: +120% Walk Speed to self </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Cooldown: 8s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "archetype_req": 4,
@@ -17273,7 +17273,7 @@
         },
         {
             "display_name": "Charged Ritual",
-            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    (\u2723 Damage: 25%)    (\u2726 Thunder: 5%) \u2600 Area of Effect: 15 Blocks (Circle-Shaped)",
+            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Area of Effect: 15 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 9,
             "parents": [
@@ -17553,7 +17553,7 @@
         },
         {
             "display_name": "Acid Rain",
-            "desc": "Activating Totemic Shatter will cause all rain from Rain Dance to turn into Acid Rain. </br> The Acid Rain lasts for 2s, inflicting 1.5s of Corroded every time it hits an enemy. </br> Corroded enemies will take +8% more damage from all sources. </br> \u231b Max Duration: 10s",
+            "desc": "Activating Totemic Shatter will cause all rain from Rain Dance to turn into Acid Rain. </br> The Acid Rain lasts for 2s, inflicting 1.5s of Corroded every time it hits an enemy. </br> Corroded enemies will take +8% more damage from all sources. </br> </br>Max Duration: 10s",
             "archetype": "Ritualist",
             "archetype_req": 10,
             "parents": [
@@ -17713,7 +17713,7 @@
         },
         {
             "display_name": "Malediction",
-            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, as Main Attack damage)    (\u2723 Damage: 40%)",
+            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 40%)",
             "base_abil": 999,
             "archetype": "Ritualist",
             "parents": [
@@ -17746,7 +17746,7 @@
         },
         {
             "display_name": "Doom",
-            "desc": "Increase Eye of the Storm's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Surge)    (\u2723 Damage: 30%)    (\u2739 Fire: 10%)",
+            "desc": "Increase Eye of the Storm's damage. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 30%)    </br>&emsp;(<span class='fDam'>Fire</span>: 10%)",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "parents": [
@@ -17991,7 +17991,7 @@
         },
         {
             "display_name": "Storm Dance",
-            "desc": "Enemies hit by Aura will be pulled towards your totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 20% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) \u231b Duration: 3s",
+            "desc": "Enemies hit by Aura will be pulled towards your totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 20% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br>Duration: 3s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
@@ -18106,7 +18106,7 @@
         },
         {
             "display_name": "Eye of the Storm",
-            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 5 Surge) </br> While you have Surge, strike nearby enemies with lightning every 0.8s. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, per Surge)    (\u2723 Damage: 45%)    (\u2726 Thunder: 15%) \u27bc Range: 12 Blocks \u2600 Area of Effect: 2 Blocks (Circle-Shaped) \u231b Duration: 18s",
+            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 5 Surge) </br> While you have Surge, strike nearby enemies with lightning every 0.8s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 45%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 15%) </br>Range: 12 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Duration: 18s",
             "archetype": "Ritualist",
             "archetype_req": 4,
             "parents": [
@@ -18343,7 +18343,7 @@
         },
         {
             "display_name": "Hummingbird's Song",
-            "desc": "Summon 2 Hummingbird Carvings which fly around you, passively granting a walk speed buff. Casting Haul while holding shift will temporarily send your Hummingbirds to attack nearby enemes, rapidly piercing through them every 0.25s. Casting it again will call them back early. While they are attacking, your Hummingbirds will not apply their passive effects to you. (Duration: 10s)",
+            "desc": "Summon 2 Hummingbird Carvings which fly around you, passively granting a walk speed buff. </br> Casting Haul while holding shift will temporarily send your Hummingbirds to attack nearby enemies, rapidly piercing through them every 0.25s. Casting it again will call them back early. </br> While they are attacking, your Hummingbirds will not apply their passive effects to you. </br> </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Duration: 10s </br>Vision: 16 Blocks (Circle-Shaped) </br>Effect: +40% Walk Speed to Self",
             "archetype": "Summoner",
             "archetype_req": 10,
             "parents": [
@@ -18749,7 +18749,7 @@
         },
         {
             "display_name": "Overcharge",
-            "desc": "Switching Masks while your current Mask is over 180% Mantra will overclock the next Mask to 250% Mantra. </br> \u231a Cooldown: 10s",
+            "desc": "Switching Masks while your current Mask is over 180% Mantra will overclock the next Mask to 250% Mantra. </br> </br>Cooldown: 10s",
             "archetype": "Ritualist",
             "parents": [
                 "Crystal Knives",
@@ -18778,7 +18778,7 @@
         },
         {
             "display_name": "Tribal Chants",
-            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +3% Damage Bonus to Allies </br> Heretic: +8% Walk Speed to Allies </br> Fanatic: +3% Resistance to Allies </br> \u231b Duration: 5s (per stack) \u2600 Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +3% Damage Bonus to Allies </br> Heretic: +8% Walk Speed to Allies </br> Fanatic: +3% Resistance to Allies </br> </br>Duration: 5s (per stack) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "parents": [
                 "Overcharge",
                 "Freestyle",
@@ -19141,7 +19141,7 @@
         },
         {
             "display_name": "Awakened",
-            "desc": "Click Combo: F </br> Become Awakened for 25s. </br> Awakened grants you the upsides of all Masks at once with no downsides, and Mantra at 250% with no decay. </br> All of your Masks will spin around you, dealing damage and applying Haunting Memory's effects. </br> \u27bc Range: 6 Blocks",
+            "desc": "Click Combo: F </br> Become Awakened for 25s. </br> Awakened grants you the upsides of all Masks at once with no downsides, and Mantra at 250% with no decay. </br> All of your Masks will spin around you, dealing damage and applying Haunting Memory's effects. </br> </br>Range: 6 Blocks",
             "archetype": "Ritualist",
             "archetype_req": 15,
             "parents": [

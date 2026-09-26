@@ -102,6 +102,18 @@ replace_strings = {
     "\ue002 ": "</br>", # Fire
     "\ue001 ": "</br>", # Earth
     "\ue000 ": "</br>", # Air
+
+    # WHO IS USING THESE CHARS???
+    "\u2694 ": "", # Total Damage Breakdown
+    "\\(\u2723 Damage": "</br>&emsp;(<span class='nDam'>Damage</span>", # Neutral
+    "\\(\u2726 Thunder": "</br>&emsp;(<span class='tDam'>Thunder</span>", # Thunder
+    "\\(\u2739 Fire": "</br>&emsp;(<span class='fDam'>Fire</span>", # Fire
+    "\u231a " : "</br>", # Cooldown
+    "\u231b " : "</br>", # Duration
+    "\u2600 " : "</br>", # Area of Effect
+    "\u27bc " : "</br>", # Range
+    "\u2727 " : "</br>", # Effect
+
 }
 
 def clean_description(string):
