@@ -28,6 +28,7 @@ if args.infile is None:
     from item_wrapper import Items
     api_data = Items().get_all_items()
     #print(api_data)
+    os.makedirs(os.path.dirname('../data/temp/'), exist_ok=True)
     json.dump(api_data, open('../data/temp/dump.json', 'w'))
 else:
     with open(args.infile, "r") as in_file:
@@ -229,7 +230,13 @@ tome_value_map = {}
 for item in old_items:
     if "persistent" in item:
         print(f'Old API hidden item: {item["name"]}')
-        items.append(item)
+        # Some items try to bypass duplicate display names via ֎, overwrite them if necessary
+        for i, existing in enumerate(items):
+            if existing["name"] == item["name"]:
+                items[i] = item
+                break
+        else:
+            items.append(item)
     elif item["name"] not in known_item_names:
         print(f'Unknown old item: {item["name"]}!!!')
 for ingred in old_ingreds:

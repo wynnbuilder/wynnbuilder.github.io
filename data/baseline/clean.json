@@ -3041,7 +3041,7 @@
       "emblem": "diamond_6",
       "tier": "Fabled",
       "atkSpd": "VERY_FAST",
-      "averageDps": 640,
+      "averageDps": 680,
       "drop": "never",
       "elements": [
         "earth",
@@ -4516,7 +4516,7 @@
       "hprPct": -100,
       "hprRaw": -840,
       "spRaw2": -769,
-      "healPct": -15,
+      "healPct": -18,
       "nDam": "30-65",
       "aDam": "130-160",
       "eDam": "0-0",
@@ -11416,6 +11416,56 @@
       "eDef": 90,
       "tDef": 65,
       "id": 5378
+    },
+    {
+      "displayName": "Gift of Life",
+      "name": "Gift of Life",
+      "category": "armor",
+      "type": "helmet",
+      "icon": {
+        "value": {
+          "id": "minecraft:leather_helmet",
+          "name": "helmet.titanium",
+          "customModelData": {
+            "rangeDispatch": [
+              9
+            ]
+          }
+        },
+        "format": "attribute"
+      },
+      "emblem": "shield_6",
+      "tier": "Legendary",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "elements": [
+        "earth",
+        "thunder"
+      ],
+      "lvl": 116,
+      "strReq": 71,
+      "dexReq": 53,
+      "slots": 7,
+      "lore": "\"Now, dance for me! Hehehahehah!\"",
+      "damPct": 13,
+      "ls": 546,
+      "agi": 1,
+      "def": 1,
+      "str": 1,
+      "eDefPct": 53,
+      "dex": 1,
+      "nDamPct": 38,
+      "hprRaw": -334,
+      "int": 1,
+      "mainAttackRange": 84,
+      "hp": 3863,
+      "aDef": 78,
+      "fDef": 34,
+      "eDef": 177,
+      "wDef": 63,
+      "tDef": 132,
+      "id": 5449
     },
     {
       "displayName": "Grandstand",
@@ -19970,7 +20020,7 @@
       "thorns": 40,
       "ls": 800,
       "ref": 120,
-      "tDamPct": 25,
+      "tDamPct": 27,
       "atkTier": 1,
       "healPct": -15,
       "mdRaw": 1100,
@@ -24551,7 +24601,7 @@
       "slots": 3,
       "lore": "Unruly magics of void and darkness are tamed within this bow's string. While those energies are never to be released, arrows fired from it fire at such blinding speeds so as to phase out of existence when they hit their target.",
       "ls": 1000,
-      "ms": 25,
+      "ms": 24,
       "fDamPct": -550,
       "agi": -550,
       "def": -73,
@@ -28685,7 +28735,7 @@
       "emblem": "diamond_6",
       "tier": "Fabled",
       "atkSpd": "SLOW",
-      "averageDps": 390,
+      "averageDps": 435,
       "drop": "normal",
       "elements": [
         "water"
@@ -35378,6 +35428,45 @@
       "id": 4857
     },
     {
+      "displayName": "Ashes to Ashes",
+      "name": "Ashes to Ashes",
+      "category": "armor",
+      "type": "leggings",
+      "icon": {
+        "value": {
+          "id": "minecraft:leather_leggings",
+          "name": "leggings.titanium",
+          "customModelData": {
+            "rangeDispatch": [
+              9
+            ]
+          }
+        },
+        "format": "attribute"
+      },
+      "emblem": "shield_6",
+      "tier": "Fabled",
+      "drop": "never",
+      "elements": [
+        "thunder"
+      ],
+      "lvl": 106,
+      "dexReq": 75,
+      "damPct": 18,
+      "ls": -400,
+      "damRaw": 169,
+      "def": -10,
+      "str": 12,
+      "spPct1": 20,
+      "atkTier": 1,
+      "spRaw1": 1,
+      "hp": 3200,
+      "eDef": 195,
+      "wDef": -130,
+      "tDef": 90,
+      "id": 5450
+    },
+    {
       "displayName": "Autumn's Call",
       "name": "Autumn's Call",
       "category": "weapon",
@@ -35769,7 +35858,7 @@
       "emblem": "diamond_6",
       "tier": "Fabled",
       "atkSpd": "SLOW",
-      "averageDps": 841,
+      "averageDps": 828,
       "drop": "normal",
       "elements": [
         "earth",
@@ -38783,6 +38872,49 @@
       "tDam": "0-0",
       "fDam": "0-0",
       "id": 5182
+    },
+    {
+      "displayName": "Fearmonger",
+      "name": "Fearmonger",
+      "category": "armor",
+      "type": "boots",
+      "icon": {
+        "value": {
+          "id": "minecraft:leather_boots",
+          "name": "boots.diamond",
+          "customModelData": {
+            "rangeDispatch": [
+              8
+            ]
+          }
+        },
+        "format": "attribute"
+      },
+      "emblem": "shield_5",
+      "tier": "Legendary",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "elements": [
+        "thunder",
+        "air"
+      ],
+      "lvl": 105,
+      "agiReq": 60,
+      "dexReq": 60,
+      "lore": "\"There's... nothing here?\"",
+      "kb": 75,
+      "spd": 80,
+      "atkTier": -30,
+      "int": -10,
+      "sdRaw": -84213,
+      "mainAttackRange": -20,
+      "mdRaw": 2700,
+      "hp": -3300,
+      "aDef": -130,
+      "wDef": -300,
+      "tDef": -130,
+      "id": 5451
     },
     {
       "displayName": "Flabbergast",
@@ -64817,7 +64949,7 @@
       ],
       "lvl": 95,
       "dexReq": 100,
-      "lore": "The lethal amount of electricity emmited from this often desired necklace fails to kill you, as its pure energy runs through your veins.",
+      "lore": "The lethal amount of electricity emitted from this often desired necklace fails to kill you, as its pure energy runs through your veins.",
       "dropInfo": {
         "name": "Legendary Island",
         "type": "challenge",
@@ -154960,6 +155092,46 @@
       "wDam": "0-0",
       "aDam": "0-0",
       "id": 1526
+    },
+    {
+      "displayName": "Last Rites",
+      "name": "Last Rites",
+      "category": "armor",
+      "type": "boots",
+      "icon": {
+        "value": {
+          "id": "minecraft:leather_boots",
+          "name": "boots.pale_chainmail",
+          "customModelData": {
+            "rangeDispatch": [
+              12
+            ]
+          }
+        },
+        "format": "attribute"
+      },
+      "emblem": "shield_3",
+      "tier": "Rare",
+      "restrict": "untradable",
+      "drop": "never",
+      "fixID": true,
+      "elements": [
+        "air"
+      ],
+      "lvl": 52,
+      "agiReq": 35,
+      "slots": 2,
+      "lore": "I         ,        ;                , t      o  '   l   d'       ;              y   ' o   u  ,                t    o   ' ,     .       ;    . s   , t      '     a .    y       ,         ;                                                              a  '     w   ;   ,a      . y",
+      "ls": 75,
+      "ms": 8,
+      "ref": 20,
+      "spd": -10,
+      "sdPct": 20,
+      "hp": 575,
+      "aDef": 20,
+      "wDef": 20,
+      "tDef": 20,
+      "id": 5452
     },
     {
       "category": "accessory",

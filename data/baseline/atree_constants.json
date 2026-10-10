@@ -7935,10 +7935,10 @@
                     "type": "replace_spell",
                     "name": "Zenith Stance",
                     "base_spell": 12,
-                    "display": "Total DPS",
+                    "display": "Total Spell DPS",
                     "parts": [
                         {
-                            "name": "Hit Damage",
+                            "name": "Spell Hit Damage",
                             "multipliers": [
                                 2100,
                                 0,
@@ -7949,15 +7949,40 @@
                             ]
                         },
                         {
-                            "name": "Total DPS",
+                            "name": "Melee Hit Damage",
+                            "scaling": "melee",
+                            "use_atkspd": false,
+                            "multipliers": [
+                                1400,
+                                0,
+                                0,
+                                0,
+                                0,
+                                200
+                            ]
+                        },
+                        {
+                            "name": "Total Spell DPS",
                             "hits": {
-                                "Hit Damage": 1.66666666667
+                                "Spell Hit Damage": 1.66666666667
                             }
                         },
                         {
-                            "name": "Total Damage",
+                            "name": "Total Spell Damage",
                             "hits": {
-                                "Total DPS": 10
+                                "Total Spell DPS": 10
+                            }
+                        },
+                        {
+                            "name": "Total Melee DPS",
+                            "hits": {
+                                "Melee Hit Damage": 1.66666666667
+                            }
+                        },
+                        {
+                            "name": "Total Melee Damage",
+                            "hits": {
+                                "Total Melee DPS": 10
                             }
                         }
                     ]
@@ -18826,7 +18851,7 @@
                         {
                             "type": "stat",
                             "name": "mr",
-                            "value": 75
+                            "value": 25
                         }
                     ]
                 }
