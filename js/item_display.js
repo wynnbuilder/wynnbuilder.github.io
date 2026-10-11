@@ -200,11 +200,121 @@ function displayAdditionalInfo(elemID, item) {
 }
 
 
+/** Computes the probability distribution for the identification
+ * 
+ * @param {String} id - 
+ * @param {Number} base - base id
+ * @param {Number} ampTier - amplifier tier in [0, 4]
+ * @returns {Object} { values, counts, totalRolls, isReversed, isPositive }
+ */
+function computeIDDistribution(id, base, ampTier = 0) {
+    let isReversed = reversedIDs.includes(id);
+    let isPositive = (base > 0) !== isReversed;
+
+    let minRollHundredths = isPositive ? 30 : 70;
+    let maxRollHundredths = 130;
+    let totalRolls = maxRollHundredths - minRollHundredths + 1;
+
+    let rollCounts = new Map();
+
+    for (let rInt = minRollHundredths; rInt <= maxRollHundredths; rInt++) {
+        let r = rInt / 100;
+        let ampedRoll = r;
+        if (isPositive && ampTier > 0) {
+            let rawAmped = r + (1.30 - r) * (0.05 * ampTier);
+            ampedRoll = Math.round(rawAmped * 100) / 100;
+        }
+
+        let finalVal = Math.round(ampedRoll * base);
+        if (Object.is(finalVal, -0)) finalVal = 0;
+
+        rollCounts.set(finalVal, (rollCounts.get(finalVal) || 0) + 1);
+    }
+
+    let values = Array.from(rollCounts.keys());
+    if (isReversed) {
+        values.sort((a, b) => b - a); // Higher number is worse, lower number is better
+    } else {
+        values.sort((a, b) => a - b); // Lower number is worse, higher number is better
+    }
+
+    return {
+        values,
+        counts: rollCounts,
+        totalRolls,
+        isReversed,
+        isPositive
+    };
+}
+
+/** pdf/cdf display for the specified id
+ * 
+ * @param {String} id - 
+ * @param {Number} val - currently selected id value
+ * @param {Object} dist - object from computeIDDistribution
+ */
+function renderIDProbabilities(id, val, dist) {
+    let idx = dist.values.indexOf(val);
+    if (idx === -1) idx = 0;
+
+    let count = dist.counts.get(val) || 0;
+    let pdf = ((count / dist.totalRolls) * 100).toFixed(3);
+
+    let betterCount = 0;
+    for (let i = idx; i < dist.values.length; i++) {
+        betterCount += dist.counts.get(dist.values[i]) || 0;
+    }
+    let cdf = ((betterCount / dist.totalRolls) * 100).toFixed(3);
+
+    let pdf_p = document.getElementById(id + "-pdf");
+
+    if (pdf_p) {
+        pdf_p.innerHTML = "";
+
+        let b1 = document.createElement("b");
+        b1.textContent = "Roll exactly ";
+
+        let b2 = document.createElement("b");
+        b2.textContent = val + idSuffixes[id];
+
+
+        if ((val > 0) !== dist.isReversed) {
+            b2.classList.add("positive");
+        } else {
+            b2.classList.add("negative");
+        }
+        let b3 = document.createElement("b");
+        b3.textContent = ": " + pdf + "%";
+
+        pdf_p.append(b1, b2, b3);
+    }
+
+    let cdf_p = document.getElementById(id + "-cdf");
+    if (cdf_p) {
+        cdf_p.innerHTML = "";
+        let b1 = document.createElement("b");
+        b1.textContent = "Roll ";
+
+        let b2 = document.createElement("b");
+        b2.textContent = val + idSuffixes[id];
+
+        if ((val > 0) !== dist.isReversed) {
+            b2.classList.add("positive");
+        } else {
+            b2.classList.add("negative");
+        }
+        let b3 = document.createElement("b");
+        b3.textContent = " or better: " + cdf + "%";
+
+        cdf_p.append(b1, b2, b3);
+    }
+}
+
 /** Displays the individual probabilities of each possible value of each rollable ID for this item.
  * 
  * @param {String} parent_id the document id of the parent element
  * @param {String} item expandedItem object
- * @param {String} amp the level of corkian amplifier used. 0 means no amp, 1 means Corkian Amplifier I, etc. [0,3]
+ * @param {Number} amp the level of corkian amplifier used. 0 means no amp, 1 means Corkian Amplifier I, etc. [0,4]
  */
 function displayIDProbabilities(parent_id, item, amp) {
     if (item.has("fixID") && item.get("fixID")) {return}
@@ -215,7 +325,7 @@ function displayIDProbabilities(parent_id, item, amp) {
     parent_elem.appendChild(title_elem);
     
     let disclaimer_elem = make_elem("p", [], {
-        textContent: "Disclaimer: IDs are rolled on a uniform distribution. A chance of 0% means that either the minimum or maximum possible multiplier must be rolled to get this value."
+        textContent: "The slider only allows valid achievable rolls"
     });
 
     parent_elem.appendChild(disclaimer_elem);
@@ -224,253 +334,132 @@ function displayIDProbabilities(parent_id, item, amp) {
     amp_row.appendChild(make_elem("b", [], {textContent: "Corkian Amplifier: "}));
 
     for (let i = 1; i < 5; i++) {
-        let amp = document.createElement("button");
-        amp.id = `cork_amp_${i}`;
-        amp.textContent = ROMAN_NUMERAL_MAP.get(i);
-        amp_row.appendChild(amp);
-        amp.addEventListener("click", (event) => {toggleAmps(i)});
+        let amp_btn = document.createElement("button");
+        amp_btn.id = `cork_amp_${i}`;
+        amp_btn.textContent = ROMAN_NUMERAL_MAP.get(i);
+        amp_row.appendChild(amp_btn);
+        amp_btn.addEventListener("click", () => {toggleAmps(i)});
     }
     parent_elem.appendChild(amp_row);
     
-    if (amp != 0) {toggleButton("cork_amp_" + amp)}
+    amp = parseInt(amp, 10) || 0;
+    if (amp !== 0) {toggleButton("cork_amp_" + amp)}
     
     let item_name = item.get("displayName");
 
     let table_elem = document.createElement("table");
     parent_elem.appendChild(table_elem);
-    for (const [id,val] of Object.entries(itemMap.get(item_name))) {
+    for (const [id, val] of Object.entries(itemMap.get(item_name))) {
         if (nonRolledIDs.includes(id) || val?.static === true) {
             continue;
         }
+        if (rolledIDs.includes(id)) {
+            let numVal = typeof val === "object" && val !== null ? val.raw : val;
+            if (typeof numVal !== "number" || numVal === 0) { continue; }
+            if (!item.get("maxRolls") || !item.get("maxRolls").get(id)) { continue; }
 
-        if (!item.get("maxRolls").get(id)) { continue; }
-        let min = item.get("minRolls").get(id);
-        let max = item.get("maxRolls").get(id);
-        //Apply corkian amps
-        if (val > 0 == !reversedIDs.includes(id)) {
-            let base = itemMap.get(item_name)[id];
-            if (reversedIDs.includes(id)) {min = Math.min( Math.floor((0.3 + 0.05*amp) * base), -1)} 
-            else {min = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)}
-        }
+            let dist = computeIDDistribution(id, numVal, amp);
+            if (dist.values.length === 0) { continue; }
 
-        let row_title = document.createElement("tr");
-        //row_title.style.textAlign = "left";
-        let title_left = document.createElement("td");
-        let left_val_title = document.createElement("b");
-        let left_val_elem = document.createElement("b");
-        title_left.style.textAlign = "left";
-        left_val_title.textContent = idPrefixes[id] + "Base ";
-        left_val_elem.textContent = val + idSuffixes[id];
-        if (val > 0 == !reversedIDs.includes(id)) {
-            left_val_elem.classList.add("positive");
-        } else if (val > 0 == reversedIDs.includes(id)) {
-            left_val_elem.classList.add("negative");
-        }
-        title_left.append(left_val_title, left_val_elem);
-        row_title.appendChild(title_left);
+            let worstVal = dist.values[0];
+            let bestVal = dist.values[dist.values.length - 1];
 
-        let title_right = document.createElement("td");
-        let title_right_text = document.createElement("b");
-        title_right.style.textAlign = "left";
-        title_right_text.textContent = "[ " + min + idSuffixes[id] + ", " + max + idSuffixes[id] + " ]";
-        if ( (min > 0 && max > 0 && !reversedIDs.includes(id)) || (min < 0 && max < 0 && reversedIDs.includes(id)) ) {
-            title_right_text.classList.add("positive");
-        } else if ( (min < 0 && max < 0 && !reversedIDs.includes(id)) || (min > 0 && max > 0 && reversedIDs.includes(id)) ) {
-            title_right_text.classList.add("negative");
-        }
-        title_right.appendChild(title_right_text);
+            let row_title = document.createElement("tr");
+            let title_left = document.createElement("td");
+            let left_val_title = document.createElement("b");
+            let left_val_elem = document.createElement("b");
+            title_left.style.textAlign = "left";
+            left_val_title.textContent = idPrefixes[id] + "Base ";
+            left_val_elem.textContent = numVal + idSuffixes[id];
+            if ((numVal > 0) !== dist.isReversed) {
+                left_val_elem.classList.add("positive");
+            } else {
+                left_val_elem.classList.add("negative");
+            }
+            title_left.append(left_val_title, left_val_elem);
+            row_title.appendChild(title_left);
 
-        let title_input = document.createElement("td");
-        let title_input_slider = document.createElement("input");
-        title_input_slider.type = "range";
-        title_input_slider.id = id+"-slider";
-        if (!reversedIDs.includes(id)) {
-            title_input_slider.step = 1;
-            title_input_slider.min = `${min}`;
-            title_input_slider.max = `${max}`;
-            title_input_slider.value = `${max}`;
-        } else {
-            title_input_slider.step = 1;
-            title_input_slider.min = `${-1*min}`;
-            title_input_slider.max = `${-1*max}`;
-            title_input_slider.value = `${-1*max}`;
-        }
-        let title_input_textbox = document.createElement("input");
-        title_input_textbox.type = "text";
-        title_input_textbox.value = `${max}`;
-        title_input_textbox.id = id+"-textbox";
-        title_input_textbox.classList.add("small-input");
-        title_input.appendChild(title_input_slider);
-        title_input.appendChild(title_input_textbox);
-        
-        row_title.appendChild(title_left);
-        row_title.appendChild(title_right);
-        row_title.appendChild(title_input);
+            let title_right = document.createElement("td");
+            let title_right_text = document.createElement("b");
+            title_right.style.textAlign = "left";
+            title_right_text.textContent = "[ " + worstVal + idSuffixes[id] + ", " + bestVal + idSuffixes[id] + " ]";
+            if ((numVal > 0) !== dist.isReversed) {
+                title_right_text.classList.add("positive");
+            } else {
+                title_right_text.classList.add("negative");
+            }
+            title_right.appendChild(title_right_text);
 
-        let row_chances = document.createElement("tr");
-        let chance_cdf = document.createElement("td");
-        let chance_pdf = document.createElement("td");
-        let cdf_p = document.createElement("p");
-        cdf_p.id = id+"-cdf";
-        let pdf_p = document.createElement("p");
-        pdf_p.id = id+"-pdf";
+            let title_input = document.createElement("td");
+            let title_input_slider = document.createElement("input");
+            title_input_slider.type = "range";
+            title_input_slider.id = id + "-slider";
+            title_input_slider.step = "1";
+            title_input_slider.min = "0";
+            title_input_slider.max = `${dist.values.length - 1}`;
+            title_input_slider.value = `${dist.values.length - 1}`; // Default to best roll
 
-        chance_cdf.appendChild(cdf_p);
-        chance_pdf.appendChild(pdf_p);
-        row_chances.appendChild(chance_cdf);
-        row_chances.appendChild(chance_pdf);
+            let title_input_textbox = document.createElement("input");
+            title_input_textbox.type = "text";
+            title_input_textbox.value = `${bestVal}`;
+            title_input_textbox.id = id + "-textbox";
+            title_input_textbox.classList.add("small-input");
+            title_input.appendChild(title_input_slider);
+            title_input.appendChild(title_input_textbox);
+            
+            row_title.appendChild(title_left);
+            row_title.appendChild(title_right);
+            row_title.appendChild(title_input);
 
-        table_elem.appendChild(row_title);
-        table_elem.appendChild(row_chances);
+            let row_chances = document.createElement("tr");
+            let chance_cdf = document.createElement("td");
+            let chance_pdf = document.createElement("td");
+            let cdf_p = document.createElement("p");
+            cdf_p.id = id+"-cdf";
+            let pdf_p = document.createElement("p");
+            pdf_p.id = id+"-pdf";
 
-        
+            chance_cdf.appendChild(cdf_p);
+            chance_pdf.appendChild(pdf_p);
+            row_chances.appendChild(chance_cdf);
+            row_chances.appendChild(chance_pdf);
 
-        stringPDF(id, max, val, amp); //val is base roll
-        stringCDF(id, max, val, amp); //val is base roll
-        title_input_slider.addEventListener("change", (event) => {
-            let id_name = event.target.id.split("-")[0];
-            let textbox_elem = document.getElementById(id_name+"-textbox");
+            table_elem.appendChild(row_title);
+            table_elem.appendChild(row_chances);
 
-            if (reversedIDs.includes(id_name)) {
-                if (event.target.value < -1*min) { event.target.value = -1*min}
-                if (event.target.value > -1*max) { event.target.value = -1*max}
-                stringPDF(id_name, -1*event.target.value, val, amp); //val is base roll
-                stringCDF(id_name, -1*event.target.value, val, amp); //val is base roll
-            } else {    
-                if (event.target.value < min) { event.target.value = min}
-                if (event.target.value > max) { event.target.value = max}
-                stringPDF(id_name, 1*event.target.value, val, amp); //val is base roll
-                stringCDF(id_name, 1*event.target.value, val, amp); //val is base roll
+            renderIDProbabilities(id, bestVal, dist);
+
+            // noob function
+            function handleSliderUpdate(event) {
+                let idx = parseInt(event.target.value, 10);
+                if (isNaN(idx) || idx < 0) idx = 0;
+                if (idx >= dist.values.length) idx = dist.values.length - 1;
+                let selectedVal = dist.values[idx];
+                title_input_textbox.value = `${selectedVal}`;
+                renderIDProbabilities(id, selectedVal, dist);
             }
 
-            if (textbox_elem && textbox_elem.value !== event.target.value) {
-                if (reversedIDs.includes(id_name)) {
-                    textbox_elem.value = -event.target.value;
-                } else {
-                    textbox_elem.value = event.target.value;
+            title_input_slider.addEventListener("input", handleSliderUpdate);
+            title_input_slider.addEventListener("change", handleSliderUpdate);
+
+            title_input_textbox.addEventListener("change", (event) => {
+                let inputNum = parseInt(event.target.value, 10);
+                let closestIdx = dist.values.length - 1;
+                if (!isNaN(inputNum)) {
+                    let minDiff = Infinity;
+                    for (let i = 0; i < dist.values.length; i++) {
+                        let diff = Math.abs(dist.values[i] - inputNum);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            closestIdx = i;
+                        }
+                    }
                 }
-            }
-            
-            
-        });
-        title_input_textbox.addEventListener("change", (event) => {
-            let id_name = event.target.id.split("-")[0];
-            if (reversedIDs.includes(id_name)) {
-                if (event.target.value > min) { event.target.value = min}
-                if (event.target.value < max) { event.target.value = max}
-            } else {    
-                if (event.target.value < min) { event.target.value = min}
-                if (event.target.value > max) { event.target.value = max}
-            }
-            let slider_elem = document.getElementById(id_name+"-slider");
-            if (slider_elem.value !== event.target.value) {
-                slider_elem.value = -event.target.value;    
-            }
-
-            stringPDF(id_name, 1*event.target.value, val, amp); 
-            stringCDF(id_name, 1*event.target.value, val, amp); 
-        });
+                title_input_slider.value = `${closestIdx}`;
+                title_input_textbox.value = `${dist.values[closestIdx]}`;
+                renderIDProbabilities(id, dist.values[closestIdx], dist);
+            });
+        }
     }
 }
 
-//helper functions. id - the string of the id's name, val - the value of the id, base - the base value of the item for this id
-function stringPDF(id,val,base,amp) {
-    /** [0.3b,1.3b] positive normal
-     *  [1.3b,0.3b] positive reversed
-     *  [1.3b,0.7b] negative normal
-     *  [0.7b,1.3b] negative reversed
-     * 
-     *  [0.3, 1.3] minr, maxr [0.3b, 1.3b] min, max
-     *  the minr/maxr decimal roll that corresponds to val -> minround, maxround
-     */
-    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
-    if (base > 0 == !reversedIDs.includes(id)) {
-        minr = 0.3 + 0.05*amp; maxr = 1.3;
-        if (reversedIDs.includes(id)) {
-            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
-            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
-            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
-        }
-        else {
-            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
-            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
-        }
-    } else {
-        minr = 1.3; maxr = 0.7;
-        if (reversedIDs.includes(id)) {
-            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
-            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
-            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
-        }
-        else {
-            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
-            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
-        }
-    }
-    p = Math.abs(maxround-minround)/Math.abs(maxr-minr)*100;
-    p = p.toFixed(3);
-
-    let b1 = document.createElement("b");
-    b1.textContent = "Roll exactly ";
-    let b2 = document.createElement("b");
-    b2.textContent = val + idSuffixes[id];
-    if (val > 0 == !reversedIDs.includes(id)) {b2.classList.add("positive")}
-    if (val > 0 == reversedIDs.includes(id)) {b2.classList.add("negative")}
-    let b3 = document.createElement("b");
-    b3.textContent = ": " + p + "%";
-    document.getElementById(id + "-pdf").innerHTML = "";
-    document.getElementById(id + "-pdf").appendChild(b1);
-    document.getElementById(id + "-pdf").appendChild(b2);
-    document.getElementById(id + "-pdf").appendChild(b3);
-}
-
-function stringCDF(id,val,base,amp) {
-    let p; let min; let max; let minr; let maxr; let minround; let maxround; let floorval = reversedIDs.includes(id) ? -1 : 1;
-    if (base > 0 == !reversedIDs.includes(id)) {
-        minr = 0.3 + 0.05*amp; maxr = 1.3; 
-        if (reversedIDs.includes(id)) {
-            min = Math.min(floorval, Math.round(minr*base)); max = Math.min(floorval, Math.round(maxr*base));
-            minround = (min == max) ? (maxr) : ( Math.min(maxr, (val-0.5) / base) );
-            maxround = (min == max) ? (minr) : ( Math.max(minr, (val+0.5) / base) );
-        }
-        else {
-            min = Math.max(floorval, Math.round(minr*base)); max = Math.max(floorval, Math.round(maxr*base));
-            minround = (min == max) ? (minr) : ( Math.max(minr, (val-0.5) / base) );
-            maxround = (min == max) ? (maxr) : ( Math.min(maxr, (val+0.5) / base) );
-        }
-    } else {
-        minr = 1.3; maxr = 0.7;
-        if (reversedIDs.includes(id)) {
-            min = Math.max(-floorval, Math.round(minr*base)); max = Math.max(-floorval, Math.round(maxr*base));
-            minround = (min == max) ? (maxr) : ( Math.max(maxr, (val-0.5) / base) );
-            maxround = (min == max) ? (minr) : ( Math.min(minr, (val+0.5) / base) );
-        }
-        else {
-            min = Math.min(-floorval, Math.round(minr*base)); max = Math.min(-floorval, Math.round(maxr*base));
-            minround = (min == max) ? (minr) : ( Math.min(minr, (val-0.5) / base) );
-            maxround = (min == max) ? (maxr) : ( Math.max(maxr, (val+0.5) / base) );
-        }
-    }
-    if (reversedIDs.includes(id)) {
-        p = Math.abs(maxr-maxround)/Math.abs(maxr-minr)*100;
-    }
-    else {
-        p = Math.abs(maxr-minround)/Math.abs(maxr-minr)*100;
-    }
-    p = p.toFixed(3);
-    
-    let b1 = document.createElement("b");
-    b1.textContent = "Roll ";
-    let b2 = document.createElement("b");
-    b2.textContent = val + idSuffixes[id];
-    if (val > 0 == !reversedIDs.includes(id)) {b2.classList.add("positive")}
-    if (val > 0 == reversedIDs.includes(id)) {b2.classList.add("negative")}
-    let b3 = document.createElement("b");
-    b3.textContent= " or better: " + p + "%";
-    document.getElementById(id + "-cdf").innerHTML = "";
-    document.getElementById(id + "-cdf").appendChild(b1);
-    document.getElementById(id + "-cdf").appendChild(b2);
-    document.getElementById(id + "-cdf").appendChild(b3);
-}
