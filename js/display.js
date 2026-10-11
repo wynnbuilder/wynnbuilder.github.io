@@ -1032,6 +1032,47 @@ function displayExpandedSet(set_name, set_value, parent_id, shown_tier) {
                 if (set_value.bonuses[shown_tier] === undefined || set_value.bonuses[shown_tier][id] === undefined)
                     continue;
 
+                if (id === "majorIds") {
+                    for (let major_id_str of set_value.bonuses[shown_tier][id]) {
+                        if (major_id_str in MAJOR_IDS) {
+                            if (MAJOR_IDS[major_id_str].hidden)
+                                continue;
+
+                            let major_id_info = MAJOR_IDS[major_id_str];
+                            major_id_str = `+${major_id_info.displayName}: ${major_id_info.description}`;
+                        }
+                        let p_elem = make_elem("div", ['col']);
+
+                        let title_elem = make_elem("b");
+                        let b_elem = make_elem("b");
+                        if (major_id_str.includes(":")) {
+                            let name = major_id_str.substring(0, major_id_str.indexOf(":") + 1);
+                            let mid = major_id_str.substring(major_id_str.indexOf(":") + 1);
+                            if (name.charAt(0) !== "+") { name = "+" + name }
+                            title_elem.classList.add("Legendary");
+                            title_elem.textContent = name;
+                            b_elem.classList.add("Crafted");
+                            b_elem.textContent = mid;
+                            b_elem.innerHTML = b_elem.innerHTML
+                                .replaceAll("[neutral]", "<span class='Neutral'></span>")
+                                .replaceAll("[earth]", "<span class='Earth'></span>")
+                                .replaceAll("[thunder]", "<span class='Thunder'></span>")
+                                .replaceAll("[water]", "<span class='Water'></span>")
+                                .replaceAll("[fire]", "<span class='Fire'></span>")
+                                .replaceAll("[air]", "<span class='Air'></span>");
+                            p_elem.appendChild(title_elem);
+                            p_elem.appendChild(b_elem);
+                        } else {
+                            if (major_id_str.charAt(0) !== "+") { major_id_str = "+" + major_id_str }
+                            b_elem.classList.add("Legendary");
+                            b_elem.textContent = major_id_str;
+                            p_elem.appendChild(b_elem);
+                        }
+                        parent_div.appendChild(p_elem);
+                    }
+                    continue;
+                }
+
                 let style = "positive";
                 if (set_value.bonuses[shown_tier][id] < 0) {
                     style = "negative";
