@@ -6901,19 +6901,10 @@
               "dependencies": [
                 "Malediction"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Malediction",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "nConvBase:0.Single Beam",
-                      "value": 4
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "malediction_damage": 4
+              },
+              "effects": []
             }
           ]
         },
@@ -6926,19 +6917,10 @@
               "dependencies": [
                 "Malediction"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Malediction",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "nConvBase:0.Single Beam",
-                      "value": 6
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "malediction_damage": 6
+              },
+              "effects": []
             }
           ]
         },
@@ -6951,19 +6933,10 @@
               "dependencies": [
                 "Malediction"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Malediction",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "nConvBase:0.Single Beam",
-                      "value": 8
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "malediction_damage": 8
+              },
+              "effects": []
             }
           ]
         },
@@ -6976,19 +6949,10 @@
               "dependencies": [
                 "Malediction"
               ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "toggle": "Activate Malediction",
-                  "bonuses": [
-                    {
-                      "type": "stat",
-                      "name": "nConvBase:0.Single Beam",
-                      "value": 10
-                    }
-                  ]
-                }
-              ]
+              "properties": {
+                "malediction_damage": 10
+              },
+              "effects": []
             }
           ]
         }

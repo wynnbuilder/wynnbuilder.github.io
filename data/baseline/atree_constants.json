@@ -17754,18 +17754,41 @@
                 "col": 3,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "malediction_damage": 40
+            },
             "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "target_part": "Malediction per Beam",
+                    "base_spell": 0,
+                    "multipliers": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
                 {
                     "type": "raw_stat",
                     "toggle": "Activate Malediction",
                     "bonuses": [
                         {
                             "type": "stat",
-                            "name": "nConvBase:0.Single Beam",
-                            "value": 40
+                            "name": "nConvBase:0.Malediction per Beam",
+                            "value": "999.malediction_damage"
                         }
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 0,
+                    "target_part": "Total",
+                    "hits": {
+                        "Malediction per Beam": "999.total_beams"
+                    }
                 }
             ]
         },

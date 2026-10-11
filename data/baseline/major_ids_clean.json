@@ -4027,12 +4027,14 @@
                 "effects": [
                     {
                         "type": "raw_stat",
-                        "toggle": "Activate Malediction",
+                        "toggle": "Activate Starcrossed",
                         "bonuses": [
                             {
-                                "type": "stat",
-                                "name": "nConvBase:0.Single Beam",
-                                "value": 20
+                                "type": "prop",
+                                "abil": 999,
+                                "name": "malediction_damage",
+                                "mult": true,
+                                "value": 1.5
                             }
                         ]
                     }

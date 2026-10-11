@@ -239,135 +239,137 @@ function displayIDProbabilities(parent_id, item, amp) {
     let table_elem = document.createElement("table");
     parent_elem.appendChild(table_elem);
     for (const [id,val] of Object.entries(itemMap.get(item_name))) {
-        if (rolledIDs.includes(id)) {
-            if (!item.get("maxRolls").get(id)) { continue; }
-            let min = item.get("minRolls").get(id);
-            let max = item.get("maxRolls").get(id);
-            //Apply corkian amps
-            if (val > 0 == !reversedIDs.includes(id)) {
-                let base = itemMap.get(item_name)[id];
-                if (reversedIDs.includes(id)) {min = Math.min( Math.floor((0.3 + 0.05*amp) * base), -1)} 
-                else {min = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)}
-            }
-
-            let row_title = document.createElement("tr");
-            //row_title.style.textAlign = "left";
-            let title_left = document.createElement("td");
-            let left_val_title = document.createElement("b");
-            let left_val_elem = document.createElement("b");
-            title_left.style.textAlign = "left";
-            left_val_title.textContent = idPrefixes[id] + "Base ";
-            left_val_elem.textContent = val + idSuffixes[id];
-            if (val > 0 == !reversedIDs.includes(id)) {
-                left_val_elem.classList.add("positive");
-            } else if (val > 0 == reversedIDs.includes(id)) {
-                left_val_elem.classList.add("negative");
-            }
-            title_left.append(left_val_title, left_val_elem);
-            row_title.appendChild(title_left);
-
-            let title_right = document.createElement("td");
-            let title_right_text = document.createElement("b");
-            title_right.style.textAlign = "left";
-            title_right_text.textContent = "[ " + min + idSuffixes[id] + ", " + max + idSuffixes[id] + " ]";
-            if ( (min > 0 && max > 0 && !reversedIDs.includes(id)) || (min < 0 && max < 0 && reversedIDs.includes(id)) ) {
-                title_right_text.classList.add("positive");
-            } else if ( (min < 0 && max < 0 && !reversedIDs.includes(id)) || (min > 0 && max > 0 && reversedIDs.includes(id)) ) {
-                title_right_text.classList.add("negative");
-            }
-            title_right.appendChild(title_right_text);
-
-            let title_input = document.createElement("td");
-            let title_input_slider = document.createElement("input");
-            title_input_slider.type = "range";
-            title_input_slider.id = id+"-slider";
-            if (!reversedIDs.includes(id)) {
-                title_input_slider.step = 1;
-                title_input_slider.min = `${min}`;
-                title_input_slider.max = `${max}`;
-                title_input_slider.value = `${max}`;
-            } else {
-                title_input_slider.step = 1;
-                title_input_slider.min = `${-1*min}`;
-                title_input_slider.max = `${-1*max}`;
-                title_input_slider.value = `${-1*max}`;
-            }
-            let title_input_textbox = document.createElement("input");
-            title_input_textbox.type = "text";
-            title_input_textbox.value = `${max}`;
-            title_input_textbox.id = id+"-textbox";
-            title_input_textbox.classList.add("small-input");
-            title_input.appendChild(title_input_slider);
-            title_input.appendChild(title_input_textbox);
-            
-            row_title.appendChild(title_left);
-            row_title.appendChild(title_right);
-            row_title.appendChild(title_input);
-
-            let row_chances = document.createElement("tr");
-            let chance_cdf = document.createElement("td");
-            let chance_pdf = document.createElement("td");
-            let cdf_p = document.createElement("p");
-            cdf_p.id = id+"-cdf";
-            let pdf_p = document.createElement("p");
-            pdf_p.id = id+"-pdf";
-
-            chance_cdf.appendChild(cdf_p);
-            chance_pdf.appendChild(pdf_p);
-            row_chances.appendChild(chance_cdf);
-            row_chances.appendChild(chance_pdf);
-
-            table_elem.appendChild(row_title);
-            table_elem.appendChild(row_chances);
-
-            
-
-            stringPDF(id, max, val, amp); //val is base roll
-            stringCDF(id, max, val, amp); //val is base roll
-            title_input_slider.addEventListener("change", (event) => {
-                let id_name = event.target.id.split("-")[0];
-                let textbox_elem = document.getElementById(id_name+"-textbox");
-
-                if (reversedIDs.includes(id_name)) {
-                    if (event.target.value < -1*min) { event.target.value = -1*min}
-                    if (event.target.value > -1*max) { event.target.value = -1*max}
-                    stringPDF(id_name, -1*event.target.value, val, amp); //val is base roll
-                    stringCDF(id_name, -1*event.target.value, val, amp); //val is base roll
-                } else {    
-                    if (event.target.value < min) { event.target.value = min}
-                    if (event.target.value > max) { event.target.value = max}
-                    stringPDF(id_name, 1*event.target.value, val, amp); //val is base roll
-                    stringCDF(id_name, 1*event.target.value, val, amp); //val is base roll
-                }
-
-                if (textbox_elem && textbox_elem.value !== event.target.value) {
-                    if (reversedIDs.includes(id_name)) {
-                        textbox_elem.value = -event.target.value;
-                    } else {
-                        textbox_elem.value = event.target.value;
-                    }
-                }
-                
-                
-            });
-            title_input_textbox.addEventListener("change", (event) => {
-                let id_name = event.target.id.split("-")[0];
-                if (reversedIDs.includes(id_name)) {
-                    if (event.target.value > min) { event.target.value = min}
-                    if (event.target.value < max) { event.target.value = max}
-                } else {    
-                    if (event.target.value < min) { event.target.value = min}
-                    if (event.target.value > max) { event.target.value = max}
-                }
-                let slider_elem = document.getElementById(id_name+"-slider");
-                if (slider_elem.value !== event.target.value) {
-                    slider_elem.value = -event.target.value;    
-                }
-
-                stringPDF(id_name, 1*event.target.value, val, amp); 
-                stringCDF(id_name, 1*event.target.value, val, amp); 
-            });
+        if (nonRolledIDs.includes(id) || val?.static === true) {
+            continue;
         }
+
+        if (!item.get("maxRolls").get(id)) { continue; }
+        let min = item.get("minRolls").get(id);
+        let max = item.get("maxRolls").get(id);
+        //Apply corkian amps
+        if (val > 0 == !reversedIDs.includes(id)) {
+            let base = itemMap.get(item_name)[id];
+            if (reversedIDs.includes(id)) {min = Math.min( Math.floor((0.3 + 0.05*amp) * base), -1)} 
+            else {min = Math.max( Math.round((0.3 + 0.05*amp) * base), 1)}
+        }
+
+        let row_title = document.createElement("tr");
+        //row_title.style.textAlign = "left";
+        let title_left = document.createElement("td");
+        let left_val_title = document.createElement("b");
+        let left_val_elem = document.createElement("b");
+        title_left.style.textAlign = "left";
+        left_val_title.textContent = idPrefixes[id] + "Base ";
+        left_val_elem.textContent = val + idSuffixes[id];
+        if (val > 0 == !reversedIDs.includes(id)) {
+            left_val_elem.classList.add("positive");
+        } else if (val > 0 == reversedIDs.includes(id)) {
+            left_val_elem.classList.add("negative");
+        }
+        title_left.append(left_val_title, left_val_elem);
+        row_title.appendChild(title_left);
+
+        let title_right = document.createElement("td");
+        let title_right_text = document.createElement("b");
+        title_right.style.textAlign = "left";
+        title_right_text.textContent = "[ " + min + idSuffixes[id] + ", " + max + idSuffixes[id] + " ]";
+        if ( (min > 0 && max > 0 && !reversedIDs.includes(id)) || (min < 0 && max < 0 && reversedIDs.includes(id)) ) {
+            title_right_text.classList.add("positive");
+        } else if ( (min < 0 && max < 0 && !reversedIDs.includes(id)) || (min > 0 && max > 0 && reversedIDs.includes(id)) ) {
+            title_right_text.classList.add("negative");
+        }
+        title_right.appendChild(title_right_text);
+
+        let title_input = document.createElement("td");
+        let title_input_slider = document.createElement("input");
+        title_input_slider.type = "range";
+        title_input_slider.id = id+"-slider";
+        if (!reversedIDs.includes(id)) {
+            title_input_slider.step = 1;
+            title_input_slider.min = `${min}`;
+            title_input_slider.max = `${max}`;
+            title_input_slider.value = `${max}`;
+        } else {
+            title_input_slider.step = 1;
+            title_input_slider.min = `${-1*min}`;
+            title_input_slider.max = `${-1*max}`;
+            title_input_slider.value = `${-1*max}`;
+        }
+        let title_input_textbox = document.createElement("input");
+        title_input_textbox.type = "text";
+        title_input_textbox.value = `${max}`;
+        title_input_textbox.id = id+"-textbox";
+        title_input_textbox.classList.add("small-input");
+        title_input.appendChild(title_input_slider);
+        title_input.appendChild(title_input_textbox);
+        
+        row_title.appendChild(title_left);
+        row_title.appendChild(title_right);
+        row_title.appendChild(title_input);
+
+        let row_chances = document.createElement("tr");
+        let chance_cdf = document.createElement("td");
+        let chance_pdf = document.createElement("td");
+        let cdf_p = document.createElement("p");
+        cdf_p.id = id+"-cdf";
+        let pdf_p = document.createElement("p");
+        pdf_p.id = id+"-pdf";
+
+        chance_cdf.appendChild(cdf_p);
+        chance_pdf.appendChild(pdf_p);
+        row_chances.appendChild(chance_cdf);
+        row_chances.appendChild(chance_pdf);
+
+        table_elem.appendChild(row_title);
+        table_elem.appendChild(row_chances);
+
+        
+
+        stringPDF(id, max, val, amp); //val is base roll
+        stringCDF(id, max, val, amp); //val is base roll
+        title_input_slider.addEventListener("change", (event) => {
+            let id_name = event.target.id.split("-")[0];
+            let textbox_elem = document.getElementById(id_name+"-textbox");
+
+            if (reversedIDs.includes(id_name)) {
+                if (event.target.value < -1*min) { event.target.value = -1*min}
+                if (event.target.value > -1*max) { event.target.value = -1*max}
+                stringPDF(id_name, -1*event.target.value, val, amp); //val is base roll
+                stringCDF(id_name, -1*event.target.value, val, amp); //val is base roll
+            } else {    
+                if (event.target.value < min) { event.target.value = min}
+                if (event.target.value > max) { event.target.value = max}
+                stringPDF(id_name, 1*event.target.value, val, amp); //val is base roll
+                stringCDF(id_name, 1*event.target.value, val, amp); //val is base roll
+            }
+
+            if (textbox_elem && textbox_elem.value !== event.target.value) {
+                if (reversedIDs.includes(id_name)) {
+                    textbox_elem.value = -event.target.value;
+                } else {
+                    textbox_elem.value = event.target.value;
+                }
+            }
+            
+            
+        });
+        title_input_textbox.addEventListener("change", (event) => {
+            let id_name = event.target.id.split("-")[0];
+            if (reversedIDs.includes(id_name)) {
+                if (event.target.value > min) { event.target.value = min}
+                if (event.target.value < max) { event.target.value = max}
+            } else {    
+                if (event.target.value < min) { event.target.value = min}
+                if (event.target.value > max) { event.target.value = max}
+            }
+            let slider_elem = document.getElementById(id_name+"-slider");
+            if (slider_elem.value !== event.target.value) {
+                slider_elem.value = -event.target.value;    
+            }
+
+            stringPDF(id_name, 1*event.target.value, val, amp); 
+            stringCDF(id_name, 1*event.target.value, val, amp); 
+        });
     }
 }
 
