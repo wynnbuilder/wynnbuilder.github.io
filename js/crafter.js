@@ -180,6 +180,7 @@ function calculateCraft() {
     let mock_item = player_craft.statMap;
     if (mock_item.get('category') === 'weapon') { apply_weapon_powders(mock_item) };
     displayExpandedItem(mock_item, "craft-stats");
+    displayCraftedRollDistributions(player_craft, "craft-dist");
 
     //Display Ingredients' Stats
     for (let i = 1; i < 7; i++) {
@@ -399,3 +400,170 @@ function resetFields() {
     await Promise.all(load_promises);
     init_crafter();
 })();
+
+/** Displays the individual probabilities of each possible value of each rollable ID for a crafted item.
+ * 
+ * @param {String} craft Craft object
+ * @param {String} parent_id the document id of the parent element
+ */
+function displayCraftedRollDistributions(craft, parent_id) {
+    const parent = document.getElementById(parent_id);
+    parent.textContent = "";
+    const dists = [...(craft.statMap.get("rollDist") || new Map())]
+        .filter(([id, d]) => pmfStats(d).min !== pmfStats(d).max);
+
+    // the column wrapping the distributions (if any) is hidden together with it
+    const dist_col = parent.closest(".dist-col");
+    if (dists.length === 0) {
+        parent.style.display = "none";
+        if (dist_col) dist_col.style.display = "none";
+        return;
+    }
+    parent.style.display = "block";
+    if (dist_col) dist_col.style.display = "";
+
+    parent.appendChild(make_elem("p", ["text-center", "m-auto", "mb-3", "text-decoration-underline", "title"],
+        { textContent: "Roll Distributions" }));
+
+    const grid = make_elem("div", [], {
+        style: "display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem;"
+            + " white-space: nowrap; font-variant-numeric: tabular-nums;"
+    });
+    parent.appendChild(grid);
+
+    const line = () => make_elem("p", [], { style: "margin: 0;" });
+
+    for (const [id, d] of dists) {
+        const reversed = reversedIDs.includes(id);
+        const st = pmfStats(d);
+        const styleFor = (v) => {
+            if (v === 0) return null;
+            return ((v > 0) !== reversed) ? "positive" : "negative";
+        };
+        const colored = (text, v) => {
+            const b = make_elem("b", [], { textContent: text });
+            const s = styleFor(v);
+            if (s) b.classList.add(s);
+            return b;
+        };
+
+        const card = make_elem("div", [], {
+            style: "display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;"
+                + " padding: 0.35rem 0.6rem; overflow-x: auto;"
+                + " border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 0.25rem;"
+        });
+        const text_col = make_elem("div");
+
+        const name_p = line();
+        name_p.appendChild(make_elem("b", [], { textContent: (idPrefixes[id] || id).trim().replace(/:$/, "") + ":" }));
+
+        const mean_p = line();
+        mean_p.append(
+            make_elem("b", [], { textContent: "Mean: " }),
+            colored(st.mean.toFixed(2) + idSuffixes[id], st.mean)
+        );
+
+        const pdf_p = line(), cdf_p = line();
+        text_col.append(name_p, mean_p, pdf_p, cdf_p);
+
+        const toX = (s) => reversed ? -s : s;
+        const best = reversed ? st.min : st.max;
+        const slider = make_elem("input", [], {
+            type: "range", id: id + "-craft-slider", step: 1,
+            min: reversed ? -st.max : st.min,
+            max: reversed ? -st.min : st.max,
+            value: reversed ? -best : best
+        });
+        const textbox = make_elem("input", ["small-input"], {
+            type: "text", id: id + "-craft-textbox", value: `${best}`
+        });
+        slider.style.display = "block";
+        const input_col = make_elem("div");
+        input_col.append(slider, textbox);
+
+        card.append(text_col, input_col);
+        grid.appendChild(card);
+
+        const better_op = reversed ? "<=" : ">=";
+        const update = (x) => {
+            pdf_p.textContent = "";
+            pdf_p.append(
+                make_elem("b", [], { textContent: "Roll == " }),
+                colored(x + idSuffixes[id], x),
+                make_elem("b", [], { textContent: ": " + (pmfExact(d, x) * 100).toFixed(3) + "%" })
+            );
+            cdf_p.textContent = "";
+            cdf_p.append(
+                make_elem("b", [], { textContent: "Roll " + better_op + " " }),
+                colored(x + idSuffixes[id], x),
+                make_elem("b", [], { textContent: ": " + (pmfOrBetter(d, x, reversed) * 100).toFixed(3) + "%" })
+            );
+        };
+        update(best);
+
+        slider.addEventListener("change", (event) => {
+            const x = toX(parseInt(event.target.value));
+            textbox.value = `${x}`;
+            update(x);
+        });
+        textbox.addEventListener("change", (event) => {
+            let x = parseInt(event.target.value);
+            if (isNaN(x)) x = best;
+            x = Math.min(Math.max(x, st.min), st.max);
+            event.target.value = `${x}`;
+            slider.value = reversed ? -x : x;
+            update(x);
+        });
+    }
+}
+
+/* Find ingredient roll distributions
+*/
+const CRAFT_ROLL_BASE_MAX = 100;
+
+// Same scaling as craft.js uses for min/max
+function scaleRoll(x, eff_mult) { return Math.floor(x * eff_mult + 1e-9); }
+
+// Dense PMF {min, p[]} for one ingredient's roll of one ID
+function ingredientRollPMF(min, max, eff_mult) {
+    const N = CRAFT_ROLL_BASE_MAX;
+    const counts = new Map();
+    for (let b = 0; b <= N; b++) {
+        // round-half-up of (min*N + (max-min)*b)/N in integer arithmetic
+        const v = Math.floor((2 * (min * N + (max - min) * b) + N) / (2 * N));
+        const s = scaleRoll(v, eff_mult);
+        counts.set(s, (counts.get(s) || 0) + 1);
+    }
+    const lo = Math.min(...counts.keys()), hi = Math.max(...counts.keys());
+    const p = new Array(hi - lo + 1).fill(0);
+    for (const [v, c] of counts) p[v - lo] = c / (N + 1);
+    return { min: lo, p };
+}
+
+function convolvePMF(a, b) {
+    const p = new Array(a.p.length + b.p.length - 1).fill(0);
+    for (let i = 0; i < a.p.length; i++) {
+        if (a.p[i] === 0) continue;
+        for (let j = 0; j < b.p.length; j++) p[i + j] += a.p[i] * b.p[j];
+    }
+    return { min: a.min + b.min, p };
+}
+
+function pmfStats(d) {
+    let mean = 0;
+    d.p.forEach((pr, i) => mean += pr * (d.min + i));
+    return { mean, min: d.min, max: d.min + d.p.length - 1 };
+}
+
+// P(roll >= x), or P(roll <= x) for reversed IDs (spell costs), where lower is better. 
+function pmfOrBetter(d, x, reversed) {
+    let t = 0;
+    d.p.forEach((pr, i) => { const v = d.min + i; if (reversed ? v <= x : v >= x) t += pr; });
+    return t;
+}
+
+// P(roll == x)
+function pmfExact(d, x) {
+    const i = x - d.min;
+    return (i >= 0 && i < d.p.length) ? d.p[i] : 0;
+}

@@ -2352,20 +2352,20 @@
           "abilities": [
             {
               "base_abil": "Blood Pact",
-              "properties": {
-                "health_cost": -0.0525
-              },
-              "effects": []
-            },
-            {
-              "base_abil": "Blood Pact",
-              "dependencies": [
-                "Haemorrhage"
-              ],
-              "properties": {
-                "health_cost": -0.01725
-              },
-              "effects": []
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Blood Pact",
+                      "name": "health_cost",
+                      "mult": true,
+                      "value": 0.85
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -2376,20 +2376,22 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.0525,
                 "damage_boost": 6.65
               },
-              "effects": []
-            },
-            {
-              "base_abil": "Blood Pact",
-              "dependencies": [
-                "Haemorrhage"
-              ],
-              "properties": {
-                "health_cost": -0.01725
-              },
-              "effects": []
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Blood Pact",
+                      "name": "health_cost",
+                      "mult": true,
+                      "value": 0.85
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -2400,20 +2402,22 @@
             {
               "base_abil": "Blood Pact",
               "properties": {
-                "health_cost": -0.0525,
                 "damage_boost": 10
               },
-              "effects": []
-            },
-            {
-              "base_abil": "Blood Pact",
-              "dependencies": [
-                "Haemorrhage"
-              ],
-              "properties": {
-                "health_cost": -0.01725
-              },
-              "effects": []
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "bonuses": [
+                    {
+                      "type": "prop",
+                      "abil": "Blood Pact",
+                      "name": "health_cost",
+                      "mult": true,
+                      "value": 0.85
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

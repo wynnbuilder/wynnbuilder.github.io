@@ -459,6 +459,7 @@ class Craft{
         statMap.set("ingredEffectiveness", eff_flat);
         //console.log(eff_flat);
         //apply ingredient ids
+        const dists = new Map();
         for (const n in this.ingreds) {
             let ingred = this.ingreds[n];
             let eff_mult = (eff_flat[n] / 100).toFixed(2);
@@ -487,6 +488,10 @@ class Craft{
                     rolls = rolls.map(x => Math.floor(x * eff_mult)).sort(function(a, b){return a - b});
                     statMap.get("minRolls").set(key, (statMap.get("minRolls").get(key)) ? statMap.get("minRolls").get(key) + rolls[0] : rolls[0]);
                     statMap.get("maxRolls").set(key, (statMap.get("maxRolls").get(key)) ? statMap.get("maxRolls").get(key) + rolls[1] : rolls[1]);
+
+                    const min = ingred.get("ids").get("minRolls").get(key);
+                    const pmf = ingredientRollPMF(min, value, parseFloat(eff_mult));
+                    dists.set(key, dists.has(key) ? convolvePMF(dists.get(key), pmf) : pmf);
                 }
             }
         }
@@ -524,6 +529,7 @@ class Craft{
         }
 
         statMap.set("crafted", true);
+        statMap.set("rollDist", dists);
         this.statMap = statMap;
     }
 
