@@ -137,6 +137,14 @@ Wynn-Related CSS
     content: "\1F5E1";
 }
 
+.unpowdered_dps:before {
+    content: "\1F323" ' ';
+}
+
+.powdered_dps:before {
+    content: "\27B3" ' ';
+}
+
 .Damage { 
     color: rgb(255, 198, 85)
 }
