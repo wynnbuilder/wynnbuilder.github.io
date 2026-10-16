@@ -17,14 +17,13 @@ let armor_powder_node = new (class extends ComputeNode {
     }
 })();
 
-const damageMultipliers = new Map([["totem", 0.2], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.40], ["hauntingfanatic", 0.0], ["hauntinglunatic", 0.0], ["chantlunatic", 0.3]]);
+const damageMultipliers = new Map([["totem", 0.15], ["warscream", 0.0], ["emboldeningcry", 0.0], ["fortitude", 0.3], ["hauntingfanatic", 0.0], ["hauntinglunatic", 0.0], ["chantlunatic", 0.2], ["eldritchcall", 0.0]]);
 
 let boosts_node = new (class extends ComputeNode {
     constructor() { super('builder-boost-input'); }
 
     compute_func(input_map) {
         let damage_boost = 0;
-        let str_boost = 0;
         let vuln_boost = 0;
         let def_boost = 0;
         let weaken_boost = 0;
@@ -33,14 +32,14 @@ let boosts_node = new (class extends ComputeNode {
             if (elem.classList.contains("toggleOn")) {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
-                else if (key === "emboldeningcry") { def_boost += .05; str_boost += .08 }
-                else if (key === "hauntingfanatic") { vuln_boost += .15 }
-                else if (key === "hauntinglunatic") { weaken_boost += .15 }
+                else if (key === "emboldeningcry") { def_boost += .05 }
+                else if (key === "hauntingfanatic") { vuln_boost += .12 }
+                else if (key === "hauntinglunatic") { weaken_boost = .15 }
+                else if (key === "eldritchcall") { weaken_boost = .2 }
             }
         }
         let res = new Map();
         res.set('damMult.Potion', 100 * damage_boost);
-        res.set('damMult.Strength', 100 * str_boost);
         res.set('damMult.Vulnerability', 100 * vuln_boost);
         res.set('defMult.Potion', 100 * def_boost);
         res.set('defMult.AbilityWeaken', 100 * weaken_boost);
@@ -1076,13 +1075,13 @@ const radiance_node = new (class extends ComputeNode {
         const [statmap] = input_map.values();  // Extract values, pattern match it into size one list and bind to first element
         var boost = 1;
         if (document.getElementById('radiance-boost').classList.contains("toggleOn")) {
-            boost += 0.15;
+            boost += 0.12;
         }
         if (document.getElementById('divinehonor-boost').classList.contains("toggleOn")) {
             boost += 0.05;
         }
         if (document.getElementById('shine-boost').classList.contains("toggleOn")) {
-            boost += 0.05;
+            boost += 0.04;
         }
         if (document.getElementById('judgement-boost').classList.contains("toggleOn")) {
             boost = 1.4;

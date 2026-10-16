@@ -892,7 +892,7 @@
         },
         {
           "threshold": 5,
-          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
+          "description": "Divine Intervention will cause Guardian Angels to fire 1.8x faster instead, and cause explosive shots to deal +5% more damage. </br> Triple Shots gains +2 arrows. </br> Main Attack Damage: -15%",
           "abilities": [
             {
               "base_abil": "Arrow Shield",
@@ -2445,7 +2445,7 @@
         },
         {
           "threshold": 5,
-          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +3% Damage Bonus to Players",
+          "description": "Pressure is stronger. </br> Bash gains +0.5x as many hits. </br> Uppercut deals +50% neutral and +8% Damage in all Elements. </br><span class='mc-white'>Total Damage</span>: +90%   </br>&emsp;(<span class='nDam'>Damage</span>: +50%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +8%) </br> War Scream grants a higher damage boost. Effect: +2% Damage Bonus to Players",
           "abilities": [
             {
               "base_abil": "War Scream",
@@ -2634,31 +2634,6 @@
       ],
       "aliases": [
         "armourBreakerStrength"
-      ]
-    },
-    {
-      "displayName": "Aspect of the Tightrope Walk",
-      "id": 20,
-      "tier": "Fabled",
-      "tiers": [
-        {
-          "threshold": 1,
-          "description": "Brink of Madness activates at +4% higher Health.",
-          "abilities": []
-        },
-        {
-          "threshold": 15,
-          "description": "Brink of Madness activates at +6% higher Health.",
-          "abilities": []
-        },
-        {
-          "threshold": 75,
-          "description": "Brink of Madness activates at +8% higher Health.",
-          "abilities": []
-        }
-      ],
-      "aliases": [
-        "brinkThreshold"
       ]
     },
     {
@@ -2987,6 +2962,28 @@
           "abilities": []
         }
       ]
+    },
+    {
+      "displayName": "Aspect of the Unyielding",
+      "id": 20,
+      "tier": "Fabled",
+      "tiers": [
+        {
+          "threshold": 1,
+          "description": "Brink of Madness stores +5% of your maximum health.",
+          "abilities": []
+        },
+        {
+          "threshold": 15,
+          "description": "Brink of Madness stores +8% of your maximum health.",
+          "abilities": []
+        },
+        {
+          "threshold": 75,
+          "description": "Brink of Madness stores +10% of your maximum health.",
+          "abilities": []
+        }
+      ]
     }
   ],
   "Mage": [
@@ -3022,17 +3019,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Fortitude gains +1.25s Duration.",
+          "description": "Fortitude gains +1s Duration.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Fortitude gains +2.25s Duration.",
+          "description": "Fortitude gains +1.5s Duration.",
           "abilities": []
         },
         {
           "threshold": 75,
-          "description": "Fortitude gains +3s Duration.",
+          "description": "Fortitude gains +2s Duration.",
           "abilities": []
         }
       ],
@@ -3077,7 +3074,7 @@
         },
         {
           "threshold": 15,
-          "description": "Dimensional Tear and Rift Rupture gain +2 Area of Effect. </br> Dimensional Tear gains +5% Resistance.",
+          "description": "Dimensional Tear and Rift Rupture gain +2 Area of Effect. </br> Dimensional Tear grants +5% Resistance while standing in it.",
           "abilities": [
             {
               "base_abil": "Distortion",
@@ -3099,7 +3096,7 @@
         },
         {
           "threshold": 75,
-          "description": "Dimensional Tear and Rift Rupture gain +3 Area of Effect. </br> Dimensional Tear gains +5% Resistance.",
+          "description": "Dimensional Tear and Rift Rupture gain +3 Area of Effect. </br> Dimensional Tear grants +5% Resistance while standing in it.",
           "abilities": [
             {
               "base_abil": "Distortion",
@@ -3482,20 +3479,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Arcane Speed gains +5% speed.",
-          "abilities": [
-            {
-              "base_abil": "Heal",
-              "properties": {
-                "speed_boost": 5
-              },
-              "effects": []
-            }
-          ]
-        },
-        {
-          "threshold": 5,
-          "description": "Arcane Speed gains +10% speed.",
+          "description": "Arcane Speed gains +2% speed per cast and +10% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
@@ -3507,8 +3491,8 @@
           ]
         },
         {
-          "threshold": 30,
-          "description": "Arcane Speed gains +15% speed.",
+          "threshold": 5,
+          "description": "Arcane Speed gains +3% speed per cast and +15% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
@@ -3520,13 +3504,26 @@
           ]
         },
         {
-          "threshold": 150,
-          "description": "Arcane Speed gains +20% speed.",
+          "threshold": 30,
+          "description": "Arcane Speed gains +4% speed per cast and +20% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
               "properties": {
                 "speed_boost": 20
+              },
+              "effects": []
+            }
+          ]
+        },
+        {
+          "threshold": 150,
+          "description": "Arcane Speed gains +5% speed per cast and +25% maximum speed.",
+          "abilities": [
+            {
+              "base_abil": "Heal",
+              "properties": {
+                "speed_boost": 25
               },
               "effects": []
             }
@@ -3807,22 +3804,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Time Dilation gains +0.35 Area of Effect.",
+          "description": "Time Dilation gains +1 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Time Dilation gains +0.6 Area of Effect.",
+          "description": "Time Dilation gains +1.75 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Time Dilation gains +0.85 Area of Effect.",
+          "description": "Time Dilation gains +2.5 Area of Effect.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Time Dilation gains +1 Area of Effect.",
+          "description": "Time Dilation gains +3 Area of Effect.",
           "abilities": []
         }
       ],
@@ -4459,7 +4456,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +4.5%.",
+          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +4.75%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -4476,7 +4473,7 @@
                     }
                   ],
                   "scaling": [
-                    4.5
+                    4.75
                   ]
                 }
               ]
@@ -4485,7 +4482,7 @@
         },
         {
           "threshold": 15,
-          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +12%.",
+          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +6%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -4494,7 +4491,7 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Knives Active",
-                  "slider_max": -2,
+                  "slider_max": -1,
                   "output": [
                     {
                       "type": "stat",
@@ -4502,7 +4499,7 @@
                     }
                   ],
                   "scaling": [
-                    12
+                    6
                   ]
                 }
               ]
@@ -4511,7 +4508,7 @@
         },
         {
           "threshold": 75,
-          "description": "Decrease your maximum Knives by -2. Increase the damage of each Knife by +14%.",
+          "description": "Decrease your maximum Knives by -1. Increase the damage of each Knife by +8%.",
           "abilities": [
             {
               "base_abil": "Nightcloak Knife",
@@ -4520,7 +4517,7 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Knives Active",
-                  "slider_max": -2,
+                  "slider_max": -1,
                   "output": [
                     {
                       "type": "stat",
@@ -4528,7 +4525,7 @@
                     }
                   ],
                   "scaling": [
-                    14
+                    8
                   ]
                 }
               ]
@@ -5118,17 +5115,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Vanish's cooldown is reduced by -1.25s.",
+          "description": "Vanish's cooldown is reduced by -0.5s.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Vanish's cooldown is reduced by -1.25s. </br> Satsujin's cooldown is reduced by -5s.",
+          "description": "Vanish's cooldown is reduced by -0.5s. </br> Satsujin's cooldown is reduced by -5s.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Vanish's cooldown is reduced by -1.75s. </br> Satsujin's cooldown is reduced by -5s.",
+          "description": "Vanish's cooldown is reduced by -0.75s. </br> Satsujin's cooldown is reduced by -5s.",
           "abilities": []
         }
       ]
@@ -5650,7 +5647,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Mystics Masks bonus effect is increased by 1.15x",
+          "description": "Mystics Masks' positive buffs are 1.10x as strong.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -5664,7 +5661,7 @@
                       "abil": "Uproot",
                       "name": "lunatic_damage",
                       "mult": true,
-                      "value": 1.15
+                      "value": 1.1
                     }
                   ]
                 },
@@ -5676,7 +5673,7 @@
                       "abil": "Uproot",
                       "name": "fanatic_res",
                       "mult": true,
-                      "value": 1.15
+                      "value": 1.1
                     }
                   ]
                 },
@@ -5688,7 +5685,7 @@
                       "abil": "Uproot",
                       "name": "heretic_speed",
                       "mult": true,
-                      "value": 1.15
+                      "value": 1.1
                     }
                   ]
                 }
@@ -5698,7 +5695,7 @@
         },
         {
           "threshold": 15,
-          "description": "Mystics Masks bonus effect is increased by 1.2x",
+          "description": "Mystics Masks' positive buffs are 1.15x as strong.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -5712,7 +5709,7 @@
                       "abil": "Uproot",
                       "name": "lunatic_damage",
                       "mult": true,
-                      "value": 1.2
+                      "value": 1.15
                     }
                   ]
                 },
@@ -5724,7 +5721,7 @@
                       "abil": "Uproot",
                       "name": "fanatic_res",
                       "mult": true,
-                      "value": 1.2
+                      "value": 1.15
                     }
                   ]
                 },
@@ -5736,7 +5733,7 @@
                       "abil": "Uproot",
                       "name": "heretic_speed",
                       "mult": true,
-                      "value": 1.2
+                      "value": 1.15
                     }
                   ]
                 }
@@ -5746,7 +5743,7 @@
         },
         {
           "threshold": 75,
-          "description": "Mystics Masks bonus effect is increased by 1.25x",
+          "description": "Mystics Masks' positive buffs are 1.20x as strong.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -5760,7 +5757,7 @@
                       "abil": "Uproot",
                       "name": "lunatic_damage",
                       "mult": true,
-                      "value": 1.25
+                      "value": 1.2
                     }
                   ]
                 },
@@ -5772,7 +5769,7 @@
                       "abil": "Uproot",
                       "name": "fanatic_res",
                       "mult": true,
-                      "value": 1.25
+                      "value": 1.2
                     }
                   ]
                 },
@@ -5784,7 +5781,7 @@
                       "abil": "Uproot",
                       "name": "heretic_speed",
                       "mult": true,
-                      "value": 1.25
+                      "value": 1.2
                     }
                   ]
                 }
@@ -5825,7 +5822,7 @@
     },
     {
       "displayName": "Aspect of the Eternal Dance",
-      "id": 2,
+      "id": 27,
       "tier": "Fabled",
       "tiers": [
         {
@@ -6314,7 +6311,7 @@
         },
         {
           "threshold": 5,
-          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1.",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
@@ -6334,7 +6331,7 @@
         },
         {
           "threshold": 15,
-          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
@@ -6687,27 +6684,27 @@
     },
     {
       "displayName": "Aspect of Bile Waters",
-      "id": 17,
+      "id": 26,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Corroded is +0.5% stronger.",
+          "description": "Corroded has it's maximum duration increased by 1s and Weathering duration is increased by 1s.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Corroded is +1% stronger.",
+          "description": "Corroded has it's maximum duration increased by 2s and Weathering duration is increased by 2s.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Corroded is +1.5% stronger.",
+          "description": "Corroded has it's maximum duration increased by 3s and Weathering duration is increased by 3s.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Corroded is +2% stronger.",
+          "description": "Corroded has it's maximum duration increased by 4s and Weathering duration is increased by 4s.",
           "abilities": []
         }
       ],
@@ -6893,12 +6890,12 @@
     },
     {
       "displayName": "Aspect of Damnation",
-      "id": 22,
+      "id": 25,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS, as Main Attack damage)    (\u2723 Damage: +4%)",
+          "description": "Increase Malediction's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS, as Main Attack damage)    (\u2723 Damage: +4%)",
           "abilities": [
             {
               "base_abil": 999,
@@ -6914,7 +6911,7 @@
         },
         {
           "threshold": 5,
-          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, as Main Attack damage)    (\u2723 Damage: +6%)",
+          "description": "Increase Malediction's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, as Main Attack damage)    (\u2723 Damage: +6%)",
           "abilities": [
             {
               "base_abil": 999,
@@ -6930,7 +6927,7 @@
         },
         {
           "threshold": 30,
-          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +8% (of your DPS, as Main Attack damage)    (\u2723 Damage: +8%)",
+          "description": "Increase Malediction's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: +8% (of your DPS, as Main Attack damage)    (\u2723 Damage: +8%)",
           "abilities": [
             {
               "base_abil": 999,
@@ -6946,7 +6943,7 @@
         },
         {
           "threshold": 150,
-          "description": "Increase Malediction's damage. \u2694 </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS, as Main Attack damage)    (\u2723 Damage: +10%)",
+          "description": "Increase Malediction's damage. </br> \u2694 </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS, as Main Attack damage)    (\u2723 Damage: +10%)",
           "abilities": [
             {
               "base_abil": 999,
@@ -7039,12 +7036,12 @@
         },
         {
           "threshold": 5,
-          "description": "Your Ultimate charges 20% faster. </br> Patchwork Abomination lasts +6s longer. Awakened lasts 5s longer. Monument to Gloom lasts +30% longer.",
+          "description": "Your Ultimate charges 20% faster. </br> Patchwork Abomination lasts 30% longer. Awakened lasts 20% longer. Monument to Gloom lasts 30% longer.",
           "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Your Ultimate charges 25% faster. </br> Patchwork Abomination lasts +6s longer. Awakened lasts 5s longer. Monument to Gloom lasts +30% longer.",
+          "description": "Your Ultimate charges 25% faster. </br> Patchwork Abomination lasts 30% longer. Awakened lasts 20% longer. Monument to Gloom lasts 30% longer.",
           "abilities": []
         }
       ]

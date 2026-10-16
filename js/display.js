@@ -1248,13 +1248,37 @@ function displayPoisonDamage(overallparent_elem, statMap) {
     title_elemavg.append(make_elem('span', [], { textContent: "Poison Stats" }));
     spell_summary.append(title_elemavg);
 
-    let poison_tick = Math.floor(statMap.get("poison") / 3);
-    //let poison_tick = Math.ceil(statMap.get("poison") * (1+skillPointsToPercentage(statMap.get('str'))) * (statMap.get("poisonPct"))/100 /3);
+    let adjAtkSpd = attackSpeeds.indexOf(statMap.get("atkSpd")) + statMap.get("atkTier");
+    if (adjAtkSpd > 6) {
+        adjAtkSpd = 6;
+    } else if (adjAtkSpd < 0) {
+        adjAtkSpd = 0;
+    }
+
+    // Tested in game, maybe some rounding error
+    const poison_atkspd_mult = [
+        2.6239,
+        2.1198,
+        1.3125,
+        1.0083,
+        0.75,
+        0.5333,
+        0.3333
+    ];
+
+    let poison_spell = Math.max(Math.floor(statMap.get("poison") * 2));
+    let poison_melee = Math.max(Math.floor(statMap.get("poison") * baseDamageMultiplier[adjAtkSpd] * poison_atkspd_mult[adjAtkSpd]));
 
     let overallpoisonDamage = make_elem("p");
     overallpoisonDamage.append(
-        make_elem("span", [], { textContent: "Poison Tick: " }),
-        make_elem("span", ["Damage"], { textContent: Math.max(poison_tick, 0) })
+        make_elem("span", [], { textContent: "Total Poison DPS: " }),
+        make_elem("span", ["Damage"], { textContent: poison_spell + poison_melee }),
+        make_elem("br", [], {}),
+        make_elem("span", [], { textContent: "\nMelee Poison DPS: " }),
+        make_elem("span", ["Damage"], { textContent: poison_melee }),
+        make_elem("br", [], {}),
+        make_elem("span", [], { textContent: "\nSpell Poison DPS: " }),
+        make_elem("span", ["Damage"], { textContent: poison_spell }),
     );
     spell_summary.append(overallpoisonDamage);
     container.append(spell_summary);

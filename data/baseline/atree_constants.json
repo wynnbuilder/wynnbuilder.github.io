@@ -995,7 +995,7 @@
         },
         {
             "display_name": "Frenzy",
-            "desc": "Hitting an enemy will give you a brief buff of +1% Walk Speed, up to 15% per second. (Max +60%) -5% of the bonus decays every second.",
+            "desc": "Hitting an enemy will give you a brief buff of +1% Walk Speed, up to +15% per second. (Max +60%) -5% of the bonus decays every second.",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [
@@ -1273,7 +1273,7 @@
         },
         {
             "display_name": "Implosion",
-            "desc": "Arrow Bomb pulls enemies towards you. If a Trap is nearby, it will pull them towards it instead. Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
+            "desc": "Arrow Bomb pulls enemies together. If a Trap is nearby, enemies are pulled towards it instead. </br> Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Bomb",
@@ -2910,7 +2910,7 @@
         },
         {
             "display_name": "Coursing Restraints",
-            "desc": "Shocking Bomb will temporarily shock enemies, reducing their defences. </br> </br>Effect: -15% Resistance Bonus to Enemies </br>Duration: 4s </br>Cooldown: 10s",
+            "desc": "Shocking Bomb will temporarily shock enemies, reducing their defences. </br> </br>Effect: -12% Resistance Bonus to Enemies </br>Duration: 4s </br>Cooldown: 10s",
             "archetype": "Sharpshooter",
             "parents": [
                 "Cheaper Arrow Shield II"
@@ -4863,7 +4863,7 @@
         },
         {
             "display_name": "Final Crush",
-            "desc": "Bash's last hit is delayed, but deals +100% damage and has +50% radius.",
+            "desc": "Bash's last hit is delayed, but deals +60% damage and has +50% radius.",
             "archetype": "Fallen",
             "base_abil": "Bash",
             "parents": [
@@ -4881,7 +4881,7 @@
                 "icon": "node_2"
             },
             "properties": {
-                "crush_mult": 2
+                "crush_mult": 1.6
             },
             "effects": [
                 {
@@ -5726,7 +5726,7 @@
         },
         {
             "display_name": "Sparkling Hope",
-            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 5 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 20 activations within 4s.) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "parents": [
                 "Crushing Blow",
                 "Rejuvenating Skin"
@@ -6620,7 +6620,7 @@
         },
         {
             "display_name": "Radiance",
-            "desc": "Bash will buff positive IDs of yourself and allies. (Max Mana, XP Bonus, Loot Bonus, Loot Quality, Gather XP Bonus, and Gather Speed Bonus are excluded) </br> </br>Effect: +15% ID Effectiveness to Allies </br>Duration: 8s </br>Cooldown: 15s",
+            "desc": "Bash will buff positive IDs of yourself and allies. (Max Mana, XP Bonus, Loot Bonus, Loot Quality, Gather XP Bonus, and Gather Speed Bonus are excluded) </br> </br>Effect: +12% ID Effectiveness to Allies </br>Duration: 8s </br>Cooldown: 15s",
             "archetype": "Paladin",
             "archetype_req": 11,
             "base_abil": "Bash",
@@ -6946,13 +6946,17 @@
         },
         {
             "display_name": "Brink of Madness",
-            "desc": "You gain a +40% Resistance buff if your health is at 25% or less.",
+            "desc": "Taking lethal damage while Corrupted grants resistance, disables Corrupted and allows you to take additional damage up to 30% of your maximum health. </br> Surviving after the effect ends activates effects that happen when leaving Corrupted. </br> </br>Effect: 50% Resistance Bonus to Self </br>Duration: 5s </br>Cooldown: 40s",
             "parents": [
                 "Bloodlust",
                 "Cheaper Uppercut II"
             ],
-            "dependencies": [],
-            "blockers": [],
+            "dependencies": [
+                "Bak'al's Grasp"
+            ],
+            "blockers": [
+                "Second Chance"
+            ],
             "cost": 2,
             "display": {
                 "row": 35,
@@ -6972,7 +6976,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "archetype": "Fallen"
         },
         {
             "display_name": "Bloodlust",
@@ -7038,7 +7043,7 @@
         },
         {
             "display_name": "Concussion",
-            "desc": "Final Crush will deal additional +60% damage to enemies damaged by the previous Bash hit.",
+            "desc": "Final Crush will deal additional +100% damage to enemies damaged by the previous Bash hit.",
             "base_abil": "Bash",
             "parents": [
                 "Bloodlust"
@@ -7054,7 +7059,7 @@
                 "icon": "node_0"
             },
             "properties": {
-                "crush_mult": 0.6
+                "crush_mult": 1.0
             },
             "effects": []
         },
@@ -7096,7 +7101,9 @@
                 "Heavenly Trumpet"
             ],
             "dependencies": [],
-            "blockers": [],
+            "blockers": [
+                "Brink of Madness"
+            ],
             "cost": 2,
             "display": {
                 "row": 36,
@@ -7177,7 +7184,7 @@
         },
         {
             "display_name": "Pressure",
-            "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 3x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
+            "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 3x as many hits and is 0.1s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +8% Damage Bonus to Players </br>Duration: 12s",
             "base_abil": "War Scream",
             "archetype": "Battle Monk",
             "archetype_req": 10,
@@ -7710,7 +7717,7 @@
         },
         {
             "display_name": "Shine",
-            "desc": "Increase Radiance's effectiveness. </br> </br>Effect: +5% ID Effectiveness to Allies",
+            "desc": "Increase Radiance's effectiveness. </br> </br>Effect: +4% ID Effectiveness to Allies",
             "archetype": "Paladin",
             "parents": [
                 "Heavenly Trumpet",
@@ -7915,7 +7922,7 @@
         },
         {
             "display_name": "Zenith Stance",
-            "desc": "Click Combo: F </br> Manifest your combat mastery as two floating fists that you freely command. </br> Casting F switches them between Spell and Main Attack form.  </br> In Spell form, casting a spell performs an attack. In Main Attack form, Main Attacks perform an attack instead. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, spell)   </br>&emsp;(<span class='nDam'>Damage</span>: 2100%)   </br>&emsp;(<span class='aDam'>Air</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 1600% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 1400%)   </br>&emsp;(<span class='aDam'>Air</span>: 200%) </br>Area of Effect: 5 Blocks  </br>Range: 7 Blocks </br>Duration: 10s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Manifest your combat mastery as two floating fists that you freely command. </br> Casting F switches them between Spell and Main Attack form.  </br> In Spell form, casting a spell performs an attack. In Main Attack form, Main Attacks perform an attack instead. </br> </br><span class='mc-white'>Total Damage</span>: 2400% (of your DPS, spell)   </br>&emsp;(<span class='nDam'>Damage</span>: 2100%)   </br>&emsp;(<span class='aDam'>Air</span>: 300%) </br><span class='mc-white'>Total Damage</span>: 1600% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 1400%)   </br>&emsp;(<span class='aDam'>Air</span>: 200%) </br>Area of Effect: 5 Blocks  </br>Range: 7 Blocks </br>Duration: 20s </br> Activate abilities or take damage to charge your Ultimate Meter to 100%",
             "archetype": "Battle Monk",
             "archetype_req": 16,
             "parents": [
@@ -7971,7 +7978,7 @@
                         {
                             "name": "Total Spell Damage",
                             "hits": {
-                                "Total Spell DPS": 10
+                                "Total Spell DPS": 20
                             }
                         },
                         {
@@ -7983,7 +7990,7 @@
                         {
                             "name": "Total Melee Damage",
                             "hits": {
-                                "Total Melee DPS": 10
+                                "Total Melee DPS": 20
                             }
                         }
                     ]
@@ -9297,7 +9304,7 @@
         },
         {
             "display_name": "Fortitude",
-            "desc": "Healing 120% of your max health within 10s will apply a damage bonus to every player you've healed. </br> </br>Effect: 40% Damage Bonus to Allies </br>Duration: 7s </br>Cooldown: 15s",
+            "desc": "Healing 120% of your max health within 10s will apply a damage bonus to every player you've healed. </br> </br>Effect: 30% Damage Bonus to Allies </br>Duration: 7s </br>Cooldown: 15s",
             "base_abil": "Heal",
             "archetype": "Light Bender",
             "archetype_req": 2,
@@ -9503,7 +9510,7 @@
             "base_abil": "Ice Snake",
             "parents": [
                 "Pyrokinesis",
-                "Seance",
+                "Runic Searing",
                 "Cheaper Ice Snake",
                 "Vacuokinesis"
             ],
@@ -9550,13 +9557,15 @@
             ]
         },
         {
-            "display_name": "Seance",
-            "desc": "For every 5/3s Lifesteal you have from items, gain +1% Spell Damage. (Max 50%)",
+            "display_name": "Runic Searing",
+            "desc": "Burning Sigil will deal damage 25% faster and deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
             "parents": [
                 "Pyrokinesis",
                 "Snake Nest"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "Burning Sigil"
+            ],
             "blockers": [],
             "cost": 1,
             "display": {
@@ -9567,22 +9576,25 @@
             "properties": {},
             "effects": [
                 {
-                    "type": "stat_scaling",
-                    "slider": false,
-                    "inputs": [
-                        {
-                            "type": "stat",
-                            "name": "ls"
-                        }
-                    ],
-                    "output": {
-                        "type": "stat",
-                        "name": "sdPct"
-                    },
-                    "scaling": [
-                        0.2
-                    ],
-                    "max": 50
+                    "type": "add_spell_prop",
+                    "target_part": "Tick Damage",
+                    "base_spell": 6,
+                    "multipliers": [
+                        40,
+                        0,
+                        0,
+                        0,
+                        10,
+                        0
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 6,
+                    "target_part": "DPS",
+                    "hits": {
+                        "Tick Damage": 0.833333333333
+                    }
                 }
             ]
         },
@@ -9719,7 +9731,7 @@
             "archetype": "Arcanist",
             "archetype_req": 0,
             "parents": [
-                "Seance",
+                "Runic Searing",
                 "Snake Nest",
                 "Meteor Shower"
             ],
@@ -9775,7 +9787,7 @@
         },
         {
             "display_name": "Dimensional Tear",
-            "desc": "Hitting an enemy with Etheric Slash tears  open a dimensional rift between you  and your destination. </br> The rift damages enemies every 0.4s, increases your Distortion gain by +25% and reduces damage taken while standing in it. </br> The rift's benefits and damage linger for 3s upon leaving its area. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Effect: 15% Resistance Bonus </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "Hitting an enemy with Etheric Slash tears  open a dimensional rift between you  and your destination. </br> The rift damages enemies every 0.4s and increases your Distortion gain by +25% while standing in it. </br> The rift's benefits and damage linger for 3s upon leaving its area. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
             "archetype": "Riftwalker",
             "archetype_req": 7,
             "base_abil": "Distortion",
@@ -9822,17 +9834,6 @@
                             "hits": {
                                 "Damage per Tick": 2.5
                             }
-                        }
-                    ]
-                },
-                {
-                    "type": "raw_stat",
-                    "toggle": "Activate Dimensional Tear",
-                    "bonuses": [
-                        {
-                            "type": "stat",
-                            "name": "defMult.Potion",
-                            "value": 15
                         }
                     ]
                 },
@@ -9924,7 +9925,7 @@
         },
         {
             "display_name": "Arcane Speed",
-            "desc": "You gain a walk speed buff after casting Heal or Arcane Transfer. </br> </br>Effects: +40% Walk Speed </br>Duration: 8s </br>Cooldown: 8s",
+            "desc": "You gain a stacking walk speed buff each time you cast a spell. (Max 40%) </br> </br>Effects: +8% Walk Speed per Cast </br>Duration: 2s",
             "base_abil": "Heal",
             "archetype": "Arcanist",
             "parents": [
@@ -9965,7 +9966,7 @@
             "archetype": "Arcanist",
             "archetype_req": 0,
             "parents": [
-                "Seance",
+                "Runic Searing",
                 "Arcane Speed"
             ],
             "dependencies": [
@@ -10318,24 +10319,50 @@
             ]
         },
         {
-            "display_name": "Arctic Snake",
-            "desc": "Ice Snake will freeze enemies for 2s. </br> </br>Effect: 100% Slowness to Enemies </br>Duration: 2s",
+            "display_name": "Frost Dragon's Breath",
+            "desc": "Ice Snake being casted by Chaos Explosion will instead spew forth a cone of icy breath, dealing damage and granting +4 Mana Bank per hit every 0.25s. </br> The duration increases by +1.5s with each subsequent cast. </br> </br><span class='mc-white'>Total Damage</span>: +200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +160%)   </br>&emsp;(<span class='wDam'>Water</span>: +40) </br>Duration: 1.5s (Max 10s) </br>Area of Effect: 1-5 Blocks (Cone-Shaped) </br>Range: 10 Blocks",
             "base_abil": "Ice Snake",
             "parents": [
-                "Chaos Explosion"
+                "Chaos Explosion",
+                "Arcane Power"
             ],
-            "dependencies": [
-                "Ice Snake"
-            ],
+            "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 28,
-                "col": 7,
-                "icon": "node_2"
+                "row": 29,
+                "col": 8,
+                "icon": "node_4"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "replace_spell",
+                    "name": "Frost Dragon's Breath",
+                    "base_spell": 14,
+                    "display": "DPS",
+                    "parts": [
+                        {
+                            "name": "Damage per Tick",
+                            "multipliers": [
+                                160,
+                                0,
+                                0,
+                                40,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "DPS",
+                            "hits": {
+                                "Damage per Tick": 4
+                            }
+                        }
+                    ]
+                }
+            ],
+            "archetype": "Arcanist"
         },
         {
             "display_name": "Searing Light",
@@ -10409,12 +10436,13 @@
         },
         {
             "display_name": "Arcane Power",
-            "desc": "Meteor, Ice Snake, and Etheric Slash will add +8 Mana to your Mana Bank for each aggressive enemy you hit. Frozen Tornado and Meteor Shower will add +4 Mana. </br> Arcane Restoration will restore mana 0.1s faster.",
+            "desc": "Meteor, Ice Snake, and Etheric Slash will add +8 Mana to your Mana Bank for each aggressive enemy you hit. Frozen Tornado and Meteor Shower will add +4 Mana. Frost Dragon's Breath will add +1 Mana. </br> Arcane Restoration will restore mana 0.1s faster.",
             "base_abil": "Arcane Transfer",
             "archetype": "Arcanist",
             "archetype_req": 0,
             "parents": [
-                "Arctic Snake"
+                "Frost Dragon's Breath",
+                "Chaos Explosion"
             ],
             "dependencies": [
                 "Arcane Transfer"
@@ -10544,7 +10572,8 @@
             "archetype_req": 0,
             "base_abil": "Arcane Transfer",
             "parents": [
-                "Arctic Snake"
+                "Frost Dragon's Breath",
+                "Arcane Power"
             ],
             "dependencies": [
                 "Arcane Transfer"
@@ -11278,7 +11307,7 @@
         },
         {
             "display_name": "Blitz",
-            "desc": "Increase the damage of Ice Snake and double its speed. </br> Increase the damage of Frozen Tornado by an additional +3% every time the tornado damages an enemy. </br> </br><span class='mc-white'>Total Damage</span>: +65% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +25%)",
+            "desc": "Increase the damage of Ice Snake and double its speed. </br> Increase the damage of Frozen Tornado by an additional +3% every time the tornado damages an enemy. </br> Frost Dragon's Breath attacks -0.15s faster but gains -0.5s duration per cast and -2 Mana Bank per hit. </br> </br><span class='mc-white'>Total Damage</span>: +65% (of your DPS, for Ice Snake)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +25%)",
             "base_abil": "Ice Snake",
             "parents": [
                 "Arcane Overflow",
@@ -11292,7 +11321,7 @@
             "display": {
                 "row": 38,
                 "col": 6,
-                "icon": "node_0"
+                "icon": "node_1"
             },
             "properties": {},
             "effects": [
@@ -11322,6 +11351,15 @@
                     "scaling": [
                         3
                     ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "behavior": "modify",
+                    "base_spell": 14,
+                    "target_part": "DPS",
+                    "hits": {
+                        "Damage per Tick": 6
+                    }
                 }
             ]
         },
@@ -11800,7 +11838,7 @@
         },
         {
             "display_name": "Poisoned Blade",
-            "desc": "For every 2% or 2 Raw Main Attack Damage you have from items, gain +5/3s Poison Damage. (Max 50/3s) </br> Your Main Attack gains additional range. </br> </br>Range: +1 Block",
+            "desc": "For every 2% or 2 Raw Main Attack Damage you have from items, gain +1/3s Poison Damage. (Max 10/3s) </br> Your Main Attack gains additional range. </br> </br>Range: +1 Block",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "base_abil": 999,
@@ -12460,7 +12498,7 @@
         },
         {
             "display_name": "Vanish",
-            "desc": "Dash will hide you into the shadows. You cannot heal or gain mana while in this state. (Attack or get hit to cancel) </br> </br>Effect: Invisibility to Self </br>Duration: 5s </br>Cooldown: 5s",
+            "desc": "Dash will hide you into the shadows. You cannot heal or gain mana while in this state. (Attack or get hit to cancel) </br> </br>Effect: Invisibility to Self </br>Duration: 5s </br>Cooldown: 4s",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Dash",
@@ -14073,7 +14111,7 @@
         },
         {
             "display_name": "Noxious Haze",
-            "desc": "Smoke Bomb makes you and any allies become Noxious while standing in it, which lingers after leaving the area. </br> While Noxious, deal +10% damage to enemies for every debuff they have. (Max 5) Allies only receive 30% of the bonus. </br> </br>Duration: 2s",
+            "desc": "Smoke Bomb makes you and any allies become Noxious while standing in it, which lingers after leaving the area. </br> While Noxious, deal +10% damage to enemies for every debuff they have. (Max 5) Allies only receive 25% of the bonus. </br> </br>Duration: 2s",
             "archetype": "Trickster",
             "archetype_req": 11,
             "base_abil": "Smoke Bomb",
@@ -15592,7 +15630,7 @@
                     "name": "Aura",
                     "cost": 40,
                     "base_spell": 3,
-                    "display": "First Wave",
+                    "display": "Total Damage",
                     "parts": [
                         {
                             "name": "Single Wave",
@@ -15609,6 +15647,12 @@
                             "name": "First Wave",
                             "hits": {
                                 "Single Wave": "Aura.num_totems"
+                            }
+                        },
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Single Wave": "Aura.waves"
                             }
                         },
                         {
@@ -16157,7 +16201,7 @@
             "archetype_req": 2,
             "parents": [
                 "Rain Dance",
-                "Hymn of Hate"
+                "Zealot's Bolts"
             ],
             "dependencies": [
                 "Uproot"
@@ -16203,6 +16247,12 @@
                             "type": "stat",
                             "name": "spPct3Final",
                             "value": "Uproot.lunatic_cost"
+                        },
+                        {
+                            "type": "prop",
+                            "abil": "Aura",
+                            "name": "bolts",
+                            "value": 3
                         }
                     ]
                 },
@@ -16350,7 +16400,7 @@
                 "Cheaper Aura I",
                 "Mystic Masks",
                 "Rebound",
-                "Hymn of Hate"
+                "Zealot's Bolts"
             ],
             "dependencies": [
                 "Uproot"
@@ -16393,14 +16443,6 @@
                 "waves": 1
             },
             "effects": [
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 3,
-                    "target_part": "Rebound Total Damage",
-                    "hits": {
-                        "First Wave": 2
-                    }
-                },
                 {
                     "type": "add_spell_prop",
                     "base_spell": 3,
@@ -16465,7 +16507,7 @@
         },
         {
             "display_name": "Haunting Memory",
-            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will debuff them. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects:    Lunatic: -15% Damage Bonus to Enemies   Fanatic: -15% Resistance Bonus to Enemies   Heretic: +30% Slowness to Enemies </br>Duration: 5s",
+            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will debuff them. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects:    Lunatic: -15% Damage Bonus to Enemies   Fanatic: -12% Resistance Bonus to Enemies   Heretic: +30% Slowness to Enemies   Fanatic: -15% Resistance Bonus to Enemies </br>Duration: 5s",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "parents": [
@@ -16597,8 +16639,8 @@
             ]
         },
         {
-            "display_name": "Hymn of Hate",
-            "desc": "When wearing the Mask of the Lunatic, killing an enemy with Aura will cast a new Aura at its location, dealing -50% of its damage.",
+            "display_name": "Zealot's Bolts",
+            "desc": "While wearing the Mask of the Lunatic, casting Aura will fire 3 homing bolts that ricochet between nearby enemies up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 40% (per Bolt)    </br>&emsp;(<span class='nDam'>Damage</span>: 35%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Ricochet Range: 6 Blocks",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
@@ -16614,14 +16656,29 @@
                 "col": 6,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "bolts": 0
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
                     "base_spell": 3,
-                    "target_part": "Hymn of Hate",
+                    "target_part": "Single Bolt",
+                    "multipliers": [
+                        35,
+                        0,
+                        5,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 3,
+                    "target_part": "Total Damage",
                     "hits": {
-                        "Single Wave": 0.5
+                        "Single Bolt": "Aura.bolts"
                     }
                 }
             ]
@@ -16714,6 +16771,11 @@
                         {
                             "type": "stat",
                             "name": "damMult.Bullwhip:13.Patch Hit",
+                            "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:11.Single Hit",
                             "value": "Bullwhip.damage_boost"
                         }
                     ]
@@ -16833,7 +16895,7 @@
         },
         {
             "display_name": "Vengeful Spirit",
-            "desc": "Your Totem will give all players in its range a damage bonus. </br> </br>Effect: +20% Damage Bonus to Allies",
+            "desc": "Your Totem will give all players in its range a damage bonus. </br> </br>Effect: +15% Damage Bonus to Allies",
             "base_abil": "Totem",
             "archetype": "Acolyte",
             "parents": [
@@ -16852,13 +16914,12 @@
         },
         {
             "display_name": "Artist's Immersion",
-            "desc": "Your Masks reduce the cost of different spells based on the active Mask. </br> Lunatic: -50% Aura Cost Heretic: -50% Haul Cost Fanatic: -65% Totem Cost",
+            "desc": "Your Masks reduce the cost of different spells based on the active Mask. </br> Lunatic: -35% Aura Cost Heretic: -50% Haul Cost Fanatic: -65% Totem Cost",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 6,
             "parents": [
-                "Eye of the Storm",
-                "Larger Blood Pool"
+                "Eye of the Storm"
             ],
             "dependencies": [
                 "Mystic Masks"
@@ -16866,12 +16927,12 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 21,
-                "col": 5,
+                "row": 22,
+                "col": 4,
                 "icon": "node_1"
             },
             "properties": {
-                "lunatic_cost": -30,
+                "lunatic_cost": -35,
                 "fanatic_cost": -65,
                 "heretic_cost": -50
             },
@@ -16948,7 +17009,7 @@
             "parents": [
                 "More Puppets II",
                 "Double Totem",
-                "Strides of Heresy"
+                "Totemic Shatter"
             ],
             "dependencies": [
                 "Totem"
@@ -16971,14 +17032,14 @@
         },
         {
             "display_name": "Strides of Heresy",
-            "desc": "When entering the Mask of the Heretic, knock back all nearby enemies, regenerate 30% of your Mana, and gain a large Walk Speed boost that decays over 6s. </br> </br>Effect: +120% Walk Speed to self </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Cooldown: 8s",
+            "desc": "When entering the Mask of the Heretic, regenerate 30% of your Mana, and gain a large Walk Speed  boost that decays over 6s. </br> </br>Effect: +120% Walk Speed to self </br>Cooldown: 8s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "archetype_req": 4,
             "parents": [
-                "Cheaper Totem II",
-                "Artist's Immersion",
-                "Cheaper Haul II"
+                "Mantra",
+                "Cheaper Aura II",
+                "Rupture"
             ],
             "dependencies": [
                 "Mystic Masks"
@@ -16986,8 +17047,8 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 23,
-                "col": 5,
+                "row": 28,
+                "col": 4,
                 "icon": "node_2"
             },
             "properties": {},
@@ -17021,7 +17082,7 @@
             "base_abil": "Totem",
             "parents": [
                 "Cheaper Totem II",
-                "Strides of Heresy"
+                "Totemic Shatter"
             ],
             "dependencies": [],
             "blockers": [
@@ -17065,7 +17126,7 @@
             "desc": "Reduce the mana cost of Haul. </br> Mana Cost: -5",
             "base_abil": "Haul",
             "parents": [
-                "Strides of Heresy",
+                "Totemic Shatter",
                 "Lashing Lance"
             ],
             "dependencies": [
@@ -17093,7 +17154,7 @@
             "base_abil": "Aura",
             "parents": [
                 "Crimson Effigy",
-                "Imbued Totem"
+                "Strides of Heresy"
             ],
             "dependencies": [
                 "Aura"
@@ -17119,9 +17180,8 @@
             "desc": "Increase Totem's damage. </br> </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)",
             "base_abil": "Totem",
             "parents": [
-                "Mantra",
-                "Rupture",
-                "Cheaper Aura II"
+                "Eye of the Storm",
+                "Larger Blood Pool"
             ],
             "dependencies": [
                 "Totem"
@@ -17129,8 +17189,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 28,
-                "col": 4,
+                "row": 21,
+                "col": 5,
                 "icon": "node_0"
             },
             "properties": {},
@@ -17169,7 +17229,7 @@
             "archetype": "Acolyte",
             "archetype_req": 7,
             "parents": [
-                "Strides of Heresy",
+                "Totemic Shatter",
                 "Cheaper Haul II"
             ],
             "dependencies": [
@@ -17234,9 +17294,11 @@
         },
         {
             "display_name": "Totemic Shatter",
-            "desc": "While wearing the Mask of the Fanatic, your Totem will shatter upon impacting the ground, rapidly triggering 4s worth of its effects. </br> Additionally, Aura will radiate from yourself instead of your Totem.",
+            "desc": "While wearing the Mask of the Fanatic \ue023, your Totem will shatter upon impacting the ground, rapidly triggering 8s worth of its effects. </br> Regeneration will only heal 50% of its usual amount. </br> Additionally, Aura will radiate from yourself instead of your Totem.",
             "parents": [
-                "Eye of the Storm"
+                "Imbued Totem",
+                "Cheaper Totem II",
+                "Cheaper Haul II"
             ],
             "dependencies": [
                 "Mystic Masks"
@@ -17245,8 +17307,8 @@
             "archetype": "Ritualist",
             "cost": 1,
             "display": {
-                "row": 22,
-                "col": 4,
+                "row": 23,
+                "col": 5,
                 "icon": "node_1"
             },
             "properties": {},
@@ -17282,7 +17344,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.TotemShatter:5.Explosion Damage",
-                            "value": 900
+                            "value": 1900
                         }
                     ]
                 },
@@ -17295,16 +17357,17 @@
                         "Shatter Tether per Totem": "Totem.num_totems"
                     }
                 }
-            ]
+            ],
+            "archetype_req": 6
         },
         {
             "display_name": "Charged Ritual",
-            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, casting Totem  while sneaking will cause it to smash down onto the ground, detonating all Static with additional radius. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Area of Effect: 15 Blocks (Circle-Shaped)",
+            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, Aura and Zealot's Bolt will detonate up to 20 Static, damaging them per Static consumed. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Area of Effect: 15 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 9,
             "parents": [
                 "Rupture",
-                "Imbued Totem"
+                "Strides of Heresy"
             ],
             "dependencies": [
                 "Eye of the Storm"
@@ -17424,11 +17487,11 @@
         },
         {
             "display_name": "Mantra",
-            "desc": "While not worn, each Mask's positive effects gradually overload by +20% every 2.5s. (Max +200%) </br> While worn, the overload will decay by -20% every 2s.",
+            "desc": "While not worn, each Mystic Masks positive effect gradually charges by +20% every 1s. </br> While worn, extra charge decays by 20% every 1s, after a 5s grace period. </br> The grace period persists when swapping masks.",
             "archetype": "Ritualist",
             "archetype_req": 8,
             "parents": [
-                "Strides of Heresy",
+                "Totemic Shatter",
                 "Crimson Effigy",
                 "Cheaper Totem II"
             ],
@@ -17478,11 +17541,11 @@
         },
         {
             "display_name": "Eldritch Call",
-            "desc": "Casting Totem while holding shift will spend 35 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles that attack nearby enemies. </br> Tentacles will attack Bleeding enemies from an additional +6 blocks away. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 850% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 650%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 15 Blocks (Circle-Shaped) </br>Duration: 10s",
+            "desc": "Casting Totem while holding shift will spend 35 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles that attack nearby enemies. </br> Tentacles will attack Bleeding enemies from an additional +6 blocks away. Bleeding enemies additionally deal less damage when in range of the tentacles. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 850% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 650%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Effect: -20% Damage Bonus to Enemies </br>Area of Effect: 15 Blocks (Circle-Shaped) </br>Duration: 10s",
             "archetype": "Acolyte",
             "archetype_req": 7,
             "parents": [
-                "Strides of Heresy",
+                "Totemic Shatter",
                 "Cheaper Haul II"
             ],
             "dependencies": [
@@ -17579,7 +17642,7 @@
         },
         {
             "display_name": "Acid Rain",
-            "desc": "Activating Totemic Shatter will cause all rain from Rain Dance to turn into Acid Rain. </br> The Acid Rain lasts for 2s, inflicting 1.5s of Corroded every time it hits an enemy. </br> Corroded enemies will take +8% more damage from all sources. </br> </br>Max Duration: 10s",
+            "desc": "Activating Totemic Shatter will cause all rain from Rain Dance to turn into Acid Rain which lasts for 2s. </br> Acid Rain and Totemic Shatter, will inflict 1.5s of Corroded every time it hits an enemy. </br> Corroded enemies will take +8% more damage from all sources. </br> </br>Max Duration: 10s",
             "archetype": "Ritualist",
             "archetype_req": 10,
             "parents": [
@@ -17656,7 +17719,7 @@
         },
         {
             "display_name": "Sanguine Strike",
-            "desc": "Your Main Attack will now inflict enemies with Bleeding for +2s. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Cooldown: 2s (per enemy)",
+            "desc": "Your Main Attack will now inflict enemies with Bleeding for +3s. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Cooldown: 2s (per enemy)",
             "parents": [
                 "Blood Rite",
                 "Acid Rain"
@@ -17705,7 +17768,7 @@
             "archetype": "Summoner",
             "parents": [
                 "Cheaper Aura II",
-                "Imbued Totem"
+                "Strides of Heresy"
             ],
             "dependencies": [
                 "Puppet Master"
@@ -17739,7 +17802,7 @@
         },
         {
             "display_name": "Malediction",
-            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 40%)",
+            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 30%)",
             "base_abil": 999,
             "archetype": "Ritualist",
             "parents": [
@@ -17756,7 +17819,7 @@
                 "icon": "node_1"
             },
             "properties": {
-                "malediction_damage": 40
+                "malediction_damage": 30
             },
             "effects": [
                 {
@@ -17795,11 +17858,12 @@
         },
         {
             "display_name": "Doom",
-            "desc": "Increase Eye of the Storm's damage. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 30%)    </br>&emsp;(<span class='fDam'>Fire</span>: 10%)",
-            "base_abil": "Uproot",
+            "desc": "Increase Eye of the Storm's damage and Maximum Surge by +1. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='fDam'>Fire</span>: 5%)",
+            "base_abil": "Eye of the Storm",
             "archetype": "Ritualist",
             "parents": [
-                "Charged Ritual"
+                "Cheaper Uproot II",
+                "Overcharge"
             ],
             "dependencies": [
                 "Charged Ritual"
@@ -17807,8 +17871,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 30,
-                "col": 6,
+                "row": 39,
+                "col": 5,
                 "icon": "node_0"
             },
             "properties": {},
@@ -17818,13 +17882,19 @@
                     "base_spell": 14,
                     "target_part": "Surge Hit",
                     "multipliers": [
-                        30,
+                        25,
                         0,
                         0,
                         0,
-                        10,
+                        5,
                         0
                     ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Surge Stacks",
+                    "slider_max": 1
                 }
             ]
         },
@@ -17927,7 +17997,7 @@
             "display_name": "Invigorating Wave",
             "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +3 mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
             "archetype": "Summoner",
-            "archetype_req": 3,
+            "archetype_req": 7,
             "parents": [
                 "Hummingbird's Song",
                 "Triple Totem",
@@ -18040,7 +18110,7 @@
         },
         {
             "display_name": "Storm Dance",
-            "desc": "Enemies hit by Aura will be pulled towards your totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 20% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br>Duration: 3s",
+            "desc": "Enemies hit by Aura will be pulled towards your Totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 20% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br>Duration: 3s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
@@ -18075,9 +18145,9 @@
             ]
         },
         {
-            "display_name": "Transmute",
-            "desc": "Your Masks grant a bonus effect to your Main Attack. </br> Lunatic: +1 Main Attack Beam </br> Heretic: Increased Beam Speed </br> Fanatic: Increased Knockback",
-            "base_abil": "Aura",
+            "display_name": "Totemic Hammer",
+            "desc": "When wearing the Mask of the Fanatic, casting Totem will make it instantly smash on the ground.",
+            "base_abil": "Totem",
             "archetype": "Ritualist",
             "parents": [
                 "Mantra"
@@ -18090,6 +18160,27 @@
             "display": {
                 "row": 27,
                 "col": 5,
+                "icon": "node_0"
+            },
+            "properties": {},
+            "effects": []
+        },
+        {
+            "display_name": "Transmute",
+            "desc": "Your Masks grant a bonus effect to your Main Attack. </br> Lunatic: +1 Main Attack Beam </br> Heretic: Grants 2 Static per beam </br> Fanatic: Increased Knockback",
+            "base_abil": "Aura",
+            "archetype": "Ritualist",
+            "parents": [
+                "Ritual Circle"
+            ],
+            "dependencies": [
+                "Malediction"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 35,
+                "col": 3,
                 "icon": "node_1"
             },
             "properties": {},
@@ -18110,7 +18201,7 @@
         },
         {
             "display_name": "Frog Dance",
-            "desc": "When wearing the Mask of the Heretic, Haul will instead bounce you off the ground and damage nearby enemies. (Hold shift to cancel) </br> Frog Dance does not require Totem to be used. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%)   </br>&emsp;(<span class='wDam'>Water</span>: 60%) </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+            "desc": "When wearing the Mask of the Heretic, Haul will instead bounce you off the ground and damage nearby enemies. (Hold shift to cancel) </br> Frog Dance does not require Totem to be used. </br> </br><span class='mc-white'>Total Damage</span>: 225% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 180%)   </br>&emsp;(<span class='wDam'>Water</span>: 45%) </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 4,
             "base_abil": "Haul",
@@ -18134,7 +18225,7 @@
                     "base_spell": 2,
                     "target_part": "Hop Damage",
                     "multipliers": [
-                        240,
+                        180,
                         0,
                         0,
                         60,
@@ -18155,7 +18246,7 @@
         },
         {
             "display_name": "Eye of the Storm",
-            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 5 Surge) </br> While you have Surge, strike nearby enemies with lightning every 0.8s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 45%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 15%) </br>Range: 12 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Duration: 18s",
+            "desc": "While wearing the Mask of the Lunatic, casting Aura will charge you up, granting you a stack of Surge. (Max 2 Surge) </br> While you have Surge, strike nearby enemies with lightning every 0.8s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per Surge)    </br>&emsp;(<span class='nDam'>Damage</span>: 35%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Range: 12 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Duration: 18s",
             "archetype": "Ritualist",
             "archetype_req": 4,
             "parents": [
@@ -18187,9 +18278,9 @@
                             "name": "Surge Hit",
                             "type": "damage",
                             "multipliers": [
-                                45,
+                                35,
                                 0,
-                                15,
+                                5,
                                 0,
                                 0,
                                 0
@@ -18215,7 +18306,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Surge Stacks",
-                    "slider_max": 5,
+                    "slider_max": 2,
                     "output": [
                         {
                             "type": "prop",
@@ -18358,7 +18449,7 @@
             "parents": [
                 "Triple Totem",
                 "Invigorating Wave",
-                "Cheaper Uproot II"
+                "Ritual Circle"
             ],
             "dependencies": [
                 "Hummingbird's Song"
@@ -18460,12 +18551,13 @@
         },
         {
             "display_name": "Ritual Circle",
-            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 4 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
+            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 5 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 160%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 11,
             "parents": [
-                "Acid Rain",
-                "Cheaper Uproot II"
+                "Blood Sorrow",
+                "Soaring Wingbeats",
+                "Acid Rain"
             ],
             "dependencies": [
                 "Artist's Immersion"
@@ -18490,8 +18582,8 @@
                         {
                             "name": "Damage per Stack",
                             "multipliers": [
-                                120,
-                                30,
+                                160,
+                                40,
                                 0,
                                 0,
                                 0,
@@ -18530,7 +18622,8 @@
             "archetype": "Acolyte",
             "archetype_req": 12,
             "parents": [
-                "Bloodier"
+                "Bloodier",
+                "Ritual Circle"
             ],
             "dependencies": [
                 "Uproot"
@@ -18581,7 +18674,7 @@
         },
         {
             "display_name": "Greater Sacrifice",
-            "desc": "Sacrificial Shrine siphons +1% of your health every 0.4s and boosts Aura's damage by +20%.",
+            "desc": "Sacrificial Shrine siphons +2% of your health every 0.4s and boosts Aura's damage by +20%. </br> Reduce Eldritch Call's Blood Pool cost by -5.",
             "base_abil": "Sacrificial Shrine",
             "parents": [
                 "Bloodier"
@@ -18619,7 +18712,9 @@
             "base_abil": "Uproot",
             "parents": [
                 "Soaring Wingbeats",
-                "Ritual Circle"
+                "Ritual Circle",
+                "Crystal Knives",
+                "Repulse"
             ],
             "dependencies": [
                 "Uproot"
@@ -18627,8 +18722,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 34,
-                "col": 3,
+                "row": 38,
+                "col": 4,
                 "icon": "node_0"
             },
             "properties": {},
@@ -18646,7 +18741,8 @@
             "archetype": "Summoner",
             "base_abil": "Puppet Master",
             "parents": [
-                "Soaring Wingbeats"
+                "Soaring Wingbeats",
+                "Slingshot"
             ],
             "dependencies": [
                 "Puppet Master"
@@ -18694,8 +18790,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 39,
-                "col": 0,
+                "row": 37,
+                "col": 3,
                 "icon": "node_1"
             },
             "properties": {},
@@ -18709,7 +18805,7 @@
             "base_abil": "Puppet Master",
             "parents": [
                 "Puppetry",
-                "Freestyle"
+                "Cheaper Uproot II"
             ],
             "dependencies": [
                 "Puppet Master"
@@ -18718,7 +18814,7 @@
             "cost": 2,
             "display": {
                 "row": 38,
-                "col": 2,
+                "col": 0,
                 "icon": "node_2"
             },
             "properties": {},
@@ -18753,7 +18849,7 @@
             "cost": 2,
             "display": {
                 "row": 40,
-                "col": 2,
+                "col": 0,
                 "icon": "node_4"
             },
             "properties": {
@@ -18779,9 +18875,7 @@
             "desc": "Haul, Blood Connection, and Frog Dance launch you further.",
             "parents": [
                 "Crystal Knives",
-                "Cheaper Uproot II",
-                "Ritual Circle",
-                "Repulse"
+                "Cheaper Uproot II"
             ],
             "dependencies": [
                 "Haul"
@@ -18789,8 +18883,8 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 38,
-                "col": 4,
+                "row": 40,
+                "col": 2,
                 "icon": "node_1"
             },
             "properties": {},
@@ -18798,12 +18892,12 @@
         },
         {
             "display_name": "Overcharge",
-            "desc": "Switching Masks while your current Mask is over 180% Mantra will overclock the next Mask to 250% Mantra. </br> </br>Cooldown: 10s",
+            "desc": "Switching Masks while your current Mask is over 200% Mantra will overclock the next Mask to 200% Mantra. </br> </br>Cooldown: 10s",
             "archetype": "Ritualist",
             "parents": [
                 "Crystal Knives",
-                "Freestyle",
-                "Tribal Chants"
+                "Doom",
+                "Cheaper Uproot II"
             ],
             "dependencies": [
                 "Mantra"
@@ -18816,22 +18910,13 @@
                 "icon": "node_2"
             },
             "properties": {},
-            "effects": [
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Mantra Percentage",
-                    "slider_max": 50
-                }
-            ]
+            "effects": []
         },
         {
             "display_name": "Tribal Chants",
-            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +3% Damage Bonus to Allies </br> Heretic: +8% Walk Speed to Allies </br> Fanatic: +3% Resistance to Allies </br> </br>Duration: 5s (per stack) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +2% Damage Bonus to Allies </br> Heretic: +8% Walk Speed to Allies </br> Fanatic: +3% Resistance to Allies </br> </br>Duration: 5s (per stack) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "parents": [
-                "Overcharge",
-                "Freestyle",
-                "Repulse"
+                "Charged Ritual"
             ],
             "dependencies": [
                 "Mystic Masks"
@@ -18839,8 +18924,8 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 39,
-                "col": 5,
+                "row": 30,
+                "col": 6,
                 "icon": "node_2"
             },
             "properties": {},
@@ -18850,11 +18935,11 @@
         },
         {
             "display_name": "Pool of Rejuvenation",
-            "desc": "When wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +1 Mana every 0.2s if you or a Totem are inside at least 1 pool. </br> </br>Duration: 5s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+            "desc": "When wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +1 Mana every 0.2s if you or a Totem are inside at least 1 pool. </br> </br>Duration: 12s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "parents": [
                 "Overcharge",
-                "Tribal Chants"
+                "Doom"
             ],
             "dependencies": [
                 "Frog Dance"
@@ -18883,7 +18968,7 @@
         },
         {
             "display_name": "Synchrony",
-            "desc": "Based on your Mask, performing certain actions will increase Ritual Circle's radius and hits. </br> Lunatic: Hitting enemies with 3 Main Attack beams will               increase Ritual Circle's radius by +1 blocks. </br> Heretic: Gaining +10 mana will increase Ritual Circle's               radius by +1 blocks. </br> Fanatic: Inflicting 1s worth of debuffs will increase               Ritual Circle's radius by +1 blocks. </br> Increase Ritual Circle's maximum radius and hits by +4.",
+            "desc": "Based on your Mask, performing certain actions will increase Ritual Circle's radius and hits. </br> Lunatic: Hitting enemies with 3 Main Attack beams will               increase Ritual Circle's radius by +1 blocks.              (Changes with Attack Speed) </br> Heretic: Gaining +10 Mana will increase Ritual Circle's               radius by +1 blocks. </br> Fanatic: Inflicting 1s worth of debuffs will increase               Ritual Circle's radius by +1 blocks. </br> Increase Ritual Circle's maximum radius and hits by +4.",
             "archetype": "Ritualist",
             "base_abil": "Ritual Circle",
             "parents": [
@@ -18916,7 +19001,7 @@
             "archetype_req": 6,
             "base_abil": "Sacrificial Shrine",
             "parents": [
-                "Imbued Totem",
+                "Strides of Heresy",
                 "Eldritch Call",
                 "Bloody"
             ],
@@ -18947,7 +19032,7 @@
         },
         {
             "display_name": "Eldritch Transfusion",
-            "desc": "Refreshing Eldritch Call while it is already active will imbue its attacks with blood, granting it +1 Transfused. (Max 3) </br> For each Transfused Eldritch Call has, its attacks deal more damage. All Transfused is lost when Eldritch Call expires. </br> </br>Effect: +15% damage to Eldritch Call (Per stack)",
+            "desc": "Refreshing Eldritch Call while it is already active will imbue its attacks with blood, granting it +1 Transfused. (Max 3) </br> For each Transfused Eldritch Call has, its attacks deal more damage. All Transfused is lost when Eldritch Call expires. </br> </br>Effect: +20% damage to Eldritch Call (Per stack)",
             "archetype": "Acolyte",
             "parents": [
                 "Blood Sorrow"
@@ -18973,7 +19058,7 @@
                         "name": "damMult.Transfused:11.Single Hit"
                     },
                     "scaling": [
-                        15
+                        20
                     ],
                     "slider_max": 3
                 }
@@ -19020,12 +19105,11 @@
         },
         {
             "display_name": "Repulse",
-            "desc": "Once Aura rebounds, it will radiate back out and deal its effects a third time. </br> Sacrificial Shrine will heal 50% less health.",
+            "desc": "Once Aura rebounds, it will radiate back out and deal its effects a third time.",
             "archetype": "Acolyte",
-            "archetype_req": 5,
             "base_abil": "Aura",
             "parents": [
-                "Freestyle",
+                "Cheaper Uproot II",
                 "Effuse"
             ],
             "dependencies": [
@@ -19042,14 +19126,6 @@
                 "waves": 1
             },
             "effects": [
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 3,
-                    "target_part": "Rebound Total Damage",
-                    "hits": {
-                        "First Wave": 1
-                    }
-                },
                 {
                     "type": "add_spell_prop",
                     "base_spell": 3,
@@ -19190,7 +19266,7 @@
         },
         {
             "display_name": "Awakened",
-            "desc": "Click Combo: F </br> Become Awakened for 25s. </br> Awakened grants you the upsides of all Masks at once with no downsides, and Mantra at 250% with no decay. </br> All of your Masks will spin around you, dealing damage and applying Haunting Memory's effects. </br> </br>Range: 6 Blocks",
+            "desc": "Click Combo: F </br> Become Awakened for 25s. </br> Awakened grants you the upsides of all Masks at once with no downsides, and Mantra at 200% with no decay. </br> All of your Masks will spin around you, dealing damage and applying Haunting Memory's effects. </br> </br>Range: 6 Blocks",
             "archetype": "Ritualist",
             "archetype_req": 15,
             "parents": [
