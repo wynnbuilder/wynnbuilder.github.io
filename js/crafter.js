@@ -13,7 +13,7 @@ const ING_BUILD_VERSION = "7.0.1";
 /*
  * END testing section
  */
-
+// I Love You.
 
  /* TODO: 
     Make material tier do something
@@ -21,6 +21,60 @@ const ING_BUILD_VERSION = "7.0.1";
     Integrate to normal builder
  */
 let player_craft;
+
+const professionTypes = {
+    "JEWELING": ["Ring", "Bracelet", "Necklace"],
+    "ARMOURING": ["Helmet", "Chestplate"],
+    "TAILORING": ["Leggings", "Boots"],
+    "COOKING": ["Food"],
+    "ALCHEMISM": ["Potion"],
+    "SCRIBING": ["Scroll"],
+    "WEAPONSMITHING": ["Spear", "Dagger"],
+    "WOODWORKING": ["Bow", "Relik", "Wand"]
+};
+
+function autoGuessRecipeType() {
+    let activeIngSkills = [];
+    for (let i = 1; i <= 6; i++) {
+        let val = getValue("ing-choice-" + i);
+
+        if (val && val !== "" && val !== "No Ingredient") {
+            let ing = ingMap.get(val);
+
+            if (ing && ing.skills && Array.isArray(ing.skills) && ing.skills.length > 0) {
+                activeIngSkills.push(ing.skills);
+            }
+        }
+    }
+
+    if (activeIngSkills.length === 0) {
+        return;
+    }
+
+    let candidateSkills = activeIngSkills[0].slice();
+    for (let i = 1; i < activeIngSkills.length; i++) {
+        candidateSkills = candidateSkills.filter(skill => activeIngSkills[i].includes(skill));
+    }
+
+    if (candidateSkills.length === 0) {
+        return;
+    }
+
+    let currentRecipe = getValue("recipe-choice").toLowerCase();
+
+    // keep if compatible alr
+    if (candidateSkills.some(skill => professionTypes[skill]?.some(t => t.toLowerCase() === currentRecipe))) {
+        return;
+    }
+
+    let chosenSkill = Object.keys(professionTypes).find(skill => candidateSkills.includes(skill));
+    let chosenType = professionTypes[chosenSkill][0];
+    if (chosenType.toLowerCase() !== currentRecipe) {
+        setValue("recipe-choice", chosenType);
+        updateMaterials();
+        updateCraftedImage();
+    }
+}
 
 // function setTitle() {
 //     document.getElementById("header").textContent = "WynnCrafter version "+ING_BUILD_VERSION+" (ingredient db version "+ING_DB_VERSION+")";
@@ -48,7 +102,10 @@ function init_crafter() {
             document.getElementById("mat-2-"+i).addEventListener("click", (e) => calculateCraftSchedule());
         }
         for (let i = 1; i < 7; ++i) {
-            document.getElementById("ing-choice-" + i ).addEventListener("input", (e) => calculateCraftSchedule());
+            document.getElementById("ing-choice-" + i ).addEventListener("input", (e) => {
+                autoGuessRecipeType();
+                calculateCraftSchedule();
+            });
         }
         for (const str of ["slow", "normal", "fast"]) {
             document.getElementById(str + "-atk-button").addEventListener("click", (e) => calculateCraftSchedule());
