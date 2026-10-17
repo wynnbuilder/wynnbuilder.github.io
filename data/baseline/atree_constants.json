@@ -15652,7 +15652,7 @@
                         {
                             "name": "Total Damage",
                             "hits": {
-                                "Single Wave": "Aura.waves"
+                                "First Wave": "Aura.waves"
                             }
                         },
                         {
