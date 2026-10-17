@@ -826,8 +826,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": -600,
-        "maximum": -500
+        "minimum": -150,
+        "maximum": -125
       },
       "hprRaw": {
         "minimum": 70,
@@ -3618,8 +3618,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 6000,
-        "maximum": 6500
+        "minimum": 1500,
+        "maximum": 1600
       },
       "mainAttackRange": {
         "minimum": 12,
@@ -3931,8 +3931,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 3250,
-        "maximum": 3600
+        "minimum": 800,
+        "maximum": 900
       },
       "thorns": {
         "minimum": 15,
@@ -5386,8 +5386,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 4000,
-        "maximum": 4300
+        "minimum": 1000,
+        "maximum": 1100
       }
     },
     "consumableIDs": {
@@ -5635,8 +5635,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 4000,
-        "maximum": 5000
+        "minimum": 1000,
+        "maximum": 1250
       },
       "dex": {
         "minimum": 4,
@@ -7394,8 +7394,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1800,
-        "maximum": 2000
+        "minimum": 450,
+        "maximum": 500
       },
       "thorns": {
         "minimum": 12,
@@ -9847,8 +9847,8 @@
         "maximum": 13
       },
       "poison": {
-        "minimum": 4800,
-        "maximum": 5200
+        "minimum": 1200,
+        "maximum": 1300
       },
       "hprRaw": {
         "minimum": -98,
@@ -10016,8 +10016,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 350,
-        "maximum": 400
+        "minimum": 90,
+        "maximum": 100
       },
       "tDamPct": {
         "minimum": 1,
@@ -14877,8 +14877,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 6000,
-        "maximum": 6000
+        "minimum": 1500,
+        "maximum": 1500
       },
       "ls": {
         "minimum": 155,
@@ -19814,8 +19814,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 3400,
-        "maximum": 3650
+        "minimum": 850,
+        "maximum": 900
       },
       "hprPct": {
         "minimum": -7,
@@ -20234,8 +20234,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1120,
-        "maximum": 1200
+        "minimum": 280,
+        "maximum": 300
       },
       "spd": {
         "minimum": -6,
@@ -21348,8 +21348,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 2000,
-        "maximum": 2200
+        "minimum": 500,
+        "maximum": 550
       }
     },
     "consumableIDs": {
@@ -21631,8 +21631,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 2100,
-        "maximum": 2300
+        "minimum": 525,
+        "maximum": 575
       },
       "def": {
         "minimum": -4,
@@ -24800,8 +24800,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1060,
-        "maximum": 1160
+        "minimum": 250,
+        "maximum": 290
       },
       "ls": {
         "minimum": 80,
@@ -27871,8 +27871,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 3200,
-        "maximum": 3400
+        "minimum": 800,
+        "maximum": 850
       },
       "wDamPct": {
         "minimum": 10,
@@ -33008,8 +33008,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 6400,
-        "maximum": 7000
+        "minimum": 1600,
+        "maximum": 1750
       },
       "mdRaw": {
         "minimum": 70,
@@ -35684,8 +35684,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1940,
-        "maximum": 1990
+        "minimum": 480,
+        "maximum": 500
       },
       "wDefPct": {
         "minimum": -10,
@@ -37394,8 +37394,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 2400,
-        "maximum": 2600
+        "minimum": 600,
+        "maximum": 650
       },
       "mdPct": {
         "minimum": 12,
@@ -44648,8 +44648,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": -350,
-        "maximum": -310
+        "minimum": -90,
+        "maximum": -80
       },
       "hprRaw": {
         "minimum": 34,
@@ -53700,8 +53700,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 800,
-        "maximum": 1000
+        "minimum": 200,
+        "maximum": 250
       },
       "gXp": {
         "minimum": 2,
@@ -56848,8 +56848,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1999,
-        "maximum": 2001
+        "minimum": 399,
+        "maximum": 401
       },
       "hpBonus": {
         "minimum": -357,
@@ -65455,8 +65455,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 320,
-        "maximum": 400
+        "minimum": 65,
+        "maximum": 80
       },
       "expd": {
         "minimum": 10,
@@ -67535,8 +67535,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1280,
-        "maximum": 1420
+        "minimum": 255,
+        "maximum": 285
       }
     },
     "consumableIDs": {
@@ -67925,8 +67925,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 1300,
-        "maximum": 1380
+        "minimum": 260,
+        "maximum": 275
       },
       "hprRaw": {
         "minimum": -50,
@@ -72868,8 +72868,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 700,
-        "maximum": 850
+        "minimum": 140,
+        "maximum": 170
       },
       "ls": {
         "minimum": 35,
@@ -76323,8 +76323,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 240,
-        "maximum": 260
+        "minimum": 50,
+        "maximum": 55
       },
       "str": {
         "minimum": 2,
@@ -79034,8 +79034,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 920,
-        "maximum": 1020
+        "minimum": 180,
+        "maximum": 200
       }
     },
     "consumableIDs": {
@@ -80351,8 +80351,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 850,
-        "maximum": 950
+        "minimum": 170,
+        "maximum": 190
       }
     },
     "consumableIDs": {
@@ -82098,8 +82098,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 280,
-        "maximum": 340
+        "minimum": 55,
+        "maximum": 70
       },
       "fDefPct": {
         "minimum": 6,
@@ -87195,8 +87195,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 540,
-        "maximum": 640
+        "minimum": 110,
+        "maximum": 130
       },
       "wDamPct": {
         "minimum": 9,
@@ -90506,8 +90506,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 330,
-        "maximum": 390
+        "minimum": 65,
+        "maximum": 80
       }
     },
     "consumableIDs": {
@@ -92379,8 +92379,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 280,
-        "maximum": 320
+        "minimum": 55,
+        "maximum": 65
       }
     },
     "consumableIDs": {
@@ -93123,8 +93123,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 270,
-        "maximum": 310
+        "minimum": 50,
+        "maximum": 60
       }
     },
     "consumableIDs": {
@@ -101699,8 +101699,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 280,
-        "maximum": 320
+        "minimum": 55,
+        "maximum": 65
       }
     },
     "consumableIDs": {
@@ -102096,8 +102096,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 280,
-        "maximum": 350
+        "minimum": 60,
+        "maximum": 70
       }
     },
     "consumableIDs": {
@@ -114618,8 +114618,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 70,
-        "maximum": 80
+        "minimum": 12,
+        "maximum": 13
       },
       "ls": {
         "minimum": 14,
@@ -122809,8 +122809,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 54,
-        "maximum": 66
+        "minimum": 9,
+        "maximum": 11
       },
       "spd": {
         "minimum": 3,
@@ -124392,8 +124392,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 16,
-        "maximum": 20
+        "minimum": 3,
+        "maximum": 3
       }
     },
     "consumableIDs": {
@@ -124610,8 +124610,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 30,
-        "maximum": 30
+        "minimum": 5,
+        "maximum": 5
       }
     },
     "consumableIDs": {
@@ -126131,8 +126131,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 24,
-        "maximum": 30
+        "minimum": 4,
+        "maximum": 5
       },
       "wDamPct": {
         "minimum": 3,
@@ -127327,8 +127327,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 14,
-        "maximum": 16
+        "minimum": 2,
+        "maximum": 3
       },
       "str": {
         "minimum": 1,
@@ -127513,8 +127513,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 20,
-        "maximum": 30
+        "minimum": 3,
+        "maximum": 5
       },
       "mdPct": {
         "minimum": 4,
@@ -129977,8 +129977,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 10,
-        "maximum": 12
+        "minimum": 2,
+        "maximum": 2
       },
       "hprPct": {
         "minimum": -3,
@@ -133106,8 +133106,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 2,
-        "maximum": 6
+        "minimum": 0,
+        "maximum": 1
       }
     },
     "consumableIDs": {
@@ -134742,8 +134742,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 4,
-        "maximum": 6
+        "minimum": 1,
+        "maximum": 1
       }
     },
     "consumableIDs": {
@@ -134857,8 +134857,8 @@
     ],
     "ids": {
       "poison": {
-        "minimum": 8,
-        "maximum": 10
+        "minimum": 1,
+        "maximum": 2
       }
     },
     "consumableIDs": {
