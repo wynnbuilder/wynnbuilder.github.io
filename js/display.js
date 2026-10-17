@@ -1267,7 +1267,7 @@ function displayPoisonDamage(overallparent_elem, statMap) {
     ];
 
     let poison_spell = Math.max(Math.floor(statMap.get("poison") * 2));
-    let poison_melee = Math.max(Math.floor(statMap.get("poison") * baseDamageMultiplier[adjAtkSpd] * poison_atkspd_mult[adjAtkSpd]));
+    let poison_melee = Math.max(Math.floor(statMap.get("poison") * baseDamageMultiplier[adjAtkSpd] * poison_atkspd_mult[adjAtkSpd] * 3));
 
     let overallpoisonDamage = make_elem("p");
     overallpoisonDamage.append(
