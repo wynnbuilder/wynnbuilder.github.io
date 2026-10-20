@@ -4848,6 +4848,21 @@
                         ]
                     }
                 ]
+            },
+            {
+                "class": "Assassin",
+                "base_abil": "Harvester",
+                "dependencies": [
+                    "Devour"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 22,
+                        "target_part": "Heal per Mark",
+                        "power": 0.015
+                    }
+                ]
             }
         ]
     },
