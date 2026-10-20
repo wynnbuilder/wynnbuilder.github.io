@@ -4776,8 +4776,11 @@
         "description": "Your next spell after leaving Vanish is free (2 second cooldown).",
         "abilities": [
             {
-                "class": "Any",
-                "base_abil": 999,
+                "class": "Assassin",
+                "base_abil": "Dash",
+                "dependencies": [
+                    "Vanish"
+                ],
                 "effects": [
                     {
                         "type": "raw_stat",
