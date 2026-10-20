@@ -5706,7 +5706,8 @@
                 "icon": "node_4"
             },
             "properties": {
-                "max_damage_bonus": 55
+                "max_damage_bonus": 55,
+                "enraged_blow_scaling": 1.5 
             },
             "effects": [
                 {
@@ -5719,7 +5720,7 @@
                     },
                     "max": "Bak'al's Grasp.max_damage_bonus",
                     "scaling": [
-                        1.5
+                        "Bak'al's Grasp.enraged_blow_scaling"
                     ]
                 }
             ]
@@ -11879,10 +11880,10 @@
                         }
                     ],
                     "scaling": [
-                        2,
-                        2
+                        0.5,
+                        0.5
                     ],
-                    "max": 50
+                    "max": 10
                 }
             ]
         },
@@ -13262,7 +13263,9 @@
                 "col": 1,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "current_marks": 0
+            },
             "effects": [
                 {
                     "type": "stat_scaling",
@@ -13278,6 +13281,21 @@
                     ],
                     "scaling": [
                         7
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Marked",
+                    "output": [
+                        {
+                            "type": "prop",
+                            "abil": "Marked",
+                            "name": "current_marks"
+                        }
+                    ],
+                    "scaling": [
+                        1
                     ]
                 }
             ]

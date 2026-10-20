@@ -93,6 +93,39 @@ function calculateMana(cycle, build, stats) {
         }
     }
 
+    // Asc. Oblivion Major ID
+    // Fraction of cycles in which each slot is a free Negation proc
+    const negationFreq = new Array(cycle.length).fill(0);
+    if (stats.get("activateNegation")) {
+        const castInterval = cps > 0 ? 3 / cps : 3;
+        const warmup = 20;
+        const measure = 200;
+        let time = 0;
+        let lastProc = -Infinity;
+        let armed = false;
+
+        for (let pass = 0; pass < warmup + measure; pass++) {
+            for (let i = 0; i < cycle.length; i++) {
+                if (armed) {
+                    armed = false;
+                    if (time - lastProc >= 2 - 1e-9) {
+                        lastProc = time;
+                        if (pass >= warmup) {
+                            negationFreq[i]++;
+                        }
+                    }
+                }
+                if (cycle[i][2] === 2) {
+                    armed = true;
+                }
+                time += castInterval;
+            }
+        }
+        for (let i = 0; i < cycle.length; i++) {
+            negationFreq[i] /= measure;
+        }
+    }
+
     let cycle_cost = [];
     let cycle_gain = [];
     for (let i = 0; i < 2; i++) {
@@ -122,6 +155,11 @@ function calculateMana(cycle, build, stats) {
         repeat++;
         const finalMult = 1 + (stats.get('spPct' + cycle[0][2] + 'Final') ?? 0) / 100;
         cycle_cost[0] += Math.max(repeat * 5 * finalMult + Math.min(cycle[0][0], 0), 0);
+    }
+
+    // Negation-procced casts cost nothing (applied last so it overrides min-cost clamps and repeat penalties)
+    for (let i = 0; i < cycle.length; i++) {
+        cycle_cost[i] *= 1 - negationFreq[i];
     }
 
     // Give the 30% that SoH procs every 8s

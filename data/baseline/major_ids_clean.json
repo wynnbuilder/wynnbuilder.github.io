@@ -45,12 +45,12 @@
     },
     "PLAGUE": {
         "displayName": "Plague",
-        "description": "Poisoned mobs spread their poison to nearby mobs.",
+        "description": "10% of Poison's damage is dealt in a 5 block radius around each Poisoned enemy.",
         "abilities": []
     },
     "HAWKEYE": {
         "displayName": "Hawkeye",
-        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]45%, [thunder]6%, and [air]6% each. Feedback loop arrow cap is reduced by 90%",
+        "description": "Arrow Hurricane becomes a condensed stream of 25 arrows, dealing [neutral]45%, [thunder]6%, and [air]6% each. Feedback loop arrow cap is reduced by 50%.",
         "abilities": [
             {
                 "class": "Archer",
@@ -161,7 +161,7 @@
     },
     "ALTRUISM": {
         "displayName": "Altruism",
-        "description": "Allies within 16 blocks gain 100% of the health you gain from Health Regen and Life Steal.",
+        "description": "Whenever you gain health from your Life Steal and Health Regen IDs, allies within 16 blocks will receive the same amount.",
         "abilities": []
     },
     "ARCANES": {
@@ -243,7 +243,7 @@
     },
     "TAUNT": {
         "displayName": "Taunt",
-        "description": "Provoke's Cooldown is reduced to 8s but its duration is reduced to 3s.",
+        "description": "Provoke's cooldown and duration are doubled",
         "abilities": []
     },
     "RALLY": {
@@ -443,7 +443,7 @@
     },
     "ALTEREGO": {
         "displayName": "Alter Ego",
-        "description": "Mantra will overload Masks 150% faster, but also decay them 100% faster.",
+        "description": "Mantra will overload Masks 150% faster, but decays them 100% faster and halves their grace period.",
         "abilities": []
     },
     "FOREST_BLESSING": {
@@ -816,7 +816,7 @@
     },
     "HELLFIRE": {
         "displayName": "Hellfire",
-        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]+85%, [earth]+10%, and [fire]+60%. Boiling Blood's cooldown is set to 2s, gains [neutral]+40%, [fire]+50%, and burns twice as fast for 1s, but can't slow.",
+        "description": "Bash is replaced by a single hit, gaining +3 radius and dealing [neutral]+85%, [earth]+10%, and [fire]+60%, but further delays Final Crush. Boiling Blood's cooldown is set to 2s, deals [neutral]+40%, [fire]+50%, and burns twice as fast for 1s.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -1397,7 +1397,7 @@
     },
     "SUBLIMATION": {
         "displayName": "Sublimation",
-        "description": "Totemic Shatter heals 150% of Regeneration's usual amount at the cost of 2 blocks of radius.",
+        "description": "Totemic Shatter heals 75% of Regeneration's usual amount at the cost of 2 blocks of radius.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -2143,7 +2143,7 @@
     },
     "WORMHOLE": {
         "displayName": "Wormhole",
-        "description": "Mirror and Shadow clones will cast Meteor with Last Laugh. Malicious Mockery causes Meteor to apply 13 Trick stacks.",
+        "description": "Clones instead cast Meteor with Last Laugh. Malicious Mockery causes Meteor to apply 13 Trick stacks.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2525,7 +2525,7 @@
     },
     "TROLL_BARGE": {
         "displayName": "Troll Barge",
-        "description": "Quake allows you to charge forth, dealing [neutral]80% and [earth]20% to any mobs hit, and ending with a powerful stomp for [neutral]400% and [earth]150%. This will leave you vulnerable.",
+        "description": "Quake allows you to charge forth, dealing [neutral]96% and [earth]24% to any mobs hit, and ending with a powerful stomp for [neutral]480% and [earth]180%. This will leave you vulnerable.",
         "abilities": [
             {
                 "class": "Any",
@@ -2543,8 +2543,8 @@
                                 "name": "Quake Charge Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    80,
-                                    20,
+                                    96,
+                                    24,
                                     0,
                                     0,
                                     0,
@@ -2555,8 +2555,8 @@
                                 "name": "Quake Stomp Damage",
                                 "type": "damage",
                                 "multipliers": [
-                                    400,
-                                    150,
+                                    480,
+                                    180,
                                     0,
                                     0,
                                     0,
@@ -2862,7 +2862,7 @@
     },
     "LASSO": {
         "displayName": "Lasso",
-        "description": "Grappling Hook, War Scream, and Uproot now pull enemies with much more force.",
+        "description": "All abilities with pull effects pull with greater force.",
         "abilities": []
     },
     "GUNK_SHOT": {
@@ -2965,8 +2965,51 @@
     },
     "SLOW_BOIL": {
         "displayName": "Slow Boil",
-        "description": "Bakal's Grasp and Enraged Blow have their caps doubled, but Corruption charges 40% as fast.",
-        "abilities": []
+        "description": "Bakal's Grasp and Enraged Blow grant 40% less damage, but have their caps increased by 50%. Corrupted lasts twice as long and can go up to 200%.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Bak'al's Grasp",
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Corrupted",
+                        "slider_max": 100
+                    }
+                ]
+            },
+            {
+                "class": "Warrior",
+                "base_abil": "Bak'al's Grasp",
+                "dependencies": [
+                    "Enraged Blow"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Bak'al's Grasp",
+                                "name": "max_damage_bonus",
+                                "mult": true,
+                                "value": 1.5
+                            },
+                            {
+                                "type": "prop",
+                                "abil": "Bak'al's Grasp",
+                                "name": "enraged_blow_scaling",
+                                "mult": true,
+                                "value": 0.6
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "STAGNANT_AIR": {
         "displayName": "Stagnant Air",
@@ -3098,7 +3141,7 @@
     },
     "FISSURE": {
         "displayName": "Fissure",
-        "description": "Ice Snake moves much more slowly, but deals massive knockback, [neutral]+350%, and [water]+200%.",
+        "description": "Ice Snake moves much more slowly, but deals massive knockback, [neutral]+500%, and [water]+350%.",
         "abilities": [
             {
                 "class": "Mage",
@@ -3110,10 +3153,10 @@
                         "target_part": "Ice Snake Damage",
                         "behavior": "modify",
                         "multipliers": [
+                            500,
+                            0,
+                            0,
                             350,
-                            0,
-                            0,
-                            200,
                             0,
                             0
                         ]
@@ -3471,7 +3514,7 @@
     },
     "REGICIDES_VANTAGE": {
         "displayName": "Regicide",
-        "description": "You deal 2% more damage for every block you are away from your target (Max 120%).",
+        "description": "You deal 2.5% more damage for every block you are away from your target (Max 150%).",
         "abilities": [
             {
                 "class": "Archer",
@@ -3487,7 +3530,7 @@
                             "name": "damMult.RegicidesVantage"
                         },
                         "scaling": [
-                            2
+                            2.5
                         ]
                     }
                 ]
@@ -3587,7 +3630,7 @@
     },
     "BURNT_SHADOWS": {
         "displayName": "Burnt Shadows",
-        "description": "Buried Light burns faster and is controlled by the direction you face. Enemies in the light instead take [fire]120%.",
+        "description": "Buried Light has faster travel speed and damage, and is controlled by the direction you face. Enemies in the light instead take [fire]120% and recieve 10% more damage.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3608,6 +3651,17 @@
                             0,
                             120,
                             0
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Burnt Shadows",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Vulnerability",
+                                "value": 10
+                            }
                         ]
                     }
                 ]
@@ -3696,7 +3750,7 @@
     },
     "OLD_SPARK": {
         "displayName": "Old Spark",
-        "description": "Whirlwind transforms into a travelling projectile, dealing [thunder]+40% and knocking enemies into the air. Crouch to rise with them.",
+        "description": "Whirlwind transforms into a travelling projectile, dealing [thunder]+60% and doubled [thunder] damage against airborne enemies. Crouch to rise with them.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -3712,10 +3766,21 @@
                         "multipliers": [
                             0,
                             0,
-                            40,
+                            60,
                             0,
                             0,
                             0
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Old Spark",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.OldSpark:3.Uppercut;t",
+                                "value": 100
+                            }
                         ]
                     }
                 ]
@@ -4044,7 +4109,7 @@
     },
     "OUTBREAK": {
         "displayName": "Outbreak",
-        "description": "When you are within Totem range, the Totem becomes Primed, adding 4% of your Poison ID every 0.25s. Hitting a Primed totem with Uproot will create a 6 block wide poison cloud instantly dealing the stored Poison.",
+        "description": "When you are within Totem range, the Totem becomes Primed, adding 4% of your Poison ID every 0.1s. Hitting a Primed totem with Uproot will create a 6 block wide poison cloud instantly dealing the stored Poison.",
         "abilities": []
     },
     "ENLIGHTENMENT": {
@@ -4117,7 +4182,7 @@
     },
     "BLAZING_EFFIGY": {
         "displayName": "Blazing Effigy",
-        "description": "Regeneration increases Totem's damage by [neutral]+14% [fire]+6% instead of restoring health.",
+        "description": "Regeneration increases Totem's damage by [neutral]+8% [fire]+6% instead of restoring health.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -4131,7 +4196,7 @@
                         "base_spell": 1,
                         "target_part": "Blazing Effigy Bonus",
                         "multipliers": [
-                            14,
+                            8,
                             0,
                             0,
                             0,
@@ -4154,7 +4219,7 @@
                         "base_spell": 5,
                         "target_part": "Blazing Effigy Bonus",
                         "multipliers": [
-                            14,
+                            8,
                             0,
                             0,
                             0,
@@ -4417,7 +4482,7 @@
     },
     "DRAGONS_BREATH": {
         "displayName": "Dragon's Breath",
-        "description": "Buckshot will heal allies for 100% of your total Health Regen.",
+        "description": "Buckshot will heal allies for the sum of your total Health Regen IDs (Affected by Healing Efficiency).",
         "abilities": []
     },
     "CINDERCURSE": {
@@ -4668,7 +4733,7 @@
     },
     "CHAIN_REACTION": {
         "displayName": "Chain Reaction",
-        "description": "Basaltic Traps arm faster and detonate immediately after arming, gaining +2 range.",
+        "description": "Basaltic Traps arm twice as fast and detonate immediately after arming.",
         "abilities": []
     },
     "ASTROBLEME": {
@@ -4701,6 +4766,213 @@
                         "scaling": [
                             0.025
                         ]
+                    }
+                ]
+            }
+        ]
+    },
+    "NEGATION": {
+        "displayName": "Negation",
+        "description": "Your next spell after leaving Vanish is free (2 second cooldown).",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "activateNegation",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "IMMORTAL_ROT": {
+        "displayName": "Immortal Rot",
+        "description": "For every 1% of health missing, dodging with agility ignores 0.2% more damage.",
+        "abilities": [
+            {
+                "class": "Any",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Immortal Rot Missing Health",
+                        "slider_step": 1,
+                        "slider_max": 50,
+                        "output": [
+                            {
+                                "type": "stat",
+                                "name": "agiDef"
+                            }
+                        ],
+                        "scaling": [
+                            0.2
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "MOLTEN_REBIRTH": {
+        "displayName": "Molten Rebirth",
+        "description": "Harvester additionally restores 1.5% health per leftover mark, increasing to 3% with devour.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Harvester",
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Molten Rebirth",
+                        "base_spell": 22,
+                        "display": "Total Heal",
+                        "parts": [
+                            {
+                                "name": "Heal per Mark",
+                                "power": 0.015
+                            },
+                            {
+                                "name": "Total Heal",
+                                "type": "total",
+                                "hits": {
+                                    "Heal per Mark": "Marked.current_marks"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "WOES_EPITHET": {
+        "displayName": "Woe's Epithet",
+        "description": "Shadow Dance's cooldown is reduced by 0.5s when vanishing and Shadow Siphon immediately refreshes Vanish. Surprise Strike's multiplier is reduced by -30%.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Dash",
+                "dependencies": [
+                    "Surprise Strike"
+                ],
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Surprise Strike",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.SurpriseStrike",
+                                "value": -30
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "THUNDEROUS_STRIKE": {
+        "displayName": "Thunderous Strike",
+        "description": "Fireworks additionally summons a lightning bolt, dealing [thunder]80% and [water]40% while stunning enemies for 0.8s.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Uppercut",
+                "dependencies": [
+                    "Fireworks"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 3,
+                        "target_part": "Fireworks",
+                        "multipliers": [
+                            0,
+                            0,
+                            80,
+                            20,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "RUNIC_SYMPHONY": {
+        "displayName": "Runic Symphony",
+        "description": "Arrow Bomb gains rotating effects with each cast: \n[air]: Direct hits deal [water]+100% damage and freezes for 1s \n[water]: Becomes a piercing arrow with increased velocity. \n[earth]: Gains +7 area and [fire]+50%.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Bomb",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "wConvBase:3.Heart Shatter",
+                                "value": 33.34
+                            },
+                            {
+                                "type": "stat",
+                                "name": "fConvBase:3.Arrow Bomb",
+                                "value": 16.67
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "GALVANIZED": {
+        "displayName": "Galvanized",
+        "description": "While Eldritch Call is active, Blood Connection can be used much further from your Totem.",
+        "abilities": []
+    },
+    "MYRIAD_SALVO": {
+        "displayName": "Myriad Salvo",
+        "description": "Mirror Image gains +1 clone and casts all damage spells with Last Laugh, but losing a Mirror Clone slays all Mirror Clones simultaneously.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Mirror Image",
+                "properties": {
+                    "clones": 1
+                },
+                "effects": []
+            }
+        ]
+    },
+    "SEEKING_TOTEM": {
+        "displayName": "Seeking Totem",
+        "description": "Totem moves towards you when wearing Mask of the Heretic.",
+        "abilities": []
+    },
+    "FRACTURED_HALO": {
+        "displayName": "Fractured Halo",
+        "description": "Ophanim gains +4 orbs, no longer increases mana cost and has increased fire speed, but shatters immediately upon contact.",
+        "abilities": [
+            {
+                "class": "Mage",
+                "base_abil": "Ophanim",
+                "properties": {
+                    "num_orbs": 4
+                },
+                "effects": [
+                    {
+                        "base_spell": 3,
+                        "type": "add_spell_prop",
+                        "target_part": "Per Melee (max)",
+                        "display": "Per Melee (max)",
+                        "hits": {}
                     }
                 ]
             }

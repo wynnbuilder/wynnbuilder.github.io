@@ -664,7 +664,7 @@ const atree_make_interactives = new (class extends ComputeNode {
                     }
                     else if (behavior === 'merge') {
                         slider_map.set(slider_name, {
-                            label_name: slider_name+' ('+ability.display_name+')',
+                            label_name: slider_name + (ability.display_name ? ' ('+ability.display_name+')' : ''),
                             max: slider_max,
                             default_val: slider_default,
                             step: slider_step,
