@@ -58,18 +58,18 @@ class AspectAutocompleteInitNode extends ComputeNode {
         }
 
         if (!aspect_inputs_dropdowns_ctx.has(this.name)) {
-            const aspect_ac_cb = (v) => {
-                if (aspect_aliases.has(v)) { v = aspect_aliases.get(v); }
-                return v;
-            }
-            aspect_inputs_dropdowns_ctx.set(this.name, create_autocomplete(class_aspect_names, active_aspects, this.input_field, aspect_ac_cb));
+            const aspect_ac_cb = (v) => aspect_aliases.get(v) ?? v;
+            const live_aspect_map = {
+                get: (name) => active_aspects.get(aspect_aliases.get(name) ?? name),
+            };
+
+            aspect_inputs_dropdowns_ctx.set(
+                this.name,
+                create_autocomplete(class_aspect_names, live_aspect_map, this.input_field, aspect_ac_cb)
+            );
         } else {
-            // This is a janky way of manually editing the data of the inner to make dynamic autocomplete lists
-            const autocomplete_ctx = aspect_inputs_dropdowns_ctx.get(this.name);
-            autocomplete_ctx.data.src = class_aspect_names;
-            autocomplete_ctx.resultItem.element = (item, data) => {
-                item.classList.add(active_aspects.get(data.value).tier);
-            }
+            // Change aspect name list on class switch
+            aspect_inputs_dropdowns_ctx.get(this.name).data.src = class_aspect_names;
         }
     }
 }

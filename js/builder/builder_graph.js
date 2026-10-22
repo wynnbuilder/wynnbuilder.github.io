@@ -27,18 +27,23 @@ let boosts_node = new (class extends ComputeNode {
         let vuln_boost = 0;
         let def_boost = 0;
         let weaken_boost = 0;
+        let res = new Map();
         for (const [key, value] of damageMultipliers) {
             let elem = document.getElementById(key + "-boost")
             if (elem.classList.contains("toggleOn")) {
                 if (value > damage_boost) { damage_boost = value }
                 if (key === "warscream") { def_boost += .20 }
-                else if (key === "emboldeningcry") { def_boost += .05 }
+                else if (key === "emboldeningcry") { 
+                    def_boost += .05;
+                    // Emboldening Cry has to stack with the other (Pressure) war scream damage boost.
+                    // But still competes with other boosts, see calculateSpellDamage.
+                    res.set('damMult.Strength', 8); 
+                }
                 else if (key === "hauntingfanatic") { vuln_boost += .12 }
                 else if (key === "hauntinglunatic") { weaken_boost = .15 }
                 else if (key === "eldritchcall") { weaken_boost = .2 }
             }
         }
-        let res = new Map();
         res.set('damMult.Potion', 100 * damage_boost);
         res.set('damMult.Vulnerability', 100 * vuln_boost);
         res.set('defMult.Potion', 100 * def_boost);

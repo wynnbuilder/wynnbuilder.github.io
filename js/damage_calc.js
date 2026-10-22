@@ -198,33 +198,50 @@ function calculateSpellDamage(stats, weapon, _conversions, use_spell_damage, ign
     let ele_damage_mult = [1, 1, 1, 1, 1, 1];
     let multiplied_conversions = conversions;
 
-    for (const [k, v] of mult_map.entries()) {
-        if (k.includes(':')) {
-            // TODO: fragile... checking for specific part multipliers.
-            const spell_match = k.split(':')[1];
-            if (spell_match !== part_filter) {
-                continue;
-            }
-        }
+    // War scream bonuses stack additively with each other,
+    // but still compete for the highest value against other buffs.
+    let potion_boost = 0;
+    let strength_boost = 0;
+
+    for (let [k, v] of mult_map.entries()) {
         if (ignored_mults.includes(k)) {
             continue;
         }
 
-        if (k.includes(';')) {
-            const ele_bonus = k.split(';')[1];
-            const ele_match = damage_elements.indexOf(ele_bonus);
-            
-            if (ele_bonus === "m" && !use_spell_damage) {
-                damage_mult *= (1 + v/100);
-            }
-            else if (ele_match !== -1) {
-                ele_damage_mult[ele_match] *= (1 + v/100);
-            }
+        if (k === 'Potion') { potion_boost = v; continue; }
+        if (k === 'Strength') { strength_boost = v; continue; }
+
+        let ele = null;
+        let part = null;
+
+        // Colon signifies what part of a spell to boost
+        const colon = k.indexOf(':');
+        if (colon !== -1) {
+            part = k.slice(colon + 1);
+            k = k.slice(0, colon);
         }
-        else {
-            damage_mult *= (1 + v/100);
+        // Semicolon signifies what elements/category to boost (etwfa + melee)
+        const semi = k.indexOf(';');
+        if (semi !== -1) {
+            ele = k.slice(semi + 1);
+        }
+
+        if (part !== null && part !== part_filter) {
+            continue;
+        }
+
+        if (ele !== null) {
+            const ele_match = damage_elements.indexOf(ele);
+            if (ele === "m" && !use_spell_damage) {
+                damage_mult *= (1 + v / 100);
+            } else if (ele_match !== -1) {
+                ele_damage_mult[ele_match] *= (1 + v / 100);
+            }
+        } else {
+            damage_mult *= (1 + v / 100);
         }
     }
+    damage_mult *= 1 + Math.max(potion_boost, strength_boost) / 100;
     const crit_mult = ignore_str ? 0 : 1+(stats.get("critDamPct")/100);
 
     for (let i in damage_elements) {
