@@ -5707,7 +5707,7 @@
             },
             "properties": {
                 "max_damage_bonus": 55,
-                "enraged_blow_scaling": 1.5 
+                "enraged_blow_scaling": 1.5
             },
             "effects": [
                 {
@@ -6126,42 +6126,6 @@
             ]
         },
         {
-            "display_name": "Radiant Devotee",
-            "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen. (Max 10/5s)",
-            "parents": [
-                "Whirlwind Strike",
-                "Tempest"
-            ],
-            "dependencies": [],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 27,
-                "col": 3,
-                "icon": "node_0"
-            },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "stat_scaling",
-                    "inputs": [
-                        {
-                            "type": "stat",
-                            "name": "ref"
-                        }
-                    ],
-                    "output": {
-                        "type": "stat",
-                        "name": "mr"
-                    },
-                    "scaling": [
-                        0.25
-                    ],
-                    "max": 10
-                }
-            ]
-        },
-        {
             "display_name": "Whirlwind Strike",
             "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
             "archetype": "Battle Monk",
@@ -6529,7 +6493,7 @@
         },
         {
             "display_name": "Provoke",
-            "desc": "Enemies damaged by War Scream will become Provoked, targeting only you for at least 5s. </br> Reduce the Mana cost of War Scream. </br> Mana Cost: -5 </br>Cooldown: 15s",
+            "desc": "Enemies damaged by War Scream will become Provoked, targeting only you for at least 1.5s. </br> Reduce the Mana cost of War Scream. </br> Mana Cost: -5 </br>Cooldown: 4s",
             "archetype": "Paladin",
             "base_abil": "War Scream",
             "parents": [
@@ -6947,7 +6911,7 @@
         },
         {
             "display_name": "Brink of Madness",
-            "desc": "Taking lethal damage while Corrupted grants resistance, disables Corrupted and allows you to take additional damage up to 30% of your maximum health. </br> Surviving after the effect ends activates effects that happen when leaving Corrupted. </br> </br>Effect: 50% Resistance Bonus to Self </br>Duration: 5s </br>Cooldown: 40s",
+            "desc": "Taking lethal damage while Corrupted grants resistance, disables Corrupted and allows you to take additional damage up to 30% of your maximum health. </br> Ending the effect with no stored damage activates effects that happen when leaving Corrupted, otherwise you die. </br> </br>Effect: 50% Resistance Bonus to Self </br>Duration: 5s </br>Cooldown: 40s",
             "parents": [
                 "Bloodlust",
                 "Cheaper Uppercut II"
@@ -16525,7 +16489,7 @@
         },
         {
             "display_name": "Haunting Memory",
-            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will debuff them. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects:    Lunatic: -15% Damage Bonus to Enemies   Fanatic: -12% Resistance Bonus to Enemies   Heretic: +30% Slowness to Enemies   Fanatic: -15% Resistance Bonus to Enemies </br>Duration: 5s",
+            "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will debuff them. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects:    Lunatic: -15% Damage Bonus to Enemies   Fanatic: -12% Resistance Bonus to Enemies   Heretic: +30% Slowness to Enemies </br>Duration: 5s",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "parents": [
@@ -17312,7 +17276,7 @@
         },
         {
             "display_name": "Totemic Shatter",
-            "desc": "While wearing the Mask of the Fanatic \ue023, your Totem will shatter upon impacting the ground, rapidly triggering 8s worth of its effects. </br> Regeneration will only heal 50% of its usual amount. </br> Additionally, Aura will radiate from yourself instead of your Totem.",
+            "desc": "While wearing the Mask of the Fanatic , your Totem will shatter upon impacting the ground, rapidly triggering 8s worth of its effects. </br> Regeneration will only heal 50% of its usual amount. </br> Additionally, Aura will radiate from yourself instead of your Totem.",
             "parents": [
                 "Imbued Totem",
                 "Cheaper Totem II",
@@ -17454,9 +17418,7 @@
                 "Cheaper Totem II",
                 "Mantra"
             ],
-            "dependencies": [
-                "Overseer"
-            ],
+            "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
