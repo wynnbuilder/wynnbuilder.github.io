@@ -6126,6 +6126,42 @@
             ]
         },
         {
+            "display_name": "Radiant Devotee",
+            "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen. (Max 10/5s)",
+            "parents": [
+                "Whirlwind Strike",
+                "Tempest"
+            ],
+            "dependencies": [],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 27,
+                "col": 3,
+                "icon": "node_0"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "stat_scaling",
+                    "inputs": [
+                        {
+                            "type": "stat",
+                            "name": "ref"
+                        }
+                    ],
+                    "output": {
+                        "type": "stat",
+                        "name": "mr"
+                    },
+                    "scaling": [
+                        0.25
+                    ],
+                    "max": 10
+                }
+            ]
+        },
+        {
             "display_name": "Whirlwind Strike",
             "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
             "archetype": "Battle Monk",
