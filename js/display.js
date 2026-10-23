@@ -279,12 +279,14 @@ function displayExpandedItem(item, parent_id) {
     // normals just display a thing.
     item = new Map(item);   // shallow copy
     if (item.get("category") === "weapon") {
-        item.set('basedps', get_base_dps(item));
-    } else if (item.get("category") === "armor") {
-    }
+        item.set("basedps", get_base_dps(item));
+    } //else if (item.get("category") === "armor") {}
 
     let display_commands = sq2_item_display_commands;
-
+    if (item.get('lvl') == 0) {
+        display_commands = ["displayName", "lvl"];
+    }
+    
     // Clear the parent div.
     setHTML(parent_id, "");
     let parent_div = document.getElementById(parent_id);
@@ -311,9 +313,13 @@ function displayExpandedItem(item, parent_id) {
             let id = command;
             if (nonRolledIDs.includes(id)) {//nonRolledID & non-0/non-null/non-und ID
                 if (!item.get(id)) {
-                    if (!(item.get("crafted") && skp_order.includes(id) &&
-                        (item.get("maxRolls").get(id) || item.get("minRolls").get(id)))) {
-                        continue;
+                    let allowedNulls = false;
+                    allowedNulls ||= item.get("crafted") && skp_order.includes(id) && (item.get("maxRolls").get(id) || item.get("minRolls").get(id));
+                    allowedNulls ||= id === "basedps" && item.get("category") === "weapon" && item.get(id) === 0;
+                    if (item.get("displayName") == "Sreggad")
+                        console.log("Sreggad's allowedness: " + allowedNulls);
+                    if (!allowedNulls) {
+                        continue; 
                     }
                 }
                 if (id === "slots") {
@@ -327,13 +333,66 @@ function displayExpandedItem(item, parent_id) {
 
                     let powders = item.get("powders");
                     for (let i = 0; i < powders.length; i++) {
-                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i] / POWDER_TIERS) + 1] + "_powder"], {
+                        p_elem.appendChild(make_elem("b", [damageClasses[Math.floor(powders[i] / POWDER_TIERS) + 1]], {
                             textContent: ROMAN_NUMERAL_MAP.get((powders[i] % POWDER_TIERS) + 1) + " "
                         }));
                     }
 
                     p_elem.appendChild(make_elem("b", [], { textContent: "]" }));
                     parent_div.appendChild(p_elem);
+
+                    // POWDER SPECIAL SECTION
+                    let powder_special = make_elem("div", ['col']);
+                        
+                    let element;
+                    let power_index = 0;
+                    for (let i = 0; i < powders.length; i++) {
+                        const firstPowderType = skp_elements[Math.floor(powders[i] / POWDER_TIERS)];
+                        const powder1_power = powders[i] % POWDER_TIERS;
+                        if (powder1_power > 2) { //t4+
+                            for (let j = i + 1; j < powders.length; j++) {
+                                const currentPowderType = skp_elements[Math.floor(powders[j] / POWDER_TIERS)]
+                                const powder2_power = powders[j] % POWDER_TIERS;
+                                const current_power = powder1_power + powder2_power - 6;
+                                if (powder2_power > 2 && firstPowderType === currentPowderType && current_power > power_index) {
+                                    element = currentPowderType;
+                                    power_index = current_power
+                                }
+                            }
+                        }
+                    }
+                    if (element) {//powder special is "[e,t,w,f,a]+[0,1,2,3,4]"
+                        const powderSpecial = powderSpecialStats[skp_elements.indexOf(element)];
+                        const specialSuffixes = new Map([["Duration", " sec"], ["Radius", " blocks"], ["Chains", ""], ["Damage", "%"], ["Damage Boost", "%"], ["Knockback", " blocks"]]);
+                        const specialTitle = make_elem("span", [damageClasses[skp_elements.indexOf(element) + 1]]);
+                        const specialEffects = document.createElement("span");
+                        let effects;
+                        if (item.get("category") === "weapon") {//weapon
+                            effects = powderSpecial["weaponSpecialEffects"];
+                            specialTitle.textContent = powderSpecial["weaponSpecialName"];
+                        } else if (item.get("category") === "armor") {//armor
+                            effects = powderSpecial["armorSpecialEffects"];
+                            specialTitle.textContent += powderSpecial["armorSpecialName"] + ": ";
+                        }
+                        for (const [key, value] of effects.entries()) {
+                            if (key !== "Description") {
+                                let effect = make_elem("p", ["m-0"], {
+                                    textContent: key + ": " + value[power_index] + specialSuffixes.get(key)
+                                });
+                                if (key === "Damage") {
+                                    effect.textContent += elementIcons[skp_elements.indexOf(element)];
+                                }
+                                if (element === "w" && item.get("category") === "armor") {
+                                    effect.textContent += " / Mana Used";
+                                }
+                                specialEffects.appendChild(effect);
+                            } else {
+                                specialTitle.textContent += "[ " + effects.get("Description") + " ]";
+                            }
+                        }
+                        powder_special.append(specialTitle, specialEffects);
+                        parent_div.appendChild(powder_special);
+                    }
                 } else if (id === "set") {
                     if (item.get("hideSet")) { continue; }
                     setName = item.get(id).toString();
@@ -383,6 +442,29 @@ function displayExpandedItem(item, parent_id) {
                         }
                         parent_div.appendChild(p_elem);
                     }
+                } else if (id === "durability" && item.get("crafted")){
+                    let nonConsumables = ["relik", "wand", "bow", "spear", "dagger", "chestplate", "helmet", "leggings", "boots", "ring", "bracelet", "necklace"];
+                    let dura_elem = make_elem("div", ["col"]);
+                    let dura;
+                    let suffix = "";
+                    if (nonConsumables.includes(item.get("type"))) {
+                        dura = item.get("durability");
+                        dura_elem.textContent = "Durability: "
+                    } else {
+                        dura = item.get("duration");
+                        dura_elem.textContent = "Duration: "
+                        suffix = " sec."
+                        parent_div.appendChild(make_elem('b', [], {
+                            textContent: "Charges: " + item.get("charges")
+                        }));
+                    }
+                
+                    if (typeof (dura) === "string") {
+                        dura_elem.textContent += dura + suffix;
+                    } else {
+                        dura_elem.textContent += dura[0] + "-" + dura[1] + suffix;
+                    }
+                    parent_div.append(dura_elem);
                 } else if (id === "lvl" && item.get("tier") === "Crafted") {
                     parent_div.appendChild(make_elem("div", ["col"], {
                         textContent: "Combat Level Min: " + item.get("lvlLow") + "-" + item.get(id)
@@ -446,49 +528,119 @@ function displayExpandedItem(item, parent_id) {
                         container.appendChild(bckgrd);
                         parent_div.appendChild(container);
                     }
-                } else {
-                    if (id.endsWith('Dam_')) {
-                        // TODO: kinda jank but replacing lists with txt at this step
+                } else if (id === "tier"){
+                    //Show item tier
+                    if (item.get("tier") !== " ") {
+                        let item_desc_elem = make_elem("div", ["col", item.get("tier")]);
+                        item_desc_elem.textContent = item.get("tier") + " " + item.get("type");
+                        parent_div.append(item_desc_elem);
+                    }
+                } else if (id === "hash") {
+                    //Show item hash
+                    parent_div.append(make_elem('p', ['itemp'], {
+                        style: {
+                            maxWidth: '100%',
+                            wordWrap: 'break-word',
+                            wordBreak: 'break-word'
+                        },
+                        textContent: item.get('hash')
+                    }));
+                } else if (id === "basedps") {
+                    let base_dps_elem = make_elem("div", ["col"]); //["left", "itemp"]);
+                    let realDps = item.get("basedps");
+                    if (item.get("tier") !== "Crafted") {
+                        if (realDps > 0){
+                            let basicDPS = make_elem("p", ["m-0"]);
+                            basicDPS.appendChild(make_elem("span", ["base_dps", "Damage"], {textContent: "Base DPS: "}));
+                            basicDPS.appendChild(make_elem("span", [], {textContent: realDps.toFixed(1)}));
+                            base_dps_elem.appendChild(basicDPS);
+                        }
+                        
+                        if (item.get("powders").length > 0){
+                            realDps = 0;
+                            for (damType of ["nDam", "fDam", "wDam", "aDam", "tDam", "eDam"]){
+                                let elemDam = item.get(damType);
+                                elemDam.split('-').map((d) => realDps += parseInt(d));
+                            }
+                            realDps *= baseDamageMultiplier[attackSpeeds.indexOf(item.get("atkSpd"))]/2;
+
+                            let prepowderDPS = make_elem("p", ["m-0"]);
+                            prepowderDPS.appendChild(make_elem("span", ["unpowdered_dps", "Damage"], {textContent: "Pre-Powder DPS: "}));
+                            prepowderDPS.appendChild(make_elem("span", [], {textContent: realDps.toFixed(1)}));
+                            base_dps_elem.appendChild(prepowderDPS);
+                        }    
+                        
+                        if (item.get("slots") > 0){
+                            let eMaxPowder = powderStats[powderLevelReq.findLastIndex((lev) => lev <= item.get("lvl"))];
+                            let powderAddedDamage = (eMaxPowder.min + eMaxPowder.max)/2 * item.get("slots");
+                            powderAddedDamage *= baseDamageMultiplier[attackSpeeds.indexOf(item.get("atkSpd"))];
+
+                            let postpowderDPS = make_elem("p", ["m-0"]);
+                            postpowderDPS.appendChild(make_elem("span", ["powdered_dps", "Damage"], {textContent: "Post-Powder DPS: "}));
+                            postpowderDPS.appendChild(make_elem("span", [], {textContent: (realDps + powderAddedDamage).toFixed(1)}));
+                            base_dps_elem.appendChild(postpowderDPS);
+                        }
+                        
+                    } else {
+                        let basicDPS = make_elem("p", ["m-0"]);
+                        basicDPS.appendChild(make_elem("span", ["base_dps", "Damage"], {textContent: "Base DPS: "}));
+                        basicDPS.appendChild(make_elem("span", [], {textContent: realDps[0].toFixed(1) + "\u279c" + realDps[1].toFixed(1)}));
+                        base_dps_elem.appendChild(basicDPS);
+                    }
+                    parent_div.append(base_dps_elem);
+                } else if (skp_order.includes(id)) { //id = str, dex, int, def, or agi
+                    if (parent_div.nodeName === "table" && skp_order.includes(id) && item.get("tier") !== "Crafted") // this bit seems to be for the non-existant dps visualiser page, I guess it handles SP weird
+                        p_elem = displayFixedID(parent_div, id, item.get(id), elemental_format);
+                    else if (item.get("tier") !== "Crafted") { //crafteds
+                        row = make_elem("div", ["col"]);
+                        let title = document.createElement("b");
+                        title.textContent = idPrefixes[id] + " ";
+                        let boost = document.createElement("b");
+                        if (item.get(id) < 0) {
+                            boost.classList.add("negative");
+                        } else { //boost = 0 SHOULD not come up
+                            boost.classList.add("positive");
+                        }
+                        boost.textContent = item.get(id);
+                        row.appendChild(title);
+                        row.appendChild(boost);
+                        parent_div.appendChild(row);
+                    } else if (item.get("tier") === "Crafted") { //non-crafteds
+                        let row = displayRolledID(item, id, elemental_format);
+                        parent_div.appendChild(row);
+                    }
+                } else { 
+                    /* "lore", "quest", "restrict", "atkSpd", "hp", 
+                    "fDef", "wDef", "aDef", "tDef", "eDef",
+                    "classReq", "lvl",
+                    "strReq", "dexReq", "intReq", "defReq", "agiReq",
+                    "nDam_", "fDam_", "wDam_", "aDam_", "tDam_", "eDam_",
+                    "basedps", "powderdps" */
+
+                    let idValue;
+                    
+                    if (damage_keys.includes(id)) { //replacing damage lists with strings
                         let damages = item.get(id);
+                        
                         if (item.get("tier") !== "Crafted") {
                             damages = damages.map(x => Math.floor(x));
-                            item.set(id, damages[0] + "-" + damages[1]);
-                        }
-                        else {
+                            idValue = damages[0] + "-" + damages[1];
+                        } else {
+                            console.log("no _: " + item.get(id.slice(0,4)));
                             damages = damages.map(x => x.map(y => Math.floor(y)));
-                            item.set(id, damages[0][0] + "-" + damages[0][1] + "\u279c" + damages[1][0] + "-" + damages[1][1]);
+                            idValue = damages[0][0] + "-" + damages[0][1] + "\u279c" + damages[1][0] + "-" + damages[1][1];
                         }
+                    } else if (id === "hp" && item.get("tier") === "Crafted" && item.get("category") === "armor") { // crafted HP
+                        idValue = item.get(id + "Low") + "-" + item.get(id);
+                    } else {
+                        idValue = item.get(id)
                     }
+                    
+                    let p_elem = displayFixedID(parent_div, id, idValue, elemental_format);
 
-                    let p_elem;
-                    // TODO: wtf is this if statement
-                    if (!(item.get("tier") === "Crafted" && item.get("category") === "armor" && id === "hp") && (!skp_order.includes(id)) || (skp_order.includes(id) && item.get("tier") !== "Crafted" && parent_div.nodeName === "table")) { //skp warp
-                        p_elem = displayFixedID(parent_div, id, item.get(id), elemental_format);
-                    } else if (item.get("tier") === "Crafted" && item.get("category") === "armor" && id === "hp") {
-                        p_elem = displayFixedID(parent_div, id, item.get(id + "Low") + "-" + item.get(id), elemental_format);
-                    }
-                    if (id === "lore") {
+                    //adjusting styles
+                    if (id === "lore") { 
                         p_elem.style = "font-style: italic";
-                    } else if (skp_order.includes(id)) { //id = str, dex, int, def, or agi
-                        if (item.get("tier") !== "Crafted") {
-                            row = make_elem("div", ["col"]);
-
-                            let title = document.createElement("b");
-                            title.textContent = idPrefixes[id] + " ";
-                            let boost = document.createElement("b");
-                            if (item.get(id) < 0) {
-                                boost.classList.add("negative");
-                            } else { //boost = 0 SHOULD not come up
-                                boost.classList.add("positive");
-                            }
-                            boost.textContent = item.get(id);
-                            row.appendChild(title);
-                            row.appendChild(boost);
-                            parent_div.appendChild(row);
-                        } else if (item.get("tier") === "Crafted") {
-                            let row = displayRolledID(item, id, elemental_format);
-                            parent_div.appendChild(row);
-                        }
                     } else if (id === "restrict") {
                         p_elem.classList.add("restrict");
                     }
@@ -523,124 +675,6 @@ function displayExpandedItem(item, parent_id) {
                 // :/  
             }
         }
-    }
-    //Show powder specials ;-;
-    let powder_specials_check = ["relik", "wand", "bow", "spear", "dagger", "chestplate", "helmet", "leggings", "boots"];
-    if (powder_specials_check.includes(item.get("type"))) {
-        let powder_special = make_elem("div", ['col']);
-        let powders = item.get("powders");
-        let element;
-        let power_index = 0;
-        for (let i = 0; i < powders.length; i++) {
-            const firstPowderType = skp_elements[Math.floor(powders[i] / POWDER_TIERS)];
-            const powder1_power = powders[i] % POWDER_TIERS;
-            if (powder1_power > 2) { //t4+
-                for (let j = i + 1; j < powders.length; j++) {
-                    const currentPowderType = skp_elements[Math.floor(powders[j] / POWDER_TIERS)]
-                    const powder2_power = powders[j] % POWDER_TIERS;
-                    const current_power = powder1_power + powder2_power - 6;
-                    if (powder2_power > 2 && firstPowderType === currentPowderType && current_power > power_index) {
-                        element = currentPowderType;
-                        power_index = current_power
-                    }
-                }
-            }
-        }
-        if (element) {//powder special is "[e,t,w,f,a]+[0,1,2,3,4]"
-            const powderSpecial = powderSpecialStats[skp_elements.indexOf(element)];
-            const specialSuffixes = new Map([["Duration", " sec"], ["Radius", " blocks"], ["Chains", ""], ["Damage", "%"], ["Damage Boost", "%"], ["Knockback", " blocks"]]);
-            const specialTitle = make_elem("span", [damageClasses[skp_elements.indexOf(element) + 1]]);
-            const specialEffects = document.createElement("span");
-            let effects;
-            if (item.get("category") === "weapon") {//weapon
-                effects = powderSpecial["weaponSpecialEffects"];
-                specialTitle.textContent = powderSpecial["weaponSpecialName"];
-            } else if (item.get("category") === "armor") {//armor
-                effects = powderSpecial["armorSpecialEffects"];
-                specialTitle.textContent += powderSpecial["armorSpecialName"] + ": ";
-            }
-            for (const [key, value] of effects.entries()) {
-                if (key !== "Description") {
-                    let effect = make_elem("p", ["m-0"], {
-                        textContent: key + ": " + value[power_index] + specialSuffixes.get(key)
-                    });
-                    if (key === "Damage") {
-                        effect.textContent += elementIcons[skp_elements.indexOf(element)];
-                    }
-                    if (element === "w" && item.get("category") === "armor") {
-                        effect.textContent += " / Mana Used";
-                    }
-                    specialEffects.appendChild(effect);
-                } else {
-                    specialTitle.textContent += "[ " + effects.get("Description") + " ]";
-                }
-            }
-            powder_special.append(specialTitle, specialEffects);
-            parent_div.appendChild(powder_special);
-        }
-    }
-
-    let nonConsumables = ["relik", "wand", "bow", "spear", "dagger", "chestplate", "helmet", "leggings", "boots", "ring", "bracelet", "necklace"];
-    if (item.get("tier") && item.get("tier") === "Crafted") {
-        let dura_elem = make_elem("div", ["col"]);
-        let dura;
-        let suffix = "";
-        if (nonConsumables.includes(item.get("type"))) {
-            dura = item.get("durability");
-            dura_elem.textContent = "Durability: "
-        } else {
-            dura = item.get("duration");
-            dura_elem.textContent = "Duration: "
-            suffix = " sec."
-            parent_div.appendChild(make_elem('b', [], {
-                textContent: "Charges: " + item.get("charges")
-            }));
-        }
-
-        if (typeof (dura) === "string") {
-            dura_elem.textContent += dura + suffix;
-        } else {
-            dura_elem.textContent += dura[0] + "-" + dura[1] + suffix;
-        }
-        parent_div.append(dura_elem);
-
-    }
-    //Show item tier
-    if (item.get("tier") && item.get("tier") !== " ") {
-        let item_desc_elem = make_elem("div", ["col", item.get("tier")]);
-        if (tome_types.includes(item.get("type"))) {
-            item_desc_elem.textContent = item.get("tier") + " " + tome_type_map.get(item.get("type"));
-        } else {
-            item_desc_elem.textContent = item.get("tier") + " " + item.get("type");
-        }
-        parent_div.append(item_desc_elem);
-    }
-
-    //Show item hash if applicable
-    if (item.get("crafted") || item.get("custom")) {
-        parent_div.append(make_elem('p', ['itemp'], {
-            style: {
-                maxWidth: '100%',
-                wordWrap: 'break-word',
-                wordBreak: 'break-word'
-            },
-            textContent: item.get('hash')
-        }));
-    }
-
-    if (item.get("category") === "weapon") {
-        let total_damages = item.get("basedps");
-        let base_dps_elem = make_elem("p", ["left", "itemp"]);
-        if (item.get("tier") === "Crafted") {
-            let base_dps_min = total_damages[0];
-            let base_dps_max = total_damages[1];
-
-            base_dps_elem.textContent = "Base DPS: " + base_dps_min.toFixed(3) + "\u279c" + base_dps_max.toFixed(3);
-        }
-        else {
-            base_dps_elem.textContent = "Base DPS: " + (total_damages.toFixed(3));
-        }
-        parent_div.append(make_elem("p"), base_dps_elem);
     }
 }
 
