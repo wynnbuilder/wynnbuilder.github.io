@@ -4986,11 +4986,312 @@
                 },
                 "effects": [
                     {
-                        "base_spell": 3,
                         "type": "add_spell_prop",
+                        "base_spell": 3,
                         "target_part": "Per Melee (max)",
                         "display": "Per Melee (max)",
+                        "cost": -30,
                         "hits": {}
+                    }
+                ]
+            }
+        ]
+    },
+    "ROYAL_DENOUEMENT": {
+        "displayName": "Royal Denouement",
+        "description": "Tangled Origin now provides you with 25% resistance while active, and your Serpents attack 100% faster for 3s when you get hit.",
+        "abilities": [
+            {
+                "class": "Mage",
+                "base_abil": "Tangled Origin",
+                "properties": {
+                    "thunder_rate": 1,
+                    "fire_rate": 0.34
+                },
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 12,
+                        "target_part": "Total Serpent DPS",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Thunder Serpent Hit": "Tangled Origin.thunder_rate",
+                            "Fire Serpent Hit": "Tangled Origin.fire_rate"
+                        }
+                    },
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Royal Denouement",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "defMult.RoyalDenouement",
+                                "value": 25
+                            },
+                            {
+                                "type": "prop",
+                                "abil": "Tangled Origin",
+                                "name": "thunder_rate",
+                                "value": 1
+                            },
+                            {
+                                "type": "prop",
+                                "abil": "Tangled Origin",
+                                "name": "fire_rate",
+                                "value": 0.34
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "FLORAL_DENOUEMENT": {
+        "displayName": "Floral Denouement",
+        "description": "Hitting Serpent's Garden with 15 Momentum makes it explode, ending it early and dealing [neutral]4000%, [earth]1500%, and [air]2000% in a 20 block radius.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Serpent's Garden",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 16,
+                        "target_part": "Garden Explosion",
+                        "multipliers": [
+                            4000,
+                            1500,
+                            0,
+                            0,
+                            0,
+                            2000
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "BLAZING_DENOUEMENT": {
+        "displayName": "Blazing Denouement",
+        "description": "Extinction Event now also lays down a field of moss in its radius, blinding enemies and dealing [neutral]100% and [fire]50% every 0.5s for 4s.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Extinction Event",
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 12,
+                        "target_part": "Moss Field Tick",
+                        "multipliers": [
+                            100,
+                            0,
+                            0,
+                            0,
+                            50,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 12,
+                        "target_part": "Moss Field DPS",
+                        "hits": {
+                            "Moss Field Tick": 2
+                        }
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 12,
+                        "target_part": "Total Moss Damage",
+                        "hits": {
+                            "Moss Field Tick": 8
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "CAUSTIC_DENOUEMENT": {
+        "displayName": "Caustic Denouement",
+        "description": "Beyond Salvation's spike detonations additionally leave behind pools of toxic residue, dealing 50% of your poison every 0.5s for 10 seconds.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Beyond Salvation",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Caustic Denouement",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "toxicResidueDPS",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "PASTICHE_DENOUEMENT": {
+        "displayName": "Pastiche Denouement",
+        "description": "Patchwork Abomination's duration is reduced by 65%, but its explosion now also scatters 10 explosive puppets, each dealing [neutral]2500%, [thunder]250%, and [fire]250% in a 3 block radius.",
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": "Patchwork Abomination",
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 13,
+                        "target_part": "Puppet Explosion Hit",
+                        "multipliers": [
+                            2500,
+                            0,
+                            250,
+                            0,
+                            250,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 13,
+                        "target_part": "Total Puppet Explosions",
+                        "hits": {
+                            "Puppet Explosion Hit": 10
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "CORPSE_ARTISTRY": {
+        "displayName": "Corpse Artistry",
+        "description": "Bloodied Armory's swipes become rapid 5-hit mangles (max 20) with 40% reduced range, dealing [neutral]16%.",
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Bloodied Armory",
+                "dependencies": [
+                    "Bloodied Armory"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 0,
+                        "target_part": "Blood Swipe",
+                        "behavior": "overwrite",
+                        "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "hide": true
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 0,
+                        "target_part": "Blood Mangle Hit",
+                        "multipliers": [
+                            16,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 0,
+                        "target_part": "Total Damage",
+                        "behavior": "overwrite",
+                        "hits": {
+                            "Melee": 1,
+                            "Blood Mangle Hit": "Bloodied Armory.swipe_count"
+                        }
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "behavior": "overwrite",
+                        "slider_name": "Blood Swipe Count",
+                        "slider_label": "Blood Mangle Count (Corpse Artistry)",
+                        "slider_step": 5,
+                        "slider_max": 20,
+                        "output": {
+                            "type": "prop",
+                            "abil": "Bloodied Armory",
+                            "name": "swipe_count"
+                        },
+                        "scaling": [
+                            1
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "POLARITY": {
+        "displayName": "Polarity",
+        "description": "For every 1% of mana missing, your spells cost 0.25% less. For every 1% of mana remaining, deal 0.1% more damage.",
+        "abilities": [
+            {
+                "class": "Any",
+                "display_name": "Polarity",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "% Mana Remaining",
+                        "slider_step": 1,
+                        "slider_max": 100,
+                        "slider_default": 100,
+                        "output": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Polarity"
+                            }
+                        ],
+                        "scaling": [
+                            0.1
+                        ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "% Mana Remaining",
+                        "slider_step": 1,
+                        "base": -25,
+                        "output": [
+                            {
+                                "type": "stat",
+                                "name": "spPct1Final"
+                            },
+                            {
+                                "type": "stat",
+                                "name": "spPct2Final"
+                            },
+                            {
+                                "type": "stat",
+                                "name": "spPct3Final"
+                            },
+                            {
+                                "type": "stat",
+                                "name": "spPct4Final"
+                            }
+                        ],
+                        "scaling": [
+                            0.25
+                        ]
                     }
                 ]
             }

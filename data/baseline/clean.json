@@ -223432,7 +223432,10 @@
           "hprRaw": 150,
           "spd": 35,
           "sprintReg": 50,
-          "mr": 25
+          "mr": 25,
+          "majorIds": [
+            "POLARITY"
+          ]
         }
       ]
     },
@@ -224582,7 +224585,10 @@
           "ls": 180,
           "hpBonus": -4000,
           "hprRaw": 145,
-          "mdRaw": 165
+          "mdRaw": 165,
+          "majorIds": [
+            "CORPSE_ARTISTRY"
+          ]
         }
       ]
     },
@@ -225132,25 +225138,20 @@
         "Yellow Ornament"
       ],
       "bonuses": [
+        {},
         {
-          "sdPct": 3
+          "xpb": 4,
+          "hprRaw": 12
         },
         {
-          "sdPct": 3,
-          "mdPct": 3,
-          "xpb": 6
+          "xpb": 8,
+          "mr": 4,
+          "hprRaw": 25
         },
         {
-          "sdPct": 3,
-          "mdPct": 3,
-          "xpb": 12,
-          "hpBonus": 120
-        },
-        {
-          "sdPct": 14,
-          "mdPct": 14,
-          "xpb": 24,
-          "hpBonus": 480
+          "xpb": 20,
+          "mr": 10,
+          "hprRaw": 60
         }
       ]
     },
@@ -225523,7 +225524,10 @@
           "fDefPct": -35,
           "ls": 315,
           "spd": 25,
-          "slowEnemy": 8
+          "slowEnemy": 8,
+          "majorIds": [
+            "FLORAL_DENOUEMENT"
+          ]
         }
       ]
     },
@@ -225547,7 +225551,10 @@
           "ms": 10,
           "atkTier": -12,
           "damPct": 25,
-          "spRaw1": -4
+          "spRaw1": -4,
+          "majorIds": [
+            "PASTICHE_DENOUEMENT"
+          ]
         }
       ]
     },
@@ -225571,7 +225578,10 @@
           "hprRaw": 265,
           "thorns": 25,
           "mr": 8,
-          "spRaw4": -5
+          "spRaw4": -5,
+          "majorIds": [
+            "BLAZING_DENOUEMENT"
+          ]
         }
       ]
     },
@@ -225595,7 +225605,10 @@
           "spd": 20,
           "hprPct": -35,
           "weakenEnemy": 8,
-          "atkTier": 1
+          "atkTier": 1,
+          "majorIds": [
+            "CAUSTIC_DENOUEMENT"
+          ]
         }
       ]
     },
@@ -225619,7 +225632,10 @@
           "wSdRaw": 200,
           "spd": -20,
           "lb": 20,
-          "mainAttackRange": -20
+          "mainAttackRange": -20,
+          "majorIds": [
+            "ROYAL_DENOUEMENT"
+          ]
         }
       ]
     },

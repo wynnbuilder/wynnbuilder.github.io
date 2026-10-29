@@ -645,6 +645,10 @@ const atree_make_interactives = new (class extends ComputeNode {
                                 slider_info.max = slider_max;
                             if('slider_default' in effect)
                                 slider_info.default_val = slider_default;
+                            if('slider_step' in effect)
+                                slider_info.step = slider_step;
+                            if('slider_label' in effect)
+                                slider_info.label_name = effect.slider_label;
                             if('scaling' in effect){
                                 for(let j = 0; j < slider_info.abil.effects.length; ++j){
                                     if('scaling' in slider_info.abil.effects[j] && slider_info.abil.effects[j] !== effect &&slider_info.abil.effects[j].output.name === effect.output.name){ 

@@ -384,3 +384,42 @@ const default_spells = {
         ]
     }]
 };
+
+/**
+ * Cleaner-ish Average DPS calculation for melee attacks
+ * to decouple major id calculations from main function 
+ */
+function calculateMeleeAverageDps(stats, spell, spell_results, averageDamage, adjAtkSpd) {
+    let avg_dps = averageDamage * baseDamageMultiplier[adjAtkSpd];
+
+    // FLURRY_OF_BLOWS (Asterism)
+    // 0.10s / slice, but can run concurrently, but due to Minecraft 20 ticks / second 
+    // caps out at 20 slices / second = 2 attacks / sec = maxes at Normal speed
+    if (stats.get("activeMajorIDs") && stats.get("activeMajorIDs").has("FLURRY_OF_BLOWS")) {
+        let total_part = spell.parts && spell.parts.find(p => p.name === spell.display);
+        if (total_part && total_part.hits && total_part.hits["Melee"] === 10) {
+            let normal_idx = attackSpeeds.indexOf("NORMAL");
+            let effectiveAtkSpd = Math.min(adjAtkSpd, normal_idx);
+            return averageDamage * baseDamageMultiplier[effectiveAtkSpd];
+        }
+    }
+
+    // CORPSE_ARTISTRY (Visceral)
+    // capped @ 0.10s/mangle
+    // Having >2 attack speed only adds to queue and doesnt increase DPS, so capped_hits
+    if (stats.get("activeMajorIDs") && stats.get("activeMajorIDs").has("CORPSE_ARTISTRY")) {
+        let mangle_res = spell_results.find(r => r.name === "Blood Mangle Hit");
+        if (mangle_res && spell.parts) {
+            let total_part = spell.parts.find(p => p.name === spell.display);
+            let mangle_hits = total_part && total_part.hits ? total_part.hits["Blood Mangle Hit"] : 0;
+            if (mangle_hits > 0) {
+                let melee_res = spell_results.find(r => r.name === "Melee");
+                let melee_avg = melee_res ? melee_res.averageDamage : (averageDamage - mangle_hits * mangle_res.averageDamage);
+                let capped_hits = Math.min(mangle_hits, 10); 
+                return (melee_avg * baseDamageMultiplier[adjAtkSpd]) + (capped_hits * mangle_res.averageDamage);
+            }
+        }
+    }
+
+    return avg_dps;
+}

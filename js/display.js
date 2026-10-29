@@ -1268,11 +1268,13 @@ function displayPoisonDamage(overallparent_elem, statMap) {
 
     let poison_spell = Math.max(Math.floor(statMap.get("poison") * 2));
     let poison_melee = Math.max(Math.floor(statMap.get("poison") * baseDamageMultiplier[adjAtkSpd] * poison_atkspd_mult[adjAtkSpd] * 3));
+    let poison_residue = Math.max(Math.floor(statMap.get("poison") * (statMap.get("toxicResidueDPS") || 0)));
+    let total_poison_dps = poison_spell + poison_melee + poison_residue;
 
     let overallpoisonDamage = make_elem("p");
     overallpoisonDamage.append(
         make_elem("span", [], { textContent: "Total Poison DPS: " }),
-        make_elem("span", ["Damage"], { textContent: poison_spell + poison_melee }),
+        make_elem("span", ["Damage"], { textContent: total_poison_dps }),
         make_elem("br", [], {}),
         make_elem("span", [], { textContent: "\nMelee Poison DPS: " }),
         make_elem("span", ["Damage"], { textContent: poison_melee }),
@@ -1280,6 +1282,13 @@ function displayPoisonDamage(overallparent_elem, statMap) {
         make_elem("span", [], { textContent: "\nSpell Poison DPS: " }),
         make_elem("span", ["Damage"], { textContent: poison_spell }),
     );
+    if (poison_residue > 0) {
+        overallpoisonDamage.append(
+            make_elem("br", [], {}),
+            make_elem("span", [], { textContent: "\nToxic Residue DPS: " }),
+            make_elem("span", ["Damage"], { textContent: poison_residue }),
+        );
+    }
     spell_summary.append(overallpoisonDamage);
     container.append(spell_summary);
     overallparent_elem.append(container);
@@ -1506,6 +1515,7 @@ function displayPowderSpecials(parent_elem, powderSpecials, stats, weapon) {
                 let nonCritAverage = (totalDamNormal[0] + totalDamNormal[1]) / 2 || 0;
                 let critAverage = (totalDamCrit[0] + totalDamCrit[1]) / 2 || 0;
                 let averageDamage = (1 - critChance) * nonCritAverage + critChance * critAverage || 0;
+                _results.averageDamage = averageDamage;
 
                 let averageLabel = document.createElement("p");
                 averageLabel.innerHTML = "Average: <span class='Damage'>" + averageDamage.toFixed(2) + "</span>";
@@ -1645,6 +1655,7 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
             let nonCritAverage = (totalDamNormal[0] + totalDamNormal[1]) / 2 || 0;
             let critAverage = (totalDamCrit[0] + totalDamCrit[1]) / 2 || 0;
             let averageDamage = (1 - critChance) * nonCritAverage + critChance * critAverage || 0;
+            spell_info.averageDamage = averageDamage;
 
             if ('multipliers' in spell_info) {
                 let multipliersLabel = make_elem("p", [], {});
@@ -1676,7 +1687,9 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
                     } else if (adjAtkSpd < 0) {
                         adjAtkSpd = 0;
                     }
-                    add_summary("Average DPS: ", averageDamage * baseDamageMultiplier[adjAtkSpd], "Damage");
+                    let avg_dps = calculateMeleeAverageDps(stats, spell, spell_results, averageDamage, adjAtkSpd);
+
+                    add_summary("Average DPS: ", avg_dps, "Damage");
                     add_summary("Attack Speed: ", display_attack_speeds[adjAtkSpd], "Damage");
                     add_summary("Per Attack: ", averageDamage, "Damage");
                 }
