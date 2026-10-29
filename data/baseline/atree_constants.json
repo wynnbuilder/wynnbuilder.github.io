@@ -11635,7 +11635,10 @@
                 "col": 7,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "thunder_rate": 1,
+                "fire_rate": 0.34
+            },
             "effects": [
                 {
                     "type": "replace_spell",
@@ -11671,8 +11674,8 @@
                             "name": "Total Serpent DPS",
                             "type": "total",
                             "hits": {
-                                "Thunder Serpent Hit": 1,
-                                "Fire Serpent Hit": 0.34
+                                "Thunder Serpent Hit": "Tangled Origin.thunder_rate",
+                                "Fire Serpent Hit": "Tangled Origin.fire_rate"
                             }
                         }
                     ]

@@ -60,6 +60,9 @@ add_spell_prop: {
     hide:           Optional[str]   // Modify this part to be hidden.
     ignored_mults:  List[str]       // Damage multiplier effects to ignore.
     mana_gained:    Optional[int]   // The amount of mana gained on spell use, used for mana calculator.
+    poison_pct:     Optional[float] // Percent of the build's poison stat dealt per hit (for poison spell part).
+    hits_cap: Optional[Map[str, Union[str, float]]] // Caps on the number of hits that a subpart of a
+                                                    // total entry can contribute to a total.
 }
 
 convert_spell_conv: {
@@ -970,6 +973,21 @@ function atree_translate(atree_merged, v) {
 }
 
 /**
+ * Merge raw hits_cap ({output: {subpart: num|ref}}) into spell.hits_cap.
+ * Overwrites per output + subpart. Resolves <ability_id>.propname references.
+ */
+function atree_merge_hits_cap(atree_merged, spell, caps) {
+    if (!spell.hits_cap) { spell.hits_cap = {}; }
+    for (const [output, subcaps] of Object.entries(caps)) {
+        const dest = (spell.hits_cap[output] ??= {});
+        for (const [sub_name, v] of Object.entries(subcaps)) {
+            dest[sub_name] = atree_translate(atree_merged, v);
+        }
+    }
+}
+
+
+/**
  * Collect spells from abilities.
  *
  * Signature: AbilityCollectSpellsNode(atree-merged: Map[id, Ability]) => List[Spell]
@@ -990,12 +1008,17 @@ const atree_collect_spells = new (class extends ComputeNode {
                     if (ret_spell) {
                         // NOTE: do not mutate results of previous steps!
                         for (const key in effect) {
+                            if (key === 'hits_cap') { continue; }
                             ret_spell[key] = structuredClone(effect[key]);
                         }
                     }
                     else {
                         ret_spell = structuredClone(effect);
+                        delete ret_spell.hits_cap;
                         ret_spells.set(effect.base_spell, ret_spell);
+                    }
+                    if ('hits_cap' in effect) {
+                        atree_merge_hits_cap(atree_merged, ret_spell, effect.hits_cap);
                     }
                     for (const part of ret_spell.parts) {
                         if ('hits' in part) {
@@ -1033,6 +1056,10 @@ const atree_collect_spells = new (class extends ComputeNode {
                     if ('display' in effect) {
                         ret_spell.display = effect.display;
                     }
+                    // hits_cap is stored on the spell, so it applies even without a target_part.
+                    if ('hits_cap' in effect) {
+                        atree_merge_hits_cap(atree_merged, ret_spell, effect.hits_cap);
+                    }
 
                     // NOTE: see above comment for the weird placement of this code block.
                     if (target_part === null) { continue; }
@@ -1052,6 +1079,10 @@ const atree_collect_spells = new (class extends ComputeNode {
                         else if ('power' in effect) {
                             if (behavior === 'overwrite') { part.power = effect.power; }
                             else { part.power += effect.power; }
+                        }
+                        else if ('poison_pct' in effect) {
+                            if (behavior === 'overwrite') { part.poison_pct = effect.poison_pct; }
+                            else { part.poison_pct = (part.poison_pct ?? 0) + effect.poison_pct; }
                         }
                         else if ('hits' in effect) {
                             for (const [idx, _v] of Object.entries(effect.hits)) { // looks kinda similar to multipliers case... hmm... can we unify all of these three? (make healpower a list)
@@ -1079,6 +1110,7 @@ const atree_collect_spells = new (class extends ComputeNode {
                     if (!found_part && behavior === 'merge') { // add part. if behavior is merge
                         let spell_part = structuredClone(effect);
                         spell_part.name = target_part;  // has some extra fields but whatever
+                        delete spell_part.hits_cap;
                         if ('hits' in spell_part) {
                             for (const idx in spell_part.hits) {
                                 spell_part.hits[idx] = atree_translate(atree_merged, spell_part.hits[idx]);

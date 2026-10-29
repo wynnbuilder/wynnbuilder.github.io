@@ -1268,8 +1268,7 @@ function displayPoisonDamage(overallparent_elem, statMap) {
 
     let poison_spell = Math.max(Math.floor(statMap.get("poison") * 2));
     let poison_melee = Math.max(Math.floor(statMap.get("poison") * baseDamageMultiplier[adjAtkSpd] * poison_atkspd_mult[adjAtkSpd] * 3));
-    let poison_residue = Math.max(Math.floor(statMap.get("poison") * (statMap.get("toxicResidueDPS") || 0)));
-    let total_poison_dps = poison_spell + poison_melee + poison_residue;
+    let total_poison_dps = poison_spell + poison_melee;
 
     let overallpoisonDamage = make_elem("p");
     overallpoisonDamage.append(
@@ -1282,13 +1281,6 @@ function displayPoisonDamage(overallparent_elem, statMap) {
         make_elem("span", [], { textContent: "\nSpell Poison DPS: " }),
         make_elem("span", ["Damage"], { textContent: poison_spell }),
     );
-    if (poison_residue > 0) {
-        overallpoisonDamage.append(
-            make_elem("br", [], {}),
-            make_elem("span", [], { textContent: "\nToxic Residue DPS: " }),
-            make_elem("span", ["Damage"], { textContent: poison_residue }),
-        );
-    }
     spell_summary.append(overallpoisonDamage);
     container.append(spell_summary);
     overallparent_elem.append(container);
@@ -1720,6 +1712,13 @@ function displaySpellDamage(parent_elem, _overallparent_elem, stats, spell, spel
             part_div.append(healLabel);
             if (spell_info.name === spell.display) {
                 add_summary(spell_info.name + ": ", heal_amount, "Set");
+            }
+        }
+        else if (spell_info.type === "poison") {
+            const amt = spell_info.poison_amount;
+            part_div.append(make_elem("p", ["Damage"], { textContent: amt.toFixed(2) }));
+            if (spell_info.name === spell.display) {
+                add_summary(spell_info.name + ": ", amt, "Damage");
             }
         }
     }

@@ -768,6 +768,13 @@ class SpellDamageCalcNode extends ComputeNode {
                     type: "heal",
                     heal_amount: _heal_amount
                 }
+            } 
+            else if ('poison_pct' in part) {
+                // Flat % of the poison stat as damage
+                spell_result = {
+                    type: "poison",
+                    poison_amount: Math.max(0, stats.get('poison') || 0) * part.poison_pct / 100
+                };
             } else {    // if 'hits' in part
                 spell_result = {
                     normal_min: [0, 0, 0, 0, 0, 0],
@@ -777,6 +784,7 @@ class SpellDamageCalcNode extends ComputeNode {
                     crit_max: [0, 0, 0, 0, 0, 0],
                     crit_total: [0, 0],
                     heal_amount: 0,
+                    poison_amount: 0,
                     multipliers: [0, 0, 0, 0, 0, 0]
                 }
                 const dam_res_keys = ['normal_min', 'normal_max', 'normal_total', 'crit_min', 'crit_max', 'crit_total', 'multipliers'];
@@ -792,7 +800,9 @@ class SpellDamageCalcNode extends ComputeNode {
                         spell_result.type = subpart.type;
                     }
 
-                    const effective_hits = part.tick_rounding ? 1.0/(Math.floor(1.0/hits*20)*0.05) : hits;
+                    const cap = spell.hits_cap?.[part.name]?.[subpart_name];
+                    const capped_hits = cap !== undefined ? Math.min(hits, cap) : hits;
+                    const effective_hits = part.tick_rounding ? 1.0/(Math.floor(1.0/capped_hits*20)*0.05) : capped_hits;
                     if (spell_result.type === 'damage') {
                         for (const key of dam_res_keys) {
                             for (let i in spell_result.normal_min) {
@@ -800,8 +810,11 @@ class SpellDamageCalcNode extends ComputeNode {
                             }
                         }
                     }
-                    else {
+                    else if (spell_result.type === 'heal') {
                         spell_result.heal_amount += subpart.heal_amount * effective_hits;
+                    }
+                    else if (spell_result.type === 'poison') {
+                        spell_result.poison_amount += subpart.poison_amount * effective_hits;
                     }
                 }
             }

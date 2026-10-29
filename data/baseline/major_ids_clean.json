@@ -1830,7 +1830,8 @@
                         "behavior": "overwrite",
                         "hits": {
                             "Melee": 10
-                        }
+                        },
+                        "hits_cap": { "Average DPS": {"Melee": 20} }
                     }
                 ]
             }
@@ -4110,7 +4111,41 @@
     "OUTBREAK": {
         "displayName": "Outbreak",
         "description": "When you are within Totem range, the Totem becomes Primed, adding 4% of your Poison ID every 0.1s. Hitting a Primed totem with Uproot will create a 6 block wide poison cloud instantly dealing the stored Poison.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": "Totem",
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Outbreak",
+                        "base_spell": 31,
+                        "display": "Total DPS",
+                        "parts": [
+                            {
+                                "name": "Per Tick",
+                                "type": "damage",
+                                "poison_pct": 4
+                            },
+                            {
+                                "name": "DPS per Totem",
+                                "type": "total",
+                                "hits": {
+                                    "Per Tick": 10
+                                }
+                            },
+                            {
+                                "name": "Total DPS",
+                                "type": "total",
+                                "hits": {
+                                    "DPS per Totem": "Totem.num_totems"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "ENLIGHTENMENT": {
         "displayName": "Enlightenment",
@@ -5004,21 +5039,7 @@
             {
                 "class": "Mage",
                 "base_abil": "Tangled Origin",
-                "properties": {
-                    "thunder_rate": 1,
-                    "fire_rate": 0.34
-                },
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 12,
-                        "target_part": "Total Serpent DPS",
-                        "behavior": "overwrite",
-                        "hits": {
-                            "Thunder Serpent Hit": "Tangled Origin.thunder_rate",
-                            "Fire Serpent Hit": "Tangled Origin.fire_rate"
-                        }
-                    },
                     {
                         "type": "raw_stat",
                         "toggle": "Royal Denouement",
@@ -5121,13 +5142,29 @@
                 "base_abil": "Beyond Salvation",
                 "effects": [
                     {
-                        "type": "raw_stat",
-                        "toggle": "Caustic Denouement",
-                        "bonuses": [
+                        "type": "replace_spell",
+                        "name": "Caustic Denouement",
+                        "base_spell": 31,
+                        "display": "Total Damage",
+                        "parts": [
                             {
-                                "type": "stat",
-                                "name": "toxicResidueDPS",
-                                "value": 1
+                                "name": "Per Tick",
+                                "type": "damage",
+                                "poison_pct": 50
+                            },
+                            {
+                                "name": "DPS",
+                                "type": "total",
+                                "hits": {
+                                    "Per Tick": 2
+                                }
+                            },
+                            {
+                                "name": "Total Damage",
+                                "type": "total",
+                                "hits": {
+                                    "DPS": 10
+                                }
                             }
                         ]
                     }
@@ -5217,7 +5254,8 @@
                         "hits": {
                             "Melee": 1,
                             "Blood Mangle Hit": "Bloodied Armory.swipe_count"
-                        }
+                        },
+                        "hits_cap": { "Average DPS": {"Blood Mangle Hit": 10} }
                     },
                     {
                         "type": "stat_scaling",
