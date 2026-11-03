@@ -1041,14 +1041,7 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Focus",
-                  "slider_max": 1,
-                  "output": {
-                    "type": "stat",
-                    "name": "damMult.Focus"
-                  },
-                  "scaling": [
-                    0
-                  ]
+                  "slider_max": 1
                 }
               ]
             }
@@ -1065,14 +1058,7 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Focus",
-                  "slider_max": 1,
-                  "output": {
-                    "type": "stat",
-                    "name": "damMult.Focus"
-                  },
-                  "scaling": [
-                    0
-                  ]
+                  "slider_max": 1
                 }
               ]
             }

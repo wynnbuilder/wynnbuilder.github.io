@@ -1186,20 +1186,42 @@
                 "col": 8,
                 "icon": "node_3"
             },
-            "properties": {},
+            "properties": {
+                "damage_per_focus": 15,
+                "current_focus": 0
+            },
             "effects": [
                 {
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Focus",
                     "output": {
+                        "type": "prop",
+                        "abil": "Focus",
+                        "name": "current_focus"
+                    },
+                    "scaling": [
+                        1
+                    ],
+                    "slider_max": 3
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": false,
+                    "inputs": [
+                        {
+                            "type": "prop",
+                            "abil": "Focus",
+                            "name": "current_focus"
+                        }
+                    ],
+                    "output": {
                         "type": "stat",
                         "name": "damMult.Focus"
                     },
                     "scaling": [
-                        15
-                    ],
-                    "slider_max": 3
+                        "Focus.damage_per_focus"
+                    ]
                 }
             ]
         },
@@ -1484,14 +1506,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Focus",
-                    "slider_max": 2,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Focus"
-                    },
-                    "scaling": [
-                        0
-                    ]
+                    "slider_max": 2
                 }
             ]
         },
@@ -2543,7 +2558,7 @@
                             "hits": {
                                 "Single Hit": 4
                             },
-                            "hide": true
+                            "display": false
                         },
                         {
                             "name": "Total DPS",
@@ -3114,8 +3129,21 @@
                     "type": "replace_spell",
                     "name": "Crepuscular Ray",
                     "base_spell": 6,
-                    "display": "DPS",
+                    "display": "Total Damage",
                     "parts": [
+                        {
+                            "name": "Total Damage",
+                            "hits": {
+                                "Scaled Arrows": 0.75,
+                                "Base Arrows": 10.75
+                            }
+                        },
+                        {
+                            "name": "DPS",
+                            "hits": {
+                                "Single Arrow": 20
+                            }
+                        },
                         {
                             "name": "Single Arrow",
                             "multipliers": [
@@ -3128,16 +3156,33 @@
                             ]
                         },
                         {
-                            "name": "DPS",
-                            "hits": {
-                                "Single Arrow": 20
-                            }
+                            "name": "Unboosted Arrow",
+                            "multipliers": [
+                                90,
+                                0,
+                                0,
+                                30,
+                                0,
+                                0
+                            ],
+                            "ignored_mults": [
+                                "Focus"
+                            ],
+                            "display": false
                         },
                         {
-                            "name": "Max Damage",
-                            "hits": {
-                                "DPS": 7
-                            }
+                            "name": "Base Arrows",
+                            "hits": { 
+                                "Unboosted Arrow": "Focus.current_focus"
+                            },
+                            "display": false
+                        },
+                        {
+                            "name": "Scaled Arrows",
+                            "hits": { 
+                                "Base Arrows": "Focus.current_focus" 
+                            },
+                            "display": false
                         }
                     ]
                 }
@@ -3373,14 +3418,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Focus",
-                    "slider_max": 2,
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Focus"
-                    },
-                    "scaling": [
-                        0
-                    ]
+                    "slider_max": 2
                 }
             ]
         },
@@ -3870,6 +3908,19 @@
                     "type": "add_spell_prop",
                     "base_spell": 6,
                     "target_part": "Single Arrow",
+                    "multipliers": [
+                        30,
+                        0,
+                        0,
+                        10,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 6,
+                    "target_part": "Unboosted Arrow",
                     "multipliers": [
                         30,
                         0,
@@ -7206,7 +7257,7 @@
                 "icon": "node_3"
             },
             "properties": {
-                "pressure_rainbow_uppercut": 55,
+                "pressure_rainbow_uppercut": 45,
                 "pressure_neutral_uppercut": 170,
                 "pressure_bash_hits": 3,
                 "pressure_scream_boost": 8
@@ -12027,7 +12078,7 @@
                             "hits": {
                                 "Per Tick": "Smoke Bomb.ticksPerSecond"
                             },
-                            "hide": true
+                            "display": false
                         },
                         {
                             "name": "Per Bomb",
