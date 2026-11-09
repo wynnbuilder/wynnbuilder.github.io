@@ -228,6 +228,9 @@ function calculate_skillpoints(equipment, weapon) {
         }
         apply_skillpoints(final_skillpoints, weapon);
     }
+    for (const item of crafted) {
+        apply_skillpoints(final_skillpoints, item);
+    }
 
     // Aggregate bonus skill points for radiance calculation
     let total_item_skillpoints = [0, 0, 0, 0, 0];
@@ -249,7 +252,7 @@ function calculate_skillpoints(equipment, weapon) {
         }
     }
 
-    let equip_order = fixed.concat(best).concat(noboost).concat(crafted);
+    let equip_order = fixed.concat(best).concat(noboost).concat(negative_only).concat(crafted);
     console.log(best_activeSetCounts);
     // best_skillpoints:        manually assigned (before any gear)
     // final_skillpoints:       final totals (5 individ)
