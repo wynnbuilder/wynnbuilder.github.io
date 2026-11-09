@@ -1,4 +1,17 @@
 /**
+ * Apply item set information.
+ */
+function apply_set(setName, activeSetCounts) {
+    let setCount = activeSetCounts.get(setName);
+    if (setCount) {
+        activeSetCounts.set(setName, setCount + 1);
+    }
+    else {
+        activeSetCounts.set(setName, 1);
+    }
+}
+
+/**
  * Apply skillpoint bonuses from an item.
  * Also applies set deltas.
  * Modifies the skillpoints array.
@@ -6,18 +19,6 @@
 function apply_skillpoints(skillpoints, item, activeSetCounts) {
     for (let i = 0; i < 5; i++) {
         skillpoints[i] += item.skillpoints[i];
-    }
-
-    const setName = item.set;
-    if (setName) { // undefined/null means no set.
-        let setCount = activeSetCounts.get(setName);
-        if (setCount) {
-            activeSetCounts.set(setName, setCount + 1);
-        }
-        else {
-            activeSetCounts.set(setName, 1);
-        }
-        // NOTE: Skill points from sets cannot contribute to equipping items.
     }
 }
 
@@ -224,6 +225,9 @@ function calculate_skillpoints(equipment, weapon) {
     // Aggregate bonus skill points for radiance calculation
     let total_item_skillpoints = [0, 0, 0, 0, 0];
     for (const item of equipment.concat([weapon])) {
+        if (weapon && item.set) {
+            apply_set(item.set, best_activeSetCounts);
+        }
         for (const i in skp_order) {
             total_item_skillpoints[i] += item.skillpoints[i];
         }
@@ -239,6 +243,7 @@ function calculate_skillpoints(equipment, weapon) {
     }
 
     let equip_order = fixed.concat(best).concat(noboost).concat(crafted);
+    console.log(best_activeSetCounts);
     // best_skillpoints:        manually assigned (before any gear)
     // final_skillpoints:       final totals (5 individ)
     // best_total:              total skillpoints assigned (number)
