@@ -16,7 +16,7 @@ function apply_set(setName, activeSetCounts) {
  * Also applies set deltas.
  * Modifies the skillpoints array.
  */
-function apply_skillpoints(skillpoints, item, activeSetCounts) {
+function apply_skillpoints(skillpoints, item) {
     for (let i = 0; i < 5; i++) {
         skillpoints[i] += item.skillpoints[i];
     }
@@ -58,6 +58,7 @@ function calculate_skillpoints(equipment, weapon) {
     let fixed = [];
     let consider = [];
     let noboost = [];
+    let negative_only = [];
     let crafted = [];
     weapon.skillpoints = weapon.get('skillpoints');
     weapon.reqs = weapon.get('reqs');
@@ -70,12 +71,13 @@ function calculate_skillpoints(equipment, weapon) {
             crafted.push(item);
         }
         else if (item.get("reqs").every(x => x === 0)) {
-            // All reqless items.
-            // Wynncraft seems to require -sp items go before +sp items
             fixed.push(item);
         }
-        else if (item.skillpoints.every(x => x <= 0)) {
+        else if (item.skillpoints.every(x => x == 0)) {
             noboost.push(item);
+        }
+        else if (item.skillpoints.every(x => x <= 0)) {
+            negative_only.push(item);
         }
         else {
             consider.push(item);
@@ -87,7 +89,7 @@ function calculate_skillpoints(equipment, weapon) {
     let static_skillpoints_base = [0, 0, 0, 0, 0]
     let static_activeSetCounts = new Map()
     for (const item of fixed) {
-        apply_skillpoints(static_skillpoints_base, item, static_activeSetCounts);
+        apply_skillpoints(static_skillpoints_base, item);
     }
 
     let best = consider;
@@ -105,17 +107,29 @@ function calculate_skillpoints(equipment, weapon) {
     let best_activeSetCounts = static_activeSetCounts;
 
     let allFalse = [0, 0, 0, 0, 0];
-    if (consider.length > 0 || noboost.length > 0 || crafted.length > 0) {
+    if (consider.length > 0 || noboost.length > 0 || negative_only.length > 0 || crafted.length > 0) {
         // Try every combination and pick the best one.
         const [root, terminal, sccs] = construct_scc_graph(consider);
         const end_checks = crafted.concat(noboost);
         end_checks.push(weapon);
 
-        function check_end(skillpoints_applied, skillpoints, activeSetCounts, total_applied) {
+        function check_end(skillpoints_applied, skillpoints, activeSetCounts, skillpoint_min, total_applied) {
             // Crafted skillpoint does not count initially.
+            for (const item of negative_only) {
+                const needed_skillpoints = apply_to_fit(skillpoints, item,
+                        skillpoint_min, activeSetCounts);
+                apply_skillpoints(skillpoints, item);
+
+                for (let i = 0; i < 5; ++i) {
+                    const skp = needed_skillpoints[i]
+                    skillpoints_applied[i] += skp;
+                    skillpoints[i] += skp;
+                    total_applied += skp;
+                }
+            }
             for (const item of end_checks) {
                 const needed_skillpoints = apply_to_fit(skillpoints, item,
-                        [false, false, false, false, false], activeSetCounts);
+                        skillpoint_min, activeSetCounts);
 
                 for (let i = 0; i < 5; ++i) {
                     const skp = needed_skillpoints[i]
@@ -139,7 +153,7 @@ function calculate_skillpoints(equipment, weapon) {
         function permute_check(idx, _applied, _skillpoints, _sets, _has, _total_applied, order) {
             const {nodes, children} = sccs[idx];
             if (nodes[0] === terminal) {
-                const total = check_end(_applied, _skillpoints, _sets, _total_applied);
+                const total = check_end(_applied, _skillpoints, _sets, _has, _total_applied);
 
                 const soln_under_100 = check_under_100(_applied);
                 if (best_under_100 && !soln_under_100) {
@@ -186,7 +200,7 @@ function calculate_skillpoints(equipment, weapon) {
                             break;  // short circuit failure
                         }
                     }
-                    apply_skillpoints(skillpoints, item, activeSetCounts);
+                    apply_skillpoints(skillpoints, item);
                 }
                 if (short_circuit) { continue; }
                 permute_check(idx+1, skillpoints_applied, skillpoints, activeSetCounts, has_skillpoint, total_applied, order.concat(permutation.map(x => x.item)));
@@ -202,13 +216,6 @@ function calculate_skillpoints(equipment, weapon) {
             // skip root.
             permute_check(1, best_skillpoints, final_skillpoints, best_activeSetCounts, allFalse.slice(), 0, []);
         }
-
-        // add extra sp bonus
-        apply_skillpoints(final_skillpoints, weapon, best_activeSetCounts);
-        // Applying crafted item skill points last.
-        for (const item of crafted) {
-            apply_skillpoints(final_skillpoints, item, best_activeSetCounts);
-        }
     }
     else {
         best_total = 0;
@@ -219,7 +226,7 @@ function calculate_skillpoints(equipment, weapon) {
             final_skillpoints[i] += skp;
             best_total += skp;
         }
-        apply_skillpoints(final_skillpoints, weapon, best_activeSetCounts);
+        apply_skillpoints(final_skillpoints, weapon);
     }
 
     // Aggregate bonus skill points for radiance calculation
