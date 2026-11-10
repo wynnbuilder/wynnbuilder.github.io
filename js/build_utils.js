@@ -145,7 +145,11 @@ let nonRolledIDs = [
     "nDam_", "fDam_", "wDam_", "aDam_", "tDam_", "eDam_",
     "majorIds",
     "damMobs",
-    "defMobs"
+    "defMobs",
+    "durability",
+    "tier",
+    "hash",
+    "basedps",
 ];
 let rolledIDs = [
     "hprPct",
