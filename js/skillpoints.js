@@ -129,7 +129,7 @@ function calculate_skillpoints(equipment, weapon) {
             }
             for (const item of end_checks) {
                 const needed_skillpoints = apply_to_fit(skillpoints, item,
-                        skillpoint_min, activeSetCounts);
+                        [false, false, false, false, false], activeSetCounts);
 
                 for (let i = 0; i < 5; ++i) {
                     const skp = needed_skillpoints[i]
@@ -231,6 +231,7 @@ function calculate_skillpoints(equipment, weapon) {
     for (const item of crafted) {
         apply_skillpoints(final_skillpoints, item);
     }
+    apply_skillpoints(final_skillpoints, weapon);
 
     // Aggregate bonus skill points for radiance calculation
     let total_item_skillpoints = [0, 0, 0, 0, 0];
