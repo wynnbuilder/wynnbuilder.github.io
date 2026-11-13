@@ -890,7 +890,8 @@
             ],
             "blockers": [
                 "Windstorm",
-                "Arrow Hurricane"
+                "Arrow Hurricane",
+                "Transience"
             ],
             "cost": 2,
             "display": {
@@ -3036,7 +3037,7 @@
                     "bonuses": [
                         {
                             "type": "prop",
-                            "abil": "Grape Bomb",
+                            "abil": "Arrow Bomb",
                             "name": "grapes",
                             "value": 1
                         }
@@ -3172,15 +3173,15 @@
                         },
                         {
                             "name": "Base Arrows",
-                            "hits": { 
+                            "hits": {
                                 "Unboosted Arrow": "Focus.current_focus"
                             },
                             "display": false
                         },
                         {
                             "name": "Scaled Arrows",
-                            "hits": { 
-                                "Base Arrows": "Focus.current_focus" 
+                            "hits": {
+                                "Base Arrows": "Focus.current_focus"
                             },
                             "display": false
                         }
@@ -3563,7 +3564,9 @@
             "dependencies": [
                 "Arrow Storm"
             ],
-            "blockers": [],
+            "blockers": [
+                "Phantom Ray"
+            ],
             "cost": 2,
             "display": {
                 "row": 40,
@@ -6383,7 +6386,9 @@
             "dependencies": [
                 "Sacred Surge"
             ],
-            "blockers": [],
+            "blockers": [
+                "Bloodied Armory"
+            ],
             "cost": 2,
             "display": {
                 "row": 28,
@@ -6623,7 +6628,9 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": []
+            "effects": [],
+            "archetype": "Fallen",
+            "archetype_req": 5
         },
         {
             "display_name": "Axe Kick",
@@ -7620,7 +7627,9 @@
                         0
                     ]
                 }
-            ]
+            ],
+            "archetype": "Fallen",
+            "archetype_req": 5
         },
         {
             "display_name": "Tempestuous Winds",
@@ -8970,7 +8979,7 @@
                 "Meteor"
             ],
             "blockers": [
-                "Thunderstorm",
+                "Void Acceleration",
                 "Psychokinesis",
                 "Meteor Shower"
             ],
@@ -11623,7 +11632,7 @@
             "display_name": "Thunderstorm",
             "desc": "After casting Meteor, generate a lightning strike near the point of impact that adds +8 Mana to your Mana Bank for each aggressive enemy you hit. </br> </br><span class='mc-white'>Total Damage</span>: 270% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 120%) </br>Area of Effect: 2.5 Blocks (Circle-Shaped)",
             "archetype": "Arcanist",
-            "archetype_req": 9,
+            "archetype_req": 0,
             "base_abil": "Meteor",
             "parents": [
                 "Induced Instability"
@@ -12726,7 +12735,9 @@
                 "Hop"
             ],
             "dependencies": [],
-            "blockers": [],
+            "blockers": [
+                "Duplicity"
+            ],
             "cost": 2,
             "display": {
                 "row": 19,
@@ -13238,7 +13249,8 @@
                 "Mirror Image"
             ],
             "blockers": [
-                "Wall of Smoke"
+                "Wall of Smoke",
+                "Lacerate"
             ],
             "cost": 1,
             "display": {
@@ -13773,7 +13785,7 @@
             "display_name": "Hoodwink",
             "desc": "After killing an enemy, salvage 50% of their Tricks. (Max 10 per mob, 40 total) </br> Casting Spin Attack while sneaking will transfer salvaged Tricks onto enemies and immediately detonate them.",
             "archetype": "Trickster",
-            "archetype_req": 1,
+            "archetype_req": 0,
             "base_abil": "Spin Attack",
             "parents": [
                 "Malicious Mockery"
@@ -13907,7 +13919,7 @@
             "display_name": "Bladestorm",
             "desc": "Increases Violent Vortex's damage  by +55% and increases the damage requirement to be 2.5x your max health.",
             "archetype": "Shadestepper",
-            "archetype_req": 4,
+            "archetype_req": 0,
             "parents": [
                 "Fatal Spin"
             ],
@@ -18241,7 +18253,8 @@
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
-                "Ritual Circle"
+                "Ritual Circle",
+                "Soaring Wingbeats"
             ],
             "dependencies": [
                 "Malediction"
