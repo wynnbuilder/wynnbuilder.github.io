@@ -226,7 +226,6 @@ function calculate_skillpoints(equipment, weapon) {
             final_skillpoints[i] += skp;
             best_total += skp;
         }
-        apply_skillpoints(final_skillpoints, weapon);
     }
     for (const item of crafted) {
         apply_skillpoints(final_skillpoints, item);
