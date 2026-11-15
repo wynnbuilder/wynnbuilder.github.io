@@ -6628,9 +6628,7 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": [],
-            "archetype": "Fallen",
-            "archetype_req": 5
+            "effects": []
         },
         {
             "display_name": "Axe Kick",
@@ -7627,9 +7625,7 @@
                         0
                     ]
                 }
-            ],
-            "archetype": "Fallen",
-            "archetype_req": 5
+            ]
         },
         {
             "display_name": "Tempestuous Winds",
@@ -18253,8 +18249,7 @@
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
-                "Ritual Circle",
-                "Soaring Wingbeats"
+                "Ritual Circle"
             ],
             "dependencies": [
                 "Malediction"
