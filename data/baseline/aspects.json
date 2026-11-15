@@ -6555,7 +6555,7 @@
               ]
             },
             {
-              "base_abil": "Hummingbirds' Song",
+              "base_abil": "Hummingbird's Song",
               "properties": {
                 "count": 1
               },
@@ -6615,7 +6615,7 @@
               ]
             },
             {
-              "base_abil": "Hummingbirds' Song",
+              "base_abil": "Hummingbird's Song",
               "properties": {
                 "count": 1
               },
@@ -6625,7 +6625,7 @@
                   "bonuses": [
                     {
                       "type": "prop",
-                      "abil": "Hummingbirds' Song",
+                      "abil": "Hummingbird's Song",
                       "name": "attack_frequency",
                       "mult": true,
                       "value": 1.25
