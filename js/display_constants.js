@@ -403,6 +403,7 @@ let build_basic_display_commands = [
 
 let sq2_item_display_commands = [
     "displayName",
+    "basedps",
     "atkSpd",
     "!elemental",
     "hp",
@@ -459,6 +460,9 @@ let sq2_item_display_commands = [
     "lore",
     "quest",
     "restrict",
+    "durability",
+    "tier",
+    "hash",
 ];
 
 let sq2_ing_display_order = [
