@@ -1004,10 +1004,11 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 7,
-                        "target_part": "Maximum Threads DPS",
+                        "target_part": "Max Threads DPS",
                         "hits": {
                             "Wire DPS": 3
-                        }
+                        },
+                        "display": "Max Threads DPS"
                     },
                     {
                         "type": "raw_stat",
@@ -1036,7 +1037,8 @@
                         "target_part": "Max Slow Threads DPS",
                         "hits": {
                             "Max Slow Wire DPS": 3
-                        }
+                        },
+                        "display": "Max Slow Threads DPS"
                     }
                 ]
             }

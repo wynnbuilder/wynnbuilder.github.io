@@ -4083,7 +4083,7 @@
             "display_name": "Garrote",
             "desc": "Enemies take 100% increased damage from Tangled Traps when it reaches maximum slow. </br> Increase your maximum Explosive Traps by +2.",
             "archetype": "Trapper",
-            "base_abil": "Tangled Traps",
+            "base_abil": "Basaltic Trap",
             "parents": [
                 "Barbed Barrage",
                 "Cheaper Arrow Bomb II"

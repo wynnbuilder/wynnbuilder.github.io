@@ -224890,7 +224890,7 @@
       "id": 3650
     }
   ],
-  "version": 2.0,
+  "version": 2,
   "sets": {
     "Boundless": {
       "items": [
@@ -227275,6 +227275,22 @@
           "majorIds": [
             "CHAIN_ROCKET"
           ]
+        }
+      ]
+    },
+    "Wyvern": {
+      "items": [
+        "Wyvern Claw",
+        "Wyvern Mantle"
+      ],
+      "bonuses": [
+        {},
+        {
+          "ms": 10,
+          "aDamRaw": 75,
+          "tDamRaw": 75,
+          "spRaw2": -12,
+          "xpb": 25
         }
       ]
     }
