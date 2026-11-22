@@ -1145,7 +1145,7 @@
                     "type": "replace_spell",
                     "name": "Basaltic Trap",
                     "base_spell": 7,
-                    "display": "Trap Damage",
+                    "display": "Burst Damage",
                     "parts": [
                         {
                             "name": "Trap Damage",
@@ -1421,7 +1421,7 @@
                             "type": "prop",
                             "abil": "Basaltic Trap",
                             "name": "traps",
-                            "value": 1
+                            "value": 2
                         }
                     ]
                 }
@@ -1631,7 +1631,7 @@
             "display": {
                 "row": 27,
                 "col": 5,
-                "icon": "node_3"
+                "icon": "node_2"
             },
             "properties": {
                 "vision": 18,
@@ -1760,7 +1760,7 @@
             "display": {
                 "row": 25,
                 "col": 6,
-                "icon": "node_4"
+                "icon": "node_2"
             },
             "properties": {
                 "vision": 12,
@@ -2255,7 +2255,7 @@
             "display": {
                 "row": 27,
                 "col": 3,
-                "icon": "node_3"
+                "icon": "node_4"
             },
             "properties": {
                 "mana_per_trap": 2
@@ -2861,7 +2861,7 @@
             "archetype_req": 11,
             "base_abil": "Arrow Storm",
             "parents": [
-                "Bouncing Bomb",
+                "Vigilant Sentinels",
                 "Parting Gift"
             ],
             "dependencies": [
@@ -2921,7 +2921,7 @@
                 {
                     "type": "add_spell_prop",
                     "base_spell": 7,
-                    "target_part": "DPS",
+                    "target_part": "Wire DPS",
                     "hits": {
                         "Line Damage Tick": 4
                     }
@@ -2935,8 +2935,7 @@
             "archetype": "Trapper",
             "archetype_req": 7,
             "parents": [
-                "Minefield",
-                "Cheaper Arrow Storm II"
+                "Minefield"
             ],
             "dependencies": [
                 "Call of the Hound"
@@ -2948,7 +2947,7 @@
             "display": {
                 "row": 37,
                 "col": 5,
-                "icon": "node_1"
+                "icon": "node_0"
             },
             "properties": {},
             "effects": [
@@ -3970,7 +3969,7 @@
             "display": {
                 "row": 37,
                 "col": 3,
-                "icon": "node_1"
+                "icon": "node_0"
             },
             "properties": {},
             "effects": [
@@ -4068,6 +4067,7 @@
             "display_name": "Garrote",
             "desc": "Enemies take 100% increased damage from Tangled Traps when it reaches maximum slow. </br> Increase your maximum Explosive Traps by +2.",
             "archetype": "Trapper",
+            "base_abil": "Tangled Traps",
             "parents": [
                 "Barbed Barrage",
                 "Cheaper Arrow Bomb II"
@@ -4080,7 +4080,7 @@
             "display": {
                 "row": 43,
                 "col": 5,
-                "icon": "node_3"
+                "icon": "node_2"
             },
             "properties": {},
             "effects": [
@@ -4099,15 +4099,9 @@
                     "type": "add_spell_prop",
                     "base_spell": 7,
                     "target_part": "Max Slow Wire DPS",
-                    "display": "Max Slow Wire DPS",
-                    "multipliers": [
-                        90,
-                        0,
-                        0,
-                        0,
-                        0,
-                        30
-                    ]
+                    "hits": {
+                        "Wire DPS": 2
+                    }
                 }
             ]
         }

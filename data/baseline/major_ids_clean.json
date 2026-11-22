@@ -1032,18 +1032,43 @@
                 "dependencies": [
                     "Tangled Traps"
                 ],
-                "properties": {
-                    "traps": 12
-                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
                         "base_spell": 7,
                         "target_part": "Maximum Threads DPS",
                         "hits": {
-                            "DPS": 3
-                        },
-                        "display": "Maximum Threads DPS"
+                            "Wire DPS": 3
+                        }
+                    },
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "prop",
+                                "abil": "Basaltic Trap",
+                                "name": "traps",
+                                "value": 12
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Basaltic Trap",
+                "dependencies": [
+                    "Garrote",
+                    "Tangled Traps"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 7,
+                        "target_part": "Max Slow Threads DPS",
+                        "hits": {
+                            "Max Slow Wire DPS": 3
+                        }
                     }
                 ]
             }
