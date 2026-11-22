@@ -779,10 +779,19 @@ class SpellDamageCalcNode extends ComputeNode {
                 };
             }
             else if ('poison_pct' in part) {
+                const ignored_mults = (('ignored_mults' in part) ? part.ignored_mults : []);
+                let poison_mult = 1;
+                if (stats.has('poisonMult')) {
+                    for (const [k, v] of stats.get('poisonMult').entries()) {
+                        if (!ignored_mults.includes(k)) {
+                            poison_mult *= (1 + v / 100);
+                        }
+                    }
+                }
                 // Flat % of the poison stat as damage
                 spell_result = {
                     type: "poison",
-                    poison_amount: Math.max(0, stats.get('poison') || 0) * part.poison_pct / 100
+                    poison_amount: Math.max(0, stats.get('poison') || 0) * part.poison_pct / 100 * poison_mult
                 };
             } else {    // if 'hits' in part
                 spell_result = {

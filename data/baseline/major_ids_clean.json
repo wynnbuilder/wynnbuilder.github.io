@@ -765,38 +765,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "class": "Archer",
-                "base_abil": "Rusted Maw",
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.GruesomeKnots:4.Bleed Damage (per 0.5s)",
-                                "value": 100
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "class": "Archer",
-                "base_abil": "Barbed Barrage",
-                "effects": [
-                    {
-                        "type": "raw_stat",
-                        "bonuses": [
-                            {
-                                "type": "stat",
-                                "name": "damMult.GruesomeKnots:1.Bleed Damage (per 0.5s)",
-                                "value": 100
-                            }
-                        ]
-                    }
-                ]
             }
         ]
     },

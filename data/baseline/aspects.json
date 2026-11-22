@@ -1061,17 +1061,94 @@
         {
           "threshold": 1,
           "description": "Tangled Traps deal damage +25% faster.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Basaltic Trap",
+              "dependencies": [
+                "Tangled Traps"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 7,
+                  "behavior": "modify",
+                  "target_part": "Wire DPS",
+                  "hits": {
+                    "Line Damage Tick": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "threshold": 5,
           "description": "Tangled Traps deal damage +25% faster. </br> Rusted Maw gains +1 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Basaltic Trap",
+              "dependencies": [
+                "Tangled Traps"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 7,
+                  "behavior": "modify",
+                  "target_part": "Wire DPS",
+                  "hits": {
+                    "Line Damage Tick": 1
+                  }
+                }
+              ]
+            },
+            {
+              "base_abil": "Rusted Maw",
+              "dependencies": [
+                "Rusted Maw"
+              ],
+              "properties": {
+                "aoe": 1
+              },
+              "effects": []
+            }
+          ]
         },
         {
           "threshold": 15,
           "description": "Tangled Traps deal damage +25% faster and gain +0.5 Area of Effect. </br> Rusted Maw gains +1 Area of Effect.",
-          "abilities": []
+          "abilities": [
+            {
+              "base_abil": "Basaltic Trap",
+              "dependencies": [
+                "Tangled Traps"
+              ],
+              "properties": {
+                "aoe": 0.5
+              },
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 7,
+                  "behavior": "modify",
+                  "target_part": "Wire DPS",
+                  "hits": {
+                    "Line Damage Tick": 1
+                  }
+                }
+              ]
+            },
+            {
+              "base_abil": "Rusted Maw",
+              "dependencies": [
+                "Rusted Maw"
+              ],
+              "properties": {
+                "aoe": 1
+              },
+              "effects": []
+            }
+          ]
         }
       ]
     },
@@ -1082,7 +1159,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase your Hound's attack speed by +25%. </br> Increase your Snake's weakness effect by +2%. </br> Increase your Crow's distraction duration by +0.1s.",
+          "description": "Increase your Hound's attack speed by +25%. </br> Increase your Snake's weakness and poison vulnerability effects by +3%. </br> Increase your Crow's distraction duration by +0.1s.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
@@ -1098,46 +1175,11 @@
                     {
                       "type": "stat",
                       "name": "defMult.AbilityWeaken",
-                      "value": 2
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "base_abil": "Arrow Shield",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "behavior": "modify",
-                  "target_part": "DPS",
-                  "base_spell": 8,
-                  "hits": {
-                    "Single Hit": 1.0
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "threshold": 15,
-          "description": "Increase your Hound's attack speed by +25% and movement speed by +25%. </br> Increase your Snake's weakness effect by +3%. </br> Increase your Crow's distraction duration by +0.15s.",
-          "abilities": [
-            {
-              "base_abil": "Arrow Storm",
-              "dependencies": [
-                "Ivyroot Mamba"
-              ],
-              "effects": [
-                {
-                  "type": "raw_stat",
-                  "behavior": "modify",
-                  "toggle": "Ivyroot Mamba",
-                  "bonuses": [
+                      "value": 3
+                    },
                     {
                       "type": "stat",
-                      "name": "defMult.AbilityWeaken",
+                      "name": "poisonMult.IvyrootMamba",
                       "value": 3
                     }
                   ]
@@ -1161,8 +1203,8 @@
           ]
         },
         {
-          "threshold": 75,
-          "description": "Increase your Hound's attack speed by +25% and movement speed by +50%. </br> Increase your Snake's weakness effect by +4%. </br> Increase your Crow's distraction duration by +0.2s.",
+          "threshold": 15,
+          "description": "Increase your Hound's attack speed by +25% and movement speed by +25%. </br> Increase your Snake's weakness and poison vulnerability effects by +4%. </br> Increase your Crow's distraction duration by +0.15s.",
           "abilities": [
             {
               "base_abil": "Arrow Storm",
@@ -1178,6 +1220,56 @@
                     {
                       "type": "stat",
                       "name": "defMult.AbilityWeaken",
+                      "value": 4
+                    },
+                    {
+                      "type": "stat",
+                      "name": "poisonMult.IvyrootMamba",
+                      "value": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "base_abil": "Arrow Shield",
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "behavior": "modify",
+                  "target_part": "DPS",
+                  "base_spell": 8,
+                  "hits": {
+                    "Single Hit": 1.0
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 75,
+          "description": "Increase your Hound's attack speed by +25% and movement speed by +50%. </br> Increase your Snake's weakness and poison vulnerability effects by +4%. </br> Increase your Crow's distraction duration by +0.2s.",
+          "abilities": [
+            {
+              "base_abil": "Arrow Storm",
+              "dependencies": [
+                "Ivyroot Mamba"
+              ],
+              "effects": [
+                {
+                  "type": "raw_stat",
+                  "behavior": "modify",
+                  "toggle": "Ivyroot Mamba",
+                  "bonuses": [
+                    {
+                      "type": "stat",
+                      "name": "defMult.AbilityWeaken",
+                      "value": 4
+                    },
+                    {
+                      "type": "stat",
+                      "name": "poisonMult.IvyrootMamba",
                       "value": 4
                     }
                   ]
@@ -3179,7 +3271,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Ice Snake and Frozen Tornado gains +0.65 Area of Effect.",
+          "description": "Ice Snake and Frozen Tornado gains +0.65 Area of Effect. </br> Frost Dragon's Breath gains +1 Range.",
           "abilities": [
             {
               "base_abil": "Ice Snake",
@@ -3192,7 +3284,7 @@
         },
         {
           "threshold": 5,
-          "description": "Ice Snake and Frozen Tornado gains +1.15 Area of Effect.",
+          "description": "Ice Snake and Frozen Tornado gains +1.15 Area of Effect. </br> Frost Dragon's Breath gains +1.75 Range.",
           "abilities": [
             {
               "base_abil": "Ice Snake",
@@ -3205,7 +3297,7 @@
         },
         {
           "threshold": 30,
-          "description": "Ice Snake and Frozen Tornado gains +1.65 Area of Effect.",
+          "description": "Ice Snake and Frozen Tornado gains +1.65 Area of Effect. </br> Frost Dragon's Breath gains +2.25 Range.",
           "abilities": [
             {
               "base_abil": "Ice Snake",
@@ -3218,7 +3310,7 @@
         },
         {
           "threshold": 150,
-          "description": "Ice Snake and Frozen Tornado gains +2 Area of Effect.",
+          "description": "Ice Snake and Frozen Tornado gains +2 Area of Effect. </br> Frost Dragon's Breath gains +2.5 Range.",
           "abilities": [
             {
               "base_abil": "Ice Snake",
@@ -6230,7 +6322,7 @@
         },
         {
           "threshold": 5,
-          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A.",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
@@ -6250,7 +6342,7 @@
         },
         {
           "threshold": 15,
-          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A. </br> Aura and Zealot's Bolts consume +5 Static.",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +1. </br> Aura and Zealot's Bolts consume +5 Static.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",

@@ -116,6 +116,7 @@ class Build {
         }
         statMap.set('damMult', new Map());
         statMap.set('defMult', new Map());
+        statMap.set('poisonMult', new Map());
         statMap.get('damMult').set('tome', statMap.get('damMobs'));
         statMap.get('defMult').set('tome', statMap.get('defMobs'));
         for (const [setName, count] of this.activeSetCounts) {

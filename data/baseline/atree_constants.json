@@ -413,13 +413,6 @@
                             ]
                         },
                         {
-                            "name": "Shield DPS",
-                            "type": "total",
-                            "hits": {
-                                "Shield Damage": 4
-                            }
-                        },
-                        {
                             "name": "Total Damage",
                             "type": "total",
                             "hits": {
@@ -814,6 +807,7 @@
                     "type": "add_spell_prop",
                     "base_spell": 1,
                     "target_part": "Bryophyte Roots",
+                    "hide": true,
                     "cost": 0,
                     "multipliers": [
                         35,
@@ -1515,6 +1509,7 @@
         {
             "display_name": "Phantom Force",
             "desc": "Phantom Ray gains extra forward range and becomes wider. </br> </br>Range: +8 Blocks </br>Area of Effect: +0.2 Blocks",
+            "archetype": "Sharpshooter",
             "base_abil": "Arrow Storm",
             "parents": [
                 "More Focus I",
@@ -1642,7 +1637,7 @@
                     "type": "replace_spell",
                     "name": "Murder Flock",
                     "base_spell": 10,
-                    "display": "Total DPS",
+                    "display": "Flock DPS",
                     "parts": [
                         {
                             "name": "Single Hit",
@@ -1656,15 +1651,9 @@
                             ]
                         },
                         {
-                            "name": "Crow DPS",
+                            "name": "Flock DPS",
                             "hits": {
                                 "Single Hit": 1.1111111111
-                            }
-                        },
-                        {
-                            "name": "Total DPS",
-                            "hits": {
-                                "Crow DPS": 2
                             }
                         }
                     ]
@@ -1806,6 +1795,11 @@
                             "type": "stat",
                             "name": "defMult.AbilityWeaken",
                             "value": 15
+                        },
+                        {
+                            "type": "stat",
+                            "name": "poisonMult.IvyrootMamba",
+                            "value": 10
                         }
                     ]
                 }
@@ -2916,6 +2910,9 @@
                         0,
                         0,
                         15
+                    ],
+                    "ignored_mults": [
+                        "Focus"
                     ]
                 },
                 {
@@ -2961,14 +2958,6 @@
                             "value": 1
                         }
                     ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 10,
-                    "target_part": "Total DPS",
-                    "hits": {
-                        "Crow DPS": 2
-                    }
                 },
                 {
                     "type": "add_spell_prop",
@@ -3188,6 +3177,7 @@
         {
             "display_name": "Grape Bomb",
             "desc": "Arrow Bomb will throw 2 additional smaller bombs when exploding. </br> </br><span class='mc-white'>Total Damage</span>: 65% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 50%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "archetype": "Trapper",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Windstorm",
@@ -3937,16 +3927,29 @@
                     ]
                 },
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 4,
-                    "target_part": "Bleed Damage (per 0.5s)",
-                    "multipliers": [
-                        60,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
+                    "type": "replace_spell",
+                    "name": "Bleeding",
+                    "base_spell": 13,
+                    "display": "Bleed DPS",
+                    "parts": [
+                        {
+                            "name": "Bleeding Tick",
+                            "multipliers": [
+                                60,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Bleed DPS",
+                            "type": "total",
+                            "hits": {
+                                "Bleeding Tick": 2.0
+                            }
+                        }
                     ]
                 }
             ]
@@ -4028,16 +4031,29 @@
             "properties": {},
             "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "target_part": "Bleed Damage (per 0.5s)",
-                    "multipliers": [
-                        60,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
+                    "type": "replace_spell",
+                    "name": "Bleeding",
+                    "base_spell": 13,
+                    "display": "Bleed DPS",
+                    "parts": [
+                        {
+                            "name": "Bleeding Tick",
+                            "multipliers": [
+                                60,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        {
+                            "name": "Bleed DPS",
+                            "type": "total",
+                            "hits": {
+                                "Bleeding Tick": 2.0
+                            }
+                        }
                     ]
                 },
                 {
