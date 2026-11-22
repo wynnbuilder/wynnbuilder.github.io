@@ -8225,7 +8225,7 @@
             },
             "properties": {
                 "aoe": 5,
-                "rate": 1.66666666667
+                "rate": 0.5
             },
             "effects": [
                 {
@@ -8335,7 +8335,7 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 11,
+                "row": 10,
                 "col": 4,
                 "icon": "node_0"
             },
@@ -9625,7 +9625,7 @@
             },
             "properties": {
                 "aoe": 5,
-                "rate": -0.833333333333
+                "rate": -0.1875
             },
             "effects": [
                 {
@@ -16740,6 +16740,11 @@
                             "type": "stat",
                             "name": "damMult.Bullwhip:11.Single Hit",
                             "value": "Bullwhip.damage_boost"
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.Bullwhip:2.Nature's Jolt",
+                            "value": "Bullwhip.damage_boost"
                         }
                     ]
                 }
@@ -18132,7 +18137,8 @@
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
-                "Ritual Circle"
+                "Ritual Circle",
+                "Soaring Wingbeats"
             ],
             "dependencies": [
                 "Malediction"
@@ -19172,7 +19178,8 @@
             "archetype": "Summoner",
             "archetype_req": 18,
             "parents": [
-                "Crystal Knives"
+                "Crystal Knives",
+                "Cheaper Uproot II"
             ],
             "dependencies": [],
             "blockers": [],
