@@ -1084,6 +1084,10 @@ const atree_collect_spells = new (class extends ComputeNode {
                             if (behavior === 'overwrite') { part.poison_pct = effect.poison_pct; }
                             else { part.poison_pct = (part.poison_pct ?? 0) + effect.poison_pct; }
                         }
+                        else if ('hpr_pct' in effect) {
+                            if (behavior === 'overwrite') { part.hpr_pct = effect.hpr_pct; }
+                            else { part.hpr_pct = (part.hpr_pct ?? 0) + effect.hpr_pct; }
+                        }
                         else if ('hits' in effect) {
                             for (const [idx, _v] of Object.entries(effect.hits)) { // looks kinda similar to multipliers case... hmm... can we unify all of these three? (make healpower a list)
                                 let v = atree_translate(atree_merged, _v);

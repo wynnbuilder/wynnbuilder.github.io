@@ -59,7 +59,7 @@ bit_len_map["POWDERABLE_EQUIPMENT_NUM"] = 5
 
 # Powders
 bit_len_map["POWDER_ELEMENTS"] = ["E", "T", "W", "F", "A"]
-bit_len_map["POWDER_TIERS"] = 6
+bit_len_map["POWDER_TIERS"] = 7
 bit_len_map["POWDER_WRAPPER_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) - 1 - 1)
 bit_len_map["POWDER_ID_BITLEN"] = get_bitlen(len(bit_len_map["POWDER_ELEMENTS"]) * bit_len_map["POWDER_TIERS"])
 bit_len_map["POWDER_REPEAT_OP"] = generate_id_map(["REPEAT", "NO_REPEAT"])
@@ -89,7 +89,7 @@ bit_len_map["SP_ELEMENT_FLAG"] = generate_id_map(["ELEMENT_UNASSIGNED", "ELEMENT
 
 # Level
 bit_len_map["LEVEL_FLAG"] = generate_id_map(["MAX", "OTHER"])
-bit_len_map["MAX_LEVEL"] = 106
+bit_len_map["MAX_LEVEL"] = 121
 bit_len_map["LEVEL_BITLEN"] = get_bitlen(bit_len_map["MAX_LEVEL"])
 
 # CRAFTED ITEMS
@@ -226,8 +226,8 @@ if __name__ == "__main__":
         print(json.dumps(bit_len_map, indent=2) + "\n")
         print("NOTE: Make sure to review errors and warnings.\n")
 
-    if len(all_data_versions) != curr_version_idx:
-        prev_version = all_data_versions[curr_version_idx + 1] if curr_version_idx == len(all_data_versions) else version
+    if curr_version_idx + 1 < len(all_data_versions):
+        prev_version = all_data_versions[curr_version_idx + 1]
         with open(f"../data/{prev_version}/encoding_consts.json", "r") as infile:
             prev_version_data = json.load(infile)
             if diff_versions(prev_version_data, bit_len_map):

@@ -292,7 +292,8 @@
                 "range": 16,
                 "arrows_per_stream": 8,
                 "attack_frequency": 10,
-                "arrow_streams": 1
+                "arrow_streams": 1,
+                "houndCount": 1
             },
             "effects": [
                 {
@@ -345,7 +346,7 @@
         },
         {
             "display_name": "Cheaper Escape I",
-            "desc": "Reduce the Mana cost of Escape by 5.",
+            "desc": "Reduce the Mana cost of Escape. </br> Mana Cost: -5",
             "base_abil": "Escape",
             "parents": [
                 "Arrow Storm",
@@ -673,7 +674,7 @@
         },
         {
             "display_name": "Nimble String",
-            "desc": "Arrow Storm fires twice as fast and shoots +6 arrows per stream. </br> Phantom Ray hits twice as fast but lasts half as long. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per arrow/ray)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
+            "desc": "Arrow Storm fires twice as fast and shoots +6 arrows per stream. </br> Phantom Ray hits twice as fast but lasts half as long. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow/ray)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Thunder Mastery",
@@ -783,7 +784,7 @@
         },
         {
             "display_name": "Bryophyte Roots",
-            "desc": "Hitting an enemy with Arrow Storm will create an area of effect that slows them down and deals damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%) </br>Effect: 40% Slowness to Enemies </br>Duration: 5s </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+            "desc": "Hitting an enemy with Arrow Storm will create an area of effect that slows them down and deals damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 35%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%) </br>Effect: 30% Slowness to Enemies </br>Duration: 4s </br>Area of Effect: 2 Blocks (Circle-Shaped)",
             "base_abil": "Arrow Storm",
             "archetype": "Trapper",
             "archetype_req": 1,
@@ -804,8 +805,8 @@
             },
             "properties": {
                 "aoe": 2,
-                "duration": 5,
-                "slowness": 0.4,
+                "duration": 4,
+                "slowness": 0.3,
                 "rootsPerSecond": 2.5
             },
             "effects": [
@@ -815,8 +816,8 @@
                     "target_part": "Bryophyte Roots",
                     "cost": 0,
                     "multipliers": [
-                        30,
-                        10,
+                        35,
+                        15,
                         0,
                         0,
                         0,
@@ -835,7 +836,7 @@
         },
         {
             "display_name": "Fire Creep",
-            "desc": "Arrow Bomb will leave a trail of fire for 6s. Enemies that walk into it take damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Duration: 6s </br>Cooldown: 3s",
+            "desc": "Arrow Bomb will leave a trail of fire for 6s. Enemies that walk into it or get hit by the bomb are ignited, taking damage every 0.6s. </br> </br><span class='mc-white'>Total Damage</span>: 45% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%) </br>Area of Effect: 0.8 Blocks (Circle-Shaped) </br>Duration: 3s </br>Cooldown: 3s",
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Phantom Ray",
@@ -851,7 +852,7 @@
                 "icon": "node_2"
             },
             "properties": {
-                "duration": 6
+                "duration": 3
             },
             "effects": [
                 {
@@ -863,7 +864,7 @@
                         0,
                         0,
                         0,
-                        20,
+                        15,
                         0
                     ]
                 },
@@ -872,7 +873,7 @@
                     "base_spell": 3,
                     "target_part": "Total Burn Damage",
                     "hits": {
-                        "Fire Creep": 15
+                        "Fire Creep": 5
                     }
                 }
             ]
@@ -996,7 +997,7 @@
         },
         {
             "display_name": "Frenzy",
-            "desc": "Hitting an enemy will give you a brief buff of +1% Walk Speed, up to +15% per second. (Max +60%) -5% of the bonus decays every second.",
+            "desc": "Hitting an enemy will give you a brief buff of +1% Walk Speed, up to 12 times per second. (Max +50%) </br> Lose 4% of the bonus each second after not hitting enemies for 2 seconds.",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "parents": [
@@ -1017,7 +1018,7 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Hits dealt",
-                    "slider_max": 60,
+                    "slider_max": 50,
                     "output": {
                         "type": "stat",
                         "name": "spd"
@@ -1025,13 +1026,13 @@
                     "scaling": [
                         1
                     ],
-                    "max": 60
+                    "max": 50
                 }
             ]
         },
         {
             "display_name": "Guardian Angels",
-            "desc": "Your Arrow Shield turns into 2 sentient bows that fire at nearby enemies every 0.45s, each with 10 ammunition. (Arrow Shield will no longer push enemies away or provide resistance) </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Range: 6 Blocks </br>Duration: 60s",
+            "desc": "Your Arrow Shield turns into 2 sentient bows that fire at nearby enemies every 0.45s, each with 10 ammunition. (Arrow Shield will no longer push enemies away or provide resistance) </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Duration: 60s </br>Range: 6 Blocks",
             "archetype": "Boltslinger",
             "archetype_req": 3,
             "base_abil": "Arrow Shield",
@@ -1121,7 +1122,7 @@
         },
         {
             "display_name": "Basaltic Trap",
-            "desc": "When you hit the ground with Arrow Bomb, leave a Trap that damages enemies. (Max 2 Traps) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 210%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: 2 Blocks (Circle-Shaped) </br>Area of Effect: 7 Blocks (Circle-Shaped)",
+            "desc": "When you hit the ground with Arrow Bomb, leave an Explosive Trap that damages enemies. (Max 2 Traps) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 210%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Duration: 30s </br>Range: 2 Blocks (Circle-Shaped) </br>Area of Effect: 7 Blocks (Circle-Shaped)",
             "archetype": "Trapper",
             "archetype_req": 2,
             "parents": [
@@ -1268,7 +1269,7 @@
         },
         {
             "display_name": "Cheaper Arrow Storm I",
-            "desc": "Reduce the Mana cost of Arrow Storm by 5.",
+            "desc": "Reduce the Mana cost of Arrow Storm. </br> Mana Cost: -5",
             "base_abil": "Arrow Storm",
             "parents": [
                 "Implosion",
@@ -1296,7 +1297,7 @@
         },
         {
             "display_name": "Implosion",
-            "desc": "Arrow Bomb pulls enemies together. If a Trap is nearby, enemies are pulled towards it instead. </br> Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
+            "desc": "Arrow Bomb pulls enemies together. If an Explosive Trap is nearby, enemies are pulled towards it instead. </br> Increases Arrow Bomb's damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Bomb",
@@ -1318,9 +1319,9 @@
                 {
                     "type": "add_spell_prop",
                     "base_spell": 3,
-                    "target_part": "Heart Shatter",
+                    "target_part": "Arrow Bomb",
                     "multipliers": [
-                        40,
+                        20,
                         0,
                         0,
                         0,
@@ -1366,7 +1367,7 @@
         },
         {
             "display_name": "Patient Hunter",
-            "desc": "Your Traps will deal +20% more damage for every second it's active. (Max +100%) </br> Increase your maximum Traps by +1.",
+            "desc": "Your Explosive Traps will deal +20% more damage for every second they are active. (Max +100%) </br> Increase your maximum Explosive Traps by +2.",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Basaltic Trap",
@@ -1429,7 +1430,7 @@
         {
             "display_name": "Grappling Hook",
             "base_abil": "Escape",
-            "desc": "When casting Escape, throw a hook that pulls you when hitting a block. (Escape will not throw you backward anymore) </br> Holding Shift while casting will pull any enemy you hit. </br> </br>Range: 30 Blocks",
+            "desc": "When casting Escape, throw a hook that pulls you when hitting a block. (Escape will not throw you backward anymore) </br> Sneaking while casting will pull any enemy you hit. </br> </br>Range: 35 Blocks",
             "archetype": "Trapper",
             "archetype_req": 0,
             "parents": [
@@ -1536,7 +1537,7 @@
         },
         {
             "display_name": "Stormy Feet",
-            "desc": "Windy Feet will last longer and grant a stronger speed buff. </br> </br>Effect: +60% Speed Bonus to Allies </br>Duration: +60s",
+            "desc": "Windy Feet will last longer and grant a stronger speed buff to you. </br> </br>Effect: +60% Speed Bonus to Self </br>Duration: +60s",
             "archetype": "Boltslinger",
             "base_abil": "Escape",
             "parents": [
@@ -1614,12 +1615,13 @@
         },
         {
             "display_name": "Murder Flock",
-            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
+            "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%) </br>Effect: Blindness to Enemies </br>Duration: 12s </br>Vision: 18 Blocks (Circle-Shaped)",
             "archetype": "Trapper",
             "archetype_req": 0,
             "base_abil": "Arrow Shield",
             "parents": [
-                "Patient Hunter"
+                "Grape Bomb",
+                "Mana Trap"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -1627,9 +1629,9 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 23,
-                "col": 3,
-                "icon": "node_4"
+                "row": 27,
+                "col": 5,
+                "icon": "node_3"
             },
             "properties": {
                 "vision": 18,
@@ -1693,19 +1695,18 @@
         },
         {
             "display_name": "Bouncing Bomb",
-            "desc": "Arrow Bomb will travel 20% slower and bounce once when hitting a block or enemy.",
+            "desc": "Arrow Bomb will travel 20% slower and bounce once when hitting a block or enemy. </br> Implosion's pull is 30% weaker.",
             "base_abil": "Arrow Bomb",
             "parents": [
-                "Vigilant Sentinels",
-                "Parting Gift",
-                "Cheaper Arrow Storm II"
+                "Recycling",
+                "Rusted Maw"
             ],
             "archetype": "Boltslinger",
             "dependencies": [],
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 34,
+                "row": 32,
                 "col": 2,
                 "icon": "node_2"
             },
@@ -1743,7 +1744,7 @@
         },
         {
             "display_name": "Ivyroot Mamba",
-            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 10s",
+            "desc": "Bryophyte Roots summons a Snake after disappearing that will spit venom at aggressive enemies every 1s. (Max 1) </br> Enemies splashed by the venom will be weakened and take increased poison damage for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Effects: -15% Damage Bonus to Enemies              -10% Poison Resistance to Enemies </br>Duration: 10s </br>Vision: 12 Blocks (Circle-Shaped) </br>Splash Radius: 4 Blocks (Circle-Shaped)",
             "archetype": "Trapper",
             "archetype_req": 3,
             "base_abil": "Arrow Storm",
@@ -1864,8 +1865,8 @@
             "archetype": "Trapper",
             "base_abil": "Arrow Bomb",
             "parents": [
-                "Ivyroot Mamba",
-                "Grape Bomb"
+                "Cheaper Arrow Shield I",
+                "Honed Shield"
             ],
             "dependencies": [
                 "Arrow Bomb"
@@ -1873,7 +1874,7 @@
             "blockers": [],
             "cost": 1,
             "display": {
-                "row": 26,
+                "row": 29,
                 "col": 5,
                 "icon": "node_1"
             },
@@ -1897,8 +1898,8 @@
         },
         {
             "display_name": "Scorched Earth",
-            "desc": "Fire Creep becomes much stronger. </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Duration: +2s",
-            "archetype": "Sharpshooter",
+            "desc": "Fire Creep deals more damage and covers a larger area. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%) </br>Area of Effect: +0.4 Blocks (Circle-Shaped)",
+            "archetype": "Trapper",
             "archetype_req": 0,
             "parents": [
                 "Twain's Arc",
@@ -1923,54 +1924,27 @@
                     "base_spell": 3,
                     "target_part": "Fire Creep",
                     "multipliers": [
+                        20,
+                        0,
+                        0,
+                        0,
                         10,
-                        0,
-                        0,
-                        0,
-                        5,
                         0
                     ]
-                }
-            ]
-        },
-        {
-            "display_name": "More Traps",
-            "desc": "Increase your maximum Traps by +3.",
-            "archetype": "Trapper",
-            "archetype_req": 0,
-            "base_abil": "Basaltic Trap",
-            "parents": [
-                "Grape Bomb",
-                "Windstorm"
-            ],
-            "dependencies": [
-                "Basaltic Trap"
-            ],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 27,
-                "col": 3,
-                "icon": "node_0"
-            },
-            "properties": {},
-            "effects": [
+                },
                 {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Basaltic Trap",
-                            "name": "traps",
-                            "value": 3
-                        }
-                    ]
+                    "type": "add_spell_prop",
+                    "base_spell": 3,
+                    "target_part": "Total Burn Damage",
+                    "hits": {
+                        "Fire Creep": 5
+                    }
                 }
             ]
         },
         {
             "display_name": "Divine Intervention",
-            "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 1.5x faster while Arrow Storm is active </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +25% damage. </br> </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Duration: 3s",
+            "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 1.5x faster while Arrow Storm is active </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +25% damage. </br> </br>Duration: 3s </br>Area of Effect: 3 Blocks (Circle-Shaped)",
             "archetype": "Boltslinger",
             "archetype_req": 6,
             "base_abil": "Arrow Shield",
@@ -2026,7 +2000,7 @@
         },
         {
             "display_name": "Fierce Stomp",
-            "desc": "When using Escape, hold shift to quickly drop down to deal damage and blind enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%) </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 0.5s </br>Cooldown: 1s",
+            "desc": "When using Escape, hold shift to quickly drop down to deal damage and blind enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%) </br>Effect: Blindness to Enemies </br>Duration: 0.5s </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Cooldown: 1s",
             "archetype": "Boltslinger",
             "archetype_req": 0,
             "base_abil": "Escape",
@@ -2074,12 +2048,13 @@
         },
         {
             "display_name": "Cheaper Arrow Shield I",
-            "desc": "Reduce the Mana cost of Arrow Shield by 5.",
+            "desc": "Reduce the Mana cost of Arrow Shield. </br> Mana Cost: -5",
             "base_abil": "Arrow Shield",
             "parents": [
+                "Mana Trap",
+                "Murder Flock",
                 "Divine Intervention",
-                "Honed Shield",
-                "More Traps"
+                "Honed Shield"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -2246,16 +2221,16 @@
             "archetype_req": 2,
             "base_abil": 999,
             "parents": [
-                "Cheaper Arrow Shield I",
-                "Honed Shield"
+                "Cheaper Arrow Storm II",
+                "Cheaper Arrow Shield II"
             ],
             "dependencies": [],
             "blockers": [],
-            "cost": 2,
+            "cost": 1,
             "display": {
-                "row": 29,
-                "col": 5,
-                "icon": "node_4"
+                "row": 35,
+                "col": 6,
+                "icon": "node_1"
             },
             "properties": {
                 "range": 55
@@ -2264,15 +2239,13 @@
         },
         {
             "display_name": "Mana Trap",
-            "desc": "Your Traps will give you 0.5 Mana per second and 10 Mana when they explode. </br> Increase your maximum Traps by +1. </br> Mana Cost: +10 </br>Range: 16 Blocks",
+            "desc": "Your Traps will give you 2 Mana when they activate, scaling with Patient Hunter. </br> Increase your maximum Explosive Traps by +3.",
             "archetype": "Trapper",
-            "archetype_req": 6,
+            "archetype_req": 5,
             "base_abil": "Basaltic Trap",
             "parents": [
-                "Recycling",
-                "Cheaper Arrow Shield I",
-                "Cheaper Escape II",
-                "Divine Intervention"
+                "Grape Bomb",
+                "Murder Flock"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -2280,21 +2253,14 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 31,
+                "row": 27,
                 "col": 3,
                 "icon": "node_3"
             },
             "properties": {
-                "range": 16,
-                "manaRegen": 0.5,
-                "explosionMana": 10
+                "mana_per_trap": 2
             },
             "effects": [
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 3,
-                    "cost": 10
-                },
                 {
                     "type": "raw_stat",
                     "bonuses": [
@@ -2302,53 +2268,8 @@
                             "type": "prop",
                             "abil": "Basaltic Trap",
                             "name": "traps",
-                            "value": 1
+                            "value": 3
                         }
-                    ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 3,
-                    "mana_gained": "Basaltic Trap.explosionMana"
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": false,
-                    "inputs": [
-                        {
-                            "type": "prop",
-                            "abil": "Arrow Bomb",
-                            "name": "bounce_mult"
-                        }
-                    ],
-                    "output": {
-                        "type": "prop",
-                        "abil": "Basaltic Trap",
-                        "name": "explosionMana",
-                        "mult": true
-                    },
-                    "scaling": [
-                        1.0
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": false,
-                    "inputs": [
-                        {
-                            "type": "prop",
-                            "abil": "Arrow Bomb",
-                            "name": "grapes"
-                        }
-                    ],
-                    "output": {
-                        "type": "prop",
-                        "abil": "Basaltic Trap",
-                        "name": "explosionMana",
-                        "mult": true
-                    },
-                    "scaling": [
-                        1.0
                     ]
                 }
             ]
@@ -2358,8 +2279,8 @@
             "desc": "Reduce the Mana cost of Arrow Storm. </br> Mana Cost: -5",
             "base_abil": "Arrow Storm",
             "parents": [
-                "Bouncing Bomb",
                 "Call of the Hound",
+                "Vigilant Sentinels",
                 "Cheaper Arrow Shield II"
             ],
             "dependencies": [
@@ -2386,9 +2307,8 @@
             "desc": "If you do not damage an enemy for 4s or more, your next successful hit will deal +60% damage and add +1 Focus.",
             "archetype": "Sharpshooter",
             "parents": [
-                "Cheaper Escape II",
                 "Honed Shield",
-                "Shocking Bomb"
+                "Cheaper Escape II"
             ],
             "dependencies": [
                 "Focus"
@@ -2422,8 +2342,9 @@
             "archetype_req": 0,
             "base_abil": "Arrow Shield",
             "parents": [
-                "Recycling",
-                "Mana Trap"
+                "Bouncing Bomb",
+                "Parting Gift",
+                "Cheaper Arrow Storm II"
             ],
             "dependencies": [
                 "Guardian Angels"
@@ -2431,7 +2352,7 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 32,
+                "row": 34,
                 "col": 2,
                 "icon": "node_4"
             },
@@ -2474,7 +2395,7 @@
             "base_abil": "Escape",
             "parents": [
                 "Courier's Edict",
-                "Bouncing Bomb"
+                "Vigilant Sentinels"
             ],
             "dependencies": [],
             "blockers": [],
@@ -2512,12 +2433,12 @@
         },
         {
             "display_name": "Call of the Hound",
-            "desc": "Arrow Shield summons a Hound that will attack aggressive enemies every 0.25s and drag them towards your traps. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%) </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 60s",
+            "desc": "Arrow Storm summons a Hound that will attack aggressive enemies every 0.25s and drag them towards your traps. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%) </br>Duration: 15s </br>Vision: 18 Blocks (Circle-Shaped)",
             "archetype": "Trapper",
             "archetype_req": 4,
             "base_abil": "Arrow Shield",
             "parents": [
-                "Mana Trap",
+                "Rusted Maw",
                 "Cheaper Escape II",
                 "Decimator"
             ],
@@ -2564,7 +2485,7 @@
                         {
                             "name": "Total DPS",
                             "hits": {
-                                "DPS": "Arrow Shield.houndCount"
+                                "DPS": "Arrow Storm.houndCount"
                             }
                         }
                     ]
@@ -2630,7 +2551,7 @@
         },
         {
             "display_name": "Phasing Beam",
-            "desc": "Twain's Arc charges 25% faster, and can now pierce through up to 5 enemies, dealing reduced damage after piercing. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: -150% (after piercing)   </br>&emsp;(<span class='nDam'>Damage</span>: -150%)",
+            "desc": "Twain's Arc charges 25% faster, and can now pierce through up to 5 enemies, dealing 20% less damage to secondary targets.",
             "archetype": "Sharpshooter",
             "base_abil": "Twain's Arc",
             "parents": [
@@ -2654,7 +2575,7 @@
                     "base_spell": 5,
                     "target_part": "Pierce Damage",
                     "multipliers": [
-                        150,
+                        240,
                         0,
                         0,
                         0,
@@ -2671,7 +2592,7 @@
             "archetype_req": 3,
             "parents": [
                 "Divine Intervention",
-                "Mana Trap"
+                "Rusted Maw"
             ],
             "dependencies": [],
             "blockers": [],
@@ -2849,7 +2770,7 @@
             "desc": "Reduce the Mana cost of Escape. </br> Mana Cost: -5",
             "base_abil": "Escape",
             "parents": [
-                "Mana Trap",
+                "Rusted Maw",
                 "Initiator"
             ],
             "dependencies": [
@@ -2876,9 +2797,8 @@
             "desc": "Reduce the Mana cost of Arrow Shield. </br> Mana Cost: -5",
             "base_abil": "Arrow Shield",
             "parents": [
-                "Phasing Beam",
-                "Cheaper Arrow Storm II",
-                "Decimator"
+                "Decimator",
+                "Cheaper Arrow Storm II"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -2898,31 +2818,6 @@
                     "cost": -5
                 }
             ]
-        },
-        {
-            "display_name": "Hookshot",
-            "desc": "Increases your Grappling Hook's range, speed and strength. </br> </br>Range: +8 Blocks",
-            "archetype": "Trapper",
-            "archetype_req": 2,
-            "base_abil": "Escape",
-            "parents": [
-                "Cheaper Arrow Storm II",
-                "Cheaper Arrow Shield II"
-            ],
-            "dependencies": [
-                "Grappling Hook"
-            ],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 35,
-                "col": 6,
-                "icon": "node_0"
-            },
-            "properties": {
-                "range": 8
-            },
-            "effects": []
         },
         {
             "display_name": "Coursing Restraints",
@@ -2988,14 +2883,13 @@
         },
         {
             "display_name": "Tangled Traps",
-            "desc": "Your Traps will be connected by a rope that deals damage to enemies every 0.2s. </br> Grape Bomb gains +1 grape. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)",
+            "desc": "Your Explosive Traps will be connected by barbed wires that gradually slow and damage enemies every 0.25s. </br> The wires scale with Patient Hunter and will linger for 2s after the trap is detonated. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Effect: 4% Slowness to Enemies (Max 40%) </br>Area of Effect: 1 Block",
             "archetype": "Trapper",
-            "archetype_req": 0,
+            "archetype_req": 12,
             "base_abil": "Basaltic Trap",
             "parents": [
-                "Beast Lore",
-                "Cheaper Arrow Shield II",
-                "Cheaper Arrow Storm II"
+                "Minefield",
+                "Beast Lore"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -3003,12 +2897,12 @@
             "blockers": [],
             "cost": 2,
             "display": {
-                "row": 37,
-                "col": 5,
-                "icon": "node_2"
+                "row": 38,
+                "col": 4,
+                "icon": "node_3"
             },
             "properties": {
-                "attackSpeed": 0.2
+                "attackSpeed": 0.25
             },
             "effects": [
                 {
@@ -3016,12 +2910,12 @@
                     "base_spell": 7,
                     "target_part": "Line Damage Tick",
                     "multipliers": [
-                        20,
+                        45,
                         0,
                         0,
                         0,
                         0,
-                        20
+                        15
                     ]
                 },
                 {
@@ -3029,37 +2923,20 @@
                     "base_spell": 7,
                     "target_part": "DPS",
                     "hits": {
-                        "Line Damage Tick": 5
+                        "Line Damage Tick": 4
                     }
-                },
-                {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Arrow Bomb",
-                            "name": "grapes",
-                            "value": 1
-                        }
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Grape Bomb hits",
-                    "behavior": "modify",
-                    "slider_max": 1
                 }
             ]
         },
         {
             "display_name": "Beast Lore",
-            "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase the damage of your Hound. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
+            "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase your maximum Hounds by +1.",
             "base_abil": "Arrow Shield",
             "archetype": "Trapper",
             "archetype_req": 7,
             "parents": [
-                "Tangled Traps"
+                "Minefield",
+                "Cheaper Arrow Storm II"
             ],
             "dependencies": [
                 "Call of the Hound"
@@ -3070,22 +2947,20 @@
             "cost": 1,
             "display": {
                 "row": 37,
-                "col": 3,
-                "icon": "node_0"
+                "col": 5,
+                "icon": "node_1"
             },
             "properties": {},
             "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 8,
-                    "target_part": "Single Hit",
-                    "multipliers": [
-                        40,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Arrow Storm",
+                            "name": "houndCount",
+                            "value": 1
+                        }
                     ]
                 },
                 {
@@ -3190,74 +3065,6 @@
             ]
         },
         {
-            "display_name": "Chilling Snare",
-            "desc": "Attach an icy snare to Basaltic Trap, drastically inhibiting and damaging nearby enemies every 0.2s after it detonates. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%) </br>Effects: 10% Slowness to Enemies, per hit (Max 90%) </br>Duration: 5s </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Cooldown: 12s",
-            "archetype": "Trapper",
-            "archetype_req": 11,
-            "base_abil": "Basaltic Trap",
-            "parents": [
-                "Tangled Traps",
-                "Beast Lore"
-            ],
-            "dependencies": [
-                "Basaltic Trap"
-            ],
-            "blockers": [],
-            "cost": 2,
-            "display": {
-                "row": 38,
-                "col": 4,
-                "icon": "node_3"
-            },
-            "properties": {
-                "snare_duration": 5
-            },
-            "effects": [
-                {
-                    "type": "replace_spell",
-                    "name": "Chilling Snare",
-                    "base_spell": 14,
-                    "display": "Total Damage",
-                    "parts": [
-                        {
-                            "name": "Chilling Snare Damage",
-                            "multipliers": [
-                                40,
-                                0,
-                                0,
-                                10,
-                                0,
-                                0
-                            ]
-                        },
-                        {
-                            "name": "Chilling Snare DPS",
-                            "hits": {
-                                "Chilling Snare Damage": 5
-                            }
-                        },
-                        {
-                            "name": "Total Damage",
-                            "hits": {
-                                "Chilling Snare DPS": "Basaltic Trap.snare_duration"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Basaltic Trap",
-                            "name": "traps",
-                            "value": 1
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "display_name": "Pyrotechnics",
             "desc": "Arrow Bomb and Grape Bomb become much hotter, increasing the damage of their explosion. </br> </br><span class='mc-white'>Total Damage</span>: 65% (of your DPS, for Arrow Bomb)   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br> </br><span class='mc-white'>Total Damage</span>: 25% (of your DPS, for Grape Bomb)   </br>&emsp;(<span class='nDam'>Damage</span>: 15%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%)",
             "archetype": "Boltslinger",
@@ -3308,91 +3115,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "display_name": "Swift Primer",
-            "desc": "Patient Hunter will increase its damage by +10% per second, and increase its Max Damage by +100%. </br> Increase your maximum Traps by +1.",
-            "archetype": "Trapper",
-            "archetype_req": 0,
-            "base_abil": "Basaltic Trap",
-            "parents": [
-                "Chilling Snare"
-            ],
-            "dependencies": [
-                "Patient Hunter"
-            ],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 39,
-                "col": 3,
-                "icon": "node_0"
-            },
-            "properties": {
-                "max": 100
-            },
-            "effects": [
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Trap Wait Time",
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Basaltic:7.Trap Damage"
-                    },
-                    "slider_max": 2,
-                    "scaling": [
-                        10
-                    ],
-                    "max": 60
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Trap Wait Time",
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Basaltic:7.Line Damage Tick"
-                    },
-                    "scaling": [
-                        10
-                    ],
-                    "max": 60
-                },
-                {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Basaltic Trap",
-                            "name": "traps",
-                            "value": 1
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "display_name": "Snow Storm",
-            "desc": "Enemies near you will be slowed down. </br> </br>Effect: 30% Slowness to Enemies </br>Range: 3 Blocks",
-            "parents": [
-                "Cheaper Arrow Bomb II",
-                "Swift Primer",
-                "Transience"
-            ],
-            "dependencies": [],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 40,
-                "col": 4,
-                "icon": "node_1"
-            },
-            "properties": {
-                "range": 3,
-                "slowness": 0.3
-            },
-            "effects": []
         },
         {
             "display_name": "More Focus II",
@@ -3529,9 +3251,8 @@
             "desc": "Reduce the Mana cost of Arrow Bomb. </br> Mana Cost: -5",
             "base_abil": "Arrow Bomb",
             "parents": [
-                "Chilling Snare",
-                "Crepuscular Ray",
-                "Snow Storm"
+                "Tangled Traps",
+                "Barbed Barrage"
             ],
             "dependencies": [
                 "Arrow Bomb"
@@ -3559,7 +3280,7 @@
             "archetype_req": 13,
             "parents": [
                 "Arrow Hurricane",
-                "Snow Storm"
+                "Barbed Barrage"
             ],
             "dependencies": [
                 "Arrow Storm"
@@ -3597,9 +3318,19 @@
             "properties": {},
             "effects": [
                 {
-                    "type": "add_spell_prop",
-                    "base_spell": 1,
-                    "display": "Arrow Storm DPS"
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Feedback Loop",
+                    "output": {
+                        "type": "prop",
+                        "abil": "Arrow Storm",
+                        "name": "arrows_per_stream"
+                    },
+                    "scaling": [
+                        1
+                    ],
+                    "slider_step": 1,
+                    "slider_max": 40
                 }
             ]
         },
@@ -3633,7 +3364,7 @@
                         "name": "damMult.WildLight:0.Single Shot"
                     },
                     "scaling": [
-                        0.8
+                        1.0
                     ]
                 },
                 {
@@ -3646,7 +3377,7 @@
                         "name": "damMult.WildLight:0.Flint Arrows"
                     },
                     "scaling": [
-                        0.8
+                        1.0
                     ]
                 }
             ]
@@ -3697,67 +3428,12 @@
             ]
         },
         {
-            "display_name": "Fimbulwinter",
-            "desc": "Enemies take additional damage after standing inside of Chilling Snare for 2s. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: +1200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +800%)   </br>&emsp;(<span class='wDam'>Water</span>: +400%)",
-            "base_abil": "Basaltic Trap",
-            "archetype": "Trapper",
-            "parents": [
-                "Snow Storm",
-                "Cheaper Arrow Bomb II"
-            ],
-            "dependencies": [
-                "Chilling Snare"
-            ],
-            "blockers": [],
-            "cost": 2,
-            "display": {
-                "row": 43,
-                "col": 5,
-                "icon": "node_2"
-            },
-            "properties": {},
-            "effects": [
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 14,
-                    "target_part": "Fimbulwinter",
-                    "multipliers": [
-                        800,
-                        0,
-                        0,
-                        400,
-                        0,
-                        0
-                    ]
-                },
-                {
-                    "type": "add_spell_prop",
-                    "base_spell": 14,
-                    "target_part": "Total Damage",
-                    "hits": {
-                        "Fimbulwinter": 1
-                    }
-                },
-                {
-                    "type": "raw_stat",
-                    "bonuses": [
-                        {
-                            "type": "prop",
-                            "abil": "Basaltic Trap",
-                            "name": "traps",
-                            "value": 1
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "display_name": "Overgrowth",
             "desc": "Bryophyte Roots spreads further and deals damage 33% faster. </br> </br>Area of Effect: +1 Block (Circle-Shaped)",
             "archetype": "Trapper",
             "base_abil": "Arrow Storm",
             "parents": [
-                "Fimbulwinter",
+                "Garrote",
                 "Shrieking Arrows",
                 "Quick Draw"
             ],
@@ -3773,31 +3449,6 @@
             },
             "properties": {
                 "rootsPerSecond": 0.833333333333
-            },
-            "effects": []
-        },
-        {
-            "display_name": "Canine Colleague",
-            "desc": "Increase your maximum Hounds by +1.",
-            "archetype": "Trapper",
-            "archetype_req": 12,
-            "base_abil": "Arrow Shield",
-            "parents": [
-                "Overgrowth",
-                "Shrieking Arrows"
-            ],
-            "dependencies": [
-                "Call of the Hound"
-            ],
-            "blockers": [],
-            "cost": 1,
-            "display": {
-                "row": 46,
-                "col": 3,
-                "icon": "node_0"
-            },
-            "properties": {
-                "houndCount": 1
             },
             "effects": []
         },
@@ -3867,7 +3518,7 @@
         },
         {
             "display_name": "Repositioning",
-            "desc": "Gain a brief speed boost after shooting Twain's Arc. </br> </br>Effect: +80% Walk Speed to Self </br>Duration: 1s",
+            "desc": "Gain a brief speed boost after shooting Twain's Arc. </br> </br>Effect: +60% Walk Speed to Self </br>Duration: 1s",
             "archetype": "Sharpshooter",
             "parents": [
                 "Mael's Quiver",
@@ -3943,7 +3594,7 @@
             "parents": [
                 "Overgrowth",
                 "Transience",
-                "Snow Storm"
+                "Barbed Barrage"
             ],
             "dependencies": [
                 "Arrow Storm"
@@ -4037,7 +3688,7 @@
         },
         {
             "display_name": "Angelic Ascension",
-            "desc": "Click Combo: F </br> Call upon the power of the Light to empower your attacks for 15s and make Leap have no cooldown. </br> Main Attack will instead shoot Light Arrows that deal 50% more damage over 2s. </br> Arrow Storm last 2.5 times longer and releases in a tighter spread </br> Arrow Bomb will smite enemies it hits directly with a bolt from the heavens. </br> Guardian Angels will have unlimited ammunition and trigger Buckshot after firing 14 volleys. </br> </br><span class='mc-white'>Total Damage</span>: 550% (of your DPS, Arrow Bomb's smite)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 150%)   </br>&emsp;(<span class='aDam'>Air</span>: 100%) </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Call upon the power of the Light to empower your attacks for 15s and make Leap have no cooldown. </br> Main Attack will instead shoot Light Arrows that deal 50% more damage over 2s. </br> Arrow Storm last 2.5 times longer and releases in a tighter spread </br> Arrow Bomb will smite enemies it hits directly with a bolt from the heavens. </br> Guardian Angels will have 5 additional range and trigger Buckshot after firing 14 volleys. </br> </br><span class='mc-white'>Total Damage</span>: 550% (of your DPS, Arrow Bomb's smite)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 150%)   </br>&emsp;(<span class='aDam'>Air</span>: 100%) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Boltslinger",
             "archetype_req": 16,
             "parents": [
@@ -4088,9 +3739,9 @@
         },
         {
             "display_name": "Extinction Event",
-            "desc": "Click Combo: F </br> Calls forth a flock of tactical crows which will perform a carpet bombing of a large area in front of you. </br> Bombs will leave behind Basaltic Traps and occasionally Chilling Snares. </br> </br><span class='mc-white'>Total Damage</span>: 3000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 2400%)   </br>&emsp;(<span class='fDam'>Fire</span>: 600%) </br>Range: 25 Blocks </br>Area of Effect: 15 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Calls forth a flock of tactical crows which will perform a carpet bombing of a large area in front of you. </br> Bombs will leave behind Basaltic Traps and occasionally Rusted Maws. </br> </br><span class='mc-white'>Total Damage</span>: 3000% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 2400%)   </br>&emsp;(<span class='fDam'>Fire</span>: 600%) </br>Range: 25 Blocks </br>Area of Effect: 15 Blocks (Circle-Shaped) </br> Activate abilities to charge your Ultimate Meter to 100%",
             "archetype": "Trapper",
-            "archetype_req": 16,
+            "archetype_req": 17,
             "parents": [
                 "Overgrowth"
             ],
@@ -4221,6 +3872,244 @@
                     ]
                 }
             ]
+        },
+        {
+            "display_name": "Controlled Blast",
+            "desc": "Your Explosive Traps will not be triggered by enemies until Patient Hunter is fully charged and will not get replaced by new ones. </br> Sneaking will allow you to select an area. </br> Cast Arrow Bomb while sneaking to detonate all Explosive Traps inside of it. </br> </br>Trap Duration: -10s </br>Range: 40 Blocks </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "archetype": "Trapper",
+            "parents": [
+                "Patient Hunter"
+            ],
+            "dependencies": [
+                "Patient Hunter"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 23,
+                "col": 3,
+                "icon": "node_1"
+            },
+            "properties": {
+                "trap_duration": -10,
+                "range": 40,
+                "aoe": 6
+            },
+            "effects": []
+        },
+        {
+            "display_name": "Rusted Maw",
+            "desc": "Casting Arrow Shield launches a Bear Trap that clamps down on enemies when activated, locking them in place, damaging them and inflicting +4s of Bleeding (Max 6s). (Max 1 Trap) </br> Bleeding enemies take damage every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 335%)   </br>&emsp;(<span class='eDam'>Earth</span>: 65%) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: 100% Slowness to Enemies </br>Duration: 1.5s </br>Area of Effect: 2.5 Blocks (Circle-Shaped) </br>Cooldown: 3s",
+            "archetype": "Trapper",
+            "archetype_req": 5,
+            "parents": [
+                "Cheaper Arrow Shield I",
+                "Recycling",
+                "Cheaper Escape II"
+            ],
+            "dependencies": [
+                "Arrow Shield"
+            ],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 31,
+                "col": 3,
+                "icon": "node_3"
+            },
+            "properties": {
+                "traps": 1,
+                "duration": 1.5,
+                "aoe": 2.5,
+                "cooldown": 3
+            },
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Bear Trap Damage",
+                    "multipliers": [
+                        335,
+                        65,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 4,
+                    "target_part": "Bleed Damage (per 0.5s)",
+                    "multipliers": [
+                        60,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Minefield",
+            "desc": "Increases your maximum Explosive Traps by +3 and maximum Bear Traps by +1. </br> Grape Bomb gains +1 grape.",
+            "archetype": "Trapper",
+            "archetype_req": 2,
+            "parents": [
+                "Vigilant Sentinels",
+                "Cheaper Arrow Storm II",
+                "Beast Lore"
+            ],
+            "dependencies": [
+                "Grape Bomb"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 37,
+                "col": 3,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Basaltic Trap",
+                            "name": "traps",
+                            "value": 3
+                        },
+                        {
+                            "type": "prop",
+                            "abil": "Rusted Maw",
+                            "name": "traps",
+                            "value": 1
+                        },
+                        {
+                            "type": "prop",
+                            "abil": "Arrow Bomb",
+                            "name": "grapes",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "stat_scaling",
+                    "slider": true,
+                    "slider_name": "Grape Bomb hits",
+                    "behavior": "modify",
+                    "slider_max": 1
+                }
+            ]
+        },
+        {
+            "display_name": "Barbed Barrage",
+            "desc": "Your Arrow Storm now inflicts enemies with Bleeding for +0.5s per hit. (Max 6s). </br> Bleeding enemies take damage every 0.5s, take increased damage from your Beasts, and are prioritized by them. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: +20% Damage Bonus to Pets",
+            "archetype": "Trapper",
+            "archetype_req": 3,
+            "parents": [
+                "Tangled Traps",
+                "Transience",
+                "Cheaper Arrow Bomb II"
+            ],
+            "dependencies": [
+                "Arrow Storm"
+            ],
+            "blockers": [],
+            "cost": 1,
+            "display": {
+                "row": 40,
+                "col": 3,
+                "icon": "node_1"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 1,
+                    "target_part": "Bleed Damage (per 0.5s)",
+                    "multipliers": [
+                        60,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "type": "raw_stat",
+                    "toggle": "Enemy Bleeding",
+                    "bonuses": [
+                        {
+                            "type": "stat",
+                            "name": "damMult.BarbedBarrage:8.Single Hit",
+                            "value": 20
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.BarbedBarrage:9.Single Hit",
+                            "value": 20
+                        },
+                        {
+                            "type": "stat",
+                            "name": "damMult.BarbedBarrage:10.Single Hit",
+                            "value": 20
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "display_name": "Garrote",
+            "desc": "Enemies take 100% increased damage from Tangled Traps when it reaches maximum slow. </br> Increase your maximum Explosive Traps by +2.",
+            "archetype": "Trapper",
+            "parents": [
+                "Barbed Barrage",
+                "Cheaper Arrow Bomb II"
+            ],
+            "dependencies": [
+                "Tangled Traps"
+            ],
+            "blockers": [],
+            "cost": 2,
+            "display": {
+                "row": 43,
+                "col": 5,
+                "icon": "node_3"
+            },
+            "properties": {},
+            "effects": [
+                {
+                    "type": "raw_stat",
+                    "bonuses": [
+                        {
+                            "type": "prop",
+                            "abil": "Basaltic Trap",
+                            "name": "traps",
+                            "value": 2
+                        }
+                    ]
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 7,
+                    "target_part": "Max Slow Wire DPS",
+                    "display": "Max Slow Wire DPS",
+                    "multipliers": [
+                        90,
+                        0,
+                        0,
+                        0,
+                        0,
+                        30
+                    ]
+                }
+            ]
         }
     ],
     "Warrior": [
@@ -4296,7 +4185,7 @@
         },
         {
             "display_name": "Spear Proficiency 1",
-            "desc": "Improve your Main Attack's damage and range w/ spear",
+            "desc": "Improve your Main Attack's damage and range when using a spear. </br> Main Attack Damage: +5% </br>Main Attack Range: +1 Block",
             "base_abil": 999,
             "parents": [
                 "Cheaper Bash I",
@@ -4422,7 +4311,7 @@
         },
         {
             "display_name": "Vehement",
-            "desc": "For every 1% or 1 Raw Main Attack Damage you have from items, gain +2% Walk Speed. (Max 20%) </br> Damage Bonus: +5 (Raw)",
+            "desc": "For every 1% or 1 Raw Main Attack Damage you have from items, gain +2% Walk Speed. (Max 15%) </br> Damage Bonus: +5 (Raw)",
             "archetype": "Fallen",
             "archetype_req": 0,
             "parents": [
@@ -4461,7 +4350,7 @@
                         2,
                         2
                     ],
-                    "max": 20
+                    "max": 15
                 },
                 {
                     "type": "raw_stat",
@@ -5237,7 +5126,7 @@
         },
         {
             "display_name": "Air Shout",
-            "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 75%   </br>&emsp;(<span class='nDam'>Damage</span>: 55%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
+            "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 75% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 55%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
             "archetype": "Battle Monk",
             "base_abil": "War Scream",
             "parents": [
@@ -5781,7 +5670,7 @@
         },
         {
             "display_name": "Sparkling Hope",
-            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 20 activations within 4s.) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 20 activations within 4s) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "parents": [
                 "Crushing Blow",
                 "Rejuvenating Skin"
@@ -5885,7 +5774,7 @@
         },
         {
             "display_name": "Cheaper War Scream I",
-            "desc": "Reduce the Mana cost of War Scream by 5.",
+            "desc": "Reduce the Mana cost of War Scream. </br> Mana Cost: -5",
             "base_abil": "War Scream",
             "parents": [
                 "Whirlwind Strike",
@@ -6547,7 +6436,7 @@
         },
         {
             "display_name": "Spirit of the Rabbit",
-            "desc": "Reduce the Mana cost of Charge and increase your Walk Speed by +20%. </br> Mana Cost: -5",
+            "desc": "Reduce the Mana cost of Charge and increase your Walk Speed by +15%. </br> Mana Cost: -5",
             "base_abil": "Charge",
             "parents": [
                 "Flying Kick",
@@ -6577,7 +6466,7 @@
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 20
+                            "value": 15
                         }
                     ]
                 }
@@ -6632,7 +6521,7 @@
         },
         {
             "display_name": "Axe Kick",
-            "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +5 Mana Cost: +20% </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
+            "desc": "Increases the damage and Mana cost of Uppercut. </br> Mana Cost: +5 Mana Cost: +20% </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
             "base_abil": "Uppercut",
             "parents": [
                 "Riposte",
@@ -8347,7 +8236,7 @@
         },
         {
             "display_name": "Heal",
-            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Heals you and nearby allies in  a large area around you. (When healing others, you can't heal more than 50% of their max health) </br> Mana Cost: 35 </br>Total Heal: 15% (of your max health) </br>Range: 5 Blocks </br>Duration: 0.6s",
+            "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Heals you and nearby allies in  a large area around you. (When healing others, you can't heal more than 50% of their max health) </br> Mana Cost: 40 </br>Total Heal: 20% (of your max health) </br>Range: 5 Blocks </br>Duration: 2s",
             "parents": [
                 "Wand Proficiency II",
                 "Cheaper Teleport"
@@ -8368,13 +8257,13 @@
                 {
                     "type": "replace_spell",
                     "name": "Heal",
-                    "cost": 35,
+                    "cost": 40,
                     "base_spell": 1,
                     "display": "Heal",
                     "parts": [
                         {
                             "name": "Heal",
-                            "power": 0.15
+                            "power": 0.2
                         },
                         {
                             "name": "Healing per Second",
@@ -8674,7 +8563,8 @@
             "archetype": "Riftwalker",
             "base_abil": "Teleport",
             "parents": [
-                "Air Mastery"
+                "Air Mastery",
+                "Earth Mastery"
             ],
             "dependencies": [
                 "Teleport"
@@ -8683,7 +8573,7 @@
             "cost": 2,
             "display": {
                 "row": 13,
-                "col": 4,
+                "col": 3,
                 "icon": "node_2"
             },
             "properties": {
@@ -9361,7 +9251,7 @@
         },
         {
             "display_name": "Fortitude",
-            "desc": "Healing 120% of your max health within 10s will apply a damage bonus to every player you've healed. </br> </br>Effect: 30% Damage Bonus to Allies </br>Duration: 7s </br>Cooldown: 15s",
+            "desc": "Healing 120% of your max health within 15s will apply a damage bonus to every player you've healed. </br> </br>Effect: 30% Damage Bonus to Allies </br>Duration: 7s </br>Cooldown: 15s",
             "base_abil": "Heal",
             "archetype": "Light Bender",
             "archetype_req": 2,
@@ -9615,7 +9505,7 @@
         },
         {
             "display_name": "Runic Searing",
-            "desc": "Burning Sigil will deal damage 25% faster and deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
+            "desc": "Burning Sigil will deal damage 33% faster and deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)   </br>&emsp;(<span class='fDam'>Fire</span>: +20%)",
             "parents": [
                 "Pyrokinesis",
                 "Snake Nest"
@@ -9739,7 +9629,7 @@
         },
         {
             "display_name": "Orphion's Pulse",
-            "desc": "Heal becomes slower and stronger, pulsing 2 more times for greater healing. </br> </br>Pulse Self Heal: 20% (of your max health) </br>Duration: 1.2s </br>Delay: 1.5s (per pulse)",
+            "desc": "Heal becomes slower and stronger, pulsing 2 more times for greater healing. </br> </br>Pulse Self Heal: 25% (of your max health) </br>Duration: 3s </br>Delay: 3.3s (per pulse)",
             "archetype": "Light Bender",
             "archetype_req": 5,
             "base_abil": "Heal",
@@ -9809,7 +9699,7 @@
         },
         {
             "display_name": "Incandescence",
-            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
+            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='aDam'>Air</span>: +10%)",
             "base_abil": "Ophanim",
             "parents": [
                 "Orphion's Pulse",
@@ -9832,7 +9722,7 @@
                     "base_spell": 3,
                     "target_part": "Per Orb",
                     "multipliers": [
-                        20,
+                        25,
                         0,
                         0,
                         0,
@@ -9904,7 +9794,7 @@
         },
         {
             "display_name": "Lightweaver",
-            "desc": "Healing 50% of your max health within 10s will summon a rotating orb that damages enemies upon contact. (Max 3 orbs) </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='fDam'>Fire</span>: 30%) </br>Range: 7 Blocks </br>Area of Effect: 1.5 Block (Circle-Shaped) </br>Duration: 20s",
+            "desc": "Healing 50% of your max health within 15s will summon a rotating orb that damages enemies upon contact. (Max 3 orbs) </br> </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 125%)   </br>&emsp;(<span class='fDam'>Fire</span>: 35%) </br>Range: 7 Blocks </br>Area of Effect: 1.5 Block (Circle-Shaped) </br>Duration: 20s",
             "archetype": "Light Bender",
             "archetype_req": 7,
             "parents": [
@@ -9934,11 +9824,11 @@
                             "name": "Single Orb",
                             "type": "damage",
                             "multipliers": [
-                                120,
+                                125,
                                 0,
                                 0,
                                 0,
-                                30,
+                                35,
                                 0
                             ]
                         }
@@ -9982,7 +9872,7 @@
         },
         {
             "display_name": "Arcane Speed",
-            "desc": "You gain a stacking walk speed buff each time you cast a spell. (Max 40%) </br> </br>Effects: +8% Walk Speed per Cast </br>Duration: 2s",
+            "desc": "You gain a stacking walk speed buff each time you cast a spell. (Max 30%) </br> </br>Effects: +6% Walk Speed per Cast </br>Duration: 2s (Per Stack)",
             "base_abil": "Heal",
             "archetype": "Arcanist",
             "parents": [
@@ -10000,7 +9890,7 @@
                 "icon": "node_2"
             },
             "properties": {
-                "speed_boost": 40
+                "speed_boost": 30
             },
             "effects": [
                 {
@@ -10014,7 +9904,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "archetype_req": 5
         },
         {
             "display_name": "Larger Mana Bank II",
@@ -10255,7 +10146,7 @@
         },
         {
             "display_name": "Time Dilation",
-            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (You lose 20% Walk Speed Bonus every second once you stop running) </br> </br>Effect: +10% Walk Speed to Allies (per 1s, +140% Max) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
+            "desc": "Creates an area of effect when sprinting that increases the walk speed of all allies the longer they run in it. (You lose 16% Walk Speed Bonus every second once you stop running) </br> </br>Effect: +8% Walk Speed to Allies (per 1s, +100% Max) </br>Area of Effect: 4 Blocks (Circle-Shaped)",
             "archetype": "Riftwalker",
             "archetype_req": 5,
             "parents": [
@@ -10277,13 +10168,13 @@
                     "type": "stat_scaling",
                     "slider": true,
                     "slider_name": "Time Dilated",
-                    "slider_max": 14,
+                    "slider_max": 25,
                     "output": {
                         "type": "stat",
                         "name": "spd"
                     },
                     "scaling": [
-                        10
+                        4
                     ]
                 }
             ]
@@ -10459,7 +10350,7 @@
         },
         {
             "display_name": "Accelerated Strike",
-            "desc": "Time Dilation increases your Main Attack damage for every 10% Walk Speed you gain from it. </br> Hitting an enemy with your Main Attack stops Time Dilation from decaying for 2s. </br> Main Attack Damage: +4% (per 10% Walk Speed)",
+            "desc": "Time Dilation increases your Main Attack damage for every 4% Walk Speed you gain from it. </br> Hitting an enemy with your Main Attack stops Time Dilation from decaying for 2s. </br> Main Attack Damage: +2.25% (per 4% Walk Speed)",
             "archetype": "Riftwalker",
             "parents": [
                 "Frigid Grasp",
@@ -10486,7 +10377,7 @@
                         "name": "damMult.AcceleratedStrike;m"
                     },
                     "scaling": [
-                        4
+                        2.25
                     ]
                 }
             ]
@@ -10742,7 +10633,7 @@
         },
         {
             "display_name": "Sunflare",
-            "desc": "Healing 250% of your max health within 10s will make your next Heal activate Sunflare. </br> While Sunflare is active, you will restore health and mana to all nearby allies, and your Ophanim orbs will attack constantly. </br> </br>Range: 12 Blocks </br>Health Regen: 5% per second (of your max health) Mana Regen: 5% per second (of your max mana) </br>Duration: 10s </br>Cooldown: 20s",
+            "desc": "Healing 200% of your max health within 15s will make your next Heal activate Sunflare. </br> While Sunflare is active, you will restore health and mana to all nearby allies, and your Ophanim orbs will attack constantly. </br> </br>Range: 12 Blocks </br>Health Regen: 5% per second (of your max health) Mana Regen: 5% per second (of your max mana) </br>Duration: 10s </br>Cooldown: 20s",
             "archetype": "Light Bender",
             "archetype_req": 12,
             "base_abil": "Heal",
@@ -11207,7 +11098,7 @@
         },
         {
             "display_name": "Gleam",
-            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='wDam'>Water</span>: +10%)",
+            "desc": "Increase the damage of Ophanim. </br> </br><span class='mc-white'>Total Damage</span>: +35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)   </br>&emsp;(<span class='wDam'>Water</span>: +10%)",
             "base_abil": "Ophanim",
             "parents": [
                 "Crystallize"
@@ -11229,7 +11120,7 @@
                     "base_spell": 3,
                     "target_part": "Per Orb",
                     "multipliers": [
-                        20,
+                        25,
                         0,
                         0,
                         10,
@@ -11243,7 +11134,7 @@
             "display_name": "Dawn",
             "archetype": "Light Bender",
             "archetype_req": 17,
-            "desc": "Click Combo: F </br> Channel the power of Orphion and summon the sun itself above you. </br> The Sun will summon solar wisps that move outwards, damaging all enemies and healing all allies in their path. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS, per Wisp)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Total Heal: 10% (of max health) </br>Area of Effect: 2.5 Blocks (Circle-Shaped) </br>Range: 24 Blocks </br>Duration: 10s </br> Activate abilities or heal to charge your Ultimate Meter to 100%",
+            "desc": "Click Combo: F </br> Channel the power of Orphion and summon the sun itself above you. </br> The Sun will summon solar wisps that move outwards, damaging all enemies and healing all allies in their path. (Wisp can only hit the same enemy once every 0.1s.) </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS, per Wisp)   </br>&emsp;(<span class='nDam'>Damage</span>: 275%)   </br>&emsp;(<span class='fDam'>Fire</span>: 125%) </br>Total Heal: 10% (of max health) </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Range: 24 Blocks </br>Duration: 10s </br> Activate abilities or heal to charge your Ultimate Meter to 100%",
             "parents": [
                 "Gleam"
             ],
@@ -11269,11 +11160,11 @@
                             "name": "Wisp Damage",
                             "type": "damage",
                             "multipliers": [
-                                200,
+                                275,
                                 0,
                                 0,
                                 0,
-                                100,
+                                125,
                                 0
                             ]
                         },
@@ -11467,7 +11358,7 @@
         },
         {
             "display_name": "Paradox",
-            "desc": "You send 15% of the damage you take to the future, dealing it over 6s and borrow mana from the past, refunding 25% of your spent mana over 10s. </br> For every +1 Distortion, the mana is refunded -0.02s faster.",
+            "desc": "You send 15% of the damage you take to the future, dealing it over 6s and borrow mana from the past, refunding 20% of your spent mana over 10s. </br> For every +1 Distortion, the mana is refunded -0.02s faster.",
             "archetype": "Riftwalker",
             "parents": [
                 "Portal to the Beyond",
@@ -11494,7 +11385,7 @@
                         {
                             "type": "stat",
                             "name": "manaMult.Paradox",
-                            "value": 34
+                            "value": 25
                         }
                     ]
                 }
@@ -12886,7 +12777,7 @@
         },
         {
             "display_name": "Cheaper Multihit I",
-            "desc": "Reduce the Mana cost of Multihit by 5.",
+            "desc": "Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
             "archetype": "",
             "archetype_req": 0,
             "base_abil": "Multihit",
@@ -13934,7 +13825,7 @@
         },
         {
             "display_name": "Harvester",
-            "desc": "Gain +2 Mana for every leftover Mark when killing an enemy, and for every Mark you consume with your abilities.",
+            "desc": "Gain +3 Mana for every leftover Mark when killing an enemy, and for every Mark you consume with your abilities. (Max 30 Mana per second)",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "parents": [
@@ -14310,7 +14201,7 @@
         },
         {
             "display_name": "Devour",
-            "desc": "Harvester will give +2 Mana.",
+            "desc": "Harvester will give +2 Mana and increase Mana gain maximum per second by +20.",
             "archetype": "",
             "archetype_req": 0,
             "parents": [
@@ -14645,7 +14536,7 @@
         },
         {
             "display_name": "Nightcloak Knife",
-            "desc": "If cast while in Vanish, Spin Attack will consume all Marks from nearby enemies to summon the Nightcloak Knife.\n The Knife will copy your attacks on enemies near you, dealing 13% of your damage for every 2 Mark consumed. (Max 10 Marks)",
+            "desc": "If cast while in Vanish, Spin Attack will consume all Marks from nearby enemies. For every 1 Mark consumed, summon a Knife. (Max 5 Knives) </br> Dealing damage will send your Knives to your target, dealing 13% of the damage you dealt per Knife. </br> </br>Range: 6 Blocks (Circle-Shaped) </br>Duration: 40s",
             "archetype": "Shadestepper",
             "archetype_req": 0,
             "parents": [
@@ -14892,7 +14783,7 @@
         },
         {
             "display_name": "Thrill",
-            "desc": "Gain +50% Walk Speed after hitting a successful Backstab. </br> </br>Duration: 2s",
+            "desc": "Gain +35% Walk Speed after hitting a successful Backstab. </br> </br>Duration: 2s",
             "archetype": "Shadestepper",
             "parents": [
                 "Devour",
@@ -15021,7 +14912,7 @@
         },
         {
             "display_name": "Paranoia",
-            "desc": "Gain +20% Walk Speed after losing a Mirror Clone. </br> </br>Duration: 4s",
+            "desc": "Gain a speed boost after losing a Mirror Clone. </br> </br>Effect: +25% Walk Speed to Self </br>Duration: 4s",
             "archetype": "Trickster",
             "parents": [
                 "Doppelganger"
@@ -15401,7 +15292,7 @@
         },
         {
             "display_name": "Relik Proficiency 1",
-            "desc": "Double your Main Attack's beam speed and increase your damage when using a relik.",
+            "desc": "Double your Main Attack's beam speed and increase your damage when using a relik. </br> Main Attack Damage: +5%   (Damage is split between beams)",
             "base_abil": 999,
             "parents": [
                 "Totem",
@@ -15451,7 +15342,7 @@
         },
         {
             "display_name": "Cheaper Totem I",
-            "desc": "Reduce the Mana cost of Totem by 10.",
+            "desc": "Reduce the mana cost of Totem. </br> Mana Cost: -10",
             "base_abil": "Totem",
             "parents": [
                 "Relik Proficiency 1"
@@ -15659,7 +15550,7 @@
         },
         {
             "display_name": "Cheaper Haul I",
-            "desc": "Reduce the Mana cost of Haul by 5.",
+            "desc": "Reduce the mana cost of Haul. </br> Mana Cost: -5",
             "base_abil": "Haul",
             "parents": [
                 "Uproot",
@@ -15984,7 +15875,7 @@
         },
         {
             "display_name": "Nature's Jolt",
-            "desc": "Hitting the ground after using Haul will deal damage around you. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 110%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+            "desc": "Hitting the ground after using Haul summons a log that barrels forward, damaging and slowing enemies it hits. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 110%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Effect: 30% Slowness to Enemies </br>Duration: 3s </br>Area of Effect: 4 Blocks (Rectangle-Shaped) </br>Range: 15 Blocks",
             "archetype": "Summoner",
             "base_abil": "Haul",
             "parents": [
@@ -16002,7 +15893,9 @@
                 "icon": "node_2"
             },
             "properties": {
-                "aoe": 3.5
+                "aoe": 4,
+                "range": 15,
+                "duration": 3
             },
             "effects": [
                 {
@@ -16275,7 +16168,7 @@
         },
         {
             "display_name": "Mystic Masks",
-            "desc": "When casting Uproot, instead wear one of the Mystic Masks. (Shift + Uproot to equip the previous mask) </br> Lunatic: +15% Damage Bonus to Self    -15% Resistance Bonus to Self </br> Heretic: +50% Walk Speed to Self    -10% Damage Bonus to Self </br> Fanatic: +20% Resistance Bonus to Self    -25% Walk Speed to Self",
+            "desc": "When casting Uproot, instead wear one of the Mystic Masks. (Shift + Uproot to equip the previous mask) </br> Lunatic: +15% Damage Bonus to Self    -15% Resistance Bonus to Self </br> Heretic: +40% Walk Speed to Self    -10% Damage Bonus to Self </br> Fanatic: +20% Resistance Bonus to Self    -25% Walk Speed to Self",
             "base_abil": "Uproot",
             "archetype": "Ritualist",
             "archetype_req": 2,
@@ -16298,7 +16191,7 @@
                 "lunatic_cost": 0,
                 "fanatic_res": 20,
                 "fanatic_cost": 0,
-                "heretic_speed": 50,
+                "heretic_speed": 40,
                 "heretic_cost": 0
             },
             "effects": [
@@ -16424,10 +16317,11 @@
             ]
         },
         {
-            "display_name": "Stagnation",
+            "display_name": "Rollback",
             "desc": "Enemies hit by Nature's Jolt will be slowed down. </br> </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
             "base_abil": "Haul",
             "parents": [
+                "Nature's Jolt",
                 "Puppet Master",
                 "Cheaper Aura I"
             ],
@@ -16442,14 +16336,29 @@
                 "icon": "node_1"
             },
             "properties": {},
-            "effects": []
+            "effects": [
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 2,
+                    "target_part": "Nature's Jolt",
+                    "behavior": "modify",
+                    "multipliers": [
+                        -20,
+                        -10,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
         },
         {
             "display_name": "Cheaper Aura I",
-            "desc": "Reduce the Mana cost of Aura by 5.",
+            "desc": "Reduce the mana cost of Aura. </br> Mana Cost: -5",
             "base_abil": "Aura",
             "parents": [
-                "Stagnation",
+                "Rollback",
                 "Puppet Master",
                 "Cheaper Uproot I"
             ],
@@ -16474,7 +16383,7 @@
         },
         {
             "display_name": "Cheaper Uproot I",
-            "desc": "Reduce the Mana cost of Uproot by 5.",
+            "desc": "Reduce the mana cost of Uproot. </br> Mana Cost: -5",
             "base_abil": "Uproot",
             "parents": [
                 "Cheaper Aura I",
@@ -16549,7 +16458,7 @@
             "base_abil": "Puppet Master",
             "archetype": "Summoner",
             "parents": [
-                "Stagnation",
+                "Rollback",
                 "Cheaper Aura I"
             ],
             "dependencies": [
@@ -17112,7 +17021,7 @@
         },
         {
             "display_name": "Strides of Heresy",
-            "desc": "When entering the Mask of the Heretic, regenerate 30% of your Mana, and gain a large Walk Speed  boost that decays over 6s. </br> </br>Effect: +120% Walk Speed to self </br>Cooldown: 8s",
+            "desc": "Entering the Mask of the Heretic restores 25% of your Mana and grants a walk speed boost that starts decaying over 6s after 6s. </br> </br>Effect: +60% Walk Speed to Self </br>Duration: 12s </br>Cooldown: 8s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "archetype_req": 4,
@@ -17140,7 +17049,7 @@
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 120
+                            "value": 60
                         }
                     ]
                 },
@@ -17442,7 +17351,7 @@
         },
         {
             "display_name": "Charged Ritual",
-            "desc": "Eye of the Storm will inflict +1 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, Aura and Zealot's Bolt will detonate up to 20 Static, damaging them per Static consumed. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Area of Effect: 15 Blocks (Circle-Shaped)",
+            "desc": "Eye of the Storm will inflict +2 Static on hit enemies per Surge you have. (Max 300 Static) </br> When wearing the Mask of the Lunatic, Aura and Zealot's Bolt will detonate up to 20 Static, damaging them per Static consumed. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per Static)    </br>&emsp;(<span class='nDam'>Damage</span>: 25%)    </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Area of Effect: 15 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 9,
             "parents": [
@@ -17897,7 +17806,7 @@
                 "icon": "node_1"
             },
             "properties": {
-                "malediction_damage": 30
+                "malediction_damage": 40
             },
             "effects": [
                 {
@@ -17941,7 +17850,7 @@
             "archetype": "Ritualist",
             "parents": [
                 "Cheaper Uproot II",
-                "Overcharge"
+                "Encore"
             ],
             "dependencies": [
                 "Charged Ritual"
@@ -18073,7 +17982,7 @@
         },
         {
             "display_name": "Invigorating Wave",
-            "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +3 mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
+            "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +2.25 Mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
             "archetype": "Summoner",
             "archetype_req": 7,
             "parents": [
@@ -18094,7 +18003,7 @@
             "properties": {
                 "TODO": "Make this not multiply base damage...",
                 "duration": 2.5,
-                "mana_per_wave": 3
+                "mana_per_wave": 2.25
             },
             "effects": [
                 {
@@ -18188,7 +18097,7 @@
         },
         {
             "display_name": "Storm Dance",
-            "desc": "Enemies hit by Aura will be pulled towards your Totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 20% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br>Duration: 3s",
+            "desc": "Enemies hit by Aura will be pulled towards your Totem. </br> Additionally, while wearing the Mask of The Fanatic, enemies hit by Aura will be affected by Weathering for 3s, reducing their damage by 8% and slowing  them by 20%. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%) </br>Duration: 3s",
             "base_abil": "Aura",
             "archetype": "Ritualist",
             "parents": [
@@ -18521,7 +18430,7 @@
         },
         {
             "display_name": "Soaring Wingbeats",
-            "desc": "Your Hummingbirds' passive effects are improved. </br> </br>Effects: +20% Walk Speed to Self    +2 Jump Height to Self",
+            "desc": "Your Hummingbirds' passive effects are improved. </br> </br>Effects: +15% Walk Speed to Self    +2 Jump Height to Self",
             "archetype": "Summoner",
             "base_abil": "Hummingbird's Song",
             "parents": [
@@ -18553,7 +18462,7 @@
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 20
+                            "value": 15
                         }
                     ]
                 }
@@ -18561,7 +18470,7 @@
         },
         {
             "display_name": "Hummingbird's Song",
-            "desc": "Summon 2 Hummingbird Carvings which fly around you, passively granting a walk speed buff. </br> Casting Haul while holding shift will temporarily send your Hummingbirds to attack nearby enemies, rapidly piercing through them every 0.25s. Casting it again will call them back early. </br> While they are attacking, your Hummingbirds will not apply their passive effects to you. </br> </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Duration: 10s </br>Vision: 16 Blocks (Circle-Shaped) </br>Effect: +40% Walk Speed to Self",
+            "desc": "Summon 2 Hummingbird Carvings which fly around you, passively granting a walk speed buff. </br> Casting Haul while holding shift will temporarily send your Hummingbirds to attack nearby enemies, rapidly piercing through them every 0.25s. Casting it again will call them back early. </br> While they are attacking, your Hummingbirds will not apply their passive effects to you. </br> </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 5%) </br>Duration: 10s </br>Vision: 16 Blocks (Circle-Shaped) </br>Effect: +30% Walk Speed to Self",
             "archetype": "Summoner",
             "archetype_req": 10,
             "parents": [
@@ -18621,7 +18530,7 @@
                         {
                             "type": "stat",
                             "name": "spd",
-                            "value": 40
+                            "value": 30
                         }
                     ]
                 }
@@ -18629,7 +18538,7 @@
         },
         {
             "display_name": "Ritual Circle",
-            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 5 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 160%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
+            "desc": "Casting a spell whose cost is reduced by Artist's Immersion will summon a ritual circle. Additional casts increase the ritual circle's radius and hits by 1. (Max 8 blocks) </br> Switching Masks will detonate the circle, inflicting 4 Static per hit. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 160%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 1 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "archetype_req": 11,
             "parents": [
@@ -18914,7 +18823,7 @@
         },
         {
             "display_name": "Fortified Formation",
-            "desc": "If your health drops to 50% or less, your Effigies protect you until you are above 70% health again. </br> While protected, you take reduced damage and your Effigies strike back at attackers every 2s. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 180%)   </br>&emsp;(<span class='fDam'>Fire</span>: 80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Effect: 50% Resistance Bonus to Self </br>Duration: 10s </br>Cooldown: 15s",
+            "desc": "If your health drops to 50% or less, your Effigies protect you until you are above 70% health again. </br> While protected, you take reduced damage and your Effigies strike back at attackers every 2s. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 180%)   </br>&emsp;(<span class='fDam'>Fire</span>: 80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Effect: 50% Resistance Bonus to Self </br>Duration: 10s </br>Cooldown: 10s",
             "archetype": "Summoner",
             "base_abil": "Crimson Effigy",
             "parents": [
@@ -18969,7 +18878,7 @@
             "effects": []
         },
         {
-            "display_name": "Overcharge",
+            "display_name": "Encore",
             "desc": "Switching Masks while your current Mask is over 200% Mantra will overclock the next Mask to 200% Mantra. </br> </br>Cooldown: 10s",
             "archetype": "Ritualist",
             "parents": [
@@ -18992,7 +18901,7 @@
         },
         {
             "display_name": "Tribal Chants",
-            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +2% Damage Bonus to Allies </br> Heretic: +8% Walk Speed to Allies </br> Fanatic: +3% Resistance to Allies </br> </br>Duration: 5s (per stack) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+            "desc": "Grant nearby allies a stack of buffs per 0.5s while near you, based on your current Mask. (Max 10 Stacks) </br> Lunatic: +2% Damage Bonus to Allies </br> Heretic: +4% Walk Speed to Allies </br> Fanatic: +2% Resistance to Allies </br> </br>Duration: 5s (Per Stack) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
             "parents": [
                 "Charged Ritual"
             ],
@@ -19016,7 +18925,7 @@
             "desc": "When wearing the Mask of the Heretic, Frog Dance will create a small pool when hitting the ground. (Max 3) </br> Gain +1 Mana every 0.2s if you or a Totem are inside at least 1 pool. </br> </br>Duration: 12s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
             "archetype": "Ritualist",
             "parents": [
-                "Overcharge",
+                "Encore",
                 "Doom"
             ],
             "dependencies": [
@@ -19046,7 +18955,7 @@
         },
         {
             "display_name": "Synchrony",
-            "desc": "Based on your Mask, performing certain actions will increase Ritual Circle's radius and hits. </br> Lunatic: Hitting enemies with 3 Main Attack beams will               increase Ritual Circle's radius by +1 blocks.              (Changes with Attack Speed) </br> Heretic: Gaining +10 Mana will increase Ritual Circle's               radius by +1 blocks. </br> Fanatic: Inflicting 1s worth of debuffs will increase               Ritual Circle's radius by +1 blocks. </br> Increase Ritual Circle's maximum radius and hits by +4.",
+            "desc": "Based on your Mask, performing certain actions will increase Ritual Circle's radius and hits. </br> Lunatic: Hitting enemies with 3 Main Attack beams will               increase Ritual Circle's radius by +1 blocks.              (Changes with Attack Speed) </br> Heretic: Gaining +10 Mana will increase Ritual Circle's               radius by +1 blocks. </br> Fanatic: Inflicting 2s worth of debuffs will increase               Ritual Circle's radius by +1 blocks. </br> Increase Ritual Circle's maximum radius and hits by +4.",
             "archetype": "Ritualist",
             "base_abil": "Ritual Circle",
             "parents": [

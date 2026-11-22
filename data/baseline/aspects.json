@@ -212,7 +212,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Frenzy builds walk speed +3% faster and its maximum walk speed is increased by +10%.",
+          "description": "Frenzy builds walk speed +2% faster and its maximum walk speed is increased by +8%.",
           "abilities": [
             {
               "base_abil": "Frenzy",
@@ -221,12 +221,12 @@
                   "type": "stat_scaling",
                   "slider": true,
                   "slider_name": "Hits dealt",
-                  "slider_max": 10,
+                  "slider_max": 8,
                   "output": {
                     "type": "stat",
                     "name": "spd"
                   },
-                  "max": 10,
+                  "max": 8,
                   "scaling": [
                     1
                   ]
@@ -237,6 +237,31 @@
         },
         {
           "threshold": 15,
+          "description": "Frenzy builds walk speed +3% faster and its maximum walk speed is increased by +12%.",
+          "abilities": [
+            {
+              "base_abil": "Frenzy",
+              "effects": [
+                {
+                  "type": "stat_scaling",
+                  "slider": true,
+                  "slider_name": "Hits dealt",
+                  "slider_max": 12,
+                  "output": {
+                    "type": "stat",
+                    "name": "spd"
+                  },
+                  "max": 12,
+                  "scaling": [
+                    1
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threshold": 75,
           "description": "Frenzy builds walk speed +4% faster and its maximum walk speed is increased by +15%.",
           "abilities": [
             {
@@ -259,31 +284,6 @@
               ]
             }
           ]
-        },
-        {
-          "threshold": 75,
-          "description": "Frenzy builds walk speed +5% faster and its maximum walk speed is increased by +20%.",
-          "abilities": [
-            {
-              "base_abil": "Frenzy",
-              "effects": [
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Hits dealt",
-                  "slider_max": 20,
-                  "output": {
-                    "type": "stat",
-                    "name": "spd"
-                  },
-                  "max": 20,
-                  "scaling": [
-                    1
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ],
       "aliases": [
@@ -297,97 +297,40 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Grape Bomb deals additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)",
+          "description": "Grape Bomb has reduced spread and gains +0.5 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Arrow Bomb",
-              "properties": {},
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "target_part": "Grape Bomb",
-                  "multipliers": [
-                    25,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                  ]
-                }
-              ]
+              "properties": {
+                "aoe": 0.5
+              },
+              "effects": []
             }
           ]
         },
         {
           "threshold": 15,
-          "description": "Grape Bomb deals additional damage. </br> Grape Bomb gains +1 grape. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)",
+          "description": "Grape Bomb has reduced spread and gains +1 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Arrow Bomb",
               "properties": {
-                "grapes": 1
+                "aoe": 1.0
               },
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "target_part": "Grape Bomb",
-                  "multipliers": [
-                    25,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Grape Bomb hits",
-                  "behavior": "modify",
-                  "slider_max": 1
-                }
-              ]
+              "effects": []
             }
           ]
         },
         {
           "threshold": 75,
-          "description": "Grape Bomb deals additional damage. </br> Grape Bomb gains +1 grape. </br> </br><span class='mc-white'>Total Damage</span>: +45% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +45%)",
+          "description": "Grape Bomb has reduced spread and gains +1.25 Area of Effect.",
           "abilities": [
             {
               "base_abil": "Arrow Bomb",
               "properties": {
-                "grapes": 1
+                "aoe": 1.25
               },
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 3,
-                  "behavior": "modify",
-                  "target_part": "Grape Bomb",
-                  "multipliers": [
-                    45,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                  ]
-                },
-                {
-                  "type": "stat_scaling",
-                  "slider": true,
-                  "slider_name": "Grape Bomb hits",
-                  "behavior": "modify",
-                  "slider_max": 1
-                }
-              ]
+              "effects": []
             }
           ]
         }
@@ -471,73 +414,117 @@
       ]
     },
     {
-      "displayName": "Aspect of the North Wind",
+      "displayName": "Aspect of the Pincushion",
       "id": 9,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Snow Storm gains +1 Range.",
+          "description": "Buckshot spews +9 arrows.",
           "abilities": [
             {
+              "base_abil": "Arrow Shield",
               "dependencies": [
-                "Snow Storm"
+                "Buckshot"
               ],
               "properties": {
-                "range": 1
+                "arrows": 9
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Total Buckshot Damage",
+                  "hits": {
+                    "Single Buckshot Arrow": 9
+                  },
+                  "behavior": "modify"
+                }
+              ]
             }
           ]
         },
         {
           "threshold": 5,
-          "description": "Snow Storm gains +1.75 Range.",
+          "description": "Buckshot spews +16 arrows.",
           "abilities": [
             {
+              "base_abil": "Arrow Shield",
               "dependencies": [
-                "Snow Storm"
+                "Buckshot"
               ],
               "properties": {
-                "range": 1.75
+                "arrows": 16
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Total Buckshot Damage",
+                  "hits": {
+                    "Single Buckshot Arrow": 16
+                  },
+                  "behavior": "modify"
+                }
+              ]
             }
           ]
         },
         {
           "threshold": 30,
-          "description": "Snow Storm gains +2.5 Range.",
+          "description": "Buckshot spews +21 arrows.",
           "abilities": [
             {
+              "base_abil": "Arrow Shield",
               "dependencies": [
-                "Snow Storm"
+                "Buckshot"
               ],
               "properties": {
-                "range": 2.5
+                "arrows": 21
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Total Buckshot Damage",
+                  "hits": {
+                    "Single Buckshot Arrow": 21
+                  },
+                  "behavior": "modify"
+                }
+              ]
             }
           ]
         },
         {
           "threshold": 150,
-          "description": "Snow Storm gains +3 Range.",
+          "description": "Buckshot spews +25 arrows.",
           "abilities": [
             {
+              "base_abil": "Arrow Shield",
               "dependencies": [
-                "Snow Storm"
+                "Buckshot"
               ],
               "properties": {
-                "range": 3
+                "arrows": 25
               },
-              "effects": []
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 4,
+                  "target_part": "Total Buckshot Damage",
+                  "hits": {
+                    "Single Buckshot Arrow": 25
+                  },
+                  "behavior": "modify"
+                }
+              ]
             }
           ]
         }
       ],
       "aliases": [
-        "snowStormRange"
+        "Aspect of the North Wind"
       ]
     },
     {
@@ -1073,52 +1060,18 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Patient Hunter gains +10% damage per second.",
+          "description": "Tangled Traps deal damage +25% faster.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Patient Hunter gains +10% damage per second. </br> Chilling Snare gains +3s Duration.",
-          "abilities": [
-            {
-              "base_abil": "Basaltic Trap",
-              "properties": {
-                "snare_duration": 3
-              },
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 14,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Fimbulwinter": 1
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tangled Traps deal damage +25% faster. </br> Rusted Maw gains +1 Area of Effect.",
+          "abilities": []
         },
         {
           "threshold": 15,
-          "description": "Patient Hunter gains +15% damage per second. </br> Chilling Snare gains +3s Duration.",
-          "abilities": [
-            {
-              "base_abil": "Basaltic Trap",
-              "properties": {
-                "snare_duration": 3
-              },
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 14,
-                  "target_part": "Total Damage",
-                  "hits": {
-                    "Fimbulwinter": 1
-                  }
-                }
-              ]
-            }
-          ]
+          "description": "Tangled Traps deal damage +25% faster and gain +0.5 Area of Effect. </br> Rusted Maw gains +1 Area of Effect.",
+          "abilities": []
         }
       ]
     },
@@ -1278,33 +1231,33 @@
       ]
     },
     {
-      "displayName": "Aspect of the Barley-Woven",
+      "displayName": "Aspect of the Getaway",
       "id": 26,
       "tier": "Legendary",
       "tiers": [
         {
           "threshold": 1,
-          "description": "Increase Grappling Hook's range by +10%.",
+          "description": "Increase Grappling Hook's range by +10%. </br> Increase Escape's velocity by 12%.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Increase Grappling Hook's range by +18%.",
+          "description": "Increase Grappling Hook's range by +18%. </br> Increase Escape's velocity by 18%.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Increase Grappling Hook's range by +26%.",
+          "description": "Increase Grappling Hook's range by +26%. </br> Increase Escape's velocity by 22%.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Increase Grappling Hook's range by +30%.",
+          "description": "Increase Grappling Hook's range by +30%. </br> Increase Escape's velocity by 25%.",
           "abilities": []
         }
       ],
       "aliases": [
-        "grappleHookRange"
+        "Aspect of the Barley-Woven"
       ]
     },
     {
@@ -2956,17 +2909,17 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Brink of Madness stores +5% of your maximum health.",
-          "abilities": []
-        },
-        {
-          "threshold": 15,
           "description": "Brink of Madness stores +8% of your maximum health.",
           "abilities": []
         },
         {
+          "threshold": 15,
+          "description": "Brink of Madness stores +12% of your maximum health.",
+          "abilities": []
+        },
+        {
           "threshold": 75,
-          "description": "Brink of Madness stores +10% of your maximum health.",
+          "description": "Brink of Madness stores +15% of your maximum health.",
           "abilities": []
         }
       ]
@@ -3465,12 +3418,12 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Arcane Speed gains +2% speed per cast and +10% maximum speed.",
+          "description": "Arcane Speed gains +1% speed per cast and +6% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 10
+                "speed_boost": 6
               },
               "effects": []
             }
@@ -3478,12 +3431,12 @@
         },
         {
           "threshold": 5,
-          "description": "Arcane Speed gains +3% speed per cast and +15% maximum speed.",
+          "description": "Arcane Speed gains +2% speed per cast and +9% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 15
+                "speed_boost": 9
               },
               "effects": []
             }
@@ -3491,12 +3444,12 @@
         },
         {
           "threshold": 30,
-          "description": "Arcane Speed gains +4% speed per cast and +20% maximum speed.",
+          "description": "Arcane Speed gains +3% speed per cast and +12% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 20
+                "speed_boost": 12
               },
               "effects": []
             }
@@ -3504,12 +3457,12 @@
         },
         {
           "threshold": 150,
-          "description": "Arcane Speed gains +5% speed per cast and +25% maximum speed.",
+          "description": "Arcane Speed gains +4% speed per cast and +15% maximum speed.",
           "abilities": [
             {
               "base_abil": "Heal",
               "properties": {
-                "speed_boost": 25
+                "speed_boost": 15
               },
               "effects": []
             }
@@ -3986,7 +3939,7 @@
         },
         {
           "threshold": 15,
-          "description": "Paradox delays +3% more damage and refunds +5% more mana.",
+          "description": "Paradox delays +3% more damage and refunds +3% more mana.",
           "abilities": []
         },
         {
@@ -4125,7 +4078,7 @@
         },
         {
           "threshold": 5,
-          "description": "Your Ultimate charges 20% faster. </br> Dawn spawns +30% more wisps. Gravitational Collapse lasts +2.5s longer. Tangled Origin attacks +15% faster.",
+          "description": "Your Ultimate charges 20% faster. </br> Dawn lasts +3s longer. Gravitational Collapse lasts +2.5s longer. Tangled Origin attacks +15% faster.",
           "abilities": [
             {
               "base_abil": "Tangled Origin",
@@ -4142,22 +4095,12 @@
                   }
                 }
               ]
-            },
-            {
-              "base_abil": "Dawn",
-              "dependencies": [
-                "Dawn"
-              ],
-              "properties": {
-                "wisp_count": 150
-              },
-              "effects": []
             }
           ]
         },
         {
           "threshold": 15,
-          "description": "Your Ultimate charges 25% faster. </br> Dawn spawns +30% more wisps. Gravitational Collapse lasts +2.5s longer. Tangled Origin attacks +15% faster.",
+          "description": "Your Ultimate charges 25% faster. </br> Dawn lasts +3s longer. Gravitational Collapse lasts +2.5s longer. Tangled Origin attacks +15% faster.",
           "abilities": [
             {
               "base_abil": "Tangled Origin",
@@ -4174,16 +4117,6 @@
                   }
                 }
               ]
-            },
-            {
-              "base_abil": "Dawn",
-              "dependencies": [
-                "Dawn"
-              ],
-              "properties": {
-                "wisp_count": 150
-              },
-              "effects": []
             }
           ]
         }
@@ -5633,7 +5566,7 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Mystics Masks' positive buffs are 1.10x as strong.",
+          "description": "Mystic Masks' positive buffs are 10% stronger.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -5681,7 +5614,7 @@
         },
         {
           "threshold": 15,
-          "description": "Mystics Masks' positive buffs are 1.15x as strong.",
+          "description": "Mystic Masks' positive buffs are 15% stronger.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -5729,7 +5662,7 @@
         },
         {
           "threshold": 75,
-          "description": "Mystics Masks' positive buffs are 1.20x as strong.",
+          "description": "Mystic Masks' positive buffs are 20% stronger.",
           "abilities": [
             {
               "base_abil": "Uproot",
@@ -6317,7 +6250,7 @@
         },
         {
           "threshold": 15,
-          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A. </br> Increase the damage of your Ritual Circle. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)",
+          "description": "Eye of the Storm strikes 0.3s faster. </br> Increase your maximum Surge by +N/A. </br> Aura and Zealot's Bolts consume +5 Static.",
           "abilities": [
             {
               "base_abil": "Eye of the Storm",
@@ -6330,24 +6263,6 @@
                   "slider": true,
                   "slider_name": "Surge Stacks",
                   "slider_max": 1
-                }
-              ]
-            },
-            {
-              "base_abil": "Ritual Circle",
-              "effects": [
-                {
-                  "type": "add_spell_prop",
-                  "base_spell": 16,
-                  "target_part": "Damage per Stack",
-                  "multipliers": [
-                    10,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                  ]
                 }
               ]
             }
@@ -6705,22 +6620,22 @@
       "tiers": [
         {
           "threshold": 1,
-          "description": "Your Puppets and Effigies move 10% faster.",
+          "description": "Your Puppets, Effigies and Nature's Jolt move 10% faster.",
           "abilities": []
         },
         {
           "threshold": 5,
-          "description": "Your Puppets and Effigies move 15% faster.",
+          "description": "Your Puppets, Effigies and Nature's Jolt move 15% faster.",
           "abilities": []
         },
         {
           "threshold": 30,
-          "description": "Your Puppets and Effigies move 20% faster.",
+          "description": "Your Puppets, Effigies and Nature's Jolt move 20% faster.",
           "abilities": []
         },
         {
           "threshold": 150,
-          "description": "Your Puppets and Effigies move 25% faster.",
+          "description": "Your Puppets, Effigies and Nature's Jolt move 25% faster.",
           "abilities": []
         }
       ],

@@ -1,4 +1,4 @@
-const ING_DB_VERSION = 55;
+const ING_DB_VERSION = 56;
 
 /*
  * Non exhaustive list of dependencies (add them here if you see them!)

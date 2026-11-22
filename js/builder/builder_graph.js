@@ -769,6 +769,15 @@ class SpellDamageCalcNode extends ComputeNode {
                     heal_amount: _heal_amount
                 }
             } 
+            else if ('hpr_pct' in part) {
+                // Flat % of total Health Regen ID as heal
+                let totalHpr = getDefenseStats(stats)[2];
+                let _heal_amount = Math.max(0, totalHpr) * part.hpr_pct / 100;
+                spell_result = {
+                    type: "heal",
+                    heal_amount: _heal_amount
+                };
+            }
             else if ('poison_pct' in part) {
                 // Flat % of the poison stat as damage
                 spell_result = {

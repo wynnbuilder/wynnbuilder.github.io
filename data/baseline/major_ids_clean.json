@@ -162,7 +162,26 @@
     "ALTRUISM": {
         "displayName": "Altruism",
         "description": "Whenever you gain health from your Life Steal and Health Regen IDs, allies within 16 blocks will receive the same amount.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Altruism",
+                        "base_spell": 33,
+                        "display": "Ally Health Regen",
+                        "parts": [
+                            {
+                                "name": "Ally Health Regen",
+                                "hpr_pct": 100
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "ARCANES": {
         "displayName": "Transcendence",
@@ -443,7 +462,7 @@
     },
     "ALTEREGO": {
         "displayName": "Alter Ego",
-        "description": "Mantra will overload Masks 150% faster, but decays them 100% faster and halves their grace period.",
+        "description": "Mantra will charge Masks 150% faster, but decays them 100% faster and halves their grace period.",
         "abilities": []
     },
     "FOREST_BLESSING": {
@@ -746,6 +765,38 @@
                         ]
                     }
                 ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Rusted Maw",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.GruesomeKnots:4.Bleed Damage (per 0.5s)",
+                                "value": 100
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Barbed Barrage",
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.GruesomeKnots:1.Bleed Damage (per 0.5s)",
+                                "value": 100
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -973,7 +1024,7 @@
     },
     "TWISTING_THREADS": {
         "displayName": "Twisting Threads",
-        "description": "Tangled Traps ropes gain +1 range, can overlap up to 3 times, and deal [neutral]65%. Gain +12 traps with 66% duration that cannot be triggered by enemies.",
+        "description": "Barbed wires from Tangled Traps gain +1 range, can overlap up to 3 times, and linger for +2s. Patient Hunter grants an additional +12 traps.",
         "abilities": [
             {
                 "class": "Archer",
@@ -985,23 +1036,6 @@
                     "traps": 12
                 },
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 7,
-                        "target_part": "Line Damage Tick",
-                        "behavior": "overwrite",
-                        "multipliers": [
-                            50,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ],
-                        "ignored_mults": [
-                            "Focus"
-                        ]
-                    },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 7,
@@ -1055,7 +1089,7 @@
     },
     "FIXATE": {
         "displayName": "Fixate",
-        "description": "Distortion decays at a halved rate and Devitalize effects are doubled. However, Distortion effects on abilities are reduced by 40% and Meteor Shower now requires +50% Distortion per Meteor.",
+        "description": "Distortion decays at a halved rate and Devitalize effects are doubled. However, Distortion effects on abilities are reduced by 30% and Meteor Shower now requires +30% Distortion per Meteor.",
         "abilities": [
             {
                 "class": "Mage",
@@ -1285,7 +1319,7 @@
     },
     "FIND_THYSELF": {
         "displayName": "Find Thyself",
-        "description": "Mystic Masks grant 25 Mana after switching between Masks 3 times.",
+        "description": "Mystic Masks grant 10 Mana after switching between Masks 3 times.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -1298,7 +1332,7 @@
                     {
                         "type": "add_spell_prop",
                         "base_spell": 4,
-                        "mana_gained": 8.34
+                        "mana_gained": 3.33
                     }
                 ]
             }
@@ -1525,7 +1559,7 @@
     },
     "LUSTRATE": {
         "displayName": "Lustrate",
-        "description": "Heal restores health at a slower rate, but Searing Light deals [water]+150%.",
+        "description": "Heal restores health at a slower rate, but Searing Light deals [water]+250%.",
         "abilities": [
             {
                 "class": "Mage",
@@ -1542,7 +1576,7 @@
                             0,
                             0,
                             0,
-                            150,
+                            250,
                             0,
                             0
                         ]
@@ -1831,7 +1865,11 @@
                         "hits": {
                             "Melee": 10
                         },
-                        "hits_cap": { "Average DPS": {"Melee": 20} }
+                        "hits_cap": {
+                            "Average DPS": {
+                                "Melee": 20
+                            }
+                        }
                     }
                 ]
             }
@@ -1973,7 +2011,7 @@
     },
     "HEAT_SHIMMER": {
         "displayName": "Heat Shimmer",
-        "description": "Foul Play will no longer slay a Mirror Clone and will still provide its effects, but Mirror Clone count is reduced to 1. Tricks application is increased by 50%.",
+        "description": "Mirror Clone count is reduced to 1. Foul Play will no longer slay a Mirror Clone while still providing its effects.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -2885,7 +2923,7 @@
     },
     "PIROUETTE": {
         "displayName": "Pirouette",
-        "description": "Dancing Blade enhances Dash. Dashing into an enemy now vaults you upwards and resets dash as if you touched the ground.",
+        "description": "Dashing into an enemy now vaults you upwards and resets dash as if you touched the ground.",
         "abilities": []
     },
     "FLIGHT_BURST": {
@@ -2915,7 +2953,7 @@
     },
     "SPLIT_SECOND": {
         "displayName": "Split Second",
-        "description": "Aura now travels faster with Invigorating Wave unlocked, but no longer gives mana.",
+        "description": "Aura now travels 0.4 seconds faster with Invigorating Wave unlocked, but no longer gives mana.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -3333,7 +3371,7 @@
     },
     "LIT_FUSE": {
         "displayName": "Lit Fuse",
-        "description": "Friendly Fire now works on Totem as well. When Totem's timer runs out, it explodes, firing 5 beams in all directions, each dealing [neutral]500%.",
+        "description": "Friendly Fire now works on Totem as well. When Totem's timer runs out, it explodes, firing 11 beams in all directions, each dealing [neutral]550%.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -3346,7 +3384,7 @@
                         "scaling": "melee",
                         "use_atkspd": false,
                         "multipliers": [
-                            500,
+                            550,
                             0,
                             0,
                             0,
@@ -3761,7 +3799,7 @@
     },
     "THREE_BODIES": {
         "displayName": "Three Bodies",
-        "description": "Pressure grants additional effects: Bash gains +4 radius, Uppercut gains [water]+75%, and War Scream's buff gains +12s duration",
+        "description": "Pressure grants additional effects: Bash gains +4 radius, Uppercut gains [water]+75%, and War Scream's buff gains +12s duration.",
         "abilities": [
             {
                 "class": "Warrior",
@@ -4200,7 +4238,7 @@
     },
     "OUTBREAK": {
         "displayName": "Outbreak",
-        "description": "When you are within Totem range, the Totem becomes Primed, adding 4% of your Poison ID every 0.1s. Hitting a Primed totem with Uproot will create a 6 block wide poison cloud instantly dealing the stored Poison.",
+        "description": "When you are within Totem range, the Totem becomes Primed, adding 8% of your Poison ID every 0.1s. Hitting a Primed totem with Uproot will create a 6 block wide poison cloud instantly dealing the stored Poison.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -4215,7 +4253,7 @@
                             {
                                 "name": "Per Tick",
                                 "type": "damage",
-                                "poison_pct": 4
+                                "poison_pct": 8
                             },
                             {
                                 "name": "DPS per Totem",
@@ -4608,7 +4646,23 @@
     "DRAGONS_BREATH": {
         "displayName": "Dragon's Breath",
         "description": "Buckshot will heal allies for the sum of your total Health Regen IDs (Affected by Healing Efficiency).",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Buckshot",
+                "dependencies": [
+                    "Buckshot"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 4,
+                        "target_part": "Buckshot Ally Heal",
+                        "hpr_pct": 100
+                    }
+                ]
+            }
+        ]
     },
     "CINDERCURSE": {
         "displayName": "Cindercurse",
@@ -4836,7 +4890,7 @@
     },
     "SOLAR_FRACTURE": {
         "displayName": "Solar Fracture",
-        "description": "Hand of the Shaman gains +2 beams.",
+        "description": "Hand of the Shaman gains +1 beam.",
         "abilities": [
             {
                 "class": "Shaman",
@@ -4845,7 +4899,7 @@
                     "Hand of the Shaman"
                 ],
                 "properties": {
-                    "total_beams": 2
+                    "total_beams": 1
                 },
                 "effects": []
             }
@@ -4898,7 +4952,7 @@
     },
     "NEGATION": {
         "displayName": "Negation",
-        "description": "Your next spell after leaving Vanish is free (2 second cooldown).",
+        "description": "Whatever spell you use to exit Vanish will have no mana cost (2 second cooldown).",
         "abilities": [
             {
                 "class": "Assassin",
@@ -4950,7 +5004,7 @@
     },
     "MOLTEN_REBIRTH": {
         "displayName": "Molten Rebirth",
-        "description": "Harvester additionally restores 1.5% health per leftover mark, increasing to 3% with devour.",
+        "description": "Harvester additionally restores 1% health per mark, increasing to 2% with devour.",
         "abilities": [
             {
                 "class": "Assassin",
@@ -4964,7 +5018,7 @@
                         "parts": [
                             {
                                 "name": "Heal per Mark",
-                                "power": 0.015
+                                "power": 0.01
                             },
                             {
                                 "name": "Total Heal",
@@ -4988,7 +5042,7 @@
                         "type": "add_spell_prop",
                         "base_spell": 22,
                         "target_part": "Heal per Mark",
-                        "power": 0.015
+                        "power": 0.01
                     }
                 ]
             }
@@ -5345,7 +5399,11 @@
                             "Melee": 1,
                             "Blood Mangle Hit": "Bloodied Armory.swipe_count"
                         },
-                        "hits_cap": { "Average DPS": {"Blood Mangle Hit": 10} }
+                        "hits_cap": {
+                            "Average DPS": {
+                                "Blood Mangle Hit": 10
+                            }
+                        }
                     },
                     {
                         "type": "stat_scaling",
@@ -5419,6 +5477,255 @@
                         ],
                         "scaling": [
                             0.25
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "SERRATED_ROOT": {
+        "displayName": "Serrated Root",
+        "description": "Quake channels nature energy into a powerful root, travelling rapidly underground and emerging under the nearest mob for [neutral]1600%.",
+        "abilities": [
+            {
+                "class": "Any",
+                "base_abil": 999,
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Serrated Root",
+                        "base_spell": 29,
+                        "scaling": "melee",
+                        "use_atkspd": false,
+                        "display": "Quake Root Damage",
+                        "parts": [
+                            {
+                                "name": "Quake Root Damage",
+                                "type": "damage",
+                                "multipliers": [
+                                    1600,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "SOULBINDER": {
+        "displayName": "Soulbinder",
+        "description": "Hit enemies become Soulbound for 8s, causing them to take damage whenever you take damage or lose health in any way - equal to 20x the health lost.",
+        "abilities": []
+    },
+    "SIGIL_OF_UNDYING": {
+        "displayName": "Sigil Of Undying",
+        "description": "Casting Arrow Shield creates a sigil on the ground for 6s (6s cooldown). Allies within the sigil gain 10% resistance and are healed for 30% your total Health Regen ID every 0.5s.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Arrow Shield"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Sigil of Undying",
+                        "base_spell": 32,
+                        "display": "Total Heal",
+                        "parts": [
+                            {
+                                "name": "Total Heal",
+                                "type": "total",
+                                "hits": {
+                                    "Heal per Pulse": 12
+                                }
+                            },
+                            {
+                                "name": "Heal / sec",
+                                "type": "total",
+                                "hits": {
+                                    "Heal per Pulse": 2
+                                }
+                            },
+                            {
+                                "name": "Heal per Pulse",
+                                "hpr_pct": 30,
+                                "display": false
+                            }
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Sigil of Undying",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "defMult.SigilOfUndying",
+                                "value": 10
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "PANDEMIC": {
+        "displayName": "Pandemic",
+        "description": "When you are within Totem range, the Totem becomes Primed, adding 12% of your Poison ID every 0.1s. Hitting a Primed totem with Uproot will create a 10 block wide poison cloud instantly dealing the stored Poison.",
+        "abilities": [
+            {
+                "class": "Shaman",
+                "base_abil": "Totem",
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Pandemic",
+                        "base_spell": 31,
+                        "display": "Total DPS",
+                        "parts": [
+                            {
+                                "name": "Per Tick",
+                                "type": "damage",
+                                "poison_pct": 12
+                            },
+                            {
+                                "name": "DPS per Totem",
+                                "type": "total",
+                                "hits": {
+                                    "Per Tick": 10
+                                }
+                            },
+                            {
+                                "name": "Total DPS",
+                                "type": "total",
+                                "hits": {
+                                    "DPS per Totem": "Totem.num_totems"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "GRAVITIC_DEFIANCE": {
+        "displayName": "Gravitic Defiance",
+        "description": "Gravity's hold on you is weakened, allowing unrestrained movement.",
+        "abilities": []
+    },
+    "DUST_TO_DUST": {
+        "displayName": "Dust to Dust",
+        "description": "Feedback Loop causes Arrow Storm to fire 2 waves of arrows, but can grant up to 100% more arrows.",
+        "abilities": []
+    },
+    "SIGIL_OF_DETERMINATION": {
+        "displayName": "Sigil Of Determination",
+        "description": "Casting Arrow Shield creates a sigil on the ground for 6s (6s cooldown). Allies within the sigil are healed for 20% your total Health Regen ID every 0.5s.",
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Arrow Shield"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "replace_spell",
+                        "name": "Sigil of Determination",
+                        "base_spell": 32,
+                        "display": "Total Heal",
+                        "parts": [
+                            {
+                                "name": "Total Heal",
+                                "type": "total",
+                                "hits": {
+                                    "Heal per Pulse": 12
+                                }
+                            },
+                            {
+                                "name": "Heal / sec",
+                                "type": "total",
+                                "hits": {
+                                    "Heal per Pulse": 2
+                                }
+                            },
+                            {
+                                "name": "Heal per Pulse",
+                                "hpr_pct": 20,
+                                "display": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "MAYDAY": {
+        "displayName": "Mayday",
+        "description": "Jasmine Bloom deals no damage but makes enemies 10% more vulnerable, and causes Swan Dive to only activate at max Momemtum, dealing [fire]+400%.",
+        "abilities": [
+            {
+                "class": "Assassin",
+                "base_abil": "Jasmine Bloom",
+                "dependencies": [
+                    "Jasmine Bloom"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 7,
+                        "target_part": "Per Hit",
+                        "behavior": "overwrite",
+                        "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Jasmine Bloom Vulnerability",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "damMult.Vulnerability",
+                                "value": 10
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "class": "Assassin",
+                "base_abil": "Swan Dive",
+                "dependencies": [
+                    "Swan Dive"
+                ],
+                "properties": {},
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 10,
+                        "target_part": "Swan Dive Explosion per Hit",
+                        "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            80,
+                            0
                         ]
                     }
                 ]
