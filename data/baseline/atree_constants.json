@@ -2793,7 +2793,8 @@
             "base_abil": "Arrow Shield",
             "parents": [
                 "Decimator",
-                "Cheaper Arrow Storm II"
+                "Cheaper Arrow Storm II",
+                "Phasing Beam"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -8498,7 +8499,8 @@
             "archetype_req": 0,
             "parents": [
                 "Heal",
-                "Water Mastery"
+                "Water Mastery",
+                "Air Mastery"
             ],
             "dependencies": [],
             "blockers": [],
