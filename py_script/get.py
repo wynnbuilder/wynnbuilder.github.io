@@ -10,7 +10,6 @@ Relevant page: https://docs.wynncraft.com/
 import argparse
 import json
 
-import numpy as np
 import requests
 
 parser = argparse.ArgumentParser(description="Pull data from wynn API.")
@@ -32,13 +31,8 @@ elif req.lower() == "ings":
     for i in range(4):
         response['ings'].extend(requests.get("https://api.wynncraft.com/v2/ingredient/search/tier/" + str(i)).json()['data'])
 elif req.lower() == "recipes":
-    import time
-    temp = requests.get("https://api.wynncraft.com/v2/recipe/list").json()
-    response = {"recipes":[]}
-    for i in range(len(temp['data'])):
-        response["recipes"].extend(requests.get("https://api.wynncraft.com/v2/recipe/get/" + temp['data'][i]).json()['data'])
-        print("" + str(i) + " / " + str(len(temp['data'])))
-        time.sleep(1)
+    raw = requests.get("https://api.wynncraft.com/v3/item/recipe/database?full_result", timeout=30).json()
+    response = {"recipes": raw}
 elif req.lower() == "terrs":
     response = requests.get("https://api.wynncraft.com/public_api.php?action=territoryList").json()['territories']
     delkeys = ["territory","acquired","attacker"]

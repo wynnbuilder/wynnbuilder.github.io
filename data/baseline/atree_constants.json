@@ -2302,6 +2302,7 @@
             "archetype": "Sharpshooter",
             "parents": [
                 "Honed Shield",
+                "Shocking Bomb",
                 "Cheaper Escape II"
             ],
             "dependencies": [
@@ -16292,10 +16293,9 @@
         },
         {
             "display_name": "Rollback",
-            "desc": "Enemies hit by Nature's Jolt will be slowed down. </br> </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
+            "desc": "Nature's Jolt rolls back after hitting a block or reaching maximum range, hitting enemies on the way back. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%)   </br>&emsp;(<span class='eDam'>Earth</span>: -10%)",
             "base_abil": "Haul",
             "parents": [
-                "Nature's Jolt",
                 "Puppet Master",
                 "Cheaper Aura I"
             ],

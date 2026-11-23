@@ -3941,28 +3941,47 @@
                                 ]
                             },
                             {
-                                "name": "Buckshot Enkindle Damage",
-                                "type": "damage",
-                                "scaling": "melee",
-                                "use_atkspd": false,
-                                "multipliers": [
-                                    20,
-                                    0,
-                                    0,
-                                    0,
-                                    0,
-                                    0
-                                ]
-                            },
-                            {
                                 "name": "Total Damage",
                                 "type": "total",
                                 "hits": {
-                                    "Combustion Damage": 1,
-                                    "Buckshot Enkindle Damage": 75
+                                    "Combustion Damage": 1
                                 }
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Shield",
+                "dependencies": [
+                    "Guardian Angels",
+                    "Buckshot"
+                ],
+                "effects": [
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 25,
+                        "target_part": "Buckshot Enkindle Damage",
+                        "type_": "damage",
+                        "scaling": "melee",
+                        "use_atkspd": false,
+                        "multipliers": [
+                            20,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 25,
+                        "target_part": "Total Damage",
+                        "hits": {
+                            "Buckshot Enkindle Damage": 75
+                        }
                     }
                 ]
             }
@@ -5618,7 +5637,33 @@
     "DUST_TO_DUST": {
         "displayName": "Dust to Dust",
         "description": "Feedback Loop causes Arrow Storm to fire 2 waves of arrows, but can grant up to 100% more arrows.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Archer",
+                "base_abil": "Arrow Storm",
+                "dependencies": [
+                    "Feedback Loop"
+                ],
+                "behavior": "overwrite",
+                "properties": {
+                    "arrows_per_stream": 2
+                },
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Feedback Loop",
+                        "behavior": "modify",
+                        "slider_max_mult": 2
+                    },
+                    {
+                        "type": "add_spell_prop",
+                        "base_spell": 1,
+                        "display": "Total Damage"
+                    }
+                ]
+            }
+        ]
     },
     "SIGIL_OF_DETERMINATION": {
         "displayName": "Sigil Of Determination",

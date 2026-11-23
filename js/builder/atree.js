@@ -498,7 +498,10 @@ const atree_merge = new (class extends ComputeNode {
 
                     base_abil.effects = base_abil.effects.concat(abil.effects);
                     for (let propname in abil.properties) {
-                        if (propname in base_abil.properties) {
+                        if (abil.behavior === 'overwrite' || abil.prop_behavior === 'overwrite' || abil.prop_behavior?.[propname] === 'overwrite') {
+                            base_abil.properties[propname] = abil.properties[propname];
+                        }
+                        else if (propname in base_abil.properties) {
                             base_abil.properties[propname] += abil.properties[propname];
                         }
                         else { base_abil.properties[propname] = abil.properties[propname]; }

@@ -162,14 +162,14 @@ function calculateMana(cycle, build, stats) {
         cycle_cost[i] *= 1 - negationFreq[i];
     }
 
-    // Give the 30% that SoH procs every 8s
+    // Give the 25% that SoH procs every 8s
     let extraAbilityMana = 0.0;
     if (stats.get("activateStridesofHeresy")) {
         for (let i = 0; i < cycle.length; i++) {
             const spellId = cycle[i][2];
             if (spellId == 4) {
                 const maxMana = 100 + stats.get('maxMana') + Math.floor(skillPointsToPercentage(stats.get('int') ?? 0) * 100);
-                extraAbilityMana += maxMana * 0.3 / 8;
+                extraAbilityMana += maxMana * 0.25 / 8;
                 break;
             }
         }
