@@ -58,20 +58,16 @@
                 "dependencies": [
                     "Arrow Hurricane"
                 ],
+                "prop_behavior": {
+                    "arrow_streams": "overwrite",
+                    "arrows_per_stream": "overwrite"
+                },
                 "properties": {
                     "arrow_streams": 1,
+                    "arrows_per_stream": 5,
                     "attack_frequency": -3.33333333334
                 },
                 "effects": [
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Single Stream",
-                        "behavior": "overwrite",
-                        "hits": {
-                            "Single Arrow": 5
-                        }
-                    },
                     {
                         "type": "add_spell_prop",
                         "base_spell": 1,
@@ -85,6 +81,13 @@
                             0,
                             6
                         ]
+                    },
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Feedback Loop",
+                        "behavior": "modify",
+                        "slider_max_mult": 0.5
                     }
                 ]
             },
@@ -5736,7 +5739,7 @@
                     },
                     {
                         "type": "raw_stat",
-                        "toggle": "Jasmine Bloom Vulnerability",
+                        "toggle": "Mayday",
                         "bonuses": [
                             {
                                 "type": "stat",
