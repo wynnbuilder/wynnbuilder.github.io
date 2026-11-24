@@ -748,7 +748,7 @@ class SpellDamageCalcNode extends ComputeNode {
                     is_spell: use_spell,
                     multipliers: results[3]
                 }
-            } else if ('power' in part) {
+            } else if ('power' in part || 'hpr_pct' in part) {
                 // TODO: wynn2 formula
                 const mult_map = stats.get("healMult");
                 let heal_mult = 1;
@@ -763,16 +763,9 @@ class SpellDamageCalcNode extends ComputeNode {
                     heal_mult *= (1 + v / 100);
                 }
                 heal_mult *= (1 + stats.get('healPct') / 100);
-                let _heal_amount = part.power * getDefenseStats(stats)[0] * heal_mult;
-                spell_result = {
-                    type: "heal",
-                    heal_amount: _heal_amount
-                }
-            } 
-            else if ('hpr_pct' in part) {
-                // Flat % of total Health Regen ID as heal
-                let totalHpr = getDefenseStats(stats)[2];
-                let _heal_amount = Math.max(0, totalHpr) * part.hpr_pct / 100;
+                let _heal_amount = ('power' in part)
+                    ? part.power * getDefenseStats(stats)[0] * heal_mult
+                    : Math.max(0, getDefenseStats(stats)[2]) * (part.hpr_pct / 100) * heal_mult;
                 spell_result = {
                     type: "heal",
                     heal_amount: _heal_amount

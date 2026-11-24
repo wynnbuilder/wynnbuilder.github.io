@@ -63,7 +63,7 @@
                     "arrows_per_stream": "overwrite"
                 },
                 "properties": {
-                    "arrow_streams": 1,
+                    "arrow_streams": 5,
                     "arrows_per_stream": 5,
                     "attack_frequency": -3.33333333334
                 },
