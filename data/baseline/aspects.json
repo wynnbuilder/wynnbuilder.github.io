@@ -334,9 +334,6 @@
             }
           ]
         }
-      ],
-      "aliases": [
-        "grapeBombCount"
       ]
     },
     {
@@ -524,7 +521,7 @@
         }
       ],
       "aliases": [
-        "Aspect of the North Wind"
+        "buckshotCount"
       ]
     },
     {
@@ -1347,9 +1344,6 @@
           "description": "Increase Grappling Hook's range by +30%. </br> Increase Escape's velocity by 25%.",
           "abilities": []
         }
-      ],
-      "aliases": [
-        "Aspect of the Barley-Woven"
       ]
     },
     {
@@ -6733,7 +6727,8 @@
       ],
       "aliases": [
         "puppetSpeed",
-        "effigySpeed"
+        "effigySpeed",
+        "naturesJoltSpeed"
       ]
     },
     {

@@ -750,7 +750,9 @@
                 "col": 0,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "arrows": 75
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -1616,7 +1618,8 @@
             "base_abil": "Arrow Shield",
             "parents": [
                 "Grape Bomb",
-                "Mana Trap"
+                "Mana Trap",
+                "Ivyroot Mamba"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -2239,7 +2242,8 @@
             "base_abil": "Basaltic Trap",
             "parents": [
                 "Grape Bomb",
-                "Murder Flock"
+                "Murder Flock",
+                "Windstorm"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -3243,7 +3247,8 @@
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Tangled Traps",
-                "Barbed Barrage"
+                "Barbed Barrage",
+                "Crepuscular Ray"
             ],
             "dependencies": [
                 "Arrow Bomb"
@@ -3896,7 +3901,8 @@
             "parents": [
                 "Cheaper Arrow Shield I",
                 "Recycling",
-                "Cheaper Escape II"
+                "Cheaper Escape II",
+                "Divine Intervention"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -14149,7 +14155,8 @@
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
-                "Celerity"
+                "Celerity",
+                "Doppelganger"
             ],
             "dependencies": [
                 "Jasmine Bloom"
@@ -14892,7 +14899,8 @@
             "desc": "Gain a speed boost after losing a Mirror Clone. </br> </br>Effect: +25% Walk Speed to Self </br>Duration: 4s",
             "archetype": "Trickster",
             "parents": [
-                "Doppelganger"
+                "Doppelganger",
+                "Celerity"
             ],
             "dependencies": [
                 "Mirror Image"

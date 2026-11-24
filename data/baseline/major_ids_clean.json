@@ -3983,7 +3983,7 @@
                         "base_spell": 25,
                         "target_part": "Total Damage",
                         "hits": {
-                            "Buckshot Enkindle Damage": 75
+                            "Buckshot Enkindle Damage": "Arrow Shield.arrows"
                         }
                     }
                 ]
