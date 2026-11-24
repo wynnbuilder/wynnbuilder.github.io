@@ -4020,7 +4020,7 @@
             "display_name": "Barbed Barrage",
             "desc": "Your Arrow Storm now inflicts enemies with Bleeding for +0.5s per hit. (Max 6s). </br> Bleeding enemies take damage every 0.5s, take increased damage from your Beasts, and are prioritized by them. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: +20% Damage Bonus to Pets",
             "archetype": "Trapper",
-            "archetype_req": 3,
+            "archetype_req": 0,
             "parents": [
                 "Tangled Traps",
                 "Transience",
