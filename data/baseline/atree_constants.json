@@ -2838,7 +2838,7 @@
             },
             "properties": {
                 "duration": 4,
-                "cooldown": 12
+                "cooldown": 10
             },
             "effects": [
                 {
@@ -2848,7 +2848,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Vulnerability",
-                            "value": 15
+                            "value": 12
                         }
                     ]
                 }
@@ -2971,6 +2971,14 @@
                     "target_part": "Total DPS",
                     "hits": {
                         "Per Snake DPS": 1
+                    }
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 10,
+                    "target_part": "Flock DPS",
+                    "hits": {
+                        "Single Hit": 2.2222222222
                     }
                 }
             ]
@@ -3100,11 +3108,11 @@
                     "target_part": "Grape Bomb",
                     "behavior": "modify",
                     "multipliers": [
-                        20,
+                        15,
                         0,
                         0,
                         0,
-                        5,
+                        10,
                         0
                     ]
                 }
@@ -3360,7 +3368,7 @@
                         "name": "damMult.WildLight:0.Single Shot"
                     },
                     "scaling": [
-                        1.0
+                        0.8
                     ]
                 },
                 {
@@ -3373,7 +3381,7 @@
                         "name": "damMult.WildLight:0.Flint Arrows"
                     },
                     "scaling": [
-                        1.0
+                        0.8
                     ]
                 }
             ]
@@ -6900,7 +6908,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Brink",
-                            "value": 40
+                            "value": 50
                         }
                     ]
                 }
@@ -7775,11 +7783,11 @@
                     "behavior": "modify",
                     "base_spell": 6,
                     "multipliers": [
-                        120,
+                        160,
                         0,
                         0,
                         0,
-                        30,
+                        40,
                         0
                     ]
                 }
@@ -17778,7 +17786,7 @@
         },
         {
             "display_name": "Malediction",
-            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 30%)",
+            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 40%)",
             "base_abil": 999,
             "archetype": "Ritualist",
             "parents": [
@@ -18205,7 +18213,7 @@
                         180,
                         0,
                         0,
-                        60,
+                        45,
                         0,
                         0
                     ]
@@ -19083,7 +19091,6 @@
         {
             "display_name": "Repulse",
             "desc": "Once Aura rebounds, it will radiate back out and deal its effects a third time.",
-            "archetype": "Acolyte",
             "base_abil": "Aura",
             "parents": [
                 "Cheaper Uproot II",

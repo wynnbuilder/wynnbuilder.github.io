@@ -2491,7 +2491,31 @@
     "PHOENIXBORN": {
         "displayName": "Phoenix-Born",
         "description": "Health Regeneration is increased by 0.75% for every 1% Health missing.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Any",
+                "id": "Phoenixborn",
+                "effects": [
+                    {
+                        "type": "stat_scaling",
+                        "slider": true,
+                        "slider_name": "Missing Health % (Phoenixborn)",
+                        "slider_step": 1,
+                        "slider_max": 100,
+                        "slider_default": 0,
+                        "output": [
+                            {
+                                "type": "stat",
+                                "name": "hprMult"
+                            }
+                        ],
+                        "scaling": [
+                            0.75
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "SUN_EATER": {
         "displayName": "Sun Eater",
@@ -4317,7 +4341,28 @@
     "HEROINES_BLESSING": {
         "displayName": "Heroine's Blessing",
         "description": "Devout Union gains +25% damage redirection and +8 radius. Additionally, Mantles given by Enlightenment have +20% damage reduction.",
-        "abilities": []
+        "abilities": [
+            {
+                "class": "Warrior",
+                "base_abil": "Mantle of the Bovemists",
+                "dependencies": [
+                    "Enlightenment"
+                ],
+                "effects": [
+                    {
+                        "type": "raw_stat",
+                        "toggle": "Activate Mantle",
+                        "bonuses": [
+                            {
+                                "type": "stat",
+                                "name": "defMult.Mantle",
+                                "value": 20
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "ELVEN_CURRENT": {
         "displayName": "Elven Current",
@@ -4778,7 +4823,7 @@
                         "bonuses": [
                             {
                                 "type": "prop",
-                                "abil": "Arrow bomb",
+                                "abil": "Arrow Bomb",
                                 "name": "bombs",
                                 "mult": true,
                                 "value": 1.6

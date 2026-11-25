@@ -662,6 +662,9 @@ function getDefenseStats(stats) {
     defenseStats.push(ehp);
     //HPR
     let totalHpr = rawToPct(stats.get("hprRaw"), stats.get("hprPct") / 100.);
+    if (stats.has("hprMult")) {
+        totalHpr *= (1 + stats.get("hprMult") / 100);
+    }
     defenseStats.push(totalHpr);
     //EHPR
     let ehpr = [totalHpr, totalHpr];
