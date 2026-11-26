@@ -2358,7 +2358,7 @@
             {
               "base_abil": "Mantle of the Bovemists",
               "properties": {
-                "charges": 2
+                "charges": 3
               },
               "effects": []
             }
@@ -2478,7 +2478,7 @@
                 "pressure_rainbow_uppercut": 8,
                 "pressure_neutral_uppercut": 50,
                 "pressure_bash_hits": 0.5,
-                "pressure_scream_boost": 2
+                "pressure_scream_boost": 3
               },
               "effects": []
             }
@@ -2497,7 +2497,7 @@
                 "pressure_rainbow_uppercut": 10,
                 "pressure_neutral_uppercut": 70,
                 "pressure_bash_hits": 0.5,
-                "pressure_scream_boost": 3
+                "pressure_scream_boost": 4
               },
               "effects": [
                 {
@@ -2927,10 +2927,34 @@
               "effects": [
                 {
                   "type": "add_spell_prop",
-                  "base_spell": 9,
+                  "base_spell": 13,
                   "target_part": "Total Damage",
                   "hits": {
-                    "Spike Detonation Hit": 2
+                    "Spike Detonation Hit": 3
+                  }
+                }
+              ]
+            },
+            {
+              "base_abil": "Zenith Stance",
+              "dependencies": [
+                "Zenith Stance"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 12,
+                  "target_part": "Total Spell Damage",
+                  "hits": {
+                    "Total Spell DPS": 3
+                  }
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 12,
+                  "target_part": "Total Melee Damage",
+                  "hits": {
+                    "Total Melee DPS": 3
                   }
                 }
               ]
@@ -2952,7 +2976,31 @@
                   "base_spell": 9,
                   "target_part": "Total Damage",
                   "hits": {
-                    "Spike Detonation Hit": 2
+                    "Spike Detonation Hit": 3
+                  }
+                }
+              ]
+            },
+            {
+              "base_abil": "Zenith Stance",
+              "dependencies": [
+                "Zenith Stance"
+              ],
+              "effects": [
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 12,
+                  "target_part": "Total Spell Damage",
+                  "hits": {
+                    "Total Spell DPS": 3
+                  }
+                },
+                {
+                  "type": "add_spell_prop",
+                  "base_spell": 12,
+                  "target_part": "Total Melee Damage",
+                  "hits": {
+                    "Total Melee DPS": 3
                   }
                 }
               ]

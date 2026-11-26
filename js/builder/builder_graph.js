@@ -58,7 +58,7 @@ let boosts_node = new (class extends ComputeNode {
         }
         // For some reason, yes, they can stack with anything else
         if (document.getElementById('weathering-boost').classList.contains("toggleOn")) {
-            res.set('defMult.Weathering', 20);
+            res.set('defMult.Weathering', 8);
         }
         if (document.getElementById('acidrain-boost').classList.contains("toggleOn")) {
             res.set('damMult.AcidRain', 8);
@@ -663,7 +663,7 @@ function getDefenseStats(stats) {
     //HPR
     let totalHpr = rawToPct(stats.get("hprRaw"), stats.get("hprPct") / 100.);
     if (stats.has("hprMult")) {
-        totalHpr *= (1 + stats.get("hprMult") / 100);
+        totalHpr *= (1 + stats.get("hprMult") / 100); //only for Phoenixborn rn but idk how else to implement
     }
     defenseStats.push(totalHpr);
     //EHPR

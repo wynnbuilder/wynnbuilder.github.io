@@ -7302,52 +7302,6 @@
                         }
                     ],
                     "output": {
-                        "type": "prop",
-                        "abil": "Bash",
-                        "name": "crush_mult"
-                    },
-                    "scaling": [
-                        0.025
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Corrupted",
-                    "output": {
-                        "type": "prop",
-                        "abil": "Bash",
-                        "name": "crush_mult"
-                    },
-                    "scaling": [
-                        0.1
-                    ],
-                    "max": 0.2285
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Corrupted",
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Rumble:1.Single Hit"
-                    },
-                    "scaling": [
-                        0.2
-                    ],
-                    "max": 8
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": false,
-                    "inputs": [
-                        {
-                            "type": "prop",
-                            "abil": "Bash",
-                            "name": "aoe"
-                        }
-                    ],
-                    "output": {
                         "type": "stat",
                         "name": "damMult.Rumble:1.Thunderclap Bonus"
                     },
@@ -12420,12 +12374,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        112,
+                        144,
                         0,
                         0,
                         0,
                         0,
-                        56
+                        72
                     ]
                 },
                 {
@@ -13177,13 +13131,14 @@
                     "type": "add_spell_prop",
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
+                    "behavior": "modify",
                     "multipliers": [
-                        108,
+                        120,
                         0,
                         0,
                         0,
                         0,
-                        54
+                        60
                     ]
                 }
             ]

@@ -226745,20 +226745,20 @@
         },
         {
           "xpb": 20,
-          "hpbonus": 125,
+          "hpBonus": 125,
           "spd": 8,
           "thorns": 15
         },
         {
           "xpb": 24,
-          "hpbonus": 125,
+          "hpBonus": 125,
           "spd": 8,
           "thorns": 15,
           "ms": 8
         },
         {
           "xpb": 28,
-          "hpbonus": 125,
+          "hpBonus": 125,
           "spd": 8,
           "thorns": 15,
           "ms": 8,
@@ -226767,7 +226767,7 @@
         },
         {
           "xpb": 32,
-          "hpbonus": -400,
+          "hpBonus": -400,
           "spd": 15,
           "thorns": 30,
           "ms": 8,
@@ -226777,7 +226777,7 @@
         },
         {
           "xpb": 36,
-          "hpbonus": -1250,
+          "hpBonus": -1250,
           "spd": 20,
           "thorns": 30,
           "ms": 8,

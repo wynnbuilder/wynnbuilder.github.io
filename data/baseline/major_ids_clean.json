@@ -675,9 +675,6 @@
             {
                 "class": "Assassin",
                 "base_abil": "Multihit",
-                "properties": {
-                    "hit_count": 12
-                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -691,20 +688,6 @@
                             -2,
                             0,
                             0
-                        ]
-                    },
-                    {
-                        "type": "add_spell_prop",
-                        "base_spell": 3,
-                        "behavior": "modify",
-                        "target_part": "Finality Bonus",
-                        "multipliers": [
-                            384,
-                            0,
-                            0,
-                            0,
-                            0,
-                            192
                         ]
                     },
                     {
@@ -725,6 +708,9 @@
                 "dependencies": [
                     "Mutilate"
                 ],
+                "properties": {
+                    "hit_count": 12
+                },
                 "effects": [
                     {
                         "type": "add_spell_prop",
@@ -732,12 +718,12 @@
                         "behavior": "modify",
                         "target_part": "Finality Bonus",
                         "multipliers": [
-                            144,
+                            528,
                             0,
                             0,
                             0,
                             0,
-                            72
+                            264
                         ]
                     }
                 ]
@@ -3400,18 +3386,30 @@
                 "base_abil": "Totem",
                 "effects": [
                     {
-                        "type": "add_spell_prop",
-                        "base_spell": 1,
-                        "target_part": "Lit Fuse",
+                        "type": "replace_spell",
+                        "name": "Lit Fuse",
+                        "base_spell": 34,
                         "scaling": "melee",
                         "use_atkspd": false,
-                        "multipliers": [
-                            550,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
+                        "display": "Single Beam",
+                        "parts": [
+                            {
+                                "name": "Single Beam",
+                                "multipliers": [
+                                    550,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            {
+                                "name": "Total Damage",
+                                "hits": {
+                                    "Single Beam": 11
+                                }
+                            }
                         ]
                     }
                 ]
@@ -4985,7 +4983,7 @@
                 "class": "Warrior",
                 "base_abil": "Bak'al's Grasp",
                 "dependencies": [
-                    "Rumble"
+                    "Final Crush"
                 ],
                 "properties": {},
                 "effects": [
@@ -5047,7 +5045,7 @@
                     {
                         "type": "stat_scaling",
                         "slider": true,
-                        "slider_name": "Immortal Rot Missing Health",
+                        "slider_name": "Missing Health % (Immortal Rot)",
                         "slider_step": 1,
                         "slider_max": 50,
                         "output": [
