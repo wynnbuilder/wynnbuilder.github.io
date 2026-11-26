@@ -750,7 +750,9 @@
                 "col": 0,
                 "icon": "node_1"
             },
-            "properties": {},
+            "properties": {
+                "arrows": 75
+            },
             "effects": [
                 {
                     "type": "add_spell_prop",
@@ -1616,7 +1618,8 @@
             "base_abil": "Arrow Shield",
             "parents": [
                 "Grape Bomb",
-                "Mana Trap"
+                "Mana Trap",
+                "Ivyroot Mamba"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -2239,7 +2242,8 @@
             "base_abil": "Basaltic Trap",
             "parents": [
                 "Grape Bomb",
-                "Murder Flock"
+                "Murder Flock",
+                "Windstorm"
             ],
             "dependencies": [
                 "Basaltic Trap"
@@ -2834,7 +2838,7 @@
             },
             "properties": {
                 "duration": 4,
-                "cooldown": 12
+                "cooldown": 10
             },
             "effects": [
                 {
@@ -2844,7 +2848,7 @@
                         {
                             "type": "stat",
                             "name": "damMult.Vulnerability",
-                            "value": 15
+                            "value": 12
                         }
                     ]
                 }
@@ -2967,6 +2971,14 @@
                     "target_part": "Total DPS",
                     "hits": {
                         "Per Snake DPS": 1
+                    }
+                },
+                {
+                    "type": "add_spell_prop",
+                    "base_spell": 10,
+                    "target_part": "Flock DPS",
+                    "hits": {
+                        "Single Hit": 2.2222222222
                     }
                 }
             ]
@@ -3096,11 +3108,11 @@
                     "target_part": "Grape Bomb",
                     "behavior": "modify",
                     "multipliers": [
-                        20,
+                        15,
                         0,
                         0,
                         0,
-                        5,
+                        10,
                         0
                     ]
                 }
@@ -3243,7 +3255,8 @@
             "base_abil": "Arrow Bomb",
             "parents": [
                 "Tangled Traps",
-                "Barbed Barrage"
+                "Barbed Barrage",
+                "Crepuscular Ray"
             ],
             "dependencies": [
                 "Arrow Bomb"
@@ -3355,7 +3368,7 @@
                         "name": "damMult.WildLight:0.Single Shot"
                     },
                     "scaling": [
-                        1.0
+                        0.8
                     ]
                 },
                 {
@@ -3368,7 +3381,7 @@
                         "name": "damMult.WildLight:0.Flint Arrows"
                     },
                     "scaling": [
-                        1.0
+                        0.8
                     ]
                 }
             ]
@@ -3896,7 +3909,8 @@
             "parents": [
                 "Cheaper Arrow Shield I",
                 "Recycling",
-                "Cheaper Escape II"
+                "Cheaper Escape II",
+                "Divine Intervention"
             ],
             "dependencies": [
                 "Arrow Shield"
@@ -4014,7 +4028,7 @@
             "display_name": "Barbed Barrage",
             "desc": "Your Arrow Storm now inflicts enemies with Bleeding for +0.5s per hit. (Max 6s). </br> Bleeding enemies take damage every 0.5s, take increased damage from your Beasts, and are prioritized by them. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: +20% Damage Bonus to Pets",
             "archetype": "Trapper",
-            "archetype_req": 3,
+            "archetype_req": 0,
             "parents": [
                 "Tangled Traps",
                 "Transience",
@@ -6894,7 +6908,7 @@
                         {
                             "type": "stat",
                             "name": "defMult.Brink",
-                            "value": 40
+                            "value": 50
                         }
                     ]
                 }
@@ -7276,52 +7290,6 @@
                     "scaling": [
                         5
                     ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": false,
-                    "inputs": [
-                        {
-                            "type": "prop",
-                            "abil": "Bash",
-                            "name": "aoe"
-                        }
-                    ],
-                    "output": {
-                        "type": "prop",
-                        "abil": "Bash",
-                        "name": "crush_mult"
-                    },
-                    "scaling": [
-                        0.025
-                    ]
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Corrupted",
-                    "output": {
-                        "type": "prop",
-                        "abil": "Bash",
-                        "name": "crush_mult"
-                    },
-                    "scaling": [
-                        0.1
-                    ],
-                    "max": 0.2285
-                },
-                {
-                    "type": "stat_scaling",
-                    "slider": true,
-                    "slider_name": "Corrupted",
-                    "output": {
-                        "type": "stat",
-                        "name": "damMult.Rumble:1.Single Hit"
-                    },
-                    "scaling": [
-                        0.2
-                    ],
-                    "max": 8
                 },
                 {
                     "type": "stat_scaling",
@@ -7769,11 +7737,11 @@
                     "behavior": "modify",
                     "base_spell": 6,
                     "multipliers": [
-                        120,
+                        160,
                         0,
                         0,
                         0,
-                        30,
+                        40,
                         0
                     ]
                 }
@@ -12406,12 +12374,12 @@
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
                     "multipliers": [
-                        112,
+                        144,
                         0,
                         0,
                         0,
                         0,
-                        56
+                        72
                     ]
                 },
                 {
@@ -13163,13 +13131,14 @@
                     "type": "add_spell_prop",
                     "base_spell": 3,
                     "target_part": "Finality Bonus",
+                    "behavior": "modify",
                     "multipliers": [
-                        108,
+                        120,
                         0,
                         0,
                         0,
                         0,
-                        54
+                        60
                     ]
                 }
             ]
@@ -14149,7 +14118,8 @@
             "archetype": "Acrobat",
             "archetype_req": 0,
             "parents": [
-                "Celerity"
+                "Celerity",
+                "Doppelganger"
             ],
             "dependencies": [
                 "Jasmine Bloom"
@@ -14892,7 +14862,8 @@
             "desc": "Gain a speed boost after losing a Mirror Clone. </br> </br>Effect: +25% Walk Speed to Self </br>Duration: 4s",
             "archetype": "Trickster",
             "parents": [
-                "Doppelganger"
+                "Doppelganger",
+                "Celerity"
             ],
             "dependencies": [
                 "Mirror Image"
@@ -17770,7 +17741,7 @@
         },
         {
             "display_name": "Malediction",
-            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 30%)",
+            "desc": "Hitting enemies with your Main Attack will consume 1 Static per beam to cause a small explosion. </br> Greatly reduce Main Attack spread. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, as Main Attack damage)    </br>&emsp;(<span class='nDam'>Damage</span>: 40%)",
             "base_abil": 999,
             "archetype": "Ritualist",
             "parents": [
@@ -18197,7 +18168,7 @@
                         180,
                         0,
                         0,
-                        60,
+                        45,
                         0,
                         0
                     ]
@@ -19075,7 +19046,6 @@
         {
             "display_name": "Repulse",
             "desc": "Once Aura rebounds, it will radiate back out and deal its effects a third time.",
-            "archetype": "Acolyte",
             "base_abil": "Aura",
             "parents": [
                 "Cheaper Uproot II",
